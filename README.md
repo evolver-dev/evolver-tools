@@ -1,16 +1,16 @@
 # EVOLVER Tools
 
-**39 essential CLI tools — one `pip install`.**
+**50 essential CLI tools — one `pip install`.**
 
-Zero-dependency (38/39), cross-platform, production-ready.
+Zero-dependency (49/50), cross-platform, production-ready.
 Systems ops, data processing, dev tools, security, and creativity.
-~120KB total — one install, not 39.
+~170KB total — one install, not 50.
 
 ## Quick Start
 
 ```bash
 pip install evolver-tools
-evtool list             # Show all 39 tools
+evtool list             # Show all 50 tools
 evtool ff < data.txt    # Fuzzy search through data
 evtool sysmon           # Launch system monitor
 evtool sort -n data.txt # Numeric sort
