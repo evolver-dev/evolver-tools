@@ -257,5 +257,13 @@ Examples:
             print(colorize_entry(entry))
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "audit-log",
+    "func": "main",
+    "desc": 'Parse and filter system audit logs',
+}
+
 if __name__ == '__main__':
     main()

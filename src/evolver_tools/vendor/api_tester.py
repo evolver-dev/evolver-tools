@@ -225,5 +225,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "api-tester",
+    "func": "main",
+    "desc": 'HTTP API testing tool',
+}
+
 if __name__ == '__main__':
     main()

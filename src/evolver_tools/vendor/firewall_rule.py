@@ -268,5 +268,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "firewall-rule",
+    "func": "main",
+    "desc": 'iptables/nftables firewall rule helper',
+}
+
 if __name__ == '__main__':
     main()

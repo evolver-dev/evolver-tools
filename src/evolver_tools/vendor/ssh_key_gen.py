@@ -118,5 +118,13 @@ Examples:
         if fp:
             print(f"Fingerprint: {fp}")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "ssh-key-gen",
+    "func": "main",
+    "desc": 'Generate SSH key pairs',
+}
+
 if __name__ == "__main__":
     main()

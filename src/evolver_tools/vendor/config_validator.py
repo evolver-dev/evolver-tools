@@ -308,5 +308,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "config-validator",
+    "func": "main",
+    "desc": 'Validate config files (JSON, YAML, TOML)',
+}
+
 if __name__ == '__main__':
     main()

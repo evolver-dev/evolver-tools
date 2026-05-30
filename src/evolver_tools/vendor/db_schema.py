@@ -205,5 +205,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "db-schema",
+    "func": "main",
+    "desc": 'Display database schema as ASCII',
+}
+
 if __name__ == '__main__':
     main()

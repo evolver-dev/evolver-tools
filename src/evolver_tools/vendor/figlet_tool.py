@@ -264,5 +264,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "figlet",
+    "func": "main",
+    "desc": 'ASCII banner generator (figlet-style)',
+}
+
 if __name__ == '__main__':
     main()
