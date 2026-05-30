@@ -50,11 +50,16 @@ TOOLS = {
     "changelog-gen": {"module": "evolver_tools.vendor.changelog_gen", "func": "main", "desc": "Generate changelog from git log"},
     "timer-pro": {"module": "evolver_tools.vendor.timer_pro", "func": "main", "desc": "Countdown, stopwatch, alarms, lap timer"},
     "banner-gen": {"module": "evolver_tools.vendor.banner", "func": "main", "desc": "ASCII banner generator (4 styles, colors)"},
+    "shuffle": {"module": "evolver_tools.vendor.shuffle", "func": "main", "desc": "Randomize lines from stdin"},
+    "split": {"module": "evolver_tools.vendor.split", "func": "main", "desc": "Split input into multiple files by line count"},
+    "join": {"module": "evolver_tools.vendor.join", "func": "main", "desc": "Join lines with delimiter"},
+    "weather-cli": {"module": "evolver_tools.vendor.weather_cli", "func": "main", "desc": "Weather forecast from wttr.in"},
+    "progress-bar": {"module": "evolver_tools.vendor.progress_bar", "func": "main", "desc": "Animated terminal progress bar"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v1.8.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v2.0.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')

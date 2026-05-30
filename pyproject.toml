@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "1.8.0"
-description = "45 essential CLI tools - one pip install"
+version = "1.9.0"
+description = "50 essential CLI tools - one pip install"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
@@ -75,6 +75,11 @@ b64 = "evolver_tools.vendor.b64:main"
     changelog-gen = "evolver_tools.vendor.changelog_gen:main"
     timer-pro = "evolver_tools.vendor.timer_pro:main"
     banner-gen = "evolver_tools.vendor.banner:main"
+    json-pretty = "evolver_tools.vendor.json_pretty:main"
+    ini-parser = "evolver_tools.vendor.ini_parser:main"
+    split = "evolver_tools.vendor.split_tool:main"
+    disk-usage = "evolver_tools.vendor.disk_usage:main"
+    quote = "evolver_tools.vendor.quote_tool:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
