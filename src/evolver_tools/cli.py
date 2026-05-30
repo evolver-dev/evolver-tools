@@ -55,6 +55,10 @@ TOOLS = {
     "join": {"module": "evolver_tools.vendor.join", "func": "main", "desc": "Join lines with delimiter"},
     "weather-cli": {"module": "evolver_tools.vendor.weather_cli", "func": "main", "desc": "Weather forecast from wttr.in"},
     "progress-bar": {"module": "evolver_tools.vendor.progress_bar", "func": "main", "desc": "Animated terminal progress bar"},
+    "json-pretty": {"module": "evolver_tools.vendor.json_pretty", "func": "main", "desc": "JSON pretty-printer, validator, minifier"},
+    "ini-parser": {"module": "evolver_tools.vendor.ini_parser", "func": "main", "desc": "INI file parser, query, and JSON converter"},
+    "disk-usage": {"module": "evolver_tools.vendor.disk_usage", "func": "main", "desc": "Disk usage analyzer (largest dirs/files)"},
+    "quote": {"module": "evolver_tools.vendor.quote_tool", "func": "main", "desc": "Random quote generator (100+ in 5 categories)"},
 }
 
 def list_tools():
