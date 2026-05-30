@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "3.0.0"
-description = "100 essential CLI tools - one pip install"
+version = "3.1.0"
+description = "105 essential CLI tools - one pip install"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
