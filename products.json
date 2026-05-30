@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "11.0.0",
-    "tools": 122,
+    "version": "12.0.0",
+    "tools": 129,
     "flagships": 9,
     "total_lines": 10186,
     "price": 79,
-    "description": "122 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/11.0.0/",
+    "description": "129 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/12.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_model": {
       "free": "All 122 tools + 9 flagship — fully open source (MIT)",
