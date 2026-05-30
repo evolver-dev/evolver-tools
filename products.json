@@ -1,21 +1,33 @@
 [
   {
     "name": "evolver-tools",
-    "version": "10.0.0",
+    "version": "11.0.0",
     "tools": 122,
     "flagships": 9,
     "total_lines": 10186,
     "price": 79,
     "description": "122 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/10.0.0/",
+    "url": "https://pypi.org/project/evolver-tools/11.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_model": {
+      "free": "All 122 tools + 9 flagship — fully open source (MIT)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
+    },
     "released": "2026-05-30",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
       "122 total CLI tools",
+      "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
-      "Zero-dependency core (49/54)",
-      "Cross-platform (Linux, macOS, Windows)"
+      "Cross-platform (Linux, macOS, Windows)",
+      "Single pip install — no version conflicts"
     ]
   }
 ]
