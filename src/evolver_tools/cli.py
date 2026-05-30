@@ -64,11 +64,16 @@ TOOLS = {
     "net-speed": {"module": "evolver_tools.vendor.net_speed", "func": "main", "desc": "Internet download speed test"},
     "ascii-gen": {"module": "evolver_tools.vendor.ascii_gen", "func": "main", "desc": "ASCII art generator (8 styles)"},
     "stopwatch": {"module": "evolver_tools.vendor.stopwatch", "func": "main", "desc": "Terminal stopwatch with lap support"},
+    "qrcode": {"module": "evolver_tools.vendor.qrcode", "func": "main", "desc": "QR code generator (ASCII art)"},
+    "restore": {"module": "evolver_tools.vendor.restore", "func": "main", "desc": "Restore files from .bak backups"},
+    "reminder": {"module": "evolver_tools.vendor.reminder", "func": "main", "desc": "Timer-based reminder with countdown"},
+    "todo-cli": {"module": "evolver_tools.vendor.todo_cli", "func": "main", "desc": "Simple prioritized TODO list manager"},
+    "log-tail": {"module": "evolver_tools.vendor.log_tail", "func": "main", "desc": "Tail logs with follow, filter, colorize"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v2.1.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v2.2.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
