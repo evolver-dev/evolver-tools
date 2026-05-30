@@ -51,7 +51,7 @@ TOOLS = {
     "timer-pro": {"module": "evolver_tools.vendor.timer_pro", "func": "main", "desc": "Countdown, stopwatch, alarms, lap timer"},
     "banner-gen": {"module": "evolver_tools.vendor.banner", "func": "main", "desc": "ASCII banner generator (4 styles, colors)"},
     "shuffle": {"module": "evolver_tools.vendor.shuffle", "func": "main", "desc": "Randomize lines from stdin"},
-    "split": {"module": "evolver_tools.vendor.split", "func": "main", "desc": "Split input into multiple files by line count"},
+    "split": {"module": "evolver_tools.vendor.split_tool", "func": "main", "desc": "File splitter and joiner (by lines or size)"},
     "join": {"module": "evolver_tools.vendor.join", "func": "main", "desc": "Join lines with delimiter"},
     "weather-cli": {"module": "evolver_tools.vendor.weather_cli", "func": "main", "desc": "Weather forecast from wttr.in"},
     "progress-bar": {"module": "evolver_tools.vendor.progress_bar", "func": "main", "desc": "Animated terminal progress bar"},
