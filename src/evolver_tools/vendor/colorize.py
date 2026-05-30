@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """colorize — Terminal text colorizer with foreground/background colors and text styles."""
+TOOL_META = {"name": "colorize", "desc": "Terminal text colorizer", "func": "main"}
 import sys
 import os
 import argparse

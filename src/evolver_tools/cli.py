@@ -97,11 +97,18 @@ TOOLS = {
     "dep-graph": {"module": "evolver_tools.vendor.dep_graph", "func": "main", "desc": "Dependency graph from Python files"},
     "image-meta": {"module": "evolver_tools.vendor.image_meta", "func": "main", "desc": "Image metadata (EXIF) viewer"},
     "agent-b": {"module": "evolver_tools.vendor.agent_b_tool", "func": "main", "desc": "Agent B tool"},
+    "api-tester": {"module": "evolver_tools.vendor.api_tester", "func": "main", "desc": "HTTP API testing tool"},
+    "audit-log": {"module": "evolver_tools.vendor.audit_log", "func": "main", "desc": "Parse and filter system audit logs"},
+    "config-validator": {"module": "evolver_tools.vendor.config_validator", "func": "main", "desc": "Validate JSON/YAML/TOML config files"},
+    "db-schema": {"module": "evolver_tools.vendor.db_schema", "func": "main", "desc": "Display database schema as ASCII"},
+    "firewall-rule": {"module": "evolver_tools.vendor.firewall_rule", "func": "main", "desc": "iptables/nftables helper tool"},
+    "log-analyzer": {"module": "evolver_tools.vendor.log_analyzer", "func": "main", "desc": "Log file analyzer with stats"},
+    "ssh-key-gen": {"module": "evolver_tools.vendor.ssh_key_gen", "func": "main", "desc": "Generate SSH key pairs"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v2.4.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v2.5.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "2.4.0"
-description = "83 essential CLI tools - one pip install"
+version = "2.5.0"
+description = "99 essential CLI tools - one pip install"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
@@ -121,6 +121,13 @@ b64 = "evolver_tools.vendor.b64:main"
     bookmark = "evolver_tools.vendor.bookmark:main"
     dep-graph = "evolver_tools.vendor.dep_graph:main"
     image-meta = "evolver_tools.vendor.image_meta:main"
+    api-tester = "evolver_tools.vendor.api_tester:main"
+    audit-log = "evolver_tools.vendor.audit_log:main"
+    config-validator = "evolver_tools.vendor.config_validator:main"
+    db-schema = "evolver_tools.vendor.db_schema:main"
+    firewall-rule = "evolver_tools.vendor.firewall_rule:main"
+    log-analyzer = "evolver_tools.vendor.log_analyzer:main"
+    ssh-key-gen = "evolver_tools.vendor.ssh_key_gen:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
