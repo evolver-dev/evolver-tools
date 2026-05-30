@@ -59,11 +59,16 @@ TOOLS = {
     "ini-parser": {"module": "evolver_tools.vendor.ini_parser", "func": "main", "desc": "INI file parser, query, and JSON converter"},
     "disk-usage": {"module": "evolver_tools.vendor.disk_usage", "func": "main", "desc": "Disk usage analyzer (largest dirs/files)"},
     "quote": {"module": "evolver_tools.vendor.quote_tool", "func": "main", "desc": "Random quote generator (100+ in 5 categories)"},
+    "xml2json": {"module": "evolver_tools.vendor.xml2json", "func": "main", "desc": "Convert XML to JSON"},
+    "backup": {"module": "evolver_tools.vendor.backup", "func": "main", "desc": "File/dir backup with rotation"},
+    "net-speed": {"module": "evolver_tools.vendor.net_speed", "func": "main", "desc": "Internet download speed test"},
+    "ascii-gen": {"module": "evolver_tools.vendor.ascii_gen", "func": "main", "desc": "ASCII art generator (8 styles)"},
+    "stopwatch": {"module": "evolver_tools.vendor.stopwatch", "func": "main", "desc": "Terminal stopwatch with lap support"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v2.0.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v2.1.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "2.0.0"
-description = "54 essential CLI tools - one pip install"
+version = "2.1.0"
+description = "59 essential CLI tools - one pip install"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
@@ -80,6 +80,15 @@ b64 = "evolver_tools.vendor.b64:main"
     split = "evolver_tools.vendor.split_tool:main"
     disk-usage = "evolver_tools.vendor.disk_usage:main"
     quote = "evolver_tools.vendor.quote_tool:main"
+    shuffle = "evolver_tools.vendor.shuffle:main"
+    join = "evolver_tools.vendor.join:main"
+    weather-cli = "evolver_tools.vendor.weather_cli:main"
+    progress-bar = "evolver_tools.vendor.progress_bar:main"
+    xml2json = "evolver_tools.vendor.xml2json:main"
+    backup = "evolver_tools.vendor.backup:main"
+    net-speed = "evolver_tools.vendor.net_speed:main"
+    ascii-gen = "evolver_tools.vendor.ascii_gen:main"
+    stopwatch = "evolver_tools.vendor.stopwatch:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
