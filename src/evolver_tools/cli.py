@@ -41,11 +41,14 @@ TOOLS = {
     "uuid": {"module": "evolver_tools.vendor.uuid_tool", "func": "main", "desc": "UUID generator"},
     "web-summary": {"module": "evolver_tools.vendor.web_summary", "func": "main", "desc": "Web Summary"},
     "wordcount": {"module": "evolver_tools.vendor.wordcount.__main__", "func": "main", "desc": "Wordcount"},
+    "fmt": {"module": "evolver_tools.vendor.fmt", "func": "main", "desc": "Code/text formatter"},
+    "yaml2json": {"module": "evolver_tools.vendor.yaml2json", "func": "main", "desc": "YAML → JSON converter"},
+    "sort": {"module": "evolver_tools.vendor.sort", "func": "main", "desc": "Line sorting (alpha, numeric, unique, by column)"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v1.5.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v1.6.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
