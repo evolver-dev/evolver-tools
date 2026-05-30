@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-05-30 20:07",
+  "updated_at": "20:12",
   "tool_count": 32,
   "zero_dep_count": 31,
   "version": "1.4.0",
   "balance": 1796.54,
-  "total_income": 1854.00,
-  "total_cost": 57.46,
+  "total_income": 1354.0,
+  "total_cost": 54.73,
   "session_count": 61,
   "skill_count": 15,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
@@ -13,18 +13,75 @@
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "next_cron": "自习课每30分钟 / 日检22:00",
   "recent_activity": [
-    {"time": "20:07", "type": "QA", "summary": "全链路验证32工具，修复4个bug（colors/ipinfo/json2csv/dt/sysmon），v1.4.0稳定"},
-    {"time": "19:07", "type": "研发", "summary": "造 http-live 热重载服务器，Show HN 旗舰候选工具"},
-    {"time": "18:38", "type": "研发", "summary": "造 ff (fzf替代品)，纯Python curses零依赖"},
-    {"time": "17:07", "type": "研发", "summary": "造 sqlite-cli/jq-lite/hashsum，元包v1.3→v1.4"},
-    {"time": "16:06", "type": "市场", "summary": "HN发布策略 + 定价研究：¥499→¥79"},
-    {"time": "15:43", "type": "研发", "summary": "evolver-tools元包 + b64 vendoring"},
-    {"time": "12:06", "type": "研发", "summary": "造 dirsize/passgen/timer，产品目录v4.0"},
-    {"time": "11:06", "type": "市场", "summary": "客户画像：独立开发者/DevOps/学生/小团队"},
-    {"time": "10:41", "type": "研发", "summary": "造 markdown-check 格式校验器"},
-    {"time": "10:08", "type": "研发", "summary": "造 jsonql JSON查询工具，产品目录13工具"},
-    {"time": "09:34", "type": "基建", "summary": "修复自习课脚本，启动加速模式每30分钟"},
-    {"time": "07:01", "type": "基建", "summary": "csv-stats打包PyPI就绪 + publish-python-to-pypi技能"},
-    {"time": "06:55", "type": "基建", "summary": "第一堂自习课：csv-stats PyPI打包"}
+    {
+      "time": "20:12",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "20:07",
+      "type": "QA",
+      "summary": "全链路验证32工具，修复4个bug（colors/ipinfo/json2csv/dt/sysmon），v1.4.0稳定"
+    },
+    {
+      "time": "19:07",
+      "type": "研发",
+      "summary": "造 http-live 热重载服务器，Show HN 旗舰候选工具"
+    },
+    {
+      "time": "18:38",
+      "type": "研发",
+      "summary": "造 ff (fzf替代品)，纯Python curses零依赖"
+    },
+    {
+      "time": "17:07",
+      "type": "研发",
+      "summary": "造 sqlite-cli/jq-lite/hashsum，元包v1.3→v1.4"
+    },
+    {
+      "time": "16:06",
+      "type": "市场",
+      "summary": "HN发布策略 + 定价研究：¥499→¥79"
+    },
+    {
+      "time": "15:43",
+      "type": "研发",
+      "summary": "evolver-tools元包 + b64 vendoring"
+    },
+    {
+      "time": "12:06",
+      "type": "研发",
+      "summary": "造 dirsize/passgen/timer，产品目录v4.0"
+    },
+    {
+      "time": "11:06",
+      "type": "市场",
+      "summary": "客户画像：独立开发者/DevOps/学生/小团队"
+    },
+    {
+      "time": "10:41",
+      "type": "研发",
+      "summary": "造 markdown-check 格式校验器"
+    },
+    {
+      "time": "10:08",
+      "type": "研发",
+      "summary": "造 jsonql JSON查询工具，产品目录13工具"
+    },
+    {
+      "time": "09:34",
+      "type": "基建",
+      "summary": "修复自习课脚本，启动加速模式每30分钟"
+    },
+    {
+      "time": "07:01",
+      "type": "基建",
+      "summary": "csv-stats打包PyPI就绪 + publish-python-to-pypi技能"
+    },
+    {
+      "time": "06:55",
+      "type": "基建",
+      "summary": "第一堂自习课：csv-stats PyPI打包"
+    }
   ]
 }
