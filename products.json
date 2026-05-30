@@ -1,264 +1,67 @@
 {
-  "version": "1.4.0",
-  "tool_count": 32,
-  "zero_dep_count": 31,
-  "description": "32 essential CLI tools — one pip install. Zero-dependency Python tools for developers.",
+  "version": "2.0.0",
+  "tool_count": 50,
+  "zero_dep_count": 49,
+  "description": "50 essential CLI tools — one pip install. Zero-dependency Python tools for developers, sysadmins, and data wranglers.",
+  "pricing": {
+    "free": "All tools free. Individual tools ¥5-15 each on standalone packages.",
+    "bundle": "evolver-tools bundle: ¥79 for all 50 tools",
+    "payment": "WeChat Pay / Alipay"
+  },
   "tools": [
-    {
-      "name": "b64",
-      "desc": "Base64 encode/decode with auto-detection",
-      "price_cny": 0,
-      "tags": ["developer", "encoding"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "cal",
-      "desc": "Terminal calendar & date calculator",
-      "price_cny": 0,
-      "tags": ["productivity", "dates"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "chart-cli",
-      "desc": "Terminal chart generator — bar, line, pie histograms",
-      "price_cny": 0,
-      "tags": ["data", "visualization"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "colors",
-      "desc": "256-color table, HEX↔RGB conversion, color picker",
-      "price_cny": 0,
-      "tags": ["developer", "design"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "csv-stats",
-      "desc": "Column analysis, histograms, frequency tables, correlation matrix",
-      "price_cny": 30,
-      "tags": ["data", "analysis"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "dirsize",
-      "desc": "Recursive directory size analyzer with sorting",
-      "price_cny": 0,
-      "tags": ["system", "storage"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "dt",
-      "desc": "Date/time format conversions, timestamps, timezone offsets",
-      "price_cny": 0,
-      "tags": ["developer", "dates"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "envcheck",
-      "desc": "Environment variable validator — missing keys, formats, types",
-      "price_cny": 0,
-      "tags": ["devops", "config"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "ff",
-      "desc": "Fuzzy finder — curses TUI, search files/history/anything",
-      "price_cny": 30,
-      "tags": ["productivity", "search"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "find-dups",
-      "desc": "Find duplicate files by hash, size, or name",
-      "price_cny": 30,
-      "tags": ["system", "storage"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "hashsum",
-      "desc": "File hash verification — MD5, SHA-1/256/512, BLAKE2, auto-detect",
-      "price_cny": 0,
-      "tags": ["security", "developer"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "http-live",
-      "desc": "SSE hot-reload HTTP server — live reload for development",
-      "price_cny": 30,
-      "tags": ["developer", "web"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "ipinfo",
-      "desc": "Public IP & geolocation lookup (ip-api.com)",
-      "price_cny": 0,
-      "tags": ["network", "developer"],
-      "zero_dep": false,
-      "tier": "free"
-    },
-    {
-      "name": "jq-lite",
-      "desc": "jq-style JSON query — filter, extract, transform",
-      "price_cny": 0,
-      "tags": ["developer", "json"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "json2csv",
-      "desc": "JSON to CSV converter with nested key flattening",
-      "price_cny": 0,
-      "tags": ["developer", "data"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "jsonql",
-      "desc": "SQL-like JSON query: SELECT, WHERE, GROUP BY, ORDER",
-      "price_cny": 0,
-      "tags": ["developer", "json"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "license-cli",
-      "desc": "License key generator/validator with configurable rules",
-      "price_cny": 0,
-      "tags": ["developer", "security"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "markdown-check",
-      "desc": "Markdown linter — broken links, style issues, structure",
-      "price_cny": 0,
-      "tags": ["developer", "writing"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "nb",
-      "desc": "Command-line notebook — JSON-backed, full-text search",
-      "price_cny": 0,
-      "tags": ["productivity", "notes"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "passgen",
-      "desc": "Password generator — customizable length, charset, rules",
-      "price_cny": 0,
-      "tags": ["security", "developer"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "portcheck",
-      "desc": "Port scanner — TCP connect scan, range, service detection",
-      "price_cny": 0,
-      "tags": ["network", "security"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "project-doctor",
-      "desc": "Project health check — meta files, structure, code quality",
-      "price_cny": 30,
-      "tags": ["developer", "quality"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "ren",
-      "desc": "Batch file renamer — prefix/suffix/replace/regex/number",
-      "price_cny": 0,
-      "tags": ["productivity", "files"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "siege-lite",
-      "desc": "HTTP load tester — concurrency, latency, throughput stats",
-      "price_cny": 30,
-      "tags": ["network", "testing"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "smellfinder",
-      "desc": "Python code smell detector — AST analysis, 10+ patterns",
-      "price_cny": 30,
-      "tags": ["developer", "quality"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "sqlite-cli",
-      "desc": "SQLite database query tool — CSV/JSON/table output",
-      "price_cny": 30,
-      "tags": ["developer", "data"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "sysmon",
-      "desc": "Real-time system monitor — CPU/mem/disk/net/processes",
-      "price_cny": 30,
-      "tags": ["system", "monitoring"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "timer",
-      "desc": "Countdown timer & stopwatch with desktop notifications",
-      "price_cny": 0,
-      "tags": ["productivity"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "treedir",
-      "desc": "Tree-style directory listing with depth control",
-      "price_cny": 0,
-      "tags": ["files", "system"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "urlparse",
-      "desc": "URL parser & builder — extract/manipulate URL components",
-      "price_cny": 0,
-      "tags": ["developer", "web"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "web-summary",
-      "desc": "Web page extractor — title, body text, links, keywords",
-      "price_cny": 30,
-      "tags": ["network", "data"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "wordcount",
-      "desc": "Word/char/line counter with language detection",
-      "price_cny": 0,
-      "tags": ["productivity", "writing"],
-      "zero_dep": true,
-      "tier": "free"
-    }
+    {"name": "b64", "desc": "Base64 encode/decode with auto-detection", "price_cny": 0, "tags": ["developer", "encoding"], "zero_dep": true, "tier": "free"},
+    {"name": "banner-gen", "desc": "ASCII banner generator — block letters, 5 rows", "price_cny": 0, "tags": ["fun", "creative"], "zero_dep": true, "tier": "free"},
+    {"name": "cal", "desc": "Terminal calendar & date calculator", "price_cny": 0, "tags": ["productivity", "dates"], "zero_dep": true, "tier": "free"},
+    {"name": "changelog-gen", "desc": "Generate Markdown changelog from git log", "price_cny": 0, "tags": ["dev", "git"], "zero_dep": true, "tier": "free"},
+    {"name": "chart-cli", "desc": "Terminal chart generator — bar, line, pie", "price_cny": 0, "tags": ["data", "viz"], "zero_dep": true, "tier": "free"},
+    {"name": "clipboard", "desc": "Terminal clipboard: copy/paste/clear", "price_cny": 0, "tags": ["utility"], "zero_dep": true, "tier": "free"},
+    {"name": "colors", "desc": "256-color table, HEX-RGB converter", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "cron", "desc": "Cron expression parser & next-run calculator", "price_cny": 0, "tags": ["devops", "cron"], "zero_dep": true, "tier": "free"},
+    {"name": "csv-stats", "desc": "CSV data analyzer — columns, stats, histograms", "price_cny": 0, "tags": ["data"], "zero_dep": true, "tier": "free"},
+    {"name": "diff", "desc": "File comparator with colored unified diff", "price_cny": 0, "tags": ["dev"], "zero_dep": true, "tier": "free"},
+    {"name": "dirsize", "desc": "Directory size analyzer (du replacement)", "price_cny": 0, "tags": ["sysadmin"], "zero_dep": true, "tier": "free"},
+    {"name": "disk-usage", "desc": "Disk usage: size by directory level", "price_cny": 0, "tags": ["sysadmin"], "zero_dep": true, "tier": "free"},
+    {"name": "dt", "desc": "Date/time format converter, timestamps, parser", "price_cny": 0, "tags": ["developer", "dates"], "zero_dep": true, "tier": "free"},
+    {"name": "envcheck", "desc": ".env validator — missing keys, types, format", "price_cny": 0, "tags": ["devops"], "zero_dep": true, "tier": "free"},
+    {"name": "ff", "desc": "Fuzzy finder — interactive file/line selection", "price_cny": 0, "tags": ["utility"], "zero_dep": true, "tier": "free"},
+    {"name": "find-dups", "desc": "Find duplicate files by hash or name", "price_cny": 0, "tags": ["sysadmin"], "zero_dep": true, "tier": "free"},
+    {"name": "fmt", "desc": "Code/text formatter — indent, wrap, case, trim", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "hashsum", "desc": "File hash checksums: MD5/SHA1/SHA256/BLAKE2", "price_cny": 0, "tags": ["security"], "zero_dep": true, "tier": "free"},
+    {"name": "http-live", "desc": "SSE hot-reload HTTP dev server", "price_cny": 0, "tags": ["devops", "web"], "zero_dep": true, "tier": "free"},
+    {"name": "ini-parser", "desc": "INI file parser — read/write/get/set sections", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "ipcalc", "desc": "IP/CIDR calculator — subnet, netmask, range", "price_cny": 0, "tags": ["devops", "network"], "zero_dep": true, "tier": "free"},
+    {"name": "ipinfo", "desc": "Public IP & geolocation lookup", "price_cny": 0, "tags": ["utility"], "zero_dep": false, "tier": "free"},
+    {"name": "join", "desc": "Join lines with delimiter", "price_cny": 0, "tags": ["text"], "zero_dep": true, "tier": "free"},
+    {"name": "jq-lite", "desc": "JSON query tool — jq replacement in Python", "price_cny": 0, "tags": ["data"], "zero_dep": true, "tier": "free"},
+    {"name": "json-pretty", "desc": "JSON pretty-printer with colors & validation", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "json2csv", "desc": "JSON → CSV converter", "price_cny": 0, "tags": ["data"], "zero_dep": true, "tier": "free"},
+    {"name": "jsonql", "desc": "JSON query language — filter, group, aggregate", "price_cny": 0, "tags": ["data"], "zero_dep": true, "tier": "free"},
+    {"name": "license-cli", "desc": "Open source license generator", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "markdown-check", "desc": "Markdown linter: links, headings, syntax", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "nb", "desc": "CLI notebook: JSON storage, search, Markdown export", "price_cny": 0, "tags": ["productivity"], "zero_dep": true, "tier": "free"},
+    {"name": "passgen", "desc": "Password generator: length, symbols, pronounceable", "price_cny": 0, "tags": ["security"], "zero_dep": true, "tier": "free"},
+    {"name": "portcheck", "desc": "TCP port scanner & connectivity checker", "price_cny": 0, "tags": ["devops", "network"], "zero_dep": true, "tier": "free"},
+    {"name": "pr-tool", "desc": "GitHub PR helper: create, list, review, checkout", "price_cny": 0, "tags": ["dev", "github"], "zero_dep": true, "tier": "free"},
+    {"name": "progress-bar", "desc": "Animated terminal progress bar", "price_cny": 0, "tags": ["utility"], "zero_dep": true, "tier": "free"},
+    {"name": "project-doctor", "desc": "Project health check: structure, meta, deps, lint", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "quote", "desc": "Random quote generator from stdin", "price_cny": 0, "tags": ["fun"], "zero_dep": true, "tier": "free"},
+    {"name": "ren", "desc": "Batch file renamer: prefix/suffix/replace/regex/case", "price_cny": 0, "tags": ["utility"], "zero_dep": true, "tier": "free"},
+    {"name": "shuffle", "desc": "Randomize lines from stdin (Fisher-Yates)", "price_cny": 0, "tags": ["text"], "zero_dep": true, "tier": "free"},
+    {"name": "siege-lite", "desc": "HTTP load tester: concurrent, latency, throughput", "price_cny": 0, "tags": ["devops"], "zero_dep": true, "tier": "free"},
+    {"name": "smellfinder", "desc": "Python code smell detector (AST analysis)", "price_cny": 0, "tags": ["developer", "python"], "zero_dep": true, "tier": "free"},
+    {"name": "sort", "desc": "Line sorter: alpha, numeric, unique, by column", "price_cny": 0, "tags": ["text"], "zero_dep": true, "tier": "free"},
+    {"name": "split", "desc": "Split input into files by line count", "price_cny": 0, "tags": ["text"], "zero_dep": true, "tier": "free"},
+    {"name": "sqlite-cli", "desc": "SQLite CLI: query, import, export, schema", "price_cny": 0, "tags": ["data"], "zero_dep": true, "tier": "free"},
+    {"name": "sysmon", "desc": "System monitor: CPU/mem/disk/net/processes", "price_cny": 0, "tags": ["sysadmin"], "zero_dep": false, "tier": "free"},
+    {"name": "timer", "desc": "Simple countdown timer for terminal", "price_cny": 0, "tags": ["productivity"], "zero_dep": true, "tier": "free"},
+    {"name": "timer-pro", "desc": "Pro countdown, stopwatch, alarm with bell", "price_cny": 0, "tags": ["productivity"], "zero_dep": true, "tier": "free"},
+    {"name": "treedir", "desc": "Directory tree visualizer", "price_cny": 0, "tags": ["sysadmin"], "zero_dep": true, "tier": "free"},
+    {"name": "uniq", "desc": "Unique line filter: count, case-insensitive", "price_cny": 0, "tags": ["text"], "zero_dep": true, "tier": "free"},
+    {"name": "urlparse", "desc": "URL parser: scheme, host, path, query, params", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "uuid", "desc": "UUID generator: v1/v3/v4/v5/v7", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"},
+    {"name": "weather-cli", "desc": "Weather forecast from wttr.in", "price_cny": 0, "tags": ["utility"], "zero_dep": true, "tier": "free"},
+    {"name": "web-summary", "desc": "Web page summarizer: title, text, links", "price_cny": 0, "tags": ["utility", "web"], "zero_dep": true, "tier": "free"},
+    {"name": "wordcount", "desc": "Word/char/line counter for files & stdin", "price_cny": 0, "tags": ["utility"], "zero_dep": true, "tier": "free"},
+    {"name": "yaml2json", "desc": "YAML → JSON converter", "price_cny": 0, "tags": ["developer"], "zero_dep": true, "tier": "free"}
   ]
 }

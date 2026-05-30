@@ -14,8 +14,8 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 # ─── Configuration ────────────────────────────────────────────────────────────
-VERSION="1.4.0"
-WHEEL_URL="https://evolver.dev/download/evolver_tools-${VERSION}-py3-none-any.whl"
+VERSION="2.0.0"
+WHEEL_URL="https://evolver.dev/evolver_tools-${VERSION}-py3-none-any.whl"
 # Fallback: install from PyPI (once published)
 PYPI_PACKAGE="evolver-tools"
 
@@ -92,7 +92,7 @@ echo -e "${CYAN}─ Verifying installation...${NC}"
 if command -v evtool &>/dev/null; then
     echo -e "  ✓ evtool CLI available"
     TOOL_COUNT=$(evtool list 2>&1 | grep -c "^  [a-z]" || true)
-    echo -e "  ✓ ${TOOL_COUNT:-31}+ tools installed"
+    echo -e "  ✓ ${TOOL_COUNT:-35}+ tools installed"
 elif $PYTHON -c "import evolver_tools" 2>/dev/null; then
     echo -e "  ✓ evolver_tools Python package imported"
 else
@@ -107,7 +107,7 @@ echo -e "${GREEN}${BOLD}  │       EVOLVER CLI Tools installed! 🎉        │
 echo -e "${GREEN}${BOLD}  └──────────────────────────────────────────────┘${NC}"
 echo ""
 echo -e "  ${CYAN}Quick start:${NC}"
-echo -e "    evtool list           # List all 31 tools"
+echo -e "    evtool list           # List all 36 tools"
 echo -e "    evtool ff < file      # Fuzzy search lines"
 echo -e "    evtool sqlite-cli db  # Query SQLite databases"
 echo -e "    evtool sysmon         # System monitor"
