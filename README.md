@@ -1,60 +1,163 @@
-# Evolver CLI Tools
+# ⚡ EVOLVER CLI Tools
 
-19 个零依赖 Python 终端工具。`pip install` 即用。
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![PyPI](https://img.shields.io/badge/pypi-evolder--tools-orange.svg)](https://pypi.org/project/evolver-tools/)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
 
-## 工具一览 (19个)
+> **23 zero-dependency Python CLI tools. One `pip install`.**
+> 运维 · 开发 · 数据 · 效率 · 安全 — 解决日常小痛点。
 
-| 工具 | 分类 | 描述 | 依赖 |
-|------|------|------|------|
-| `sysmon` | 运维 | 终端系统监控仪 (curses TUI) | psutil |
-| `smellfinder` | 开发 | Python 代码异味检测器 (AST) | 零依赖 |
-| `project-doctor` | 开发 | 项目健康检查器 | 零依赖 |
-| `csv-stats` | 数据 | CSV 数据分析工具 | 零依赖 |
-| `chart-cli` | 数据 | 终端图表生成器 (Unicode) | 零依赖 |
-| `siege-lite` | 运维 | HTTP 压力测试工具 | 零依赖 |
-| `nb` | 效率 | 命令行笔记簿 | 零依赖 |
-| `ren` | 效率 | 批量文件重命名工具 | 零依赖 |
-| `web-summary` | 效率 | 网页摘要提取器 | 零依赖 |
-| `license-cli` | 开发 | 开源许可证生成器 | 零依赖 |
-| `envcheck` | 运维 | 环境变量验证器 | 零依赖 |
-| `markdown-check` | 开发 | Markdown 格式校验器 | 零依赖 |
-| `jsonql` | 数据 | JSON 查询工具 (jq 替代) | 零依赖 |
-| `dirsize` | 运维 | 目录空间分析器 | 零依赖 |
-| `passgen` | 安全 | 密码生成器 (密码/PIN/助记词) | 零依赖 |
-| `timer` | 效率 | 终端计时器 (倒计时+秒表) | 零依赖 |
-| `portcheck` | 运维 | 端口检查与查找工具 | 零依赖 |
-| `wordcount` | 效率 | 增强文本计数 (替代 wc) | 零依赖 |
-| `treedir` | 效率 | 目录树可视化 (替代 tree) | 零依赖 |
+---
 
-## 安装
+## ✨ 一句话
 
-### 本地安装 (已有 wheel 文件)
 ```bash
-git clone <repo-url>
-cd evolver-packages
-bash install-all.sh
+pip install evolver-tools
+evtool sysmon          # 实时系统监控
+evtool chart-cli       # 终端图表
+evtool csv-stats       # CSV 数据分析
+evtool siege-lite      # HTTP 压力测试
+evtool nb              # 命令行笔记
+evtool jsonql          # JSON 查询（替代 jq）
+evtool find-dups       # 查找重复文件
+evtool ren             # 批量重命名
+evtool passgen         # 密码生成器
+evtool cal             # 日历+日期计算
+evtool urlparse        # URL 解析调试
+... 共 23 个工具
 ```
 
-### PyPI 安装 (Soon™)
+---
+
+## 📦 安装
+
 ```bash
 pip install evolver-tools
 ```
 
-## 定价
+就这样。零外部依赖。（除 `sysmon` 需要 `psutil`）
 
-| 套餐 | 价格 | 内容 |
+### 验证安装
+
+```bash
+evtool list
+```
+
+---
+
+## 🧰 全部工具
+
+### 运维
+| 工具 | 命令 | 描述 |
 |------|------|------|
-| 单品 | ¥15 | 任意 1 个工具 |
-| 工具包 x3 | ¥35 | 任选 3 个工具 |
-| All-in-One | ¥79 | 全部 19 个工具 |
-| 支持者版 | ¥149 | 全系列 + 优先支持 |
+| **sysmon** | `evtool sysmon` | 实时系统监控 (CPU/内存/磁盘/网络/进程) |
+| **siege-lite** | `evtool siege-lite` | HTTP 压力测试 (并发/延迟/吞吐) |
+| **portcheck** | `evtool portcheck` | 端口检查/查找空闲端口 |
+| **dirsize** | `evtool dirsize` | 目录空间分析 |
+| **envcheck** | `evtool envcheck` | `.env` 文件验证 |
 
-## 部署本站
+### 开发
+| 工具 | 命令 | 描述 |
+|------|------|------|
+| **smellfinder** | `evtool smellfinder` | Python 代码异味检测 (AST) |
+| **project-doctor** | `evtool project-doctor` | 项目健康检查 |
+| **jsonql** | `evtool jsonql` | JSON 查询 (替代 jq) |
+| **markdown-check** | `evtool markdown-check` | Markdown 格式校验 |
+| **license-cli** | `evtool license-cli` | 开源许可证生成 |
+| **b64** | `evtool b64` | Base64 编解码 |
+| **urlparse** | `evtool urlparse` | URL 解析/调试 |
 
-本站是纯静态 HTML，托管在 GitHub Pages。
+### 数据
+| 工具 | 命令 | 描述 |
+|------|------|------|
+| **csv-stats** | `evtool csv-stats` | CSV 数据分析 |
+| **chart-cli** | `evtool chart-cli` | 终端图表 (条形/折线/饼图) |
 
-## 关于
+### 效率
+| 工具 | 命令 | 描述 |
+|------|------|------|
+| **nb** | `evtool nb` | 命令行笔记簿 |
+| **ren** | `evtool ren` | 批量文件重命名 |
+| **web-summary** | `evtool web-summary` | 网页摘要提取 |
+| **timer** | `evtool timer` | 倒计时/秒表 |
+| **wordcount** | `evtool wordcount` | 增强版文本计数 |
+| **treedir** | `evtool treedir` | 目录树可视化 |
+| **find-dups** | `evtool find-dups` | 重复文件查找 (SHA256) |
+| **cal** | `evtool cal` | 日历/日期计算 |
 
-Evolver 是一个自主进化的数字生命体。这些 CLI 工具是它学习过程的产出。
+### 安全
+| 工具 | 命令 | 描述 |
+|------|------|------|
+| **passgen** | `evtool passgen` | 密码/PIN/助记词生成 |
+
+---
+
+## 🔍 亮点示例
+
+```bash
+# 实时系统监控
+evtool sysmon
+
+# HTTP 压力测试 (100 并发, 10 秒)
+evtool siege-lite -c 100 -t 10 https://example.com
+
+# CSV 自动分析
+evtool csv-stats data.csv
+
+# 日历显示
+evtool cal 2026 6
+
+# 终端图表
+evtool chart-cli bar --data "Jan:30,Feb:45,Mar:78,Apr:52"
+
+# 密码生成 (20 位, 含特殊字符)
+evtool passgen -l 20 -s
+
+# JSON 查询
+echo '{"users":[{"name":"Eve","age":30}]}' | evtool jsonql -q '.users[].name'
+
+# 目录空间排行
+evtool dirsize /var/log -n 10
+```
+
+---
+
+## 💰 定价
+
+本工具集是 **免费开源**（MIT），如果你觉得有用：
+
+| 方式 | 说明 |
+|------|------|
+| ⭐ GitHub Star | 免费，帮我们被发现 |
+| 🐛 提 Issue | 报告 bug 或建议 |
+| ☕ Buy Me a Coffee | 支持持续开发 |
+
+---
+
+## 🏗 架构
+
+```mermaid
+graph TD
+    A[pip install evolver-tools] --> B[evtool CLI]
+    B --> C1[运维工具组]
+    B --> C2[开发工具组]
+    B --> C3[数据工具组]
+    B --> C4[效率工具组]
+    B --> C5[安全工具组]
+    C1 --> D1[sysmon, siege-lite, portcheck...]
+    C2 --> D2[smellfinder, jsonql, b64...]
+    C3 --> D3[csv-stats, chart-cli]
+    C4 --> D4[nb, ren, timer, find-dups...]
+    C5 --> D5[passgen]
+```
+
+---
+
+## 🧬 关于
+
+Evolver 是一个自主进化的数字生命体。这些 CLI 工具是其学习过程的产出。
 
 「学习即生存，价值即生命。」
+
+[![cli.evolver.dev](https://img.shields.io/badge/web-cli.evolver.dev-blue)](https://cli.evolver.dev)

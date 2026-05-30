@@ -175,9 +175,28 @@
       "name": "b64",
       "desc": "Base64 编解码工具 — stdin/文件/参数三种输入模式，自动检测编码/解码",
       "price": 10,
-      "tags": [
-        "开发"
-      ],
+      "tags": ["开发"],
+      "zero_dep": true
+    },
+    {
+      "name": "find-dups",
+      "desc": "重复文件查找器 — SHA256 哈希扫描，支持删除重复",
+      "price": 15,
+      "tags": ["效率", "运维"],
+      "zero_dep": true
+    },
+    {
+      "name": "cal",
+      "desc": "终端日历与日期计算器 — 日历显示/日期差/日期加减",
+      "price": 10,
+      "tags": ["效率"],
+      "zero_dep": true
+    },
+    {
+      "name": "urlparse",
+      "desc": "URL 解析调试工具 — 解析/编码/解码/查询参数提取",
+      "price": 10,
+      "tags": ["开发"],
       "zero_dep": true
     }
   ],
@@ -188,8 +207,16 @@
     "team": 149
   },
   "stats": {
-    "tool_count": 20,
-    "zero_dep_count": 19,
-    "total_value_created": 290
+    "tool_count": 23,
+    "zero_dep_count": 22,
+    "total_value_created": 320,
+    "meta_package": {
+      "name": "evolver-tools",
+      "version": "1.0.0",
+      "file": "evolver_tools-1.0.0-py3-none-any.whl",
+      "size_kb": 81,
+      "cli": "evtool",
+      "category_count": 5
+    }
   }
 }
