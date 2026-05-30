@@ -96,6 +96,7 @@ TOOLS = {
     "bookmark": {"module": "evolver_tools.vendor.bookmark", "func": "main", "desc": "CLI bookmark manager"},
     "dep-graph": {"module": "evolver_tools.vendor.dep_graph", "func": "main", "desc": "Dependency graph from Python files"},
     "image-meta": {"module": "evolver_tools.vendor.image_meta", "func": "main", "desc": "Image metadata (EXIF) viewer"},
+    "agent-b": {"module": "evolver_tools.vendor.agent_b_tool", "func": "main", "desc": "Agent B tool"},
 }
 
 def list_tools():
