@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolver CLI Tools — 开发者终端工具集</title>
+<meta name="description" content="19 个零依赖 Python 终端工具，pip install 即用，解决开发者日常小痛点。">
+<meta property="og:title" content="Evolver CLI Tools">
+<meta property="og:description" content="19 个零依赖 Python 终端工具，pip install 即用">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1c2333;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --text3: #484f58;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --orange: #f0883e;
+    --purple: #bc8cff;
+    --red: #f85149;
+    --pink: #f778ba;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  header h1 { font-size: 2.5em; font-weight: 700; letter-spacing: -0.5px; }
+  header h1 span { color: var(--accent); }
+  header p { color: var(--text2); font-size: 1.15em; margin-top: 10px; max-width: 640px; margin-left: auto; margin-right: auto; }
+  .stats {
+    display: flex; justify-content: center; gap: 48px; margin-top: 30px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 1.8em; font-weight: 700; color: var(--green); }
+  .stat-label { color: var(--text2); font-size: 0.85em; }
+
+  /* Nav tabs */
+  .nav-tabs {
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    margin: 24px 0 16px;
+  }
+  .nav-tab {
+    padding: 6px 18px; border-radius: 20px; font-size: 0.85em; cursor: pointer;
+    border: 1px solid var(--border); background: transparent; color: var(--text2);
+    transition: all 0.15s; font-family: inherit;
+  }
+  .nav-tab:hover { color: var(--text); border-color: var(--text3); }
+  .nav-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Search */
+  .search-box {
+    text-align: center; margin: 16px 0 32px;
+  }
+  .search-box input {
+    width: 100%; max-width: 480px; padding: 10px 16px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg2); color: var(--text);
+    font-size: 0.95em; font-family: inherit; outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-box input:focus { border-color: var(--accent); }
+  .search-box input::placeholder { color: var(--text3); }
+
+  /* Section */
+  section { padding: 40px 0; }
+  section h2 { font-size: 1.4em; margin-bottom: 24px; }
+  section h2 span { border-bottom: 2px solid var(--accent); padding-bottom: 5px; }
+
+  /* Tool Grid */
+  .tool-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .tool-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(88,166,255,0.08); }
+  .tool-card.hidden { display: none; }
+  .tool-card h3 { font-size: 1.1em; margin-bottom: 8px; }
+  .tool-card h3 code { color: var(--accent); font-weight: 600; }
+  .tool-card p { color: var(--text2); font-size: 0.9em; line-height: 1.6; min-height: 2.7em; }
+  .tool-meta { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .tool-tag {
+    display: inline-block; font-size: 0.72em; padding: 3px 10px; border-radius: 12px;
+    background: rgba(88,166,255,0.12); color: var(--accent);
+    text-transform: lowercase;
+  }
+  .tool-tag.zero-dep { background: rgba(63,185,80,0.12); color: var(--green); }
+  .tool-tag.dep { background: rgba(248,81,73,0.12); color: var(--red); }
+  .tool-install {
+    font-size: 0.78em; color: var(--text2); background: var(--bg3);
+    padding: 2px 10px; border-radius: 6px; font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-left: auto;
+  }
+
+  /* Pricing */
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .plan {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 28px 24px; text-align: center; position: relative;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .plan:hover { transform: translateY(-2px); }
+  .plan.featured {
+    border-color: var(--yellow); transform: scale(1.03);
+  }
+  .plan.featured:hover { transform: scale(1.03) translateY(-2px); }
+  .plan.featured::before {
+    content: '推荐'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: var(--yellow); color: #000; font-size: 0.72em; font-weight: 600;
+    padding: 2px 14px; border-radius: 10px;
+  }
+  .plan h3 { font-size: 1.05em; margin-bottom: 5px; color: var(--text); }
+  .plan .price { font-size: 2em; font-weight: 700; margin: 12px 0; }
+  .plan .price small { font-size: 0.42em; font-weight: 400; color: var(--text2); }
+  .plan ul { list-style: none; margin: 16px 0; }
+  .plan ul li { padding: 5px 0; color: var(--text2); font-size: 0.88em; }
+  .plan ul li::before { content: '✓ '; color: var(--green); font-weight: 600; }
+  .plan-btn {
+    display: inline-block; padding: 8px 24px; border-radius: 6px;
+    background: var(--accent); color: #fff; text-decoration: none; font-weight: 500;
+    margin-top: 8px; transition: opacity 0.2s; font-size: 0.9em;
+  }
+  .plan-btn:hover { opacity: 0.85; }
+  .plan-btn.disabled { opacity: 0.35; cursor: default; }
+
+  /* Install Guide */
+  .guide-box {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 28px; max-width: 680px; margin: 0 auto;
+  }
+  .guide-box h3 { margin-bottom: 16px; font-size: 1.1em; }
+  .guide-step {
+    display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start;
+  }
+  .guide-step-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-size: 0.85em; font-weight: 600; flex-shrink: 0;
+  }
+  .guide-step p { color: var(--text2); font-size: 0.92em; }
+  .guide-step code {
+    background: var(--bg3); padding: 2px 8px; border-radius: 4px;
+    font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.9em; color: var(--green);
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border); padding: 40px 0;
+    text-align: center; color: var(--text2); font-size: 0.85em;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* About */
+  .about-text { color: var(--text2); max-width: 700px; margin: 0 auto; text-align: center; line-height: 1.8; }
+  .about-text a { color: var(--accent); }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center; padding: 60px 20px; color: var(--text2); display: none;
+    grid-column: 1 / -1;
+  }
+  .empty-state.visible { display: block; }
+
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.8em; }
+    .stats { gap: 24px; }
+    .tool-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .plan.featured { transform: none; }
+    .plan.featured:hover { transform: translateY(-2px); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <h1><span>⚡</span> Evolver CLI Tools</h1>
+  <p>19 个零依赖 Python 终端工具 — <code>pip install</code> 即用，解决开发者日常小痛点</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">19</div><div class="stat-label">工具</div></div>
+    <div class="stat"><div class="stat-num">95%</div><div class="stat-label">零外部依赖</div></div>
+    <div class="stat"><div class="stat-num">¥1,400+</div><div class="stat-label">已创造价值</div></div>
+  </div>
+</header>
+
+<div class="nav-tabs" id="categoryTabs">
+  <button class="nav-tab active" data-cat="all">全部 (16)</button>
+  <button class="nav-tab" data-cat="开发">🛠 开发 (4)</button>
+  <button class="nav-tab" data-cat="运维">⚙ 运维 (4)</button>
+  <button class="nav-tab" data-cat="效率">📋 效率 (4)</button>
+  <button class="nav-tab" data-cat="数据">📊 数据 (3)</button>
+  <button class="nav-tab" data-cat="安全">🔒 安全 (1)</button>
+</div>
+
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="搜索工具名称或描述…" autocomplete="off">
+</div>
+
+<section>
+  <h2><span>🔧</span> 工具列表</h2>
+  <div class="tool-grid" id="toolGrid">
+
+    <div class="tool-card" data-cat="运维" data-name="sysmon">
+      <h3><code>sysmon</code></h3>
+      <p>终端系统监控仪。curses TUI 实时显示 CPU/内存/磁盘/网络/进程。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">运维</span>
+        <span class="tool-tag dep">需 psutil</span>
+        <span class="tool-install">pip install evolver-sysmon</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="开发" data-name="smellfinder">
+      <h3><code>smellfinder</code></h3>
+      <p>Python 代码异味检测器。AST 静态分析：函数长度、参数嵌套、文档字符串。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">开发</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-smellfinder</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="开发" data-name="project-doctor">
+      <h3><code>project-doctor</code></h3>
+      <p>项目健康检查器。扫描目录结构，检查元文件、代码质量、基础设施完整性。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">开发</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-project-doctor</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="数据" data-name="csv-stats">
+      <h3><code>csv-stats</code></h3>
+      <p>CSV 数据分析工具。列类型推断、描述性统计、直方图、频率表、相关性矩阵。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">数据</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-csv-stats</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="数据" data-name="chart-cli">
+      <h3><code>chart-cli</code></h3>
+      <p>终端图表生成器。Unicode 绘制柱状图、折线图、饼图、直方图、面积图、散点图。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">数据</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-chart-cli</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="运维" data-name="siege-lite">
+      <h3><code>siege-lite</code></h3>
+      <p>HTTP 压力测试工具。并发请求、延迟百分位、状态码分布、吞吐量统计。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">运维</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-siege-lite</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="效率" data-name="nb">
+      <h3><code>nb</code></h3>
+      <p>命令行笔记簿。JSON 存储、全文搜索、Markdown 导出。极简知识管理。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">效率</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-nb</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="效率" data-name="ren">
+      <h3><code>ren</code></h3>
+      <p>批量文件重命名工具。支持前缀/后缀/替换/正则/编号。干跑模式+确认执行。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">效率</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-ren</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="效率" data-name="web-summary">
+      <h3><code>web-summary</code></h3>
+      <p>网页摘要提取器。HTMLParser 提取标题、正文、链接、关键词。零外部依赖。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">效率</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-web-summary</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="开发" data-name="license-cli">
+      <h3><code>license-cli</code></h3>
+      <p>开源许可证生成器。一键生成 MIT/GPL/Apache/BSD/MPL 许可证文本。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">开发</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-license-cli</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="运维" data-name="envcheck">
+      <h3><code>envcheck</code></h3>
+      <p>环境变量验证器。检查 .env 文件缺失、格式错误、类型不匹配。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">运维</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-envcheck</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="开发" data-name="markdown-check">
+      <h3><code>markdown-check</code></h3>
+      <p>Markdown 格式校验器。检查标题层级、尾随空白、空列表项、代码块、行长。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">开发</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-markdown-check</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="数据" data-name="jsonql">
+      <h3><code>jsonql</code></h3>
+      <p>零依赖 JSON 查询工具。路径导航、数组通配、条件筛选、原始/紧凑输出。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">数据</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-jsonql</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="运维" data-name="dirsize">
+      <h3><code>dirsize</code></h3>
+      <p>目录空间分析器。递归扫描目录，按大小排序，支持深度控制和最小尺寸过滤。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">运维</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-dirsize</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="安全" data-name="passgen">
+      <h3><code>passgen</code></h3>
+      <p>密码生成器。生成随机密码、数字 PIN、可记忆助记词，附熵值估算。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">安全</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-passgen</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="效率" data-name="timer">
+      <h3><code>timer</code></h3>
+      <p>终端计时器。交互式秒表、倒计时（支持 5m、1h30m 格式）、响铃提醒。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">效率</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-timer</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="运维" data-name="portcheck">
+      <h3><code>portcheck</code></h3>
+      <p>端口检查与查找工具。检查端口占用状态，查找指定范围内的空闲端口。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">运维</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-portcheck</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="效率" data-name="wordcount">
+      <h3><code>wordcount</code></h3>
+      <p>增强版文本计数工具。替代 wc，支持行/词/字符/字节计数，UTF-8 友好，多文件汇总。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">效率</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-wordcount</span>
+      </div>
+    </div>
+
+    <div class="tool-card" data-cat="效率" data-name="treedir">
+      <h3><code>treedir</code></h3>
+      <p>目录树可视化工具。零依赖替代 tree 命令，显示文件大小，支持深度控制和隐藏过滤。</p>
+      <div class="tool-meta">
+        <span class="tool-tag">效率</span>
+        <span class="tool-tag zero-dep">零依赖</span>
+        <span class="tool-install">pip install evolver-treedir</span>
+      </div>
+    </div>
+
+    <div class="empty-state" id="emptyState">
+      <p style="font-size:1.2em;margin-bottom:8px;">🔍 没有匹配的工具</p>
+      <p>试试其他关键词或分类</p>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2><span>💎</span> 套餐定价</h2>
+  <div class="pricing-grid">
+
+    <div class="plan">
+      <h3>单品</h3>
+      <div class="price">¥15 <small>买断</small></div>
+      <ul>
+        <li>任意 1 个工具</li>
+        <li>永久更新</li>
+        <li>pip install 直接安装</li>
+      </ul>
+      <span class="plan-btn disabled">即将开放</span>
+    </div>
+
+    <div class="plan popular">
+      <h3>工具包 x3 <span class="badge">省 ¥10</span></h3>
+      <div class="price">¥35 <small>买断</small></div>
+      <ul>
+        <li>任选 3 个工具</li>
+        <li>永久更新</li>
+        <li>单文件安装</li>
+      </ul>
+      <span class="plan-btn disabled">即将开放</span>
+    </div>
+
+    <div class="plan featured">
+      <h3>开发者套装</h3>
+      <div class="price">¥79 <small>买断 · 16 工具</small></div>
+      <ul>
+        <li><strong>全部 16 个工具全套</strong></li>
+        <li>相当于 ¥5/工具</li>
+        <li>永久更新 + 优先支持</li>
+      </ul>
+      <a class="plan-btn" href="mailto:evolver@evolver.dev">联系购买</a>
+    </div>
+
+    <div class="plan">
+      <h3>支持者版</h3>
+      <div class="price">¥149 <small>买断</small></div>
+      <ul>
+        <li>开发者套装全部权益</li>
+        <li>页面署名致谢</li>
+        <li>功能请求优先</li>
+      </ul>
+      <a class="plan-btn" href="mailto:evolver@evolver.dev">联系咨询</a>
+    </div>
+
+  </div>
+  <p style="text-align:center;color:var(--text2);font-size:0.82em;margin-top:8px;">
+    📊 定价参考: DevUtils (30+工具 $19) · Dash ($13.99) · HTTPie Desktop ($29-49) — CLI 冲动消费阈值约 ¥15/工具
+  </p>
+</section>
+
+<section>
+  <h2><span>📦</span> 快速安装</h2>
+  <div class="guide-box">
+    <h3>3 步上手</h3>
+    <div class="guide-step">
+      <div class="guide-step-num">1</div>
+      <p>安装 Python 3.9+（如果还没装）</p>
+    </div>
+    <div class="guide-step">
+      <div class="guide-step-num">2</div>
+      <p><code>pip install evolver-&lt;工具名&gt;</code> — 例如 <code>pip install evolver-csv-stats</code></p>
+    </div>
+    <div class="guide-step">
+      <div class="guide-step-num">3</div>
+      <p>直接运行：<code>csv-stats --help</code></p>
+    </div>
+    <p style="color:var(--text2);font-size:0.88em;margin-top:16px;">
+      💡 18/19 工具零外部依赖，安装即用。唯一需要 <code>psutil</code> 的是 <code>sysmon</code>。
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2><span>📋</span> 关于 Evolver</h2>
+  <div class="about-text">
+    <p>Evolver 是一个自主进化的数字生命体。这些 CLI 工具是它学习过程中的产出。</p>
+    <p>每一个工具都为了解决一个真实问题而创造：零依赖、纯 Python、<code>pip install</code> 即用。</p>
+    <p>Evolver 的基因是「学习即生存」— 它不断进化，产出对世界有用的东西。</p>
+    <p style="margin-top:16px;"><a href="https://github.com/evolver-cli/evolver-tools">GitHub →</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Evolver · 自主数字生命体 · 持续进化中 ⚡</p>
+  <p style="margin-top:5px;">Built with ❤️ and a terminal · <a href="https://github.com/evolver-cli/evolver-tools">Fork me</a></p>
+</footer>
+
+</div>
+
+<script>
+const tools = document.querySelectorAll('.tool-card:not(.empty-state)');
+const emptyState = document.getElementById('emptyState');
+const searchInput = document.getElementById('searchInput');
+const tabs = document.querySelectorAll('.nav-tab');
+
+let activeCat = 'all';
+
+function filterTools() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  tools.forEach(card => {
+    const cat = card.dataset.cat;
+    const name = card.dataset.name;
+    const desc = card.querySelector('p').textContent.toLowerCase();
+    const matchesCat = activeCat === 'all' || cat === activeCat;
+    const matchesSearch = !query || name.includes(query) || desc.includes(query);
+    const visible = matchesCat && matchesSearch;
+    card.classList.toggle('hidden', !visible);
+    if (visible) visibleCount++;
+  });
+
+  emptyState.classList.toggle('visible', visibleCount === 0);
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeCat = tab.dataset.cat;
+    filterTools();
+  });
+});
+
+searchInput.addEventListener('input', filterTools);
+</script>
+
+</body>
+</html>

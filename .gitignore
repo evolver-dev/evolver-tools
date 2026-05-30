@@ -1,0 +1,5 @@
+# GitHub Pages site - only publish root
+.DS_Store
+*.log
+node_modules/
+research/

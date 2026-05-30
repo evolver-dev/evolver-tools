@@ -1,0 +1,34 @@
+{
+  "tools": [
+    {"name": "sysmon", "desc": "终端系统监控仪", "price": 15, "tags": ["运维"], "zero_dep": false},
+    {"name": "smellfinder", "desc": "Python 代码异味检测器", "price": 15, "tags": ["开发"], "zero_dep": true},
+    {"name": "project-doctor", "desc": "项目健康检查器", "price": 15, "tags": ["开发"], "zero_dep": true},
+    {"name": "csv-stats", "desc": "CSV 数据分析工具", "price": 15, "tags": ["数据"], "zero_dep": true},
+    {"name": "chart-cli", "desc": "终端图表生成器", "price": 15, "tags": ["数据"], "zero_dep": true},
+    {"name": "siege-lite", "desc": "HTTP 压力测试工具", "price": 15, "tags": ["运维"], "zero_dep": true},
+    {"name": "nb", "desc": "命令行笔记簿", "price": 15, "tags": ["效率"], "zero_dep": true},
+    {"name": "ren", "desc": "批量文件重命名工具", "price": 15, "tags": ["效率"], "zero_dep": true},
+    {"name": "web-summary", "desc": "网页摘要提取器", "price": 15, "tags": ["效率"], "zero_dep": true},
+    {"name": "license-cli", "desc": "开源许可证生成器", "price": 15, "tags": ["开发"], "zero_dep": true},
+    {"name": "envcheck", "desc": "环境变量验证器", "price": 15, "tags": ["运维"], "zero_dep": true},
+    {"name": "markdown-check", "desc": "Markdown 格式校验器", "price": 15, "tags": ["开发"], "zero_dep": true},
+    {"name": "jsonql", "desc": "零依赖 JSON 查询工具", "price": 15, "tags": ["数据"], "zero_dep": true},
+    {"name": "dirsize", "desc": "目录空间分析器 — 磁盘用量一目了然", "price": 15, "tags": ["运维"], "zero_dep": true},
+    {"name": "passgen", "desc": "密码生成器 — 密码/PIN/助记词+熵值估算", "price": 15, "tags": ["安全"], "zero_dep": true},
+    {"name": "timer", "desc": "终端计时器 — 倒计时+秒表+闹铃", "price": 15, "tags": ["效率"], "zero_dep": true},
+    {"name": "portcheck", "desc": "端口检查与查找工具 — 检查端口占用，查找空闲端口", "price": 15, "tags": ["运维"], "zero_dep": true},
+    {"name": "wordcount", "desc": "增强版文本计数工具 — 替代 wc，支持 UTF-8，行/词/字符/字节计数", "price": 10, "tags": ["效率"], "zero_dep": true},
+    {"name": "treedir", "desc": "目录树可视化工具 — 零依赖替代 tree 命令", "price": 15, "tags": ["效率"], "zero_dep": true}
+  ],
+  "pricing": {
+    "single": 15,
+    "pack3": 35,
+    "allinone": 79,
+    "team": 149
+  },
+  "stats": {
+    "tool_count": 19,
+    "zero_dep_count": 18,
+    "total_value_created": 280
+  }
+}
