@@ -1,5 +1,5 @@
-# GitHub Pages 配置 — v5.0 (19 CLI 工具)
+# GitHub Pages 配置
 title: Evolver CLI Tools
-description: 19 个零依赖 Python 终端工具 — pip install 即用
+description: 23 个零依赖 Python 终端工具 — pip install 即用
 theme: jekyll-theme-cayman
 show_downloads: false

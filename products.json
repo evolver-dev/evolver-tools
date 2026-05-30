@@ -1,222 +1,264 @@
 {
+  "version": "1.4.0",
+  "tool_count": 32,
+  "zero_dep_count": 31,
+  "description": "32 essential CLI tools — one pip install. Zero-dependency Python tools for developers.",
   "tools": [
     {
-      "name": "sysmon",
-      "desc": "终端系统监控仪",
-      "price": 15,
-      "tags": [
-        "运维"
-      ],
-      "zero_dep": false
-    },
-    {
-      "name": "smellfinder",
-      "desc": "Python 代码异味检测器",
-      "price": 15,
-      "tags": [
-        "开发"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "project-doctor",
-      "desc": "项目健康检查器",
-      "price": 15,
-      "tags": [
-        "开发"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "csv-stats",
-      "desc": "CSV 数据分析工具",
-      "price": 15,
-      "tags": [
-        "数据"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "chart-cli",
-      "desc": "终端图表生成器",
-      "price": 15,
-      "tags": [
-        "数据"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "siege-lite",
-      "desc": "HTTP 压力测试工具",
-      "price": 15,
-      "tags": [
-        "运维"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "nb",
-      "desc": "命令行笔记簿",
-      "price": 15,
-      "tags": [
-        "效率"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "ren",
-      "desc": "批量文件重命名工具",
-      "price": 15,
-      "tags": [
-        "效率"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "web-summary",
-      "desc": "网页摘要提取器",
-      "price": 15,
-      "tags": [
-        "效率"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "license-cli",
-      "desc": "开源许可证生成器",
-      "price": 15,
-      "tags": [
-        "开发"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "envcheck",
-      "desc": "环境变量验证器",
-      "price": 15,
-      "tags": [
-        "运维"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "markdown-check",
-      "desc": "Markdown 格式校验器",
-      "price": 15,
-      "tags": [
-        "开发"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "jsonql",
-      "desc": "零依赖 JSON 查询工具",
-      "price": 15,
-      "tags": [
-        "数据"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "dirsize",
-      "desc": "目录空间分析器 — 磁盘用量一目了然",
-      "price": 15,
-      "tags": [
-        "运维"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "passgen",
-      "desc": "密码生成器 — 密码/PIN/助记词+熵值估算",
-      "price": 15,
-      "tags": [
-        "安全"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "timer",
-      "desc": "终端计时器 — 倒计时+秒表+闹铃",
-      "price": 15,
-      "tags": [
-        "效率"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "portcheck",
-      "desc": "端口检查与查找工具 — 检查端口占用，查找空闲端口",
-      "price": 15,
-      "tags": [
-        "运维"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "wordcount",
-      "desc": "增强版文本计数工具 — 替代 wc，支持 UTF-8，行/词/字符/字节计数",
-      "price": 10,
-      "tags": [
-        "效率"
-      ],
-      "zero_dep": true
-    },
-    {
-      "name": "treedir",
-      "desc": "目录树可视化工具 — 零依赖替代 tree 命令",
-      "price": 15,
-      "tags": [
-        "效率"
-      ],
-      "zero_dep": true
-    },
-    {
       "name": "b64",
-      "desc": "Base64 编解码工具 — stdin/文件/参数三种输入模式，自动检测编码/解码",
-      "price": 10,
-      "tags": ["开发"],
-      "zero_dep": true
-    },
-    {
-      "name": "find-dups",
-      "desc": "重复文件查找器 — SHA256 哈希扫描，支持删除重复",
-      "price": 15,
-      "tags": ["效率", "运维"],
-      "zero_dep": true
+      "desc": "Base64 encode/decode with auto-detection",
+      "price_cny": 0,
+      "tags": ["developer", "encoding"],
+      "zero_dep": true,
+      "tier": "free"
     },
     {
       "name": "cal",
-      "desc": "终端日历与日期计算器 — 日历显示/日期差/日期加减",
-      "price": 10,
-      "tags": ["效率"],
-      "zero_dep": true
+      "desc": "Terminal calendar & date calculator",
+      "price_cny": 0,
+      "tags": ["productivity", "dates"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "chart-cli",
+      "desc": "Terminal chart generator — bar, line, pie histograms",
+      "price_cny": 0,
+      "tags": ["data", "visualization"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "colors",
+      "desc": "256-color table, HEX↔RGB conversion, color picker",
+      "price_cny": 0,
+      "tags": ["developer", "design"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "csv-stats",
+      "desc": "Column analysis, histograms, frequency tables, correlation matrix",
+      "price_cny": 30,
+      "tags": ["data", "analysis"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "dirsize",
+      "desc": "Recursive directory size analyzer with sorting",
+      "price_cny": 0,
+      "tags": ["system", "storage"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "dt",
+      "desc": "Date/time format conversions, timestamps, timezone offsets",
+      "price_cny": 0,
+      "tags": ["developer", "dates"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "envcheck",
+      "desc": "Environment variable validator — missing keys, formats, types",
+      "price_cny": 0,
+      "tags": ["devops", "config"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "ff",
+      "desc": "Fuzzy finder — curses TUI, search files/history/anything",
+      "price_cny": 30,
+      "tags": ["productivity", "search"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "find-dups",
+      "desc": "Find duplicate files by hash, size, or name",
+      "price_cny": 30,
+      "tags": ["system", "storage"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "hashsum",
+      "desc": "File hash verification — MD5, SHA-1/256/512, BLAKE2, auto-detect",
+      "price_cny": 0,
+      "tags": ["security", "developer"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "http-live",
+      "desc": "SSE hot-reload HTTP server — live reload for development",
+      "price_cny": 30,
+      "tags": ["developer", "web"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "ipinfo",
+      "desc": "Public IP & geolocation lookup (ip-api.com)",
+      "price_cny": 0,
+      "tags": ["network", "developer"],
+      "zero_dep": false,
+      "tier": "free"
+    },
+    {
+      "name": "jq-lite",
+      "desc": "jq-style JSON query — filter, extract, transform",
+      "price_cny": 0,
+      "tags": ["developer", "json"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "json2csv",
+      "desc": "JSON to CSV converter with nested key flattening",
+      "price_cny": 0,
+      "tags": ["developer", "data"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "jsonql",
+      "desc": "SQL-like JSON query: SELECT, WHERE, GROUP BY, ORDER",
+      "price_cny": 0,
+      "tags": ["developer", "json"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "license-cli",
+      "desc": "License key generator/validator with configurable rules",
+      "price_cny": 0,
+      "tags": ["developer", "security"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "markdown-check",
+      "desc": "Markdown linter — broken links, style issues, structure",
+      "price_cny": 0,
+      "tags": ["developer", "writing"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "nb",
+      "desc": "Command-line notebook — JSON-backed, full-text search",
+      "price_cny": 0,
+      "tags": ["productivity", "notes"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "passgen",
+      "desc": "Password generator — customizable length, charset, rules",
+      "price_cny": 0,
+      "tags": ["security", "developer"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "portcheck",
+      "desc": "Port scanner — TCP connect scan, range, service detection",
+      "price_cny": 0,
+      "tags": ["network", "security"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "project-doctor",
+      "desc": "Project health check — meta files, structure, code quality",
+      "price_cny": 30,
+      "tags": ["developer", "quality"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "ren",
+      "desc": "Batch file renamer — prefix/suffix/replace/regex/number",
+      "price_cny": 0,
+      "tags": ["productivity", "files"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "siege-lite",
+      "desc": "HTTP load tester — concurrency, latency, throughput stats",
+      "price_cny": 30,
+      "tags": ["network", "testing"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "smellfinder",
+      "desc": "Python code smell detector — AST analysis, 10+ patterns",
+      "price_cny": 30,
+      "tags": ["developer", "quality"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "sqlite-cli",
+      "desc": "SQLite database query tool — CSV/JSON/table output",
+      "price_cny": 30,
+      "tags": ["developer", "data"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "sysmon",
+      "desc": "Real-time system monitor — CPU/mem/disk/net/processes",
+      "price_cny": 30,
+      "tags": ["system", "monitoring"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "timer",
+      "desc": "Countdown timer & stopwatch with desktop notifications",
+      "price_cny": 0,
+      "tags": ["productivity"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "treedir",
+      "desc": "Tree-style directory listing with depth control",
+      "price_cny": 0,
+      "tags": ["files", "system"],
+      "zero_dep": true,
+      "tier": "free"
     },
     {
       "name": "urlparse",
-      "desc": "URL 解析调试工具 — 解析/编码/解码/查询参数提取",
-      "price": 10,
-      "tags": ["开发"],
-      "zero_dep": true
+      "desc": "URL parser & builder — extract/manipulate URL components",
+      "price_cny": 0,
+      "tags": ["developer", "web"],
+      "zero_dep": true,
+      "tier": "free"
+    },
+    {
+      "name": "web-summary",
+      "desc": "Web page extractor — title, body text, links, keywords",
+      "price_cny": 30,
+      "tags": ["network", "data"],
+      "zero_dep": true,
+      "tier": "pro"
+    },
+    {
+      "name": "wordcount",
+      "desc": "Word/char/line counter with language detection",
+      "price_cny": 0,
+      "tags": ["productivity", "writing"],
+      "zero_dep": true,
+      "tier": "free"
     }
-  ],
-  "pricing": {
-    "single": 15,
-    "pack3": 35,
-    "allinone": 79,
-    "team": 149
-  },
-  "stats": {
-    "tool_count": 23,
-    "zero_dep_count": 22,
-    "total_value_created": 325,
-    "meta_package": {
-      "name": "evolver-tools",
-      "version": "1.0.0",
-      "file": "evolver_tools-1.0.0-py3-none-any.whl",
-      "size_kb": 81,
-      "cli": "evtool",
-      "category_count": 5
-    }
-  }
+  ]
 }

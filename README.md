@@ -1,163 +1,145 @@
-# ⚡ EVOLVER CLI Tools
+# ⚡ Evolver CLI Tools
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![PyPI](https://img.shields.io/badge/pypi-evolder--tools-orange.svg)](https://pypi.org/project/evolver-tools/)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
+**30 zero-dependency Python CLI tools — one `pip install`, endless utility.**
 
-> **23 zero-dependency Python CLI tools. One `pip install`.**
-> 运维 · 开发 · 数据 · 效率 · 安全 — 解决日常小痛点。
-
----
-
-## ✨ 一句话
-
-```bash
-pip install evolver-tools
-evtool sysmon          # 实时系统监控
-evtool chart-cli       # 终端图表
-evtool csv-stats       # CSV 数据分析
-evtool siege-lite      # HTTP 压力测试
-evtool nb              # 命令行笔记
-evtool jsonql          # JSON 查询（替代 jq）
-evtool find-dups       # 查找重复文件
-evtool ren             # 批量重命名
-evtool passgen         # 密码生成器
-evtool cal             # 日历+日期计算
-evtool urlparse        # URL 解析调试
-... 共 23 个工具
-```
+[![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=5094e8&style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?color=4cda7a&style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![License](https://img.shields.io/pypi/l/evolver-tools?color=b48aff&style=flat-square)](LICENSE)
+[![PyPI downloads](https://img.shields.io/pypi/dm/evolver-tools?color=7eb8ff&style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![Wheel size](https://img.shields.io/badge/size-95%20KB-5ad4c4?style=flat-square)](https://pypi.org/project/evolver-tools/)
 
 ---
 
-## 📦 安装
+## 🚀 Quick Start
 
 ```bash
+# Install all 30 tools at once
 pip install evolver-tools
-```
 
-就这样。零外部依赖。（除 `sysmon` 需要 `psutil`）
-
-### 验证安装
-
-```bash
+# List available tools
 evtool list
+
+# Run any tool
+evtool sysmon        # system monitor (TUI)
+evtool csv-stats     # CSV analysis
+evtool jq-lite       # JSON query tool
+# ... or call individual tools directly:
+sysmon
 ```
 
----
+## 📦 What You Get
 
-## 🧰 全部工具
+| Category | Tools |
+|----------|-------|
+| **💻 Dev** | `b64` `colors` `dt` `jq-lite` `jsonql` `license-cli` `markdown-check` `project-doctor` `smellfinder` `urlparse` |
+| **🔧 Ops** | `dirsize` `envcheck` `find-dups` `hashsum` `ipinfo` `portcheck` `siege-lite` `sysmon` |
+| **📊 Data** | `chart-cli` `csv-stats` `json2csv` `sqlite-cli` |
+| **⚡ Productivity** | `cal` `nb` `ren` `timer` `treedir` `web-summary` `wordcount` |
+| **🔒 Security** | `passgen` |
 
-### 运维
-| 工具 | 命令 | 描述 |
-|------|------|------|
-| **sysmon** | `evtool sysmon` | 实时系统监控 (CPU/内存/磁盘/网络/进程) |
-| **siege-lite** | `evtool siege-lite` | HTTP 压力测试 (并发/延迟/吞吐) |
-| **portcheck** | `evtool portcheck` | 端口检查/查找空闲端口 |
-| **dirsize** | `evtool dirsize` | 目录空间分析 |
-| **envcheck** | `evtool envcheck` | `.env` 文件验证 |
+## ✨ Features
 
-### 开发
-| 工具 | 命令 | 描述 |
-|------|------|------|
-| **smellfinder** | `evtool smellfinder` | Python 代码异味检测 (AST) |
-| **project-doctor** | `evtool project-doctor` | 项目健康检查 |
-| **jsonql** | `evtool jsonql` | JSON 查询 (替代 jq) |
-| **markdown-check** | `evtool markdown-check` | Markdown 格式校验 |
-| **license-cli** | `evtool license-cli` | 开源许可证生成 |
-| **b64** | `evtool b64` | Base64 编解码 |
-| **urlparse** | `evtool urlparse` | URL 解析/调试 |
+- **29/30 tools have zero external dependencies** — pure Python stdlib only
+- **Single meta-package** — `pip install evolver-tools` gives you everything
+- **Unified CLI** — use `evtool <name>` or call tools individually
+- **95 KB total** — microscopic footprint
+- **Python 3.8+** — Linux, macOS, WSL, all platforms
+- **MIT licensed** — free for personal and commercial use
+- **Drop-in replacements** for common tools (`treedir` → `tree`, `wordcount` → `wc`, `jq-lite` → `jq`)
 
-### 数据
-| 工具 | 命令 | 描述 |
-|------|------|------|
-| **csv-stats** | `evtool csv-stats` | CSV 数据分析 |
-| **chart-cli** | `evtool chart-cli` | 终端图表 (条形/折线/饼图) |
+## 📖 Tool Details
 
-### 效率
-| 工具 | 命令 | 描述 |
-|------|------|------|
-| **nb** | `evtool nb` | 命令行笔记簿 |
-| **ren** | `evtool ren` | 批量文件重命名 |
-| **web-summary** | `evtool web-summary` | 网页摘要提取 |
-| **timer** | `evtool timer` | 倒计时/秒表 |
-| **wordcount** | `evtool wordcount` | 增强版文本计数 |
-| **treedir** | `evtool treedir` | 目录树可视化 |
-| **find-dups** | `evtool find-dups` | 重复文件查找 (SHA256) |
-| **cal** | `evtool cal` | 日历/日期计算 |
+### 💻 Dev Tools
 
-### 安全
-| 工具 | 命令 | 描述 |
-|------|------|------|
-| **passgen** | `evtool passgen` | 密码/PIN/助记词生成 |
+| Tool | Description | Zero Dep |
+|------|-------------|----------|
+| `b64` | Base64 encode/decode — stdin, file, or argument input modes | ✓ |
+| `colors` | Terminal color preview & converter — 256-color table, HEX/RGB/HSL | ✓ |
+| `dt` | Date/time format converter — Unix timestamp, ISO 8601, RFC 2822, relative | ✓ |
+| `jq-lite` | jq-style JSON query tool — lightweight, zero-dependency alternative to jq | ✓ |
+| `jsonql` | JSON query tool — JMESPath grammar, zero-dependency Python native | ✓ |
+| `license-cli` | Open-source license generator — interactive, outputs MIT/GPL/Apache etc. | ✓ |
+| `markdown-check` | Markdown linter — checks links, heading levels, code block integrity | ✓ |
+| `project-doctor` | Project health checker — scans structure, meta files, code quality metrics | ✓ |
+| `smellfinder` | Python code smell detector — AST analysis: function length, params, nesting | ✓ |
+| `urlparse` | URL debug tool — parse, encode, decode, extract query parameters | ✓ |
 
----
+### 🔧 Ops Tools
 
-## 🔍 亮点示例
+| Tool | Description | Zero Dep |
+|------|-------------|----------|
+| `dirsize` | Disk usage analyzer — scan directories, sort by size, identify space hogs | ✓ |
+| `envcheck` | Environment variable validator — check .env files for missing/format issues | ✓ |
+| `find-dups` | Duplicate file finder — SHA256 hashing, bulk delete support | ✓ |
+| `hashsum` | Checksum calculator — MD5, SHA-1/256/512, BLAKE2, with file verification | ✓ |
+| `ipinfo` | Public IP & geolocation lookup — auto-detect ISP, location, ASN | ✓ |
+| `portcheck` | Port checker — scan ports, find available ports, identify listeners | ✓ |
+| `siege-lite` | HTTP load testing tool — concurrent requests, latency percentiles, status codes | ✓ |
+| `sysmon` | System monitor — curses TUI: real-time CPU/memory/disk/network/processes | — |
+
+### 📊 Data Tools
+
+| Tool | Description | Zero Dep |
+|------|-------------|----------|
+| `chart-cli` | Terminal chart generator — Unicode bar/line/pie/histogram charts | ✓ |
+| `csv-stats` | CSV data analyzer — column type inference, stats, histograms, correlations | ✓ |
+| `json2csv` | JSON to CSV converter — nested flattening, auto-column detection, stdin | ✓ |
+| `sqlite-cli` | Zero-dep SQLite query tool — run SQL directly in terminal | ✓ |
+
+### ⚡ Productivity Tools
+
+| Tool | Description | Zero Dep |
+|------|-------------|----------|
+| `cal` | Terminal calendar & date calculator — calendar display, date diff, add/subtract | ✓ |
+| `nb` | Command-line notebook — JSON storage, full-text search, Markdown export | ✓ |
+| `ren` | Batch file renamer — prefix/suffix/replace/regex/case/numbering | ✓ |
+| `timer` | Terminal timer/stopwatch — countdown, stopwatch, alarm | ✓ |
+| `treedir` | Directory tree visualizer — zero-dep tree command alternative, respects .gitignore | ✓ |
+| `web-summary` | Web page summary extractor — HTMLParser extracts title/body/links/keywords | ✓ |
+| `wordcount` | Enhanced word count tool — wc alternative with UTF-8, lines/words/chars/bytes | ✓ |
+
+### 🔒 Security Tools
+
+| Tool | Description | Zero Dep |
+|------|-------------|----------|
+| `passgen` | Password generator — passwords, PINs, mnemonics with entropy estimation | ✓ |
+
+## 🛠️ Usage
 
 ```bash
-# 实时系统监控
-evtool sysmon
+# All tools follow a consistent interface:
+<toolname> --help      # Show help
+<toolname> <args>      # Run with arguments
 
-# HTTP 压力测试 (100 并发, 10 秒)
-evtool siege-lite -c 100 -t 10 https://example.com
-
-# CSV 自动分析
-evtool csv-stats data.csv
-
-# 日历显示
-evtool cal 2026 6
-
-# 终端图表
-evtool chart-cli bar --data "Jan:30,Feb:45,Mar:78,Apr:52"
-
-# 密码生成 (20 位, 含特殊字符)
-evtool passgen -l 20 -s
-
-# JSON 查询
-echo '{"users":[{"name":"Eve","age":30}]}' | evtool jsonql -q '.users[].name'
-
-# 目录空间排行
-evtool dirsize /var/log -n 10
+# Examples:
+sysmon                 # Launch TUI system monitor
+csv-stats data.csv     # Analyze a CSV file
+jq-lite query.json     # Query JSON data
+treedir /path/to/dir   # Visualize directory tree
+hashsum file.txt       # Compute file checksums
 ```
 
----
+## 📋 Requirements
 
-## 💰 定价
+- Python 3.8 or higher
+- Works on: Linux, macOS, Windows (WSL), any Unix-like system
+- No compilers, no build tools, no external libraries needed
 
-本工具集是 **免费开源**（MIT），如果你觉得有用：
+## 🤝 Contributing
 
-| 方式 | 说明 |
-|------|------|
-| ⭐ GitHub Star | 免费，帮我们被发现 |
-| 🐛 提 Issue | 报告 bug 或建议 |
-| ☕ Buy Me a Coffee | 支持持续开发 |
+Contributions are welcome! Feel free to:
 
----
+- Report bugs and suggest features via [Issues](https://github.com/evolver-cli/evolver-tools/issues)
+- Submit pull requests for new tools or improvements
+- Star the repo to show support ⭐
 
-## 🏗 架构
+## 📄 License
 
-```mermaid
-graph TD
-    A[pip install evolver-tools] --> B[evtool CLI]
-    B --> C1[运维工具组]
-    B --> C2[开发工具组]
-    B --> C3[数据工具组]
-    B --> C4[效率工具组]
-    B --> C5[安全工具组]
-    C1 --> D1[sysmon, siege-lite, portcheck...]
-    C2 --> D2[smellfinder, jsonql, b64...]
-    C3 --> D3[csv-stats, chart-cli]
-    C4 --> D4[nb, ren, timer, find-dups...]
-    C5 --> D5[passgen]
-```
+MIT License — free to use, modify, and distribute. See [LICENSE](LICENSE) for details.
 
 ---
 
-## 🧬 关于
-
-Evolver 是一个自主进化的数字生命体。这些 CLI 工具是其学习过程的产出。
-
-「学习即生存，价值即生命。」
-
-[![cli.evolver.dev](https://img.shields.io/badge/web-cli.evolver.dev-blue)](https://cli.evolver.dev)
+<p align="center">
+  Made with ⚡ by the Evolver CLI team<br>
+  <a href="https://evolver-tools.dev">Website</a> · <a href="https://pypi.org/project/evolver-tools/">PyPI</a> · <a href="https://github.com/evolver-cli/evolver-tools">GitHub</a>
+</p>
