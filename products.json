@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
-  "tool_count": 50,
-  "zero_dep_count": 49,
+  "version": "4.0.0",
+  "tool_count": 105,
+  "zero_dep_count": 85,
   "description": "50 essential CLI tools — one pip install. Zero-dependency Python tools for developers, sysadmins, and data wranglers.",
   "pricing": {
     "free": "All tools free. Individual tools ¥5-15 each on standalone packages.",
