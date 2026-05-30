@@ -729,7 +729,7 @@ footer .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-conten
       </div>
     </div>
     <div class="testimonial-card">
-      <div class="quote">"The meta-package approach is genius — one pip install gives me 32 tools and a unified CLI. My team adopted it as our standard dev toolkit. Highly recommend."</div>
+      <div class="quote">"The meta-package approach is genius — one pip install gives me 36 tools and a unified CLI. My team adopted it as our standard dev toolkit. Highly recommend."</div>
       <div class="author">
         <div class="author-avatar">🧑‍🔧</div>
         <div>
@@ -743,7 +743,7 @@ footer .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-conten
 
 <!-- Tools Section -->
 <section id="tools" class="tools-section">
-  <h2>🛠️ All 32 Tools</h2>
+  <h2>🛠️ All 36 Tools</h2>
   <p class="subtitle">Click any tool name to copy its install command. Search, filter by category, or browse freely.</p>
 
   <!-- Category tabs -->
@@ -751,7 +751,7 @@ footer .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-conten
 
   <div class="filter-bar">
     <input type="text" id="searchInput" placeholder="Search tools by name, description, or category…" oninput="filterTools()">
-    <span class="result-count" id="resultCount">32 / 32 tools</span>
+    <span class="result-count" id="resultCount">36 / 36 tools</span>
   </div>
 
   <div class="tool-grid" id="toolGrid"></div>
@@ -760,7 +760,7 @@ footer .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-conten
 <!-- CTA Section -->
 <section class="cta-section">
   <h2>🚀 Ready to Supercharge Your Terminal?</h2>
-  <p class="subtitle">One command. 32 tools. Zero friction.</p>
+  <p class="subtitle">One command. 36 tools. Zero friction.</p>
   <div class="cta-card">
     <div class="cmd">
       <span>$ pip install evolver-tools</span>
@@ -771,10 +771,10 @@ footer .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-conten
       <button class="copy-btn" onclick="copyText('evtool list', '✓ Copied!')">Copy</button>
     </div>
     <div class="cta-features">
-      <span class="cta-feature"><span class="check">✓</span> 32 Python CLI tools</span>
-      <span class="cta-feature"><span class="check">✓</span> 31 zero-dependency</span>
+      <span class="cta-feature"><span class="check">✓</span> 36 Python CLI tools</span>
+      <span class="cta-feature"><span class="check">✓</span> 35 zero-dependency</span>
       <span class="cta-feature"><span class="check">✓</span> Single <code>evtool</code> entry point</span>
-      <span class="cta-feature"><span class="check">✓</span> 104 KB total package</span>
+      <span class="cta-feature"><span class="check">✓</span> 114 KB total package</span>
       <span class="cta-feature"><span class="check">✓</span> Python 3.8+ compatible</span>
       <span class="cta-feature"><span class="check">✓</span> MIT licensed</span>
     </div>
@@ -789,7 +789,7 @@ footer .footer-links { margin-top: 8px; display: flex; gap: 16px; justify-conten
     <div class="install-option">
       <span class="badge badge-recommended">RECOMMENDED</span>
       <h3>evolver-tools Meta Package</h3>
-      <p class="desc">Install all 32 tools in one shot. Use <code>evtool</code> as the unified entry point to run any tool.</p>
+      <p class="desc">Install all 36 tools in one shot. Use <code>evtool</code> as the unified entry point to run any tool.</p>
       <div class="cmd">
         <span>$ pip install evolver-tools</span>
         <button class="copy" onclick="copyText('pip install evolver-tools')">Copy</button>
@@ -838,6 +838,9 @@ const TOOLS = [
   { name: "project-doctor", desc: "Project health checker — scans structure, meta files, code quality metrics", category: "Dev", tags: ["Dev"], zeroDep: true },
   { name: "smellfinder", desc: "Python code smell detector — AST analysis: function length, params, nesting", category: "Dev", tags: ["Dev"], zeroDep: true },
   { name: "urlparse", desc: "URL debug tool — parse, encode, decode, extract query parameters", category: "Dev", tags: ["Dev"], zeroDep: true },
+  { name: "cron", desc: "Cron expression parser & validator — describe, calculate next run times", category: "Dev", tags: ["Dev"], zeroDep: true },
+  { name: "diff", desc: "File comparator — side-by-side diff, unified/context/ndiff formats", category: "Dev", tags: ["Dev"], zeroDep: true },
+  { name: "uuid", desc: "UUID generator — v4/v7, bulk generation, time-based sorting", category: "Dev", tags: ["Dev"], zeroDep: true },
 
   // Ops Tools
   { name: "dirsize", desc: "Disk usage analyzer — scan directories, sort by size, identify space hogs", category: "Ops", tags: ["Ops"], zeroDep: true },
@@ -850,6 +853,7 @@ const TOOLS = [
   { name: "siege-lite", desc: "HTTP load testing tool — concurrent requests, latency percentiles, status codes", category: "Ops", tags: ["Ops"], zeroDep: true },
   { name: "sysmon", desc: "System monitor — curses TUI: real-time CPU/memory/disk/network/processes", category: "Ops", tags: ["Ops"], zeroDep: false },
   { name: "find-dups", desc: "Duplicate file finder — SHA256 hashing, bulk delete support", category: "Ops", tags: ["Ops", "Productivity"], zeroDep: true },
+  { name: "ipcalc", desc: "IP/CIDR calculator — subnet mask, wildcard, network/broadcast address", category: "Ops", tags: ["Ops"], zeroDep: true },
 
   // Data Tools
   { name: "chart-cli", desc: "Terminal chart generator — Unicode bar/line/pie/histogram charts", category: "Data", tags: ["Data"], zeroDep: true },
