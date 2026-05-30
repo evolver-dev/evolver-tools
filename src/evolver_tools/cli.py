@@ -47,11 +47,14 @@ TOOLS = {
     "pr-tool": {"module": "evolver_tools.vendor.pr_tool", "func": "main", "desc": "GitHub PR helper (create, list, review, checkout)"},
     "clipboard": {"module": "evolver_tools.vendor.clipboard", "func": "main", "desc": "Terminal clipboard copy/paste/clear"},
     "uniq": {"module": "evolver_tools.vendor.uniq_tool", "func": "main", "desc": "Unique line filter with count & case-insensitive"},
+    "changelog-gen": {"module": "evolver_tools.vendor.changelog_gen", "func": "main", "desc": "Generate changelog from git log"},
+    "timer-pro": {"module": "evolver_tools.vendor.timer_pro", "func": "main", "desc": "Countdown, stopwatch, alarms, lap timer"},
+    "banner-gen": {"module": "evolver_tools.vendor.banner", "func": "main", "desc": "ASCII banner generator (4 styles, colors)"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v1.7.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v1.8.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
