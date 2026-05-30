@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "1.6.0"
-description = "39 essential CLI tools - one pip install"
+version = "1.7.0"
+description = "42 essential CLI tools - one pip install"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
@@ -69,6 +69,9 @@ b64 = "evolver_tools.vendor.b64:main"
     fmt = "evolver_tools.vendor.fmt:main"
     yaml2json = "evolver_tools.vendor.yaml2json:main"
     sort = "evolver_tools.vendor.sort:main"
+    pr-tool = "evolver_tools.vendor.pr_tool:main"
+    clipboard = "evolver_tools.vendor.clipboard:main"
+    uniq = "evolver_tools.vendor.uniq_tool:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

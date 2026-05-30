@@ -44,11 +44,14 @@ TOOLS = {
     "fmt": {"module": "evolver_tools.vendor.fmt", "func": "main", "desc": "Code/text formatter"},
     "yaml2json": {"module": "evolver_tools.vendor.yaml2json", "func": "main", "desc": "YAML → JSON converter"},
     "sort": {"module": "evolver_tools.vendor.sort", "func": "main", "desc": "Line sorting (alpha, numeric, unique, by column)"},
+    "pr-tool": {"module": "evolver_tools.vendor.pr_tool", "func": "main", "desc": "GitHub PR helper (create, list, review, checkout)"},
+    "clipboard": {"module": "evolver_tools.vendor.clipboard", "func": "main", "desc": "Terminal clipboard copy/paste/clear"},
+    "uniq": {"module": "evolver_tools.vendor.uniq_tool", "func": "main", "desc": "Unique line filter with count & case-insensitive"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v1.6.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v1.7.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
