@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evolver-tools"
+version = "1.5.0"
+description = "36 essential CLI tools - one pip install"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+keywords = ["cli", "devops", "productivity", "developer-tools", "terminal"]
+authors = [
+    {name = "EVOLVER"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://evolver-dev.github.io/evolver-tools"
+Repository = "https://github.com/evolver-dev/evolver-tools"
+
+[project.scripts]
+evtool = "evolver_tools.cli:main"
+b64 = "evolver_tools.vendor.b64:main"
+    ff = "evolver_tools.vendor.ff:main"
+    cal = "evolver_tools.vendor.cal_tool.cli:main"
+    chart-cli = "evolver_tools.vendor.chart_cli:main"
+    colors = "evolver_tools.vendor.colors:main"
+    cron = "evolver_tools.vendor.cron:main"
+    csv-stats = "evolver_tools.vendor.csv_stats.cli:main"
+    diff = "evolver_tools.vendor.diff_tool:main"
+    dirsize = "evolver_tools.vendor.dirsize:entry"
+    dt = "evolver_tools.vendor.dt_convert:main"
+    envcheck = "evolver_tools.vendor.envcheck:main"
+    find-dups = "evolver_tools.vendor.find_dups.cli:main"
+    hashsum = "evolver_tools.vendor.hashsum:main"
+    http-live = "evolver_tools.vendor.http_live:main"
+    ipcalc = "evolver_tools.vendor.ipcalc:main"
+    ipinfo = "evolver_tools.vendor.ipinfo:main"
+    jq-lite = "evolver_tools.vendor.jq_lite:main"
+    json2csv = "evolver_tools.vendor.json2csv:main"
+    jsonql = "evolver_tools.vendor.jsonql:main"
+    license-cli = "evolver_tools.vendor.license_cli.cli:main"
+    markdown-check = "evolver_tools.vendor.markdown_check:main"
+    nb = "evolver_tools.vendor.nb:main"
+    passgen = "evolver_tools.vendor.passgen:entry"
+    portcheck = "evolver_tools.vendor.portcheck.__main__:main"
+    project-doctor = "evolver_tools.vendor.project_doctor:main"
+    ren = "evolver_tools.vendor.ren:main"
+    siege-lite = "evolver_tools.vendor.siege_lite:main"
+    smellfinder = "evolver_tools.vendor.smellfinder:main"
+    sqlite-cli = "evolver_tools.vendor.sqlite_cli:main"
+    sysmon = "evolver_tools.vendor.sysmon:entry"
+    timer = "evolver_tools.vendor.timer:entry"
+    treedir = "evolver_tools.vendor.treedir.__main__:main"
+    urlparse = "evolver_tools.vendor.urlparse_tool.cli:main"
+    uuid = "evolver_tools.vendor.uuid_tool:main"
+    web-summary = "evolver_tools.vendor.web_summary:main"
+    wordcount = "evolver_tools.vendor.wordcount.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["evolver_tools*"]
