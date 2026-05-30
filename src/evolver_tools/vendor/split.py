@@ -35,5 +35,11 @@ def main():
             f.writelines(chunk)
         print(f"  wrote {out} ({len(chunk)} lines)")
 
+TOOL_META = {
+    "name": "split",
+    "desc": "Split input into multiple files by line count",
+    "func": "main",
+}
+
 if __name__ == '__main__':
     main()
