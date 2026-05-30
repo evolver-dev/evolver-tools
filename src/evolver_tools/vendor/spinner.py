@@ -77,5 +77,13 @@ def main():
     else:
         spin(message, style, delay)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "spinner",
+    "func": "main",
+    "desc": 'Animated terminal spinner (6 styles)',
+}
+
 if __name__ == '__main__':
     main()

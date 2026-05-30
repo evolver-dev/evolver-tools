@@ -297,5 +297,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "checksum-dir",
+    "func": "main",
+    "desc": 'Generate/verify directory checksums',
+}
+
 if __name__ == "__main__":
     main()

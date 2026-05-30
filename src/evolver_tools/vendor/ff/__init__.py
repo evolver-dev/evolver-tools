@@ -423,5 +423,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "ff",
+    "func": "main",
+    "desc": 'Fuzzy Finder',
+}
+
 if __name__ == "__main__":
     main()

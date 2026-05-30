@@ -408,5 +408,13 @@ def main():
         print_report(result)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "project-doctor",
+    "func": "main",
+    "desc": 'Project Doctor',
+}
+
 if __name__ == '__main__':
     main()

@@ -421,5 +421,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "crontab-helper",
+    "func": "main",
+    "desc": 'Simplify crontab management',
+}
+
 if __name__ == "__main__":
     main()

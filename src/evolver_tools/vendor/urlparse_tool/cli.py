@@ -208,5 +208,13 @@ def main() -> None:
         print(format_parse_result(result))
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "urlparse",
+    "func": "main",
+    "desc": 'URL Parse',
+}
+
 if __name__ == "__main__":
     main()

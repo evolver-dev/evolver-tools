@@ -246,5 +246,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "dep-graph",
+    "func": "main",
+    "desc": 'Dependency graph from Python files',
+}
+
 if __name__ == '__main__':
     main()

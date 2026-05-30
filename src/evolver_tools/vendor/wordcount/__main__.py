@@ -97,5 +97,13 @@ def main():
         print("-" * 40)
         print(f"{total['lines']:>8} {total['words']:>8} {total['chars']:>8} (总计)")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "wordcount",
+    "func": "main",
+    "desc": 'Wordcount',
+}
+
 if __name__ == "__main__":
     main()

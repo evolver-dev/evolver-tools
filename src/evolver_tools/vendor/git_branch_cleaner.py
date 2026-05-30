@@ -230,5 +230,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "git-branch-cleaner",
+    "func": "main",
+    "desc": 'Clean stale git branches',
+}
+
 if __name__ == "__main__":
     main()

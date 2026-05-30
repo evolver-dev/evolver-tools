@@ -20,5 +20,13 @@ def main():
     lines = sys.stdin.read().splitlines(keepends=False)
     sys.stdout.write(delim.join(lines))
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "join",
+    "func": "main",
+    "desc": 'Join lines with delimiter',
+}
+
 if __name__ == '__main__':
     main()

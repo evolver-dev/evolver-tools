@@ -138,5 +138,13 @@ def main():
              STYLES[style](text)
     print(result)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "ascii-gen",
+    "func": "main",
+    "desc": 'ASCII art generator (8 styles)',
+}
+
 if __name__ == '__main__':
     main()

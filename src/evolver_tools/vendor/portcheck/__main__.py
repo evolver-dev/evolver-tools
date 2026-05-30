@@ -62,5 +62,13 @@ def main():
         print(format_output(port, in_use))
         sys.exit(0 if not in_use else 1)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "portcheck",
+    "func": "main",
+    "desc": 'Portcheck',
+}
+
 if __name__ == "__main__":
     main()

@@ -207,5 +207,13 @@ def main():
     sys.exit(1 if total_errors > 0 else 0)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "markdown-check",
+    "func": "main",
+    "desc": 'Markdown Check',
+}
+
 if __name__ == "__main__":
     main()

@@ -230,5 +230,13 @@ def main():
                 print_calendar(today.year, today.month, highlight_today=not args.no_highlight)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "cal",
+    "func": "main",
+    "desc": 'Cal',
+}
+
 if __name__ == "__main__":
     main()

@@ -225,5 +225,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "otp-gen",
+    "func": "main",
+    "desc": 'TOTP/HOTP one-time password generator',
+}
+
 if __name__ == '__main__':
     main()

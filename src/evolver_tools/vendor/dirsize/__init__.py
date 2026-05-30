@@ -179,5 +179,13 @@ def parse_size(s: str) -> int:
         return 0
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "dirsize",
+    "func": "entry",
+    "desc": 'Dirsize',
+}
+
 if __name__ == "__main__":
     entry()

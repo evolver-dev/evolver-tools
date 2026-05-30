@@ -172,5 +172,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "file-encrypt",
+    "func": "main",
+    "desc": 'Simple file encrypt/decrypt',
+}
+
 if __name__ == '__main__':
     main()

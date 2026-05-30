@@ -238,5 +238,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "env-manager",
+    "func": "main",
+    "desc": '.env file manager',
+}
+
 if __name__ == "__main__":
     main()

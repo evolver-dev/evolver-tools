@@ -372,5 +372,13 @@ def main():
         print_report(results, verbose=not args.quiet)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "smellfinder",
+    "func": "main",
+    "desc": 'Smellfinder',
+}
+
 if __name__ == '__main__':
     main()

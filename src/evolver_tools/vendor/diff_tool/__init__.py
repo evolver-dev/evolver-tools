@@ -215,3 +215,10 @@ def main():
         adds = sum(1 for l in diff_text.split("\n") if l.startswith("+") and not l.startswith("+++"))
         rems = sum(1 for l in diff_text.split("\n") if l.startswith("-") and not l.startswith("---"))
         print(f"\n{DIM}{adds} addition(s), {rems} deletion(s){RESET}")
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "diff",
+    "func": "main",
+    "desc": 'File comparator',
+}

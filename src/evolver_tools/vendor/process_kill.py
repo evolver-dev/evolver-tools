@@ -248,5 +248,13 @@ def main():
     kill_procs(procs, sig, args.force)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "process-kill",
+    "func": "main",
+    "desc": 'Kill processes by name/port/user',
+}
+
 if __name__ == "__main__":
     main()

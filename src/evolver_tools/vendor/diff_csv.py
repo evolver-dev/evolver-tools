@@ -191,5 +191,13 @@ def main():
     print(f"  File1 rows: {len(rows1)}, File2 rows: {len(rows2)}")
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "diff-csv",
+    "func": "main",
+    "desc": 'Diff two CSV files',
+}
+
 if __name__ == "__main__":
     main()

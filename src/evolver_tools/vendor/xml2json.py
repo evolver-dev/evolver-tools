@@ -79,5 +79,13 @@ def main():
     else:
         print(json.dumps(data, ensure_ascii=False))
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "xml2json",
+    "func": "main",
+    "desc": 'Convert XML to JSON',
+}
+
 if __name__ == '__main__':
     main()

@@ -253,5 +253,13 @@ Examples:
     print("\n".join(output_lines))
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "jq-lite",
+    "func": "main",
+    "desc": 'Jq Lite',
+}
+
 if __name__ == "__main__":
     main()

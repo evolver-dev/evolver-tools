@@ -41,5 +41,13 @@ def main():
         print(f"Error fetching weather: {e}", file=sys.stderr)
         sys.exit(1)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "weather-cli",
+    "func": "main",
+    "desc": 'Weather forecast from wttr.in',
+}
+
 if __name__ == '__main__':
     main()

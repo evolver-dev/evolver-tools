@@ -272,5 +272,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "bookmark",
+    "func": "main",
+    "desc": 'CLI bookmark manager',
+}
+
 if __name__ == '__main__':
     main()

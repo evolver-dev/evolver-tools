@@ -409,5 +409,13 @@ def main():
         print()
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "cron",
+    "func": "main",
+    "desc": 'Cron expression parser',
+}
+
 if __name__ == '__main__':
     main()

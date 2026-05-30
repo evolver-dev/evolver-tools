@@ -253,5 +253,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "cert-check",
+    "func": "main",
+    "desc": 'Check SSL certificate expiry',
+}
+
 if __name__ == "__main__":
     main()

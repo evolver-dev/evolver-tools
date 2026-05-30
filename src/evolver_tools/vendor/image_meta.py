@@ -314,5 +314,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "image-meta",
+    "func": "main",
+    "desc": 'Image metadata (EXIF) viewer',
+}
+
 if __name__ == '__main__':
     main()

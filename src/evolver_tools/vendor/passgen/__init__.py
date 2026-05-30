@@ -220,5 +220,13 @@ def parse_args():
     return args
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "passgen",
+    "func": "entry",
+    "desc": 'Passgen',
+}
+
 if __name__ == "__main__":
     entry()

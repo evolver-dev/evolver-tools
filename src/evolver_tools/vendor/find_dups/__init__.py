@@ -5,3 +5,11 @@ Zero external dependencies, stdlib only.
 """
 
 __version__ = "1.0.0"
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "find-dups",
+    "func": "main",
+    "desc": 'Find Dups',
+    "submodule": "cli",
+}

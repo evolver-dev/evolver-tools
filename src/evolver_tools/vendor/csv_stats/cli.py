@@ -41,5 +41,13 @@ def main():
         print_report(result)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "csv-stats",
+    "func": "main",
+    "desc": 'csv-stats',
+}
+
 if __name__ == "__main__":
     main()

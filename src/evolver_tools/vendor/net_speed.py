@@ -77,5 +77,13 @@ def main():
         print(f"  Error: {e}", file=sys.stderr)
         sys.exit(1)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "net-speed",
+    "func": "main",
+    "desc": 'Internet download speed test',
+}
+
 if __name__ == '__main__':
     main()

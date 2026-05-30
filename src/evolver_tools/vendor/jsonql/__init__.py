@@ -322,5 +322,13 @@ def main(argv: list = None) -> int:
     return 0
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "jsonql",
+    "func": "main",
+    "desc": 'JSONQL',
+}
+
 if __name__ == '__main__':
     sys.exit(main())

@@ -440,5 +440,13 @@ def main():
         print(draw_histogram_chart(data, 10, args.width))
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "chart-cli",
+    "func": "main",
+    "desc": 'Chart CLI',
+}
+
 if __name__ == '__main__':
     main()

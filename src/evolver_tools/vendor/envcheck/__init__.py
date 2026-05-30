@@ -422,5 +422,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "envcheck",
+    "func": "main",
+    "desc": 'Envcheck',
+}
+
 if __name__ == "__main__":
     main()

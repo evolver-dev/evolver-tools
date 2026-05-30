@@ -138,5 +138,13 @@ def main():
         print(f"Unknown font: {font}")
         print(f"Available: {', '.join(FONTS.keys())}")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "figlet-cli",
+    "func": "main",
+    "desc": 'ASCII art font display (5 fonts)',
+}
+
 if __name__ == '__main__':
     main()

@@ -371,5 +371,13 @@ def main():
     print(markdown, end="")
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "html2md",
+    "func": "main",
+    "desc": 'Convert HTML to Markdown',
+}
+
 if __name__ == "__main__":
     main()
