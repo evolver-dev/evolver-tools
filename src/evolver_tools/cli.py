@@ -69,11 +69,16 @@ TOOLS = {
     "reminder": {"module": "evolver_tools.vendor.reminder", "func": "main", "desc": "Timer-based reminder with countdown"},
     "todo-cli": {"module": "evolver_tools.vendor.todo_cli", "func": "main", "desc": "Simple prioritized TODO list manager"},
     "log-tail": {"module": "evolver_tools.vendor.log_tail", "func": "main", "desc": "Tail logs with follow, filter, colorize"},
+    "spinner": {"module": "evolver_tools.vendor.spinner", "func": "main", "desc": "Animated terminal spinner (6 styles)"},
+    "joke": {"module": "evolver_tools.vendor.joke", "func": "main", "desc": "Random programming/tech/dad jokes"},
+    "morse": {"module": "evolver_tools.vendor.morse", "func": "main", "desc": "Text-Morse code converter with audio"},
+    "password-strength": {"module": "evolver_tools.vendor.password_strength", "func": "main", "desc": "Password strength checker (0-100)"},
+    "html2markdown": {"module": "evolver_tools.vendor.html2markdown", "func": "main", "desc": "Convert HTML to Markdown"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v2.2.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v2.3.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')

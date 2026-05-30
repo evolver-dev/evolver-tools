@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "2.2.0"
-description = "64 essential CLI tools - one pip install"
+version = "2.3.0"
+description = "69 essential CLI tools - one pip install"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.8"
@@ -94,6 +94,11 @@ b64 = "evolver_tools.vendor.b64:main"
     reminder = "evolver_tools.vendor.reminder:main"
     todo-cli = "evolver_tools.vendor.todo_cli:main"
     log-tail = "evolver_tools.vendor.log_tail:main"
+    spinner = "evolver_tools.vendor.spinner:main"
+    joke = "evolver_tools.vendor.joke:main"
+    morse = "evolver_tools.vendor.morse:main"
+    password-strength = "evolver_tools.vendor.password_strength:main"
+    html2markdown = "evolver_tools.vendor.html2markdown:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
