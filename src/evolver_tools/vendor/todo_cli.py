@@ -166,5 +166,13 @@ def main():
         print(f"Unknown command: {cmd}")
         print("Available: add, list, done, rm, clear")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "todo-cli",
+    "func": "main",
+    "desc": 'Simple prioritized TODO list manager',
+}
+
 if __name__ == '__main__':
     main()

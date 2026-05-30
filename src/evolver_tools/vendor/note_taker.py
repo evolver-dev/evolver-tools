@@ -112,5 +112,13 @@ def main():
     else:
         print(f"Unknown: {cmd}. Commands: add, list, search, recent")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "note-taker",
+    "func": "main",
+    "desc": 'CLI note-taking (add, list, search)',
+}
+
 if __name__ == '__main__':
     main()

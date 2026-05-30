@@ -68,5 +68,13 @@ def main():
         result.append(reset)
         print(''.join(result))
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "rainbow",
+    "func": "main",
+    "desc": 'Rainbow-colored text output',
+}
+
 if __name__ == '__main__':
     main()

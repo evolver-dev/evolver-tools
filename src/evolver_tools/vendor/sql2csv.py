@@ -599,5 +599,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "sql2csv",
+    "func": "main",
+    "desc": 'Run SQL on CSV files',
+}
+
 if __name__ == "__main__":
     main()

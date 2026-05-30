@@ -246,5 +246,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "siege-lite",
+    "func": "main",
+    "desc": 'Siege Lite',
+}
+
 if __name__ == '__main__':
     main()

@@ -206,5 +206,13 @@ def main():
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "service-check",
+    "func": "main",
+    "desc": 'Check systemd service status',
+}
+
 if __name__ == "__main__":
     main()

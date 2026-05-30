@@ -207,5 +207,13 @@ Examples:
         sys.exit(1)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "hashsum",
+    "func": "main",
+    "desc": 'Hashsum',
+}
+
 if __name__ == "__main__":
     main()

@@ -77,5 +77,7 @@ def main():
         print(f"Unknown duration: {cmd}", file=sys.stderr)
         sys.exit(1)
 
+
+
 if __name__ == '__main__':
     main()

@@ -123,5 +123,13 @@ def parse_args():
     return parser.parse_args()
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "timer",
+    "func": "entry",
+    "desc": 'Timer',
+}
+
 if __name__ == "__main__":
     entry()

@@ -71,5 +71,13 @@ def main():
             result = base64.b64encode(encrypted)
             sys.stdout.buffer.write(result)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "file-encrypt",
+    "func": "main",
+    "desc": 'Simple file encrypt/decrypt',
+}
+
 if __name__ == '__main__':
     main()

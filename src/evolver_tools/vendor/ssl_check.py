@@ -115,5 +115,13 @@ def main():
         print(f"  Error: {e}")
         sys.exit(1)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "ssl-check",
+    "func": "main",
+    "desc": 'SSL/TLS certificate checker',
+}
+
 if __name__ == '__main__':
     main()

@@ -117,5 +117,13 @@ def main():
     print(render_qr(matrix, size))
     print(f"  QR Code for: {text[:40]}{'...' if len(text)>40 else ''}")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "qrcode",
+    "func": "main",
+    "desc": 'QR code generator (ASCII art)',
+}
+
 if __name__ == '__main__':
     main()

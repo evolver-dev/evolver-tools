@@ -42,5 +42,13 @@ def main():
             print(f"\r{bar}", end='', file=sys.stderr)
         print(file=sys.stderr)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "progress-bar",
+    "func": "main",
+    "desc": 'Animated terminal progress bar',
+}
+
 if __name__ == '__main__':
     main()

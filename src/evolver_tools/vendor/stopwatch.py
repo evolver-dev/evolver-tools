@@ -90,5 +90,13 @@ def main():
             print(f"    Lap {n:2d}: {format_time(lt)}", file=sys.stderr)
     print(f"  {'='*35}", file=sys.stderr)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "stopwatch",
+    "func": "main",
+    "desc": 'Terminal stopwatch with lap support',
+}
+
 if __name__ == '__main__':
     main()

@@ -165,5 +165,13 @@ def main():
                 print(f"    ⚠ {issue}")
         print()
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "password-strength",
+    "func": "main",
+    "desc": 'Password strength checker (0-100)',
+}
+
 if __name__ == '__main__':
     main()

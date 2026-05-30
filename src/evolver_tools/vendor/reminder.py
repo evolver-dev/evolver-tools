@@ -90,5 +90,13 @@ def main():
     print(f"  {'='*40}")
     print('\a')  # Another bell
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "reminder",
+    "func": "main",
+    "desc": 'Timer-based reminder with countdown',
+}
+
 if __name__ == '__main__':
     main()

@@ -279,5 +279,13 @@ def main():
     print(f"\n✓ 已重命名 {renamed} 个文件" + (f", {errors} 个错误" if errors else ""))
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "ren",
+    "func": "main",
+    "desc": 'Ren',
+}
+
 if __name__ == '__main__':
     main()

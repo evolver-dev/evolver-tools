@@ -118,5 +118,13 @@ def main():
             except KeyboardInterrupt:
                 pass
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "morse",
+    "func": "main",
+    "desc": 'Text-Morse code converter with audio',
+}
+
 if __name__ == '__main__':
     main()

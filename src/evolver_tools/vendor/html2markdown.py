@@ -146,5 +146,13 @@ def main():
     parser.feed(html)
     print(parser.get_markdown())
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "html2markdown",
+    "func": "main",
+    "desc": 'Convert HTML to Markdown',
+}
+
 if __name__ == '__main__':
     main()

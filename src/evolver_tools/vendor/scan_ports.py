@@ -97,5 +97,13 @@ def main():
     sys.stderr.write('\n')
     print(f"\n  Scan complete: {len(open_ports)}/{len(ports)} open in {elapsed:.1f}s")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "scan-ports",
+    "func": "main",
+    "desc": 'TCP port scanner (range, common ports)',
+}
+
 if __name__ == '__main__':
     main()

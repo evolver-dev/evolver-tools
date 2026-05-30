@@ -261,5 +261,13 @@ Examples:
         sys.exit(0)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "http-live",
+    "func": "main",
+    "desc": 'HTTP Live Server',
+}
+
 if __name__ == "__main__":
     main()

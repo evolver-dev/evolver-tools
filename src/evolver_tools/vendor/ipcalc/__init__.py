@@ -151,5 +151,13 @@ def main():
         first = False
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "ipcalc",
+    "func": "main",
+    "desc": 'IP/CIDR calculator',
+}
+
 if __name__ == "__main__":
     main()

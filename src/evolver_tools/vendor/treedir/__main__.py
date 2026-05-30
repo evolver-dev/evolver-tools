@@ -124,5 +124,13 @@ def main():
     
     build_tree(root, max_depth, show_hidden, dirs_only)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "treedir",
+    "func": "main",
+    "desc": 'Treedir',
+}
+
 if __name__ == "__main__":
     main()

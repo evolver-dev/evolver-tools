@@ -87,5 +87,13 @@ def main():
         else:
             print(f"  {joke}")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "joke",
+    "func": "main",
+    "desc": 'Random programming/tech/dad jokes',
+}
+
 if __name__ == '__main__':
     main()

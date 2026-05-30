@@ -388,5 +388,13 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "find-dups",
+    "func": "main",
+    "desc": 'Find Dups',
+}
+
 if __name__ == "__main__":
     sys.exit(main())

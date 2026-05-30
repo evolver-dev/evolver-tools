@@ -315,5 +315,13 @@ def main():
         print("使用 'nb help' 查看帮助")
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "nb",
+    "func": "main",
+    "desc": 'nb',
+}
+
 if __name__ == '__main__':
     main()

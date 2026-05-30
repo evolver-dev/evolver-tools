@@ -25,5 +25,13 @@ def main():
     if sys.stdin.isatty():
         sys.stdout.write('\n')
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "shuffle",
+    "func": "main",
+    "desc": 'Randomize lines from stdin',
+}
+
 if __name__ == '__main__':
     main()

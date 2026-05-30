@@ -3,3 +3,11 @@
 __version__ = "1.0.0"
 __author__ = "Evolver"
 __license__ = "MIT"
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "csv-stats",
+    "func": "main",
+    "desc": 'csv-stats',
+    "submodule": "cli",
+}

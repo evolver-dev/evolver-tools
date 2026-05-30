@@ -187,5 +187,13 @@ def main():
         print(result)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "colorize",
+    "func": "main",
+    "desc": 'Terminal text colorizer',
+}
+
 if __name__ == "__main__":
     main()

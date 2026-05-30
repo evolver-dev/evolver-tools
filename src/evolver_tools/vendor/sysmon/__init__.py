@@ -301,5 +301,13 @@ def entry():
     except Exception as e:
         print(f"sysmon error: {e}")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "sysmon",
+    "func": "entry",
+    "desc": 'Sysmon',
+}
+
 if __name__ == '__main__':
     entry()

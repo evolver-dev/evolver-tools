@@ -228,5 +228,13 @@ def main():
         zf.close()
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "excel2csv",
+    "func": "main",
+    "desc": 'Convert Excel to CSV',
+}
+
 if __name__ == "__main__":
     main()

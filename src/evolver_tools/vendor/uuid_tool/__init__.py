@@ -231,5 +231,13 @@ def main(argv: list[str] | None = None) -> int:
     return 0
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "uuid",
+    "func": "main",
+    "desc": 'UUID generator',
+}
+
 if __name__ == "__main__":
     sys.exit(main())

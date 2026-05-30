@@ -322,5 +322,13 @@ Examples:
         conn.close()
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "sqlite-cli",
+    "func": "main",
+    "desc": 'Sqlite CLI',
+}
+
 if __name__ == "__main__":
     main()

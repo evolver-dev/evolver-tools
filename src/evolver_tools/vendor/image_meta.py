@@ -97,5 +97,13 @@ def main():
                 if k != 'file' and v:
                     print(f"    {k}: {v}")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "image-meta",
+    "func": "main",
+    "desc": 'Image metadata (EXIF) viewer',
+}
+
 if __name__ == '__main__':
     main()

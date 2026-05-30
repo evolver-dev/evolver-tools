@@ -113,5 +113,13 @@ def main():
             print(f"==> {f} <==")
         tail_file(f, lines=lines, follow=follow, filter_pat=filter_pat, colorize=colorize)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "log-tail",
+    "func": "main",
+    "desc": 'Tail logs with follow, filter, colorize',
+}
+
 if __name__ == '__main__':
     main()

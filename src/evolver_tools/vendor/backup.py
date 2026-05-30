@@ -75,5 +75,13 @@ def main():
         except Exception as e:
             print(f"  Error backing up {src}: {e}", file=sys.stderr)
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "backup",
+    "func": "main",
+    "desc": 'File/dir backup with rotation',
+}
+
 if __name__ == '__main__':
     main()

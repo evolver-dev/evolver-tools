@@ -80,5 +80,13 @@ def main():
         remaining = 30 - (int(time.time()) % 30)
         print(f"  TOTP: {code}  (expires in {remaining}s)")
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "otp-gen",
+    "func": "main",
+    "desc": 'TOTP/HOTP one-time password generator',
+}
+
 if __name__ == '__main__':
     main()

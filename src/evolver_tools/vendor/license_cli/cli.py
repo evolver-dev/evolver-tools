@@ -285,5 +285,13 @@ def main():
         print(text)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "license-cli",
+    "func": "main",
+    "desc": 'License CLI',
+}
+
 if __name__ == "__main__":
     main()

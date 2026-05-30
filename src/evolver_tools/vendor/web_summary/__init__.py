@@ -337,5 +337,13 @@ def main():
         print_summary(result)
 
 
+
+# === Auto-registration metadata ===
+TOOL_META = {
+    "name": "web-summary",
+    "func": "main",
+    "desc": 'Web Summary',
+}
+
 if __name__ == '__main__':
     main()
