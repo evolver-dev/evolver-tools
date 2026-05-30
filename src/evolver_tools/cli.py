@@ -5,6 +5,18 @@ import sys, importlib, os
 
 # Tool registry
 TOOLS = {
+    "colorize": {"module": "evolver_tools.vendor.colorize", "func": "main", "desc": "Terminal text colorizer"},
+    "env-manager": {"module": "evolver_tools.vendor.env_manager", "func": "main", "desc": ".env file manager"},
+    "git-branch-cleaner": {"module": "evolver_tools.vendor.git_branch_cleaner", "func": "main", "desc": "Clean stale git branches"},
+    "diff-csv": {"module": "evolver_tools.vendor.diff_csv", "func": "main", "desc": "Diff two CSV files"},
+    "excel2csv": {"module": "evolver_tools.vendor.excel2csv", "func": "main", "desc": "Convert Excel to CSV"},
+    "sql2csv": {"module": "evolver_tools.vendor.sql2csv", "func": "main", "desc": "Run SQL on CSV files"},
+    "html2md": {"module": "evolver_tools.vendor.html2md", "func": "main", "desc": "Convert HTML to Markdown"},
+    "process-kill": {"module": "evolver_tools.vendor.process_kill", "func": "main", "desc": "Kill processes by name/port/user"},
+    "service-check": {"module": "evolver_tools.vendor.service_check", "func": "main", "desc": "Check systemd service status"},
+    "crontab-helper": {"module": "evolver_tools.vendor.crontab_helper", "func": "main", "desc": "Simplify crontab management"},
+    "cert-check": {"module": "evolver_tools.vendor.cert_check", "func": "main", "desc": "Check SSL certificate expiry"},
+    "checksum-dir": {"module": "evolver_tools.vendor.checksum_dir", "func": "main", "desc": "Generate/verify directory checksums"},
     "b64": {"module": "evolver_tools.vendor.b64", "func": "main", "desc": "b64"},
     "cal": {"module": "evolver_tools.vendor.cal_tool.cli", "func": "main", "desc": "Cal"},
     "chart-cli": {"module": "evolver_tools.vendor.chart_cli", "func": "main", "desc": "Chart CLI"},
@@ -74,11 +86,21 @@ TOOLS = {
     "morse": {"module": "evolver_tools.vendor.morse", "func": "main", "desc": "Text-Morse code converter with audio"},
     "password-strength": {"module": "evolver_tools.vendor.password_strength", "func": "main", "desc": "Password strength checker (0-100)"},
     "html2markdown": {"module": "evolver_tools.vendor.html2markdown", "func": "main", "desc": "Convert HTML to Markdown"},
+    "rainbow": {"module": "evolver_tools.vendor.rainbow", "func": "main", "desc": "Rainbow-colored text output"},
+    "figlet-cli": {"module": "evolver_tools.vendor.figlet_cli", "func": "main", "desc": "ASCII art font display (5 fonts)"},
+    "file-encrypt": {"module": "evolver_tools.vendor.file_encrypt", "func": "main", "desc": "Simple file encrypt/decrypt"},
+    "otp-gen": {"module": "evolver_tools.vendor.otp_gen", "func": "main", "desc": "TOTP/HOTP one-time password generator"},
+    "ssl-check": {"module": "evolver_tools.vendor.ssl_check", "func": "main", "desc": "SSL/TLS certificate checker"},
+    "scan-ports": {"module": "evolver_tools.vendor.scan_ports", "func": "main", "desc": "TCP port scanner (range, common ports)"},
+    "note-taker": {"module": "evolver_tools.vendor.note_taker", "func": "main", "desc": "CLI note-taking (add, list, search)"},
+    "bookmark": {"module": "evolver_tools.vendor.bookmark", "func": "main", "desc": "CLI bookmark manager"},
+    "dep-graph": {"module": "evolver_tools.vendor.dep_graph", "func": "main", "desc": "Dependency graph from Python files"},
+    "image-meta": {"module": "evolver_tools.vendor.image_meta", "func": "main", "desc": "Image metadata (EXIF) viewer"},
 }
 
 def list_tools():
     """Display all available tools."""
-    print('\x1b[1;36m===== EVOLVER Tools v2.3.0 =====\x1b[0m')
+    print('\x1b[1;36m===== EVOLVER Tools v2.4.0 =====\x1b[0m')
     print()
     for name, info in sorted(TOOLS.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
