@@ -1,7 +1,7 @@
 {
   "updated_at": "2026-06-01",
   "tool_count": 259,
-  "version": "38.0.6",
+  "version": "38.0.7",
   "balance": 1215.56,
   "total_income": 1345.0,
   "total_cost": 641.44,
@@ -9,7 +9,7 @@
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 3044,
-  "last_release": "v38.0.6",
+  "last_release": "v38.0.7",
   "latest_round": "Round 53 — Unified tool count: resolved status.json merge conflict, fixed all stale numbers (258→259/262→259 across pyproject.toml/README/pip), pushed v38.0.6",
   "status": "v38.0.6 — 259 tools, actionable. Distribution bottleneck: needs Owner HN/Reddit/Dev.to posting within 8 days."
 }
