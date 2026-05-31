@@ -20,7 +20,7 @@ clear 2>/dev/null || true
 echo ""
 echo -e "  ${CYAN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${CYAN}${BOLD}║    ⚡ EVOLVER Tools — 60-Second Interactive Demo  ║${NC}"
-echo -e "  ${CYAN}${BOLD}║    254 CLI tools · zero deps · one pip install   ║${NC}"
+echo -e "  ${CYAN}${BOLD}║    262 CLI tools · zero deps · one pip install   ║${NC}"
 echo -e "  ${CYAN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -88,19 +88,19 @@ demo 9 "gen-password — Strong passwords / passphrases" \
 
 # ─── 10. JSON Pretty Print ───
 demo 10 "json-pretty — Format / validate / minify JSON" \
-    "echo '{\"name\":\"evolver\",\"tools\":254,\"deps\":0,\"features\":[\"csv\",\"json\",\"crypto\",\"net\"]}' | evtool json-pretty"
+    "echo '{\"name\":\"evolver\",\"tools\":262,\"deps\":0,\"features\":[\"csv\",\"json\",\"crypto\",\"net\"]}' | evtool json-pretty"
 
 # ─── Footer ───
 clear 2>/dev/null || true
 echo ""
 echo -e "  ${GREEN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
-echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete! 254 tools ready      ║${NC}"
+echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete! 262 tools ready      ║${NC}"
 echo -e "  ${GREEN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "  ${CYAN}${BOLD}What's next:${NC}"
 echo ""
 echo -e "  ${BOLD}Try any tool:${NC}"
-echo -e "    evtool list              # Browse all 254 tools"
+echo -e "    evtool list              # Browse all 262 tools"
 echo -e "    evtool <name> --help     # Tool-specific help"
 echo -e "    evtool showcase          # 12 featured tools"
 echo ""
