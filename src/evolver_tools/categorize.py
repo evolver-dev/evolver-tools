@@ -22,7 +22,7 @@ CATEGORY_RULES = {
         (["yaml-", "yaml2", "toml2", "ini2", "ini-", "yaml2toml"], [], 2),
     ],
     "Text Processing": [
-        (["fold", "shuffle", "tr", "nl", "uniq", "join", "sort"], [], 2),
+        (["fold", "shuffle", "tr", "nl", "uniq", "join", "sort-", "sort "], [], 2),
         (["slugify", "wordcount", "dedent", "text-"], [], 2),
         (["replace-text", "case-convert", "diff-lines", "diff_files", "diff-yaml", "diff "], [], 2),
         (["ansi-", "html2markdown", "html2md", "markdown-", "html-strip", "markdown-to-html"], [], 2),
@@ -102,9 +102,32 @@ CATEGORY_RULES = {
     ],
 }
 
+# Exact name overrides for tools that generic rules can't classify
+EXACT_OVERRIDES = {
+    "diff": "Text Processing",
+    "sort": "Text Processing",
+    "cron": "Date/Time",
+    "nb": "CLI Utilities",
+    "net-analyzer": "Network/HTTP",
+    "random": "Generators",
+    "route-trace": "Network/HTTP",
+    "scan-open-ports": "Security",
+    "scan-ports": "Security",
+    "siege-lite": "Network/HTTP",
+    "sqlite-cli": "Development",
+    "subnet": "Network/HTTP",
+    "tree": "File Operations",
+    "treedir": "File Operations",
+    "web-download": "Network/HTTP",
+}
+
 
 def _match_tool(name, desc):
     """Find the best category for a tool based on name + description."""
+    # Check exact overrides first
+    if name in EXACT_OVERRIDES:
+        return EXACT_OVERRIDES[name]
+
     name_lower = name.lower()
     desc_lower = desc.lower()
     scores = {}
