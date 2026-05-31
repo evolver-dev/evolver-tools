@@ -1,0 +1,9 @@
+# Mark HTML/CSS/marketing pages as documentation so GitHub's Linguist
+# correctly identifies this as a Python project (not HTML).
+*.html linguist-documentation
+*.css linguist-documentation
+*.js  linguist-documentation
+*.yml linguist-documentation
+
+# The built wheel artifact in the repo should not count as code.
+evolver_tools-*.whl linguist-vendored

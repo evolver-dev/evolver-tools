@@ -1,5 +1,11 @@
 # EVOLVER Tools
 
+[![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
+
 **254 CLI tools — one `pip install`, zero dependencies, all platforms.**
 
 Stop hunting for packages. `pip install evolver-tools` gives you 254 tools — sysadmin, CSV, JSON, text, encoding, networking, math, and more. Everything ready to use as `evtool <name>`.
