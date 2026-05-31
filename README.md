@@ -1,8 +1,8 @@
 # EVOLVER Tools
 
-**249 CLI tools + 9 flagship projects — one `pip install`.**
+**259 CLI tools + 9 flagship projects — one `pip install`.**
 
-Zero-dependency (245/249), cross-platform, production-ready. Version **35.0.0**.
+Zero-dependency (253/259), cross-platform, production-ready. Version **37.0.0**.
 Systems ops, data processing, text manipulation, security, dev tooling, and creative utilities.
 All in a single install — not 239 separate packages.
 
@@ -10,7 +10,7 @@ All in a single install — not 239 separate packages.
 
 ```bash
 pip install evolver-tools
-evtool list             # Show all 249 tools
+evtool list             # Show all 259 tools
 evtool sysmon           # Launch system monitor
 evtool ff < data.txt    # Fuzzy search through data
 evtool csv-stats data.csv  # Analyze CSV columns
@@ -259,7 +259,7 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 ## Requirements
 
 - Python 3.8+
-- No external dependencies for 239 of 239 tools (stdlib only)
+- No external dependencies for 253 of 259 tools (stdlib only)
 - Network-dependent tools (ipinfo, weather, etc.) use public APIs
 
 ## Pricing
@@ -268,7 +268,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 239 tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 259 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -279,7 +279,14 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 ## Changelog
 
-### v35.0.0 — 2026-06-01 (+5 tools, 249 total)
+### v37.0.0 — 2026-06-01 (+5 tools, 259 total)
+- **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
+- **mime-type** — Detect MIME type by file extension or magic bytes
+- **color-convert** — Convert between HEX, RGB, HSL, HSV, CMYK, ANSI
+- **csv-concat** — Concatenate multiple CSV files (same columns, header-preserving)
+- **ansi-to-html** — Convert ANSI-colored terminal output to styled HTML
+
+### v36.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
 - **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
 - **diff-lines** — Line-by-line diff between two files (color, side-by-side)
