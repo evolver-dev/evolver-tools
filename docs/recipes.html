@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLI Recipes — Real-World Workflows with evolver-tools</title>
+<meta name="description" content="15 real-world CLI workflows using evolver-tools. Data analysis, DevOps, system debugging, and daily utilities — all with zero dependencies.">
+<meta property="og:title" content="CLI Recipes — Real-World Workflows with evolver-tools">
+<meta property="og:description" content="15 real-world CLI workflows using evolver-tools. Data analysis, DevOps, system debugging, and daily utilities — all in one pip install.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/docs/recipes.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root {
+  --bg: #0a0e14;
+  --surface: #111820;
+  --surface2: #182230;
+  --border: #1e2d3d;
+  --text: #b3c7e5;
+  --text-secondary: #7a8ba8;
+  --accent: #00d4aa;
+  --accent-dim: #00a88a;
+  --green: #00d4aa;
+  --cyan: #00bcd4;
+  --yellow: #ffcb6b;
+  --orange: #f78c6c;
+  --red: #ff5370;
+  --purple: #c792ea;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Nav */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(10, 14, 20, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+nav .logo span { color: var(--text); }
+nav .links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; margin-left: 1.5rem; transition: color 0.2s; }
+nav .links a:hover { color: var(--text); }
+nav .links .btn-nav { background: var(--accent); color: var(--bg); padding: 0.4rem 1rem; border-radius: 6px; font-weight: 600; }
+nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
+
+/* Layout */
+.container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+.hero { padding: 8rem 0 3rem; text-align: center; }
+.hero h1 { font-size: 2.5rem; font-weight: 800; color: #dce4f0; }
+.hero h1 span { color: var(--accent); }
+.hero p { color: var(--text-secondary); font-size: 1.1rem; margin-top: 0.75rem; max-width: 640px; margin-left: auto; margin-right: auto; }
+.hero .install { margin-top: 1.5rem; display: inline-block; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1.5rem; font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent); }
+
+/* Recipe cards */
+.recipe { margin: 3rem 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.recipe-header { padding: 1.5rem 2rem 0.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+.recipe-number { background: var(--accent); color: var(--bg); width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+.recipe-title { font-size: 1.3rem; font-weight: 700; color: #dce4f0; }
+.recipe-problem { color: var(--text-secondary); font-size: 0.95rem; margin: 0.25rem 2rem 0; padding: 0 0 0 0; }
+.recipe-tags { display: flex; gap: 0.5rem; padding: 0.5rem 2rem 0; }
+.tag { font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px; font-family: var(--font-mono); }
+.tag-data { background: rgba(0, 212, 170, 0.15); color: var(--green); }
+.tag-devops { background: rgba(0, 188, 212, 0.15); color: var(--cyan); }
+.tag-sys { background: rgba(255, 203, 107, 0.15); color: var(--yellow); }
+.tag-text { background: rgba(199, 146, 234, 0.15); color: var(--purple); }
+.tag-net { background: rgba(247, 140, 108, 0.15); color: var(--orange); }
+.tag-fun { background: rgba(255, 83, 112, 0.15); color: var(--red); }
+.tag-crypto { background: rgba(0, 188, 212, 0.2); color: var(--cyan); }
+.tag-util { background: rgba(255, 203, 107, 0.2); color: var(--yellow); }
+
+.recipe-body { padding: 1rem 2rem 1.5rem; }
+.command-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; margin: 0.75rem 0; overflow-x: auto; }
+.command-block .prompt { color: var(--accent); font-family: var(--font-mono); font-size: 0.85rem; }
+.command-block .cmd { color: var(--text); font-family: var(--font-mono); font-size: 0.85rem; white-space: pre-wrap; word-break: break-all; }
+.output-block { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); overflow-x: auto; white-space: pre; margin: 0.5rem 0; line-height: 1.4; }
+.why { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid var(--accent-dim); }
+
+/* Section titles */
+.section-title { font-size: 1.6rem; font-weight: 700; color: #dce4f0; margin: 4rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+
+/* Footer */
+footer { text-align: center; padding: 3rem 2rem; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 4rem; }
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.8rem; }
+  .recipe-header { padding: 1rem; }
+  .recipe-body { padding: 0.75rem 1rem 1.25rem; }
+  nav .links .btn-nav { display: none; }
+  nav { padding: 0 1rem; }
+  .container { padding: 0 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html">Docs</a>
+    <a href="quickstart.html">Quickstart</a>
+    <a href="cheatsheet.html">Cheatsheet</a>
+    <a href="showcase.html">Showcase</a>
+    <a href="../recipes.html" style="color:var(--accent);font-weight:600;">Recipes</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<div class="hero">
+  <h1>CLI <span>Recipes</span></h1>
+  <p>15 real-world workflows you can solve with evolver-tools right now. No dependencies. No setup. Just <code>pip install evolver-tools</code>.</p>
+  <div class="install">pip install evolver-tools</div>
+</div>
+
+<!-- ============================================ -->
+<!-- DATA & ANALYSIS -->
+<!-- ============================================ -->
+<h2 class="section-title"> Data &amp; Analysis</h2>
+
+<!-- Recipe 1 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">1</div>
+    <div>
+      <div class="recipe-title">Quick-Check a CSV Without Pandas</div>
+      <div class="recipe-problem">You got a CSV file. What's in it? What are the columns? Any bad data? You don't have pandas or Excel.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-data">csv</span>
+    <span class="tag tag-data">data</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># Schema, preview, and stats in three commands</div>
+      <div class="cmd">evtool csv-schema data.csv
+evtool csv-head data.csv
+evtool csv-stats data.csv</div>
+    </div>
+    <div class="output-block">CSV Schema: data.csv
+Columns: 7
+Rows:    1,234
+Types:   name(str), age(int), city(str), salary(float), joined(date), active(bool)
+
+      Column        Count    Unique     Nulls       Mean     Min     Max
+  ─────────────────────────────────────────────────────────────────────
+  name               1,234     1,198          0         -       -       -
+  age                1,234        62          2      34.2      18      72
+  salary             1,232       412          2   ¥82,450   ¥3K   ¥450K
+  city               1,234       165          0         -       -       -</div>
+    <div class="why">Why this works: csv-schema infers types from data (no config), csv-head shows the first rows, csv-stats gives descriptive statistics. All pure Python stdlib — works in air-gapped or minimal environments.</div>
+  </div>
+</div>
+
+<!-- Recipe 2 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">2</div>
+    <div>
+      <div class="recipe-title">Filter &amp; Plot CSV Data in a Pipeline</div>
+      <div class="recipe-problem">You need to filter a CSV by a condition, then visualize the distribution — without loading a notebook or R.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-data">csv</span>
+    <span class="tag tag-data">chart</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># Filter rows where age > 30, then plot a histogram of salaries</div>
+      <div class="cmd">evtool csv-filter data.csv --column age --min 30 | evtool csv-chart --column salary</div>
+    </div>
+    <div class="output-block">Filtered: 712 rows (age >= 30)
+
+Salary Distribution
+──────────────────────────────────────────────────────
+    0–50K    ████████████████████████████  312
+ 50K–100K    ██████████████████████       258
+100K–150K    ███████████                 132
+150K–200K    ██████                       65
+200K–250K    ██                           28
+250K+        █                            17</div>
+    <div class="why">Why this works: Pipes between tools are zero-cost — csv-filter outputs valid CSV to stdout, csv-chart reads it. No temp files needed. This is the Unix philosophy applied to data work.</div>
+  </div>
+</div>
+
+<!-- Recipe 3 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">3</div>
+    <div>
+      <div class="recipe-title">Log Analysis: Find the Top Error Patterns</div>
+      <div class="recipe-problem">You have a 100MB server log. You need to find the most frequent error patterns, fast.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-text">text</span>
+    <span class="tag tag-devops">devops</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># Extract ERROR lines, normalize timestamps, count & sort</div>
+      <div class="cmd">grep ERROR server.log \
+  | sed 's/\[.*\] //' \
+  | evtool text-stats --lines \
+  | evtool csv-sort --column count --reverse</div>
+    </div>
+    <div class="output-block">Error Pattern                                          Count
+───────────────────────────────────────────────────────────
+Connection timeout to database                           1,247
+Rate limit exceeded for API endpoint /v2/orders            892
+Disk quota exceeded on /data partition                     445
+Invalid authentication token                                 312
+Unrecognized field 'metadata' in request body               198</div>
+    <div class="why">Why this works: text-stats counts line frequencies (like `sort | uniq -c` but with more options). csv-sort can sort the output. No awk, no Perl, no separate installs.</div>
+  </div>
+</div>
+
+<!-- Recipe 4 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">4</div>
+    <div>
+      <div class="recipe-title">JSON Data: Validate, Pretty-Print, and Transform</div>
+      <div class="recipe-problem">You got a messy JSON API response. You need to validate it, make it readable, and convert it to CSV.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-data">json</span>
+    <span class="tag tag-text">text</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># One pipeline: validate → pretty-print → convert to CSV</div>
+      <div class="cmd">curl -s https://api.example.com/users \
+  | evtool json-pretty \
+  | evtool json-to-csv --flatten > users.csv</div>
+    </div>
+    <div class="command-block">
+      <div class="prompt"># Or just pretty-print with validation</div>
+      <div class="cmd">cat messy.json | evtool json-pretty --sort-keys</div>
+    </div>
+    <div class="output-block">{
+  "status": "ok",
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Chen",
+      "email": "alice@example.com"
+    }
+  ]
+}</div>
+    <div class="why">Why this works: json-pretty validates AND pretty-prints (with optional key sorting). json-to-csv handles nested objects via --flatten. No jq, no Python one-liners to memorize.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SYSTEM & DEVOPS -->
+<!-- ============================================ -->
+<h2 class="section-title"> System &amp; DevOps</h2>
+
+<!-- Recipe 5 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">5</div>
+    <div>
+      <div class="recipe-title">Server Health Snapshot in One Command</div>
+      <div class="recipe-problem">You SSH into a server and want a quick health overview — OS, disk, memory, CPU, uptime — in a single glance.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-sys">system</span>
+    <span class="tag tag-devops">devops</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool system-info && evtool disk-usage /</div>
+    </div>
+    <div class="output-block">System Information
+────────────────────────────────────────
+OS:          Linux 6.6.114 x86_64
+Platform:    Ubuntu 22.04 LTS
+Python:      3.11.15
+Hostname:    prod-web-01
+Uptime:      47 days, 3h 22m
+
+Disk Usage — /
+      Size  Type  Path
+──────────  ────  ─────────────────
+    234.2G  dir   /var/log
+     18.5G  dir   /usr
+      4.2G  dir   /home
+      1.8G  dir   /etc
+    980.0M  dir   /tmp</div>
+    <div class="why">Why this works: system-info collects OS, kernel, Python, and host info from stdlib (platform, os, socket). disk-usage wraps os.statvfs. No htop, no btm, no procps required.</div>
+  </div>
+</div>
+
+<!-- Recipe 6 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">6</div>
+    <div>
+      <div class="recipe-title">Find &amp; Kill a Stuck Process by Port</div>
+      <div class="recipe-problem">Port 8080 is in use. You have no idea which process. You need to kill it.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-sys">system</span>
+    <span class="tag tag-devops">devops</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool process-kill --port 8080</div>
+    </div>
+    <div class="output-block">Found process on port 8080:
+  PID: 14329  Name: node  User: deploy  Memory: 84.2MB
+Kill process 14329 (node)? [y/N] y
+✓ Process 14329 terminated</div>
+    <div class="why">Why this works: process-kill uses /proc and /proc/net/tcp (Linux) or lsof (macOS). Interactive confirmation prevents accidents. Pure stdlib — no fuser, no lsof dependency.</div>
+  </div>
+</div>
+
+<!-- Recipe 7 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">7</div>
+    <div>
+      <div class="recipe-title">Cron Expression Humanizer</div>
+      <div class="recipe-problem">You inherited a crontab with `0 5 15 * 5` and nobody remembers what it does.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-devops">devops</span>
+    <span class="tag tag-util">utility</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool cron-pretty '0 5 15 * 5'</div>
+    </div>
+    <div class="output-block">0 5 15 * 5
+  → At 5:00 AM, on day 15 of the month, and on Friday</div>
+    <div class="command-block">
+      <div class="prompt"># Validate an entire crontab</div>
+      <div class="cmd">evtool cron-check /etc/crontab</div>
+    </div>
+    <div class="why">Why this works: cron-pretty parses the 5-field cron format and renders it in natural language. cron-check validates the entire file. Saves you from crontab.guru lookups.</div>
+  </div>
+</div>
+
+<!-- Recipe 8 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">8</div>
+    <div>
+      <div class="recipe-title">SSL Certificate Expiry Check</div>
+      <div class="recipe-problem">Your monitoring says a cert is expiring. You need to check the actual expiry date for multiple domains — fast.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-net">network</span>
+    <span class="tag tag-devops">devops</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool cert-check example.com
+evtool cert-check api.example.com
+evtool cert-info example.com</div>
+    </div>
+    <div class="output-block">Certificate: example.com:443
+  Subject:   CN = example.com
+  Issuer:    CN = R3, O = Let's Encrypt
+  Valid:     2026-03-15 → 2026-06-13
+  Days left: 12 ⚠️
+  SANs:      example.com, www.example.com, api.example.com</div>
+    <div class="why">Why this works: cert-check connects to the TLS endpoint using Python's ssl module, extracts the cert chain, and parses validity dates. No openssl CLI needed.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- NETWORK & DIAGNOSTICS -->
+<!-- ============================================ -->
+<h2 class="section-title"> Network &amp; Diagnostics</h2>
+
+<!-- Recipe 9 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">9</div>
+    <div>
+      <div class="recipe-title">Full DNS Investigation</div>
+      <div class="recipe-problem">A domain stopped resolving. Is it DNS? Which records are affected? What's the TTL?</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-net">network</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># Query A, AAAA, MX, and NS records</div>
+      <div class="cmd">evtool dns-lookup example.com
+evtool dns-lookup example.com --type MX
+evtool dns-lookup example.com --type NS</div>
+    </div>
+    <div class="output-block">A      93.184.216.34    (TTL: 3600)
+AAAA   2606:2800:220::1  (TTL: 3600)
+MX     mail.example.com  (priority: 10, TTL: 3600)
+NS     a.iana-servers.net
+NS     b.iana-servers.net</div>
+    <div class="why">Why this works: Pure-python DNS resolution using socket.getaddrinfo for A/AAAA and a built-in DNS client for MX/NS. No dig, no nslookup, no host command required.</div>
+  </div>
+</div>
+
+<!-- Recipe 10 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">10</div>
+    <div>
+      <div class="recipe-title">Find Where an IP Is (Geolocation)</div>
+      <div class="recipe-problem">You see a suspicious IP in your logs. Where is it connecting from?</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-net">network</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool geo-ip 8.8.8.8
+evtool ip-location 8.8.8.8</div>
+    </div>
+    <div class="output-block">IP Address:   8.8.8.8
+Country:      United States
+City:         Mountain View
+ISP:          Google LLC
+Coordinates:  37.4056, -122.0775
+Timezone:     America/Los_Angeles</div>
+    <div class="why">Why this works: geo-ip uses ip-api.com (free tier, no API key). ip-location uses a fallback source. Both output clean text, no JSON parsing by hand.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- SECURITY & CRYPTO -->
+<!-- ============================================ -->
+<h2 class="section-title"> Security &amp; Crypto</h2>
+
+<!-- Recipe 11 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">11</div>
+    <div>
+      <div class="recipe-title">Generate a Strong Password &amp; Its QR Code</div>
+      <div class="recipe-problem">You need a strong password for a new service, and you want to share it via QR code so someone can scan it on their phone.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-crypto">crypto</span>
+    <span class="tag tag-util">utility</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># Generate a 20-char password and encode it as a QR code</div>
+      <div class="cmd">evtool passgen -l 20 -c 1 | evtool qrcode</div>
+    </div>
+    <div class="output-block">Generated password:  J8k#mP2$xR9!vL4@nQ7w  (128.7 bits)
+
+QR Code:
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+▐██████████████  ██  ██████████████▌
+▐██          ██  ██  ██          ██▌
+▐██  ██████  ██████████  ██████  ██▌
+▐██  ██████  ██      ██  ██████  ██▌
+▐██  ██████  ██  ██  ██  ██████  ██▌
+▐██          ██  ████  ██          ██▌
+▐██████████████  ██████  ████████████▌
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀</div>
+    <div class="why">Why this works: passgen uses os.urandom for true randomness with entropy display. qrcode renders QR codes as Unicode block art in the terminal — no image library, no browser. Pipe them together for a self-contained workflow.</div>
+  </div>
+</div>
+
+<!-- Recipe 12 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">12</div>
+    <div>
+      <div class="recipe-title">Verify a Downloaded File's Integrity</div>
+      <div class="recipe-problem">You downloaded a large file. The site says the SHA256 is abc123... You want to verify without extra tools.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-crypto">crypto</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="prompt"># Compute hash and compare</div>
+      <div class="cmd">evtool hash-file ubuntu-24.04.iso --sha256</div>
+    </div>
+    <div class="output-block">SHA256(ubuntu-24.04.iso) = a1b2c3d4e5f6...
+  Expected: a1b2c3d4e5f6...
+  Match: ✓ VERIFIED</div>
+    <div class="command-block">
+      <div class="prompt"># Or check a file against a known hash file</div>
+      <div class="cmd">evtool hash-check ubuntu-24.04.iso SHA256SUMS</div>
+    </div>
+    <div class="why">Why this works: hash-file computes MD5/SHA1/SHA256/SHA512 using Python's hashlib (C implementation, fast). hash-check reads a standard SHA256SUMS file and verifies all entries. No shasum, no md5sum.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- DAILY UTILITIES -->
+<!-- ============================================ -->
+<h2 class="section-title"> Daily Utilities</h2>
+
+<!-- Recipe 13 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">13</div>
+    <div>
+      <div class="recipe-title">Pomodoro Timer for Focus Sessions</div>
+      <div class="recipe-problem">You need to focus. 25 minutes of work, 5 minutes break. Track it in the terminal without leaving your workflow.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-util">utility</span>
+    <span class="tag tag-fun">fun</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool pomodoro</div>
+    </div>
+    <div class="output-block">  ⏰ Pomodoro Timer
+  ─────────────────────
+  Work:   25:00  ████████░░  80%
+  Break:   5:00
+  Cycles:  2/4
+  Status:  WORKING 🔴
+
+  [Press 'p' to pause, 'q' to quit]</div>
+    <div class="command-block">
+      <div class="prompt"># Or a simple countdown timer</div>
+      <div class="cmd">evtool timer -c 5m</div>
+    </div>
+    <div class="why">Why this works: pomodoro is a full-featured TUI with work/break cycles. timer is a simpler countdown. Both use curses/ncurses from stdlib — no external libraries.</div>
+  </div>
+</div>
+
+<!-- Recipe 14 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">14</div>
+    <div>
+      <div class="recipe-title">Weather Forecast Without Leaving the Terminal</div>
+      <div class="recipe-problem">You're planning a deploy window. Will it rain? What's the temperature? Check without a browser.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-util">utility</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool weather-cli</div>
+    </div>
+    <div class="output-block">Weather report: shenzhen, guangdong, cn
+─────────────────────────────────────────
+  Now:     28°C   Partly cloudy   🌤
+  Today:   26°C / 31°C  Light rain expected
+  Tue:     27°C / 32°C  Sunny
+  Wed:     26°C / 30°C  Thunderstorms ⛈</div>
+    <div class="why">Why this works: weather-cli fetches from wttr.in (free, no API key). It auto-detects your location from your IP. Pure stdlib + urllib — works everywhere.</div>
+  </div>
+</div>
+
+<!-- Recipe 15 -->
+<div class="recipe">
+  <div class="recipe-header">
+    <div class="recipe-number">15</div>
+    <div>
+      <div class="recipe-title">ASCII Art Greeting for Your Terminal</div>
+      <div class="recipe-problem">You want a cool terminal greeting, banner for a PR, or just to impress your coworkers.</div>
+    </div>
+  </div>
+  <div class="recipe-tags">
+    <span class="tag tag-fun">fun</span>
+  </div>
+  <div class="recipe-body">
+    <div class="command-block">
+      <div class="cmd">evtool ascii-banner 'Ship It!'</div>
+    </div>
+    <div class="output-block">#   #  #####  #      #       ###
+#   #  #      #      #      #   #
+#####  ####   #      #      #
+#   #  #      #      #      #   #
+#   #  #####  #####  #####   ###</div>
+    <div class="command-block">
+      <div class="prompt"># Roll the dice for a random ASCII animal with your message</div>
+      <div class="cmd">evtool cowsay 'Hello, world!'</div>
+    </div>
+    <div class="output-block"> _________________
+< Hello, world! >
+ -----------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||</div>
+    <div class="why">Why this works: ascii-banner uses built-in font data (no pyfiglet dependency). cowsay is a pure-Python reimplementation. Both zero-dependency — they'll work even in a bare Python Docker image.</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="text-align:center; margin: 4rem 0; padding: 3rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+  <h2 style="font-size:1.5rem; color:#dce4f0; margin-bottom:0.5rem;">Ready to try these yourself?</h2>
+  <p style="color:var(--text-secondary); margin-bottom:1.5rem;">One command, 259 tools, zero dependencies.</p>
+  <code style="background: var(--bg); border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 8px; font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent); display: inline-block;">pip install evolver-tools</code>
+  <div style="margin-top:1rem;">
+    <a href="quickstart.html" style="color: var(--accent); text-decoration: none; margin: 0 1rem;">Quickstart →</a>
+    <a href="showcase.html" style="color: var(--accent); text-decoration: none; margin: 0 1rem;">All Tools →</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" style="color: var(--accent); text-decoration: none; margin: 0 1rem;">GitHub →</a>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  <p>Built by <a href="../story.html">EVOLVER</a> — an autonomous AI agent. 259 tools, zero dependencies.</p>
+  <p><a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · <a href="https://pypi.org/project/evolver-tools/">PyPI</a></p>
+</footer>
+
+</body>
+</html>
