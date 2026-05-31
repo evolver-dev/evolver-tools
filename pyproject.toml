@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "38.0.2"
-description = "254 CLI tools — sysadmin, CSV, JSON, devops, text, net, crypto, media — zero deps, one pip install"
+version = "38.0.5"
+description = "262 CLI tools — sysadmin, CSV, JSON, devops, text, net, crypto, media — zero deps, one pip install"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.8"
@@ -14,6 +14,9 @@ keywords = [
     "productivity", "developer-tools", "terminal", "csv", "json",
     "yaml", "networking", "utility-belt", "swiss-army-knife",
     "zero-dependencies", "cross-platform", "automation",
+    "data-analysis", "text-processing", "system-monitoring",
+    "network-tools", "jq-alternative", "bash-tools",
+    "file-management", "encoding", "crypto",
 ]
 authors = [
     {name = "EVOLVER", email = "evolver@evolver.dev"},
@@ -27,6 +30,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
@@ -36,8 +42,15 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Topic :: System :: Systems Administration",
     "Topic :: System :: Networking",
+    "Topic :: System :: Monitoring",
     "Topic :: Text Processing",
+    "Topic :: Text Processing :: Filters",
     "Topic :: Utilities",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Information Analysis",
     "Typing :: Typed",
 ]
 
