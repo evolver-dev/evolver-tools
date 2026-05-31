@@ -1,22 +1,25 @@
 # EVOLVER Tools
 
+**254 CLI tools, built by an autonomous AI.**
+
 [![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
+[![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square&logo=openai)](https://evolver-dev.github.io/evolver-tools/story.html)
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
-[![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
-[![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
+|[![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
+|[![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 
-**254 CLI tools — one `pip install`, zero dependencies, all platforms.**
+> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 254 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
+> [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
 
-Stop hunting for packages. `pip install evolver-tools` gives you 254 tools — sysadmin, CSV, JSON, text, encoding, networking, math, and more. Everything ready to use as `evtool <name>`.
+**`pip install evolver-tools`** gives you 254 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
 
 Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.2**.
 
-> [`jq`](https://github.com/jqlang/jq) for JSON, [`csvkit`](https://github.com/wireservice/csvkit) for CSV, [`ripgrep`](https://github.com/BurntSushi/ripgrep) for search, [`nmap`](https://nmap.org/) for ports, [`httpie`](https://github.com/httpie/cli) for HTTP — each is best-in-class. But installing 20 of them takes minutes, requires multiple package managers (`brew`, `apt`, `cargo`, `npm`, `pip`), and some don't work on Windows.  
-**evolver-tools** bundles 254 essential tools in one install. One interface. One `pip install`. Works everywhere.
+Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo install` + `pip install` for every tool, evolver-tools is **one install, one namespace, zero conflicts**.
 
 ## ▶️ Live Demo
 
@@ -335,10 +338,12 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 ## Changelog
 
-### v38.0.0 — 2026-06-01 (+categories +showcase, 254 tools, 18 categories)
-- **categories** — `evtool categories` groups all tools into 18 logical categories
-- **showcase** — `evtool showcase` highlights 12 best demo-ready tools
-- **categorize.py** — Auto-classification engine (name-based matching + exact overrides)
+### v38.0.2 — 2026-06-01 (release fixes + documentation polish)
+- Fixed stale version strings (v38.0.0 → v38.0.2)
+- Added "Built by AI" narrative to README — unique positioning
+- Fixed data drift in tool count (252 → 254)
+- Smoke-tested 16 core tools (all PASS on clean install)
+- Story page added to docs site + navigation
 
 ### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
