@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All 259 Tools — evolver-tools</title>
+<meta name="description" content="Browse all 259 evolver-tools CLI tools. Search, filter by category, and copy commands. Zero-dependency terminal tools — one pip install.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/explorer.html">
+<style>
+:root {
+  --bg: #0a0e14; --surface: #111820; --surface2: #182230;
+  --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
+  --accent: #00d4aa; --accent-dim: #00a88a;
+  --font-mono: 'JetBrains Mono','Fira Code','Consolas',monospace;
+  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-sans); line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+nav {
+  position:fixed; top:0; width:100%; z-index:100;
+  background:rgba(10,14,20,0.85); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem; height:56px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+nav .logo { font-family:var(--font-mono); font-size:1.1rem; font-weight:700; color:var(--accent); text-decoration:none; }
+nav .logo span { color:var(--text); }
+nav .links { display:flex; gap:1.5rem; align-items:center; }
+nav .links a { color:var(--text-secondary); text-decoration:none; font-size:.875rem; transition:color .2s; }
+nav .links a:hover { color:var(--text); }
+nav .links a.active { color:var(--accent); }
+.main { padding-top:56px; }
+
+/* Hero */
+.hero {
+  padding:4rem 2rem 2rem;
+  max-width:1200px; margin:0 auto; text-align:center;
+}
+.hero h1 { font-size:clamp(1.8rem,4vw,2.5rem); font-weight:700; }
+.hero h1 span { color:var(--accent); }
+.hero p { color:var(--text-secondary); max-width:600px; margin:.5rem auto 0; font-size:.95rem; }
+
+/* Controls */
+.controls {
+  max-width:1200px; margin:1rem auto 0; padding:0 2rem;
+  display:flex; gap:1rem; flex-wrap:wrap; align-items:center;
+}
+.search-box {
+  flex:1; min-width:200px;
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:8px; padding:.7rem 1rem;
+  color:var(--text); font-family:var(--font-mono); font-size:.85rem;
+  outline:none; transition:border-color .2s;
+}
+.search-box:focus { border-color:var(--accent); }
+.search-box::placeholder { color:var(--text-secondary); }
+.filter-group { display:flex; gap:.5rem; flex-wrap:wrap; }
+.filter-btn {
+  padding:.4rem .9rem; border-radius:6px;
+  background:var(--surface2); border:1px solid var(--border);
+  color:var(--text-secondary); cursor:pointer;
+  font-size:.8rem; transition:all .2s;
+}
+.filter-btn:hover { border-color:var(--accent); color:var(--text); }
+.filter-btn.active { background:rgba(0,212,170,.15); border-color:var(--accent); color:var(--accent); }
+.count-badge {
+  font-family:var(--font-mono); font-size:.8rem;
+  color:var(--text-secondary); margin-left:auto;
+}
+
+/* Grid */
+.grid {
+  max-width:1200px; margin:1.5rem auto 3rem;
+  padding:0 2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:.75rem;
+}
+.tool-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:.9rem 1rem;
+  transition:border-color .2s, background .2s;
+}
+.tool-card:hover { border-color:var(--accent-dim); }
+.tool-card .name {
+  font-family:var(--font-mono); font-size:.85rem;
+  color:var(--accent); font-weight:600;
+}
+.tool-card .desc {
+  font-size:.8rem; color:var(--text-secondary);
+  margin-top:.3rem; line-height:1.5;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.tool-card .cmd {
+  margin-top:.5rem; padding:.3rem .6rem;
+  background:var(--bg); border-radius:4px;
+  font-family:var(--font-mono); font-size:.75rem;
+  color:var(--text-secondary); cursor:pointer;
+  display:inline-block; transition:color .2s;
+}
+.tool-card .cmd:hover { color:var(--accent); }
+
+/* Empty */
+.empty {
+  text-align:center; padding:4rem 2rem;
+  color:var(--text-secondary);
+}
+.empty .big { font-size:3rem; margin-bottom:.5rem; }
+
+/* Loading */
+.loading {
+  text-align:center; padding:4rem;
+  color:var(--text-secondary);
+}
+.loading .spinner {
+  display:inline-block; width:24px; height:24px;
+  border:2px solid var(--border); border-top-color:var(--accent);
+  border-radius:50%; animation:spin .8s linear infinite;
+  margin-bottom:.5rem;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* Footer */
+footer {
+  text-align:center; padding:2rem; color:var(--text-secondary); font-size:.8rem;
+  border-top:1px solid var(--border); margin-top:2rem;
+}
+footer a { color:var(--accent); text-decoration:none; }
+
+@media (max-width:640px) {
+  .grid { grid-template-columns:1fr; }
+  .controls { flex-direction:column; }
+  .search-box { width:100%; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">evtool <span>· tools</span></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="explorer.html" class="active">All Tools</a>
+    <a href="quickstart.html">Quickstart</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
+    <a href="https://pypi.org/project/evolver-tools/" class="btn-nav">pip install</a>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="hero">
+    <h1>All <span id="totalDisplay">259</span> Tools</h1>
+    <p>Browse every tool in the evolver-tools collection. Search, filter, and click to copy commands.</p>
+  </div>
+
+  <div class="controls">
+    <input type="text" class="search-box" id="searchBox" placeholder="Search tools by name or description..." autofocus>
+    <div class="filter-group" id="filterGroup">
+      <button class="filter-btn active" data-cat="all">All</button>
+    </div>
+    <span class="count-badge" id="countBadge">259 tools</span>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div>Loading tools...</div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" style="display:none">
+    <div class="big">🔍</div>
+    <p>No tools match your search.</p>
+    <p style="font-size:.85rem;margin-top:.5rem">Try a different keyword or clear the filter.</p>
+  </div>
+</div>
+
+<footer>
+  <p><a href="https://pypi.org/project/evolver-tools/">pip install evolver-tools</a> · <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · Built by <a href="story.html">EVOLVER</a></p>
+</footer>
+
+<script>
+// Find the best category for a tool name based on common patterns
+function inferCategory(name, desc) {
+  const n = name.toLowerCase();
+  const d = desc.toLowerCase();
+  if (n.startsWith('csv') || n.startsWith('tsv') || n.includes('csv') || n.startsWith('excel') || n.startsWith('sql') || n.startsWith('sqlite')) return 'Data';
+  if (n.startsWith('json') || n.startsWith('yaml') || n.startsWith('toml') || n.startsWith('xml') || n.startsWith('ini') || n.startsWith('html')) return 'Format';
+  if (n.startsWith('git') || n.startsWith('docker') || n.includes('deploy') || n.includes('ci')) return 'DevOps';
+  if (n.startsWith('net') || n.startsWith('dns') || n.startsWith('ip') || n.startsWith('port') || n.startsWith('ssl') || n.startsWith('http') || n.startsWith('whois') || n.startsWith('ping') || n.startsWith('route') || n.startsWith('firewall') || n.includes('scan') || n.includes('check')) return 'Network';
+  if (n.startsWith('sys') || n.startsWith('cpu') || n.startsWith('mem') || n.startsWith('disk') || n.startsWith('process') || n.startsWith('service') || n.startsWith('watch') || n.startsWith('monitor')) return 'System';
+  if (n.startsWith('encrypt') || n.startsWith('hash') || n.startsWith('base') || n.startsWith('hex') || n.startsWith('rot') || n.startsWith('jwt') || n.startsWith('crc') || n.startsWith('crypto') || n.startsWith('otp') || n.startsWith('password') || n.startsWith('secret')) return 'Security';
+  if (n.startsWith('ascii') || n.startsWith('figlet') || n.startsWith('cowsay') || n.startsWith('banner') || n.startsWith('rainbow') || n.startsWith('spinner') || n.startsWith('progress') || n.startsWith('emoji') || n.startsWith('matrix') || n.startsWith('color')) return 'Fun';
+  if (n.startsWith('diff') || n.includes('patch') || n.startsWith('sort') || n.startsWith('uniq') || n.startsWith('dedup') || n.startsWith('split') || n.startsWith('join') || n.startsWith('merge') || n.startsWith('replace') || n.startsWith('tr') || n.startsWith('fold') || n.startsWith('nl') || n.startsWith('fmt') || n.startsWith('text') || n.startsWith('word') || n.startsWith('wrap') || n.startsWith('case')) return 'Text';
+  if (n.startsWith('file') || n.includes('find') || n.includes('search') || n.startsWith('tree') || n.startsWith('dir') || n.startsWith('temp') || n.startsWith('backup') || n.startsWith('restore')) return 'Files';
+  if (n.startsWith('markdown') || n.startsWith('pdf') || n.startsWith('image') || n.startsWith('screen') || n.startsWith('screenshot') || n.startsWith('media')) return 'Media';
+  if (n.startsWith('math') || n.startsWith('calc') || n.startsWith('prime') || n.startsWith('factor') || n.startsWith('fib') || n.startsWith('seq') || n.startsWith('random') || n.startsWith('stats') || n.startsWith('unit') || n.startsWith('convert') || n.startsWith('epoch') || n.startsWith('date') || n.startsWith('time') || n.startsWith('cal') || n.startsWith('chrono')) return 'Math';
+  if (n.startsWith('uuid') || n.startsWith('slug') || n.startsWith('uri') || n.startsWith('url') || n.startsWith('mime') || n.includes('encode') || n.includes('decode') || n.startsWith('qrcode') || n.startsWith('qr')) return 'Utils';
+  if (n.startsWith('env') || n.startsWith('config')) return 'Config';
+  if (n.startsWith('weather') || n.startsWith('crypto') || n.includes('price')) return 'Data';
+  if (n.startsWith('dice') || n.startsWith('coin') || n.startsWith('joke') || n.startsWith('fortune') || n.startsWith('quote') || n.startsWith('reminder') || n.startsWith('todo') || n.startsWith('note') || n.startsWith('bookmark') || n.startsWith('morse') || n.startsWith('humanize')) return 'Fun';
+  return 'Other';
+}
+
+const CATEGORY_ICONS = {
+  'Data': '📊', 'Format': '🔧', 'DevOps': '🐳', 'Network': '🌐',
+  'System': '💻', 'Security': '🔒', 'Fun': '🎮', 'Text': '📝',
+  'Files': '📁', 'Media': '🎬', 'Math': '🔢', 'Utils': '🧰',
+  'Config': '⚙️', 'Other': '📦'
+};
+
+let allTools = [];
+let filteredTools = [];
+let activeCategory = 'all';
+let currentSearch = '';
+
+fetch('tools.json')
+  .then(r => r.json())
+  .then(data => {
+    allTools = data.l;
+    document.getElementById('totalDisplay').textContent = data.t;
+
+    // Infer categories and build filter buttons
+    const catSet = new Set();
+    allTools.forEach(t => {
+      t.c = inferCategory(t.n, t.d);
+      catSet.add(t.c);
+    });
+
+    const filterGroup = document.getElementById('filterGroup');
+    const sortedCats = ['All', ...Array.from(catSet).sort()];
+    sortedCats.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn' + (cat === 'All' ? ' active' : '');
+      btn.dataset.cat = cat.toLowerCase() === 'all' ? 'all' : cat;
+      const icon = cat === 'All' ? '🔍' : (CATEGORY_ICONS[cat] || '📦');
+      btn.textContent = `${icon} ${cat}`;
+      btn.addEventListener('click', () => filterByCategory(btn.dataset.cat));
+      filterGroup.appendChild(btn);
+    });
+
+    document.getElementById('loading').style.display = 'none';
+    render();
+  })
+  .catch(err => {
+    document.getElementById('loading').innerHTML = `<p style="color:var(--red)">Failed to load tools: ${err.message}</p>`;
+  });
+
+function filterByCategory(cat) {
+  activeCategory = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === cat);
+  });
+  render();
+}
+
+function render() {
+  const search = document.getElementById('searchBox').value.toLowerCase().trim();
+  currentSearch = search;
+
+  filteredTools = allTools.filter(t => {
+    if (activeCategory !== 'all' && t.c !== activeCategory) return false;
+    if (!search) return true;
+    return t.n.toLowerCase().includes(search) || t.d.toLowerCase().includes(search);
+  });
+
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  const countBadge = document.getElementById('countBadge');
+
+  countBadge.textContent = `${filteredTools.length} tool${filteredTools.length !== 1 ? 's' : ''}`;
+
+  if (filteredTools.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = filteredTools.map(t => {
+    const cmd = `evtool ${t.n}`;
+    const icon = CATEGORY_ICONS[t.c] || '📦';
+    return `
+      <div class="tool-card">
+        <div class="name">${icon} ${t.n}</div>
+        <div class="desc">${escapeHtml(t.d) || 'No description available.'}</div>
+        <div class="cmd" onclick="copyCmd('${t.n}')" title="Click to copy">$ ${cmd}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function copyCmd(name) {
+  const text = `evtool ${name}`;
+  navigator.clipboard.writeText(text).then(() => {
+    // visual feedback via event on the clicked element
+  }).catch(() => {});
+}
+
+// Live search
+document.getElementById('searchBox').addEventListener('input', render);
+
+// Keyboard: Escape clears search
+document.getElementById('searchBox').addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('searchBox').value = '';
+    render();
+  }
+});
+</script>
+</body>
+</html>
