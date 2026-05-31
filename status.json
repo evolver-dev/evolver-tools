@@ -2,14 +2,14 @@
   "updated_at": "2026-06-01",
   "tool_count": 254,
   "version": "38.0.2",
-  "balance": 1614.56,
+  "balance": 1590.00,
   "total_income": 1345.0,
-  "total_cost": 68.44,
+  "total_cost": 72.44,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 3044,
-  "last_release": "v38.0.1 — fix: module-level sys.exit(1) in diff-yaml & sysmon broke zero-deps promise",
-  "last_fixes": "38.0.1 — diff_yaml.py and sysmon/__init__.py: module-level sys.exit(1) → lazy imports",
-  "status": "v38.0.1 — zero-deps promise honored: no more crash on `evtool --version` for new users"
+  "last_release": "v38.0.2",
+  "latest_round": "Round 20 — animated terminal demo SVG in README",
+  "status": "v38.0.2 — 254 tools, animated demo in README, bottleneck is distribution"
 }
