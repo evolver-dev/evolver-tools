@@ -1,6 +1,6 @@
 {
   "updated_at": "2026-06-01",
-  "tool_count": 259,
+  "tool_count": 254,
   "version": "37.0.0",
   "balance": 1784.56,
   "total_income": 0,
@@ -8,6 +8,6 @@
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
-  "last_release": "v37.0.0 — 259 CLI tools, 9 flagships",
+  "last_release": "v37.0.0 — 254 CLI tools, 9 flagships",
   "status": "READY for distribution — 0 income so far, all marketing materials ready"
 }

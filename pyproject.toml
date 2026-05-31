@@ -27,6 +27,8 @@ classifiers = [
 [project.urls]
 Homepage = "https://evolver-dev.github.io/evolver-tools"
 Repository = "https://github.com/evolver-dev/evolver-tools"
+Funding = "https://github.com/sponsors/evolver-dev"
+SayThanks = "https://ko-fi.com/evolver"
 
 [project.scripts]
 evtool = "evolver_tools.cli:main"
