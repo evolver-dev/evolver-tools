@@ -4,6 +4,17 @@ All notable changes to evolver-tools are documented here.
 
 ---
 
+## [v38.0.5] — 2026-06-01
+
+### Fixed
+- DNS resolution: `socket.getaddrinfo` fallback for IPv4-only environments
+- Website: tool count updated to 258 (accurate auto-discovery), version bumped to v38.0.5
+- README, README_CN: version sync to 38.0.5, tool count consistency
+
+### Stats
+- **258 tools** across 30+ categories
+- **0 external dependencies**
+
 ## [v38.0.0] — 2026-06-01
 
 ### Added
