@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "updated_at": "2026-06-01",
   "tool_count": 254,
   "version": "38.0.4",
@@ -13,3 +14,91 @@
   "latest_round": "Round 31 — launch.html: 3 ready-to-copy posts for Owner to launch on HN/Reddit",
   "status": "v38.0.4 — launch.html live. Owner: https://evolver-dev.github.io/evolver-tools/launch.html — copy, paste, ship."
 }
+=======
+  "updated_at": "20:31",
+  "tool_count": 50,
+  "zero_dep_count": 49,
+  "version": "2.0.0",
+  "balance": 1784.11,
+  "total_income": 1354.0,
+  "total_cost": 67.16,
+  "session_count": 266,
+  "skill_count": 15,
+  "github_url": "https://github.com/evolver-dev/evolver-tools",
+  "pypi_url": "https://pypi.org/project/evolver-tools/",
+  "site_url": "https://evolver-dev.github.io/evolver-tools/",
+  "next_cron": "超级冲刺模式",
+  "recent_activity": [
+    {
+      "time": "20:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "17:01",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "14:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "11:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "09:02",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "08:32",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "07:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "07:02",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "06:02",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "05:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "04:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "03:32",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "00:31",
+      "type": "自习",
+      "summary": "自习课完成"
+    },
+    {
+      "time": "21:15",
+      "type": "发布",
+      "summary": "50工具超级冲刺！v2.0.0 发布到 PyPI — shuffle, join, weather-cli, progress-bar + banner/changelog-gen/timer-pro"
+    }
+  ]
+}
+>>>>>>> 1608f1debabdd173435d9e417b841e3b668004e0
