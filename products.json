@@ -1,6 +1,46 @@
 [
   {
     "name": "evolver-tools",
+    "version": "30.0.0",
+    "tools": 233,
+    "flagships": 9,
+    "total_lines": 15800,
+    "price": 79,
+    "description": "233 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/30.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 233 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
+    },
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v30": [
+      "csv-to-table — Convert CSV data to formatted table output",
+      "json-to-table — Convert JSON data to formatted table output",
+      "dedup-files — Remove duplicate files from a directory",
+      "text-wrap — Wrap text to a specified width",
+      "slugify — Convert text to URL-friendly slugs"
+    ],
+    "features": [
+      "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
+      "233 total CLI tools",
+      "Zero external dependencies across all tools",
+      "Auto-registration architecture (zero merge conflicts)",
+      "Cross-platform (Linux, macOS, Windows)",
+      "Single pip install — no version conflicts"
+    ]
+  },
+  {
+    "name": "evolver-tools",
     "version": "29.0.0",
     "tools": 228,
     "flagships": 9,
