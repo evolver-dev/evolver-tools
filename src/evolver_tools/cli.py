@@ -122,8 +122,19 @@ def welcome_screen():
 def run_tool(tool_name, args):
     tools = auto_discover()
     if tool_name not in tools:
-        print(f'Unknown tool: {tool_name}. Use "evtool list" to see all tools.', file=sys.stderr)
-        sys.exit(1)
+        # Fuzzy matching: try hyphen↔underscore conversion
+        alt_name = tool_name.replace('-', '_')
+        if alt_name != tool_name and alt_name in tools:
+            tool_name = alt_name
+        else:
+            alt_name2 = tool_name.replace('_', '-')
+            if alt_name2 != tool_name and alt_name2 not in tools:
+                alt_name2 = None
+            if alt_name2 and alt_name2 in tools:
+                tool_name = alt_name2
+            else:
+                print(f'Unknown tool: {tool_name}. Use "evtool list" to see all tools.', file=sys.stderr)
+                sys.exit(1)
     info = tools[tool_name]
     mod_path = info["module"]
     func_name = info["func"]
