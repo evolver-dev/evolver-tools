@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "27.0.0",
+    "version": "27.0.1",
     "tools": 218,
     "flagships": 9,
     "total_lines": 14800,
     "price": 79,
     "description": "218 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/27.0.0/",
+    "url": "https://pypi.org/project/evolver-tools/27.0.1/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {

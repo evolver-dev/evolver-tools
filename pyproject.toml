@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "27.0.0"
+version = "27.0.1"
 description = "218 CLI tools + 9 flagship projects — one pip install"
 readme = "README.md"
 license = "MIT"
