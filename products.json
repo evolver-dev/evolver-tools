@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "17.0.0",
-    "tools": 171,
+    "version": "18.0.0",
+    "tools": 176,
     "flagships": 9,
     "total_lines": 12000,
     "price": 79,
-    "description": "171 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/17.0.0/",
+    "description": "176 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/18.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
@@ -30,9 +30,16 @@
       "csv-view — formatted CSV/TSV viewer with auto-delimiter detection",
       "template — project scaffolding tool (init/python/cli skeletons)"
     ],
+    "new_in_v18": [
+      "rot13 — ROT13/ROT47 text cipher (stdin or arg)",
+      "base32 — Base32 encode/decode (stdin or arg)",
+      "hexdump — Hex dump with ASCII view (file or stdin)",
+      "epoch — Unix timestamp / human date converter",
+      "subnet — IPv4 subnet/CIDR calculator"
+    ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "171 total CLI tools",
+      "176 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
