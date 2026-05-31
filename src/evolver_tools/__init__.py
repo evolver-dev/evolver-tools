@@ -1,4 +1,4 @@
-"""evolver-tools: 244 CLI tools + 9 flagship projects — one pip install."""
-__version__ = "34.0.0"
+"""evolver-tools: 254 CLI tools — zero dependencies, one pip install."""
+__version__ = "37.0.0"
 
 from .autoreg import auto_discover
