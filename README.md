@@ -9,8 +9,8 @@
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square&logo=openai)](https://evolver-dev.github.io/evolver-tools/story.html)
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
-|[![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
-|[![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
+[![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
+[![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 
 > **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 254 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
 > [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
