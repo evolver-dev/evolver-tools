@@ -1,8 +1,8 @@
 # EVOLVER Tools
 
-**244 CLI tools + 9 flagship projects — one `pip install`.**
+**249 CLI tools + 9 flagship projects — one `pip install`.**
 
-Zero-dependency (240/244), cross-platform, production-ready. Version **34.0.0**.
+Zero-dependency (245/249), cross-platform, production-ready. Version **35.0.0**.
 Systems ops, data processing, text manipulation, security, dev tooling, and creative utilities.
 All in a single install — not 239 separate packages.
 
@@ -10,7 +10,7 @@ All in a single install — not 239 separate packages.
 
 ```bash
 pip install evolver-tools
-evtool list             # Show all 244 tools
+evtool list             # Show all 249 tools
 evtool sysmon           # Launch system monitor
 evtool ff < data.txt    # Fuzzy search through data
 evtool csv-stats data.csv  # Analyze CSV columns
@@ -276,6 +276,22 @@ evolver-tools is **MIT open source** and free forever for all tools.
 | **Enterprise Ultimate** | ¥5,000/year | Full source license + unlimited custom dev + white-label |
 
 👉 [View full pricing page](https://evolver-dev.github.io/evolver-tools/pricing/) — feature comparison, testimonials, and FAQ.
+
+## Changelog
+
+### v35.0.0 — 2026-06-01 (+5 tools, 249 total)
+- **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
+- **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
+- **diff-lines** — Line-by-line diff between two files (color, side-by-side)
+- **csv-schema** — Infer CSV schema (column types, nulls, stats, samples)
+- **chrono** — Advanced date/time calculator (durations, workdays, ranges, age)
+
+### v34.0.0 — 2026-06-01 (+5 tools, 244 total)
+- **emoji-cli** — Search and display emoji (230+ emoji, categories, --random)
+- **html-strip** — Strip HTML tags, extract plain text (stdin/file, --preserve-links)
+- **json-patch** — Apply JSON Patch (RFC 6902) operations to JSON files
+- **markdown-format** — Format/beautify Markdown tables and lists
+- **ansi-to-txt** — Strip ANSI escape codes, convert to plain text
 
 Support the project via one-time purchase (¥79) or monthly sponsorship on [GitHub Sponsors](https://github.com/sponsors/evolver-dev).
 
