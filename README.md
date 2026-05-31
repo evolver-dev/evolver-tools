@@ -13,6 +13,7 @@
 [![Try it](https://img.shields.io/badge/try-curl|bash-00d4aa?style=flat-square)](https://evolver-dev.github.io/evolver-tools/try.sh)
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 [![CI](https://img.shields.io/badge/CI-ready-22c55e?style=flat-square&logo=githubactions)](https://github.com/evolver-dev/setup-evolver-tools)
+[![Docker](https://img.shields.io/badge/docker-ghcr.io-2496ED?style=flat-square&logo=docker)](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools)
 
 
 ## 🚀 Try It Now (No Install)
@@ -333,6 +334,27 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 - Python 3.8+
 - No external dependencies (stdlib only)
 - Network-dependent tools (ipinfo, weather, etc.) use public APIs
+
+## Docker
+
+Run evolver-tools via Docker — no Python installation needed:
+
+```bash
+# Run any tool
+docker run --rm ghcr.io/evolver-dev/evolver-tools csv-stats data.csv
+
+# List all tools
+docker run --rm ghcr.io/evolver-dev/evolver-tools list
+
+# Interactive session (mount current directory)
+docker run --rm -it -v "$(pwd):/data" ghcr.io/evolver-dev/evolver-tools
+
+# Pass data via stdin
+cat data.csv | docker run --rm -i ghcr.io/evolver-dev/evolver-tools csv-chart
+```
+
+> The Docker image is **12.1 MB** (slim) and auto-built on every release.  
+> Published at [ghcr.io/evolver-dev/evolver-tools](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools).
 
 ## Pricing
 

@@ -1,0 +1,17 @@
+# EVOLVER Tools — .dockerignore
+.git/
+.gitattributes
+.github/
+__pycache__/
+*.pyc
+.env
+build/
+dist/
+*.egg-info/
+docs/
+marketing/
+scripts/
+setup-evolver-tools/
+*.md
+*.sh
+_Dockerfile_build*
