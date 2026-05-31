@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "19.0.0",
-    "tools": 181,
+    "version": "20.0.0",
+    "tools": 186,
     "flagships": 9,
     "total_lines": 12000,
     "price": 79,
-    "description": "181 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/19.0.0/",
+    "description": "186 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/20.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
@@ -44,9 +44,16 @@
       "nl — Number lines of files or stdin",
       "factor — Prime factorization of integers"
     ],
+    "new_in_v20": [
+      "seq — Generate sequence of numbers",
+      "tr — Translate or delete characters (stdin)",
+      "fold — Wrap input lines to specified width",
+      "pomodoro — Pomodoro timer (work/break cycles)",
+      "watch — Run command periodically, showing output"
+    ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "181 total CLI tools",
+      "186 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
