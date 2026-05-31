@@ -1,17 +1,17 @@
 [
   {
     "name": "evolver-tools",
-    "version": "24.0.0",
-    "tools": 206,
+    "version": "25.0.0",
+    "tools": 208,
     "flagships": 9,
-    "total_lines": 14200,
+    "total_lines": 14800,
     "price": 79,
-    "description": "206 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/24.0.0/",
+    "description": "208 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/25.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
-      "free": "All 206 tools + 9 flagship — fully open source (MIT)",
+      "free": "All 208 tools + 9 flagship — fully open source (MIT)",
       "one_time": "¥79 — full suite download (supports development)",
       "sponsor": "¥5/month — GitHub Sponsors",
       "enterprise": {
@@ -23,16 +23,16 @@
     "released": "2026-06-01",
     "stars": 0,
     "pypi_downloads_weekly": 0,
-    "new_in_v24": [
-      "jwt-decode — Decode JWT tokens (header + payload, no verification)",
-      "json-diff — Deep diff two JSON files, show paths that differ",
-      "world-clock — Show current time in multiple timezones",
-      "markdown-lint — Basic Markdown linting — headings, fences, whitespace, line length",
-      "gzip-cli — Gzip/gunzip files — compress, decompress, list archive contents"
+    "new_in_v25": [
+      "macrogen — Macro/code template generator with 7 built-in templates",
+      "code-review — Static code review for Python files (AST analysis)",
+      "pdf-text — Extract text from PDF files (pdftotext, PyMuPDF, pure-Python fallback)",
+      "csv-view — CSV file viewer with table formatting, auto-detect delimiter, filters, sort",
+      "random-cli — Random data generator (numbers, strings, UUIDs, passwords)"
     ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "206 total CLI tools",
+      "208 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
