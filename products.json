@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "27.0.1",
-    "tools": 218,
+    "version": "28.0.0",
+    "tools": 223,
     "flagships": 9,
-    "total_lines": 14800,
+    "total_lines": 15300,
     "price": 79,
-    "description": "218 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/27.0.1/",
+    "description": "223 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/28.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
@@ -23,16 +23,16 @@
     "released": "2026-06-01",
     "stars": 0,
     "pypi_downloads_weekly": 0,
-    "new_in_v27": [
-      "scan-open-ports — TCP port scanner with concurrent scanning and service detection",
-      "ascii-banner — ASCII art banner generator (block, simple, wide, big fonts)",
-      "code-review — Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings",
-      "csv-dedup — Deduplicate CSV rows by key column or all columns",
-      "json-path — Query JSON with simple path syntax — dot notation, bracket, wildcard"
+    "new_in_v28": [
+      "json-to-yaml — Convert JSON to YAML format (stdlib, zero deps)",
+      "xml-format — Pretty-print and format XML files (stdlib)",
+      "case-convert — Convert text between case styles (snake/camel/kebab/pascal/title/const)",
+      "time-duration — Calculate duration between dates/timestamps in multiple formats",
+      "markdown-to-html — Convert Markdown to simple HTML (stdlib, zero deps)"
     ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "218 total CLI tools",
+      "223 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
