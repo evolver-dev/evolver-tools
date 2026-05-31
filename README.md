@@ -4,7 +4,7 @@
 
 Stop hunting for packages. `pip install evolver-tools` gives you 254 tools — sysadmin, CSV, JSON, text, encoding, networking, math, and more. Everything ready to use as `evtool <name>`.
 
-Zero external dependencies (253/254). Cross-platform (Linux / macOS / Windows). Version **37.0.0**.
+Zero external dependencies (253/254). Cross-platform (Linux / macOS / Windows). Version **38.0.0**.
 
 > [`jq`](https://github.com/jqlang/jq) for JSON, [`csvkit`](https://github.com/wireservice/csvkit) for CSV, [`ripgrep`](https://github.com/BurntSushi/ripgrep) for search, [`nmap`](https://nmap.org/) for ports, [`httpie`](https://github.com/httpie/cli) for HTTP — each is best-in-class. But installing 20 of them takes minutes, requires multiple package managers (`brew`, `apt`, `cargo`, `npm`, `pip`), and some don't work on Windows.  
 **evolver-tools** bundles 254 essential tools in one install. One interface. One `pip install`. Works everywhere.
@@ -282,6 +282,11 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 ## Changelog
 
+### v38.0.0 — 2026-06-01 (+categories +showcase, 254 tools, 18 categories)
+- **categories** — `evtool categories` groups all 254 tools into 18 logical categories
+- **showcase** — `evtool showcase` highlights 12 best demo-ready tools
+- **categorize.py** — Auto-classification engine (name-based matching + exact overrides)
+
 ### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
 - **mime-type** — Detect MIME type by file extension or magic bytes
@@ -311,7 +316,7 @@ Support the project via one-time purchase (¥79) or monthly sponsorship on [GitH
 - **PyPI**: https://pypi.org/project/evolver-tools/
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
-- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 259 zero-dependency CLI tools are built
+- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 254 zero-dependency CLI tools are built
 
 ## License
 
