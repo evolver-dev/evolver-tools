@@ -1,17 +1,17 @@
 [
   {
     "name": "evolver-tools",
-    "version": "23.0.0",
-    "tools": 201,
+    "version": "24.0.0",
+    "tools": 206,
     "flagships": 9,
-    "total_lines": 13500,
+    "total_lines": 14200,
     "price": 79,
-    "description": "201 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/23.0.0/",
+    "description": "206 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/24.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
-      "free": "All 201 tools + 9 flagship — fully open source (MIT)",
+      "free": "All 206 tools + 9 flagship — fully open source (MIT)",
       "one_time": "¥79 — full suite download (supports development)",
       "sponsor": "¥5/month — GitHub Sponsors",
       "enterprise": {
@@ -23,58 +23,16 @@
     "released": "2026-06-01",
     "stars": 0,
     "pypi_downloads_weekly": 0,
-    "new_in_v17": [
-      "license — built-in open-source license display (MIT, Apache, GPL, BSD, MPL)",
-      "random — cryptographically secure random password/uuid/hex/int generator",
-      "tree — directory tree viewer with depth control and dirs-only mode",
-      "csv-view — formatted CSV/TSV viewer with auto-delimiter detection",
-      "template — project scaffolding tool (init/python/cli skeletons)"
-    ],
-    "new_in_v18": [
-      "rot13 — ROT13/ROT47 text cipher (stdin or arg)",
-      "base32 — Base32 encode/decode (stdin or arg)",
-      "hexdump — Hex dump with ASCII view (file or stdin)",
-      "epoch — Unix timestamp / human date converter",
-      "subnet — IPv4 subnet/CIDR calculator"
-    ],
-    "new_in_v19": [
-      "timeout — Run command with timeout limit",
-      "cowsay — ASCII cow saying text (cow/tux/dragon/bunny)",
-      "yes — Output a string repeatedly until killed",
-      "nl — Number lines of files or stdin",
-      "factor — Prime factorization of integers"
-    ],
-    "new_in_v20": [
-      "seq — Generate sequence of numbers",
-      "tr — Translate or delete characters (stdin)",
-      "fold — Wrap input lines to specified width",
-      "pomodoro — Pomodoro timer (work/break cycles)",
-      "watch — Run command periodically, showing output"
-    ],
-    "new_in_v21": [
-      "pdf_info — Extract PDF metadata — pages, title, author, size",
-      "csv_merge — Merge CSV files by common column (inner/left/outer join)",
-      "json_flatten — Flatten nested JSON to dot-notation key=value pairs",
-      "http_server — Simple static file HTTP server",
-      "diff_files — Line-by-line file comparison"
-    ],
-    "new_in_v22": [
-      "crc_check — CRC32/CRC64 checksum calculator for files",
-      "uuid_gen — UUID generator (v1/v4/v5/v7)",
-      "date_diff — Calculate date/time differences",
-      "math_eval — Safe mathematical expression evaluator",
-      "env_template — Generate .env.example from .env (strip values)"
-    ],
-    "new_in_v23": [
-      "base58 — Base58 encode/decode (Bitcoin-style alphabet)",
-      "ip_info — Show public IP address and geolocation info",
-      "tsv2csv — Convert TSV (tab-separated) to CSV format",
-      "json_merge — Merge multiple JSON files into one",
-      "file_find — Find files by name pattern with recursive search"
+    "new_in_v24": [
+      "jwt-decode — Decode JWT tokens (header + payload, no verification)",
+      "json-diff — Deep diff two JSON files, show paths that differ",
+      "world-clock — Show current time in multiple timezones",
+      "markdown-lint — Basic Markdown linting — headings, fences, whitespace, line length",
+      "gzip-cli — Gzip/gunzip files — compress, decompress, list archive contents"
     ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "201 total CLI tools",
+      "206 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
