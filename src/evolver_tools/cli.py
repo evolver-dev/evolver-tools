@@ -14,7 +14,7 @@ from evolver_tools.autoreg import auto_discover
 def list_tools():
     """Display all available tools."""
     tools = auto_discover()
-    print(f'\x1b[1;36m===== EVOLVER Tools v25.0.0 =====\x1b[0m')
+    print(f'\x1b[1;36m===== EVOLVER Tools v31.0.0 =====\x1b[0m')
     print()
     for name, info in sorted(tools.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
