@@ -32,10 +32,10 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 
 *This one-liner installs evolver-tools (if needed) and runs a 60-second interactive demo.*
 
-> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 258 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
+> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 262 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
 > [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
 
-**`pip install evolver-tools`** gives you 258 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
+**`pip install evolver-tools`** gives you 262 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
 
 Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.5**.
 
@@ -93,7 +93,7 @@ $ evtool sysmon
   [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
 ```
 
-See all 258 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+See all 262 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
 
 ## Tool Categories
 
@@ -368,7 +368,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 258 tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 262 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -418,7 +418,7 @@ Support the project:
 - **PyPI**: https://pypi.org/project/evolver-tools/
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
-- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 258 zero-dependency CLI tools are built
+- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 262 zero-dependency CLI tools are built
 
 ## License
 
