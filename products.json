@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "21.0.0",
-    "tools": 191,
+    "version": "22.0.0",
+    "tools": 196,
     "flagships": 9,
     "total_lines": 13500,
     "price": 79,
-    "description": "191 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/21.0.0/",
+    "description": "196 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/22.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
@@ -57,6 +57,13 @@
       "json_flatten — Flatten nested JSON to dot-notation key=value pairs",
       "http_server — Simple static file HTTP server",
       "diff_files — Line-by-line file comparison"
+    ],
+    "new_in_v22": [
+      "crc_check — CRC32/CRC64 checksum calculator for files",
+      "uuid_gen — UUID generator (v1/v4/v5/v7)",
+      "date_diff — Calculate date/time differences",
+      "math_eval — Safe mathematical expression evaluator",
+      "env_template — Generate .env.example from .env (strip values)"
     ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
