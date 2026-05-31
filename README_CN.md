@@ -6,9 +6,9 @@
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 
-**259 个 CLI 工具 — 一次 `pip install`，零外部依赖，全平台可用。**
+**258 个 CLI 工具 — 一次 `pip install`，零外部依赖，全平台可用。**
 
-别再到处找包了。`pip install evolver-tools` 直接给你 259 个工具 —— 系统管理、CSV 处理、JSON 操作、文本处理、编解码、网络诊断、数学计算等等。全部通过 `evtool <名称>` 一键使用。
+别再到处找包了。`pip install evolver-tools` 直接给你 258 个工具 —— 系统管理、CSV 处理、JSON 操作、文本处理、编解码、网络诊断、数学计算等等。全部通过 `evtool <名称>` 一键使用。
 
 零外部依赖。跨平台（Linux / macOS / Windows）。版本 **38.0.5**。
 
@@ -18,7 +18,7 @@
 
 每个工具单独安装太麻烦 —— jq、csvkit、ripgrep、httpie 各自都有自己的安装方式（brew、apt、cargo、npm、pip），加起来要几分钟，而且有的不支持 Windows。
 
-**evolver-tools** 把 259 个常用工具打包成一个包。一个接口。一次 `pip install`。到处都能用。
+**evolver-tools** 把 258 个常用工具打包成一个包。一个接口。一次 `pip install`。到处都能用。
 
 ---
 
@@ -27,7 +27,7 @@
 ```bash
 pip install evolver-tools
 evtool ascii-banner "EVOLVER"          # 大号 ASCII 艺术字
-evtool rainbow "259 tools in 1 pip"    # 彩虹色文字
+evtool rainbow "258 tools in 1 pip"    # 彩虹色文字
 evtool qrcode "https://evolver.dev"    # 终端生成二维码
 evtool cowsay "零依赖！"                # ASCII 牛说话
 echo '5,12,8,20,3,15' | evtool chart-cli bar   # 柱状图
@@ -64,7 +64,7 @@ $ evtool sysmon
   [全屏仪表盘 — CPU / 内存 / 磁盘 / 网络 / 进程]
 ```
 
-查看全部 259 个工具：`evtool list` 或访问 [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/)
+查看全部 258 个工具：`evtool list` 或访问 [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/)
 
 ---
 
@@ -110,7 +110,7 @@ pip install --upgrade evolver-tools
 所有工具通过 `evtool` 命令调用：
 
 ```bash
-evtool list              # 列出全部 259 个工具
+evtool list              # 列出全部 258 个工具
 evtool search <关键词>    # 模糊搜索工具名和描述
 evtool categories        # 按分类浏览
 evtool <工具名> --help    # 查看某个工具的详细帮助
