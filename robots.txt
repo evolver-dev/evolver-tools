@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evolver-dev.github.io/evolver-tools/sitemap.xml
