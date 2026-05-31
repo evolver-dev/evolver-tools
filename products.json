@@ -1,6 +1,38 @@
 [
   {
     "name": "evolver-tools",
+    "version": "31.0.0",
+    "tools": 238,
+    "flagships": 9,
+    "total_lines": 17200,
+    "price": 79,
+    "description": "238 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/31.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 238 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
+    },
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v31": [
+      "find-empty — Find empty directories and files",
+      "mac-address — Generate and lookup MAC addresses",
+      "csv-filter — Filter CSV rows by column value",
+      "file-patch — Apply text patches to files (find/replace)",
+      "env-sorter — Sort environment variables in .env files"
+    ]
+  },
+  {
+    "name": "evolver-tools",
     "version": "30.0.0",
     "tools": 233,
     "flagships": 9,
