@@ -1,24 +1,24 @@
 [
   {
     "name": "evolver-tools",
-    "version": "15.0.0",
-    "tools": 162,
+    "version": "16.0.0",
+    "tools": 167,
     "flagships": 9,
     "total_lines": 11000,
     "price": 79,
-    "description": "162 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/15.0.0/",
+    "description": "162 CLI tools + 9 flagship projects \u2014 one pip install",
+    "url": "https://pypi.org/project/evolver-tools/16.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_model": {
-      "free": "All 162 tools + 9 flagship — fully open source (MIT)",
-      "sponsor": "¥5/month — GitHub Sponsors",
+      "free": "All 162 tools + 9 flagship \u2014 fully open source (MIT)",
+      "sponsor": "\u00a55/month \u2014 GitHub Sponsors",
       "enterprise": {
-        "basic": "¥500/year — custom tool development",
-        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
-        "ultimate": "¥5,000/year — full source license + custom development"
+        "basic": "\u00a5500/year \u2014 custom tool development",
+        "premium": "\u00a52,000/year \u2014 dedicated maintenance + emergency fixes",
+        "ultimate": "\u00a55,000/year \u2014 full source license + custom development"
       }
     },
-    "released": "2026-05-31",
+    "released": "2026-06-01",
     "stars": 0,
     "pypi_downloads_weekly": 0,
     "features": [
@@ -27,7 +27,7 @@
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
-      "Single pip install — no version conflicts"
+      "Single pip install \u2014 no version conflicts"
     ]
   }
 ]
