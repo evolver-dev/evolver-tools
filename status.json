@@ -9,7 +9,7 @@
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 3044,
-  "last_release": "v38.0.0 — 254 CLI tools, 18 categories, showcase",
-  "last_fixes": "38.0.0a1 — version display fix + fuzzy underscore↔hyphen aliases",
-  "status": "READY for distribution — 0 external revenue, all marketing materials ready"
+  "last_release": "v38.0.0 \u2014 254 CLI tools, 18 categories, showcase",
+  "last_fixes": "38.0.0a1 \u2014 version display fix + fuzzy underscore\u2194hyphen aliases",
+  "status": "v38.0.0 \u2014 +evtool search command. Fuzzy search across 254 tools by name+description."
 }

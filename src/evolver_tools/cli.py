@@ -45,6 +45,7 @@ def list_tools():
     print('Usage: evtool <toolname> [args...]')
     print('       evtool categories        — browse by category')
     print('       evtool showcase          — featured tools')
+    print('       evtool search <query>    — fuzzy search tool names & descriptions')
     print('       evtool --version         — show version')
     print('       evtool --help            — this help')
 
@@ -105,10 +106,11 @@ def welcome_screen():
 
     # Navigation
     print(f"  \033[1;33m\u2192 Explore:\033[0m")
-    print(f"    \033[1;32mevtool categories\033[0m        \033[90m\u2014 browse {cat_count} categories\033[0m")
-    print(f"    \033[1;32mevtool showcase\033[0m          \033[90m\u2014 12 featured tools with examples\033[0m")
-    print(f"    \033[1;32mevtool list\033[0m              \033[90m\u2014 full {total}-tool listing\033[0m")
-    print(f"    \033[1;32mevtool <toolname> --help\033[0m  \033[90m\u2014 per-tool usage\033[0m")
+    print(f"    [1;32mevtool categories[0m        [90m— browse {cat_count} categories[0m")
+    print(f"    [1;32mevtool showcase[0m          [90m— 12 featured tools with examples[0m")
+    print(f"    [1;32mevtool search <query>[0m    [90m— fuzzy search all {total} tools[0m")
+    print(f"    [1;32mevtool list[0m              [90m— full {total}-tool listing[0m")
+    print(f"    [1;32mevtool <toolname> --help[0m  [90m— per-tool usage[0m")
     print()
 
     # Tip
@@ -197,6 +199,14 @@ def main():
     if tool_name == "showcase":
         from evolver_tools.categorize import print_showcase
         print_showcase()
+        return
+    if tool_name == "search":
+        if not args:
+            print("Usage: evtool search <query>")
+            print("Search tool names and descriptions. Example: evtool search csv")
+            return
+        from evolver_tools.search import print_search_results
+        print_search_results(" ".join(args))
         return
     run_tool(tool_name, args)
 
