@@ -46,8 +46,9 @@ def _yaml_val(v):
     elif v is None:
         return "null"
     elif isinstance(v, str):
-        if any(c in v for c in ":\"'"''":
-            return f'"{v}"'
+        # Quote strings containing special YAML chars: : " '
+        if any(c in v for c in ':"\''):
+            return '"' + v + '"'
         return v
     return str(v)
 

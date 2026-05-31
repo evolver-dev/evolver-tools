@@ -40,8 +40,8 @@ def main():
     except FileNotFoundError:
         print(f"Error: file not found", file=sys.stderr)
         sys.exit(1)
-    html_parts = ["<!DOCTYPE html><html><head><meta charset="utf-8">"
-                  "<title>Markdown</title></head><body>"]
+    html_parts = ['<!DOCTYPE html><html><head><meta charset="utf-8">'
+                  '<title>Markdown</title></head><body>']
     in_code = False
     in_list = False
     in_blockquote = False
