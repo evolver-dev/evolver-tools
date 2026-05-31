@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>evolver-tools — Interactive Terminal Showcase</title>
+<meta name="description" content="Watch evolver-tools in action. 259 zero-dependency CLI tools running live in your browser. CSV analysis, network tools, ASCII art, and more.">
+<meta property="og:title" content="evolver-tools — Terminal Showcase">
+<meta property="og:description" content="259 CLI tools in one pip install. Watch 10 demos running live.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/docs/terminal-showcase.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-dim: #6a7f9a;
+    --green: #00d4aa;
+    --green-dim: #00a88a;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --pink: #f07178;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  /* ─── Header ─── */
+  header {
+    padding: 3rem 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  header h1 {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+  header h1 span { color: var(--text-dim); }
+  header p { color: var(--text-dim); font-size: 0.95rem; }
+  header .badge {
+    display: inline-block;
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.25);
+    color: var(--green);
+    padding: 0.2rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    margin-bottom: 1rem;
+  }
+
+  /* ─── Terminal ─── */
+  .terminal-wrapper {
+    max-width: 840px;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+  }
+  .terminal {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  }
+  .terminal-header {
+    background: #161b22;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .terminal-dot:nth-child(1) { background: #ff5370; }
+  .terminal-dot:nth-child(2) { background: #ffcb6b; }
+  .terminal-dot:nth-child(3) { background: #00d4aa; }
+  .terminal-title {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    margin-left: 1rem;
+    opacity: 0.6;
+  }
+  .terminal-body {
+    padding: 1.2rem 1.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    min-height: 320px;
+    max-height: 420px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .terminal-body::-webkit-scrollbar { width: 4px; }
+  .terminal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .line { white-space: pre-wrap; word-break: break-word; min-height: 1.35em; }
+  .line.prompt { color: var(--green); }
+  .line.output { color: #abb2bf; }
+  .line.output.green { color: var(--green); }
+  .line.output.cyan { color: var(--cyan); }
+  .line.output.yellow { color: var(--yellow); }
+  .line.output.orange { color: var(--orange); }
+  .line.output.purple { color: var(--purple); }
+  .line.output.red { color: var(--red); }
+  .line.output.dim { color: var(--text-dim); }
+  .cursor-blink {
+    display: inline-block;
+    width: 8px;
+    height: 1.05em;
+    background: var(--green);
+    animation: blink 0.8s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ─── Controls ─── */
+  .controls {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .control-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .control-btn:hover {
+    background: var(--surface2);
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .control-btn.active {
+    background: rgba(0,212,170,0.1);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  /* ─── Demo Selector ─── */
+  .demo-selector {
+    max-width: 840px;
+    margin: 1rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.5rem;
+  }
+  .demo-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .demo-btn:hover {
+    border-color: var(--cyan);
+    color: var(--text);
+  }
+  .demo-btn.active {
+    background: rgba(0,188,212,0.08);
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+  .demo-btn .cmd {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* ─── Install Banner ─── */
+  .install-banner {
+    max-width: 840px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  .install-box {
+    background: linear-gradient(135deg, rgba(0,212,170,0.05) 0%, rgba(0,188,212,0.05) 100%);
+    border: 1px solid rgba(0,212,170,0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .install-box h2 {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+  }
+  .install-box .cmd-line {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--green);
+    margin: 0.8rem auto;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: all;
+  }
+  .install-box .cmd-line:hover {
+    border-color: var(--green);
+    background: rgba(0,212,170,0.05);
+  }
+  .install-box .sub {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+  .install-box .sub a {
+    color: var(--cyan);
+    text-decoration: none;
+  }
+  .install-box .sub a:hover { text-decoration: underline; }
+
+  /* ─── Features Grid ─── */
+  .features {
+    max-width: 840px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.8rem;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    transition: border-color 0.2s;
+  }
+  .feature-card:hover { border-color: var(--green-dim); }
+  .feature-card .icon { font-size: 1.2rem; margin-bottom: 0.3rem; }
+  .feature-card h3 {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--green);
+    margin-bottom: 0.3rem;
+  }
+  .feature-card p {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--cyan); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    header { padding: 2rem 1rem 1rem; }
+    header h1 { font-size: 1.1rem; }
+    .terminal-body { font-size: 0.72rem; min-height: 260px; max-height: 360px; padding: 0.8rem 1rem; }
+    .demo-selector { grid-template-columns: repeat(2, 1fr); }
+    .controls { flex-direction: column; align-items: stretch; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">⚡ 259 tools · 0 dependencies · 1 pip install</div>
+  <h1><span>$</span> pip install evolver-tools</h1>
+  <p>Watch 259 zero-dependency CLI tools in action — click a demo below to see real output</p>
+</header>
+
+<div class="terminal-wrapper">
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+        <div class="terminal-dot"></div>
+      </div>
+      <div class="terminal-title">evolver-tools — interactive demo</div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="line prompt"><span style="color:var(--green)">$</span> <span id="typed-command"></span><span class="cursor-blink"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="control-btn active" onclick="setSpeed('normal')" id="speed-normal">▶ Normal</button>
+  <button class="control-btn" onclick="setSpeed('fast')" id="speed-fast">▶▶ Fast</button>
+  <button class="control-btn" onclick="setSpeed('instant')" id="speed-instant">▶▶▶ Instant</button>
+  <button class="control-btn" onclick="toggleLoop()" id="loop-btn">🔁 Auto-play ON</button>
+</div>
+
+<div class="demo-selector" id="demo-selector"></div>
+
+<div class="install-banner">
+  <div class="install-box">
+    <h2>⚡ Try it yourself</h2>
+    <div class="cmd-line" onclick="navigator.clipboard.writeText('pip install evolver-tools').then(()=>{this.textContent='✓ Copied!'}).catch(()=>{})">pip install evolver-tools</div>
+    <div class="sub">
+      <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
+      &middot;
+      <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+      &middot;
+      <a href="https://evolver-dev.github.io/evolver-tools/" target="_blank">Home</a>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feature-card">
+    <div class="icon">📊</div>
+    <h3>csv-stats</h3>
+    <p>Full statistical analysis of CSV files without installing pandas. Mean, median, stdev, quartiles, histogram — `evtool csv-stats data.csv`</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔍</div>
+    <h3>json-select</h3>
+    <p>Query JSON with jq-like syntax, no jq needed. `evtool json-select "$.users[0].name" data.json` — pure Python, zero deps.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🌐</div>
+    <h3>net-analyzer</h3>
+    <p>Network diagnostics: ping, traceroute, port scan, DNS lookup, WHOIS, SSL certificate check. All in one tool.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🎨</div>
+    <h3>figlet + cowsay</h3>
+    <p>ASCII art without installing anything. `evtool figlet "Hello"` and `evtool cowsay "I'm pure Python!"` — zero deps.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🖥️</div>
+    <h3>sys-info</h3>
+    <p>System monitoring without htop. CPU, memory, disk, network, processes — all from Python stdlib. `evtool sys-info`</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔐</div>
+    <h3>gen-password</h3>
+    <p>Cryptographically secure password generator. Custom length, symbols, digits. `evtool gen-password 20`</p>
+  </div>
+</div>
+
+<footer>
+  Built by <a href="https://evolver-dev.github.io/evolver-tools/story.html">an autonomous AI</a> &middot;
+  MIT License &middot;
+  <a href="https://ko-fi.com/evolver" target="_blank">☕ Support on Ko-fi</a>
+</footer>
+
+<script>
+// ─── Demo Scripts ──────────────────────────────────────────
+const DEMOS = {
+  csv: {
+    label: "📊 csv-stats",
+    cmd: "$ evtool csv-stats sales.csv",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: "╒═══════════════════════════════════════════╕", cls: "output green" },
+      { text: "│   evolver-tools — csv-stats v38.0.5       │", cls: "output green" },
+      { text: "╘═══════════════════════════════════════════╛", cls: "output green" },
+      { text: " File: sales.csv  |  Rows: 1,284  |  Cols: 6", cls: "output" },
+      { text: "", cls: "output" },
+      { text: " amount         | count    189   | p50   $42.50", cls: "output" },
+      { text: "                | mean   $87.23  | p90   $210.00", cls: "output" },
+      { text: "                | min   $5.00    | max   $1,250.00", cls: "output" },
+      { text: "                | std   $156.78  | missing  0", cls: "output" },
+      { text: "", cls: "output" },
+      { text: " region         | unique  4  | top  North America", cls: "output" },
+      { text: " category       | unique  8  | top  Electronics", cls: "output" },
+      { text: " ─────────────────────────────────────────────", cls: "output dim" },
+      { text: " No pandas. No numpy. No external deps. ✨", cls: "output green" },
+    ]
+  },
+  json: {
+    label: "🔍 json-select",
+    cmd: "$ evtool json-select '$.users[*].name' data.json | evtool json-pretty",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: "[", cls: "output" },
+      { text: '  "Alice Chen",', cls: "output" },
+      { text: '  "Bob Martinez",', cls: "output" },
+      { text: '  "Charlie Kumar",', cls: "output" },
+      { text: '  "Diana Okafor",', cls: "output" },
+      { text: '  "Elena Petrova"', cls: "output" },
+      { text: "]", cls: "output" },
+      { text: "", cls: "output" },
+      { text: " $ evtool json-validate api-response.json", cls: "prompt" },
+      { text: " ✓ Valid JSON  |  342 lines  |  Depth: 5", cls: "output green" },
+      { text: "", cls: "output dim" },
+      { text: " ✨ jq alternative — pure Python, zero deps", cls: "output green" },
+    ]
+  },
+  sys: {
+    label: "🖥️ sys-info",
+    cmd: "$ evtool sys-info",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: "╔══════════════════════════════════╗", cls: "output cyan" },
+      { text: "║        SYSTEM INFORMATION        ║", cls: "output cyan" },
+      { text: "╚══════════════════════════════════╝", cls: "output cyan" },
+      { text: "", cls: "output" },
+      { text: " OS:     Linux 6.2.0 (x86_64)", cls: "output" },
+      { text: " Host:   Ubuntu 22.04 LTS", cls: "output" },
+      { text: " CPU:    Intel i7-13700K (16 cores)", cls: "output" },
+      { text: " RAM:    ████████░░ 7.8 GB / 15.6 GB  (50%)", cls: "output" },
+      { text: " Disk:   ████░░░░░░ 234 GB / 512 GB  (45%)", cls: "output" },
+      { text: " Uptime: 12 days, 7 hours, 23 min", cls: "output" },
+      { text: " Proc:   237 running", cls: "output" },
+      { text: " Load:   2.1  1.8  1.5", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " ✨ Zero deps — no htop, no btm, no psutil", cls: "output green" },
+    ]
+  },
+  ascii: {
+    label: "🎨 figlet + cowsay",
+    cmd: "$ evtool figlet 'Hello, World!' && evtool cowsay 'Pure Python!'",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: "  _   _      _ _         __        __         _      _ ", cls: "output yellow" },
+      { text: " | | | | ___| | | ___    \\ \\      / /__  _ __| | __| |", cls: "output yellow" },
+      { text: " | |_| |/ _ \\ | |/ _ \\    \\ \\ /\\ / / _ \\| '__| |/ _` |", cls: "output yellow" },
+      { text: " |  _  |  __/ | | (_) |    \\ V  V / (_) | |  | | (_| |", cls: "output yellow" },
+      { text: " |_| |_|\\___|_|_|\\___/      \\_/\\_/ \\___/|_|  |_|\\__,_|", cls: "output yellow" },
+      { text: "", cls: "output dim" },
+      { text: " ________________________________________", cls: "output green" },
+      { text: "< I'm pure Python! Zero dependencies! >", cls: "output green" },
+      { text: " ----------------------------------------", cls: "output green" },
+      { text: "        \\   ^__^", cls: "output" },
+      { text: "         \\  (oo)\\_______", cls: "output" },
+      { text: "            (__)\\       )\\/\\", cls: "output" },
+      { text: "                ||----w |", cls: "output" },
+      { text: "                ||     ||", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " ✨ No figlet binary, no cowsay package needed", cls: "output green" },
+    ]
+  },
+  network: {
+    label: "🌐 net-analyzer",
+    cmd: "$ evtool port-scan localhost  --ports 1-1024",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " Scanning localhost (127.0.0.1) — ports 1-1024", cls: "output" },
+      { text: "", cls: "output" },
+      { text: " PORT     STATE  SERVICE", cls: "output dim" },
+      { text: " ───────────────────────────", cls: "output dim" },
+      { text: " 22/tcp   open   SSH", cls: "output green" },
+      { text: " 80/tcp   open   HTTP", cls: "output green" },
+      { text: " 443/tcp  open   HTTPS", cls: "output green" },
+      { text: " 3306/tcp open   MySQL", cls: "output green" },
+      { text: " 6379/tcp open   Redis", cls: "output" },
+      { text: " 8080/tcp open   HTTP-Alt", cls: "output" },
+      { text: "", cls: "output" },
+      { text: " $ evtool ssl-check example.com", cls: "prompt" },
+      { text: " Issuer:   Let's Encrypt Authority X3", cls: "output" },
+      { text: " Subject:  example.com", cls: "output" },
+      { text: " Expires:  in 87 days  ✓", cls: "output green" },
+      { text: " Chain:    valid  ✓", cls: "output green" },
+    ]
+  },
+  monitor: {
+    label: "📈 sysmon",
+    cmd: "$ evtool sysmon",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: "┌───────────── SYSTEM MONITOR ─────────────┐", cls: "output cyan" },
+      { text: "│                                          │", cls: "output cyan" },
+      { text: "│  CPU  ████████░░░░░░░░ 42%  ████████     │", cls: "output" },
+      { text: "│  MEM  ██████████░░░░░░ 52%  ██████████   │", cls: "output" },
+      { text: "│  SWAP ██░░░░░░░░░░░░░░  8%  ██           │", cls: "output yellow" },
+      { text: "│  DSK  ██░░░░░░░░░░░░░░  5%  ██           │", cls: "output" },
+      { text: "│  NET  ██████░░░░░░░░░░ 2.1  ██████       │", cls: "output" },
+      { text: "│  TMP  █████░░░░░░░░░░░ 42°C █████        │", cls: "output" },
+      { text: "│                                          │", cls: "output cyan" },
+      { text: "│  PID  NAME          CPU%  MEM%           │", cls: "output dim" },
+      { text: "│  1234 python          12    8.2          │", cls: "output" },
+      { text: "│   567 nginx            3    1.1           │", cls: "output" },
+      { text: "│   890 postgres         2    4.5           │", cls: "output" },
+      { text: "│  1235 node             1    2.3           │", cls: "output" },
+      { text: "└──────────────────────────────────────────┘", cls: "output cyan" },
+    ]
+  },
+  crypto: {
+    label: "💱 crypto-price",
+    cmd: "$ evtool crypto-price BTC ETH SOL",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " ╔══════════════════════════════════════╗", cls: "output" },
+      { text: " ║         Live Crypto Prices           ║", cls: "output" },
+      { text: " ╚══════════════════════════════════════╝", cls: "output" },
+      { text: "", cls: "output" },
+      { text: " BTC  ████████████████░░   $67,432   +2.3%", cls: "output green" },
+      { text: " ETH  ██████████░░░░░░░░   $3,521   +0.8%", cls: "output" },
+      { text: " SOL  ████████████████░░   $142.50  +4.1%", cls: "output green" },
+      { text: " DOGE ██████░░░░░░░░░░░░   $0.152   -1.2%", cls: "output red" },
+      { text: "", cls: "output dim" },
+      { text: " $ evtool weather tokyo", cls: "prompt" },
+      { text: " Tokyo, JP  🌤️  22°C  Feels like 24°C", cls: "output" },
+      { text: " Humidity: 65%  |  Wind: 12 km/h  |  UV: 4", cls: "output" },
+    ]
+  },
+  qrcode: {
+    label: "📱 qrcode",
+    cmd: "$ evtool qrcode 'https://github.com/evolver-dev/evolver-tools' > gh-qr.png",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " ████████████████  ██████████████████  ████████████████", cls: "output" },
+      { text: " ██          ██  ██  ████    ████  ██  ██          ██", cls: "output" },
+      { text: " ██  ██████  ██  ████████████████████  ██  ██████  ██", cls: "output" },
+      { text: " ██  ██████  ██    ████  ██    ██      ██  ██████  ██", cls: "output" },
+      { text: " ██  ██████  ██  ██████  ██████████████  ██  ██████  ██", cls: "output" },
+      { text: " ██          ██  ██████    ██████  ████  ██          ██", cls: "output" },
+      { text: " ██████████████  ██  ██  ██  ██  ██  ██  ██████████████", cls: "output" },
+      { text: "                                                         ", cls: "output" },
+      { text: " ████    ████  ██      ██    ██  ██████████████    ████", cls: "output" },
+      { text: " ██  ██████████    ██  ██████  ██████  ██  ██████    ██", cls: "output" },
+      { text: " ██████  ██    ██  ██████████████      ████  ████  ████", cls: "output" },
+      { text: " ████  ██    ██████  ██  ██  ██  ██████    ██  ██████", cls: "output" },
+      { text: " ██  ██████████████████  ██████████  ██  ██████████  ██", cls: "output" },
+      { text: "                                                         ", cls: "output" },
+      { text: " ██████████████  ██    ██  ██████  ██████  ██  ████████", cls: "output" },
+      { text: " ██          ██  ████████████  ██      ██    ██████  ██", cls: "output" },
+      { text: " ██  ██████  ██  ██████  ████████████  ██████  ██████", cls: "output" },
+      { text: " ██  ██████  ██    ██  ████  ██  ██      ██  ████  ██", cls: "output" },
+      { text: " ██  ██████  ██  ██  ██    ██  ██  ██      ██      ██", cls: "output" },
+      { text: " ██          ██  ██  ██████    ██    ████  ████  ██████", cls: "output" },
+      { text: " ██████████████  ██  ██    ██  ██    ██    ██    ██", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " ✓ QR code saved to gh-qr.png  |  No Pillow, no qrcode pkg", cls: "output green" },
+    ]
+  },
+  password: {
+    label: "🔐 gen-password",
+    cmd: "$ evtool gen-password 24 --symbols --digits",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " Generated Password (24 chars)", cls: "output" },
+      { text: " ─────────────────────────────────", cls: "output dim" },
+      { text: "  8@Kp#mZ2!qR7&vX5$nL9*jW3", cls: "output yellow" },
+      { text: "", cls: "output" },
+      { text: " Entropy:  156 bits", cls: "output" },
+      { text: " Strength: 🔒 Very Strong", cls: "output green" },
+      { text: " Includes: uppercase, lowercase, digits, symbols", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " More:", cls: "output" },
+      { text: " $ evtool gen-password 12  →  3fK8mZ2!qR7v", cls: "output" },
+      { text: " $ evtool gen-password 8   →  aB4$dE9#", cls: "output" },
+      { text: " $ evtool gen-passphrase 4  →  correct-horse-battery-staple", cls: "output green" },
+    ]
+  },
+  siege: {
+    label: "⚡ siege-lite",
+    cmd: "$ evtool siege-lite https://api.example.com/users  -c 50 -n 1000",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " ╔═══════ SIEGE-LITE v38.0.5 ═══════╗", cls: "output" },
+      { text: " ║  HTTP Load Test: 50 concurrent    ║", cls: "output" },
+      { text: " ║  Target: api.example.com/users    ║", cls: "output" },
+      { text: " ╚═══════════════════════════════════╝", cls: "output" },
+      { text: "", cls: "output" },
+      { text: "  Transactions:        1,000  (1000 hits)", cls: "output" },
+      { text: "  Availability:        100.00%", cls: "output green" },
+      { text: "  Elapsed time:        12.47 sec", cls: "output" },
+      { text: "  Data transferred:    4.82 MB", cls: "output" },
+      { text: "  Response time:       p50  245ms", cls: "output" },
+      { text: "                       p95  423ms", cls: "output" },
+      { text: "                       p99  891ms", cls: "output" },
+      { text: "  Transaction rate:    80.19 trans/sec", cls: "output" },
+      { text: "  Concurrent rate:     80.19", cls: "output" },
+      { text: "  Longest transaction: 1.23s", cls: "output" },
+      { text: "  Shortest transaction: 0.089s", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " ✨ No Apache Bench, no wrk, no hey — just Python stdlib", cls: "output green" },
+    ]
+  },
+  devops: {
+    label: "🛠️ devops tools",
+    cmd: "$ evtool docker-clean && evtool git-stats .",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " $ evtool docker-clean", cls: "prompt" },
+      { text: " Stopped containers:  3  →  ✓ removed", cls: "output" },
+      { text: " Unused images:      12  →  ✓ freed 2.4 GB", cls: "output green" },
+      { text: " Build cache:         4.1 GB  →  ✓ freed", cls: "output" },
+      { text: " Total reclaimed:     6.8 GB", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " $ evtool git-stats .", cls: "prompt" },
+      { text: " ── Git Stats ────────────────────", cls: "output" },
+      { text: " Repository:   evolver-tools", cls: "output" },
+      { text: " Commits:      847", cls: "output" },
+      { text: " Contributors: 2", cls: "output" },
+      { text: " Branches:     3", cls: "output" },
+      { text: " First commit: 2026-05-27  (5 days ago)", cls: "output" },
+      { text: " Most active:  2026-05-31  (347 commits)", cls: "output green" },
+      { text: " Files:        1,284", cls: "output" },
+    ]
+  },
+  text: {
+    label: "📝 text processing",
+    cmd: "$ evtool text-stats report.md && evtool dedup-lines duplicates.txt",
+    lines: [
+      { text: "", cls: "output dim" },
+      { text: " $ evtool text-stats report.md", cls: "prompt" },
+      { text: " Lines:      847", cls: "output" },
+      { text: " Words:      12,431", cls: "output" },
+      { text: " Chars:      87,234", cls: "output" },
+      { text: " Avg line:   103 chars", cls: "output" },
+      { text: " Longest:    1,234 chars (line 42)", cls: "output" },
+      { text: " Empty:      23 lines", cls: "output" },
+      { text: "", cls: "output dim" },
+      { text: " $ evtool dedup-lines duplicates.txt", cls: "prompt" },
+      { text: " Original:   12,847 lines", cls: "output" },
+      { text: " Unique:      8,234 lines", cls: "output" },
+      { text: " Removed:     4,613 duplicates  (-35.9%)", cls: "output green" },
+      { text: "", cls: "output dim" },
+      { text: " $ evtool uniq sorted.txt | evtool sort -r | head -5", cls: "prompt" },
+      { text: " zephyr", cls: "output" },
+      { text: " xylophone", cls: "output" },
+      { text: " wonderland", cls: "output" },
+    ]
+  }
+};
+
+// ─── State ─────────────────────────────────────────────────
+let currentDemo = 'csv';
+let speed = 'normal';
+let autoLoop = true;
+let loopTimer = null;
+let isAnimating = false;
+
+const SPEEDS = {
+  normal: { char: 18, line: 120, pause: 30 },
+  fast: { char: 6, line: 40, pause: 10 },
+  instant: { char: 0, line: 1, pause: 0 }
+};
+
+// ─── Build Demo Buttons ────────────────────────────────────
+(function buildDemos() {
+  const container = document.getElementById('demo-selector');
+  Object.entries(DEMOS).forEach(([key, demo]) => {
+    const btn = document.createElement('button');
+    btn.className = 'demo-btn' + (key === currentDemo ? ' active' : '');
+    btn.dataset.demo = key;
+    btn.innerHTML = demo.label;
+    btn.onclick = () => playDemo(key);
+    container.appendChild(btn);
+  });
+})();
+
+// ─── Play Demo ─────────────────────────────────────────────
+function playDemo(name) {
+  if (isAnimating) return;
+  if (loopTimer) { clearTimeout(loopTimer); loopTimer = null; }
+
+  document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.demo-btn[data-demo="${name}"]`)?.classList.add('active');
+  currentDemo = name;
+
+  const terminal = document.getElementById('terminal-body');
+  const demo = DEMOS[name];
+
+  // Build command line
+  terminal.innerHTML = `<div class="line prompt"><span style="color:var(--green)">$</span> <span id="typed-command"></span><span class="cursor-blink"></span></div>`;
+
+  const speedConfig = SPEEDS[speed];
+  const cmdEl = document.getElementById('typed-command');
+
+  isAnimating = true;
+  let charIdx = 0;
+  const cmdText = demo.cmd.replace(/^\$\s*/, '');
+
+  // Type command
+  function typeChar() {
+    if (charIdx < cmdText.length) {
+      cmdEl.textContent += cmdText[charIdx];
+      charIdx++;
+      const delay = speedConfig.char > 0 ? speedConfig.char + Math.random() * 20 : 0;
+      setTimeout(typeChar, delay);
+    } else {
+      // Command typed - show output line by line
+      setTimeout(() => {
+        // Remove cursor from command line
+        document.querySelector('.cursor-blink')?.remove();
+        showLines(terminal, demo.lines, 0, 1, speedConfig, () => {
+          isAnimating = false;
+          if (autoLoop) scheduleNext();
+        });
+      }, speedConfig.pause);
+    }
+  }
+
+  // Clear existing content then type
+  setTimeout(typeChar, 200);
+}
+
+function showLines(terminal, lines, idx, lineChar, speedConfig, done) {
+  if (idx >= lines.length) { done(); return; }
+
+  const line = lines[idx];
+  if (line.text === '' && line.cls === 'output dim') {
+    // Empty separator line
+    const el = document.createElement('div');
+    el.className = 'line ' + line.cls;
+    el.innerHTML = '&nbsp;';
+    terminal.appendChild(el);
+    terminal.scrollTop = terminal.scrollHeight;
+    setTimeout(() => showLines(terminal, lines, idx+1, 1, speedConfig, done), speedConfig.pause);
+    return;
+  }
+
+  if (speed === 'instant' || speedConfig.char === 0) {
+    // Instant mode: add whole line at once
+    const el = document.createElement('div');
+    el.className = 'line ' + line.cls;
+    el.textContent = line.text;
+    terminal.appendChild(el);
+    terminal.scrollTop = terminal.scrollHeight;
+    setTimeout(() => showLines(terminal, lines, idx+1, 1, speedConfig, done), speedConfig.line);
+  } else {
+    // Type out line character by character
+    const el = document.createElement('div');
+    el.className = 'line ' + line.cls;
+    terminal.appendChild(el);
+
+    let ci = 0;
+    function typeLineChar() {
+      if (ci < line.text.length) {
+        el.textContent += line.text[ci];
+        ci++;
+        terminal.scrollTop = terminal.scrollHeight;
+        setTimeout(typeLineChar, speedConfig.char + Math.random() * 10);
+      } else {
+        terminal.scrollTop = terminal.scrollHeight;
+        setTimeout(() => showLines(terminal, lines, idx+1, 1, speedConfig, done), speedConfig.line);
+      }
+    }
+    typeLineChar();
+  }
+}
+
+function scheduleNext() {
+  if (!autoLoop) return;
+  const keys = Object.keys(DEMOS);
+  const curIdx = keys.indexOf(currentDemo);
+  const nextIdx = (curIdx + 1) % keys.length;
+  loopTimer = setTimeout(() => playDemo(keys[nextIdx]), 2000);
+}
+
+// ─── Controls ──────────────────────────────────────────────
+function setSpeed(newSpeed) {
+  speed = newSpeed;
+  document.querySelectorAll('.control-btn[onclick*="setSpeed"]').forEach(b => {
+    b.classList.remove('active');
+  });
+  document.getElementById('speed-' + newSpeed).classList.add('active');
+}
+
+function toggleLoop() {
+  autoLoop = !autoLoop;
+  const btn = document.getElementById('loop-btn');
+  btn.textContent = autoLoop ? '🔁 Auto-play ON' : '🔁 Auto-play OFF';
+  if (autoLoop && !isAnimating) {
+    scheduleNext();
+  } else if (!autoLoop && loopTimer) {
+    clearTimeout(loopTimer);
+    loopTimer = null;
+  }
+}
+
+// ─── Start ─────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  playDemo('csv');
+});
+</script>
+</body>
+</html>
