@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — evolver-tools</title>
+<meta name="description" content="evolver-tools pricing: free open-source 254+ CLI tools, sponsor-supported and enterprise plans.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/pricing.html">
+<meta property="og:title" content="Pricing — evolver-tools">
+<meta property="og:description" content="254+ CLI tools, free &amp; open source. Sponsor or enterprise plans available.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/pricing.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #0a0e14; --surface: #111820; --surface2: #182230;
+    --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
+    --accent: #00d4aa; --accent-dim: #00a88a; --cyan: #00bcd4;
+    --yellow: #ffcb6b; --orange: #f78c6c; --purple: #c792ea;
+    --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav { background: var(--accent); color: var(--bg); padding: 0.4rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.875rem; }
+  nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
+
+  .hero {
+    padding: 8rem 2rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hero h1 { font-size: clamp(2rem,4vw,3rem); font-weight: 800; margin-bottom: 0.5rem; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .subtitle { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 2rem 5rem;
+  }
+  .pricing-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .pricing-card:hover { border-color: var(--accent); }
+  .pricing-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(0,212,170,0.1);
+  }
+  .pricing-card .badge {
+    position: absolute; top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent); color: var(--bg);
+    font-size: 0.75rem; font-weight: 700;
+    padding: 0.25rem 1rem; border-radius: 100px;
+    font-family: var(--font-mono);
+  }
+  .pricing-card .plan-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .pricing-card .plan-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+  .pricing-card .price { margin-bottom: 0.2rem; }
+  .pricing-card .price .amount { font-size: 2.5rem; font-weight: 800; font-family: var(--font-mono); }
+  .pricing-card .price .period { font-size: 0.85rem; color: var(--text-secondary); }
+  .pricing-card .price-note { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+  .pricing-card ul { list-style: none; padding: 0; margin: 0 0 1.5rem; flex: 1; }
+  .pricing-card ul li {
+    padding: 0.4rem 0; font-size: 0.85rem;
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .pricing-card ul li::before { content: "▸"; color: var(--accent); }
+  .pricing-card .btn {
+    display: block; text-align: center; padding: 0.75rem;
+    border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .pricing-card .btn-primary { background: var(--accent); color: var(--bg); }
+  .pricing-card .btn-primary:hover { background: var(--accent-dim); }
+  .pricing-card .btn-ghost { border: 1px solid var(--border); color: var(--text); }
+  .pricing-card .btn-ghost:hover { border-color: var(--accent); }
+  .pricing-card .btn-disabled {
+    border: 1px solid var(--border); color: var(--text-secondary);
+    cursor: not-allowed; opacity: 0.6;
+  }
+
+  section { padding: 3rem 2rem 5rem; }
+  section .container { max-width: 800px; margin: 0 auto; }
+  section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+  section .faq-item { margin-bottom: 1.5rem; }
+  section .faq-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--accent); }
+  section .faq-item p { font-size: 0.9rem; color: var(--text-secondary); }
+
+  .free-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem; text-align: center;
+    max-width: 700px; margin: 0 auto 4rem;
+  }
+  .free-banner .big { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .free-banner p { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem; }
+
+  footer {
+    text-align: center; padding: 2rem;
+    color: var(--text-secondary); font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    nav .links { gap: 0.75rem; }
+    nav .links a { font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+    <a href="tools/">Browse All</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Simple <span class="accent">Pricing</span></h1>
+  <p class="subtitle">The core CLI tools are free and open source. Support the project and get additional features through sponsorship or enterprise plans.</p>
+</div>
+
+<div class="free-banner">
+  <div class="big">✦ evolver-tools is FREE</div>
+  <p>All 254+ CLI tools are open source (MIT), zero-dependency, cross-platform.<br>
+  <code style="background:var(--surface2);padding:0.2rem 0.5rem;border-radius:4px;font-family:var(--font-mono);">pip install evolver-tools</code> — no paywall, no limitations.</p>
+</div>
+
+<div class="pricing-grid">
+
+  <div class="pricing-card">
+    <div class="plan-name">Sponsor</div>
+    <div class="plan-desc">Support ongoing development</div>
+    <div class="price"><span class="amount">$5</span> <span class="period">/ month</span></div>
+    <div class="price-note">or $50 one-time</div>
+    <ul>
+      <li>Name listed in sponsors</li>
+      <li>Priority feature requests</li>
+      <li>Direct support channel</li>
+      <li>Early access to new tools</li>
+    </ul>
+    <a href="#" class="btn btn-disabled">Coming soon</a>
+  </div>
+
+  <div class="pricing-card featured">
+    <div class="badge">Popular</div>
+    <div class="plan-name">Enterprise Basic</div>
+    <div class="plan-desc">For teams needing custom tools</div>
+    <div class="price"><span class="amount">$70</span> <span class="period">/ year</span></div>
+    <div class="price-note">¥500/year</div>
+    <ul>
+      <li>Custom tool development</li>
+      <li>Priority support (48h SLA)</li>
+      <li>Private tool registry</li>
+      <li>Team license (up to 5 users)</li>
+    </ul>
+    <a href="#" class="btn btn-disabled">Coming soon</a>
+  </div>
+
+  <div class="pricing-card">
+    <div class="plan-name">Enterprise Premium</div>
+    <div class="plan-desc">For production-critical workflows</div>
+    <div class="price"><span class="amount">$280</span> <span class="period">/ year</span></div>
+    <div class="price-note">¥2,000/year</div>
+    <ul>
+      <li>Everything in Basic</li>
+      <li>Dedicated maintenance</li>
+      <li>24h emergency fixes</li>
+      <li>Custom integrations</li>
+      <li>Team license (up to 20 users)</li>
+    </ul>
+    <a href="#" class="btn btn-disabled">Coming soon</a>
+  </div>
+
+  <div class="pricing-card">
+    <div class="plan-name">Enterprise Ultimate</div>
+    <div class="plan-desc">Full source and white-label</div>
+    <div class="price"><span class="amount">$700</span> <span class="period">/ year</span></div>
+    <div class="price-note">¥5,000/year</div>
+    <ul>
+      <li>Full source code license</li>
+      <li>Unlimited custom development</li>
+      <li>White-label branding</li>
+      <li>On-premise deployment</li>
+      <li>Unlimited users</li>
+    </ul>
+    <a href="#" class="btn btn-disabled">Coming soon</a>
+  </div>
+
+</div>
+
+<section>
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <h3>Is evolver-tools really free?</h3>
+      <p>Yes! All 254+ CLI tools are MIT-licensed open source. You can use them personally or commercially without any payment. Sponsorship and enterprise plans are for those who want to support development or need custom features.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How is payment handled?</h3>
+      <p>Payment channels are being set up. We plan to accept GitHub Sponsors, credit cards (via Gumroad), and bank transfers for enterprise plans. Check back soon or open a GitHub issue to express interest.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What do enterprise plans include?</h3>
+      <p>Enterprise plans cover custom tool development tailored to your workflow, priority bug fixes, dedicated support, and optional white-label deployment. Contact us via GitHub issues to discuss your needs.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I contribute instead?</h3>
+      <p>Absolutely! The project is open source on GitHub. Star the repo, submit issues, contribute code, or help with documentation. Every contribution helps the project grow.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  evolver-tools — MIT Licensed &middot; <a href="https://github.com/evolver-dev/evolver-tools" style="color:var(--text-secondary)">GitHub</a> &middot; <a href="https://pypi.org/project/evolver-tools/" style="color:var(--text-secondary)">PyPI</a>
+</footer>
+
+</body>
+</html>
