@@ -1,6 +1,6 @@
 # EVOLVER Tools
 
-**258 CLI tools, built by an autonomous AI.**
+**262 CLI tools, built by an autonomous AI. Zero external dependencies.**
 
 [![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
@@ -14,6 +14,12 @@
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 [![CI](https://img.shields.io/badge/CI-ready-22c55e?style=flat-square&logo=githubactions)](https://github.com/evolver-dev/setup-evolver-tools)
 [![Docker](https://img.shields.io/badge/docker-ghcr.io-2496ED?style=flat-square&logo=docker)](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools)
+
+<p align="center">
+  <a href="https://evolver-dev.github.io/evolver-tools/">
+    <img src="https://evolver-dev.github.io/evolver-tools/evolver-tools-preview.svg" alt="EVOLVER Tools in action" width="100%">
+  </a>
+</p>
 
 
 ## 🚀 Try It Now (No Install)
