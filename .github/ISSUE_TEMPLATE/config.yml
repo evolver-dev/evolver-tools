@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussions
+    url: https://github.com/evolver-dev/evolver-tools/discussions
+    about: Ask questions and share ideas
+  - name: Documentation
+    url: https://evolver-dev.github.io/evolver-tools
+    about: Browse the full tool catalog and cookbook
