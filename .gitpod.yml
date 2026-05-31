@@ -1,0 +1,6 @@
+image:
+  file: Dockerfile
+
+tasks:
+  - init: pip install evolver-tools
+    command: evtool list | head -20 && echo "---" && echo "✨ evolver-tools ready! Run 'evtool <name>' to try any tool"
