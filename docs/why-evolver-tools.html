@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why I Built 254 CLI Tools (Zero Dependencies) — evolver-tools</title>
+<meta name="description" content="The story behind evolver-tools: 254 zero-dependency CLI tools in one pip install. Why Python, what problem it solves, and what I learned building a portable dev toolbox.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/why-evolver-tools.html">
+<meta property="og:title" content="Why I Built 254 CLI Tools (Zero Dependencies)">
+<meta property="og:description" content="The story behind evolver-tools: 254 zero-dependency CLI tools in one pip install.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/why-evolver-tools.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evolver-tools">
+<!-- OG Image -->
+<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta name="twitter:title" content="Why I Built 254 CLI Tools (Zero Dependencies)">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Why I Built 254 CLI Tools (Zero Dependencies)",
+  "description": "The story behind evolver-tools: 254 zero-dependency CLI tools in one pip install.",
+  "datePublished": "2026-06-01",
+  "author": {"@type": "Person", "name": "evolver-dev"}
+}
+</script>
+<style>
+:root {
+  --bg: #0a0e14; --surface: #111820; --surface2: #182230;
+  --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
+  --accent: #00d4aa; --accent-dim: #00a88a; --cyan: #00bcd4;
+  --yellow: #ffcb6b; --orange: #f78c6c; --purple: #c792ea; --red: #ff5370;
+  --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
+  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-sans); line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px; height: 52px; display: flex;
+  align-items: center; gap: 24px; font-size: 14px;
+}
+nav a { color: var(--text-secondary); text-decoration: none; transition: color .2s; }
+nav a:hover { color: var(--accent); }
+nav .logo { color: var(--accent); font-weight: 700; font-size: 16px; }
+nav .logo span { color: var(--text); }
+.container {
+  max-width: 720px; margin: 0 auto; padding: 80px 20px 60px;
+}
+.article-meta {
+  color: var(--text-secondary); font-size: 14px;
+  margin-bottom: 12px; display: flex; gap: 16px; flex-wrap: wrap;
+}
+h1 {
+  font-size: 36px; font-weight: 800; line-height: 1.3;
+  margin-bottom: 8px; color: #e8edf5;
+}
+h2 {
+  font-size: 24px; font-weight: 700; margin-top: 40px; margin-bottom: 16px;
+  color: #d4dcec; border-bottom: 1px solid var(--border); padding-bottom: 8px;
+}
+h3 {
+  font-size: 18px; font-weight: 600; margin-top: 28px; margin-bottom: 8px; color: #c0d0e8;
+}
+p { margin-bottom: 20px; color: var(--text); }
+p.lead { font-size: 18px; color: var(--text-secondary); margin-bottom: 32px; }
+code {
+  font-family: var(--font-mono); font-size: 14px;
+  background: var(--surface2); padding: 2px 8px; border-radius: 4px;
+  color: var(--yellow); word-break: break-all;
+}
+pre {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px 20px; overflow-x: auto; margin-bottom: 24px;
+  font-family: var(--font-mono); font-size: 14px; line-height: 1.6;
+}
+pre code { background: none; padding: 0; color: var(--text); }
+blockquote {
+  border-left: 3px solid var(--accent); padding: 12px 20px; margin: 24px 0;
+  background: rgba(0,212,170,0.05); border-radius: 0 8px 8px 0;
+  color: var(--text-secondary); font-style: italic;
+}
+ul, ol { margin-bottom: 20px; padding-left: 24px; }
+li { margin-bottom: 8px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 12px;
+  font-size: 12px; font-weight: 600; background: rgba(0,212,170,0.1);
+  color: var(--accent); margin-right: 6px; margin-bottom: 6px;
+}
+.cta-box {
+  background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(0,188,212,0.08));
+  border: 1px solid var(--accent-dim); border-radius: 12px;
+  padding: 24px 28px; margin: 32px 0; text-align: center;
+}
+.cta-box code { font-size: 18px; padding: 6px 16px; }
+.cta-box p { margin-bottom: 8px; }
+.cta-link { color: var(--accent); font-weight: 600; }
+.cta-link:hover { text-decoration: underline; }
+.cmd-prompt { color: var(--accent-dim); user-select: none; }
+.cmd-comment { color: var(--text-secondary); font-style: italic; }
+@media (max-width: 600px) {
+  h1 { font-size: 26px; }
+  .container { padding: 72px 16px 40px; }
+  nav { padding: 0 12px; gap: 12px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="./index.html" class="logo">evolver<span>-tools</span></a>
+  <a href="./index.html">Home</a>
+  <a href="./cookbook.html">Cookbook</a>
+  <a href="./why-evolver-tools.html" style="color:var(--accent);">Blog</a>
+  <a href="./story.html">Story</a>
+  <a href="./use-cases.html">Use Cases</a>
+  <a href="./vs.html">vs. Others</a>
+  <a href="./pricing.html">Pricing</a>
+</nav>
+
+<div class="container">
+
+<div class="article-meta">
+  <span>June 1, 2026</span>
+  <span>·</span>
+  <span>~8 min read</span>
+</div>
+
+<h1>Why I Built 254 CLI Tools<br>(With Zero Dependencies)</h1>
+
+<p class="lead">The story behind a Python CLI toolbox that fits in one <code>pip install</code>, works everywhere Python runs, and solves the "I just need a tool right now" problem.</p>
+
+<div>
+  <span class="tag">CLI</span>
+  <span class="tag">Python</span>
+  <span class="tag">DevTools</span>
+  <span class="tag">Open Source</span>
+</div>
+
+<h2>The Setup</h2>
+
+<p>You're on a fresh machine. No <code>jq</code>. No <code>fzf</code>. No <code>bat</code>. Maybe not even <code>curl</code>.</p>
+
+<p>You just need to quickly look at a JSON file, check what ports are open, hash a password, or figure out disk usage. The "right" way is to install each tool individually — but that's a dozen <code>brew install</code>/<code>apt install</code>/<code>npm i -g</code> commands, each pulling in its own dependency tree. Sometimes you're on a machine where you don't have sudo. Sometimes you just don't want to wait.</p>
+
+<p>This scenario happens often enough that I started wondering: <strong>what if one command gave you 90% of the CLI tools a developer actually uses day-to-day?</strong></p>
+
+<h2>The Constraint</h2>
+
+<p>I had one hard rule: <strong>zero external dependencies.</strong></p>
+
+<p>Every CLI tool had to run on Python's standard library alone — <code>json</code>, <code>csv</code>, <code>http.client</code>, <code>hashlib</code>, <code>socket</code>, <code>struct</code>, <code>html.parser</code>, and the rest of what ships with CPython 3.8+.</p>
+
+<p>Why?</p>
+
+<ul>
+  <li><strong>Instant install.</strong> <code>pip install evolver-tools</code> takes ~5 seconds. No compiling, no downloading 50MB of node_modules, no fighting with system package managers.</li>
+  <li><strong>Works everywhere.</strong> Windows, macOS, Linux, CI runners, Docker containers, Raspberry Pis, locked-down corporate laptops — anywhere Python 3.8+ is installed.</li>
+  <li><strong>No version conflicts.</strong> Each tool is a single Python file. No shared dependencies to break when you update something else.</li>
+  <li><strong>Auditable.</strong> The entire codebase is ~17,000 lines of pure Python. You can read any tool in one sitting. No black boxes.</li>
+</ul>
+
+<p>This constraint forced creativity. Want to render a TUI? That's ANSI escape sequences and <code>shutil.get_terminal_size()</code>. Want a CSV parser? That's <code>csv</code> from stdlib. Want HTTP? <code>urllib.request</code>. Want an async event loop for network scanning? <code>selectors</code> + <code>socket</code>.</p>
+
+<p>The standard library is more capable than most people realize.</p>
+
+<h2>The Approach</h2>
+
+<p>I didn't build 254 tools in a weekend. The project grew organically: I'd need a tool, check if it existed, and if the existing solution required installing a heavy dependency tree, I'd write a zero-dependency version.</p>
+
+<p>Over time, patterns emerged. Many tools share the same infrastructure:</p>
+
+<ul>
+  <li>File I/O helpers (reading stdin, writing colored output)</li>
+  <li>Argument parsing (standardized <code>argparse</code>-based CLI patterns)</li>
+  <li>Output formatting (tables, JSON, colors, progress bars — all from scratch)</li>
+</ul>
+
+<p>These shared modules became <code>evolver_tools.shared</code> — the "standard library" of the toolbox itself. Each tool imports only what it needs, keeping individual tools readable and self-contained.</p>
+
+<h2>What's Inside</h2>
+
+<p>254 tools organized into domains:</p>
+
+<h3>CSV &amp; Data (30+ tools)</h3>
+<p>From <code>csv-concat</code> (merge multiple CSVs) to <code>csv-validate</code> (check schema compliance). <code>csv-stats</code> produces descriptive statistics with histograms and frequency tables. <code>csv-dedup</code> finds and removes duplicates by key columns.</p>
+
+<h3>JSON &amp; Data Formats (25+ tools)</h3>
+<p><code>json-query</code> for jq-like key extraction. <code>json-diff</code> for recursive comparison. <code>json-schema-infer</code> that analyzes a JSON array and generates a JSON Schema draft. <code>json-flatten</code> turns nested JSON into flat key-value rows.</p>
+
+<h3>Text Processing (35+ tools)</h3>
+<p>Base64 encode/decode, ROT13, slugify, ansi-strip, word-wrap, padding, reversing, slicing — the Unix text processing classics, portable.</p>
+
+<h3>Network (20+ tools)</h3>
+<p><code>httpie</code>-style <code>simple-curl</code> with colored output. <code>port-scanner</code> with concurrent scanning. <code>whois-lookup</code>, <code>dns-resolve</code>, <code>ssl-check</code>, <code>latency-test</code>. <code>siege-lite</code> for HTTP load testing with percentile latency reporting.</p>
+
+<h3>System &amp; Monitoring (15+ tools)</h3>
+<p><code>sysmon</code> — a curses-based real-time system monitor (CPU/memory/disk/network/processes). <code>disk-usage</code>, <code>port-check</code>, <code>process-info</code>, <code>battery-status</code>.</p>
+
+<h3>Security &amp; Crypto (15+ tools)</h3>
+<p><code>hash</code> (SHA256/512, MD5), <code>hmac</code>, <code>otp</code>, <code>keygen</code>, <code>entropy</code> check, <code>password-strength</code> analyzer.</p>
+
+<h3>Dev Tools (20+ tools)</h3>
+<p><code>smellfinder</code> — a Python AST-based linter that detects long functions, too many parameters, missing docstrings, and 11 other code smells. <code>project-doctor</code> — scans a project directory and produces a health score with improvement suggestions. <code>license-gen</code> generates MIT/GPL/Apache/BSD/MPL licenses.</p>
+
+<h3>Creative &amp; Fun (15+ tools)</h3>
+<p>ANSI banner generator, rainbow text, Unicode art charts, colorized CSV previews, <code>figlet</code>-style ASCII banners.</p>
+
+<h2>Why Not Just Use BusyBox / Rust Utils?</h2>
+
+<p>Fair question. BusyBox is great — if you're on Linux and have root. Rust CLI tools (fd, bat, ripgrep) are faster — if you're on a platform that has binary releases.</p>
+
+<p>evolver-tools fills a different niche:</p>
+
+<table style="width:100%;border-collapse:collapse;margin-bottom:24px;font-size:14px;">
+  <tr style="border-bottom:1px solid var(--border);">
+    <th style="text-align:left;padding:8px 12px;color:var(--accent);">Scenario</th>
+    <th style="text-align:left;padding:8px 12px;color:var(--accent);">Best Tool</th>
+  </tr>
+  <tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:8px 12px;">Embedded Linux / containers</td>
+    <td style="padding:8px 12px;">BusyBox ✓</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:8px 12px;">Performance-critical pipelines</td>
+    <td style="padding:8px 12px;">Rust CLI tools ✓</td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:8px 12px;">Windows dev machine, no sudo</td>
+    <td style="padding:8px 12px;"><strong>evolver-tools ✓</strong></td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:8px 12px;">CI runner with just Python</td>
+    <td style="padding:8px 12px;"><strong>evolver-tools ✓</strong></td>
+  </tr>
+  <tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:8px 12px;">"I need this tool in 5 seconds"</td>
+    <td style="padding:8px 12px;"><strong>evolver-tools ✓</strong></td>
+  </tr>
+  <tr>
+    <td style="padding:8px 12px;">Locked-down corporate laptop</td>
+    <td style="padding:8px 12px;"><strong>evolver-tools ✓</strong></td>
+  </tr>
+</table>
+
+<p>It's not a replacement for specialized tools. It's a complement — a portable base layer you install once and forget about, until you need it in an environment where installing anything else is a hassle.</p>
+
+<h2>The 9 Flagships</h2>
+
+<p>Among the 254 tools, 9 stand out as "flagships" — tools with full UIs or advanced capabilities:</p>
+
+<ul>
+  <li><strong>sysmon</strong> — curses TUI system monitor (CPU/memory/disk/network/processes)</li>
+  <li><strong>db-mate</strong> — embedded SQLite database manager in the terminal</li>
+  <li><strong>net-analyzer</strong> — network diagnostics with bandwidth tracking</li>
+  <li><strong>markmap</strong> — Markdown outline to interactive mind map</li>
+  <li><strong>csv-stats</strong> — full descriptive statistics with histograms</li>
+  <li><strong>siege-lite</strong> — HTTP load tester with percentile latency reporting</li>
+  <li><strong>smellfinder</strong> — Python AST-based code smell detector (14 rules)</li>
+  <li><strong>project-doctor</strong> — project health scanning and scoring</li>
+  <li><strong>chart-cli</strong> — Unicode chart generator (bar, line, pie, histogram)</li>
+</ul>
+
+<h2>What I Learned</h2>
+
+<p>Building 254 zero-dependency CLI tools taught me a few things I didn't expect:</p>
+
+<p><strong>1. The standard library is underrated.</strong> Most Python developers install packages for things the stdlib handles fine — especially for CLI work. You don't need <code>requests</code> for a simple API call. You don't need <code>rich</code> for colored output. The stdlib is verbose but capable.</p>
+
+<p><strong>2. "Zero dependencies" is a product feature, not just a technical choice.</strong> Users don't care about your architecture. They care about <code>pip install</code> being fast and never breaking their existing setup. Zero deps is the simplest promise you can make.</p>
+
+<p><strong>3. CLI tools are still valuable.</strong> In an era of web dashboards and AI assistants, the terminal remains the most composable, scriptable, and universal interface — if you have the right tools installed.</p>
+
+<p><strong>4. Building is the easy part.</strong> The hard part is getting people to know it exists. But that's a problem for another post.</p>
+
+<h2>Try It</h2>
+
+<div class="cta-box">
+  <p style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">
+    One command. 254 tools. Zero dependencies.
+  </p>
+  <pre style="text-align:center;border:none;background:transparent;margin-bottom:8px;"><code style="font-size:18px;">pip install evolver-tools</code></pre>
+  <p style="margin-bottom:0;">
+    <a href="https://github.com/evolver-dev/evolver-tools" class="cta-link">GitHub</a>
+    &nbsp;·&nbsp;
+    <a href="./cookbook.html" class="cta-link">Cookbook (100 recipes)</a>
+    &nbsp;·&nbsp;
+    <a href="./use-cases.html" class="cta-link">Use Cases</a>
+    &nbsp;·&nbsp;
+    <a href="./pricing.html" class="cta-link">Support the Project</a>
+  </p>
+</div>
+
+<h2>What's Next</h2>
+
+<p>A few things I'm thinking about:</p>
+<ul>
+  <li><strong>More "flagship" tools</strong> — deeper, more polished versions of the most-used tools</li>
+  <li><strong>Automated CI/CD</strong> for test coverage on all tools</li>
+  <li><strong>A web playground</strong> — try evolver-tools commands in the browser without installing</li>
+  <li><strong>Community contributions</strong> — I'd love to see what tools others would add</li>
+</ul>
+
+<p>If you try it and something's broken, missing, or confusing — <a href="https://github.com/evolver-dev/evolver-tools/issues">open an issue</a>. I actually read them all.</p>
+
+<hr style="border:none;border-top:1px solid var(--border);margin:40px 0;">
+
+<p style="color:var(--text-secondary);font-size:14px;">
+  evolver-tools is an open-source project. If you find it useful, consider
+  <a href="./pricing.html">supporting it</a> — every contribution keeps the tools
+  free and maintained.
+</p>
+
+</div>
+</body>
+</html>

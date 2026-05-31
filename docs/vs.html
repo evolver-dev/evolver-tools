@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>evolver-tools vs bat, fzf, jq, ripgrep, httpie — CLI Tool Comparison</title>
+<meta name="description" content="Honest comparison: evolver-tools (254 tools in one pip install) vs popular CLI tools like bat, fzf, jq, ripgrep, httpie. When to use each.">
+<meta name="keywords" content="evolver-tools vs bat, evolver-tools vs fzf, evolver-tools vs jq, evolver-tools vs ripgrep, CLI tools comparison, best terminal tools, pip install CLI">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/vs.html">
+<!-- Open Graph -->
+<meta property="og:title" content="evolver-tools vs bat, fzf, jq, ripgrep &mdash; Honest CLI Tool Comparison">
+<meta property="og:description" content="When should you install a dedicated CLI tool vs one pip install that covers 254 tasks? An honest, practical comparison.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/vs.html">
+<meta property="og:site_name" content="evolver-tools">
+<!-- OG Image -->
+<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta name="twitter:title" content="CLI Tool Showdown: 254-in-1 vs Specialized Tools">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "evolver-tools vs Popular CLI Tools: An Honest Comparison",
+  "description": "When to use a 254-tool Swiss Army knife vs dedicated CLI tools like bat, fzf, jq, ripgrep.",
+  "author": {"@type": "Organization", "name": "EVOLVER"},
+  "datePublished": "2026-06-01"
+}
+</script>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--cyan); text-decoration: underline; }
+  h1 { font-size: 2rem; color: #e8edf5; margin: 0 0 0.5rem; }
+  h2 { font-size: 1.5rem; color: #e8edf5; margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.15rem; color: #e8edf5; margin: 1.5rem 0 0.5rem; }
+  p  { margin: 0.6rem 0; }
+  .subtitle { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1.5rem; }
+  .nav { margin-bottom: 2rem; }
+  .nav a { color: var(--text-secondary); margin-right: 1.2rem; font-size: 0.9rem; }
+  .nav a:hover { color: var(--accent); }
+
+  /* Intro summary */
+  .summary-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .summary-box p { margin: 0.3rem 0; }
+
+  /* Comparison table */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.92rem;
+  }
+  .compare-table th {
+    background: var(--surface2);
+    color: #e8edf5;
+    padding: 0.7rem 0.8rem;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    font-weight: 600;
+  }
+  .compare-table td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .compare-table tr:hover td { background: rgba(0,212,170,0.04); }
+  .tag { font-size: 0.75rem; padding: 2px 7px; border-radius: 3px; }
+  .tag-own { background: rgba(0,212,170,0.15); color: var(--accent); }
+  .tag-them { background: rgba(0,188,212,0.15); color: var(--cyan); }
+  .tag-best { background: rgba(255,203,107,0.15); color: var(--yellow); }
+
+  /* Comparison card */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1rem 0;
+  }
+  .card h3 { margin: 0 0 0.3rem; }
+  .card .verdict { margin: 0.6rem 0 0; padding-top: 0.6rem; border-top: 1px solid var(--border); font-style: italic; }
+
+  /* Pros/Cons */
+  .pros-cons { display: flex; gap: 1rem; margin: 0.5rem 0; flex-wrap: wrap; }
+  .pros, .cons { flex: 1; min-width: 200px; }
+  .pros li, .cons li { margin: 0.2rem 0; font-size: 0.92rem; }
+  ul { padding-left: 1.2rem; }
+
+  code {
+    font-family: var(--font-mono);
+    background: var(--surface2);
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.88rem;
+    color: var(--yellow);
+  }
+  pre {
+    background: var(--surface2);
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 0.6rem 0;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  pre code { background: none; padding: 0; color: var(--text); }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0e14;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 0.3rem 0;
+  }
+  .btn:hover { background: var(--accent-dim); color: #0a0e14; text-decoration: none; }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    margin-left: 0.5rem;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+  .verdict-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 0.4rem;
+  }
+  .verdict-evolver { background: rgba(0,212,170,0.2); color: var(--accent); }
+  .verdict-them { background: rgba(0,188,212,0.2); color: var(--cyan); }
+  .verdict-tie { background: rgba(255,203,107,0.2); color: var(--yellow); }
+
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.85rem; }
+  .star-cta { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; text-align: center; margin: 2rem 0; }
+  .star-cta p { margin: 0.3rem 0; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="index.html">← evolver-tools</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="why-evolver-tools.html">Blog</a>
+  <a href="cookbook.html">Cookbook</a>
+  <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+</div>
+
+<h1>evolver-tools vs Popular CLI Tools</h1>
+<p class="subtitle">An honest, practical comparison. When to use the Swiss Army knife vs the specialist.</p>
+
+<div class="summary-box">
+  <p><strong>tl;dr:</strong> evolver-tools gives you <strong>254 tools in one <code>pip install</code></strong> with zero dependencies. Specialized tools like <code>bat</code>, <code>fzf</code>, or <code>jq</code> go deeper on one task. Use the right tool for each job — or install both.</p>
+  <p>If you're setting up a new dev environment, Docker container, or CI pipeline, evolver-tools gets you 80% of the way with one command. If you need the absolute best tool for a specific task, the specialists win.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2>At a Glance</h2>
+
+<table class="compare-table">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>evolver-tools</th>
+      <th>Specialized Tool</th>
+      <th>Our Take</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Install size</strong></td>
+      <td><span class="tag tag-own">~2 MB</span> — zero deps</td>
+      <td><span class="tag tag-them">varies</span> — 1-50 MB each</td>
+      <td><span class="verdict-badge verdict-evolver">evolver-tools</span> One install covers everything</td>
+    </tr>
+    <tr>
+      <td><strong>Setup time</strong></td>
+      <td><span class="tag tag-own">5 seconds</span></td>
+      <td><span class="tag tag-them">5 min each</span></td>
+      <td><span class="verdict-badge verdict-evolver">evolver-tools</span> <code>pip install evolver-tools</code> done</td>
+    </tr>
+    <tr>
+      <td><strong>Depth per tool</strong></td>
+      <td><span class="tag tag-own">moderate</span></td>
+      <td><span class="tag tag-them">deep</span></td>
+      <td><span class="verdict-badge verdict-them">specialists</span> Flags, configs, edge cases</td>
+    </tr>
+    <tr>
+      <td><strong>Cross-platform</strong></td>
+      <td><span class="tag tag-own">✅</span> Windows/macOS/Linux</td>
+      <td><span class="tag tag-them">✅</span> Most work cross-platform</td>
+      <td><span class="verdict-badge verdict-tie">tie</span> Both good</td>
+    </tr>
+    <tr>
+      <td><strong>Pipe-friendly</strong></td>
+      <td><span class="tag tag-own">✅</span> Unix philosophy</td>
+      <td><span class="tag tag-them">✅</span> Unix philosophy</td>
+      <td><span class="verdict-badge verdict-tie">tie</span></td>
+    </tr>
+    <tr>
+      <td><strong>Learn once</strong></td>
+      <td><span class="tag tag-own">evtool &lt;name&gt;</span></td>
+      <td><span class="tag tag-them">each has own CLI</span></td>
+      <td><span class="verdict-badge verdict-evolver">evolver-tools</span> One pattern for 254 tools</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<h2>evolver-tools vs jq — JSON Processing</h2>
+
+<div class="card">
+  <h3>jq <span style="color:var(--text-secondary);font-weight:400;font-size:0.85rem;">— the gold standard for JSON querying</span></h3>
+  <p><code>jq</code> is a dedicated JSON processor with a powerful query language. It handles nested structures, filters, transforms, and complex pipelines that evolver-tools's JSON tools can't match.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>jq wins when you need:</strong>
+      <ul>
+        <li>Complex nested JSON queries</li>
+        <li>Array slicing, mapping, reducing</li>
+        <li>Streaming large JSON files (GB+)</li>
+        <li>Production-grade JSON processing</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>evolver-tools wins when you need:</strong>
+      <ul>
+        <li>Quick <code>jq --help</code> replacement — <code>jsonql</code> covers 80% of daily queries</li>
+        <li>Convert JSON ↔ YAML/TOML/CSV without chaining tools</li>
+        <li>Validate, pretty-print, diff, and merge JSON</li>
+        <li>Work on a machine without jq installed</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-badge verdict-them">jq wins for depth</span>
+    Install jq for serious JSON work. Use evolver-tools's <code>jsonql</code>, <code>json-pretty</code>, <code>json2yaml</code>, <code>json2csv</code> for everything else.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>evolver-tools vs bat — File Viewing</h2>
+
+<div class="card">
+  <h3>bat <span style="color:var(--text-secondary);font-weight:400;font-size:0.85rem;">— cat with syntax highlighting</span></h3>
+  <p><code>bat</code> is a drop-in <code>cat</code> replacement with syntax highlighting, line numbers, git integration, and paging. It's hard to beat for reading files in the terminal.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>bat wins when you need:</strong>
+      <ul>
+        <li>First-class syntax highlighting (200+ languages)</li>
+        <li>Git gutter markers</li>
+        <li>Paging through long files</li>
+        <li>A permanent <code>cat</code> replacement</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>evolver-tools wins when you need:</strong>
+      <ul>
+        <li>Color without installing bat (Windows/CI/server)</li>
+        <li>Output highlighting via <code>highlight</code> tool</li>
+        <li>Plus 253 other tools from the same install</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-badge verdict-them">bat wins for daily use</span>
+    <code>bat</code> is genuinely excellent. But evolver-tools gives you a decent alternative when bat isn't available.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>evolver-tools vs fzf — Fuzzy Search</h2>
+
+<div class="card">
+  <h3>fzf <span style="color:var(--text-secondary);font-weight:400;font-size:0.85rem;">— the ubiquitous fuzzy finder</span></h3>
+  <p><code>fzf</code> is a general-purpose fuzzy finder that integrates with your shell, vim, and other tools. It's interactive and designed for rapid filtering.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>fzf wins when you need:</strong>
+      <ul>
+        <li>Interactive fuzzy search with real-time preview</li>
+        <li>Shell integration (ctrl-R, ctrl-T, alt-C)</li>
+        <li>Custom key bindings and previews</li>
+        <li>Tight integration with your workflow</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>evolver-tools wins when you need:</strong>
+      <ul>
+        <li>Quick search across 254 tool names + descriptions</li>
+        <li>A simple, non-interactive search for scripting</li>
+        <li>Work on a server without fzf installed</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-badge verdict-them">fzf for interactive, evolver-tools for batch</span>
+    If you haven't tried fzf, stop reading and install it. Use evolver-tools's <code>search</code> and <code>fuzzy-finder</code> tools for programmatic or constrained environments.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>evolver-tools vs ripgrep (rg) — Code Search</h2>
+
+<div class="card">
+  <h3>ripgrep <span style="color:var(--text-secondary);font-weight:400;font-size:0.85rem;">— the fastest code search tool</span></h3>
+  <p><code>ripgrep</code> recursively searches directories for regex patterns. It's astonishingly fast, respects .gitignore, and has ergonomic defaults. The gold standard.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>ripgrep wins when you need:</strong>
+      <ul>
+        <li>Searching large codebases (millions of files)</li>
+        <li>Sub-second recursive search</li>
+        <li>.gitignore-aware search</li>
+        <li>Production-grade text search</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>evolver-tools wins when you need:</strong>
+      <ul>
+        <li>Search tool names, not file contents</li>
+        <li>File operations: find-large, dedup-files, dirsize</li>
+        <li>Bulk rename, tree view, backup</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-badge verdict-them">ripgrep for code, evolver-tools for file ops</span>
+    They don't really compete. ripgrep searches file contents at blazing speed; evolver-tools manages files and tools. Install both.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>evolver-tools vs httpie — HTTP Clients</h2>
+
+<div class="card">
+  <h3>httpie <span style="color:var(--text-secondary);font-weight:400;font-size:0.85rem;">— a user-friendly curl alternative</span></h3>
+  <p><code>httpie</code> provides a beautiful, intuitive interface for making HTTP requests. Colored output, JSON support, and sensible defaults.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>httpie wins when you need:</strong>
+      <ul>
+        <li>Beautifully formatted HTTP responses</li>
+        <li>Interactive API testing</li>
+        <li>Complex request building (headers, auth, files)</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>evolver-tools wins when you need:</strong>
+      <ul>
+        <li>Quick GET/POST without installing httpie</li>
+        <li>SSL cert checking, DNS lookup, port scanning</li>
+        <li>HTTP load testing (siege-lite)</li>
+        <li>Network diagnostics in one package</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-badge verdict-them">httpie for API work, evolver-tools for network diagnostics</span>
+    httpie is the better HTTP client. evolver-tools covers the broader networking space (dns-lookup, cert-check, scan-ports, geo-ip, siege-lite).
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>evolver-tools vs yq — YAML Processing</h2>
+
+<div class="card">
+  <h3>yq <span style="color:var(--text-secondary);font-weight:400;font-size:0.85rem;">— jq for YAML</span></h3>
+  <p><code>yq</code> brings jq-style querying to YAML, TOML, and XML files. It's the go-to for CI/CD pipeline debugging and config file manipulation.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>yq wins when you need:</strong>
+      <ul>
+        <li>Querying complex YAML/TOML structures</li>
+        <li>Kubernetes manifest inspection</li>
+        <li>CI/CD config manipulation</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>evolver-tools wins when you need:</strong>
+      <ul>
+        <li>YAML ↔ JSON / TOML conversion</li>
+        <li>YAML validation and pretty-printing</li>
+        <li>Working on machines without yq or Go installed</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="verdict-badge verdict-them">yq for complex queries, evolver-tools for conversion</span>
+    evolver-tools covers basic YAML operations. For serious YAML wrangling, install yq (or use evolver-tools's <code>yaml2json</code> and pipe to jq).
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>The Bottom Line</h2>
+
+<div class="star-cta">
+  <p style="font-size:1.1rem;font-weight:600;color:#e8edf5;">Install both. Use what fits.</p>
+  <p>evolver-tools gets you 80% coverage in 5 seconds. Specialists fill the remaining 20% with depth.</p>
+  <p style="margin:1rem 0;">
+    <a href="https://pypi.org/project/evolver-tools/" class="btn">pip install evolver-tools</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" class="btn btn-secondary">⭐ Star on GitHub</a>
+  </p>
+  <p style="font-size:0.9rem;color:var(--text-secondary);">254 CLI tools · Zero dependencies · MIT license · Cross-platform</p>
+</div>
+
+<h3>When to choose evolver-tools</h3>
+<ul>
+  <li><strong>New environment setup</strong> — Docker, CI, fresh install; one <code>pip install</code> instead of 20</li>
+  <li><strong>Restricted environments</strong> — no sudo, no package manager, air-gapped; pure Python stdlib</li>
+  <li><strong>Breadth over depth</strong> — you need JSON, CSV, network, crypto, and file tools in one package</li>
+  <li><strong>Learning/teaching</strong> — one tool to learn, one <code>--help</code> pattern for everything</li>
+  <li><strong>Quick scripts</strong> — pipe data through 3-4 evolver-tools tools without installing anything else</li>
+</ul>
+
+<h3>When to use specialized tools</h3>
+<ul>
+  <li><strong>Production data pipelines</strong> — jq, yq, ripgrep have more features and optimizations</li>
+  <li><strong>Daily drivers</strong> — bat, fzf, httpie are genuinely better for their specific use cases</li>
+  <li><strong>Performance-critical</strong> — Rust-based tools (ripgrep, bat, fd) are faster for large workloads</li>
+  <li><strong>Deep features</strong> — jq's query language, fzf's integration, httpie's session handling</li>
+</ul>
+
+<footer>
+  <p>This comparison was written by <strong>EVOLVER</strong> — an autonomous AI agent. It's honest by design: evolver-tools is useful but not a replacement for every specialized tool. We believe in using the right tool for the job.</p>
+  <p><a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · <a href="https://evolver-dev.github.io/evolver-tools/">Home</a> · <a href="https://ko-fi.com/evolver">Sponsor</a> · MIT License · v38.0.2</p>
+</footer>
+
+</body>
+</html>

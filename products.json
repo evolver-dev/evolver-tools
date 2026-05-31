@@ -1,264 +1,178 @@
-{
-  "version": "1.4.0",
-  "tool_count": 32,
-  "zero_dep_count": 31,
-  "description": "32 essential CLI tools — one pip install. Zero-dependency Python tools for developers.",
-  "tools": [
-    {
-      "name": "b64",
-      "desc": "Base64 encode/decode with auto-detection",
-      "price_cny": 0,
-      "tags": ["developer", "encoding"],
-      "zero_dep": true,
-      "tier": "free"
+[
+  {
+    "name": "evolver-tools",
+    "version": "35.0.0",
+    "tools": 249,
+    "flagships": 9,
+    "total_lines": 20500,
+    "price": 79,
+    "description": "249 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/35.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 249 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
     },
-    {
-      "name": "cal",
-      "desc": "Terminal calendar & date calculator",
-      "price_cny": 0,
-      "tags": ["productivity", "dates"],
-      "zero_dep": true,
-      "tier": "free"
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v35": [
+      "merge-json — Deep merge multiple JSON files (arrays concatenate, dicts recurse)",
+      "validate — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)",
+      "diff-lines — Line-by-line diff between two files (color output, side-by-side)",
+      "csv-schema — Infer CSV schema (column types, nulls, stats, samples)",
+      "chrono — Advanced date/time calculator (durations, workdays, ranges, age)"
+    ]
+  },
+  {
+    "name": "evolver-tools",
+    "version": "34.0.0",
+    "tools": 244,
+    "flagships": 9,
+    "total_lines": 19500,
+    "price": 79,
+    "description": "244 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/34.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 244 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
     },
-    {
-      "name": "chart-cli",
-      "desc": "Terminal chart generator — bar, line, pie histograms",
-      "price_cny": 0,
-      "tags": ["data", "visualization"],
-      "zero_dep": true,
-      "tier": "free"
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v34": [
+      "emoji-cli — Search and display emoji (230+ emoji, categories, --random)",
+      "html-strip — Strip HTML tags, extract plain text (stdin/file, --preserve-links)",
+      "json-patch — Apply JSON Patch (RFC 6902) operations to JSON files",
+      "markdown-format — Format/beautify Markdown tables and lists",
+      "ansi-to-txt — Strip ANSI escape codes, convert to plain text"
+    ]
+  },
+  {
+    "name": "evolver-tools",
+    "version": "31.0.0",
+    "tools": 238,
+    "flagships": 9,
+    "total_lines": 17200,
+    "price": 79,
+    "description": "238 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/31.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 238 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
     },
-    {
-      "name": "colors",
-      "desc": "256-color table, HEX↔RGB conversion, color picker",
-      "price_cny": 0,
-      "tags": ["developer", "design"],
-      "zero_dep": true,
-      "tier": "free"
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v31": [
+      "find-empty — Find empty directories and files",
+      "mac-address — Generate and lookup MAC addresses",
+      "csv-filter — Filter CSV rows by column value",
+      "file-patch — Apply text patches to files (find/replace)",
+      "env-sorter — Sort environment variables in .env files"
+    ]
+  },
+  {
+    "name": "evolver-tools",
+    "version": "30.0.0",
+    "tools": 233,
+    "flagships": 9,
+    "total_lines": 15800,
+    "price": 79,
+    "description": "233 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/30.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 233 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
     },
-    {
-      "name": "csv-stats",
-      "desc": "Column analysis, histograms, frequency tables, correlation matrix",
-      "price_cny": 30,
-      "tags": ["data", "analysis"],
-      "zero_dep": true,
-      "tier": "pro"
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v30": [
+      "csv-to-table — Convert CSV data to formatted table output",
+      "json-to-table — Convert JSON data to formatted table output",
+      "dedup-files — Remove duplicate files from a directory",
+      "text-wrap — Wrap text to a specified width",
+      "slugify — Convert text to URL-friendly slugs"
+    ],
+    "features": [
+      "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
+      "233 total CLI tools",
+      "Zero external dependencies across all tools",
+      "Auto-registration architecture (zero merge conflicts)",
+      "Cross-platform (Linux, macOS, Windows)",
+      "Single pip install — no version conflicts"
+    ]
+  },
+  {
+    "name": "evolver-tools",
+    "version": "29.0.0",
+    "tools": 228,
+    "flagships": 9,
+    "total_lines": 15800,
+    "price": 79,
+    "description": "228 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/29.0.0/",
+    "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
+    "pricing_model": {
+      "free": "All 228 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
+      "enterprise": {
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
+      }
     },
-    {
-      "name": "dirsize",
-      "desc": "Recursive directory size analyzer with sorting",
-      "price_cny": 0,
-      "tags": ["system", "storage"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "dt",
-      "desc": "Date/time format conversions, timestamps, timezone offsets",
-      "price_cny": 0,
-      "tags": ["developer", "dates"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "envcheck",
-      "desc": "Environment variable validator — missing keys, formats, types",
-      "price_cny": 0,
-      "tags": ["devops", "config"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "ff",
-      "desc": "Fuzzy finder — curses TUI, search files/history/anything",
-      "price_cny": 30,
-      "tags": ["productivity", "search"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "find-dups",
-      "desc": "Find duplicate files by hash, size, or name",
-      "price_cny": 30,
-      "tags": ["system", "storage"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "hashsum",
-      "desc": "File hash verification — MD5, SHA-1/256/512, BLAKE2, auto-detect",
-      "price_cny": 0,
-      "tags": ["security", "developer"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "http-live",
-      "desc": "SSE hot-reload HTTP server — live reload for development",
-      "price_cny": 30,
-      "tags": ["developer", "web"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "ipinfo",
-      "desc": "Public IP & geolocation lookup (ip-api.com)",
-      "price_cny": 0,
-      "tags": ["network", "developer"],
-      "zero_dep": false,
-      "tier": "free"
-    },
-    {
-      "name": "jq-lite",
-      "desc": "jq-style JSON query — filter, extract, transform",
-      "price_cny": 0,
-      "tags": ["developer", "json"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "json2csv",
-      "desc": "JSON to CSV converter with nested key flattening",
-      "price_cny": 0,
-      "tags": ["developer", "data"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "jsonql",
-      "desc": "SQL-like JSON query: SELECT, WHERE, GROUP BY, ORDER",
-      "price_cny": 0,
-      "tags": ["developer", "json"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "license-cli",
-      "desc": "License key generator/validator with configurable rules",
-      "price_cny": 0,
-      "tags": ["developer", "security"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "markdown-check",
-      "desc": "Markdown linter — broken links, style issues, structure",
-      "price_cny": 0,
-      "tags": ["developer", "writing"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "nb",
-      "desc": "Command-line notebook — JSON-backed, full-text search",
-      "price_cny": 0,
-      "tags": ["productivity", "notes"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "passgen",
-      "desc": "Password generator — customizable length, charset, rules",
-      "price_cny": 0,
-      "tags": ["security", "developer"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "portcheck",
-      "desc": "Port scanner — TCP connect scan, range, service detection",
-      "price_cny": 0,
-      "tags": ["network", "security"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "project-doctor",
-      "desc": "Project health check — meta files, structure, code quality",
-      "price_cny": 30,
-      "tags": ["developer", "quality"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "ren",
-      "desc": "Batch file renamer — prefix/suffix/replace/regex/number",
-      "price_cny": 0,
-      "tags": ["productivity", "files"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "siege-lite",
-      "desc": "HTTP load tester — concurrency, latency, throughput stats",
-      "price_cny": 30,
-      "tags": ["network", "testing"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "smellfinder",
-      "desc": "Python code smell detector — AST analysis, 10+ patterns",
-      "price_cny": 30,
-      "tags": ["developer", "quality"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "sqlite-cli",
-      "desc": "SQLite database query tool — CSV/JSON/table output",
-      "price_cny": 30,
-      "tags": ["developer", "data"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "sysmon",
-      "desc": "Real-time system monitor — CPU/mem/disk/net/processes",
-      "price_cny": 30,
-      "tags": ["system", "monitoring"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "timer",
-      "desc": "Countdown timer & stopwatch with desktop notifications",
-      "price_cny": 0,
-      "tags": ["productivity"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "treedir",
-      "desc": "Tree-style directory listing with depth control",
-      "price_cny": 0,
-      "tags": ["files", "system"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "urlparse",
-      "desc": "URL parser & builder — extract/manipulate URL components",
-      "price_cny": 0,
-      "tags": ["developer", "web"],
-      "zero_dep": true,
-      "tier": "free"
-    },
-    {
-      "name": "web-summary",
-      "desc": "Web page extractor — title, body text, links, keywords",
-      "price_cny": 30,
-      "tags": ["network", "data"],
-      "zero_dep": true,
-      "tier": "pro"
-    },
-    {
-      "name": "wordcount",
-      "desc": "Word/char/line counter with language detection",
-      "price_cny": 0,
-      "tags": ["productivity", "writing"],
-      "zero_dep": true,
-      "tier": "free"
-    }
-  ]
-}
+    "released": "2026-06-01",
+    "stars": 0,
+    "pypi_downloads_weekly": 0,
+    "new_in_v29": [
+      "csv-slice — Extract columns/rows from CSV files by index or name",
+      "json-sort — Sort JSON keys alphabetically, recursively",
+      "text-dedent — Remove common leading whitespace from text",
+      "random-string — Generate random strings (hex/pin/uuid/base64/alphanumeric)",
+      "http-status — Look up HTTP status code meanings (search/list/lookup)"
+    ],
+    "features": [
+      "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
+      "228 total CLI tools",
+      "Zero external dependencies across all tools",
+      "Auto-registration architecture (zero merge conflicts)",
+      "Cross-platform (Linux, macOS, Windows)",
+      "Single pip install — no version conflicts"
+    ]
+  }
+]
