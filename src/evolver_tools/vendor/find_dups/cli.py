@@ -393,7 +393,7 @@ def main(argv: list[str] | None = None) -> int:
 TOOL_META = {
     "name": "find-dups",
     "func": "main",
-    "desc": 'Find Dups',
+    "desc": 'Find duplicate files by SHA256 hash, size, or name',
 }
 
 if __name__ == "__main__":

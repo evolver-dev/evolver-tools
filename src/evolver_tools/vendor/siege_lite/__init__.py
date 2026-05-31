@@ -251,7 +251,7 @@ def main():
 TOOL_META = {
     "name": "siege-lite",
     "func": "main",
-    "desc": 'Siege Lite',
+    "desc": 'HTTP load tester (concurrency, latency percentile)',
 }
 
 if __name__ == '__main__':

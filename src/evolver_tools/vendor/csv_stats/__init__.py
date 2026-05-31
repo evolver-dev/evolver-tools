@@ -8,6 +8,6 @@ __license__ = "MIT"
 TOOL_META = {
     "name": "csv-stats",
     "func": "main",
-    "desc": 'csv-stats',
+    "desc": 'CSV column analysis with histograms and correlations',
     "submodule": "cli",
 }

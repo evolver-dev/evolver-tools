@@ -236,7 +236,7 @@ def main(argv: list[str] | None = None) -> int:
 TOOL_META = {
     "name": "uuid",
     "func": "main",
-    "desc": 'UUID generator',
+    "desc": 'UUID v1/v4/v5/v7 generator',
 }
 
 if __name__ == "__main__":

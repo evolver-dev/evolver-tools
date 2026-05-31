@@ -243,7 +243,7 @@ def main():
 TOOL_META = {
     "name": "env-manager",
     "func": "main",
-    "desc": '.env file manager',
+    "desc": 'Environment variable manager for .env files',
 }
 
 if __name__ == "__main__":

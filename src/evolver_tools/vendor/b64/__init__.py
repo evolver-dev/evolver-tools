@@ -5,5 +5,5 @@ from .b64 import *
 TOOL_META = {
     "name": "b64",
     "func": "main",
-    "desc": 'b64',
+    "desc": 'Base64 encode/decode with auto-detection',
 }

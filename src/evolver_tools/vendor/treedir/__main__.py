@@ -129,7 +129,7 @@ def main():
 TOOL_META = {
     "name": "treedir",
     "func": "main",
-    "desc": 'Treedir',
+    "desc": 'Directory tree visualizer',
 }
 
 if __name__ == "__main__":

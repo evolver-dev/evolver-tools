@@ -8,5 +8,5 @@ __all__ = ['hex_to_rgb', 'rgb_to_hex', 'hsl_to_rgb', 'show_256', 'show_basic', '
 TOOL_META = {
     "name": "colors",
     "func": "main",
-    "desc": 'Colors',
+    "desc": '256-color table, HEX/RGB conversion, terminal colors',
 }

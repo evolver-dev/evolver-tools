@@ -212,7 +212,7 @@ Examples:
 TOOL_META = {
     "name": "hashsum",
     "func": "main",
-    "desc": 'Hashsum',
+    "desc": 'File hash verification (MD5/SHA-1/256/512/BLAKE2)',
 }
 
 if __name__ == "__main__":

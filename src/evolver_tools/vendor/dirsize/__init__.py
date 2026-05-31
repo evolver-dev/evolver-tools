@@ -184,7 +184,7 @@ def parse_size(s: str) -> int:
 TOOL_META = {
     "name": "dirsize",
     "func": "entry",
-    "desc": 'Dirsize',
+    "desc": 'Recursive directory space analyzer',
 }
 
 if __name__ == "__main__":

@@ -124,7 +124,7 @@ def main():
 TOOL_META = {
     "name": "dt",
     "func": "main",
-    "desc": 'Dt',
+    "desc": 'Date/time format converter (timestamps, timezones)',
 }
 
 if __name__ == '__main__':

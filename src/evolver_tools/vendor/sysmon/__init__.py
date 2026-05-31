@@ -306,7 +306,7 @@ def entry():
 TOOL_META = {
     "name": "sysmon",
     "func": "entry",
-    "desc": 'Sysmon',
+    "desc": 'Real-time system monitor (curses TUI)',
 }
 
 if __name__ == '__main__':

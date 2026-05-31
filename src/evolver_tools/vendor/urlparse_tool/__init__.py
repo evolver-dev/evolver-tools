@@ -6,6 +6,6 @@ __version__ = "0.1.0"
 TOOL_META = {
     "name": "urlparse",
     "func": "main",
-    "desc": 'URL Parse',
+    "desc": 'URL parser and debugger',
     "submodule": "cli",
 }

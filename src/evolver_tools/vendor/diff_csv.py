@@ -196,7 +196,7 @@ def main():
 TOOL_META = {
     "name": "diff-csv",
     "func": "main",
-    "desc": 'Diff two CSV files',
+    "desc": 'Row-level diff of CSV files by key column',
 }
 
 if __name__ == "__main__":

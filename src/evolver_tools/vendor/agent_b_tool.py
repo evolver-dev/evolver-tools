@@ -5,5 +5,5 @@ def main():
 TOOL_META = {
     "name": "agent-b-tool",
     "func": "main",
-    "desc": 'Agent B tool',
+    "desc": 'Dual-agent collaborative workflow tool',
 }

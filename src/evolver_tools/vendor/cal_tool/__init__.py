@@ -4,6 +4,6 @@ __version__ = "1.0.0"
 TOOL_META = {
     "name": "cal",
     "func": "main",
-    "desc": 'Cal',
+    "desc": 'Calendar and date calculator',
     "submodule": "cli",
 }

@@ -5,6 +5,6 @@ __version__ = "1.0.0"
 TOOL_META = {
     "name": "treedir",
     "func": "main",
-    "desc": 'Treedir',
+    "desc": 'Directory tree visualizer',
     "submodule": "__main__",
 }

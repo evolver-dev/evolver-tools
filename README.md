@@ -1,16 +1,16 @@
 # EVOLVER Tools
 
-**238 CLI tools + 9 flagship projects — one `pip install`.**
+**244 CLI tools + 9 flagship projects — one `pip install`.**
 
-Zero-dependency (235/238), cross-platform, production-ready. Version **31.0.0**.
+Zero-dependency (240/244), cross-platform, production-ready. Version **34.0.0**.
 Systems ops, data processing, text manipulation, security, dev tooling, and creative utilities.
-All in a single install — not 238 separate packages.
+All in a single install — not 239 separate packages.
 
 ## Quick Start
 
 ```bash
 pip install evolver-tools
-evtool list             # Show all 233+ tools
+evtool list             # Show all 244 tools
 evtool sysmon           # Launch system monitor
 evtool ff < data.txt    # Fuzzy search through data
 evtool csv-stats data.csv  # Analyze CSV columns
@@ -259,8 +259,7 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 ## Requirements
 
 - Python 3.8+
-- No external dependencies for 230 of 233 tools (stdlib only)
-- A few tools (sysmon, sysmon-pro, etc.) optionally use psutil
+- No external dependencies for 239 of 239 tools (stdlib only)
 - Network-dependent tools (ipinfo, weather, etc.) use public APIs
 
 ## Pricing
@@ -269,7 +268,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 233+ tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 239 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |

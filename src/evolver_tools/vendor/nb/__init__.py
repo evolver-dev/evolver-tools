@@ -320,7 +320,7 @@ def main():
 TOOL_META = {
     "name": "nb",
     "func": "main",
-    "desc": 'nb',
+    "desc": 'Command-line notebook with full-text search',
 }
 
 if __name__ == '__main__':

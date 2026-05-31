@@ -213,7 +213,7 @@ def main() -> None:
 TOOL_META = {
     "name": "urlparse",
     "func": "main",
-    "desc": 'URL Parse',
+    "desc": 'URL parser and debugger',
 }
 
 if __name__ == "__main__":

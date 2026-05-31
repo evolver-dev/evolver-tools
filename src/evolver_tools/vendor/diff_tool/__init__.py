@@ -220,5 +220,5 @@ def main():
 TOOL_META = {
     "name": "diff",
     "func": "main",
-    "desc": 'File comparator',
+    "desc": 'File comparison and diff tool',
 }

@@ -284,7 +284,7 @@ def main():
 TOOL_META = {
     "name": "ren",
     "func": "main",
-    "desc": 'Ren',
+    "desc": 'Batch file renamer (prefix/suffix/regex/numbering)',
 }
 
 if __name__ == '__main__':

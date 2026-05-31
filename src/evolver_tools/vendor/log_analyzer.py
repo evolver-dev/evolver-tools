@@ -277,7 +277,7 @@ Examples:
 TOOL_META = {
     "name": "log-analyzer",
     "func": "main",
-    "desc": 'Log file analyzer',
+    "desc": 'Log file pattern analyzer and statistics',
 }
 
 if __name__ == '__main__':

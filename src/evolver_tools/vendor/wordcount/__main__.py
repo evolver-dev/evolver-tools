@@ -102,7 +102,7 @@ def main():
 TOOL_META = {
     "name": "wordcount",
     "func": "main",
-    "desc": 'Wordcount',
+    "desc": 'Enhanced wc with language detection',
 }
 
 if __name__ == "__main__":

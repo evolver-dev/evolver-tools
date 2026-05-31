@@ -128,7 +128,7 @@ def parse_args():
 TOOL_META = {
     "name": "timer",
     "func": "entry",
-    "desc": 'Timer',
+    "desc": 'Countdown timer and stopwatch',
 }
 
 if __name__ == "__main__":

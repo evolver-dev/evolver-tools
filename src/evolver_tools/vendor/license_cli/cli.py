@@ -290,7 +290,7 @@ def main():
 TOOL_META = {
     "name": "license-cli",
     "func": "main",
-    "desc": 'License CLI',
+    "desc": 'Open-source license generator and validator',
 }
 
 if __name__ == "__main__":

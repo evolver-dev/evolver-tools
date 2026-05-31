@@ -10,6 +10,6 @@ __version__ = "1.0.0"
 TOOL_META = {
     "name": "find-dups",
     "func": "main",
-    "desc": 'Find Dups',
+    "desc": 'Find duplicate files by SHA256 hash, size, or name',
     "submodule": "cli",
 }

@@ -14,21 +14,21 @@ from evolver_tools.autoreg import auto_discover
 def list_tools():
     """Display all available tools."""
     tools = auto_discover()
-    print(f'\x1b[1;36m===== EVOLVER Tools v31.0.0 =====\x1b[0m')
+    print(f'\x1b[1;36m===== EVOLVER Tools v34.0.0 =====\x1b[0m')
     print()
     for name, info in sorted(tools.items()):
         print(f'  \033[1;33m{name:<18}\033[0m {info["desc"]}')
     print()
     print(f'  Total: {len(tools)} tools')
     print()
-    print('Usage: evolver <toolname> [args...]')
-    print('       evolver list')
+    print('Usage: evtool <toolname> [args...]')
+    print('       evtool list')
 
 
 def run_tool(tool_name, args):
     tools = auto_discover()
     if tool_name not in tools:
-        print(f'Unknown tool: {tool_name}')
+        print(f'Unknown tool: {tool_name}. Use \"evtool list\" to see all tools.')
         sys.exit(1)
     info = tools[tool_name]
     mod_path = info["module"]

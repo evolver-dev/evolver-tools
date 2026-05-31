@@ -67,7 +67,7 @@ def main():
 TOOL_META = {
     "name": "portcheck",
     "func": "main",
-    "desc": 'Portcheck',
+    "desc": 'TCP port scanner and service detection',
 }
 
 if __name__ == "__main__":

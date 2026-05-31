@@ -225,7 +225,7 @@ def parse_args():
 TOOL_META = {
     "name": "passgen",
     "func": "entry",
-    "desc": 'Passgen',
+    "desc": 'Password and passphrase generator with entropy display',
 }
 
 if __name__ == "__main__":

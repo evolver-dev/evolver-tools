@@ -5,6 +5,6 @@ __version__ = "1.0.0"
 TOOL_META = {
     "name": "wordcount",
     "func": "main",
-    "desc": 'Wordcount',
+    "desc": 'Enhanced wc with language detection',
     "submodule": "__main__",
 }

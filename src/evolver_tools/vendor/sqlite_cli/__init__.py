@@ -327,7 +327,7 @@ Examples:
 TOOL_META = {
     "name": "sqlite-cli",
     "func": "main",
-    "desc": 'Sqlite CLI',
+    "desc": 'SQLite query tool with CSV/JSON/table output',
 }
 
 if __name__ == "__main__":

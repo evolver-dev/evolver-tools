@@ -156,7 +156,7 @@ def main():
 TOOL_META = {
     "name": "ipcalc",
     "func": "main",
-    "desc": 'IP/CIDR calculator',
+    "desc": 'IP address and subnet calculator',
 }
 
 if __name__ == "__main__":

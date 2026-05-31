@@ -235,7 +235,7 @@ def main():
 TOOL_META = {
     "name": "cal",
     "func": "main",
-    "desc": 'Cal',
+    "desc": 'Calendar and date calculator',
 }
 
 if __name__ == "__main__":

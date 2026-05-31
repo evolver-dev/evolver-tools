@@ -445,7 +445,7 @@ def main():
 TOOL_META = {
     "name": "chart-cli",
     "func": "main",
-    "desc": 'Chart CLI',
+    "desc": 'Terminal chart generator (bar, line, pie, histogram)',
 }
 
 if __name__ == '__main__':

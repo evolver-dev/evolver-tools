@@ -342,7 +342,7 @@ def main():
 TOOL_META = {
     "name": "web-summary",
     "func": "main",
-    "desc": 'Web Summary',
+    "desc": 'Web page content extractor (title, body, links)',
 }
 
 if __name__ == '__main__':

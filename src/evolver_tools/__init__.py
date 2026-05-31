@@ -1,4 +1,4 @@
-"""evolver-tools: 23 CLI tools in one package."""
-__version__ = "27.0.1"
+"""evolver-tools: 244 CLI tools + 9 flagship projects — one pip install."""
+__version__ = "34.0.0"
 
 from .autoreg import auto_discover

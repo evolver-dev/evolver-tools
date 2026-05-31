@@ -428,7 +428,7 @@ Examples:
 TOOL_META = {
     "name": "ff",
     "func": "main",
-    "desc": 'Fuzzy Finder',
+    "desc": 'Interactive fuzzy finder (pure Python curses TUI)',
 }
 
 if __name__ == "__main__":

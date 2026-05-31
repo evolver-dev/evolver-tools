@@ -6,5 +6,5 @@ __all__ = ['main']
 TOOL_META = {
     "name": "ipinfo",
     "func": "main",
-    "desc": 'Ipinfo',
+    "desc": 'Public IP and geolocation lookup',
 }

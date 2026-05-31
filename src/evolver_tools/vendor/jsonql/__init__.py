@@ -327,7 +327,7 @@ def main(argv: list = None) -> int:
 TOOL_META = {
     "name": "jsonql",
     "func": "main",
-    "desc": 'JSONQL',
+    "desc": 'SQL-like JSON query engine',
 }
 
 if __name__ == '__main__':

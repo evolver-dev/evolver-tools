@@ -84,7 +84,7 @@ def main():
 TOOL_META = {
     "name": "xml2json",
     "func": "main",
-    "desc": 'Convert XML to JSON',
+    "desc": 'XML to JSON converter',
 }
 
 if __name__ == '__main__':

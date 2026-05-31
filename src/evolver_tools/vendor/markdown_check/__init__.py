@@ -212,7 +212,7 @@ def main():
 TOOL_META = {
     "name": "markdown-check",
     "func": "main",
-    "desc": 'Markdown Check',
+    "desc": 'Markdown link and structure checker',
 }
 
 if __name__ == "__main__":

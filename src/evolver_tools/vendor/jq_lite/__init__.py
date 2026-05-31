@@ -258,7 +258,7 @@ Examples:
 TOOL_META = {
     "name": "jq-lite",
     "func": "main",
-    "desc": 'Jq Lite',
+    "desc": 'jq-style JSON filter and extract tool',
 }
 
 if __name__ == "__main__":

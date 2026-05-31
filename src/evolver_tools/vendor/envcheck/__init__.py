@@ -427,7 +427,7 @@ def main():
 TOOL_META = {
     "name": "envcheck",
     "func": "main",
-    "desc": 'Envcheck',
+    "desc": 'Environment variable validator (missing keys, formats)',
 }
 
 if __name__ == "__main__":

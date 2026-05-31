@@ -266,7 +266,7 @@ Examples:
 TOOL_META = {
     "name": "http-live",
     "func": "main",
-    "desc": 'HTTP Live Server',
+    "desc": 'SSE hot-reload development HTTP server',
 }
 
 if __name__ == "__main__":

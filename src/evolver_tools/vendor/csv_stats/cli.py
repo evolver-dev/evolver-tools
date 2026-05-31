@@ -46,7 +46,7 @@ def main():
 TOOL_META = {
     "name": "csv-stats",
     "func": "main",
-    "desc": 'csv-stats',
+    "desc": 'CSV column analysis with histograms and correlations',
 }
 
 if __name__ == "__main__":

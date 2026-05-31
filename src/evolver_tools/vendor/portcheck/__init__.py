@@ -5,6 +5,6 @@ __version__ = "1.0.0"
 TOOL_META = {
     "name": "portcheck",
     "func": "main",
-    "desc": 'Portcheck',
+    "desc": 'TCP port scanner and service detection',
     "submodule": "__main__",
 }

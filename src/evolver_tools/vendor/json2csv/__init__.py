@@ -6,5 +6,5 @@ __all__ = ['main']
 TOOL_META = {
     "name": "json2csv",
     "func": "main",
-    "desc": 'Json2Csv',
+    "desc": 'JSON to CSV converter with nested key flattening',
 }

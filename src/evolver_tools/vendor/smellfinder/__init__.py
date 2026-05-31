@@ -377,7 +377,7 @@ def main():
 TOOL_META = {
     "name": "smellfinder",
     "func": "main",
-    "desc": 'Smellfinder',
+    "desc": 'Python code smell detector (AST-based, 10+ patterns)',
 }
 
 if __name__ == '__main__':

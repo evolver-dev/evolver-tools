@@ -413,7 +413,7 @@ def main():
 TOOL_META = {
     "name": "project-doctor",
     "func": "main",
-    "desc": 'Project Doctor',
+    "desc": 'Project health checker (meta, structure, quality)',
 }
 
 if __name__ == '__main__':

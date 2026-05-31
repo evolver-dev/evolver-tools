@@ -5,5 +5,5 @@ from .fmt import *
 TOOL_META = {
     "name": "fmt",
     "func": "main",
-    "desc": 'Code/text formatter',
+    "desc": 'Code and text auto-formatter (whitespace, indent, EOF)',
 }

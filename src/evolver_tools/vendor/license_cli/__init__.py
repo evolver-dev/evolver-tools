@@ -4,6 +4,6 @@
 TOOL_META = {
     "name": "license-cli",
     "func": "main",
-    "desc": 'License CLI',
+    "desc": 'Open-source license generator and validator',
     "submodule": "cli",
 }
