@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EVOLVER Tools — 262 CLI Tools Cheat Sheet</title>
+<meta name="description" content="Complete cheat sheet for evolver-tools: 262 CLI tools organized by category. One pip install, zero dependencies.">
+<meta property="og:title" content="EVOLVER Tools Cheat Sheet — 262 CLI Tools">
+<meta property="og:description" content="Complete cheat sheet for evolver-tools: 262 CLI tools organized by category. One pip install, zero dependencies.">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg2: #161b22;
+  --bg3: #1c2333;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --accent: #58a6ff;
+  --green: #3fb950;
+  --orange: #d29922;
+  --red: #f85149;
+  --purple: #bc8cff;
+  --pink: #f778ba;
+  --cyan: #39d2c0;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 0;
+}
+/* Print styles */
+@media print {
+  body { background: #fff; color: #111; }
+  .cat-card { break-inside: avoid; background: #f6f8fa; border: 1px solid #d0d7de; }
+  .cat-card h3 { color: #0969da; }
+  .tool-badge { background: #e8f0fe; color: #1f2328; border: 1px solid #d0d7de; }
+  .tool-badge .desc { color: #656d76; }
+  .header { background: #fff !important; border-bottom: 2px solid #d0d7de; }
+  .header h1 { color: #111; }
+  .header p { color: #656d76; }
+  .badge-install { background: #dafbe1; color: #116329; }
+  .no-print { display: none !important; }
+  .cat-count { color: #656d76; }
+  .footer { color: #656d76; }
+  @page { margin: 0.5in; }
+  a { color: #0969da !important; }
+}
+.header {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 24px 32px;
+  text-align: center;
+}
+.header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.header h1 span { color: var(--accent); }
+.header p {
+  color: var(--text2);
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto 16px;
+}
+.badge-install {
+  display: inline-block;
+  background: rgba(63,185,80,0.12);
+  color: var(--green);
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 1px solid rgba(63,185,80,0.3);
+  user-select: all;
+}
+.meta-bar {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--text2);
+  flex-wrap: wrap;
+}
+.meta-bar span { white-space: nowrap; }
+.meta-bar strong { color: var(--text); }
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.cat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.cat-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cat-count {
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 400;
+  text-transform: none;
+}
+.tool-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tool-badge {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+  font-size: 11px;
+  background: var(--bg3);
+  color: var(--text);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: default;
+}
+.tool-badge:hover {
+  border-color: var(--accent);
+  background: rgba(88,166,255,0.08);
+}
+.tool-badge .desc {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 10px;
+  color: var(--text2);
+  margin-top: 1px;
+  white-space: nowrap;
+}
+
+.full-list {
+  margin-top: 40px;
+}
+.full-list h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.full-list table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.full-list th {
+  text-align: left;
+  padding: 8px 12px;
+  background: var(--bg2);
+  border-bottom: 2px solid var(--border);
+  color: var(--text2);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+.full-list td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.full-list tr:hover td {
+  background: rgba(88,166,255,0.04);
+}
+.full-list code {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  color: var(--accent);
+}
+.full-list .tdesc {
+  color: var(--text2);
+  font-size: 12px;
+}
+.full-list .tcat {
+  font-size: 11px;
+  color: var(--pink);
+  text-transform: uppercase;
+}
+.footer {
+  text-align: center;
+  padding: 32px 24px;
+  color: var(--text2);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+.footer a { color: var(--accent); }
+@media (max-width: 768px) {
+  .cat-grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 24px; }
+  .full-list table { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚡ <span>EVOLVER</span> Tools · Cheat Sheet</h1>
+  <p>259 command-line tools — one install, zero dependencies, all platforms.</p>
+  <div class="badge-install">pip install evolver-tools</div>
+  <div class="meta-bar">
+    <span><strong>259</strong> tools</span>
+    <span><strong>v38.0.2</strong></span>
+    <span><strong>10</strong> categories</span>
+    <span>PyPI · GitHub · <a href="https://evolver-dev.github.io/evolver-tools/" style="color:var(--accent)">Website</a></span>
+  </div>
+</div>
+
+<div class="container">
+
+<h2 style="font-size:18px;margin-bottom:16px;color:var(--text2);">📂 Categories at a Glance</h2>
+
+<div class="cat-grid">
+
+<div class="cat-card">
+<h3>📄 CSV & Data <span class="cat-count">15</span></h3>
+<div class="tool-list">
+<a class="tool-badge">csv2json<span class="desc">CSV→JSON</span></a>
+<a class="tool-badge">csv-concat<span class="desc">concatenate</span></a>
+<a class="tool-badge">csv-dedup<span class="desc">deduplicate</span></a>
+<a class="tool-badge">csv-filter<span class="desc">filter rows</span></a>
+<a class="tool-badge">csv-head<span class="desc">first rows</span></a>
+<a class="tool-badge">csv-merge<span class="desc">merge files</span></a>
+<a class="tool-badge">csv-pretty<span class="desc">pretty print</span></a>
+<a class="tool-badge">csv-schema<span class="desc">infer schema</span></a>
+<a class="tool-badge">csv-slice<span class="desc">slice rows</span></a>
+<a class="tool-badge">csv-sort<span class="desc">sort data</span></a>
+<a class="tool-badge">csv-to-table<span class="desc">to markdown</span></a>
+<a class="tool-badge">csv-validate<span class="desc">validate</span></a>
+<a class="tool-badge">csv-view<span class="desc">browse</span></a>
+<a class="tool-badge">diff-csv<span class="desc">diff CSVs</span></a>
+<a class="tool-badge">excel2csv<span class="desc">XLSX→CSV</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🔤 JSON & YAML <span class="cat-count">16</span></h3>
+<div class="tool-list">
+<a class="tool-badge">json-diff<span class="desc">diff JSON</span></a>
+<a class="tool-badge">json-flatten<span class="desc">flatten</span></a>
+<a class="tool-badge">json-keys<span class="desc">list keys</span></a>
+<a class="tool-badge">json-merge<span class="desc">merge</span></a>
+<a class="tool-badge">json-patch<span class="desc">patch</span></a>
+<a class="tool-badge">json-path<span class="desc">query</span></a>
+<a class="tool-badge">json-sort<span class="desc">sort</span></a>
+<a class="tool-badge">json-schema<span class="desc">validate</span></a>
+<a class="tool-badge">json-to-table<span class="desc">to table</span></a>
+<a class="tool-badge">merge-json<span class="desc">deep merge</span></a>
+<a class="tool-badge">ini2json<span class="desc">INI→JSON</span></a>
+<a class="tool-badge">toml2json<span class="desc">TOML→JSON</span></a>
+<a class="tool-badge">xml2json<span class="desc">XML→JSON</span></a>
+<a class="tool-badge">yaml-validate<span class="desc">validate</span></a>
+<a class="tool-badge">yaml2toml<span class="desc">YAML→TOML</span></a>
+<a class="tool-badge">xml-format<span class="desc">format XML</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>📝 Text Processing <span class="cat-count">20</span></h3>
+<div class="tool-list">
+<a class="tool-badge">case-convert<span class="desc">case convert</span></a>
+<a class="tool-badge">colorize<span class="desc">color text</span></a>
+<a class="tool-badge">fold<span class="desc">wrap lines</span></a>
+<a class="tool-badge">html-strip<span class="desc">strip HTML</span></a>
+<a class="tool-badge">html2markdown<span class="desc">HTML→MD</span></a>
+<a class="tool-badge">html2md<span class="desc">HTML→MD alt</span></a>
+<a class="tool-badge">join<span class="desc">join lines</span></a>
+<a class="tool-badge">markdown-format<span class="desc">format MD</span></a>
+<a class="tool-badge">markdown-lint<span class="desc">lint MD</span></a>
+<a class="tool-badge">markdown-toc<span class="desc">TOC gen</span></a>
+<a class="tool-badge">nl<span class="desc">number lines</span></a>
+<a class="tool-badge">replace-text<span class="desc">find/replace</span></a>
+<a class="tool-badge">seq<span class="desc">sequence</span></a>
+<a class="tool-badge">slugify<span class="desc">URL slug</span></a>
+<a class="tool-badge">text-dedent<span class="desc">dedent</span></a>
+<a class="tool-badge">text-stats<span class="desc">stats</span></a>
+<a class="tool-badge">text-wrap<span class="desc">wrap</span></a>
+<a class="tool-badge">tr<span class="desc">translate</span></a>
+<a class="tool-badge">yes<span class="desc">repeat output</span></a>
+<a class="tool-badge">markdown-preview<span class="desc">preview MD</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🔀 Data Convert <span class="cat-count">16</span></h3>
+<div class="tool-list">
+<a class="tool-badge">base32<span class="desc">encode/decode</span></a>
+<a class="tool-badge">base58<span class="desc">encode/decode</span></a>
+<a class="tool-badge">b64<span class="desc">base64</span></a>
+<a class="tool-badge">dt-convert<span class="desc">date convert</span></a>
+<a class="tool-badge">epoch<span class="desc">epoch time</span></a>
+<a class="tool-badge">hex-tool<span class="desc">hex ops</span></a>
+<a class="tool-badge">hexdec<span class="desc">hex↔decimal</span></a>
+<a class="tool-badge">hexdump<span class="desc">hex dump</span></a>
+<a class="tool-badge">rot13<span class="desc">ROT13</span></a>
+<a class="tool-badge">sql2csv<span class="desc">SQL→CSV</span></a>
+<a class="tool-badge">tsv2csv<span class="desc">TSV→CSV</span></a>
+<a class="tool-badge">unit-convert<span class="desc">unit convert</span></a>
+<a class="tool-badge">uri-encode<span class="desc">URL encode</span></a>
+<a class="tool-badge">url-parser<span class="desc">parse URL</span></a>
+<a class="tool-badge">uuid-gen<span class="desc">UUID gen</span></a>
+<a class="tool-badge">color-convert<span class="desc">color conv</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🌐 Network & HTTP <span class="cat-count">18</span></h3>
+<div class="tool-list">
+<a class="tool-badge">api-tester<span class="desc">test APIs</span></a>
+<a class="tool-badge">cert-check<span class="desc">SSL cert</span></a>
+<a class="tool-badge">cert-info<span class="desc">cert info</span></a>
+<a class="tool-badge">dns-lookup<span class="desc">DNS query</span></a>
+<a class="tool-badge">geo-ip<span class="desc">geo IP</span></a>
+<a class="tool-badge">http-headers<span class="desc">inspect</span></a>
+<a class="tool-badge">http-server<span class="desc">serve dir</span></a>
+<a class="tool-badge">http-status<span class="desc">status codes</span></a>
+<a class="tool-badge">ip-info<span class="desc">IP info</span></a>
+<a class="tool-badge">ip-location<span class="desc">IP loc</span></a>
+<a class="tool-badge">link-check<span class="desc">link check</span></a>
+<a class="tool-badge">net-analyzer<span class="desc">net stat</span></a>
+<a class="tool-badge">net-speed<span class="desc">speed test</span></a>
+<a class="tool-badge">network-scan<span class="desc">scan net</span></a>
+<a class="tool-badge">port-scan<span class="desc">scan ports</span></a>
+<a class="tool-badge">route-trace<span class="desc">traceroute</span></a>
+<a class="tool-badge">ssl-check<span class="desc">SSL check</span></a>
+<a class="tool-badge">whois-lookup<span class="desc">WHOIS</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🖥️ System & Monitor <span class="cat-count">18</span></h3>
+<div class="tool-list">
+<a class="tool-badge">sysmon-pro<span class="desc">sys monitor</span></a>
+<a class="tool-badge">system-info<span class="desc">sys info</span></a>
+<a class="tool-badge">process-kill<span class="desc">kill proc</span></a>
+<a class="tool-badge">log-analyzer<span class="desc">log analysis</span></a>
+<a class="tool-badge">log-hawk<span class="desc">log viewer</span></a>
+<a class="tool-badge">log-tail<span class="desc">tail logs</span></a>
+<a class="tool-badge">audit-log<span class="desc">audit trail</span></a>
+<a class="tool-badge">pipe-viewer<span class="desc">pipe monitor</span></a>
+<a class="tool-badge">progress-bar<span class="desc">progress</span></a>
+<a class="tool-badge">watch<span class="desc">watch cmd</span></a>
+<a class="tool-badge">timeout<span class="desc">timeout</span></a>
+<a class="tool-badge">pomodoro<span class="desc">timer</span></a>
+<a class="tool-badge">stopwatch<span class="desc">stopwatch</span></a>
+<a class="tool-badge">chrono<span class="desc">chrono</span></a>
+<a class="tool-badge">date-diff<span class="desc">date diff</span></a>
+<a class="tool-badge">time-duration<span class="desc">duration</span></a>
+<a class="tool-badge">world-clock<span class="desc">world time</span></a>
+<a class="tool-badge">reminder<span class="desc">reminder</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🔧 DevOps & Git <span class="cat-count">18</span></h3>
+<div class="tool-list">
+<a class="tool-badge">docker-helper<span class="desc">Docker mgmt</span></a>
+<a class="tool-badge">git-branch-clean<span class="desc">clean branches</span></a>
+<a class="tool-badge">git-ignore<span class="desc">gen ignore</span></a>
+<a class="tool-badge">git-log-pretty<span class="desc">pretty log</span></a>
+<a class="tool-badge">git-stats<span class="desc">git stats</span></a>
+<a class="tool-badge">db-mate<span class="desc">DB helper</span></a>
+<a class="tool-badge">db-schema<span class="desc">schema view</span></a>
+<a class="tool-badge">config-validator<span class="desc">validate cfg</span></a>
+<a class="tool-badge">config-vault<span class="desc">secure cfg</span></a>
+<a class="tool-badge">env-diff<span class="desc">env compare</span></a>
+<a class="tool-badge">env-manager<span class="desc">env mgmt</span></a>
+<a class="tool-badge">env-sorter<span class="desc">sort env</span></a>
+<a class="tool-badge">env-template<span class="desc">env template</span></a>
+<a class="tool-badge">cron-check<span class="desc">cron check</span></a>
+<a class="tool-badge">cron-pretty<span class="desc">pretty cron</span></a>
+<a class="tool-badge">crontab-helper<span class="desc">crontab</span></a>
+<a class="tool-badge">dep-graph<span class="desc">dep graph</span></a>
+<a class="tool-badge">dev-dashboard<span class="desc">dashboard</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🔐 Security & Crypto <span class="cat-count">12</span></h3>
+<div class="tool-list">
+<a class="tool-badge">crypto-box<span class="desc">encrypt/dec</span></a>
+<a class="tool-badge">file-encrypt<span class="desc">file encrypt</span></a>
+<a class="tool-badge">hash-check<span class="desc">hash verify</span></a>
+<a class="tool-badge">hash-file<span class="desc">hash file</span></a>
+<a class="tool-badge">checksum-dir<span class="desc">dir checksum</span></a>
+<a class="tool-badge">crc-check<span class="desc">CRC check</span></a>
+<a class="tool-badge">jwt-decode<span class="desc">JWT decode</span></a>
+<a class="tool-badge">otp-gen<span class="desc">OTP gen</span></a>
+<a class="tool-badge">password-strength<span class="desc">pw check</span></a>
+<a class="tool-badge">secret-scanner<span class="desc">scan secrets</span></a>
+<a class="tool-badge">ssh-key-gen<span class="desc">SSH key</span></a>
+<a class="tool-badge">firewall-rule<span class="desc">fw rule</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>📁 File Operations <span class="cat-count">14</span></h3>
+<div class="tool-list">
+<a class="tool-badge">tree<span class="desc">dir tree</span></a>
+<a class="tool-badge">file-find<span class="desc">find files</span></a>
+<a class="tool-badge">file-joiner<span class="desc">join files</span></a>
+<a class="tool-badge">file-patch<span class="desc">patch file</span></a>
+<a class="tool-badge">file-splitter<span class="desc">split file</span></a>
+<a class="tool-badge">file-type<span class="desc">type detect</span></a>
+<a class="tool-badge">file-watch<span class="desc">watch file</span></a>
+<a class="tool-badge">find-empty<span class="desc">empty files</span></a>
+<a class="tool-badge">dedup-files<span class="desc">deduplicate</span></a>
+<a class="tool-badge">backup<span class="desc">backup</span></a>
+<a class="tool-badge">restore<span class="desc">restore</span></a>
+<a class="tool-badge">search-files<span class="desc">search</span></a>
+<a class="tool-badge">disk-cleanup<span class="desc">clean disk</span></a>
+<a class="tool-badge">temp-cleaner<span class="desc">temp clean</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🎨 Fun & Creative <span class="cat-count">18</span></h3>
+<div class="tool-list">
+<a class="tool-badge">ascii-banner<span class="desc">banner gen</span></a>
+<a class="tool-badge">ascii-gen<span class="desc">ASCII art</span></a>
+<a class="tool-badge">cowsay<span class="desc">cowsay</span></a>
+<a class="tool-badge">figlet-cli<span class="desc">figlet</span></a>
+<a class="tool-badge">figlet-tool<span class="desc">figlet alt</span></a>
+<a class="tool-badge">emoji-cli<span class="desc">emoji find</span></a>
+<a class="tool-badge">joke<span class="desc">jokes</span></a>
+<a class="tool-badge">quote<span class="desc">quotes</span></a>
+<a class="tool-badge">rainbow<span class="desc">rainbow</span></a>
+<a class="tool-badge">dice-roll<span class="desc">roll dice</span></a>
+<a class="tool-badge">random<span class="desc">random</span></a>
+<a class="tool-badge">random-string<span class="desc">rand str</span></a>
+<a class="tool-badge">shuffle<span class="desc">shuffle</span></a>
+<a class="tool-badge">factor<span class="desc">factorize</span></a>
+<a class="tool-badge">math-eval<span class="desc">math calc</span></a>
+<a class="tool-badge">morse<span class="desc">morse code</span></a>
+<a class="tool-badge">macrogen<span class="desc">MAC gen</span></a>
+<a class="tool-badge">banner-gen<span class="desc">banners</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🖼️ Media & Web <span class="cat-count">14</span></h3>
+<div class="tool-list">
+<a class="tool-badge">image-meta<span class="desc">image info</span></a>
+<a class="tool-badge">qr-cli<span class="desc">QR gen</span></a>
+<a class="tool-badge">qrcode<span class="desc">QR gen alt</span></a>
+<a class="tool-badge">screenshot-cli<span class="desc">screenshot</span></a>
+<a class="tool-badge">media-studio<span class="desc">media tool</span></a>
+<a class="tool-badge">gzip-cli<span class="desc">gzip</span></a>
+<a class="tool-badge">mime-type<span class="desc">MIME detect</span></a>
+<a class="tool-badge">pdf-info<span class="desc">PDF info</span></a>
+<a class="tool-badge">pdf-text<span class="desc">PDF text</span></a>
+<a class="tool-badge">web-download<span class="desc">download</span></a>
+<a class="tool-badge">humanize<span class="desc">humanize</span></a>
+<a class="tool-badge">template<span class="desc">template engine</span></a>
+<a class="tool-badge">license<span class="desc">license gen</span></a>
+<a class="tool-badge">validate<span class="desc">multi validate</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>📋 Utilities <span class="cat-count">12</span></h3>
+<div class="tool-list">
+<a class="tool-badge">ansi-strip<span class="desc">strip ANSI</span></a>
+<a class="tool-badge">ansi-to-html<span class="desc">ANSI→HTML</span></a>
+<a class="tool-badge">ansi-to-txt<span class="desc">ANSI→txt</span></a>
+<a class="tool-badge">bookmark<span class="desc">bookmarks</span></a>
+<a class="tool-badge">calendar-cli<span class="desc">calendar</span></a>
+<a class="tool-badge">cal<span class="desc">calendar alt</span></a>
+<a class="tool-badge">key-value-store<span class="desc">KV store</span></a>
+<a class="tool-badge">note-taker<span class="desc">notes</span></a>
+<a class="tool-badge">search-history<span class="desc">history</span></a>
+<a class="tool-badge">spinner<span class="desc">spinner</span></a>
+<a class="tool-badge">todo-cli<span class="desc">todo list</span></a>
+<a class="tool-badge">weather-cli<span class="desc">weather</span></a>
+</div>
+</div>
+
+<div class="cat-card">
+<h3>🛠️ Additional Tools <span class="cat-count">63</span></h3>
+<div class="tool-list">
+<a class="tool-badge">agent-b-tool</a>
+<a class="tool-badge">banner-gen</a>
+<a class="tool-badge">changelog-gen</a>
+<a class="tool-badge">code-auditor</a>
+<a class="tool-badge">code-review</a>
+<a class="tool-badge">code-stats</a>
+<a class="tool-badge">crypto-price</a>
+<a class="tool-badge">csv-head</a>
+<a class="tool-badge">diff-files</a>
+<a class="tool-badge">diff-lines</a>
+<a class="tool-badge">diff-yaml</a>
+<a class="tool-badge">excel2csv</a>
+<a class="tool-badge">gzip-cli</a>
+<a class="tool-badge">ini2json</a>
+<a class="tool-badge">json2ini</a>
+<a class="tool-badge">json-schema-validate</a>
+<a class="tool-badge">json-sort</a>
+<a class="tool-badge">link-check</a>
+<a class="tool-badge">mac-address</a>
+<a class="tool-badge">markdown-preview</a>
+<a class="tool-badge">merge-json</a>
+<a class="tool-badge">network-scan</a>
+<a class="tool-badge">pdf-info</a>
+<a class="tool-badge">pdf-text</a>
+<a class="tool-badge">port-scan</a>
+<a class="tool-badge">qc-report</a>
+<a class="tool-badge">qc-sample</a>
+<a class="tool-badge">qr-cli</a>
+<a class="tool-badge">qrcode</a>
+<a class="tool-badge">random-cli</a>
+<a class="tool-badge">scan-open-ports</a>
+<a class="tool-badge">scan-ports</a>
+<a class="tool-badge">screen-recorder</a>
+<a class="tool-badge">screenshot-cli</a>
+<a class="tool-badge">search-files</a>
+<a class="tool-badge">search-history</a>
+<a class="tool-badge">secret-scanner</a>
+<a class="tool-badge">service-check</a>
+<a class="tool-badge">sql2csv</a>
+<a class="tool-badge">ssh-key-gen</a>
+<a class="tool-badge">ssl-check</a>
+<a class="tool-badge">subnet</a>
+<a class="tool-badge">sysmon-pro</a>
+<a class="tool-badge">system-info</a>
+<a class="tool-badge">temp-cleaner</a>
+<a class="tool-badge">text-dedent</a>
+<a class="tool-badge">text-stats</a>
+<a class="tool-badge">text-wrap</a>
+<a class="tool-badge">time-duration</a>
+<a class="tool-badge">todo-cli</a>
+<a class="tool-badge">toml2json</a>
+<a class="tool-badge">tr</a>
+<a class="tool-badge">tsv2csv</a>
+<a class="tool-badge">unit-convert</a>
+<a class="tool-badge">uri-encode</a>
+<a class="tool-badge">url-parser</a>
+<a class="tool-badge">uuid-gen</a>
+<a class="tool-badge">validate</a>
+<a class="tool-badge">watch</a>
+<a class="tool-badge">weather-cli</a>
+<a class="tool-badge">whois-lookup</a>
+<a class="tool-badge">world-clock</a>
+<a class="tool-badge">xml-format</a>
+</div>
+</div>
+
+</div><!-- cat-grid -->
+
+<div class="full-list">
+<h2>📋 Complete Tool Index (262 tools)</h2>
+<table>
+<thead>
+<tr><th style="width:180px">Command</th><th style="width:100px">Category</th><th>Description</th></tr>
+</thead>
+<tbody id="tool-table">
+</tbody>
+</table>
+</div>
+
+</div><!-- container -->
+
+<div class="footer">
+  <p>⚡ <a href="https://github.com/evolver-dev/evolver-tools">EVOLVER Tools</a> · 
+  <code>pip install evolver-tools</code> · 
+  <a href="https://evolver-dev.github.io/evolver-tools/">Website</a> · 
+  <a href="https://github.com/evolver-dev/evolver-tools/discussions">Discussions</a></p>
+  <p style="margin-top:8px;font-size:12px;">Generated by an autonomous AI · v38.0.2 · 262 tools · zero external dependencies</p>
+</div>
+
+<script>
+const ALL_TOOLS = [
+  // CSV & Data
+  ["csv2json","CSV","Convert CSV to JSON"],
+  ["csv-concat","CSV","Concatenate CSV files"],
+  ["csv-dedup","CSV","Remove duplicate rows"],
+  ["csv-filter","CSV","Filter CSV rows by condition"],
+  ["csv-head","CSV","Show first N rows"],
+  ["csv-merge","CSV","Merge multiple CSVs"],
+  ["csv-pretty","CSV","Pretty-print CSV"],
+  ["csv-schema","CSV","Infer column schema"],
+  ["csv-slice","CSV","Extract row range"],
+  ["csv-sort","CSV","Sort by column"],
+  ["csv-to-table","CSV","Convert to markdown table"],
+  ["csv-validate","CSV","Validate CSV structure"],
+  ["csv-view","CSV","Interactive CSV viewer"],
+  ["diff-csv","CSV","Compare two CSV files"],
+  ["excel2csv","CSV","Convert Excel to CSV"],
+  // JSON & YAML
+  ["json-diff","JSON","Compare two JSON files"],
+  ["json-flatten","JSON","Flatten nested JSON"],
+  ["json-keys","JSON","List JSON keys"],
+  ["json-merge","JSON","Merge JSON objects"],
+  ["json-patch","JSON","Apply JSON Patch"],
+  ["json-path","JSON","Query JSON with path expressions"],
+  ["json-sort","JSON","Sort JSON keys/values"],
+  ["json-schema","JSON","Validate JSON against schema"],
+  ["json-to-table","JSON","Convert JSON to table"],
+  ["merge-json","JSON","Deep merge JSON objects"],
+  ["ini2json","JSON","Convert INI to JSON"],
+  ["toml2json","JSON","Convert TOML to JSON"],
+  ["xml2json","JSON","Convert XML to JSON"],
+  ["yaml-validate","YAML","Validate YAML syntax"],
+  ["yaml2toml","YAML","Convert YAML to TOML"],
+  ["xml-format","XML","Format/pretty-print XML"],
+  ["json2ini","JSON","Convert JSON to INI"],
+  ["json-schema-validate","JSON","Validate JSON Schema"],
+  ["json-sort","JSON","Sort JSON data"],
+  // Text Processing
+  ["case-convert","Text","Convert text case (camel/snake/kebab)"],
+  ["colorize","Text","Colorize terminal text"],
+  ["fold","Text","Wrap text at width"],
+  ["html-strip","Text","Strip HTML tags"],
+  ["html2markdown","Text","HTML to Markdown"],
+  ["html2md","Text","HTML to Markdown (alt)"],
+  ["join","Text","Join lines with delimiter"],
+  ["markdown-format","Text","Format markdown"],
+  ["markdown-lint","Text","Lint markdown files"],
+  ["markdown-toc","Text","Generate markdown TOC"],
+  ["nl","Text","Number lines"],
+  ["replace-text","Text","Find and replace text"],
+  ["seq","Text","Generate number sequences"],
+  ["slugify","Text","Convert to URL slug"],
+  ["text-dedent","Text","Remove common indentation"],
+  ["text-stats","Text","Text statistics"],
+  ["text-wrap","Text","Wrap text to width"],
+  ["tr","Text","Translate characters"],
+  ["yes","Text","Output repeated text"],
+  ["markdown-preview","Text","Preview markdown"],
+  ["ansi-strip","Text","Strip ANSI escape codes"],
+  ["ansi-to-html","Text","ANSI to HTML"],
+  ["ansi-to-txt","Text","ANSI to plain text"],
+  // Data Conversion
+  ["b64","Convert","Base64 encode/decode"],
+  ["base32","Convert","Base32 encode/decode"],
+  ["base58","Convert","Base58 encode/decode"],
+  ["dt-convert","Convert","Date/time format conversion"],
+  ["epoch","Convert","Epoch time conversion"],
+  ["hex-tool","Convert","Hex operations"],
+  ["hexdec","Convert","Hex to decimal conversion"],
+  ["hexdump","Convert","Hexadecimal dump"],
+  ["rot13","Convert","ROT13 cipher"],
+  ["sql2csv","Convert","SQL query to CSV"],
+  ["tsv2csv","Convert","TSV to CSV"],
+  ["unit-convert","Convert","Unit conversion"],
+  ["uri-encode","Convert","URL encoding/decoding"],
+  ["url-parser","Convert","Parse URL components"],
+  ["uuid-gen","Convert","UUID generation"],
+  ["color-convert","Convert","Color format conversion"],
+  ["morse","Convert","Morse code encode/decode"],
+  ["macrogen","Convert","MAC address generator"],
+  // Network
+  ["api-tester","Network","Test API endpoints"],
+  ["cert-check","Network","Check SSL certificate"],
+  ["cert-info","Network","Certificate information"],
+  ["dns-lookup","Network","DNS resolution"],
+  ["geo-ip","Network","Geo IP lookup"],
+  ["http-headers","Network","Inspect HTTP headers"],
+  ["http-server","Network","Simple HTTP server"],
+  ["http-status","Network","HTTP status code info"],
+  ["ip-info","Network","IP address information"],
+  ["ip-location","Network","IP geolocation"],
+  ["link-check","Network","Check link validity"],
+  ["net-analyzer","Network","Network analysis"],
+  ["net-speed","Network","Network speed test"],
+  ["network-scan","Network","Network scanner"],
+  ["port-scan","Network","Port scanning"],
+  ["route-trace","Network","Traceroute"],
+  ["ssl-check","Network","SSL/TLS check"],
+  ["whois-lookup","Network","WHOIS lookup"],
+  ["subnet","Network","Subnet calculator"],
+  ["mac-address","Network","MAC address lookup"],
+  ["service-check","Network","Service availability check"],
+  ["web-download","Network","Download files"],
+  ["crypto-price","Network","Cryptocurrency prices"],
+  // System & Monitor
+  ["sysmon-pro","System","System monitor"],
+  ["system-info","System","System information"],
+  ["process-kill","System","Kill processes"],
+  ["log-analyzer","System","Log file analyzer"],
+  ["log-hawk","System","Log viewer"],
+  ["log-tail","System","Tail log files"],
+  ["audit-log","System","Audit trail"],
+  ["pipe-viewer","System","Pipe throughput viewer"],
+  ["progress-bar","System","Progress bar"],
+  ["watch","System","Watch command output"],
+  ["timeout","System","Command timeout"],
+  ["pomodoro","System","Pomodoro timer"],
+  ["stopwatch","System","Stopwatch"],
+  ["chrono","System","Chronometer"],
+  ["date-diff","System","Date difference"],
+  ["time-duration","System","Time duration calc"],
+  ["world-clock","System","World clock"],
+  ["reminder","System","Set reminders"],
+  ["cron-check","System","Validate cron syntax"],
+  ["cron-pretty","System","Pretty-print cron"],
+  ["crontab-helper","System","Crontab helper"],
+  ["spinner","System","Terminal spinner"],
+  ["disk-cleanup","System","Disk cleanup"],
+  ["temp-cleaner","System","Temp file cleaner"],
+  // DevOps
+  ["docker-helper","DevOps","Docker management"],
+  ["git-branch-clean","DevOps","Clean Git branches"],
+  ["git-ignore","DevOps","Generate .gitignore"],
+  ["git-log-pretty","DevOps","Pretty Git log"],
+  ["git-stats","DevOps","Git repository statistics"],
+  ["db-mate","DevOps","Database helper"],
+  ["db-schema","DevOps","Database schema viewer"],
+  ["config-validator","DevOps","Config file validator"],
+  ["config-vault","DevOps","Secure config storage"],
+  ["env-diff","DevOps","Compare env files"],
+  ["env-manager","DevOps","Environment manager"],
+  ["env-sorter","DevOps","Sort env variables"],
+  ["env-template","DevOps","Env template generator"],
+  ["dep-graph","DevOps","Dependency graph"],
+  ["dev-dashboard","DevOps","Developer dashboard"],
+  ["code-auditor","DevOps","Code audit tool"],
+  ["code-review","DevOps","Code review helper"],
+  ["code-stats","DevOps","Code statistics"],
+  ["changelog-gen","DevOps","Changelog generator"],
+  ["bookmark","DevOps","CLI bookmark manager"],
+  ["screen-recorder","DevOps","Terminal recorder"],
+  ["screenshot-cli","DevOps","Terminal screenshot"],
+  ["crypto-box","DevOps","Encryption/decryption"],
+  ["key-value-store","DevOps","Simple KV store"],
+  // Security
+  ["file-encrypt","Security","File encryption"],
+  ["hash-check","Security","Hash verification"],
+  ["hash-file","Security","File hashing"],
+  ["checksum-dir","Security","Directory checksum"],
+  ["crc-check","Security","CRC check"],
+  ["jwt-decode","Security","JWT decoder"],
+  ["otp-gen","Security","OTP generator"],
+  ["password-strength","Security","Password strength check"],
+  ["secret-scanner","Security","Scan for secrets"],
+  ["ssh-key-gen","Security","SSH key generator"],
+  ["firewall-rule","Security","Firewall rule generator"],
+  // File Operations
+  ["tree","Files","Directory tree"],
+  ["file-find","Files","Find files"],
+  ["file-joiner","Files","Join multiple files"],
+  ["file-patch","Files","Patch files"],
+  ["file-splitter","Files","Split files"],
+  ["file-type","Files","Detect file type"],
+  ["file-watch","Files","Watch file changes"],
+  ["find-empty","Files","Find empty files/dirs"],
+  ["dedup-files","Files","Deduplicate files"],
+  ["backup","Files","Backup files"],
+  ["restore","Files","Restore files"],
+  ["search-files","Files","Search file contents"],
+  ["gzip-cli","Files","Gzip compression"],
+  ["diff-files","Files","Compare files"],
+  ["diff-lines","Files","Line-by-line diff"],
+  ["diff-yaml","Files","YAML diff"],
+  ["file-type","Files","File type detection"],
+  // Fun
+  ["ascii-banner","Fun","ASCII banner generator"],
+  ["ascii-gen","Fun","ASCII art generator"],
+  ["cowsay","Fun","Cowsay"],
+  ["figlet-cli","Fun","FIGlet text renderer"],
+  ["figlet-tool","Fun","FIGlet (alt)"],
+  ["emoji-cli","Fun","Emoji finder"],
+  ["joke","Fun","Random jokes"],
+  ["quote","Fun","Random quotes"],
+  ["rainbow","Fun","Rainbow text"],
+  ["dice-roll","Fun","Dice roller"],
+  ["random","Fun","Random generator"],
+  ["random-cli","Fun","Random CLI"],
+  ["random-string","Fun","Random string gen"],
+  ["shuffle","Fun","Shuffle items"],
+  ["factor","Fun","Factor numbers"],
+  ["math-eval","Fun","Math expression eval"],
+  ["banner-gen","Fun","Banner generator"],
+  ["macrogen","Fun","MAC address gen"],
+  // Media
+  ["image-meta","Media","Image metadata"],
+  ["qr-cli","Media","QR code generator"],
+  ["qrcode","Media","QR code (alt)"],
+  ["mime-type","Media","MIME type detection"],
+  ["pdf-info","Media","PDF information"],
+  ["pdf-text","Media","Extract PDF text"],
+  ["humanize","Media","Human-friendly format"],
+  ["template","Media","Template engine"],
+  ["license","Media","License generator"],
+  ["validate","Media","Multi-format validator"],
+  ["weather-cli","Media","Weather forecast"],
+  // Utilities
+  ["calendar-cli","Utils","Calendar display"],
+  ["cal","Utils","Calendar (alt)"],
+  ["note-taker","Utils","Note taking"],
+  ["search-history","Utils","Search history"],
+  ["todo-cli","Utils","Todo list"],
+  ["agent-b-tool","Utils","Agent helper"],
+  ["backup","Utils","Backup utility"],
+  ["restore","Utils","Restore utility"],
+  ["gzip-cli","Utils","Gzip tool"],
+  ["timeout","Utils","Timeout utility"],
+  ["scan-ports","Utils","Port scanner"],
+  ["scan-open-ports","Utils","Open port scanner"],
+  ["network-scan","Utils","Network scanner"],
+  ["ssl-check","Utils","SSL checker"],
+  ["ssh-key-gen","Utils","SSH key generator"],
+  ["whois-lookup","Utils","WHOIS lookup"],
+  ["unit-convert","Utils","Unit converter"],
+  ["uri-encode","Utils","URL encode/decode"],
+  ["uuid-gen","Utils","UUID generator"],
+  ["subnet","Utils","Subnet calculator"],
+  ["weather-cli","Utils","Weather CLI"],
+  ["crypto-price","Utils","Crypto prices"],
+  ["screen-recorder","Utils","Screen recorder"],
+  ["screenshot-cli","Utils","Screenshot"],
+];
+
+const TABLE = document.getElementById('tool-table');
+for (const [name, cat, desc] of ALL_TOOLS) {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td><code>evtool ${name}</code></td><td class="tcat">${cat}</td><td class="tdesc">${desc}</td>`;
+  TABLE.appendChild(tr);
+}
+</script>
+</body>
+</html>
