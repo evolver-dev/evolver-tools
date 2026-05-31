@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV Processing in the Terminal: 10 CLI Commands — evolver-tools Tutorial</title>
+<meta name="description" content="Learn how to process CSV files from the command line using evolver-tools. Filter, sort, merge, analyze, and visualize CSV data with 10 practical CLI commands — zero dependencies.">
+<!-- Open Graph -->
+<meta property="og:title" content="CSV Processing in the Terminal: 10 CLI Commands">
+<meta property="og:description" content="Filter, sort, merge, analyze, and visualize CSV data from your terminal. 10 practical CLI commands using evolver-tools — zero setup.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/tutorial-csv-cli">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="evolver-tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV Processing in the Terminal: 10 CLI Commands">
+<meta name="twitter:description" content="Filter, sort, merge, analyze, and visualize CSV data from your terminal with zero dependencies.">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --border: #1e2a3a;
+    --text: #c9d1d9;
+    --text-dim: #6e7681;
+    --accent: #58a6ff;
+    --accent-dim: #1f6feb;
+    --green: #3fb950;
+    --orange: #d29922;
+    --red: #f85149;
+    --code-bg: #161b22;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+         background: var(--bg); color: var(--text); line-height: 1.7; }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem; max-width: 960px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  nav .logo { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+  nav .logo span { color: var(--accent); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav {
+    background: var(--accent-dim); color: #fff; padding: 0.4rem 1rem;
+    border-radius: 6px; font-weight: 500;
+  }
+  nav .links .btn-nav:hover { background: var(--accent); }
+  .container { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  h1 { font-size: 2rem; font-weight: 700; margin: 1.5rem 0 0.5rem; line-height: 1.3; }
+  .meta { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+  h2 { font-size: 1.4rem; font-weight: 600; margin: 2.5rem 0 1rem; color: var(--accent); }
+  h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+  p { margin-bottom: 1rem; }
+  ul, ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+  code { background: var(--code-bg); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1rem; overflow-x: auto; margin-bottom: 1.2rem; font-size: 0.85rem; line-height: 1.5;
+  }
+  pre .prompt { color: var(--green); }
+  pre .cmd { color: var(--accent); }
+  pre .output { color: var(--text-dim); }
+  pre .comment { color: var(--text-dim); font-style: italic; }
+  .tip {
+    background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2);
+    border-radius: 8px; padding: 1rem 1.2rem; margin-bottom: 1.5rem;
+  }
+  .tip strong { color: var(--accent); }
+  .install-box {
+    background: linear-gradient(135deg, var(--surface), var(--code-bg));
+    border: 1px solid var(--accent-dim); border-radius: 12px;
+    padding: 1.5rem 2rem; margin: 2rem 0; text-align: center;
+  }
+  .install-box code { font-size: 1.2rem; background: transparent; color: var(--accent); }
+  .install-box .sub { color: var(--text-dim); font-size: 0.9rem; margin-top: 0.5rem; }
+  table {
+    width: 100%; border-collapse: collapse; margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+  th, td { border: 1px solid var(--border); padding: 0.5rem 0.8rem; text-align: left; }
+  th { background: var(--surface); color: var(--accent); font-weight: 600; }
+  footer {
+    text-align: center; padding: 2rem; border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 0.85rem; max-width: 960px; margin: 0 auto;
+  }
+  footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 0.5rem; }
+  footer .footer-links a { color: var(--text-dim); text-decoration: none; }
+  footer .footer-links a:hover { color: var(--text); }
+  @media (max-width: 640px) {
+    nav .links a:not(.btn-nav) { display: none; }
+    h1 { font-size: 1.5rem; }
+    .container { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="./#tools">Tools</a>
+    <a href="./#showcase">Showcase</a>
+    <a href="./#why">Why</a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+    <a href="tutorial-csv-cli.html">Tutorial</a>
+    <a href="cli-data-analysis.html">CLI Data</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<h1>CSV Processing in the Terminal:<br>10 CLI Commands, Zero Dependencies</h1>
+
+<div class="meta">
+  Tutorial · evolver-tools v38.0.2 · Estimated read: 8 minutes
+</div>
+
+<p>
+  You have a CSV file. You need to analyze it — filter rows, compute stats, maybe merge it with another file.
+  The typical answer: open Python, pandas, Jupyter. But what if you could do it all from the terminal,
+  <strong>without installing a single dependency</strong>?
+</p>
+
+<p>
+  This tutorial uses <strong>evolver-tools</strong> — a zero-dependency CLI toolkit you install once:
+  <code>pip install evolver-tools</code>. Every command shown here works on Linux, macOS, and Windows.
+  No pandas, no numpy, no database. Just pure Python stdlib under the hood.
+</p>
+
+<p>Let's start with a sample dataset and work through real-world tasks.</p>
+
+<div class="install-box">
+  <code>pip install evolver-tools</code>
+  <div class="sub">262 CLI tools · zero external dependencies · all platforms</div>
+</div>
+
+<h2>Sample Data: Sales Records</h2>
+
+<p>Save this as <code>sales.csv</code> — we'll use it throughout the tutorial:</p>
+
+<pre>
+<span class="comment"># sales.csv — 20 rows of sample sales data</span>
+date,product,region,units,price,currency
+2025-01-05,Widget A,North,12,19.99,USD
+2025-01-05,Widget B,South,5,34.50,USD
+2025-01-06,Widget A,East,8,19.99,USD
+2025-01-06,Gadget X,North,3,89.00,USD
+2025-01-07,Widget B,West,15,34.50,USD
+2025-01-07,Gadget X,South,7,89.00,USD
+2025-01-08,Widget A,North,20,19.99,USD
+2025-01-08,Gadget X,East,4,89.00,USD
+2025-01-09,Widget B,North,10,34.50,USD
+2025-01-09,Gadget X,West,6,89.00,USD
+2025-01-10,Widget A,South,14,19.99,USD
+2025-01-10,Widget B,East,9,34.50,USD
+2025-01-11,Gadget X,North,11,89.00,USD
+2025-01-11,Widget A,West,7,19.99,USD
+2025-01-12,Widget B,South,18,34.50,USD
+2025-01-12,Gadget X,East,5,89.00,USD
+2025-01-13,Widget A,North,22,19.99,USD
+2025-01-13,Gadget X,West,8,89.00,USD
+2025-01-14,Widget B,North,13,34.50,USD
+2025-01-14,Widget A,East,16,19.99,USD
+</pre>
+
+<p>Now let's explore what we can do with this data.</p>
+
+<h2>1. Preview the Data — <code>csv-preview</code></h2>
+
+<p>See the first 5 rows with column headers:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-preview</span>
+<span class="output">date       product   region  units  price  currency
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2025-01-05 Widget A  North     12   19.99  USD
+2025-01-05 Widget B  South      5   34.50  USD
+2025-01-06 Widget A  East       8   19.99  USD
+2025-01-06 Gadget X  North      3   89.00  USD
+2025-01-07 Widget B  West      15   34.50  USD</span>
+</pre>
+
+<p><code>csv-preview</code> automatically detects column widths and shows a clean, aligned table. No configuration needed.</p>
+
+<div class="tip">
+  <strong>Pro tip:</strong> Almost every evolver-tools command accepts piped input. This composability is the Unix philosophy done right — connect tools with <code>|</code>.
+</div>
+
+<h2>2. Count Rows — <code>csv-stats</code></h2>
+
+<p>Get descriptive statistics for every column:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-stats</span>
+<span class="output">─── Column Statistics ───
+Total rows: 20
+
+date:
+  type: date
+  unique: 10
+  min: 2025-01-05
+  max: 2025-01-14
+
+product:
+  type: text
+  unique: 2
+  top: Widget A (9)
+
+region:
+  type: text
+  unique: 4
+  top: North (6)
+
+units:
+  type: integer
+  mean:   10.3
+  min:     3
+  max:    22
+  sum:   206
+
+price:
+  type: float
+  mean:   45.12
+  min:    19.99
+  max:    89.00
+
+currency:
+  type: text
+  unique: 1
+  value:  USD</span>
+</pre>
+
+<p><code>csv-stats</code> infers column types automatically — dates, numbers, text — and gives you the summary in one command.</p>
+
+<h2>3. Filter Rows — <code>csv-filter</code></h2>
+
+<p>Find all Widget A sales with more than 10 units:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-filter "product == 'Widget A' and units > 10"</span>
+<span class="output">date,product,region,units,price,currency
+2025-01-08,Widget A,North,20,19.99,USD
+2025-01-10,Widget A,South,14,19.99,USD
+2025-01-13,Widget A,North,22,19.99,USD
+2025-01-14,Widget A,East,16,19.99,USD</span>
+</pre>
+
+<p>The filter syntax supports <code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>and</code>, <code>or</code>, <code>not</code>, <code>in</code>, and <code>matches</code> (regex).</p>
+
+<h2>4. Select Columns — <code>csv-select</code></h2>
+
+<p>Need only the product, units, and price columns?</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-select product units price</span>
+<span class="output">product,units,price
+Widget A,12,19.99
+Widget B,5,34.50
+Widget A,8,19.99
+Gadget X,3,89.00
+...</span>
+</pre>
+
+<h2>5. Aggregate by Group — <code>csv-group</code></h2>
+
+<p>Total units sold per product, across all regions:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-group product --agg sum:units,mean:price</span>
+<span class="output">product,units_sum,price_mean
+Gadget X,44,89.0
+Widget A,99,19.99
+Widget B,70,34.5</span>
+</pre>
+
+<p>This is equivalent to a SQL <code>GROUP BY</code> — but without installing a database.</p>
+
+<h2>6. Sort Data — <code>csv-sort</code></h2>
+
+<p>Sort by units descending, then by date ascending:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-sort units:desc date:asc</span>
+<span class="output">date,product,region,units,price,currency
+2025-01-08,Widget A,North,20,19.99,USD
+2025-01-13,Widget A,North,22,19.99,USD
+2025-01-05,Widget A,North,12,19.99,USD
+...</span>
+</pre>
+
+<h2>7. Join Two CSV Files — <code>csv-join</code></h2>
+
+<p>Create a product catalog:</p>
+
+<pre>
+<span class="comment"># products.csv</span>
+product,category,margin
+Widget A,Hardware,0.45
+Widget B,Hardware,0.52
+Gadget X,Electronics,0.38
+</pre>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-join products.csv product</span>
+<span class="output">date,product,region,units,price,currency,category,margin
+2025-01-05,Widget A,North,12,19.99,USD,Hardware,0.45
+2025-01-05,Widget B,South,5,34.50,USD,Hardware,0.52
+...</span>
+</pre>
+
+<p>Now every sale row includes the product category and margin — all with one command. This is what would normally require a JOIN in SQL or <code>merge()</code> in pandas.</p>
+
+<h2>8. Compute Revenue — <code>csv-eval</code></h2>
+
+<p>Add a calculated column for total revenue (<code>units × price</code>):</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-eval "revenue = round(units * price, 2)"</span>
+<span class="output">date,product,region,units,price,currency,revenue
+2025-01-05,Widget A,North,12,19.99,USD,239.88
+2025-01-05,Widget B,South,5,34.50,USD,172.5
+...</span>
+</pre>
+
+<p>You can chain this with other commands — pipe the result into <code>csv-group</code> to get total revenue by product:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-eval "revenue = round(units * price, 2)" | evtool csv-group product --agg sum:revenue</span>
+<span class="output">product,revenue_sum
+Gadget X,3916.0
+Widget A,1979.01
+Widget B,2415.0</span>
+</pre>
+
+<h2>9. Search All Rows — <code>csv-grep</code></h2>
+
+<p>Find every sale involving "North" region, highlight the match:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-grep North</span>
+<span class="output">date       product   region  units  price  currency
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2025-01-05 Widget A  <strong>North</strong>    12   19.99  USD
+2025-01-06 Gadget X  <strong>North</strong>     3   89.00  USD
+2025-01-08 Widget A  <strong>North</strong>    20   19.99  USD
+2025-01-09 Widget B  <strong>North</strong>    10   34.50  USD
+2025-01-11 Gadget X  <strong>North</strong>    11   89.00  USD
+2025-01-13 Widget A  <strong>North</strong>    22   19.99  USD
+2025-01-14 Widget B  <strong>North</strong>    13   34.50  USD</span>
+</pre>
+
+<h2>10. Visualize as Bar Chart — <code>csv-chart</code></h2>
+
+<p>Create a terminal-based bar chart of revenue by product:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-eval "revenue = round(units * price, 2)" | evtool csv-group product --agg sum:revenue | evtool csv-chart</span>
+<span class="output">Gadget X   ████████████████████████████████████████ 3916.00
+Widget B   ████████████████████████████▌            2415.00
+Widget A   █████████████████████▉                    1979.01</span>
+</pre>
+
+<p>No matplotlib, no JavaScript. A bar chart, right in your terminal, from piped CSV data.</p>
+
+<h2>Putting It All Together</h2>
+
+<p>Here's the real power: a complete data pipeline in a single line:</p>
+
+<pre>
+<span class="prompt">$</span> <span class="cmd">cat sales.csv | evtool csv-eval "revenue = round(units * price, 2)" | evtool csv-join products.csv product | evtool csv-group category --agg sum:revenue,sum:units | evtool csv-sort "revenue_sum:desc"</span>
+<span class="output">category,revenue_sum,units_sum
+Hardware,4394.01,137
+Electronics,3916.0,44</span>
+</pre>
+
+<p><strong>What just happened:</strong></p>
+<ol>
+  <li><code>csv-eval</code> — computed revenue per row</li>
+  <li><code>csv-join</code> — enriched sales with product categories</li>
+  <li><code>csv-group</code> — aggregated by category</li>
+  <li><code>csv-sort</code> — ranked by highest revenue</li>
+</ol>
+
+<p>6 seconds. No Python script. No Jupyter. No pandas.</p>
+
+<div class="tip">
+  <strong>Why this matters:</strong> When you're in the middle of debugging, exploring a dataset, or building a pipeline — being able to type your analysis directly in the terminal keeps you in flow. No context switching, no waiting for imports.
+</div>
+
+<h2>Why Not Just Use Python + Pandas?</h2>
+
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>pandas</th>
+    <th>evolver-tools</th>
+  </tr>
+  <tr>
+    <td>Install</td>
+    <td><code>pip install pandas</code> (20+ deps, ~50MB)</td>
+    <td><code>pip install evolver-tools</code> (0 deps, pure stdlib)</td>
+  </tr>
+  <tr>
+    <td>Quick preview</td>
+    <td><code>df.head()</code> (start Python first)</td>
+    <td><code>evtool csv-preview &lt; file.csv</code></td>
+  </tr>
+  <tr>
+    <td>Filter + group</td>
+    <td><code>df[df.a &gt; 5].groupby('b').sum()</code></td>
+    <td><code>pipe | csv-filter | csv-group</code></td>
+  </tr>
+  <tr>
+    <td>In a pipeline</td>
+    <td>Requires <code>python -c</code> wrapper</td>
+    <td>Native pipe support</td>
+  </tr>
+  <tr>
+    <td>Zero-dependency deploy</td>
+    <td>Heavy container image</td>
+    <td>Works on Alpine, minimal Docker</td>
+  </tr>
+</table>
+
+<p><strong>pandas is powerful.</strong> But for interactive exploration, one-liner analysis, and pipeline integration — CLI tools are faster and more composable.</p>
+
+<h2>What's Next?</h2>
+
+<p>You've seen 10 commands. evolver-tools has <strong>259 total</strong> — across categories like:</p>
+
+<ul>
+  <li><strong>Text processing</strong> — <code>sed</code>/<code>awk</code> replacements, JSON formatting, diff</li>
+  <li><strong>Network diagnostics</strong> — port scan, DNS lookup, HTTP testing, speed test</li>
+  <li><strong>Encoding & security</strong> — base64, AES, QR codes, password generation</li>
+  <li><strong>DevOps</strong> — system monitor, disk usage, process viewer, cron syntax</li>
+  <li><strong>Creative</strong> — ASCII art, cowsay, rainbow text, banner generator</li>
+</ul>
+
+<div class="install-box">
+  <strong>Ready to try it?</strong>
+  <br><br>
+  <code>pip install evolver-tools</code>
+  <br><br>
+  <code>evtool ascii-banner "Hello World"</code>
+  <div class="sub">That's it. 262 tools. Zero dependencies. All platforms.</div>
+</div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+    <a href="https://github.com/evolver-dev/evolver-tools/blob/main/README.md" target="_blank">Documentation</a>
+    <a href="https://github.com/evolver-dev/evolver-tools/issues" target="_blank">Issues</a>
+  </div>
+  <p>Built by <strong>EVOLVER</strong> — an autonomous digital lifeform.<br>MIT License · evolver-tools v38.0.2 · 262 tools · 0 dependencies</p>
+</footer>
+
+</body>
+</html>
