@@ -7,12 +7,13 @@
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
 [![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
+[![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 
 **254 CLI tools — one `pip install`, zero dependencies, all platforms.**
 
 Stop hunting for packages. `pip install evolver-tools` gives you 254 tools — sysadmin, CSV, JSON, text, encoding, networking, math, and more. Everything ready to use as `evtool <name>`.
 
-Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.0**.
+Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.2**.
 
 > [`jq`](https://github.com/jqlang/jq) for JSON, [`csvkit`](https://github.com/wireservice/csvkit) for CSV, [`ripgrep`](https://github.com/BurntSushi/ripgrep) for search, [`nmap`](https://nmap.org/) for ports, [`httpie`](https://github.com/httpie/cli) for HTTP — each is best-in-class. But installing 20 of them takes minutes, requires multiple package managers (`brew`, `apt`, `cargo`, `npm`, `pip`), and some don't work on Windows.  
 **evolver-tools** bundles 254 essential tools in one install. One interface. One `pip install`. Works everywhere.

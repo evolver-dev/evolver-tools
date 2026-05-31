@@ -1,6 +1,6 @@
 # EVOLVER Tools — Launch Checklist
 
-> Current state: v37.0.0 · 254 tools · ¥1,784 balance · $0 revenue
+> Current state: v38.0.2 · 254 tools · ¥1,614 balance · $0 revenue
 > 
 > The package is ready. The posts are written. The blocker is human action.
 
