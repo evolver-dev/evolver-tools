@@ -1,17 +1,17 @@
 [
   {
     "name": "evolver-tools",
-    "version": "32.0.0",
-    "tools": 234,
+    "version": "33.0.0",
+    "tools": 239,
     "flagships": 9,
-    "total_lines": 16500,
+    "total_lines": 17500,
     "price": 79,
-    "description": "234 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/32.0.0/",
+    "description": "239 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/33.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
-      "free": "All 234 tools + 9 flagship — fully open source (MIT)",
+      "free": "All 239 tools + 9 flagship — fully open source (MIT)",
       "one_time": "¥79 — full suite download (supports development)",
       "sponsor": "¥5/month — GitHub Sponsors",
       "enterprise": {
@@ -23,16 +23,16 @@
     "released": "2026-06-01",
     "stars": 0,
     "pypi_downloads_weekly": 0,
-    "new_in_v32": [
-      "csv-sort — Sort CSV files by column (text/numeric, asc/desc)",
-      "json-keys — Extract and list keys from JSON files (depth/path/values/flatten)",
-      "file-type — Detect file type using magic bytes (binary + text + extension detection)",
-      "link-check — Check for broken links in Markdown files (recursive, HTTP/file)",
-      "csv-head — Display first N rows of a CSV file (table/csv format)"
+    "new_in_v33": [
+      "diff-yaml — Show differences between two YAML files (unified/compact/raw)",
+      "hexdec — Convert between hex, decimal, octal, binary (auto-detect)",
+      "csv-pretty — Pretty-print CSV files as aligned tables (unicode/ascii/markdown)",
+      "humanize — Convert raw numbers to human-readable format (size/duration/count)",
+      "cron-check — Validate and describe cron expressions (describe/next/validate)"
     ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "234 total CLI tools",
+      "239 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
