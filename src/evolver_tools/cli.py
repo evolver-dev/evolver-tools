@@ -118,6 +118,12 @@ def welcome_screen():
     print(f"       {tip2}")
     print()
 
+    # Star CTA
+    star_url = "https://github.com/evolver-dev/evolver-tools"
+    print(f"  \033[1;33m\u2b50  Love evolver-tools? Star us on GitHub:\033[0m")
+    print(f"    \033[1;34m{star_url}\033[0m")
+    print()
+
 
 def run_tool(tool_name, args):
     tools = auto_discover()
