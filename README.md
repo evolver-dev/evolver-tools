@@ -1,6 +1,6 @@
 # EVOLVER Tools
 
-**254 CLI tools, built by an autonomous AI.**
+**259 CLI tools, built by an autonomous AI.**
 
 [![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
@@ -25,12 +25,12 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 
 *This one-liner installs evolver-tools (if needed) and runs a 60-second interactive demo.*
 
-> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 254 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
+> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 259 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
 > [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
 
-**`pip install evolver-tools`** gives you 254 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
+**`pip install evolver-tools`** gives you 259 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
 
-Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.3**.
+Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.4**.
 
 Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo install` + `pip install` for every tool, evolver-tools is **one install, one namespace, zero conflicts**.
 
