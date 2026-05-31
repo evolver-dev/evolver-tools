@@ -23,6 +23,8 @@ def list_tools():
     print()
     print('Usage: evtool <toolname> [args...]')
     print('       evtool list')
+    print('       evtool categories')
+    print('       evtool showcase')
 
 
 def run_tool(tool_name, args):
@@ -58,6 +60,14 @@ def main():
     args = sys.argv[2:]
     if tool_name == "list":
         list_tools()
+        return
+    if tool_name == "categories":
+        from evolver_tools.categorize import print_categories
+        print_categories()
+        return
+    if tool_name == "showcase":
+        from evolver_tools.categorize import print_showcase
+        print_showcase()
         return
     run_tool(tool_name, args)
 
