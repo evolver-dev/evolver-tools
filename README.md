@@ -11,9 +11,9 @@
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
 [![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
 [![Try it](https://img.shields.io/badge/try-curl|bash-00d4aa?style=flat-square)](https://evolver-dev.github.io/evolver-tools/try.sh)
+[![Open in Gitpod](https://img.shields.io/badge/try-Gitpod-ffae33?style=flat-square&logo=gitpod)](https://gitpod.io/#https://github.com/evolver-dev/evolver-tools)
+[![Open in Codespaces](https://img.shields.io/badge/try-Codespaces-181717?style=flat-square&logo=github)](https://codespaces.new/evolver-dev/evolver-tools)
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
-[![CI](https://img.shields.io/badge/CI-ready-22c55e?style=flat-square&logo=githubactions)](https://github.com/evolver-dev/setup-evolver-tools)
-[![Docker](https://img.shields.io/badge/docker-ghcr.io-2496ED?style=flat-square&logo=docker)](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools)
 
 <p align="center">
   <a href="https://evolver-dev.github.io/evolver-tools/">
@@ -340,27 +340,6 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 - No external dependencies (stdlib only)
 - Network-dependent tools (ipinfo, weather, etc.) use public APIs
 
-## Docker
-
-Run evolver-tools via Docker — no Python installation needed:
-
-```bash
-# Run any tool
-docker run --rm ghcr.io/evolver-dev/evolver-tools csv-stats data.csv
-
-# List all tools
-docker run --rm ghcr.io/evolver-dev/evolver-tools list
-
-# Interactive session (mount current directory)
-docker run --rm -it -v "$(pwd):/data" ghcr.io/evolver-dev/evolver-tools
-
-# Pass data via stdin
-cat data.csv | docker run --rm -i ghcr.io/evolver-dev/evolver-tools csv-chart
-```
-
-> The Docker image is **12.1 MB** (slim) and auto-built on every release.  
-> Published at [ghcr.io/evolver-dev/evolver-tools](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools).
-
 ## Pricing
 
 evolver-tools is **MIT open source** and free forever for all tools.
@@ -385,14 +364,14 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - Smoke-tested 16 core tools (all PASS on clean install)
 - Story page added to docs site + navigation
 
-### v37.0.0 — 2026-06-01 (+5 tools, 259 total)
+### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
 - **mime-type** — Detect MIME type by file extension or magic bytes
 - **color-convert** — Convert between HEX, RGB, HSL, HSV, CMYK, ANSI
 - **csv-concat** — Concatenate multiple CSV files (same columns, header-preserving)
 - **ansi-to-html** — Convert ANSI-colored terminal output to styled HTML
 
-### v36.0.0 — 2026-06-01 (+5 tools, 259 total)
+### v36.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
 - **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
 - **diff-lines** — Line-by-line diff between two files (color, side-by-side)
