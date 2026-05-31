@@ -24,17 +24,57 @@ pip install evolver-tools
 evtool ascii-banner "EVOLVER"          # Large ASCII art banner
 evtool rainbow "254 tools in 1 pip"    # Rainbow-colored text
 evtool qrcode "https://evolver.dev"    # QR code generator
-evtool cowsay "Zero deps!"             # Talking ASCII cow
+evtool cowsay \"Zero deps!\"             # Talking ASCII cow
 echo '5,12,8,20,3,15' | evtool chart-cli bar   # Bar chart
 evtool weather-cli Tokyo               # Live weather forecast
 evtool emoji-cli rocket                # Search emoji
 ```
 
-Or run the full interactive demo:
-```bash
-pip install evolver-tools
-bash <(curl -s https://raw.githubusercontent.com/evolver-dev/evolver-tools/main/demo.sh)
+## Real-World Demo
+
+**Data analysis in one command:**
 ```
+$ printf 'name,age,score\\nAlice,30,95\\nBob,25,87\\nCharlie,35,92\\nDiana,28,88\\nEve,32,91' > data.csv
+$ evtool csv-stats data.csv
+```
+```
+📊 CSV Analysis Report
+  File: data.csv | Rows: 5 | Columns: 3
+
+  name (text)     age (int)          score (int)
+  ───────────     ────────           ──────────
+  Alice           Mean: 30.00        Mean: 90.60
+  Bob             Std Dev: 3.41      Std Dev: 2.87
+  Charlie         Min: 25 / Max: 35  Min: 87 / Max: 95
+  Diana           P50: 30.00         P50: 91.00
+  Eve
+
+  Correlation Matrix
+    age × score  +0.6342  █████████░░░░░░
+```
+
+**Batch rename with dry-run preview:**
+```
+$ evtool ren '*.txt' --prefix 'backup_' --dry-run
+  report.txt  →  backup_report.txt
+  notes.txt   →  backup_notes.txt
+  config.txt  →  backup_config.txt
+  [DRY RUN — no files changed]
+```
+
+**Code quality check:**
+```
+$ evtool smellfinder src/ --json | head -5
+  ✓ 14 patterns checked: long functions, bare excepts, wildcard imports...
+```
+
+**Live system monitor (TUI):**
+```
+$ evtool sysmon
+  [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
+```
+
+See all 254 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
 
 ## Tool Categories
 
