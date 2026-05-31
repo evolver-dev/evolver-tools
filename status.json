@@ -1,7 +1,7 @@
 {
   "updated_at": "2026-06-01",
-  "tool_count": 254,
-  "version": "38.0.0",
+  "tool_count": 252,
+  "version": "38.0.1",
   "balance": 1776.56,
   "total_income": 1345.0,
   "total_cost": 68.44,
@@ -9,7 +9,7 @@
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 3044,
-  "last_release": "v38.0.0 \u2014 254 CLI tools, 18 categories, showcase",
-  "last_fixes": "38.0.0a1 \u2014 version display fix + fuzzy underscore\u2194hyphen aliases",
-  "status": "v38.0.0 \u2014 +evtool search command. Fuzzy search across 254 tools by name+description."
+  "last_release": "v38.0.1 — fix: module-level sys.exit(1) in diff-yaml & sysmon broke zero-deps promise",
+  "last_fixes": "38.0.1 — diff_yaml.py and sysmon/__init__.py: module-level sys.exit(1) → lazy imports",
+  "status": "v38.0.1 — zero-deps promise honored: no more crash on `evtool --version` for new users"
 }

@@ -14,14 +14,17 @@ Options:
 import sys
 import difflib
 
-try:
-    import yaml
-except ImportError:
-    print(
-        "Error: PyYAML is required. Install with: pip install pyyaml",
-        file=sys.stderr,
-    )
-    sys.exit(1)
+def _require_yaml():
+    """Lazy-import yaml and fail with a helpful message if missing."""
+    try:
+        import yaml
+        return yaml
+    except ImportError:
+        print(
+            "Error: PyYAML is required. Install with: pip install pyyaml",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
 
 def flatten(obj, prefix=""):
@@ -42,7 +45,7 @@ def flatten(obj, prefix=""):
 
 def yaml_lines(obj, indent=0):
     """Convert a YAML object to a list of text lines (like yaml.dump but deterministic)."""
-    return yaml.dump(obj, default_flow_style=False, sort_keys=True).rstrip("\n").split("\n")
+    return _require_yaml().dump(obj, default_flow_style=False, sort_keys=True).rstrip("\n").split("\n")
 
 
 def format_raw_diff(diffs):
@@ -68,9 +71,9 @@ def deep_diff(a, b, path=""):
         for k in sorted(all_keys):
             new_path = f"{path}.{k}" if path else k
             if k not in a:
-                yield (new_path, "added", None, yaml.dump(b[k], default_flow_style=False).strip())
+                yield (new_path, "added", None, _require_yaml().dump(b[k], default_flow_style=False).strip())
             elif k not in b:
-                yield (new_path, "removed", yaml.dump(a[k], default_flow_style=False).strip(), None)
+                yield (new_path, "removed", _require_yaml().dump(a[k], default_flow_style=False).strip(), None)
             else:
                 yield from deep_diff(a[k], b[k], new_path)
     elif isinstance(a, list):
@@ -78,9 +81,9 @@ def deep_diff(a, b, path=""):
         for i in range(max_len):
             new_path = f"{path}[{i}]"
             if i >= len(a):
-                yield (new_path, "added", None, yaml.dump(b[i], default_flow_style=False).strip())
+                yield (new_path, "added", None, _require_yaml().dump(b[i], default_flow_style=False).strip())
             elif i >= len(b):
-                yield (new_path, "removed", yaml.dump(a[i], default_flow_style=False).strip(), None)
+                yield (new_path, "removed", _require_yaml().dump(a[i], default_flow_style=False).strip(), None)
             else:
                 yield from deep_diff(a[i], b[i], new_path)
     else:
@@ -124,14 +127,14 @@ def main():
 
     try:
         with open(file1) as f:
-            data1 = yaml.safe_load(f)
+            data1 = _require_yaml().safe_load(f)
     except Exception as e:
         print(f"Error reading {file1}: {e}", file=sys.stderr)
         sys.exit(1)
 
     try:
         with open(file2) as f:
-            data2 = yaml.safe_load(f)
+            data2 = _require_yaml().safe_load(f)
     except Exception as e:
         print(f"Error reading {file2}: {e}", file=sys.stderr)
         sys.exit(1)

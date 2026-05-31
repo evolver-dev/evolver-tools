@@ -12,12 +12,15 @@ import socket
 import subprocess
 from datetime import datetime, timedelta
 
-try:
-    import psutil
-except ImportError:
-    print("sysmon requires psutil. Install it with: pip install psutil")
-    print("Or install full evolver-tools with: pip install evolver-tools[sysmon]")
-    raise SystemExit(1)
+def _require_psutil():
+    """Lazy-import psutil and fail with helpful message if missing."""
+    try:
+        import psutil
+        return psutil
+    except ImportError:
+        print("sysmon requires psutil. Install it with: pip install psutil")
+        print("Or install full evolver-tools with: pip install evolver-tools[sysmon]")
+        raise SystemExit(1)
 
 def get_hostname():
     try:
@@ -44,21 +47,21 @@ def get_sysinfo():
     return {
         'hostname': get_hostname(),
         'uptime': get_uptime(),
-        'boot_time': datetime.fromtimestamp(psutil.boot_time()).strftime('%m/%d %H:%M'),
+        'boot_time': datetime.fromtimestamp(_require_psutil().boot_time()).strftime('%m/%d %H:%M'),
     }
 
 def get_cpu():
     return {
-        'percent': psutil.cpu_percent(interval=0.1),
-        'per_cpu': psutil.cpu_percent(interval=0.05, percpu=True),
-        'count': psutil.cpu_count(),
-        'freq': psutil.cpu_freq(),
-        'load': psutil.getloadavg(),
+        'percent': _require_psutil().cpu_percent(interval=0.1),
+        'per_cpu': _require_psutil().cpu_percent(interval=0.05, percpu=True),
+        'count': _require_psutil().cpu_count(),
+        'freq': _require_psutil().cpu_freq(),
+        'load': _require_psutil().getloadavg(),
     }
 
 def get_memory():
-    mem = psutil.virtual_memory()
-    swap = psutil.swap_memory()
+    mem = _require_psutil().virtual_memory()
+    swap = _require_psutil().swap_memory()
     return {
         'total': mem.total,
         'used': mem.used,
@@ -70,9 +73,9 @@ def get_memory():
 
 def get_disk():
     parts = []
-    for p in psutil.disk_partitions():
+    for p in _require_psutil().disk_partitions():
         try:
-            usage = psutil.disk_usage(p.mountpoint)
+            usage = _require_psutil().disk_usage(p.mountpoint)
             parts.append({
                 'mount': p.mountpoint,
                 'device': p.device,
@@ -85,7 +88,7 @@ def get_disk():
     return parts
 
 def get_network():
-    net = psutil.net_io_counters()
+    net = _require_psutil().net_io_counters()
     return {
         'sent': net.bytes_sent,
         'recv': net.bytes_recv,
@@ -93,7 +96,7 @@ def get_network():
 
 def get_top_processes(n=8):
     procs = []
-    for p in psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent', 'status']):
+    for p in _require_psutil().process_iter(['pid', 'name', 'cpu_percent', 'memory_percent', 'status']):
         try:
             info = p.info
             if info['cpu_percent'] is None: continue
@@ -104,7 +107,7 @@ def get_top_processes(n=8):
                 'mem': info['memory_percent'] or 0,
                 'status': info['status'],
             })
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
+        except (_require_psutil().NoSuchProcess, _require_psutil().AccessDenied):
             pass
     procs.sort(key=lambda x: x['cpu'], reverse=True)
     return procs[:n]
