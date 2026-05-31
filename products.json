@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "20.0.0",
-    "tools": 186,
+    "version": "21.0.0",
+    "tools": 191,
     "flagships": 9,
-    "total_lines": 12000,
+    "total_lines": 13500,
     "price": 79,
-    "description": "186 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/20.0.0/",
+    "description": "191 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/21.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
@@ -50,6 +50,13 @@
       "fold — Wrap input lines to specified width",
       "pomodoro — Pomodoro timer (work/break cycles)",
       "watch — Run command periodically, showing output"
+    ],
+    "new_in_v21": [
+      "pdf_info — Extract PDF metadata — pages, title, author, size",
+      "csv_merge — Merge CSV files by common column (inner/left/outer join)",
+      "json_flatten — Flatten nested JSON to dot-notation key=value pairs",
+      "http_server — Simple static file HTTP server",
+      "diff_files — Line-by-line file comparison"
     ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
