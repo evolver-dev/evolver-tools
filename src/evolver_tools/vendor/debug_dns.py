@@ -35,35 +35,40 @@ def _decode_name(data, offset):
     end_offset = orig_offset if jumped else offset
     return name, end_offset
 
-qname = _encode_domain('www.github.com')
-header = struct.pack('!HHHHHH', 0x1234, 0x0100, 1, 0, 0, 0)
-question = qname + struct.pack('!HH', 5, 1)
-packet = header + question
+def debug_dns_lookup(domain='www.github.com'):
+    """Perform a raw DNS CNAME query and print results."""
+    qname = _encode_domain(domain)
+    header = struct.pack('!HHHHHH', 0x1234, 0x0100, 1, 0, 0, 0)
+    question = qname + struct.pack('!HH', 5, 1)
+    packet = header + question
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.settimeout(5)
-sock.sendto(packet, ('8.8.8.8', 53))
-data, _ = sock.recvfrom(65535)
-sock.close()
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.settimeout(5)
+    sock.sendto(packet, ('8.8.8.8', 53))
+    data, _ = sock.recvfrom(65535)
+    sock.close()
 
-tid, flags, qdcount, ancount, nscount, arcount = struct.unpack_from('!HHHHHH', data, 0)
-print(f'ancount={ancount} nscount={nscount} arcount={arcount}')
-offset = 12
+    tid, flags, qdcount, ancount, nscount, arcount = struct.unpack_from('!HHHHHH', data, 0)
+    print(f'ancount={ancount} nscount={nscount} arcount={arcount}')
+    offset = 12
 
-for _ in range(qdcount):
-    name, offset = _decode_name(data, offset)
-    offset += 4
+    for _ in range(qdcount):
+        name, offset = _decode_name(data, offset)
+        offset += 4
 
-for i in range(ancount):
-    name, offset = _decode_name(data, offset)
-    print(f'Answer {i}: name="{name}" offset={offset}')
-    if offset + 10 > len(data):
-        break
-    rtype, rclass, ttl, rdlength = struct.unpack_from('!HHIH', data, offset)
-    offset += 10
-    rdata = data[offset:offset+rdlength]
-    offset += rdlength
-    print(f'  type={rtype} class={rclass} ttl={ttl} rdlen={rdlength}')
-    print(f'  rdata hex: {rdata.hex()}')
-    cname, end = _decode_name(rdata, 0)
-    print(f'  cname="{cname}" end={end}')
+    for i in range(ancount):
+        name, offset = _decode_name(data, offset)
+        print(f'Answer {i}: name="{name}" offset={offset}')
+        if offset + 10 > len(data):
+            break
+        rtype, rclass, ttl, rdlength = struct.unpack_from('!HHIH', data, offset)
+        offset += 10
+        rdata = data[offset:offset+rdlength]
+        offset += rdlength
+        print(f'  type={rtype} class={rclass} ttl={ttl} rdlen={rdlength}')
+        print(f'  rdata hex: {rdata.hex()}')
+        cname, end = _decode_name(rdata, 0)
+        print(f'  cname="{cname}" end={end}')
+
+if __name__ == '__main__':
+    debug_dns_lookup()
