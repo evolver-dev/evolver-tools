@@ -1,10 +1,10 @@
 # EVOLVER Tools
 
-**233+ CLI tools + 9 flagship projects — one `pip install`.**
+**238 CLI tools + 9 flagship projects — one `pip install`.**
 
-Zero-dependency (230/233), cross-platform, production-ready. Version **30.0.0**.
+Zero-dependency (235/238), cross-platform, production-ready. Version **31.0.0**.
 Systems ops, data processing, text manipulation, security, dev tooling, and creative utilities.
-All in a single install — not 233 separate packages.
+All in a single install — not 238 separate packages.
 
 ## Quick Start
 
