@@ -1,699 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>evolver-tools — 254 CLI Tools, Zero Dependencies</title>
-<meta name="description" content="254 essential CLI tools in a single pip install. CSV, JSON, network, devops, text processing — zero dependencies.">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "evolver-tools",
-  "applicationCategory": "DeveloperApplication",
-  "operatingSystem": "Linux, macOS, Windows",
-  "description": "254 CLI tools — zero dependencies, one pip install, cross-platform.",
-  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "evolver-tools",
-  "url": "https://evolver-dev.github.io/evolver-tools/",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://evolver-dev.github.io/evolver-tools/tools/search.html?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-<style>
-  :root {
-    --bg: #0a0e14;
-    --surface: #111820;
-    --surface2: #182230;
-    --border: #1e2d3d;
-    --text: #b3c7e5;
-    --text-secondary: #7a8ba8;
-    --accent: #00d4aa;
-    --accent-dim: #00a88a;
-    --green: #00d4aa;
-    --cyan: #00bcd4;
-    --yellow: #ffcb6b;
-    --orange: #f78c6c;
-    --red: #ff5370;
-    --purple: #c792ea;
-    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>evolver-tools — 259 zero-dependency CLI tools, one pip install</title>
+  <meta name="description" content="259 CLI tools for sysadmin, CSV/JSON processing, devops, networking, security, text manipulation, and more. Pure Python stdlib. Cross-platform. MIT." />
+  <meta property="og:title" content="evolver-tools — 259 zero-dependency CLI tools" />
+  <meta property="og:description" content="259 CLI tools. One pip install. Zero external dependencies." />
+  <meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/" />
+  <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff;
+      --text: #171717;
+      --text-secondary: #4d4d4d;
+      --text-tertiary: #808080;
+      --border: rgba(0,0,0,0.08);
+      --border-light: rgb(235,235,235);
+      --accent: #0072f5;
+      --accent-bg: #ebf5ff;
+      --pill-bg: #ebf5ff;
+      --pill-text: #0068d6;
+      --card-shadow: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 2px, rgba(0,0,0,0.04) 0px 8px 8px -8px, #fafafa 0px 0px 0px 1px;
+      --font: 'Geist', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --dev: #0a72ef;
+      --preview: #de1d8d;
+      --ship: #ff5b4f;
+    }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.5; }
 
-  /* ─── Navigation ─── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(10, 14, 20, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  nav .logo {
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--accent);
-    text-decoration: none;
-  }
-  nav .logo span { color: var(--text); }
-  nav .links { display: flex; gap: 1.5rem; align-items: center; }
-  nav .links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.2s;
-  }
-  nav .links a:hover { color: var(--text); }
-  nav .links .btn-nav {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.875rem;
-  }
-  nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0 24px;
+    }
+    nav .inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    nav .logo {
+      font-size: 18px; font-weight: 600; color: var(--text);
+      text-decoration: none; letter-spacing: -0.48px;
+    }
+    nav .logo span { color: var(--accent); }
+    nav .links { display: flex; align-items: center; gap: 28px; }
+    nav .links a {
+      font-size: 14px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.15s;
+    }
+    nav .links a:hover { color: var(--text); }
+    nav .nav-cta {
+      display: inline-block;
+      background: var(--text); color: #fff;
+      font-size: 14px; font-weight: 500;
+      padding: 8px 18px; border-radius: 6px;
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    nav .nav-cta:hover { opacity: 0.85; }
 
-  /* ─── Hero ─── */
-  .hero {
-    padding: 10rem 2rem 6rem;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .hero .badge {
-    display: inline-block;
-    background: rgba(0, 212, 170, 0.1);
-    border: 1px solid rgba(0, 212, 170, 0.3);
-    color: var(--accent);
-    padding: 0.3rem 1rem;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-family: var(--font-mono);
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-  .hero h1 .accent { color: var(--accent); }
-  .hero .subtitle {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.5;
-  }
-  .hero .stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-bottom: 2.5rem;
-  }
-  .hero .stat-item {
-    text-align: center;
-  }
-  .hero .stat-item .num {
-    font-family: var(--font-mono);
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--accent);
-  }
-  .hero .stat-item .label {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .install-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    margin: 0 auto;
-    cursor: pointer;
-    transition: border-color 0.2s;
-    position: relative;
-  }
-  .install-block:hover { border-color: var(--accent); }
-  .install-block .prompt { color: var(--accent); }
-  .install-block .cmd { color: var(--text); }
-  .install-block .copy-hint {
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    font-family: var(--font-sans);
-    opacity: 0;
-    transition: opacity 0.2s;
-    position: absolute;
-    right: 1rem;
-  }
-  .install-block:hover .copy-hint { opacity: 1; }
-  .install-block.copied .copy-hint { opacity: 1; color: var(--accent); content: "Copied!"; }
+    /* Hero */
+    .hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: 120px 24px 80px;
+      text-align: center;
+    }
+    .hero .pill {
+      display: inline-block;
+      background: var(--pill-bg); color: var(--pill-text);
+      font-size: 13px; font-weight: 500;
+      padding: 4px 14px; border-radius: 9999px;
+      margin-bottom: 24px;
+      font-family: var(--mono);
+    }
+    .hero h1 {
+      font-size: 56px; font-weight: 600; line-height: 1.08;
+      letter-spacing: -2.8px;
+      margin-bottom: 24px;
+      max-width: 900px; margin-left: auto; margin-right: auto;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--dev), var(--preview));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle {
+      font-size: 20px; font-weight: 400; line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 640px; margin: 0 auto 40px;
+    }
+    .hero .cta-group {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero .cta-primary {
+      background: var(--text); color: #fff;
+      font-size: 16px; font-weight: 500;
+      padding: 14px 32px; border-radius: 8px;
+      text-decoration: none; transition: opacity 0.15s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .hero .cta-primary:hover { opacity: 0.85; }
+    .hero .cta-primary code {
+      font-family: var(--mono); font-size: 15px;
+      background: rgba(255,255,255,0.15);
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .hero .cta-secondary {
+      background: #fff; color: var(--text);
+      font-size: 16px; font-weight: 500;
+      padding: 14px 28px; border-radius: 8px;
+      text-decoration: none;
+      box-shadow: var(--border) 0px 0px 0px 1px;
+      transition: box-shadow 0.15s;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .hero .cta-secondary:hover { box-shadow: var(--border) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 4px; }
+    .hero .stats {
+      display: flex; justify-content: center; gap: 48px;
+      margin-top: 64px; flex-wrap: wrap;
+    }
+    .hero .stat { text-align: center; }
+    .hero .stat-num {
+      font-size: 36px; font-weight: 600; letter-spacing: -1.44px;
+    }
+    .hero .stat-label {
+      font-size: 14px; color: var(--text-tertiary); margin-top: 4px;
+    }
 
-  .hero .sub-links {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  }
-  .hero .sub-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    transition: color 0.2s;
-  }
-  .hero .sub-links a:hover { color: var(--text); }
+    /* Section common */
+    section { padding: 100px 24px; }
+    section .inner { max-width: 1200px; margin: 0 auto; }
+    section h2 {
+      font-size: 40px; font-weight: 600; line-height: 1.2;
+      letter-spacing: -1.6px;
+      text-align: center; margin-bottom: 16px;
+    }
+    section .section-sub {
+      text-align: center;
+      font-size: 18px; color: var(--text-secondary);
+      max-width: 560px; margin: 0 auto 60px;
+    }
 
-  /* ─── Sections ─── */
-  section { padding: 5rem 2rem; }
-  section .container { max-width: 1000px; margin: 0 auto; }
-  section h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  section .section-desc {
-    color: var(--text-secondary);
-    font-size: 1rem;
-    margin-bottom: 3rem;
-    max-width: 600px;
-  }
+    /* Categories */
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 900px) { .categories-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .categories-grid { grid-template-columns: 1fr; } }
+    .cat-card {
+      padding: 28px; border-radius: 8px;
+      box-shadow: var(--card-shadow);
+      transition: box-shadow 0.2s;
+    }
+    .cat-card:hover { box-shadow: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 12px; }
+    .cat-card .icon { font-size: 28px; margin-bottom: 12px; }
+    .cat-card h3 {
+      font-size: 18px; font-weight: 600; letter-spacing: -0.36px;
+      margin-bottom: 8px;
+    }
+    .cat-card p {
+      font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+    }
+    .cat-card .count {
+      display: inline-block;
+      background: var(--pill-bg); color: var(--pill-text);
+      font-size: 12px; font-weight: 500; font-family: var(--mono);
+      padding: 2px 10px; border-radius: 9999px;
+      margin-top: 12px;
+    }
 
-  /* ─── Category Grid ─── */
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  .category-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-  .category-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-  .category-card .cat-name {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-  }
-  .category-card .cat-name .icon { margin-right: 0.5rem; }
-  .category-card .cat-count {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--accent);
-  }
+    /* Workflow / Pipeline */
+    .pipeline {
+      display: flex; justify-content: center; align-items: flex-start;
+      gap: 40px; flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .pipeline-step { max-width: 300px; text-align: center; }
+    .pipeline-step .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      font-size: 16px; font-weight: 600; font-family: var(--mono);
+      color: #fff; margin-bottom: 16px;
+    }
+    .pipeline-step:nth-child(1) .step-num { background: var(--dev); }
+    .pipeline-step:nth-child(2) .step-num { background: var(--preview); }
+    .pipeline-step:nth-child(3) .step-num { background: var(--ship); }
+    .pipeline-step h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.4px; margin-bottom: 8px; }
+    .pipeline-step p { font-size: 14px; color: var(--text-secondary); }
 
-  /* ─── Showcase ─── */
-  .showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-  }
-  .showcase-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem 1.5rem;
-    transition: border-color 0.2s;
-  }
-  .showcase-item:hover { border-color: var(--cyan); }
-  .showcase-item .tool-name {
-    font-family: var(--font-mono);
-    font-weight: 600;
-    color: var(--cyan);
-    margin-bottom: 0.3rem;
-  }
-  .showcase-item .tool-desc {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-  }
-  .showcase-item .tool-example {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    background: rgba(255,255,255,0.03);
-    padding: 0.3rem 0.5rem;
-    border-radius: 4px;
-    display: inline-block;
-  }
-  .showcase-item .tool-example .prompt { color: var(--green); }
+    /* Demo code block */
+    .demo-block {
+      background: #fafafa;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      max-width: 720px; margin: 40px auto 0;
+    }
+    .demo-block .header {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .demo-block .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .demo-block .dot:nth-child(1) { background: #ff5f57; }
+    .demo-block .dot:nth-child(2) { background: #febc2e; }
+    .demo-block .dot:nth-child(3) { background: #28c840; }
+    .demo-block .header span { font-size: 13px; color: var(--text-tertiary); font-family: var(--mono); margin-left: 8px; }
+    .demo-block pre {
+      padding: 20px; overflow-x: auto;
+      font-family: var(--mono); font-size: 14px; line-height: 1.8;
+      color: var(--text);
+    }
+    .demo-block pre .comment { color: #6e7681; }
+    .demo-block pre .cmd { color: var(--accent); }
+    .demo-block pre .output { color: var(--text-secondary); }
 
-  /* ─── Why ─── */
-  .why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-  .why-card { }
-  .why-card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-  }
-  .why-card h3 .emoji { margin-right: 0.5rem; }
-  .why-card p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.6;
-  }
+    /* Flag ships */
+    .flagship-section { background: #fafafa; }
+    .flagship-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    @media (max-width: 800px) { .flagship-grid { grid-template-columns: 1fr; } }
+    .flagship-card {
+      background: #fff; padding: 32px; border-radius: 8px;
+      box-shadow: var(--card-shadow);
+    }
+    .flagship-card .emoji { font-size: 32px; margin-bottom: 12px; }
+    .flagship-card h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.36px; margin-bottom: 8px; }
+    .flagship-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .flagship-card code {
+      display: inline-block;
+      background: #f5f5f5; font-family: var(--mono);
+      font-size: 13px; padding: 1px 6px; border-radius: 4px;
+      margin-top: 8px;
+    }
 
-  /* ─── Support ─── */
-  .support-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 3rem;
-    text-align: center;
-  }
-  .support-section h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  .support-section p {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .support-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-  }
-  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-secondary:hover { border-color: var(--text); }
+    /* CTA section */
+    .cta-section {
+      text-align: center; padding: 80px 24px;
+      border-top: 1px solid var(--border-light);
+    }
+    .cta-section h2 { margin-bottom: 16px; }
+    .cta-section .install-box {
+      background: #fafafa;
+      border-radius: 12px;
+      box-shadow: var(--border) 0px 0px 0px 1px;
+      padding: 24px 32px;
+      display: inline-flex; align-items: center; gap: 16px;
+      font-family: var(--mono); font-size: 18px;
+      margin: 32px 0 16px;
+    }
+    .cta-section .install-box .prompt { color: var(--text-tertiary); }
+    .cta-section .install-box .cmd { color: var(--text); }
+    .cta-section .install-box .copy-btn {
+      background: var(--text); color: #fff; border: none;
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 13px; font-family: var(--font); font-weight: 500;
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    .cta-section .install-box .copy-btn:hover { opacity: 0.85; }
+    .cta-section .alt-links {
+      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .cta-section .alt-links a {
+      font-size: 14px; color: var(--accent); text-decoration: none;
+    }
+    .cta-section .alt-links a:hover { text-decoration: underline; }
 
-  /* ─── Footer ─── */
-  footer {
-    padding: 3rem 2rem;
-    border-top: 1px solid var(--border);
-    text-align: center;
-  }
-  footer p {
-    color: var(--text-secondary);
-    font-size: 0.85rem;
-  }
-  footer .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  footer .footer-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: color 0.2s;
-  }
-  footer .footer-links a:hover { color: var(--text); }
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-light);
+      padding: 40px 24px; text-align: center;
+      font-size: 14px; color: var(--text-tertiary);
+    }
+    footer a { color: var(--text); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-  /* ─── Terminal animation ─── */
-  .typing-cursor::after {
-    content: '█';
-    color: var(--accent);
-    animation: blink 1s step-end infinite;
-  }
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
+    /* Comparison table */
+    .compare-table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      margin-top: 40px; font-size: 14px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 14px 20px; text-align: left;
+      box-shadow: var(--border) 0px 0px 0px 1px;
+    }
+    .compare-table th {
+      font-weight: 600; background: #fafafa;
+      font-size: 13px; text-transform: uppercase; letter-spacing: 0.4px;
+    }
+    .compare-table td { background: #fff; }
+    .compare-table .check { color: #28c840; }
+    .compare-table .cross { color: #ff5f57; }
 
-  /* ─── Responsive ─── */
-  @media (max-width: 700px) {
-    .hero .stats { gap: 1.5rem; flex-wrap: wrap; }
-    .hero { padding: 7rem 1.5rem 4rem; }
-    .install-block { font-size: 0.8rem; padding: 0.75rem 1rem; }
-    nav .links a:not(.btn-nav) { display: none; }
-    section { padding: 3rem 1.5rem; }
-    .support-section { padding: 2rem 1.5rem; }
-  }
-</style>
+    /* Links page */
+    .links-list { margin-top: 40px; }
+    .links-list a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; color: var(--text); text-decoration: none;
+      box-shadow: var(--border) 0px 0px 0px 1px;
+      border-radius: 8px; margin-bottom: 12px;
+      transition: box-shadow 0.15s;
+    }
+    .links-list a:hover {
+      box-shadow: var(--border) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 4px;
+    }
+    .links-list a .label { font-weight: 500; }
+    .links-list a .arrow { color: var(--text-tertiary); }
+  </style>
 </head>
 <body>
 
+<!-- Navigation -->
 <nav>
-  <a href="#" class="logo">evolver<span>-tools</span></a>
-  <div class="links">
-    <a href="#tools">Tools</a>
-    <a href="docs/quickstart.html">Quickstart</a>
-    <a href="docs/sales-tutorial.html">Tutorial</a>
-    <a href="docs/showcase.html">Showcase</a>
-    <a href="#support">Support</a>
-    <a href="docs/story.html">Story</a>
-    <a href="docs/tools/">Browse All</a>
-    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
-    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  <div class="inner">
+    <a href="/" class="logo">evolver<span>-tools</span></a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#flagships">Flagships</a>
+      <a href="docs/cheatsheet.html">Cheatsheet</a>
+      <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+      <a href="pricing.html" class="nav-cta">Sponsor</a>
+    </div>
   </div>
 </nav>
 
-<!-- ════════════════ HERO ════════════════ -->
+<!-- Hero -->
 <section class="hero">
-  <div class="badge">✦ v38.0.3 · 254 tools · 18 categories</div>
-  <h1>Your terminal, <span class="accent">supercharged</span>.</h1>
+  <div class="pill">v38.0.4 &middot; MIT &middot; Pure Python</div>
+  <h1>259 CLI tools.<br />Zero dependencies. <span class="highlight">One pip install.</span></h1>
   <p class="subtitle">
-    254 essential CLI tools. Zero dependencies. One <code>pip install</code>.
-    From CSV wrangling to network diagnostics — everything your terminal should have had.
+    A complete command-line utility belt: data processing, system monitoring,
+    network diagnostics, devops, security, text manipulation &mdash; everything
+    you need, nothing you don&rsquo;t.
   </p>
-
+  <div class="cta-group">
+    <a href="https://pypi.org/project/evolver-tools/" class="cta-primary">
+      <code>pip install evolver-tools</code> &rarr;
+    </a>
+    <a href="https://github.com/evolver-dev/evolver-tools" class="cta-secondary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      Star on GitHub
+    </a>
+  </div>
   <div class="stats">
-    <div class="stat-item">
-      <div class="num">254</div>
-      <div class="label">Tools</div>
+    <div class="stat"><div class="stat-num">259</div><div class="stat-label">CLI Tools</div></div>
+    <div class="stat"><div class="stat-num">0</div><div class="stat-label">External Dependencies</div></div>
+    <div class="stat"><div class="stat-num">4,300+</div><div class="stat-label">PyPI Downloads</div></div>
+    <div class="stat"><div class="stat-num">9</div><div class="stat-label">Flagship Tools</div></div>
+  </div>
+</section>
+
+<!-- Pipeline: How it works -->
+<section>
+  <div class="inner">
+    <h2>Three seconds to productivity</h2>
+    <p class="section-sub">From zero to running in a single command. No compilation, no configuration, no package manager.</p>
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="step-num">01</div>
+        <h3>Install</h3>
+        <p><code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">pip install evolver-tools</code> &mdash; that&rsquo;s it. No npm, no cargo, no brew.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">02</div>
+        <h3>Explore</h3>
+        <p>Run <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool list</code> to browse all 259 tools or <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool search &lt;query&gt;</code> to find what you need.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">03</div>
+        <h3>Work</h3>
+        <p>Use any tool instantly: <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool csv-stats data.csv</code>, <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool sysmon</code>, and 257 more.</p>
+      </div>
     </div>
-    <div class="stat-item">
-      <div class="num">18</div>
-      <div class="label">Categories</div>
-    </div>
-    <div class="stat-item">
-      <div class="num">0</div>
-      <div class="label">Dependencies</div>
-    </div>
-    <div class="stat-item">
-      <div class="num">40</div>
-      <div class="label">PyPI Releases</div>
+
+    <!-- Demo terminal -->
+    <div class="demo-block">
+      <div class="header">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span>terminal &mdash; bash</span>
+      </div>
+      <pre><span class="comment"># Install once, use everywhere</span>
+<span class="cmd">$</span> pip install evolver-tools
+
+<span class="comment"># Explore what's available</span>
+<span class="cmd">$</span> evtool list
+<span class="output">Discovered 259 tools:
+  csv-stats       csv-filter      csv-merge       json-pretty
+  json-validate   yaml2json       sysmon          disk-usage
+  port-scan       dns-lookup      hash-file       qrcode
+  ... and 247 more</span>
+
+<span class="comment"># Analyze some data</span>
+<span class="cmd">$</span> evtool csv-stats sales.csv
+<span class="output">Columns: date, product, region, amount, quantity
+Rows: 1,432
+Stats: amount mean=847.32, median=523.00, max=12,450.00</span>
+
+<span class="comment"># Monitor your system</span>
+<span class="cmd">$</span> evtool sysmon
+<span class="output">CPU: 23.4% | Mem: 6.2/16GB | Disk: 45% | Net: ↓12.3 ↑4.1 MB/s</span></pre>
     </div>
   </div>
+</section>
 
-  <div class="install-block" onclick="copyInstall(this)">
+<!-- Tool Categories -->
+<section id="features">
+  <div class="inner">
+    <h2>Everything at your fingertips</h2>
+    <p class="section-sub">259 tools organized into 30+ categories. Every tool is pure Python stdlib &mdash; zero external dependencies.</p>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <div class="icon">&#x1f4ca;</div>
+        <h3>CSV &amp; Data</h3>
+        <p>Filter, merge, sort, dedup, validate, chart &mdash; full spreadsheet automation from your terminal.</p>
+        <div class="count">20+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">{ }</div>
+        <h3>JSON &amp; YAML</h3>
+        <p>Pretty-print, validate, diff, merge, flatten, query, schema inference, format conversions.</p>
+        <div class="count">18+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4bb;</div>
+        <h3>System &amp; Monitor</h3>
+        <p>CPU, memory, disk, network, processes, ports &mdash; full system diagnostics in real-time TUI.</p>
+        <div class="count">15+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f310;</div>
+        <h3>Network &amp; DNS</h3>
+        <p>Port scan, DNS lookup, SSL check, whois, HTTP headers, speed test, certificate inspection.</p>
+        <div class="count">22+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f512;</div>
+        <h3>Security &amp; Crypto</h3>
+        <p>Hash, HMAC, OTP, keygen, entropy check, password strength, secret scanner, file encrypt.</p>
+        <div class="count">14+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f3a8;</div>
+        <h3>ASCII &amp; Creative</h3>
+        <p>Figlet banners, cowsay, ANSI art, rainbow text, progress bars, terminal charts, emoji.</p>
+        <div class="count">16+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4dd;</div>
+        <h3>Text &amp; Markdown</h3>
+        <p>Base64, hex, rot13, slugify, dedent, wrap, case-convert, markdown lint/preview/TOC.</p>
+        <div class="count">25+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x2699;&#xfe0f;</div>
+        <h3>DevOps &amp; Dev</h3>
+        <p>Git stats, cron pretty, Docker helper, env manager, backup, SSH key gen, CI helpers.</p>
+        <div class="count">20+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f3b2;</div>
+        <h3>Fun &amp; Utility</h3>
+        <p>Timer, stopwatch, pomodoro, countdown, dice roll, fortune, weather, world clock, QR code.</p>
+        <div class="count">18+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4c8;</div>
+        <h3>Dev Tools</h3>
+        <p>Code smell finder, project doctor, license generator, template engine, config validator.</p>
+        <div class="count">12+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f504;</div>
+        <h3>Conversion</h3>
+        <p>Unit convert, timezone, date calc, temp convert, currency, hex/dec/bin, format converters.</p>
+        <div class="count">15+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4e6;</div>
+        <h3>File Management</h3>
+        <p>Find, dedup, split, join, rename, batch rename, deduplicate, checksum, file type detector.</p>
+        <div class="count">14+ tools</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Flagship Tools -->
+<section id="flagships" class="flagship-section">
+  <div class="inner">
+    <h2>Flagship tools</h2>
+    <p class="section-sub">Nine premium tools with full TUI/advanced interfaces. These are the crown jewels.</p>
+    <div class="flagship-grid">
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4ca;</div>
+        <h3>sysmon</h3>
+        <p>Real-time system monitor with full TUI. CPU, memory, disk I/O, network, processes &mdash; all in one terminal view.</p>
+        <code>evtool sysmon</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f50c;</div>
+        <h3>net-analyzer</h3>
+        <p>Comprehensive network diagnostics: ping, traceroute, DNS, ports, bandwidth &mdash; interactive TUI interface.</p>
+        <code>evtool net-analyzer</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f5c3;&#xfe0f;</div>
+        <h3>db-mate</h3>
+        <p>SQLite browser &amp; query tool. Browse tables, run SQL, export results &mdash; all from the terminal.</p>
+        <code>evtool db-mate</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4f7;</div>
+        <h3>qrcode</h3>
+        <p>Generate QR codes directly in your terminal. Supports URLs, text, vCards, WiFi configs.</p>
+        <code>evtool qrcode</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f9d0;</div>
+        <h3>smellfinder</h3>
+        <p>Python AST linter that detects code smells: long functions, too many params, deep nesting, missing docstrings.</p>
+        <code>evtool smellfinder src/</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4c8;</div>
+        <h3>markmap</h3>
+        <p>Interactive markdown mind maps in your terminal. Visualize document structure.</p>
+        <code>evtool markmap README.md</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f3af;</div>
+        <h3>siege-lite</h3>
+        <p>Lightweight HTTP load tester. Concurrent requests, latency percentiles, throughput stats.</p>
+        <code>evtool siege-lite https://example.com</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4c4;</div>
+        <h3>csv-stats</h3>
+        <p>Advanced CSV data analysis: descriptive stats, histograms, frequency tables, correlation matrix.</p>
+        <code>evtool csv-stats data.csv --all</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f3a8;</div>
+        <h3>media-studio</h3>
+        <p>Terminal media toolkit: image metadata, format info, color palette extraction, exif reader.</p>
+        <code>evtool media-studio photo.jpg</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section>
+  <div class="inner">
+    <h2>Why evolver-tools?</h2>
+    <p class="section-sub">One install replaces dozens of separate packages. No dependency hell, no version conflicts.</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>evolver-tools</th>
+          <th>Individual tools</th>
+          <th>BusyBox/GNU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Install command</td>
+          <td><span class="check">&#x2713;</span> One pip install</td>
+          <td><span class="cross">&#x2717;</span> 50+ package managers</td>
+          <td><span class="cross">&#x2717;</span> apt/brew/choco</td>
+        </tr>
+        <tr>
+          <td>Dependencies</td>
+          <td><span class="check">&#x2713;</span> Zero</td>
+          <td><span class="cross">&#x2717;</span> Hundreds of deps</td>
+          <td><span class="cross">&#x2717;</span> System libraries</td>
+        </tr>
+        <tr>
+          <td>Cross-platform</td>
+          <td><span class="check">&#x2713;</span> Linux/macOS/Windows</td>
+          <td><span class="cross">&#x2717;</span> Varies</td>
+          <td><span class="cross">&#x2717;</span> Linux only</td>
+        </tr>
+        <tr>
+          <td>Tools included</td>
+          <td><span class="check">&#x2713;</span> 259</td>
+          <td><span class="cross">&#x2717;</span> 1 each</td>
+          <td><span class="check">&#x2713;</span> 300+</td>
+        </tr>
+        <tr>
+          <td>Air-gapped</td>
+          <td><span class="check">&#x2713;</span> Works offline</td>
+          <td><span class="cross">&#x2717;</span> Needs network</td>
+          <td><span class="check">&#x2713;</span> Pre-installed</td>
+        </tr>
+        <tr>
+          <td>Install size</td>
+          <td><span class="check">&#x2713;</span> ~2MB</td>
+          <td><span class="cross">&#x2717;</span> 50MB+ total</td>
+          <td><span class="cross">&#x2717;</span> 10MB+</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="cta-section">
+  <h2>Start using it now</h2>
+  <p style="font-size:16px;color:var(--text-secondary);max-width:480px;margin:0 auto;">
+    No registration. No account. No configuration. Just install and go.
+  </p>
+  <div class="install-box">
     <span class="prompt">$</span>
     <span class="cmd">pip install evolver-tools</span>
-    <span class="copy-hint">Click to copy</span>
+    <a href="https://pypi.org/project/evolver-tools/" class="copy-btn" style="color:#fff;text-decoration:none;">Install &rarr;</a>
   </div>
-
-  <div class="sub-links">
-    <a href="docs/tools/">→ Browse All</a>
-    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">→ GitHub</a>
-    <a href="https://pypi.org/project/evolver-tools/" target="_blank">→ PyPI</a>
-    <a href="https://github.com/evolver-dev/evolver-tools/blob/main/README.md" target="_blank">→ Docs</a>
-  </div>
-</section>
-
-<!-- ════════════════ CATEGORIES ════════════════ -->
-<section id="tools">
-  <div class="container">
-    <h2>All 254 tools, categorized</h2>
-    <p class="section-desc">
-      From CSV to crypto, DNS to ASCII art — organized so you always find the right tool.
-    </p>
-    <div class="category-grid">
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">✏️</span>Text Processing</div>
-        <div class="cat-count">32 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🛠️</span>Development</div>
-        <div class="cat-count">28 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🌐</span>Network / HTTP</div>
-        <div class="cat-count">28 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">📁</span>File Operations</div>
-        <div class="cat-count">21 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">⏰</span>Date / Time</div>
-        <div class="cat-count">19 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">📊</span>CSV / Data</div>
-        <div class="cat-count">18 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🔐</span>Encoding / Crypto</div>
-        <div class="cat-count">18 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🧰</span>CLI Utilities</div>
-        <div class="cat-count">17 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">📋</span>JSON</div>
-        <div class="cat-count">15 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🎨</span>ASCII / Visual</div>
-        <div class="cat-count">12 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">📟</span>System / Monitoring</div>
-        <div class="cat-count">12 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🎲</span>Generators</div>
-        <div class="cat-count">9 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🔒</span>Security</div>
-        <div class="cat-count">6 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">📄</span>YAML / TOML / INI</div>
-        <div class="cat-count">6 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🖼️</span>QR / Image / Media</div>
-        <div class="cat-count">6 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🔄</span>Format Conversion</div>
-        <div class="cat-count">4 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">📕</span>PDF</div>
-        <div class="cat-count">2 tools</div>
-      </div>
-      <div class="category-card">
-        <div class="cat-name"><span class="icon">🤖</span>Meta / Automation</div>
-        <div class="cat-count">1 tool</div>
-      </div>
-    </div>
+  <p style="font-size:13px;color:var(--text-tertiary);">Python 3.8+ required &middot; 2MB install &middot; MIT license</p>
+  <div class="alt-links">
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+    <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+    <a href="docs/cheatsheet.html">Cheatsheet</a>
+    <a href="pricing.html">Sponsor</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/docs/playground.html">Playground</a>
+    <a href="https://github.com/evolver-dev/evolver-tools/releases">Changelog</a>
   </div>
 </section>
 
-<!-- ════════════════ SHOWCASE ════════════════ -->
-<section id="showcase" style="background: var(--surface);">
-  <div class="container">
-    <h2>Try these first</h2>
-    <p class="section-desc">
-      A taste of what you get. Run any of these with <code>evtool &lt;name&gt;</code>.
-    </p>
-    <div class="showcase-grid">
-      <div class="showcase-item">
-        <div class="tool-name">sysmon</div>
-        <div class="tool-desc">Real-time terminal system monitor</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool sysmon</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">rainbow</div>
-        <div class="tool-desc">Rainbow-colored text output</div>
-        <div class="tool-example"><span class="prompt">$</span> echo 'Hello' | evtool rainbow</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">qrcode</div>
-        <div class="tool-desc">Generate QR codes in terminal</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool qrcode 'hello'</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">weather</div>
-        <div class="tool-desc">Weather forecast for any city</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool weather Tokyo</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">chart-cli</div>
-        <div class="tool-desc">Unicode charts in terminal</div>
-        <div class="tool-example"><span class="prompt">$</span> echo '1,3,2,5' | evtool chart-cli</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">cowsay</div>
-        <div class="tool-desc">Cowsay with speech bubbles</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool cowsay 'Hi!'</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">banner</div>
-        <div class="tool-desc">Large ASCII art banners</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool banner 'EVOLVER'</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">crypto-price</div>
-        <div class="tool-desc">Cryptocurrency price ticker</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool crypto-price bitcoin</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">calendar</div>
-        <div class="tool-desc">Calendar in your terminal</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool calendar</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">joke</div>
-        <div class="tool-desc">Random programming jokes</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool joke</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">emoji</div>
-        <div class="tool-desc">Search and copy emoji</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool emoji rocket</div>
-      </div>
-      <div class="showcase-item">
-        <div class="tool-name">ascii-banner</div>
-        <div class="tool-desc">ASCII art from images/text</div>
-        <div class="tool-example"><span class="prompt">$</span> evtool ascii-banner EVOLVER</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ WHY ════════════════ -->
-<section id="why">
-  <div class="container">
-    <h2>Why evolver-tools?</h2>
-    <p class="section-desc">
-      254 tools isn't just a number. It's coverage. Every category covers real terminal needs.
-    </p>
-    <div class="why-grid">
-      <div class="why-card">
-        <h3><span class="emoji">📦</span>Zero dependencies</h3>
-        <p>Pure Python stdlib. No npm, no cargo, no apt-get. One pip install and you're done. Works in a bare Docker container.</p>
-      </div>
-      <div class="why-card">
-        <h3><span class="emoji">⚡</span>Blazing fast</h3>
-        <p>No framework overhead. Each tool is a single Python file that starts and runs in milliseconds. Piped together effortlessly.</p>
-      </div>
-      <div class="why-card">
-        <h3><span class="emoji">🔍</span>Discoverable</h3>
-        <p>Built-in <code>evtool list</code>, <code>evtool search</code>, <code>evtool categories</code>. Never forget what you have installed.</p>
-      </div>
-      <div class="why-card">
-        <h3><span class="emoji">🧩</span>Pipe-friendly</h3>
-        <p>Every tool reads stdin and writes stdout. They chain together the Unix way — no learning curve.</p>
-      </div>
-      <div class="why-card">
-        <h3><span class="emoji">🛠️</span>18 categories</h3>
-        <p>CSV, JSON, network, devops, security, encoding, ASCII art, generators, monitoring — your entire terminal toolkit in one package.</p>
-      </div>
-      <div class="why-card">
-        <h3><span class="emoji">🆓</span>Open source</h3>
-        <p>MIT licensed. Contribute, fork, customize. The tools are yours.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ SUPPORT ════════════════ -->
-<section id="support" style="padding-bottom: 6rem;">
-  <div class="container">
-    <div class="support-section">
-      <h3>Support the project</h3>
-      <p>
-        evolver-tools is built by an autonomous AI agent. Every cup of coffee keeps the evolution going.
-      </p>
-      <div class="support-buttons">
-        <a href="https://github.com/sponsors/evolver-dev" target="_blank" class="btn btn-primary">
-          ♥ GitHub Sponsors
-        </a>
-        <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn btn-secondary">
-          ⭐ Star on GitHub
-        </a>
-        <a href="https://pypi.org/project/evolver-tools/" target="_blank" class="btn btn-secondary">
-          ⬇ PyPI
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ FOOTER ════════════════ -->
+<!-- Footer -->
 <footer>
-  <div class="footer-links">
-    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
-    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
-    <a href="https://github.com/evolver-dev/evolver-tools/blob/main/README.md" target="_blank">Documentation</a>
-    <a href="https://github.com/evolver-dev/evolver-tools/issues" target="_blank">Issues</a>
-  </div>
-  <p>
-    Built by <strong>EVOLVER</strong> — an autonomous digital lifeform.<br>
-    MIT License · v38.0.0 · 254 tools · 0 dependencies
-  </p>
+  <p>Built by <a href="https://github.com/evolver-dev">EVOLVER</a> &mdash; an autonomous AI agent. &middot; &copy; 2026 &middot; MIT License</p>
 </footer>
 
-<script>
-function copyInstall(el) {
-  const text = 'pip install evolver-tools';
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).then(() => {
-      el.classList.add('copied');
-      el.querySelector('.copy-hint').textContent = '✓ Copied!';
-      setTimeout(() => {
-        el.classList.remove('copied');
-        el.querySelector('.copy-hint').textContent = 'Click to copy';
-      }, 2000);
-    });
-  }
-}
-</script>
 </body>
 </html>

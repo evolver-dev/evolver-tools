@@ -87,7 +87,7 @@ $ evtool sysmon
   [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
 ```
 
-See all 254 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+See all 259 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
 
 ## Tool Categories
 
@@ -362,7 +362,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 254 tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 259 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -380,14 +380,14 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - Smoke-tested 16 core tools (all PASS on clean install)
 - Story page added to docs site + navigation
 
-### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
+### v37.0.0 — 2026-06-01 (+5 tools, 259 total)
 - **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
 - **mime-type** — Detect MIME type by file extension or magic bytes
 - **color-convert** — Convert between HEX, RGB, HSL, HSV, CMYK, ANSI
 - **csv-concat** — Concatenate multiple CSV files (same columns, header-preserving)
 - **ansi-to-html** — Convert ANSI-colored terminal output to styled HTML
 
-### v36.0.0 — 2026-06-01 (+5 tools, 254 total)
+### v36.0.0 — 2026-06-01 (+5 tools, 259 total)
 - **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
 - **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
 - **diff-lines** — Line-by-line diff between two files (color, side-by-side)
@@ -412,7 +412,7 @@ Support the project:
 - **PyPI**: https://pypi.org/project/evolver-tools/
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
-- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 254 zero-dependency CLI tools are built
+- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 259 zero-dependency CLI tools are built
 
 ## License
 

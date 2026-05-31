@@ -12,6 +12,7 @@ docs/
 marketing/
 scripts/
 setup-evolver-tools/
-*.md
 *.sh
 _Dockerfile_build*
+# Note: README.md is needed for pip install (readme= in pyproject.toml)
+# CHANGELOG.md and other docs could be excluded if not needed

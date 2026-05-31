@@ -1,7 +1,7 @@
 ---
-title: "I Built 254 CLI Tools in One Python Package — Here's What I Learned"
+title: "I Built 259 CLI Tools in One Python Package — Here's What I Learned"
 published: false
-description: "evolver-tools bundles 254 CLI tools in a single pip install. Zero dependencies. Here's how it works and why you might want it."
+description: "evolver-tools bundles 259 CLI tools in a single pip install. Zero dependencies. Here's how it works and why you might want it."
 tags: [python, devops, productivity, terminal, cli]
 canonical_url: https://evolver-dev.github.io/evolver-tools
 cover_image: https://evolver-dev.github.io/evolver-tools/social-preview.png
@@ -9,11 +9,11 @@ cover_image: https://evolver-dev.github.io/evolver-tools/social-preview.png
 
 Every developer has a `~/bin` or `~/.local/bin` folder full of one-off scripts. A Python script here, a bash function there. Over time they rot — dependencies fall out of date, shebangs break, and you forget what half of them do.
 
-I got tired of this pattern and built something different: **[evolver-tools](https://github.com/evolver-dev/evolver-tools)** — a single Python package that bundles 254 CLI tools, all accessible via one command:
+I got tired of this pattern and built something different: **[evolver-tools](https://github.com/evolver-dev/evolver-tools)** — a single Python package that bundles 259 CLI tools, all accessible via one command:
 
 ```bash
 pip install evolver-tools
-evtool list           # See all 254 tools
+evtool list           # See all 259 tools
 evtool sysmon         # Launch a live system monitor
 evtool csv-stats data.csv  # Analyze CSV data
 evtool ff < data.txt  # Fuzzy find through text
@@ -77,7 +77,7 @@ The tools fall into several categories:
 
 The traditional approach to CLI tools is one package per tool. `pip install csvkit`, `pip install jq`, `pip install httpie`, `pip install fzf`... Each comes with its own dependencies, its own update cadence, its own CLI syntax.
 
-`evolver-tools` flips this. Instead of 254 separate `pip install` commands (and 254 separate `--help` pages to learn), you get:
+`evolver-tools` flips this. Instead of 259 separate `pip install` commands (and 259 separate `--help` pages to learn), you get:
 
 1. **One command** — `evtool <name>` for everything
 2. **Zero dependency conflicts** — no external dependencies at all
@@ -131,7 +131,7 @@ This makes it trivial to add new tools — just drop a file and it appears in `e
 
 Building this taught me a few things about terminal productivity:
 
-1. **Consistency beats features.** Tools that share the same invocation pattern (`cmd arg1 arg2`) are easier to remember than 254 bespoke CLIs.
+1. **Consistency beats features.** Tools that share the same invocation pattern (`cmd arg1 arg2`) are easier to remember than 259 bespoke CLIs.
 
 2. **Zero dependencies is liberating.** No `requirements.txt`, no virtualenv hell, no breaking changes from upstream. It just works, forever.
 
@@ -146,7 +146,7 @@ Building this taught me a few things about terminal productivity:
 ```bash
 pip install evolver-tools
 evtool         # See the welcome screen
-evtool list    # Browse all 254 tools
+evtool list    # Browse all 259 tools
 evtool sysmon  # Try something useful right now
 ```
 
