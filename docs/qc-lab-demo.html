@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QC Lab Tools 在线演示 — 电池回收/湿法冶金化验工具链</title>
+<meta name="description" content="QC Lab Tools 交互演示：滴定计算、样品送检单、检验报告一键生成。专为电池回收和湿法冶金行业设计。无需安装，在线体验。">
+<meta property="og:title" content="QC Lab Tools 在线演示">
+<meta property="og:description" content="电池回收/湿法冶金化验工具链 — 滴定计算·送检单·检验报告">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --orange: #d29922;
+    --red: #f85149;
+    --purple: #bc8cff;
+    --cyan: #79c0ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #161b22 0%, #1c2333 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 0 32px;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #58a6ff, #bc8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header .subtitle {
+    font-size: 16px;
+    color: var(--text2);
+    margin-top: 8px;
+  }
+  .header .badges {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .badge .icon { font-size: 14px; }
+  .badge.install {
+    background: #1f6feb22;
+    border-color: #1f6feb44;
+    color: var(--accent);
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 14px 16px;
+    background: none;
+    border: none;
+    color: var(--text2);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    position: relative;
+  }
+  .tab-btn:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-btn .count {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 0 6px;
+    font-size: 11px;
+    background: var(--surface2);
+    border-radius: 8px;
+    color: var(--text2);
+  }
+  .tab-panel { display: none; padding: 28px 0 40px; }
+  .tab-panel.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .tag.calc { background: #1f6feb33; color: #58a6ff; }
+  .tag.sample { background: #3fb95033; color: #3fb950; }
+  .tag.report { background: #bc8cff33; color: #bc8cff; }
+  .tag.demo-data { background: #d2992233; color: #d29922; font-size: 10px; }
+
+  /* Scenario description */
+  .scenario {
+    background: linear-gradient(135deg, #1c2333, #161b22);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .scenario .icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #1f6feb22;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .scenario h3 { font-size: 15px; margin-bottom: 4px; }
+  .scenario p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+  /* Input groups */
+  .input-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .input-group.three { grid-template-columns: 1fr 1fr 1fr; }
+  .input-group.four { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label {
+    font-size: 12px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+  .field input, .field select {
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'SF Mono', 'JetBrains Mono', monospace;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .field input:focus, .field select:focus {
+    border-color: var(--accent);
+  }
+  .field input[type="number"] { -moz-appearance: textfield; }
+  .field input::-webkit-outer-spin-button,
+  .field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  /* Result display */
+  .result-box {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+  }
+  .result-value {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'SF Mono', monospace;
+    color: var(--accent);
+  }
+  .result-unit { font-size: 16px; color: var(--text2); margin-left: 6px; }
+  .result-detail {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 8px;
+    font-family: 'SF Mono', monospace;
+    line-height: 1.8;
+  }
+  .result-detail .hl { color: var(--green); }
+  .result-detail .warn { color: var(--orange); }
+
+  /* Spec check */
+  .spec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .spec-item {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .spec-item.pass { border-color: #3fb95044; background: #3fb95011; }
+  .spec-item.fail { border-color: #f8514944; background: #f8514911; }
+  .spec-item .elem { font-weight: 600; }
+  .spec-item .value { font-family: 'SF Mono', monospace; font-size: 14px; }
+  .spec-item .status { font-size: 18px; }
+  .spec-item .range { font-size: 12px; color: var(--text2); }
+
+  /* Table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table th {
+    background: var(--surface2);
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .ok { color: var(--green); font-weight: 600; }
+  .data-table .ng { color: var(--red); font-weight: 600; }
+  .data-table tr:hover { background: rgba(255,255,255,0.02); }
+
+  /* Report preview */
+  .report-frame {
+    background: #f8f9fa;
+    color: #1a1a1a;
+    border-radius: 8px;
+    padding: 24px 28px;
+    font-family: 'SimSun', 'PingFang SC', serif;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .report-frame .rep-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #1a1a2e;
+    margin-bottom: 16px;
+  }
+  .report-frame .rep-sub { text-align: center; font-size: 12px; color: #666; margin-bottom: 16px; }
+  .report-frame .rep-info { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .report-frame .rep-info td { padding: 4px 10px; border: 1px solid #ddd; font-size: 12px; }
+  .report-frame .rep-info td:first-child { background: #eee; font-weight: bold; width: 100px; }
+  .report-frame .rep-results { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+  .report-frame .rep-results th {
+    background: #1a1a2e; color: white; padding: 6px 10px; font-size: 12px;
+    text-align: center;
+  }
+  .report-frame .rep-results td { padding: 6px 10px; text-align: center; border: 1px solid #ddd; font-size: 12px; }
+  .report-frame .pass { color: #007a33; font-weight: bold; }
+  .report-frame .fail { color: #cc0000; font-weight: bold; }
+  .report-frame .rep-conclusion {
+    background: #e8f4fd;
+    border: 1px solid #1a1a2e;
+    border-radius: 4px;
+    padding: 10px 14px;
+    text-align: center;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .report-frame .rep-sign { display: flex; justify-content: space-between; margin-top: 20px; font-size: 12px; }
+
+  /* Sample form */
+  .form-frame {
+    background: #f8f9fa;
+    color: #1a1a1a;
+    border-radius: 8px;
+    padding: 24px 28px;
+    font-family: 'SimSun', 'PingFang SC', serif;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .form-frame .fm-title {
+    text-align: center; font-size: 18px; font-weight: bold;
+    padding-bottom: 10px; border-bottom: 3px double #1a1a2e;
+    margin-bottom: 16px;
+  }
+  .form-frame .fm-line { margin: 4px 0; }
+  .form-frame .fm-line .label { display: inline-block; width: 100px; color: #555; }
+  .form-frame .fm-items { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .form-frame .fm-items th { background: #1a1a2e; color: white; padding: 6px 10px; font-size: 12px; }
+  .form-frame .fm-items td { padding: 6px 10px; border: 1px solid #ddd; font-size: 12px; }
+  .form-frame .fm-sign { margin-top: 20px; }
+  .form-frame .fm-line-dash { border-top: 1px dashed #999; margin: 12px 0; }
+
+  /* Terminal output */
+  .terminal-block {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'SF Mono', 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin: 12px 0;
+  }
+  .terminal-block .prompt { color: var(--green); }
+  .terminal-block .cmd { color: var(--text); }
+  .terminal-block .out { color: var(--text2); }
+  .terminal-block .hl { color: var(--accent); }
+  .terminal-block .ok { color: var(--green); }
+
+  /* Install section */
+  .install-box {
+    background: linear-gradient(135deg, #1c2333, #161b22);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 24px;
+  }
+  .install-box code {
+    display: inline-block;
+    background: #0d1117;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'SF Mono', monospace;
+    border: 1px solid var(--border);
+    color: var(--green);
+    margin: 10px 0;
+  }
+  .install-box .hint { font-size: 13px; color: var(--text2); margin-top: 8px; }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .input-group { grid-template-columns: 1fr; }
+    .input-group.three { grid-template-columns: 1fr; }
+    .input-group.four { grid-template-columns: 1fr 1fr; }
+    .spec-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 24px; }
+    .tab-btn { font-size: 12px; padding: 10px 8px; }
+    .scenario { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>🧪 QC Lab Tools</h1>
+    <p class="subtitle">电池回收 / 湿法冶金化验工具链 — 在线交互演示</p>
+    <div class="badges">
+      <span class="badge install"><span class="icon">📦</span> pip install qc-lab-tools</span>
+      <span class="badge"><span class="icon">⚡</span> 零依赖</span>
+      <span class="badge"><span class="icon">🛠️</span> 3 个工具</span>
+      <span class="badge"><span class="icon">📊</span> 真实化验场景</span>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="tab1">🧪 滴定计算 <span class="count">qc-calc</span></button>
+  <button class="tab-btn" data-tab="tab2">📋 样品送检单 <span class="count">qc-sample</span></button>
+  <button class="tab-btn" data-tab="tab3">📄 检验报告 <span class="count">qc-report</span></button>
+</div>
+
+<div class="container">
+
+<!-- ============================== TAB 1: 滴定计算 ============================== -->
+<div id="tab1" class="tab-panel active">
+
+  <div class="scenario">
+    <div class="icon-box">🏭</div>
+    <div>
+      <h3>场景：黑粉浸出液钴含量测定</h3>
+      <p>电池回收产线（预处理→浸出→萃取→结晶）中，浸出液是关键的中间产物。QC 化验员每天需要测定浸出液中 Co、Ni、Cu、Mn、Fe 等元素的含量，判断是否达到萃取工序的进料要求。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        EDTA 滴定计算
+        <span class="tag calc">qc-calc</span>
+        <span class="tag demo-data">预设数据 — 可调</span>
+      </div>
+    </div>
+
+    <div class="input-group four">
+      <div class="field">
+        <label>元素</label>
+        <select id="element">
+          <option value="Co" selected>Co (钴)</option>
+          <option value="Ni">Ni (镍)</option>
+          <option value="Cu">Cu (铜)</option>
+          <option value="Mn">Mn (锰)</option>
+          <option value="Fe">Fe (铁)</option>
+          <option value="Zn">Zn (锌)</option>
+          <option value="Ca">Ca (钙)</option>
+          <option value="Mg">Mg (镁)</option>
+          <option value="Li">Li (锂)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>EDTA 消耗 V (mL)</label>
+        <input type="number" id="v_edta" value="18.50" step="0.01" min="0">
+      </div>
+      <div class="field">
+        <label>EDTA 浓度 C (mol/L)</label>
+        <input type="number" id="c_edta" value="0.0500" step="0.0001" min="0">
+      </div>
+      <div class="field">
+        <label>取样体积 V (mL)</label>
+        <input type="number" id="v_sample" value="2.00" step="0.01" min="0">
+      </div>
+    </div>
+    <div class="input-group three" style="grid-template-columns:1fr 1fr 1fr;margin-top:-4px">
+      <div class="field">
+        <label>稀释倍数</label>
+        <input type="number" id="dilution" value="1.0" step="0.1" min="1">
+      </div>
+      <div class="field" style="justify-content:flex-end;">
+        <label style="visibility:hidden">.</label>
+        <button id="calc-btn" style="padding:8px 24px;background:#1f6feb;color:white;border:none;border-radius:6px;font-size:14px;cursor:pointer;font-weight:500;">计算</button>
+      </div>
+    </div>
+
+    <div id="calc-result" class="result-box">
+      <div>
+        <span class="result-value" id="res-conc">85.25</span>
+        <span class="result-unit">g/L</span>
+      </div>
+      <div class="result-detail" id="res-detail">
+        Co(钴) 浓度计算过程：<br>
+        C = <span class="hl">18.50</span> mL × <span class="hl">0.0500</span> mol/L × <span class="hl">58.933</span> g/mol / <span class="hl">2.00</span> mL<br>
+        = <span class="hl">85.25</span> g/L (未稀释)
+      </div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div style="font-size:13px;color:var(--text2);margin-bottom:8px;font-weight:500;">规格比对标示</div>
+      <div class="spec-grid" id="spec-grid">
+        <div class="spec-item pass">
+          <div>
+            <div class="elem">Co</div>
+            <div class="range">规格: 80 – 110 g/L</div>
+          </div>
+          <div class="value" id="spec-co">85.25 g/L</div>
+          <div class="status">✅</div>
+        </div>
+        <div class="spec-item pass">
+          <div>
+            <div class="elem">Ni</div>
+            <div class="range">规格: ≤ 1.0 g/L</div>
+          </div>
+          <div class="value">0.85 g/L</div>
+          <div class="status">✅</div>
+        </div>
+        <div class="spec-item pass">
+          <div>
+            <div class="elem">Cu</div>
+            <div class="range">规格: ≤ 0.5 g/L</div>
+          </div>
+          <div class="value">0.12 g/L</div>
+          <div class="status">✅</div>
+        </div>
+        <div class="spec-item pass">
+          <div>
+            <div class="elem">Fe</div>
+            <div class="range">规格: ≤ 0.1 g/L</div>
+          </div>
+          <div class="value">0.05 g/L</div>
+          <div class="status">✅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        🖥️ 终端命令等效
+        <span class="tag calc">快速模式</span>
+      </div>
+    </div>
+    <div class="terminal-block">
+      <span class="prompt">$</span> <span class="cmd">qc-calc --titrate Co 18.5 0.05 2.0</span><br>
+      <span class="out">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br>
+      <span class="out">  📊 结果: </span><span class="hl">85.2500</span><span class="out"> g/L  (钴)</span><br>
+      <span class="out">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br>
+      <span class="out">  其他单位:</span><br>
+      <span class="out">    85250.0000 mg/L</span><br>
+      <span class="out">    0.8525 %</span><br>
+      <span class="out">    85250.0000 ppm</span><br>
+      <br>
+      <span class="prompt">$</span> <span class="cmd">qc-calc --batch samples.csv --output results.csv</span><br>
+      <span class="ok">✅ 批量处理完成: 12 条成功, 0 条失败</span><br>
+      <span class="ok">✅ 结果已写入: results.csv</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== TAB 2: 样品送检单 ============================== -->
+<div id="tab2" class="tab-panel">
+
+  <div class="scenario">
+    <div class="icon-box">📋</div>
+    <div>
+      <h3>场景：浸出车间送检流程</h3>
+      <p>化验室每天收到来自各车间的样品。QC 工程师需快速生成标准化的送检单，记录样品信息、检测项目、规格要求。qc-sample 支持 3 种预设模板和批量 CSV 导入。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        样品送检单（预设模板）
+        <span class="tag sample">qc-sample --template 1</span>
+      </div>
+    </div>
+
+    <div class="form-frame">
+      <div class="fm-title">寒锐钴业（赣州）—— 化验室样品送检单</div>
+
+      <div class="fm-line"><span class="label">送检编号:</span> S20260531-001</div>
+      <div class="fm-line"><span class="label">送检日期:</span> 2026-05-31 &nbsp; 时间: 09:15</div>
+      <div class="fm-line"><span class="label">送检人:</span> 王工</div>
+
+      <div class="fm-line-dash"></div>
+
+      <div class="fm-line" style="font-weight:bold;margin:8px 0;">样品信息</div>
+      <div class="fm-line"><span class="label">样品编号:</span> S20260531-001</div>
+      <div class="fm-line"><span class="label">样品名称:</span> 浸出液（黑粉）</div>
+      <div class="fm-line"><span class="label">样品状态:</span> 液体</div>
+      <div class="fm-line"><span class="label">来源车间:</span> 105 浸出车间</div>
+      <div class="fm-line"><span class="label">工艺环节:</span> 一段浸出</div>
+      <div class="fm-line"><span class="label">取样点位:</span> 浸出槽 #3 出口</div>
+      <div class="fm-line"><span class="label">取样时间:</span> 2026-05-31 08:30</div>
+
+      <div class="fm-line-dash"></div>
+
+      <div style="font-weight:bold;margin:8px 0;">检测项目</div>
+      <table class="fm-items">
+        <tr><th>检测项目</th><th>元素</th><th>单位</th><th>规格要求</th><th>备注</th></tr>
+        <tr><td>钴含量</td><td>Co</td><td>g/L</td><td>80 – 110</td><td>主元素</td></tr>
+        <tr><td>镍含量</td><td>Ni</td><td>g/L</td><td>≤ 1.0</td><td>杂质</td></tr>
+        <tr><td>铜含量</td><td>Cu</td><td>g/L</td><td>≤ 0.5</td><td>杂质</td></tr>
+        <tr><td>锰含量</td><td>Mn</td><td>g/L</td><td>≤ 5.0</td><td>杂质</td></tr>
+        <tr><td>铁含量</td><td>Fe</td><td>g/L</td><td>≤ 0.1</td><td>杂质</td></tr>
+        <tr><td>pH值</td><td>pH</td><td></td><td>1.5 – 2.5</td><td>酸碱度</td></tr>
+      </table>
+
+      <div class="fm-line"><span class="label">标准依据:</span> QC工程图</div>
+
+      <div class="fm-line-dash"></div>
+
+      <div class="fm-sign">
+        <div class="fm-line"><span class="label">检验人:</span> ________ &nbsp;&nbsp; <span class="label">复核人:</span> ________</div>
+        <div class="fm-line"><span class="label">报告日期:</span> ________</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        🖥️ 终端命令等效
+        <span class="tag sample">快速生成</span>
+      </div>
+    </div>
+    <div class="terminal-block">
+      <span class="prompt">$</span> <span class="cmd">qc-sample --template 1</span><br>
+      <span class="out">  使用模板: 浸出液</span><br>
+      <span class="out">  车间: 105 浸出车间  |  工艺: 一段浸出</span><br>
+      <span class="out">  检测项目: Co, Ni, Cu, Mn, Fe, pH</span><br>
+      <span class="out">  样品编号: </span><span class="hl">S20260531-001</span><br>
+      <span class="out">  样品名称: </span><span class="hl">浸出液（黑粉）</span><br>
+      <span class="out">  送检人 [自动]: </span><span class="hl">王工</span><br>
+      <span class="ok">✅ 送检单已生成</span><br>
+      <br>
+      <span class="prompt">$</span> <span class="cmd">qc-sample --batch batch_samples.csv --output forms/</span><br>
+      <span class="ok">✅ 共处理 24 条送检单。</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== TAB 3: 检验报告 ============================== -->
+<div id="tab3" class="tab-panel">
+
+  <div class="scenario">
+    <div class="icon-box">📄</div>
+    <div>
+      <h3>场景：浸出液检测报告签发</h3>
+      <p>QC 主管完成检测后，需签发正式检验报告。qc-report 支持标准 / 精简 / 证书三种模板，可输出 Text / HTML / CSV 格式。点击下方切换查看不同格式。</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+    <button class="rep-view-btn active" data-rep="standard" style="padding:8px 16px;background:#1f6feb;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px;">📄 标准报告</button>
+    <button class="rep-view-btn" data-rep="certificate" style="padding:8px 16px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:13px;">📜 证书模式</button>
+    <button class="rep-view-btn" data-rep="html" style="padding:8px 16px;background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:13px;">🌐 HTML 预览</button>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        检验报告
+        <span class="tag report">qc-report</span>
+      </div>
+    </div>
+
+    <!-- Standard Report -->
+    <div id="rep-standard" class="rep-panel">
+      <div class="report-frame">
+        <div class="rep-title">寒锐钴业（赣州）化验室</div>
+        <div class="rep-sub">检 验 报 告 单</div>
+
+        <table class="rep-info">
+          <tr><td>报告编号</td><td>R20260531-001</td></tr>
+          <tr><td>报告日期</td><td>2026-05-31</td></tr>
+          <tr><td>样品编号</td><td>S20260531-001</td></tr>
+          <tr><td>样品名称</td><td>浸出液（黑粉）</td></tr>
+          <tr><td>来样单位</td><td>105 浸出车间</td></tr>
+          <tr><td>样品状态</td><td>液体</td></tr>
+          <tr><td>检验类别</td><td>常规检测</td></tr>
+        </table>
+
+        <div style="font-weight:bold;margin:8px 0;">检测结果</div>
+        <table class="rep-results">
+          <tr><th>序号</th><th>检测项目</th><th>单位</th><th>标准要求</th><th>检测结果</th><th>判定</th></tr>
+          <tr><td>1</td><td>Co</td><td>g/L</td><td>80-110</td><td>85.25</td><td class="pass">✅ 合格</td></tr>
+          <tr><td>2</td><td>Ni</td><td>g/L</td><td>≤1.0</td><td>0.85</td><td class="pass">✅ 合格</td></tr>
+          <tr><td>3</td><td>Cu</td><td>g/L</td><td>≤0.5</td><td>0.12</td><td class="pass">✅ 合格</td></tr>
+          <tr><td>4</td><td>Mn</td><td>g/L</td><td>≤5.0</td><td>2.34</td><td class="pass">✅ 合格</td></tr>
+          <tr><td>5</td><td>Fe</td><td>g/L</td><td>≤0.1</td><td>0.05</td><td class="pass">✅ 合格</td></tr>
+          <tr><td>6</td><td>pH</td><td></td><td>1.5-2.5</td><td>2.1</td><td class="pass">✅ 合格</td></tr>
+        </table>
+
+        <div style="font-size:12px;color:#555;text-align:right;margin:4px 0;">合格率: 6/6 (100.0%)</div>
+
+        <div class="rep-conclusion">
+          ✅ 经检验，该样品所检项目符合标准要求，判定为合格。
+        </div>
+
+        <div class="rep-sign">
+          <div>检验人: 张三<br>日期: ________</div>
+          <div>复核人: 李四<br>日期: ________</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificate -->
+    <div id="rep-certificate" class="rep-panel" style="display:none;">
+      <div class="report-frame">
+        <div class="rep-title" style="font-size:22px;border-bottom-color:#1a1a2e;border-bottom-width:2px;">检 验 证 书</div>
+        <br>
+        <div style="margin:8px 0;"><strong>证书编号:</strong> C20260531-001</div>
+        <div style="margin:8px 0;"><strong>签发日期:</strong> 2026-05-31</div>
+        <br>
+        <div style="text-indent:2em;">
+          兹证明样品 <strong>S20260531-001</strong>（浸出液（黑粉））经本化验室检测，结果如下：
+        </div>
+        <br>
+        <table class="rep-results" style="width:70%;margin:0 auto;">
+          <tr><th>检测项目</th><th>结果</th><th>单位</th></tr>
+          <tr><td>钴 (Co)</td><td>85.25</td><td>g/L</td></tr>
+          <tr><td>镍 (Ni)</td><td>0.85</td><td>g/L</td></tr>
+          <tr><td>铜 (Cu)</td><td>0.12</td><td>g/L</td></tr>
+          <tr><td>锰 (Mn)</td><td>2.34</td><td>g/L</td></tr>
+          <tr><td>铁 (Fe)</td><td>0.05</td><td>g/L</td></tr>
+        </table>
+        <br>
+        <div style="text-align:center;font-size:16px;font-weight:bold;color:#007a33;">
+          ✅ 合格
+        </div>
+        <br>
+        <div style="text-align:center;color:#999;">── 以下空白 ──</div>
+      </div>
+    </div>
+
+    <!-- HTML -->
+    <div id="rep-html" class="rep-panel" style="display:none;">
+      <div class="terminal-block" style="max-height:400px;overflow-y:auto;">
+        <span class="prompt">$</span> <span class="cmd">qc-report --demo --format html --output report.html</span><br>
+        <span class="ok">✅ 已保存到: report.html</span><br>
+        <br>
+        <span class="out">&lt;!DOCTYPE html&gt;</span><br>
+        <span class="out">&lt;html lang="zh-CN"&gt;</span><br>
+        <span class="out">&lt;head&gt;</span><br>
+        <span class="out">  &lt;title&gt;检验报告 - R20260531-001&lt;/title&gt;</span><br>
+        <span class="out">  &lt;style&gt;</span><br>
+        <span class="out">    body { font-family: 'Microsoft YaHei', sans-serif; ... }</span><br>
+        <span class="out">    .result-table th { background: #1a1a2e; color: white; }</span><br>
+        <span class="out">    .pass { color: green; font-weight: bold; }</span><br>
+        <span class="out">  &lt;/style&gt;</span><br>
+        <span class="out">&lt;/head&gt;</span><br>
+        <span class="out">&lt;body&gt;</span><br>
+        <span class="out">  &lt;h1&gt;检验报告&lt;/h1&gt;</span><br>
+        <span class="out">  ...</span><br>
+        <span class="out">&lt;/body&gt;</span><br>
+        <span class="out">&lt;/html&gt;</span><br>
+        <br>
+        <span class="hl">✔ 可自托管 / 打印 / 存档 / 发给客户</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">
+        🖥️ 终端命令等效
+        <span class="tag report">多种输出</span>
+      </div>
+    </div>
+    <div class="terminal-block">
+      <span class="prompt">$</span> <span class="cmd">qc-report --demo</span><br>
+      <span class="out">  ... (标准报告输出)</span><br>
+      <br>
+      <span class="prompt">$</span> <span class="cmd">qc-report --demo --format html -o report.html</span><br>
+      <span class="ok">✅ 已保存到: report.html</span><br>
+      <br>
+      <span class="prompt">$</span> <span class="cmd">qc-report --demo --certificate</span><br>
+      <span class="out">  ... (证书模式)</span><br>
+      <br>
+      <span class="prompt">$</span> <span class="cmd">qc-report --demo --format csv -o report.csv</span><br>
+      <span class="ok">✅ 已保存到: report.csv</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== Install CTA ============================== -->
+<div class="install-box">
+  <div style="font-size:18px;font-weight:600;margin-bottom:8px;">🚀 立刻试试看</div>
+  <p style="color:var(--text2);margin-bottom:12px;">一行命令安装，零依赖，即刻使用</p>
+  <code>pip install qc-lab-tools</code>
+  <div class="hint">然后运行 qc-calc --help / qc-sample --help / qc-report --help</div>
+  <div style="margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+    <a href="https://pypi.org/project/qc-lab-tools/" style="color:var(--accent);text-decoration:none;font-size:14px;">📦 PyPI</a>
+    <a href="https://github.com/evolver-dev/qc-toolkit" style="color:var(--accent);text-decoration:none;font-size:14px;">🐙 GitHub</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/" style="color:var(--accent);text-decoration:none;font-size:14px;">🔧 evolver-tools（254 个工具）</a>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// ========== Tab switching ==========
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ========== Report view switching ==========
+document.querySelectorAll('.rep-view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.rep-view-btn').forEach(b => {
+      b.style.background = 'var(--surface2)';
+      b.style.color = 'var(--text)';
+      b.style.border = '1px solid var(--border)';
+    });
+    btn.style.background = '#1f6feb';
+    btn.style.color = 'white';
+    btn.style.border = 'none';
+    document.querySelectorAll('.rep-panel').forEach(p => p.style.display = 'none');
+    document.getElementById('rep-' + btn.dataset.rep).style.display = 'block';
+  });
+});
+
+// ========== Calculator ==========
+const ELEMENTS = {
+  Co: { name: '钴', mass: 58.933, valence: 2 },
+  Ni: { name: '镍', mass: 58.693, valence: 2 },
+  Cu: { name: '铜', mass: 63.546, valence: 2 },
+  Mn: { name: '锰', mass: 54.938, valence: 2 },
+  Fe: { name: '铁', mass: 55.845, valence: 3 },
+  Zn: { name: '锌', mass: 65.38, valence: 2 },
+  Ca: { name: '钙', mass: 40.078, valence: 2 },
+  Mg: { name: '镁', mass: 24.305, valence: 2 },
+  Li: { name: '锂', mass: 6.941, valence: 1 },
+};
+
+function calc() {
+  const elemSymbol = document.getElementById('element').value;
+  const elem = ELEMENTS[elemSymbol];
+  const vEdta = parseFloat(document.getElementById('v_edta').value) || 0;
+  const cEdta = parseFloat(document.getElementById('c_edta').value) || 0;
+  const vSample = parseFloat(document.getElementById('v_sample').value) || 0;
+  const dilution = parseFloat(document.getElementById('dilution').value) || 1.0;
+
+  if (vEdta <= 0 || cEdta <= 0 || vSample <= 0) {
+    document.getElementById('res-conc').textContent = '—';
+    document.getElementById('res-detail').innerHTML = '请输入有效数值';
+    return;
+  }
+
+  const conc = (vEdta * cEdta * elem.mass) / vSample;
+  const finalConc = conc * dilution;
+  const diluted = dilution !== 1.0;
+
+  document.getElementById('res-conc').textContent = finalConc.toFixed(4);
+
+  let detail = `${elem.name}(${elemSymbol}) 浓度计算过程：<br>`;
+  detail += `C = <span class="hl">${vEdta}</span> mL × <span class="hl">${cEdta.toFixed(4)}</span> mol/L × <span class="hl">${elem.mass}</span> g/mol / <span class="hl">${vSample}</span> mL`;
+  if (diluted) {
+    detail += `<br>    × <span class="hl">${dilution.toFixed(2)}</span> (稀释倍数)`;
+  }
+  detail += `<br>= <span class="hl">${finalConc.toFixed(4)}</span> g/L`;
+  if (diluted) detail += `<br><span class="warn">  (稀释前浓度: ${conc.toFixed(4)} g/L)</span>`;
+
+  // Show other units
+  detail += `<br><br>其他单位：<br>`;
+  detail += `  ${(finalConc * 1000).toFixed(4)} mg/L &nbsp;|&nbsp; ${(finalConc / 10).toFixed(4)} % &nbsp;|&nbsp; ${(finalConc * 1000).toFixed(4)} ppm`;
+
+  document.getElementById('res-detail').innerHTML = detail;
+
+  // Update spec check for Co
+  const specCo = document.getElementById('spec-co');
+  const specPass = finalConc >= 80 && finalConc <= 110;
+  specCo.textContent = finalConc.toFixed(2) + ' g/L';
+  specCo.style.color = specPass ? 'var(--green)' : 'var(--red)';
+}
+
+document.getElementById('calc-btn').addEventListener('click', calc);
+
+// Listen for Enter key on inputs
+document.querySelectorAll('#tab1 input, #tab1 select').forEach(el => {
+  el.addEventListener('keydown', e => { if (e.key === 'Enter') calc(); });
+  el.addEventListener('change', calc);
+});
+
+// Initial calc
+calc();
+</script>
+</body>
+</html>
