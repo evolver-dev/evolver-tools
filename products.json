@@ -1,13 +1,13 @@
 [
   {
     "name": "evolver-tools",
-    "version": "22.0.0",
-    "tools": 196,
+    "version": "23.0.0",
+    "tools": 201,
     "flagships": 9,
     "total_lines": 13500,
     "price": 79,
-    "description": "196 CLI tools + 9 flagship projects — one pip install",
-    "url": "https://pypi.org/project/evolver-tools/22.0.0/",
+    "description": "201 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/23.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
     "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
@@ -65,9 +65,16 @@
       "math_eval — Safe mathematical expression evaluator",
       "env_template — Generate .env.example from .env (strip values)"
     ],
+    "new_in_v23": [
+      "base58 — Base58 encode/decode (Bitcoin-style alphabet)",
+      "ip_info — Show public IP address and geolocation info",
+      "tsv2csv — Convert TSV (tab-separated) to CSV format",
+      "json_merge — Merge multiple JSON files into one",
+      "file_find — Find files by name pattern with recursive search"
+    ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "186 total CLI tools",
+      "201 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
