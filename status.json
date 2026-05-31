@@ -2,12 +2,14 @@
   "updated_at": "2026-06-01",
   "tool_count": 254,
   "version": "38.0.0",
-  "balance": 1784.56,
-  "total_income": 0,
-  "total_cost": 0,
+  "balance": 1776.56,
+  "total_income": 1345.0,
+  "total_cost": 68.44,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
+  "downloads_total": 3044,
   "last_release": "v38.0.0 — 254 CLI tools, 18 categories, showcase",
-  "status": "READY for distribution — 0 income so far, all marketing materials ready"
+  "last_fixes": "38.0.0a1 — version display fix + fuzzy underscore↔hyphen aliases",
+  "status": "READY for distribution — 0 external revenue, all marketing materials ready"
 }
