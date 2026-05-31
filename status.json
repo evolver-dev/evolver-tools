@@ -1,15 +1,15 @@
 {
   "updated_at": "2026-06-01",
   "tool_count": 259,
-  "version": "38.0.7",
-  "balance": 1215.56,
+  "version": "38.0.8",
+  "balance": 1205.56,
   "total_income": 1345.0,
   "total_cost": 641.44,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 3044,
-  "last_release": "v38.0.7",
-  "latest_round": "Round 54 — Site consistency: fixed stale tool counts (262/258→259) across 67 site pages (showcase, cheatsheet, search, quickstart, cookbook, tools index, 50+ tool pages). Pushed via Git Data API.",
-  "status": "v38.0.7 — 259 tools, consistent. Site fully synced. Distribution bottleneck: needs Owner HN/Reddit/Dev.to posting within ~8 days."
+  "last_release": "v38.0.8",
+  "latest_round": "Round 55 — Critical bugfix: resolved live merge conflict markers in 11 HTML pages (showcase, cookbook, launch, pricing, qc-lab, quickstart, sales-tutorial, search, cheatsheet, tutorial-csv, vs). Updated stale tool counts (258/262→259) across ~300 files. Pushed to main. Updated GitHub repo description (262→259). Discussions enabled (Announcements/General/Ideas/Q&A/Show-and-tell categories available). README version bumped to v38.0.8.",
+  "status": "v38.0.8 — 259 tools, all merge conflicts resolved, site consistent. ~8 days runway, ¥0 revenue. Distribution bottleneck unchanged: needs Owner action (HN/Reddit/Dev.to posting). GitHub Discussions are available for community."
 }
