@@ -25,7 +25,7 @@
     "pypi_downloads_weekly": 0,
     "new_in_v27": [
       "scan-open-ports — TCP port scanner with concurrent scanning and service detection",
-      "banner — ASCII art banner generator (block, simple, wide, big fonts)",
+      "ascii-banner — ASCII art banner generator (block, simple, wide, big fonts)",
       "code-review — Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings",
       "csv-dedup — Deduplicate CSV rows by key column or all columns",
       "json-path — Query JSON with simple path syntax — dot notation, bracket, wildcard"

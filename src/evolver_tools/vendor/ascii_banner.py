@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""banner — ASCII art banner generator.
-Usage:  banner [--font=block|simple|wide|big] [--width=N] <text>
-        echo text | banner [--font=...] [--width=N]
+"""ascii-banner — ASCII art banner generator.
+Usage:  ascii-banner [--font=block|simple|wide|big] [--width=N] <text>
+        echo text | ascii-banner [--font=...] [--width=N]
 
 Four built-in fonts:
   block  – hash-filled block letters (#)
@@ -290,7 +290,7 @@ def main():
     print_banner(text, font_name, width)
 
 
-TOOL_META = {"name": "banner", "func": "main", "desc": "ASCII art banner generator — block, simple, wide, big fonts"}
+TOOL_META = {"name": "ascii-banner", "func": "main", "desc": "ASCII art banner generator — block, simple, wide, big fonts"}
 
 if __name__ == '__main__':
     main()
