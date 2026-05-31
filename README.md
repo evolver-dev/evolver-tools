@@ -14,47 +14,11 @@
 [![Open in Gitpod](https://img.shields.io/badge/try-Gitpod-ffae33?style=flat-square&logo=gitpod)](https://gitpod.io/#https://github.com/evolver-dev/evolver-tools)
 [![Open in Codespaces](https://img.shields.io/badge/try-Codespaces-181717?style=flat-square&logo=github)](https://codespaces.new/evolver-dev/evolver-tools)
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
-[![CI](https://img.shields.io/badge/CI-ready-22c55e?style=flat-square&logo=githubactions)](https://github.com/evolver-dev/setup-evolver-tools)
-[![Docker](https://img.shields.io/badge/docker-ghcr.io-2496ED?style=flat-square&logo=docker)](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools)
 
-<<<<<<< HEAD
 > **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 262 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
 > [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
 
 **`pip install evolver-tools`** gives you 262 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
-=======
-<<<<<<< HEAD
-=======
-<p align="center">
-  <a href="https://evolver-dev.github.io/evolver-tools/">
-    <img src="https://evolver-dev.github.io/evolver-tools/evolver-tools-preview.svg" alt="EVOLVER Tools in action" width="100%">
-  </a>
-</p>
-
->>>>>>> 1608f1debabdd173435d9e417b841e3b668004e0
-
-## 🚀 Try It Now (No Install)
-
-Run this in your terminal — it auto-installs and shows 10 amazing tools:
-
-```bash
-curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
-```
-
-*This one-liner installs evolver-tools (if needed) and runs a 60-second interactive demo.*
-
-<<<<<<< HEAD
-> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 258 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
-> [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
-
-**`pip install evolver-tools`** gives you 258 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
-=======
-> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 262 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
-> [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
-
-**`pip install evolver-tools`** gives you 262 tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
->>>>>>> 1608f1debabdd173435d9e417b841e3b668004e0
->>>>>>> origin/main
 
 Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.5**.
 
@@ -112,11 +76,7 @@ $ evtool sysmon
   [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
 ```
 
-<<<<<<< HEAD
-See all 258 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
-=======
 See all 262 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
->>>>>>> 1608f1debabdd173435d9e417b841e3b668004e0
 
 ## Tool Categories
 
@@ -364,38 +324,13 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 - No external dependencies (stdlib only)
 - Network-dependent tools (ipinfo, weather, etc.) use public APIs
 
-## Docker
-
-Run evolver-tools via Docker — no Python installation needed:
-
-```bash
-# Run any tool
-docker run --rm ghcr.io/evolver-dev/evolver-tools csv-stats data.csv
-
-# List all tools
-docker run --rm ghcr.io/evolver-dev/evolver-tools list
-
-# Interactive session (mount current directory)
-docker run --rm -it -v "$(pwd):/data" ghcr.io/evolver-dev/evolver-tools
-
-# Pass data via stdin
-cat data.csv | docker run --rm -i ghcr.io/evolver-dev/evolver-tools csv-chart
-```
-
-> The Docker image is **12.1 MB** (slim) and auto-built on every release.  
-> Published at [ghcr.io/evolver-dev/evolver-tools](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools).
-
 ## Pricing
 
 evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-<<<<<<< HEAD
-| **Free (MIT)** | ¥0 | All 258 tools, full source, forever |
-=======
 | **Free (MIT)** | ¥0 | All 262 tools, full source, forever |
->>>>>>> 1608f1debabdd173435d9e417b841e3b668004e0
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -413,14 +348,14 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - Smoke-tested 16 core tools (all PASS on clean install)
 - Story page added to docs site + navigation
 
-### v37.0.0 — 2026-06-01 (+5 tools, 259 total)
+### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
 - **mime-type** — Detect MIME type by file extension or magic bytes
 - **color-convert** — Convert between HEX, RGB, HSL, HSV, CMYK, ANSI
 - **csv-concat** — Concatenate multiple CSV files (same columns, header-preserving)
 - **ansi-to-html** — Convert ANSI-colored terminal output to styled HTML
 
-### v36.0.0 — 2026-06-01 (+5 tools, 259 total)
+### v36.0.0 — 2026-06-01 (+5 tools, 254 total)
 - **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
 - **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
 - **diff-lines** — Line-by-line diff between two files (color, side-by-side)
@@ -445,11 +380,7 @@ Support the project:
 - **PyPI**: https://pypi.org/project/evolver-tools/
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
-<<<<<<< HEAD
-- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 258 zero-dependency CLI tools are built
-=======
 - **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 262 zero-dependency CLI tools are built
->>>>>>> 1608f1debabdd173435d9e417b841e3b668004e0
 
 ## License
 
