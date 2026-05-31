@@ -6,6 +6,7 @@
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
+[![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
 
 **254 CLI tools — one `pip install`, zero dependencies, all platforms.**
 
