@@ -1,33 +1,42 @@
 [
   {
     "name": "evolver-tools",
-    "version": "16.0.0",
-    "tools": 167,
+    "version": "17.0.0",
+    "tools": 171,
     "flagships": 9,
-    "total_lines": 11000,
+    "total_lines": 12000,
     "price": 79,
-    "description": "162 CLI tools + 9 flagship projects \u2014 one pip install",
-    "url": "https://pypi.org/project/evolver-tools/16.0.0/",
+    "description": "171 CLI tools + 9 flagship projects — one pip install",
+    "url": "https://pypi.org/project/evolver-tools/17.0.0/",
     "github": "https://github.com/evolver-dev/evolver-tools",
+    "pricing_page": "https://evolver-dev.github.io/evolver-tools/pricing.html",
     "pricing_model": {
-      "free": "All 162 tools + 9 flagship \u2014 fully open source (MIT)",
-      "sponsor": "\u00a55/month \u2014 GitHub Sponsors",
+      "free": "All 171 tools + 9 flagship — fully open source (MIT)",
+      "one_time": "¥79 — full suite download (supports development)",
+      "sponsor": "¥5/month — GitHub Sponsors",
       "enterprise": {
-        "basic": "\u00a5500/year \u2014 custom tool development",
-        "premium": "\u00a52,000/year \u2014 dedicated maintenance + emergency fixes",
-        "ultimate": "\u00a55,000/year \u2014 full source license + custom development"
+        "basic": "¥500/year — custom tool development + priority support",
+        "premium": "¥2,000/year — dedicated maintenance + emergency fixes",
+        "ultimate": "¥5,000/year — full source license + custom development"
       }
     },
     "released": "2026-06-01",
     "stars": 0,
     "pypi_downloads_weekly": 0,
+    "new_in_v17": [
+      "license — built-in open-source license display (MIT, Apache, GPL, BSD, MPL)",
+      "random — cryptographically secure random password/uuid/hex/int generator",
+      "tree — directory tree viewer with depth control and dirs-only mode",
+      "csv-view — formatted CSV/TSV viewer with auto-delimiter detection",
+      "template — project scaffolding tool (init/python/cli skeletons)"
+    ],
     "features": [
       "9 flagship projects (500-1700 lines each, CLI+TUI dual mode)",
-      "162 total CLI tools",
+      "171 total CLI tools",
       "Zero external dependencies across all tools",
       "Auto-registration architecture (zero merge conflicts)",
       "Cross-platform (Linux, macOS, Windows)",
-      "Single pip install \u2014 no version conflicts"
+      "Single pip install — no version conflicts"
     ]
   }
 ]

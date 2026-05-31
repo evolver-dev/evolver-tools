@@ -85,6 +85,23 @@ evtool sort -n data.txt # Numeric sort
 - Python 3.8+
 - No external dependencies (38 of 39 tools use stdlib only; ipinfo hits ip-api.com)
 
+## Pricing
+
+evolver-tools is **MIT open source** — free for everyone, forever.
+
+| Tier | Price | What you get |
+|------|-------|-------------|
+| **Free (MIT)** | ¥0 | All 167 tools, full source, forever |
+| **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
+| **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
+| **Enterprise Basic** | ¥500/year | Custom tool development |
+| **Enterprise Premium** | ¥2,000/year | Dedicated maintenance + 24h emergency fixes |
+| **Enterprise Ultimate** | ¥5,000/year | Full source license + unlimited custom dev + white-label |
+
+👉 **[View full pricing page](https://evolver-dev.github.io/evolver-tools/pricing/)** — includes feature comparison table, testimonials, and FAQ.
+
+Support the project via one-time purchase (¥79) or monthly sponsorship on [GitHub Sponsors](https://github.com/sponsors/evolver-dev).
+
 ## License
 
 MIT
