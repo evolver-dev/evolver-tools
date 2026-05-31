@@ -5,6 +5,7 @@
 [![PyPI downloads](https://img.shields.io/pypi/dm/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
+[![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
 
 **254 CLI tools — one `pip install`, zero dependencies, all platforms.**
 
@@ -323,7 +324,10 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - **markdown-format** — Format/beautify Markdown tables and lists
 - **ansi-to-txt** — Strip ANSI escape codes, convert to plain text
 
-Support the project via one-time purchase (¥79) or monthly sponsorship on [GitHub Sponsors](https://github.com/sponsors/evolver-dev).
+Support the project:
+- **One-time purchase**: ¥79 (or ~$11 USD) — [buy on PyPI](https://evolver-dev.github.io/evolver-tools/pricing.html)
+- **Monthly sponsor**: $5+ — [Ko-fi](https://ko-fi.com/evolver) or [GitHub Sponsors](https://github.com/sponsors/evolver-dev)
+- **Donation**: https://ko-fi.com/evolver
 
 ## Links
 
