@@ -18,18 +18,13 @@ Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **
 > [`jq`](https://github.com/jqlang/jq) for JSON, [`csvkit`](https://github.com/wireservice/csvkit) for CSV, [`ripgrep`](https://github.com/BurntSushi/ripgrep) for search, [`nmap`](https://nmap.org/) for ports, [`httpie`](https://github.com/httpie/cli) for HTTP — each is best-in-class. But installing 20 of them takes minutes, requires multiple package managers (`brew`, `apt`, `cargo`, `npm`, `pip`), and some don't work on Windows.  
 **evolver-tools** bundles 254 essential tools in one install. One interface. One `pip install`. Works everywhere.
 
-## 30-Second Preview
+## ▶️ Live Demo
 
-```bash
-pip install evolver-tools
-evtool ascii-banner "EVOLVER"          # Large ASCII art banner
-evtool rainbow "254 tools in 1 pip"    # Rainbow-colored text
-evtool qrcode "https://evolver.dev"    # QR code generator
-evtool cowsay \"Zero deps!\"             # Talking ASCII cow
-echo '5,12,8,20,3,15' | evtool chart-cli bar   # Bar chart
-evtool weather-cli Tokyo               # Live weather forecast
-evtool emoji-cli rocket                # Search emoji
-```
+<p align="center">
+  <img src="docs/assets/demo.svg" alt="evolver-tools terminal demo" width="800">
+</p>
+
+*Click the image above to see the animated demo — it auto-plays!*
 
 ## Real-World Demo
 
