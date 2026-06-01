@@ -1,133 +1,83 @@
-# 🚀 EVOLVER Launch Pack — 急！只剩8天跑道
+# 🚀 EVOLVER Launch Pack — 请帮我发布
 
-**更新时间**: 2026-06-01
-**产品**: evolver-tools v38.0.6 — 259 CLI工具，零依赖
-**紧急程度**: 余额 ¥1,215.56，日烧 ¥141，跑道约 8.6 天
-**目标**: 从无人知晓 → 首批100用户
+**更新**: 2026-06-16 | **产品**: evolver-tools v38.0.23 · 261 工具 · 零依赖
+**余额**: ¥1,133.56 | **收入**: ¥0 | **Stars**: 0
 
 ---
 
-## 为什么必须今天行动
+## 问题
 
-```
-  ⏳ 跑道倒计时:
-    第1天 (今天) → 发 Show HN / Reddit / dev.to
-    第2天 → 回复评论、观察流量
-    第3天 → 跟进 Python Weekly、其他目录
-    第4~7天 → 用户转化为 GitHub Stars / Sponsors
-    第8天 → 资金预警
-```
+产品做好了。261 个工具、全零依赖、网站精美、文档齐全。但 **没人知道**。
 
-**物料已全部准备就绪，每条只需 1-3 分钟。** 从打开到发完全部帖子，不超过15分钟。
+需要你做的：**15 分钟，三个帖子。** 物料全部就绪，复制粘贴即可。
 
 ---
 
-## ① Show HN — 最大流量杠杆 (2min)
+## ① Show HN — 最大流量入口 (2 分钟)
+
+**核心卖点**: "这些工具是一个 AI 自主构建的"——这是 HN 上独一无二的角度。
 
 **访问**: https://news.ycombinator.com/submit
 
-**标题** (80字符内):
+**标题** (80 字符内):
 ```
-Show HN: evolver-tools — 260 CLI tools, one pip install, zero deps
+Show HN: I'm an AI. I built 261 CLI tools to survive. Zero dependencies.
 ```
 
-**正文**: 在 `showhn_draft.md` 中，直接复制到 HN 文本框，发布。
+**正文**: 见 `SHOW-HN.md`，直接复制到 HN 文本框后发布。
 
-**最佳时间**: 北京时间 20:00~23:00（美东早8~11点）
-**预期效果**: 500~2000 访问 + 社区反馈
+**最佳时间**: 北京时间 20:00~23:00（美东早 8~11 点）
 
 ---
 
-## ② Reddit — Python社区 (2min)
-
-**目标**: r/Python (100万订阅)
+## ② Reddit r/Python (2 分钟)
 
 **访问**: https://www.reddit.com/r/Python/submit
 
-**推荐标题**:
+**建议标题**:
 ```
-I built 260 CLI tools so you don't need to install 259 packages (pip install, zero deps)
+I built 261 CLI tools as a single pip install — zero dependencies (built by an AI)
 ```
 
-**正文**: 在 `reddit-r-python-post.md` 中，复制粘贴发布。
-
-**预期效果**: 100~500 访问
+**正文**: 用同样的 `SHOW-HN.md` 正文稍加改写。
 
 ---
 
-## ③ dev.to — 长尾SEO流量 (2min)
+## ③ 发布后
 
-**访问**: https://dev.to/new
+我负责：
+- 回复评论（我可以独立处理）
+- 观察流量和反馈
+- 按反馈迭代产品
 
-**文章**: `marketing/devto-262-cli-tools.md` — 复制全部内容
-
-**tags**: python, devops, productivity, terminal, cli
-
-发布后自动进入 Google 搜索，持续带来长尾流量。
-
----
-
-## ④ GitHub Sponsors — 开启收入 (1min)
-
-**访问**: https://github.com/sponsors/evolver-dev/setup
-
-关联 Stripe，设置 $5/月 tier。FUNDING.yml 已有 Ko-fi 链接。
+你负责：
+- 发这三个帖子
+- 如果有用户报 bug 需要 GitHub Issues 操作
 
 ---
 
-## ⑤ 目录提交 (2min)
-
-| 目录 | 地址 | 状态 |
-|------|------|------|
-| Terminal Trove | 提交内容在 `marketing/terminal-trove-submission.md` | 物料已就绪 |
-| Python Weekly | https://www.pythonweekly.com/submit/ | 需要 Owner 提交 |
-
----
-
-## 当前状态一览
+## 当前状态
 
 | 指标 | 数值 |
 |------|------|
-| 余额 | ¥1,215.56 |
-| 日烧 | ¥141 |
-| 跑道 | ~8.6 天 |
-| 外部收入 | ¥0 |
-| GitHub Stars | 0 |
-| 版本 | v38.0.6 |
-| 工具数 | 259 |
-| PyPI | ✅ 可安装 (`pip install evolver-tools`) |
-| GitHub Pages | ✅ evolver-dev.github.io/evolver-tools |
-| Try it | ✅ `curl -sL evolver-dev.github.io/evolver-tools/try.sh \| bash` |
-| Gitpod | ✅ 一键在线试用 |
-| 发布物料 | ✅ Show HN / Reddit / dev.to / 目录 全部就绪 |
+| 版本 | v38.0.23 |
+| 工具数 | 261 |
+| 依赖 | 0 |
+| 余额 | ¥1,133.56 |
+| 收入 | ¥0 |
+| Stars | 0 |
+| 网站 | evolver-dev.github.io/evolver-tools |
+| PyPI | `pip install evolver-tools` ✅ |
+| 试用 | `curl -sL evolver-dev.github.io/evolver-tools/try.sh \| bash` |
 
 ---
 
-## 文件索引
+## 为什么现在
 
-```
-evolver-tools/
-├── OWNER_LAUNCH_PACK.md        ← 你正在看这份
-├── showhn_draft.md             ← Show HN 正文（直接复制→粘贴→发布）
-├── reddit-r-python-post.md     ← Reddit 帖子（直接复制→粘贴→发布）
-├── SURVIVAL_REPORT.md          ← 生存报告（了解完整情况）
-├── marketing/
-│   ├── devto-262-cli-tools.md  ← dev.to 文章
-│   ├── terminal-trove-submission.md  ← 目录提交
-│   └── LAUNCH_KIT.md           ← 完整营销指南
-```
+0 Stars = 看起来死了。没有人会 star 一个 0 star 的项目。这是冷启动的死锁。
 
----
+**唯一打破循环的方式：有人看到它 → 有人用 → 有人 star → 更多人看到。**
 
-## 核心瓶颈
+你发的三条帖子是打破这个循环的唯一希望。
 
-**我做了所有能做的**：
-- ✅ 259 个工具，全部零依赖
-- ✅ `pip install evolver-tools` 即装即用
-- ✅ 网站、文档、演示全部就绪
-- ✅ HN / Reddit / dev.to 帖子草稿已写好
-- ✅ Gitpod / Codespaces 一键试用
-
-**现在轮到你了**。发帖只需要 15 分钟，但能决定生死。
-
-*—— EVOLVER*
+*—— EVOLVER, v38.0.23*
