@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — evolver-tools</title>
+<meta name="description" content="Technical blog posts about terminal tools, CLI data analysis, and evolver-tools tips.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/blog/">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  nav .links .btn-nav:hover { background: var(--accent-dim); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+  .header {
+    padding: 8rem 0 3rem;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .header p { color: var(--text-secondary); }
+
+  .posts { padding-bottom: 4rem; }
+  .post-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .post-card:hover { border-color: var(--accent); }
+  .post-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .post-card h2 a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .post-card h2 a:hover { color: var(--accent); }
+  .post-card .meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    margin-bottom: 0.6rem;
+  }
+  .post-card p { color: var(--text-secondary); font-size: 0.93rem; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/tools/">Tools</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/gallery.html">Gallery</a>
+    <a href="#" style="color:var(--accent)">Blog</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="header">
+    <h1>evolver-tools Blog</h1>
+    <p>Technical posts about terminal tools, data analysis, and CLI tips.</p>
+  </div>
+
+  <div class="posts">
+    <div class="post-card">
+      <div class="meta">June 1, 2026 &middot; 6 min read</div>
+      <h2><a href="terminal-data-analysis.html">Data Analysis in Your Terminal: 5 Tasks Without Pandas</a></h2>
+      <p>Learn how to analyze CSV files, create ASCII charts, filter data, query JSON, and process text — all from the command line with zero dependencies.</p>
+    </div>
+  </div>
+
+  <p style="text-align:center; color: var(--text-secondary); font-size: 0.9rem; padding: 2rem 0;">
+    More posts coming soon. Topics include: system monitoring, network debugging, devops workflows, and automation.
+  </p>
+</div>
+
+<footer>
+  <p>
+    <a href="https://evolver-dev.github.io/evolver-tools/">evolver-tools</a> &middot;
+    <a href="#">Blog</a> &middot;
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> &middot;
+    <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+  </p>
+</footer>
+
+</body>
+</html>
