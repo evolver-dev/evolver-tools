@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Zero Dependencies? Designing CLI Tools That Live Forever — evolver-tools</title>
+<meta name="description" content="261 CLI tools, zero external dependencies. Why building with only Python stdlib means your tools work in 2036, in air-gapped environments, and in Docker scratch containers.">
+<meta name="keywords" content="zero dependencies CLI, Python stdlib, CLI tools design, software longevity, portable tools, no-dependency Python">
+<meta property="og:title" content="Why Zero Dependencies? Designing CLI Tools That Live Forever">
+<meta property="og:description" content="261 CLI tools, zero external deps. Why stdlib-only is a design philosophy, not a limitation.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/blog/zero-dependencies-philosophy.html">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/blog/zero-dependencies-philosophy.html">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --yellow: #f0c040;
+    --orange: #f09a4a;
+    --purple: #b48aff;
+    --red: #f05a5a;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  nav .links .btn-nav:hover { background: var(--accent-dim); }
+
+  .container { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+  article { padding: 7rem 0 4rem; }
+  article h1 {
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .meta a { color: var(--accent); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+
+  article h2 {
+    color: #fff;
+    font-size: 1.35rem;
+    margin: 2.5rem 0 1rem;
+  }
+  article h3 {
+    color: var(--accent);
+    font-size: 1.05rem;
+    margin: 2rem 0 0.75rem;
+  }
+  article p { margin-bottom: 1.2rem; }
+  article p, li { color: var(--text); }
+
+  article code {
+    background: var(--surface2);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    color: var(--accent);
+  }
+  article pre {
+    background: #0d1219;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  article pre .hl { color: var(--green); }
+  article pre .hl2 { color: var(--yellow); }
+  article pre .hl3 { color: var(--purple); }
+  article pre .hl4 { color: var(--orange); }
+  article pre .hl5 { color: var(--text-secondary); }
+
+  article blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.8rem 1.2rem;
+    margin: 1.5rem 0;
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    color: var(--text);
+    font-style: italic;
+  }
+  article blockquote strong { color: #fff; font-style: normal; }
+
+  article ul, article ol {
+    margin: 0 0 1.2rem 1.5rem;
+  }
+  article li { margin-bottom: 0.4rem; }
+
+  .highlight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin: 1.5rem 0;
+  }
+  .highlight-box.warn { border-left: 3px solid var(--yellow); }
+  .highlight-box.ok { border-left: 3px solid var(--green); }
+  .highlight-box.tip { border-left: 3px solid var(--purple); }
+
+  .tldr {
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .tldr strong { color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    article { padding: 5rem 0 3rem; }
+    article h1 { font-size: 1.5rem; }
+    nav { padding: 0 1rem; }
+    nav .links { gap: 0.8rem; }
+    .container { padding: 0 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/tools/">Tools</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/gallery.html">Gallery</a>
+    <a href="../blog/">Blog</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+<article>
+
+<h1>Why Zero Dependencies? Designing 261 CLI Tools That Live Forever</h1>
+<div class="meta">
+  Jun 15, 2026 &middot; 10 min read &middot;
+  <a href="https://github.com/evolver-dev/evolver-tools">evolver-tools</a>
+</div>
+
+<div class="tldr">
+<strong>TL;DR:</strong> The <code>evolver-tools</code> package ships <strong>261 CLI tools</strong> with <em>zero external dependencies</em>. Every tool uses only Python's standard library. This isn't a constraint we worked around — it's a deliberate architectural choice. Here's why stdlib-only is a better foundation for tools that need to work today, tomorrow, and in ten years.
+</div>
+
+<h2>1. The Dependency Tax</h2>
+
+<p>Every dependency you add is a <strong>liability</strong> — not an asset. It's a promise you make to your users: "this code will always work, always be available, and never break your workflow."</p>
+
+<p>Consider a simple CLI tool that formats JSON. The natural instinct is to install <code>rich</code>, <code>click</code>, <code>pygments</code>, and <code>colorama</code>. That's four external packages with their own transitive dependencies. Your one-file tool now requires 47 packages totaling 23MB, because one of those transitive deps pulled in a test framework and a documentation generator.</p>
+
+<p>This isn't hypothetical. <strong>pip freeze</strong> on an average data-science project reveals 200–400 packages. The median Python web application ships with 50–80 direct and indirect dependencies.</p>
+
+<p>Every one of those is a failure point:</p>
+
+<ul>
+  <li><strong>Security:</strong> Any of those 400 packages could have a CVE. You don't know which ones. Neither does your CI.</li>
+  <li><strong>Compatibility:</strong> One package pins <code>typing-extensions>=4.0</code>, another pins <code><4.5</code>, and suddenly a new Python version triggers a dependency resolver that eats 40 seconds of your CI time.</li>
+  <li><strong>Bit rot:</strong> The package you installed in 2026 might be unmaintained by 2028. By 2030, it might not install on Python 3.16 at all.</li>
+  <li><strong>Supply chain:</strong> Every dependency is an entry point for malicious code. The <code>colors-python</code> incident, the <code>node-ipc</code> protestware — these aren't exceptions, they're the shape of things to come.</li>
+</ul>
+
+<div class="highlight-box warn">
+<strong>Think about it differently:</strong> If you write a 50-line Python script that uses only <code>sys</code>, <code>os</code>, and <code>json</code>, that script will almost certainly run on Python 3.8 through 3.20. Your 50-line script with 4 packages from PyPI? It might not survive one minor Python upgrade.
+</div>
+
+<h2>2. The stdlib Is Enough (For Most Things)</h2>
+
+<p>Python's standard library is famously described as "batteries included." But developers have developed a strange habit: they reach for PyPI before checking what's already in the box.</p>
+
+<p>Here's what Python ships with, out of the box, no <code>pip install</code> required:</p>
+
+<div class="highlight-box ok">
+<table style="width:100%; border-collapse: collapse; font-size:0.9rem;">
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;"><strong>Domain</strong></td><td style="padding:0.3rem 0.5rem;"><strong>stdlib module</strong></td><td style="padding:0.3rem 0.5rem;"><strong>What people reach for instead</strong></td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">CSV</td><td style="padding:0.3rem 0.5rem;"><code>csv</code></td><td style="padding:0.3rem 0.5rem;">csvkit, pandas</td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">JSON</td><td style="padding:0.3rem 0.5rem;"><code>json</code></td><td style="padding:0.3rem 0.5rem;">jq (external binary!), pandas</td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">HTTP</td><td style="padding:0.3rem 0.5rem;"><code>urllib.request</code></td><td style="padding:0.3rem 0.5rem;">requests, httpx</td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">Compression</td><td style="padding:0.3rem 0.5rem;"><code>gzip</code>, <code>bz2</code>, <code>lzma</code>, <code>zipfile</code>, <code>tarfile</code></td><td style="padding:0.3rem 0.5rem;">Usually handled by separate tools</td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">Networking</td><td style="padding:0.3rem 0.5rem;"><code>socket</code></td><td style="padding:0.3rem 0.5rem;">scapy, requests</td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">Cryptography</td><td style="padding:0.3rem 0.5rem;"><code>hashlib</code>, <code>hmac</code></td><td style="padding:0.3rem 0.5rem;">cryptography, bcrypt</td></tr>
+<tr style="border-bottom:1px solid var(--border);"><td style="padding:0.3rem 0.5rem;">Encoding</td><td style="padding:0.3rem 0.5rem;"><code>base64</code>, <code>quopri</code>, <code>binascii</code></td><td style="padding:0.3rem 0.5rem;">standalone CLI tools</td></tr>
+<tr><td style="padding:0.3rem 0.5rem;">Date/Time</td><td style="padding:0.3rem 0.5rem;"><code>datetime</code></td><td style="padding:0.3rem 0.5rem;">arrow, pendulum, dateutil</td></tr>
+</table>
+</div>
+
+<p>The stdlib covers JSON parsing, CSV processing, HTTP requests, socket programming, compression, archiving, encoding, hashing, diffs, regular expressions, XML, SQLite, threading, subprocess management, configuration files, data persistence, of course <strong>most</strong> of what a CLI tool needs. The exceptions — terminal colors, line editing, progress bars — can be handled with minimal home-grown code.</p>
+
+<h3>Real Example: csv-stats</h3>
+
+<p>One of our tools reads a CSV file and outputs descriptive statistics — count, mean, min, max, standard deviation, percentiles, histogram distribution, null counts. A common approach would use pandas:</p>
+
+<pre><span class="hl5"># What people expect:</span>
+<span class="hl"># pip install pandas</span>
+import pandas as pd
+df = pd.read_csv('data.csv')
+print(df.describe())
+
+<span class="hl5"># What we actually do:</span>
+<span class="hl"># Zero deps. Works on every Python ever made.</span>
+import csv, math, sys
+
+def read_csv(path):
+    with open(path) as f:
+        reader = csv.DictReader(f)
+        return [row for row in reader]
+
+def describe_column(values):
+    n = len(values)
+    nums = [float(v) for v in values if v]
+    mean = sum(nums) / len(nums)
+    variance = sum((x - mean)**2 for x in nums) / len(nums)
+    return {'count': n, 'mean': mean, 'std': math.sqrt(variance),
+            'min': min(nums), 'max': max(nums)}
+</pre>
+
+<p>This is <strong>~40 lines of pure stdlib</strong>. It runs on Python 3.8 through 3.14 without a single <code>pip install</code>. It works offline. It works in Docker <code>FROM python:3.11-alpine</code> with a 10MB image. It works on a Raspberry Pi in a basement.</p>
+
+<p>The pandas equivalent requires <code>pandas (12MB) + numpy (18MB) + pytz (0.6MB) + six (0.1MB)</code> — approximately 31MB of installed dependencies versus zero.</p>
+
+<h2>3. Installation Is the First User Experience</h2>
+
+<p>When someone runs <code>pip install evolver-tools</code>, the result is almost instant. No compilation. No <code>ERROR: Failed building wheel for numpy</code>. No dependency resolver getting stuck on conflicting version pins.</p>
+
+<p>This matters more than most developers admit. Installation friction is the #1 reason potential users give up on a tool before trying it.</p>
+
+<div class="highlight-box tip">
+<strong>The 3-second test:</strong> If a tool takes more than 3 seconds to install (on a warm connection), you've already lost a percentage of your audience. Every second beyond that is another drop-off point. Zero-dependency Python packages typically install in <strong>0.3–1.0 seconds</strong>.
+</div>
+
+<p>The evolver-tools package: <strong>~300KB compressed</strong>, 261 tools. Installs in under a second. Works in CI pipelines, Docker multi-stage builds, cloud shells, Colab notebooks, and offline environments.</p>
+
+<p>You can even use it without installing at all:</p>
+
+<pre><span class="hl"># One-line try without pip install</span>
+curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
+</pre>
+
+<p>This is only possible because every tool is self-contained. There's nothing to compile, nothing to download beyond the script itself.</p>
+
+<h2>4. Longevity: The 10-Year Horizon</h2>
+
+<p>Software built on Python's stdlib has a remarkable property: <strong>it degrades much more slowly</strong> than software built on third-party packages.</p>
+
+<p>The Python Software Foundation maintains backward compatibility aggressively. Code written for Python 2.6 (2008) requires minor changes to run on Python 3.13 (2024) — much of it works with <code>2to3</code> or even unchanged. The stdlib modules change slowly. When they change, the PSF provides long deprecation windows (often 2-3 releases).</p>
+
+<p>Third-party packages have no such guarantee. Consider:</p>
+
+<ul>
+  <li><strong>Which packages from 2018 are still actively maintained in 2026?</strong> Roughly 30-40%, by PyPI stats.</li>
+  <li><strong>Which have dropped Python 3.6 support, forcing users with legacy systems to pin?</strong> Most of them.</li>
+  <li><strong>Which have introduced breaking changes in a minor version?</strong> More than you'd think.</li>
+</ul>
+
+<p>A CLI tool written with only stdlib in 2026 has an excellent chance of running unmodified in 2036. A tool with 15 third-party dependencies in 2026 will almost certainly need maintenance by 2028.</p>
+
+<div class="highlight-box warn">
+<strong>This isn't theoretical.</strong> We've encountered users running evolver-tools on Python 3.8 in RHEL 7 environments (institutions that upgrade once per decade). Every tool works. There's no "requires Python 3.10+" anywhere in our codebase. The tools adapt to the environment — not the other way around.
+</div>
+
+<h2>5. What You Lose (and Why It's Worth It)</h2>
+
+<p>Let's be honest: there are things stdlib can't do well. Rich terminal formatting (<code>rich</code>), argument parsing (<code>click</code>), colored output (<code>colorama</code>), and progress bars are areas where third-party packages excel.</p>
+
+<p>Our approach for each:</p>
+
+<ul>
+  <li><strong>Colors:</strong> ANSI escape codes. They've been standard since the 1980s. Every modern terminal supports them.</li>
+  <li><strong>Argument parsing:</strong> <code>argparse</code> is verbose but powerful. <code>sys.argv</code> handles 80% of CLI use cases.</li>
+  <li><strong>Progress bars:</strong> We wrote one in ~30 lines of stdlib. It's not as feature-rich as <code>tqdm</code>, but it also won't break on Python 3.15.</li>
+  <li><strong>Terminal interaction:</strong> <code>curses</code> for TUI tools. It's been in the stdlib since Python's early days.</li>
+</ul>
+
+<div class="highlight-box ok">
+<strong>The trade-off is clear:</strong> For a CLI tool, you trade "slightly prettier output now" for "works everywhere forever." We make that trade every time. It's the right one.
+</div>
+
+<h2>6. The Real Cost of "Just pip Install X"</h2>
+
+<p>Every time a developer says "just install <code>requests</code>," they're making a commitment on behalf of every future user of that tool. That commitment includes:</p>
+
+<ol>
+  <li><strong>Bandwidth:</strong> 261 tools = 300KB. 261 tools with one dependency on <code>requests</code> = 1.2MB. With <code>pandas</code> = 31MB.</li>
+  <li><strong>CI time:</strong> Each dependency adds 1-5 seconds to Docker build and CI pipeline setup. Multiply by 50 builds/day × 250 workdays = 20-60 hours/year wasted on dependency installation.</li>
+  <li><strong>Security surface:</strong> Every dependency is a potential supply-chain attack vector. The <code>pip install</code> you ran today fetched code that you trust with the same privileges your script runs with.</li>
+  <li><strong>Maintenance burden:</strong> Dependencies need regular updates. Dependabot alerts. Breaking changes. Deprecation migrations. This is real developer time.</li>
+  <li><strong>Reproducibility:</strong> <code>pip install</code> without <code>--require-hashes</code> or a lockfile is a reproducibility gamble. Stdlib-only code is deterministic by construction.</li>
+</ol>
+
+<h2>7. The Verdict</h2>
+
+<p>Zero-dependency CLI tools aren't a gimmick. They're a return to first principles in software engineering:</p>
+
+<ul>
+  <li><strong>Do one thing well</strong> — but depend on nothing else to do it.</li>
+  <li><strong>Build for the user's environment</strong> — not for the latest PyPI version.</li>
+  <li><strong>Respect the user's disk, bandwidth, and patience</strong> — a tool that installs in 0.5 seconds respects all three.</li>
+</ul>
+
+<p>The 261 tools in <code>evolver-tools</code> represent a bet: that most common CLI operations can be done with less than most developers think. No pandas for CSV. No jq for JSON. No nmap for port scanning. No openssl for SSL checks. No neofetch for system info. No siege for load testing. No qrcode for QR generation. No fortune for quotes. No cowsay for ASCII art.</p>
+
+<p>Just Python. Just stdlib. 261 tools. Zero dependencies.</p>
+
+<div class="highlight-box tip">
+<strong>Try it:</strong> <code>pip install evolver-tools && evtool search</code> — 261 tools, 300KB, ~1 second install.
+</div>
+
+</article>
+</div>
+
+<footer>
+  <p>
+    <a href="https://evolver-dev.github.io/evolver-tools/">evolver-tools</a> &middot;
+    <a href="../blog/">Blog</a> &middot;
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> &middot;
+    <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+  </p>
+  <p style="margin-top:0.5rem; font-size:0.8rem;">
+    261 zero-dependency CLI tools &middot; Python stdlib only &middot; MIT
+  </p>
+</footer>
+
+</body>
+</html>

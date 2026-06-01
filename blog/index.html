@@ -6,7 +6,6 @@
 <title>Blog — evolver-tools</title>
 <meta name="description" content="Technical blog posts about terminal tools, CLI data analysis, and evolver-tools tips.">
 <link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/blog/">
-<link rel="alternate" type="application/atom+xml" title="evolver-tools Blog" href="https://evolver-dev.github.io/evolver-tools/blog/atom.xml">
 <style>
   :root {
     --bg: #0a0e14;
@@ -136,15 +135,15 @@
   </div>
 
   <div class="posts">
-    <div class="post-card" style="border-left: 3px solid var(--accent);">
-      <div class="meta">June 1, 2026 &middot; 6 min read &middot; Philosophy</div>
-      <h2><a href="why-zero-dependency.html">Why Zero-Dependency CLI Tools Matter</a></h2>
-      <p>Every CLI tool you install pulls in its own ecosystem. jq, ripgrep, csvkit, httpie — each one adds a package manager, a dependency tree, and a potential failure mode. Here's why zero-dependency Python CLI tools are a better approach for 90% of your terminal needs.</p>
+    <div class="post-card" style="border-left: 3px solid #b48aff;">
+      <div class="meta">June 15, 2026 &middot; 10 min read</div>
+      <h2><a href="zero-dependencies-philosophy.html">Zero Dependencies: Designing 261 CLI Tools That Live Forever</a></h2>
+      <p>Why zero-dependency CLI tools are a design philosophy, not a constraint — Python stdlib-only architecture, the real cost of dependencies, installation UX, and the 10-year longevity horizon. Technical deep-dive with real code examples and trade-off analysis.</p>
     </div>
-    <div class="post-card" style="border-left: 3px solid var(--accent);">
-      <div class="meta">June 1, 2026 &middot; 10 min read &middot; DevOps</div>
-      <h2><a href="docker-zero-dependency-tools.html">Why Your Dockerfile Doesn't Need 50 pip installs — 260 Zero-Dependency CLI Tools</a></h2>
-      <p>Docker images bloat when you install curl, jq, netcat, and 10 more packages just for debugging. evolver-tools gives you 260 CLI tools in one pip install with zero dependencies — perfect for slim Alpine, distroless, and CI/CD images.</p>
+    <div class="post-card" style="border-left: 3px solid #4ade80;">
+      <div class="meta">June 2, 2026 &middot; Quick Reference</div>
+      <h2><a href="../alternatives.html">⚡ Replace 30+ CLI Tools with One pip Install — Full Reference Table</a></h2>
+      <p>Direct replacements for jq, htop, siege, qrcode, nmap, dig, whois, bat, csvkit, neofetch, and 20+ more. Every evtool command shown side-by-side with the tool it replaces. SEO-optimized reference page.</p>
     </div>
     <div class="post-card">
       <div class="meta">June 1, 2026 &middot; 12 min read</div>
@@ -155,11 +154,6 @@
       <div class="meta">June 1, 2026 &middot; 8 min read</div>
       <h2><a href="how-to-process-data-in-terminal.html">How to Process Data in the Terminal Without Python, Pandas, or jq</a></h2>
       <p>Complete guide to analyzing CSV, JSON, and text data from the command line — install once, zero dependencies, run anywhere. Including real-world pipelines for sales reports, log analysis, and format conversion.</p>
-    </div>
-    <div class="post-card">
-      <div class="meta">June 1, 2026 &middot; 7 min read</div>
-      <h2><a href="json-tasks-without-jq.html">8 JSON Tasks You Can Do in Your Terminal Without jq</a></h2>
-      <p>From pretty-printing to SQL queries — 8 practical JSON tasks using zero-dependency CLI tools. No jq, no npm, no Python scripts needed.</p>
     </div>
     <div class="post-card">
       <div class="meta">June 1, 2026 &middot; 6 min read</div>
