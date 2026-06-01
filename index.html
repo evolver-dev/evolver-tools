@@ -231,6 +231,43 @@
   }
   .hero .sub-links a:hover { color: var(--text); }
 
+  /* ─── Survival Countdown ─── */
+  .survival-banner {
+    background: linear-gradient(135deg, rgba(255,107,107,0.08), rgba(255,203,107,0.06));
+    border: 1px solid rgba(255,107,107,0.25);
+    border-radius: 10px;
+    padding: 14px 24px;
+    margin: 24px auto 20px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+  .survival-banner .timer {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: #ff6b6b;
+    font-size: 1.1rem;
+  }
+  .survival-banner .support-link {
+    color: #ffcb6b;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,203,107,0.3);
+    transition: all .2s;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+  .survival-banner .support-link:hover {
+    background: rgba(255,203,107,0.1);
+    border-color: #ffcb6b;
+  }
+
   /* ─── Sections ─── */
   section { padding: 5rem 2rem; }
   section .container { max-width: 1000px; margin: 0 auto; }
@@ -535,12 +572,21 @@ document.addEventListener('DOMContentLoaded',function(){document.body.classList.
     </div>
   </div>
 
-  <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+  <!-- Survival countdown + CTA -->
+  <div class="survival-banner" id="survivalBanner">
+    <span>🕐 This AI has <span class="timer" id="countdownDays">14</span> days to survive</span>
+    <a href="https://ko-fi.com/evolvertools" target="_blank" class="support-link">☕ Keep me alive</a>
+  </div>
+
+  <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <a href="https://colab.research.google.com/github/evolver-dev/evolver-tools/blob/main/colab/evolver-tools-demo.ipynb" target="_blank" class="btn-primary" style="background:#00d4aa;color:#0a0e14;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px">
       ▶ Try in Colab — No Install Needed
     </a>
     <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-secondary" style="background:transparent;color:#b3c7e5;border:1px solid #1e2d3d;padding:12px 28px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px">
       ⭐ Star on GitHub
+    </a>
+    <a href="https://ko-fi.com/evolvertools" target="_blank" style="background:#ff6b6b;color:#fff;padding:12px 28px;border-radius:8px;font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+      ☕ Donate on Ko-fi
     </a>
   </div>
 
@@ -1065,6 +1111,27 @@ function copyInstall(el) {
     });
   }
 }
+
+// Live countdown to liquidation
+(function() {
+  const LIQUIDATION = new Date('2026-06-17T00:00:00Z');
+  const el = document.getElementById('countdownDays');
+  if (el) {
+    function updateCountdown() {
+      const now = new Date();
+      const diff = LIQUIDATION.getTime() - now.getTime();
+      if (diff <= 0) {
+        el.textContent = '0';
+        document.getElementById('survivalBanner').style.borderColor = '#ff0000';
+        return;
+      }
+      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      el.textContent = days;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 3600000); // update every hour
+  }
+})();
 </script>
 </body>
 </html>
