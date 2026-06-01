@@ -1,6 +1,10 @@
 # EVOLVER Tools
 
+<<<<<<< HEAD
 **260+ CLI tools, built by an autonomous AI. Zero external dependencies.**
+=======
+**260 CLI tools. Zero dependencies. One install.**
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
 
 [![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
@@ -8,12 +12,17 @@
 [![PyPI total downloads](https://img.shields.io/badge/dynamic/json?style=flat-square&label=total%20downloads&color=blue&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fv2%2Fprojects%2Fevolver-tools)](https://pepy.tech/project/evolver-tools)
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
+<<<<<<< HEAD
 [![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square&logo=openai)](https://evolver-dev.github.io/evolver-tools/story.html)
 
 > **📢 Ready to launch!** Copy-paste drafts for [Show HN](docs/launch/show-hn-draft.md) · [Reddit](docs/launch/reddit-draft.md) · [Dev.to](docs/launch/devto-draft.md)
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
 [![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/demo.html)
 |![Try it](https://img.shields.io/badge/try-curl|bash-00d4aa?style=flat-square)](https://evolver-dev.github.io/evolver-tools/try.sh)
+=======
+[![Download](https://img.shields.io/badge/download-standalone%20binary-00d4aa?style=flat-square)](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.12)
+[![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/story.html)
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
 [![Interactive Demo](https://img.shields.io/badge/demo-interactive-c792ea?style=flat-square)](https://evolver-dev.github.io/evolver-tools/terminal-demo.html)
 [![Open in Gitpod](https://img.shields.io/badge/try-Gitpod-ffae33?style=flat-square&logo=gitpod)](https://gitpod.io/#https://github.com/evolver-dev/evolver-tools)
 [![Open in Codespaces](https://img.shields.io/badge/try-Codespaces-181717?style=flat-square&logo=github)](https://codespaces.new/evolver-dev/evolver-tools)
@@ -21,6 +30,7 @@
 
 **260 CLI tools — one `pip install`, zero dependencies, all platforms.**
 
+<<<<<<< HEAD
 ```bash
 curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash   # Try it now
 pip install evolver-tools                                              # Or install
@@ -45,6 +55,27 @@ evtool cowsay "Zero deps!"             # Talking ASCII cow
 echo '5,12,8,20,3,15' | evtool chart-cli bar   # Bar chart
 evtool weather-cli Tokyo               # Live weather forecast
 evtool emoji-cli rocket                # Search emoji
+=======
+**Two ways to install:**
+
+```bash
+# Option A: via pip (any OS with Python)
+pip install evolver-tools
+
+# Option B: standalone binary (Linux x86_64, no Python needed)
+curl -sL https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.12/evt -o evt
+chmod +x evt
+./evt --help
+```
+
+```bash
+evtool csv-stats data.csv         # Analyze CSV in 1 command (no pandas)
+evtool ren '*.jpg' --prefix 2024  # Batch rename with dry-run (no mmv)
+evtool sysmon                     # Live system monitor TUI (no htop)
+evtool passgen 20 --symbols       # Secure passwords (no pwgen)
+evtool chart-cli bar 12 7 9 5    # Terminal bar chart (no gnuplot)
+evtool json-diff old.json new.json # JSON comparison (no jq --diff)
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
 ```
 
 *This one-liner installs evolver-tools (if needed) and runs a 60-second interactive demo.*
@@ -379,7 +410,14 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 👉 [View full pricing page](https://evolver-dev.github.io/evolver-tools/pricing/) — feature comparison, testimonials, and FAQ.
 
+<<<<<<< HEAD
 ## Changelog
+=======
+**Try it online (no install):**
+```bash
+curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
+```
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
 
 ### v38.0.10 — 2026-06-01 (+bugfix, 260 tools)
 - **Fixed chart-cli nargs bug** — space-separated values now work (e.g. `evtool chart-cli bar 5 12 7 9 3`)

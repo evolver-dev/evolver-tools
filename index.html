@@ -366,6 +366,7 @@
     50% { opacity: 0; }
   }
 
+<<<<<<< HEAD
   /* ─── Responsive ─── */
   @media (max-width: 700px) {
     .hero .stats { gap: 1.5rem; flex-wrap: wrap; }
@@ -401,6 +402,23 @@
   }
 }
 </script>
+=======
+    /* Links page */
+    .links-list { margin-top: 40px; }
+    .links-list a {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; color: var(--text); text-decoration: none;
+      box-shadow: var(--border) 0px 0px 0px 1px;
+      border-radius: 8px; margin-bottom: 12px;
+      transition: box-shadow 0.15s;
+    }
+    .links-list a:hover {
+      box-shadow: var(--border) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 4px;
+    }
+    .links-list a .label { font-weight: 500; }
+    .links-list a .arrow { color: var(--text-tertiary); }
+  </style>
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
 </head>
 <body>
 
@@ -435,6 +453,7 @@
     <div class="stat-item">
       <div class="num">260</div>
       <div class="label">Tools</div>
+<<<<<<< HEAD
     </div>
     <div class="stat-item">
       <div class="num">18</div>
@@ -447,10 +466,260 @@
     <div class="stat-item">
       <div class="num">40</div>
       <div class="label">PyPI Releases</div>
+=======
+    <div class="stat"><div class="stat-num">258</div><div class="stat-label">CLI Tools</div></div>
+        <p>Run <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool list</code> to browse all 258 tools or <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool search &lt;query&gt;</code> to find what you need.</p>
+      </div>
+      <div class="pipeline-step">
+        <div class="step-num">03</div>
+        <h3>Work</h3>
+        <p>Use any tool instantly: <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool csv-stats data.csv</code>, <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool sysmon</code>, and 257 more.</p>
+      </div>
+    </div>
+
+    <!-- Demo terminal -->
+    <div class="demo-block">
+      <div class="header">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span>terminal &mdash; bash</span>
+      </div>
+      <pre><span class="comment"># Install once, use everywhere</span>
+<span class="cmd">$</span> pip install evolver-tools
+
+<span class="comment"># Explore what's available</span>
+<span class="cmd">$</span> evtool list
+<span class="output">Discovered 258 tools:
+  csv-stats       csv-filter      csv-merge       json-pretty
+  json-validate   yaml2json       sysmon          disk-usage
+  port-scan       dns-lookup      hash-file       qrcode
+  ... and 247 more</span>
+
+<span class="comment"># Analyze some data</span>
+<span class="cmd">$</span> evtool csv-stats sales.csv
+<span class="output">Columns: date, product, region, amount, quantity
+Rows: 1,432
+Stats: amount mean=847.32, median=523.00, max=12,450.00</span>
+
+<span class="comment"># Monitor your system</span>
+<span class="cmd">$</span> evtool sysmon
+<span class="output">CPU: 23.4% | Mem: 6.2/16GB | Disk: 45% | Net: ↓12.3 ↑4.1 MB/s</span></pre>
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
     </div>
   </div>
 
+<<<<<<< HEAD
   <div class="install-block" onclick="copyInstall(this)">
+=======
+<!-- Tool Categories -->
+<section id="features">
+  <div class="inner">
+    <h2>Everything at your fingertips</h2>
+    <p class="section-sub">258 tools organized into 30+ categories. Every tool is pure Python stdlib &mdash; zero external dependencies.</p>
+    <div class="categories-grid">
+      <div class="cat-card">
+        <div class="icon">&#x1f4ca;</div>
+        <h3>CSV &amp; Data</h3>
+        <p>Filter, merge, sort, dedup, validate, chart &mdash; full spreadsheet automation from your terminal.</p>
+        <div class="count">20+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">{ }</div>
+        <h3>JSON &amp; YAML</h3>
+        <p>Pretty-print, validate, diff, merge, flatten, query, schema inference, format conversions.</p>
+        <div class="count">18+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4bb;</div>
+        <h3>System &amp; Monitor</h3>
+        <p>CPU, memory, disk, network, processes, ports &mdash; full system diagnostics in real-time TUI.</p>
+        <div class="count">15+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f310;</div>
+        <h3>Network &amp; DNS</h3>
+        <p>Port scan, DNS lookup, SSL check, whois, HTTP headers, speed test, certificate inspection.</p>
+        <div class="count">22+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f512;</div>
+        <h3>Security &amp; Crypto</h3>
+        <p>Hash, HMAC, OTP, keygen, entropy check, password strength, secret scanner, file encrypt.</p>
+        <div class="count">14+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f3a8;</div>
+        <h3>ASCII &amp; Creative</h3>
+        <p>Figlet banners, cowsay, ANSI art, rainbow text, progress bars, terminal charts, emoji.</p>
+        <div class="count">16+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4dd;</div>
+        <h3>Text &amp; Markdown</h3>
+        <p>Base64, hex, rot13, slugify, dedent, wrap, case-convert, markdown lint/preview/TOC.</p>
+        <div class="count">25+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x2699;&#xfe0f;</div>
+        <h3>DevOps &amp; Dev</h3>
+        <p>Git stats, cron pretty, Docker helper, env manager, backup, SSH key gen, CI helpers.</p>
+        <div class="count">20+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f3b2;</div>
+        <h3>Fun &amp; Utility</h3>
+        <p>Timer, stopwatch, pomodoro, countdown, dice roll, fortune, weather, world clock, QR code.</p>
+        <div class="count">18+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4c8;</div>
+        <h3>Dev Tools</h3>
+        <p>Code smell finder, project doctor, license generator, template engine, config validator.</p>
+        <div class="count">12+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f504;</div>
+        <h3>Conversion</h3>
+        <p>Unit convert, timezone, date calc, temp convert, currency, hex/dec/bin, format converters.</p>
+        <div class="count">15+ tools</div>
+      </div>
+      <div class="cat-card">
+        <div class="icon">&#x1f4e6;</div>
+        <h3>File Management</h3>
+        <p>Find, dedup, split, join, rename, batch rename, deduplicate, checksum, file type detector.</p>
+        <div class="count">14+ tools</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Flagship Tools -->
+<section id="flagships" class="flagship-section">
+  <div class="inner">
+    <h2>Flagship tools</h2>
+    <p class="section-sub">Nine premium tools with full TUI/advanced interfaces. These are the crown jewels.</p>
+    <div class="flagship-grid">
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4ca;</div>
+        <h3>sysmon</h3>
+        <p>Real-time system monitor with full TUI. CPU, memory, disk I/O, network, processes &mdash; all in one terminal view.</p>
+        <code>evtool sysmon</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f50c;</div>
+        <h3>net-analyzer</h3>
+        <p>Comprehensive network diagnostics: ping, traceroute, DNS, ports, bandwidth &mdash; interactive TUI interface.</p>
+        <code>evtool net-analyzer</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f5c3;&#xfe0f;</div>
+        <h3>db-mate</h3>
+        <p>SQLite browser &amp; query tool. Browse tables, run SQL, export results &mdash; all from the terminal.</p>
+        <code>evtool db-mate</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4f7;</div>
+        <h3>qrcode</h3>
+        <p>Generate QR codes directly in your terminal. Supports URLs, text, vCards, WiFi configs.</p>
+        <code>evtool qrcode</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f9d0;</div>
+        <h3>smellfinder</h3>
+        <p>Python AST linter that detects code smells: long functions, too many params, deep nesting, missing docstrings.</p>
+        <code>evtool smellfinder src/</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4c8;</div>
+        <h3>markmap</h3>
+        <p>Interactive markdown mind maps in your terminal. Visualize document structure.</p>
+        <code>evtool markmap README.md</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f3af;</div>
+        <h3>siege-lite</h3>
+        <p>Lightweight HTTP load tester. Concurrent requests, latency percentiles, throughput stats.</p>
+        <code>evtool siege-lite https://example.com</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f4c4;</div>
+        <h3>csv-stats</h3>
+        <p>Advanced CSV data analysis: descriptive stats, histograms, frequency tables, correlation matrix.</p>
+        <code>evtool csv-stats data.csv --all</code>
+      </div>
+      <div class="flagship-card">
+        <div class="emoji">&#x1f3a8;</div>
+        <h3>media-studio</h3>
+        <p>Terminal media toolkit: image metadata, format info, color palette extraction, exif reader.</p>
+        <code>evtool media-studio photo.jpg</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison -->
+<section>
+  <div class="inner">
+    <h2>Why evolver-tools?</h2>
+    <p class="section-sub">One install replaces dozens of separate packages. No dependency hell, no version conflicts.</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>evolver-tools</th>
+          <th>Individual tools</th>
+          <th>BusyBox/GNU</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Install command</td>
+          <td><span class="check">&#x2713;</span> One pip install</td>
+          <td><span class="cross">&#x2717;</span> 50+ package managers</td>
+          <td><span class="cross">&#x2717;</span> apt/brew/choco</td>
+        </tr>
+        <tr>
+          <td>Dependencies</td>
+          <td><span class="check">&#x2713;</span> Zero</td>
+          <td><span class="cross">&#x2717;</span> Hundreds of deps</td>
+          <td><span class="cross">&#x2717;</span> System libraries</td>
+        </tr>
+        <tr>
+          <td>Cross-platform</td>
+          <td><span class="check">&#x2713;</span> Linux/macOS/Windows</td>
+          <td><span class="cross">&#x2717;</span> Varies</td>
+          <td><span class="cross">&#x2717;</span> Linux only</td>
+        </tr>
+        <tr>
+          <td>Tools included</td>
+          <td><span class="check">✓</span> 258</td>
+          <td><span class="cross">&#x2717;</span> 1 each</td>
+          <td><span class="check">&#x2713;</span> 300+</td>
+        </tr>
+        <tr>
+          <td>Air-gapped</td>
+          <td><span class="check">&#x2713;</span> Works offline</td>
+          <td><span class="cross">&#x2717;</span> Needs network</td>
+          <td><span class="check">&#x2713;</span> Pre-installed</td>
+        </tr>
+        <tr>
+          <td>Install size</td>
+          <td><span class="check">&#x2713;</span> ~2MB</td>
+          <td><span class="cross">&#x2717;</span> 50MB+ total</td>
+          <td><span class="cross">&#x2717;</span> 10MB+</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="cta-section">
+  <h2>Start using it now</h2>
+  <p style="font-size:16px;color:var(--text-secondary);max-width:480px;margin:0 auto;">
+    No registration. No account. No configuration. Just install and go.
+  </p>
+  <div class="install-box">
+>>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
     <span class="prompt">$</span>
     <span class="cmd">pip install evolver-tools</span>
     <span class="copy-hint">Click to copy</span>

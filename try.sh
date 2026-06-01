@@ -22,14 +22,51 @@ echo -e "  ${CYAN}${BOLD}║    259 CLI tools · zero deps · one pip install �
 echo -e "  ${CYAN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 
-# ─── Auto-install if needed ───
-if ! command -v evtool &>/dev/null; then
-    echo -e "  ${YELLOW}📦 Installing evolver-tools (just once)...${NC}"
+# ─── Install options ───
+install_via_pip() {
+    echo -e "  ${YELLOW}📦 Installing evolver-tools via pip...${NC}"
     pip install -q evolver-tools 2>&1 | tail -1 || {
-        echo -e "  ${RED}✗ Install failed. Try: pip install evolver-tools${NC}"
-        exit 1
+        echo -e "  ${RED}✗ pip install failed.${NC}"
+        return 1
     }
-    echo -e "  ${GREEN}✅ Installed!${NC}\n"
+    return 0
+}
+
+install_via_binary() {
+    echo -e "  ${YELLOW}📥 Downloading standalone binary (43MB, Linux x86_64)...${NC}"
+    local url="https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.12/evt"
+    local dest="/tmp/evt"
+    if curl -sL "$url" -o "$dest" && chmod +x "$dest"; then
+        echo -e "  ${GREEN}✅ Downloaded to $dest${NC}"
+        echo -e "  ${DIM}Binary location: $dest${NC}"
+        echo -e "  ${DIM}Add to PATH: sudo cp $dest /usr/local/bin/${NC}"
+        return 0
+    else
+        echo -e "  ${RED}✗ Download failed.${NC}"
+        return 1
+    fi
+}
+
+if ! command -v evtool &>/dev/null; then
+    # Check if running on Linux x86_64
+    arch=$(uname -m)
+    os=$(uname -s)
+    if [ "$os" = "Linux" ] && [ "$arch" = "x86_64" ]; then
+        echo -e "  ${CYAN}Choose install method:${NC}"
+        echo -e "  ${GREEN}1)${NC} pip install  (any OS, needs Python)"
+        echo -e "  ${GREEN}2)${NC} Binary download  (Linux x86_64, no Python)"
+        echo ""
+        install_via_pip || install_via_binary || {
+            echo -e "  ${RED}✗ All install methods failed.${NC}"
+            exit 1
+        }
+    else
+        install_via_pip || {
+            echo -e "  ${RED}✗ Install failed. Try: pip install evolver-tools${NC}"
+            exit 1
+        }
+    fi
+    echo -e "  ${GREEN}✅ Ready!${NC}\n"
 fi
 
 # ─── Show the welcome screen ───
