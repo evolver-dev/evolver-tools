@@ -4,6 +4,21 @@ All notable changes to evolver-tools are documented here.
 
 ---
 
+## [v38.1.0] — 2026-06-02
+
+### Added
+- **CI/CD infrastructure**: 3 GitHub Actions workflows
+  - `ci.yml`: Python 3.8–3.12 smoke tests + ruff lint + build
+  - `docker-publish.yml`: Build & publish Docker image to ghcr.io
+  - `pypi-publish.yml`: Build & upload to PyPI on release / manual dispatch
+- **Smoke tests**: `tests/test_basic.py` — 10 tests covering import, CLI invocation, tool execution, and zero-dependency verification
+- **CI badge**: Updated README to point to real workflow
+
+### Changed
+- Moved `docker-publish.workflow.yml` to `.github/workflows/docker-publish.yml`
+
+---
+
 ## [v38.0.17] — 2026-06-01
 
 ### Fixed
