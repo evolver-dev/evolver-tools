@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/try/</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://evolver-dev.github.io/evolver-tools/gallery.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
