@@ -104,7 +104,7 @@ def print_sponsor():
 
         elif tier["action"] == "share":
             print(f"  │{' ' * 58}│")
-            text = '"pip install evolver-tools — 262 CLI tools, zero deps"'
+            text = '"pip install evolver-tools — 261 CLI tools, zero deps"'
             print(f"  │  \x1b[1;36m{cta}\x1b[0m                                    │")
             print(f"  │  {text:<56} │")
 
@@ -150,7 +150,7 @@ def _get_tool_count() -> int:
         from evolver_tools.autoreg import auto_discover
         return len(auto_discover())
     except Exception:
-        return 262
+        return 261
 
 
 def main():
