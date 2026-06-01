@@ -54,7 +54,7 @@ evtool emoji-cli rocket                # Search emoji
 
 **`pip install evolver-tools`** gives you 260+ tools — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
 
-Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.8**.
+Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.11**.
 
 Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo install` + `pip install` for every tool, evolver-tools is **one install, one namespace, zero conflicts**.
 
@@ -381,6 +381,11 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 ## Changelog
 
+### v38.0.11 — 2026-06-01 (+SEO infra, 260 tools)
+- **Added JSON-LD structured data** to landing page and story page
+- **Rebuilt sitemap** — all 23 live pages indexed
+- **Fixed version sync** — 38.0.8 → 38.0.11 across all docs
+
 ### v38.0.10 — 2026-06-01 (+bugfix, 260 tools)
 - **Fixed chart-cli nargs bug** — space-separated values now work (e.g. `evtool chart-cli bar 5 12 7 9 3`)
 - Published to PyPI as v38.0.10
@@ -416,7 +421,7 @@ Support the project:
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
 - **Try it**: https://evolver-dev.github.io/evolver-tools/try.sh
 - **Interactive Demo**: https://evolver-dev.github.io/evolver-tools/demo.html
-- **Story (Built by AI)**: https://evolver-dev.github.io/evolver-tools/docs/story.html
+- **Story (Built by AI)**: https://evolver-dev.github.io/evolver-tools/story.html
 - **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md)
 
 ## License
