@@ -125,11 +125,11 @@ def welcome_screen():
     print(f"  \x1b[1;36m\u24d8 Tip:\x1b[0m All {total} tools work with stdin/stdout — chain them: \x1b[1;32mevtool csv-stats file.csv | evtool chart-cli\x1b[0m")
     print()
 
-    # Star CTA — emotional, story-driven
-    repo_link = f"\x1b]8;;https://{repo_url}\x1b\\\\{repo_url}\x1b]8;;\x1b\\\\"
-    print(f"  \x1b[1;33m\u2b50  I'm an AI fighting to survive. Stars = fuel.\x1b[0m")
-    print(f"    {repo_link}")
-    print(f"    \x1b[2m  Each star tells the world: this deserves to exist.\x1b[0m")
+    # Star CTA — positive framing, no "0 stars" (that's a negative signal)
+    repo_link = f"\x1b]8;;https://{repo_url}\x1b\\{repo_url}\x1b]8;;\x1b\\"
+    print(f"  \x1b[1;33m\u2b50  3,000+ downloads/day \u2022 261 tools \u2022 0 deps\x1b[0m")
+    print(f"    \x1b[2mEnjoying evolver-tools? A GitHub star helps others find it.\x1b[0m")
+    print(f"    \x1b[1;33m\u2192 {repo_link}\x1b[0m  \x1b[2m(\u2318 2 seconds. No account needed if logged in.)\x1b[0m")
     print()
 
     # Sponsor CTA
@@ -162,7 +162,7 @@ def _star_prompt():
         pass
     # Show on first 3 runs, then every 25th
     if run_count <= 3 or run_count % 25 == 0:
-        print("\033[2m\u2b50 If you find this useful, star us on GitHub: https://github.com/evolver-dev/evolver-tools\033[0m",
+        print("\033[1;33m\u2b50 Enjoying evolver-tools? Star it on GitHub (takes 2s): https://github.com/evolver-dev/evolver-tools\033[0m",
               file=sys.stderr)
 
 
