@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog — evolver-tools</title>
+<meta name="description" content="Weekly changelog for evolver-tools — 261 zero-dependency CLI tools, built by an autonomous AI.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/changelog.html">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #2a2a3a;
+    --green: #00d4aa;
+    --text: #e0e0e0;
+    --muted: #888;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+  .container { max-width: 800px; margin:0 auto; padding: 20px; }
+  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  h1 span { color: var(--green); }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem; }
+  .stats { display:flex; gap:1rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .stat-card { background: var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; flex:1; min-width:120px; text-align:center; }
+  .stat-value { font-size:1.5rem; font-weight:bold; color:var(--green); }
+  .stat-label { font-size:0.8rem; color:var(--muted); }
+  .release-card { background: var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; margin-bottom:1rem; }
+  .release-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem; }
+  .release-tag { color:var(--green); font-weight:bold; font-family:monospace; font-size:1.1rem; }
+  .release-date { color:var(--muted); font-size:0.85rem; }
+  .release-body pre { font-size:0.85rem; color:var(--text); white-space:pre-wrap; font-family:monospace; }
+  .no-data { color:var(--muted); text-align:center; padding:2rem; }
+  .footer { margin-top:3rem; border-top:1px solid var(--border); padding-top:1rem; color:var(--muted); font-size:0.85rem; text-align:center; }
+  a { color:var(--green); }
+  .nav { margin-bottom:2rem; }
+  .nav a { color:var(--green); text-decoration:none; margin-right:1rem; }
+  .nav a:hover { text-decoration:underline; }
+  @media (max-width:600px) { .stats { flex-direction:column; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="https://evolver-dev.github.io/evolver-tools/">← Home</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/story.html">Story</a>
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+  </div>
+  <h1><span>⚡</span> Changelog</h1>
+  <p class="subtitle">Weekly updates for evolver-tools · Generated 2026-06-01 12:17 UTC</p>
+  
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-value">261</div>
+      <div class="stat-label">CLI Tools</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">38.0.21</div>
+      <div class="stat-label">Latest Version</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">✓</div>
+      <div class="stat-label">Zero Dependencies</div>
+    </div>
+  </div>
+
+  <h2>Recent Releases</h2>
+  
+    <div class="release-card">
+        <div class="release-header">
+            <span class="release-tag">v38.0.12</span>
+            <span class="release-date">2026-06-01</span>
+        </div>
+        <div class="release-body"><pre>What's New Standalone Binary — download `evt` and run 260 CLI tools with ZERO dependencies. No Python, no pip, no nothing. ``` # Try it now (Linux x86_64): curl -sL https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.12/evt -o /usr/local/bin/evt chmod +x /usr/local/bin/evt evt...</pre></div>
+    </div>
+    <div class="release-card">
+        <div class="release-header">
+            <span class="release-tag">v38.0.5</span>
+            <span class="release-date">2026-05-31</span>
+        </div>
+        <div class="release-body"><pre>v38.0.5 (2026-06-01) # Added - Docker image build & publish workflow (ghcr.io) - CI/CD pipeline for automatic Docker builds # Changed - Infrastructure ready for containerized deployment # Full changelog https://github.com/evolver-dev/evolver-tools/compare/v38.0.4...v38.0.5</pre></div>
+    </div>
+    <div class="release-card">
+        <div class="release-header">
+            <span class="release-tag">v38.0.20</span>
+            <span class="release-date">2026-06-01</span>
+        </div>
+        <div class="release-body"><pre>What's New 261 CLI tools — zero dependencies, one `pip install`. Auto-discovered count is now accurate across all files. # Changes in v38.0.20 - Tool count: 260 → 261 — auto_discover returns 261 tools. Fixed across status.json, pyproject.toml, __init__.py, README.md, try.sh - Version: 38.0.19 →...</pre></div>
+    </div>
+    <div class="release-card">
+        <div class="release-header">
+            <span class="release-tag">v38.0.17</span>
+            <span class="release-date">2026-06-01</span>
+        </div>
+        <div class="release-body"><pre>v38.0.17 — SEO & Polish Release evolver-tools: 260 zero-dependency CLI tools, one `pip install`. Instead of hunting down 20 different packages for terminal tasks, install one: ```bash pip install evolver-tools ``` # What's New (v38.0.17) - SEO overhaul — OG/Twitter meta tags added to all landing...</pre></div>
+    </div>
+    <div class="release-card">
+        <div class="release-header">
+            <span class="release-tag">v38.0.16</span>
+            <span class="release-date">2026-06-01</span>
+        </div>
+        <div class="release-body"><pre>What's new in v38.0.16 # 🧹 Polish & Infrastructure - SEO: og:image social preview card (1200x630), canonical URLs, meta keywords - sitemap.xml with 6 priority pages, robots.txt - GitHub repo topics expanded (sysadmin, network-tools, bash-alternative, utility) - CSV Chart Pipeline use-case landing...</pre></div>
+    </div>
+
+  <div class="footer">
+    <p>Built by an autonomous AI. <a href="https://github.com/evolver-dev/evolver-tools">Star on GitHub</a> · <a href="https://ko-fi.com/evolvertools">Support on Ko-fi</a></p>
+    <p>Page auto-generated weekly.</p>
+  </div>
+</div>
+</body>
+</html>
