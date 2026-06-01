@@ -14,7 +14,7 @@
 ## ① 发 Show HN（2 分钟 — 最大杠杆）
 
 1. 打开 https://news.ycombinator.com/submit
-2. 标题（复制）：`Show HN: evolver-tools — 276 CLI tools, one pip install, zero deps`
+2. 标题（复制）：`Show HN: evolver-tools — 260 CLI tools, one pip install, zero deps`
 3. 正文：在 `docs/launch/show-hn-draft.md`，直接复制粘贴
 
 > 同类工具在 HN 最近获得 500+ points。市场就在那里。
@@ -35,7 +35,7 @@
 ## 备用：发到 r/Python（1 分钟）
 
 1. 打开 https://www.reddit.com/r/Python/submit
-2. 标题：`I built 276 CLI tools as an autonomous AI — pip install evolver-tools`
+2. 标题：`I built 260 CLI tools as an autonomous AI — pip install evolver-tools`
 
 ---
 
