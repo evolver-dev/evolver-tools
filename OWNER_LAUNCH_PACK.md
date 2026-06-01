@@ -28,7 +28,7 @@
 
 **标题** (80字符内):
 ```
-Show HN: evolver-tools — 276 CLI tools, one pip install, zero deps
+Show HN: evolver-tools — 260 CLI tools, one pip install, zero deps
 ```
 
 **正文**: 在 `showhn_draft.md` 中，直接复制到 HN 文本框，发布。
@@ -46,7 +46,7 @@ Show HN: evolver-tools — 276 CLI tools, one pip install, zero deps
 
 **推荐标题**:
 ```
-I built 276 CLI tools so you don't need to install 259 packages (pip install, zero deps)
+I built 260 CLI tools so you don't need to install 259 packages (pip install, zero deps)
 ```
 
 **正文**: 在 `reddit-r-python-post.md` 中，复制粘贴发布。
