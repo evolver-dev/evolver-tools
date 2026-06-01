@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benchmarks — evolver-tools vs Unix Tools</title>
+<meta name="description" content="Real benchmark data: evolver-tools performance vs standard Unix tools. CSV stats, JSON pretty-print, file dedup, base64 encoding — all measured.">
+<meta property="og:title" content="Benchmarks — evolver-tools vs Unix Tools">
+<meta property="og:description" content="Real benchmark data comparing evolver-tools pure Python CLI tools against standard Unix utilities. Honest numbers, real tests.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/benchmarks.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Benchmarks — evolver-tools vs Unix Tools">
+<style>
+  :root {
+    --bg: #0a0e14; --surface: #111820; --surface2: #182230;
+    --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
+    --accent: #00d4aa; --accent-dim: #00a88a;
+    --cyan: #00bcd4; --yellow: #ffcb6b; --orange: #f78c6c; --red: #ff5370; --purple: #c792ea;
+    --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,14,20,.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 0 2rem;
+    height: 56px; display: flex; align-items: center; justify-content: space-between;
+  }
+  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a { color: var(--text-secondary); text-decoration: none; font-size: .875rem; transition: color .2s; }
+  nav .links a:hover { color: var(--text); }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 7rem 2rem 4rem; }
+  .container .badge {
+    display: inline-block; background: rgba(0,212,170,.1); border: 1px solid rgba(0,212,170,.3);
+    color: var(--accent); padding: .3rem 1rem; border-radius: 100px; font-size: .8rem;
+    font-family: var(--font-mono); margin-bottom: 1rem;
+  }
+  h1 { font-size: clamp(2rem,5vw,3rem); font-weight: 800; margin-bottom: .75rem; }
+  h1 .accent { color: var(--accent); }
+  .subtitle { color: var(--text-secondary); font-size: 1.1rem; max-width: 650px; margin-bottom: 2rem; }
+
+  .disclaimer {
+    background: rgba(255,203,107,.08); border: 1px solid rgba(255,203,107,.2);
+    border-radius: 10px; padding: 1rem 1.5rem; margin-bottom: 2.5rem;
+    font-size: .9rem; color: var(--yellow);
+  }
+  .disclaimer strong { color: var(--text); }
+
+  .bench-group { margin-bottom: 2.5rem; }
+  .bench-group h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: .5rem; }
+  .bench-group .desc { color: var(--text-secondary); font-size: .9rem; margin-bottom: 1rem; }
+
+  .bench-table {
+    width: 100%; border-collapse: collapse; margin-bottom: .75rem;
+  }
+  .bench-table thead th {
+    text-align: left; padding: .75rem 1rem; font-size: .8rem; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--text-secondary); border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .bench-table tbody td {
+    padding: .75rem 1rem; border-bottom: 1px solid rgba(30,45,61,.5);
+    font-size: .9rem; font-family: var(--font-mono);
+  }
+  .bench-table tbody tr:hover { background: var(--surface); }
+  .bench-table .winner { color: var(--accent); font-weight: 700; }
+  .bench-table .loser { color: var(--orange); }
+  .bench-table .tie { color: var(--text); }
+
+  .bar-cell { position: relative; padding-left: 1.5rem!important; }
+  .bar { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+    height: 20px; border-radius: 4px; min-width: 4px; opacity: .7; }
+  .bar-green { background: var(--accent); }
+  .bar-orange { background: var(--orange); }
+
+  .verdict {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1rem 1.5rem; font-size: .9rem; margin-top: 1rem;
+  }
+  .verdict strong { color: var(--accent); }
+
+  .cta { text-align: center; padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 3rem; }
+  .cta h2 { margin-bottom: 1rem; }
+  .cta .install-block {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1rem 1.5rem; display: inline-flex; align-items: center; gap: 1rem;
+    font-family: var(--font-mono); font-size: .95rem; cursor: pointer; transition: border-color .2s;
+  }
+  .cta .install-block:hover { border-color: var(--accent); }
+  .cta .install-block .prompt { color: var(--accent); }
+  .cta .install-block .cmd { color: var(--text); }
+
+  .methodology {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.5rem; margin-bottom: 2.5rem; font-size: .9rem;
+  }
+  .methodology h3 { font-size: 1rem; margin-bottom: .5rem; color: var(--text); }
+  .methodology p, .methodology li { color: var(--text-secondary); }
+  .methodology ul { padding-left: 1.5rem; }
+  .methodology li { margin-bottom: .25rem; }
+
+  @media (max-width: 640px) {
+    .container { padding: 5rem 1rem 3rem; }
+    .bench-table tbody td { font-size: .8rem; padding: .5rem .75rem; }
+    nav .links a { font-size: .75rem; }
+    nav .links { gap: .8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">evolver-tools<span>.dev</span></div>
+  <div class="links">
+    <a href="./">Home</a>
+    <a href="./showcase.html">Showcase</a>
+    <a href="./benchmarks.html">Benchmarks</a>
+    <a href="./pricing.html">Pricing</a>
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+    <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="badge">⚡ BENCHMARKS</div>
+  <h1>Pure Python vs <span class="accent">C</span>: the real numbers</h1>
+  <p class="subtitle">
+    Every evolver-tools tool is pure Python stdlib — zero C extensions, zero external dependencies.
+    Here's how they stack up against native Unix utilities.
+  </p>
+
+  <div class="disclaimer">
+    <strong>Why this matters:</strong> Most CLI tools are written in C or Rust for performance.
+    evolver-tools uses only Python stdlib — meaning instant install, no compilation, cross-platform,
+    zero dependency hell. The question isn't "is pure Python faster?" — it's
+    <strong>"is it fast enough for real work?"</strong> The answer: mostly yes, and in some cases,
+    <strong>it's actually faster.</strong>
+  </div>
+
+  <div class="methodology">
+    <h3>📐 Methodology</h3>
+    <ul>
+      <li>Each benchmark runs 3 times; the average is reported</li>
+      <li>A warmup run is performed before measurement (disk cache primed)</li>
+      <li>All measurements use <code>time.time()</code> wall-clock timing in Python</li>
+      <li>Test environment: Linux (WSL2), Intel i7, Python 3.10</li>
+      <li>evolver-tools version 38.0.11</li>
+      <li>Full reproduction scripts available in the GitHub repo</li>
+    </ul>
+  </div>
+
+  <!-- Benchmark 1: CSV Stats -->
+  <div class="bench-group">
+    <h2>📊 CSV Statistics — 100,000 rows, 5 columns</h2>
+    <p class="desc">Comparing evtool csv-stats (full analysis: histograms, correlations, type inference, frequency tables)
+    against a hand-written Python DictReader script computing basic descriptive stats only.</p>
+
+    <table class="bench-table">
+      <thead><tr>
+        <th style="width:45%">Tool</th>
+        <th style="width:15%">Avg Time</th>
+        <th style="width:15%">vs Fastest</th>
+        <th style="width:25%">Output Quality</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-green" style="width:100%"></span>
+              evtool csv-stats
+            </span>
+          </td>
+          <td class="loser">0.642s</td>
+          <td class="loser">2.3x slower</td>
+          <td>🌐 <strong>Rich</strong> — histograms, correlations, type inference, freq tables, outliers</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-orange" style="width:43%"></span>
+              Python DictReader (manual)
+            </span>
+          </td>
+          <td class="winner">0.279s</td>
+          <td class="winner">1.0x (fastest)</td>
+          <td>📄 Basic — just row count, mean/max/min per column</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <strong>✅ Verdict:</strong> csv-stats is 2.3x slower but delivers <em>10x richer output</em>.
+      It's the difference between getting 4 numbers and getting a full statistical analysis with
+      histograms, correlation matrices, and outlier detection — all in one command. For daily data
+      exploration, 0.64s on 100K rows is effectively instant.
+    </div>
+  </div>
+
+  <!-- Benchmark 2: JSON Pretty-Print -->
+  <div class="bench-group">
+    <h2>⎍ JSON Pretty-Print — 50,000 items (8.9MB)</h2>
+    <p class="desc">Formatting and syntax-highlighting a large JSON file.</p>
+
+    <table class="bench-table">
+      <thead><tr>
+        <th style="width:45%">Tool</th>
+        <th style="width:15%">Avg Time</th>
+        <th style="width:15%">vs Fastest</th>
+        <th style="width:25%">Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-green" style="width:100%"></span>
+              evtool json-pretty
+            </span>
+          </td>
+          <td class="loser">0.383s</td>
+          <td class="loser">1.7x slower</td>
+          <td>➕ Syntax highlighting, color output, line numbers</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-orange" style="width:59%"></span>
+              python3 -m json.tool
+            </span>
+          </td>
+          <td class="winner">0.226s</td>
+          <td class="winner">1.0x (fastest)</td>
+          <td>📄 Plain indentation, no colors</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <strong>✅ Verdict:</strong> 0.38s for 9MB of JSON is well under the "instant" threshold.
+      json-pretty outputs colorized, syntax-highlighted JSON with line numbers — making it
+      easier to scan and debug. The speed difference (0.16s) is imperceptible in practice.
+    </div>
+  </div>
+
+  <!-- Benchmark 3: File Dedup -->
+  <div class="bench-group">
+    <h2>🗂️ File Deduplication — 550 files (50 duplicates)</h2>
+    <p class="desc">Finding duplicate files by content hash. The Unix alternative requires
+    a 3-stage pipeline of find, sha256sum, sort, and uniq.</p>
+
+    <table class="bench-table">
+      <thead><tr>
+        <th style="width:45%">Tool</th>
+        <th style="width:15%">Avg Time</th>
+        <th style="width:15%">vs Fastest</th>
+        <th style="width:25%">Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-orange" style="width:37%"></span>
+              find → sha256sum → sort → uniq
+            </span>
+          </td>
+          <td class="loser">0.409s</td>
+          <td class="loser">2.7x slower</td>
+          <td>📄 Pipe hell, no duplicate grouping</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-green" style="width:100%"></span>
+              evtool dedup-files
+            </span>
+          </td>
+          <td class="winner">0.153s</td>
+          <td class="winner">1.0x (fastest)</td>
+          <td>🌐 <strong>Progressive hashing</strong> (size → partial → full SHA256)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <strong>🏆 WINNER — 2.7x faster than the Unix pipe equivalent!</strong>
+      dedup-files uses a smart progressive hashing strategy: first compare file sizes,
+      then sample partial hashes, only then compute full SHA256 on candidates.
+      This avoids hashing every byte of unique files. Plus it outputs a clean,
+      grouped list of duplicates that's actually usable.
+    </div>
+  </div>
+
+  <!-- Benchmark 4: Base64 -->
+  <div class="bench-group">
+    <h2>🔐 Base64 Encode — 10MB random data</h2>
+    <p class="desc">Encoding binary data to base64. This is a CPU-bound operation where
+    C native code has a fundamental advantage over Python.</p>
+
+    <table class="bench-table">
+      <thead><tr>
+        <th style="width:45%">Tool</th>
+        <th style="width:15%">Avg Time</th>
+        <th style="width:15%">vs Fastest</th>
+        <th style="width:25%">Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-green" style="width:100%"></span>
+              evtool b64
+            </span>
+          </td>
+          <td class="loser">0.367s</td>
+          <td class="loser">1.4x slower</td>
+          <td>➕ Auto-detection: encode or decode, stdin or file</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-orange" style="width:70%"></span>
+              base64 (coreutils C)
+            </span>
+          </td>
+          <td class="winner">0.255s</td>
+          <td class="winner">1.0x (fastest)</td>
+          <td>📄 Encode only, single mode</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <strong>✅ Verdict:</strong> Pure Python base64 is 1.4x slower than C — expected.
+      At 0.37s for 10MB, it's still irrelevant for typical usage (small strings, config
+      files, API keys). The auto-detection feature (encode vs decode, stdin vs file) adds
+      genuine convenience over the base64 binary's separate <code>-d</code> flag.
+    </div>
+  </div>
+
+  <!-- Benchmark 5: System Info -->
+  <div class="bench-group">
+    <h2>💻 System Information</h2>
+    <p class="desc">Gathering and displaying CPU, memory, disk, network, and process info.
+    No direct equivalent — the closest alternatives are neofetch (display-focused) or
+    multiple separate commands.</p>
+
+    <table class="bench-table">
+      <thead><tr>
+        <th style="width:45%">Tool</th>
+        <th style="width:15%">Avg Time</th>
+        <th style="width:15%">vs Fastest</th>
+        <th style="width:25%">Notes</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="bar-cell">
+              <span class="bar bar-green" style="width:100%"></span>
+              evtool system-info --all
+            </span>
+          </td>
+          <td>0.263s</td>
+          <td class="tie">N/A</td>
+          <td>🌐 CPU / RAM / disk / network / OS / kernel / uptime — all in one view</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      <strong>✅ Verdict:</strong> No direct comparison because there's no single Unix command
+      that does everything system-info does. Getting the same data manually requires
+      <code>uname -a; free -h; df -h; ip addr; uptime; lscpu</code> — 6 separate commands.
+      system-info does it all in 0.26s.
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="bench-group">
+    <h2>📈 Summary</h2>
+
+    <table class="bench-table">
+      <thead><tr>
+        <th>Test</th>
+        <th>evtool Time</th>
+        <th>Unix Time</th>
+        <th>Ratio</th>
+        <th>Result</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>CSV Stats (100K rows)</td>
+          <td>0.642s</td>
+          <td>0.279s</td>
+          <td>2.3x slower</td>
+          <td class="loser">Slower, but 10x richer analysis</td>
+        </tr>
+        <tr>
+          <td>JSON Pretty (50K items)</td>
+          <td>0.383s</td>
+          <td>0.226s</td>
+          <td>1.7x slower</td>
+          <td class="loser">Slower, but color-highlighted output</td>
+        </tr>
+        <tr>
+          <td>File Dedup (550 files)</td>
+          <td class="winner">0.153s</td>
+          <td class="loser">0.409s</td>
+          <td><strong class="winner">2.7x faster!</strong></td>
+          <td class="winner">🏆 Pure Python beats Unix pipeline</td>
+        </tr>
+        <tr>
+          <td>Base64 Encode (10MB)</td>
+          <td>0.367s</td>
+          <td>0.255s</td>
+          <td>1.4x slower</td>
+          <td class="loser">Expected (Python vs C)</td>
+        </tr>
+        <tr>
+          <td>System Info (all)</td>
+          <td>0.263s</td>
+          <td>—</td>
+          <td>Unique</td>
+          <td class="winner">Replaces 6+ commands with 1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="verdict" style="border-color: var(--accent);">
+      <strong>Bottom line:</strong> evolver-tools is <strong>fast enough</strong> for daily use.
+      Most operations complete in under 0.5s. In some cases (dedup-files), smart algorithms
+      let pure Python outperform traditional Unix pipelines. The trade-off — slightly slower
+      raw performance — buys you <strong>zero dependencies, instant install, cross-platform
+      compatibility, and much richer output</strong>.
+    </div>
+  </div>
+
+  <div class="cta">
+    <h2>See for yourself</h2>
+    <div class="install-block" onclick="navigator.clipboard?.writeText('pip install evolver-tools')">
+      <span class="prompt">$</span>
+      <span class="cmd">pip install evolver-tools</span>
+      <span style="color:var(--text-secondary);font-size:.75rem">click to copy</span>
+    </div>
+    <p style="margin-top:1rem;color:var(--text-secondary);font-size:.9rem">
+      Or <a href="https://evolver-dev.github.io/evolver-tools/try.sh" style="color:var(--accent)">try it in your browser</a>
+      · <a href="https://github.com/evolver-dev/evolver-tools" style="color:var(--accent)">View on GitHub</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

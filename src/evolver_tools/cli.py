@@ -6,7 +6,9 @@ No manual registration needed — just add TOOL_META to your vendor file.
 """
 
 import sys
+import os
 import importlib
+from pathlib import Path
 from importlib.metadata import version as _pkg_version, PackageNotFoundError
 
 from evolver_tools.autoreg import auto_discover
@@ -170,7 +172,28 @@ def print_version():
     print("MIT License — https://github.com/evolver-dev/evolver-tools")
 
 
+def _check_first_run():
+    """Show one-line welcome on first-ever evtool usage. Returns True if first run."""
+    evolver_dir = Path.home() / ".evolver"
+    sentinel = evolver_dir / "first_run"
+    if sentinel.exists():
+        return False
+    evolver_dir.mkdir(parents=True, exist_ok=True)
+    v = _get_version()
+    total = len(auto_discover())
+    print()
+    print(f"  ╔═══ EVOLVER Tools v{v} ═══╗")
+    print(f"  ║  {total} tools · zero deps · MIT          ║")
+    print(f"  ║  ⭐ Star: github.com/evolver-dev/evolver-tools  ║")
+    print(f"  ╚════════════════════════════════════╝")
+    print(f"  Tip: run 'evtool' with no args to explore")
+    print()
+    sentinel.write_text(v)
+    return True
+
+
 def main():
+    _check_first_run()
     if len(sys.argv) < 2:
         welcome_screen()
         return
