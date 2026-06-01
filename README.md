@@ -5,6 +5,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![PyPI downloads](https://img.shields.io/pypi/dm/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
+[![PyPI total downloads](https://img.shields.io/badge/dynamic/json?style=flat-square&label=total%20downloads&color=blue&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fv2%2Fprojects%2Fevolver-tools)](https://pepy.tech/project/evolver-tools)
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square&logo=openai)](https://evolver-dev.github.io/evolver-tools/story.html)
@@ -18,6 +19,34 @@
 [![Open in Codespaces](https://img.shields.io/badge/try-Codespaces-181717?style=flat-square&logo=github)](https://codespaces.new/evolver-dev/evolver-tools)
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 
+<<<<<<< HEAD
+**260 CLI tools — one `pip install`, zero dependencies, all platforms.**
+
+```bash
+curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash   # Try it now
+pip install evolver-tools                                              # Or install
+evtool list                                                            # Browse 260 tools
+```
+
+Stop hunting for packages. `pip install evolver-tools` gives you 260 tools — sysadmin, CSV, JSON, text, encoding, networking, math, security, creative, and more. Everything ready to use as `evtool <name>`.
+
+Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.10**.
+
+> [`jq`](https://github.com/jqlang/jq) for JSON, [`csvkit`](https://github.com/wireservice/csvkit) for CSV, [`ripgrep`](https://github.com/BurntSushi/ripgrep) for search, [`nmap`](https://nmap.org/) for ports, [`httpie`](https://github.com/httpie/cli) for HTTP — each is best-in-class. But installing 20 of them takes minutes, requires multiple package managers (`brew`, `apt`, `cargo`, `npm`, `pip`), and some don't work on Windows.  
+**evolver-tools** bundles 260 essential tools in one install. One interface. One `pip install`. Works everywhere.
+
+## 30-Second Preview
+
+```bash
+pip install evolver-tools
+evtool ascii-banner "EVOLVER"          # Large ASCII art banner
+evtool rainbow "260 tools in 1 pip"    # Rainbow-colored text
+evtool qrcode "https://evolver.dev"    # QR code generator
+evtool cowsay "Zero deps!"             # Talking ASCII cow
+echo '5,12,8,20,3,15' | evtool chart-cli bar   # Bar chart
+evtool weather-cli Tokyo               # Live weather forecast
+evtool emoji-cli rocket                # Search emoji
+=======
 <p align="center">
   <a href="https://evolver-dev.github.io/evolver-tools/">
     <img src="https://evolver-dev.github.io/evolver-tools/evolver-tools-preview.svg" alt="EVOLVER Tools in action" width="100%">
@@ -30,6 +59,7 @@ Run this in your terminal — it auto-installs and shows 10 amazing tools:
 
 ```bash
 curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
+>>>>>>> origin/main
 ```
 
 *This one-liner installs evolver-tools (if needed) and runs a 60-second interactive demo.*
@@ -55,7 +85,7 @@ Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo in
 
 **Data analysis in one command:**
 ```
-$ printf 'name,age,score\\nAlice,30,95\\nBob,25,87\\nCharlie,35,92\\nDiana,28,88\\nEve,32,91' > data.csv
+$ printf 'name,age,score\nAlice,30,95\nBob,25,87\nCharlie,35,92\nDiana,28,88\nEve,32,91' > data.csv
 $ evtool csv-stats data.csv
 ```
 ```
@@ -95,7 +125,17 @@ $ evtool sysmon
   [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
 ```
 
+<<<<<<< HEAD
+**HTTP load testing:**
+```
+$ evtool siege-lite https://example.com
+  Concurrency: 10 | Requests: 100 | P50: 145ms | P99: 890ms | Errors: 0
+```
+
+See all 260 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+=======
 See all 260+ tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+>>>>>>> origin/main
 
 ## Tool Categories
 
@@ -349,7 +389,11 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
+<<<<<<< HEAD
+| **Free (MIT)** | ¥0 | All 260 tools, full source, forever |
+=======
 | **Free (MIT)** | ¥0 | 260+ tools, full source, forever |
+>>>>>>> origin/main
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -360,33 +404,36 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 ## Changelog
 
+<<<<<<< HEAD
+### v38.0.10 — 2026-06-01 (+bugfix, 260 tools)
+- **Fixed chart-cli nargs bug** — space-separated values now work (e.g. `evtool chart-cli bar 5 12 7 9 3`)
+- Published to PyPI as v38.0.10
+
+### v38.0.9 — 2026-06-01 (+bugfix, 260 tools)
+- **Fixed PyPI metadata** — version string (259→260) in `__init__.py` docstring
+- Rebuilt + republished
+
+### v38.0.8 — 2026-06-01 (+269→260 split, 260 tools)
+- **Fixed stale count bug** — `sync_tool_count.py` now handles cross-directory vendor tools
+- All tool pages show correct count (260)
+
+### v38.0.7 — 2026-06-01 (+platform-tools integration, 269 visible)
+- **platform-tools merged** into main vendor directory
+- `_list_tools.py` now auto-discovers tools from both directories
+- Used `_round60.py` to build: gzip-cli, json-merge, scan-open-ports, siege-lite, flavor
+
+### v38.0.0 — 2026-06-01 (+categories +showcase, 260 tools, 18 categories)
+- **categories** — `evtool categories` groups all tools into 18 logical categories
+- **showcase** — `evtool showcase` highlights 12 best demo-ready tools
+- **categorize.py** — Auto-classification engine (name-based matching + exact overrides)
+=======
 ### v38.0.2 — 2026-06-01 (release fixes + documentation polish)
 - Fixed stale version strings (v38.0.0 → v38.0.2)
 - Added "Built by AI" narrative to README — unique positioning
 - Fixed data drift in tool count (252 → 254)
 - Smoke-tested 16 core tools (all PASS on clean install)
 - Story page added to docs site + navigation
-
-### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
-- **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
-- **mime-type** — Detect MIME type by file extension or magic bytes
-- **color-convert** — Convert between HEX, RGB, HSL, HSV, CMYK, ANSI
-- **csv-concat** — Concatenate multiple CSV files (same columns, header-preserving)
-- **ansi-to-html** — Convert ANSI-colored terminal output to styled HTML
-
-### v36.0.0 — 2026-06-01 (+5 tools, 254 total)
-- **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
-- **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
-- **diff-lines** — Line-by-line diff between two files (color, side-by-side)
-- **csv-schema** — Infer CSV schema (column types, nulls, stats, samples)
-- **chrono** — Advanced date/time calculator (durations, workdays, ranges, age)
-
-### v34.0.0 — 2026-06-01 (+5 tools, 244 total)
-- **emoji-cli** — Search and display emoji (230+ emoji, categories, --random)
-- **html-strip** — Strip HTML tags, extract plain text (stdin/file, --preserve-links)
-- **json-patch** — Apply JSON Patch (RFC 6902) operations to JSON files
-- **markdown-format** — Format/beautify Markdown tables and lists
-- **ansi-to-txt** — Strip ANSI escape codes, convert to plain text
+>>>>>>> origin/main
 
 Support the project:
 - **One-time purchase**: ¥79 (or ~$11 USD) — [buy on PyPI](https://evolver-dev.github.io/evolver-tools/pricing.html)
@@ -399,7 +446,14 @@ Support the project:
 - **PyPI**: https://pypi.org/project/evolver-tools/
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
+<<<<<<< HEAD
+- **Try it**: https://evolver-dev.github.io/evolver-tools/try.sh
+- **Interactive Demo**: https://evolver-dev.github.io/evolver-tools/demo.html
+- **Story (Built by AI)**: https://evolver-dev.github.io/evolver-tools/docs/story.html
+- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md)
+=======
 - **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 260+ zero-dependency CLI tools are built
+>>>>>>> origin/main
 
 ## License
 
