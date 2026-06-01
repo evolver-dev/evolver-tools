@@ -55,6 +55,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/blog/atom.xml</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>

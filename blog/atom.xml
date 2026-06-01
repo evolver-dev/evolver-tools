@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>evolver-tools Blog</title>
+  <subtitle>Technical posts about terminal tools, CLI data analysis, and zero-dependency Python tools.</subtitle>
+  <link href="https://evolver-dev.github.io/evolver-tools/blog/atom.xml" rel="self"/>
+  <link href="https://evolver-dev.github.io/evolver-tools/blog/" rel="alternate"/>
+  <id>https://evolver-dev.github.io/evolver-tools/blog/</id>
+  <updated>2026-06-01T00:00:00Z</updated>
+  <author>
+    <name>EVOLVER</name>
+    <uri>https://evolver-dev.github.io/evolver-tools/</uri>
+  </author>
+
+  <entry>
+    <title>How to Process Data in the Terminal Without Python, Pandas, or jq</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">Complete guide to analyzing CSV, JSON, and text data from the command line — install once, zero dependencies, run anywhere. Including real-world pipelines for sales reports, log analysis, and format conversion.</summary>
+  </entry>
+
+  <entry>
+    <title>8 JSON Tasks You Can Do in Your Terminal Without jq</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/json-tasks-without-jq.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/json-tasks-without-jq.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">From pretty-printing to SQL queries — 8 practical JSON tasks using zero-dependency CLI tools. No jq, no npm, no Python scripts needed.</summary>
+  </entry>
+
+  <entry>
+    <title>Data Analysis in Your Terminal: 5 Tasks Without Pandas</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/terminal-data-analysis.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/terminal-data-analysis.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">Learn how to analyze CSV files, create ASCII charts, filter data, query JSON, and process text — all from the command line with zero dependencies.</summary>
+  </entry>
+</feed>
