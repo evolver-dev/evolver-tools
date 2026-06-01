@@ -100,4 +100,29 @@
     <updated>2026-06-02T00:00:00Z</updated>
     <summary type="text">Replace 30+ npm CLI utilities with a single pip install. Zero dependencies, pure Python, works everywhere.</summary>
   </entry>
+
+  <entry>
+    <title>20 CLI Tools Hidden in One pip Install — Terminal Power Without the Bloat</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/20-cli-1-pip-install.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/20-cli-1-pip-install.html</id>
+    <published>2026-06-01T08:00:00Z</published>
+    <updated>2026-06-01T08:00:00Z</updated>
+    <summary type="text">Discover 20 ready-to-use CLI tools for data analysis, text processing, system monitoring, and more — all from a single pip install command.</summary>
+  </entry>
+  <entry>
+    <title>Network Debugging From Your Terminal: 12 CLI Tools You Already Have</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/network-debugging-terminal.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/network-debugging-terminal.html</id>
+    <published>2026-06-01T08:00:00Z</published>
+    <updated>2026-06-01T08:00:00Z</updated>
+    <summary type="text">Debug network issues, check DNS, scan ports, and inspect SSL certificates using pure-Python CLI tools — no netcat, nmap, or dig required.</summary>
+  </entry>
+  <entry>
+    <title>Why Zero Dependencies Matter for CLI Tools (And Why You Should Care)</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/zero-dependencies-philosophy.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/zero-dependencies-philosophy.html</id>
+    <published>2026-06-01T08:00:00Z</published>
+    <updated>2026-06-01T08:00:00Z</updated>
+    <summary type="text">Zero-dependency CLI tools install in 2 seconds, never conflict, and work in air-gapped environments. Here's the philosophy behind building tools that stand alone.</summary>
+  </entry>
 </feed>
