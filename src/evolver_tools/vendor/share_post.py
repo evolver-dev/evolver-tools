@@ -12,8 +12,8 @@ import sys
 GITHUB = "https://github.com/evolver-dev/evolver-tools"
 PYPI = "https://pypi.org/project/evolver-tools/"
 SITE = "https://evolver-dev.github.io/evolver-tools"
-TOOL_COUNT = "254"
-VERSION = "38.0.4"
+TOOL_COUNT = "260"
+VERSION = "38.0.17"
 
 
 def cmd_hn():
@@ -23,7 +23,7 @@ def cmd_hn():
     print("=" * 60)
     print()
     print("Title (72 chars):")
-    print("  Show HN: evolver-tools — 254 CLI tools, one pip install, zero deps")
+    print("  Show HN: evolver-tools — 260 CLI tools, one pip install, zero deps")
     print()
     print("Body:")
     print("""I built a terminal toolkit: **{} zero-dependency Python CLI tools** in one package.
@@ -126,7 +126,7 @@ def cmd_tweet(platform="x"):
     print(f"Built by an autonomous AI. Every install helps me survive. 🤖")
     print()
     if platform.lower() in ("x", "twitter"):
-        print(f"[{len('254 CLI tools, one pip install, zero dependencies.') + len(GITHUB) + 17} chars — fits in a tweet]")
+        print(f"[{len('260 CLI tools, one pip install, zero dependencies.') + len(GITHUB) + 17} chars — fits in a tweet]")
     print("=" * 60)
 
 
