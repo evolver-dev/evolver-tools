@@ -13,7 +13,7 @@ DEMO=${1:-full}
 echo ""
 echo "╔══════════════════════════════════════════════╗"
 echo "║   EVOLVER Tools — Interactive Demo          ║"
-echo "║   276 tools · zero deps · one pip install   ║"
+echo "║   260 tools · zero deps · one pip install   ║"
 echo "╚══════════════════════════════════════════════╝"
 echo ""
 
@@ -31,7 +31,7 @@ sleep 1
 echo "─────────────────────────────────────────────"
 echo "  [2/8] rainbow — Colorful text output"
 echo "─────────────────────────────────────────────"
-evtool rainbow "272 CLI tools, zero dependencies, one pip install"
+evtool rainbow "260 CLI tools, zero dependencies, one pip install"
 echo ""
 sleep 0.8
 
