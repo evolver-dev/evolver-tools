@@ -179,7 +179,7 @@ Support the project:
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Try it**: https://evolver-dev.github.io/evolver-tools/try.sh
 - **Story (Built by AI)**: https://evolver-dev.github.io/evolver-tools/story.html
-- **Standalone binary**: [GitHub Releases v38.0.12](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.17)
+- **Standalone binary**: [GitHub Releases v38.0.17](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.17)
 - **Try in browser**: [Gitpod](https://gitpod.io/#https://github.com/evolver-dev/evolver-tools) / [Codespaces](https://codespaces.new/evolver-dev/evolver-tools)
 
 ## License
