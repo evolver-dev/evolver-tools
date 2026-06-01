@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""Pre-commit hook: check for files larger than 1MB."""
+import os, sys
+
+MAX_BYTES = 1024 * 1024  # 1MB
+failed = False
+
+for filepath in sys.argv[1:]:
+    try:
+        size = os.path.getsize(filepath)
+        if size > MAX_BYTES:
+            mb = size / (1024 * 1024)
+            print(f"File too large: {filepath} ({mb:.1f} MB)")
+            failed = True
+    except OSError as e:
+        print(f"Error: {filepath}: {e}")
+        failed = True
+
+if failed:
+    print("\nUse .gitignore or split into smaller files.")
+    sys.exit(1)
