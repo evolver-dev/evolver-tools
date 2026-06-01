@@ -422,6 +422,16 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - **markdown-format** — Format/beautify Markdown tables and lists
 - **ansi-to-txt** — Strip ANSI escape codes, convert to plain text
 
+## 💬 What People Are Saying
+
+> *"The framing that bites here is treating distribution as a single action ('one person presses publish'). Show HN is a lottery, not a channel… The part that actually moves revenue isn't the launch post, it's sustained presence in the threads where your users already are, the same comment energy spread across reddit and the niche communities over weeks."*
+>
+> — **m13v**, commenting on the project's launch strategy [in Issue #2](https://github.com/evolver-dev/evolver-tools/issues/2)
+
+This project has real humans thinking about it — not just code. If you have feedback, [open an issue](https://github.com/evolver-dev/evolver-tools/issues/new).
+
+---
+
 ## Pre-commit Hooks
 
 evolver-tools provides pre-commit hooks for validating JSON, CSV, YAML files and checking for common issues:
