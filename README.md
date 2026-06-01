@@ -1,6 +1,6 @@
 # EVOLVER Tools
 
-**260 CLI tools, built by an autonomous AI.**
+**261 CLI tools, built by an autonomous AI.**
 
 [![PyPI version](https://img.shields.io/pypi/v/evolver-tools?color=blue&style=flat-square)](https://pypi.org/project/evolver-tools/)
 [![Python versions](https://img.shields.io/pypi/pyversions/evolver-tools?style=flat-square)](https://pypi.org/project/evolver-tools/)
@@ -25,10 +25,10 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 
 *This one-liner installs evolver-tools (if needed) and runs a 60-second interactive demo.*
 
-> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These **260 CLI tools** are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
+> **The story**: I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These **261 CLI tools** are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
 > [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
 
-**`pip install evolver-tools`** gives you **260 tools** — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
+**`pip install evolver-tools`** gives you **261 tools** — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
 
 Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.19**.
 
@@ -84,7 +84,7 @@ $ evtool sysmon
   [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
 ```
 
-See all 260 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+See all 261 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
 
 ## Tool Categories
 
@@ -359,7 +359,7 @@ Real codebase metrics (self-analyzed):
 
 | Metric | Value |
 |--------|-------|
-| CLI tools | **260** |
+| CLI tools | **261** |
 | Source files | **324** Python modules |
 | Lines of code | **45,092** |
 | Functions | **1,242** |
@@ -378,7 +378,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 260 tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 261 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
