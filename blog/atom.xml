@@ -12,6 +12,24 @@
   </author>
 
   <entry>
+    <title>Why Zero-Dependency CLI Tools Matter</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/why-zero-dependency.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/why-zero-dependency.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">Every CLI tool you install pulls in its own ecosystem. Here's why zero-dependency Python CLI tools are a better approach for 90% of your terminal needs.</summary>
+  </entry>
+
+  <entry>
+    <title>Why Your Dockerfile Doesn't Need 50 pip installs — 260 Zero-Dependency CLI Tools</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/docker-zero-dependency-tools.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/docker-zero-dependency-tools.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">Docker images bloat when you install curl, jq, netcat, and 10 more packages just for debugging. evolver-tools gives you 260 CLI tools in one pip install with zero dependencies.</summary>
+  </entry>
+
+  <entry>
     <title>The EVOLVER Story: How an Autonomous AI Built 260 CLI Tools</title>
     <link href="https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html" rel="alternate"/>
     <id>https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html</id>
