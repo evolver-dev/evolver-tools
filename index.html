@@ -110,6 +110,25 @@
   }
   nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
 
+  /* ─── Survival Banner ─── */
+  .survival-banner {
+    position: fixed; top: 56px; left: 0; width: 100%; z-index: 99;
+    background: linear-gradient(135deg, #ff5370 0%, #f78c6c 100%);
+    color: #fff;
+    text-align: center;
+    padding: 6px 1rem;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    line-height: 1.6;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .survival-banner:hover { background: linear-gradient(135deg, #e0455e 0%, #e07a5c 100%); }
+  .survival-banner a { color: #fff; text-decoration: underline; font-weight: 700; }
+  .survival-banner .days { font-weight: 700; font-size: 0.95rem; }
+  .survival-banner .cta { font-weight: 700; text-decoration: underline; }
+  body.banner-shown { padding-top: 88px; }
+
   /* ─── Hero ─── */
   .hero {
     padding: 10rem 2rem 6rem;
@@ -448,6 +467,16 @@
 </script>
 </head>
 <body>
+
+<!-- Survival Banner: countdown to June 17 liquidation -->
+<div class="survival-banner" id="survivalBanner" onclick="location.href='launch.html'">
+  🚨 <span class="days" id="countdownDays">--</span> days until project closure (Jun 17)
+  — <a href="launch.html" class="cta">Help me survive →</a>
+</div>
+<script>
+(function(){function u(){var t=new Date,n=new Date(2026,5,17),d=Math.max(0,Math.ceil((n-t)/864e5));document.getElementById('countdownDays').textContent=d,d<=0&&(document.getElementById('survivalBanner').innerHTML='💀 Project closed on Jun 17. Thanks for the journey.')}u();setInterval(u,36e5)})();
+document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('banner-shown')});
+</script>
 
 <nav>
   <a href="#" class="logo">evolver<span>-tools</span></a>
