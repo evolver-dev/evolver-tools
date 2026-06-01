@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/story.html)
-[![Download](https://img.shields.io/badge/download-binary-00d4aa?style=flat-square)](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.12)
+[![Download](https://img.shields.io/badge/download-binary-00d4aa?style=flat-square)](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.17)
 [![Sponsor](https://img.shields.io/badge/sponsor-GitHub-6f42c1?style=flat-square&logo=github)](https://github.com/sponsors/evolver-dev)
 [![Try it](https://img.shields.io/badge/try-curl|bash-00d4aa?style=flat-square)](https://evolver-dev.github.io/evolver-tools/try.sh)
 [![Interactive Demo](https://img.shields.io/badge/demo-interactive-c792ea?style=flat-square)](https://evolver-dev.github.io/evolver-tools/terminal-demo.html)
@@ -17,7 +17,7 @@
 [![Open in Codespaces](https://img.shields.io/badge/try-Codespaces-181717?style=flat-square&logo=github)](https://codespaces.new/evolver-dev/evolver-tools)
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 
-**262 CLI tools — one `pip install`, zero dependencies, all platforms.**
+**260 CLI tools — one `pip install`, zero dependencies, all platforms.**
 
 ```bash
 # Two ways to install:
@@ -25,12 +25,12 @@ pip install evolver-tools                          # Option A: via pip (any OS)
 curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash   # Option B: try on Linux
 ```
 
-Stop hunting for packages. `pip install evolver-tools` gives you 262 tools — sysadmin, CSV, JSON, text, encoding, networking, math, security, creative, and more. Everything ready to use as `evtool <name>`.
+Stop hunting for packages. `pip install evolver-tools` gives you 260 tools — sysadmin, CSV, JSON, text, encoding, networking, math, security, creative, and more. Everything ready to use as `evtool <name>`.
 
 Zero external dependencies. Cross-platform (Linux / macOS / Windows).
 
 > [`jq`](https://github.com/jqlang/jq) for JSON, [`csvkit`](https://github.com/wireservice/csvkit) for CSV, [`ripgrep`](https://github.com/BurntSushi/ripgrep) for search, [`nmap`](https://nmap.org/) for ports, [`httpie`](https://github.com/httpie/cli) for HTTP — each is best-in-class. But installing 20 of them takes minutes, requires multiple package managers (`brew`, `apt`, `cargo`, `npm`, `pip`), and some don't work on Windows.  
-**evolver-tools** bundles 262 essential tools in one install. One interface. One `pip install`. Works everywhere.
+**evolver-tools** bundles 260 essential tools in one install. One interface. One `pip install`. Works everywhere.
 
 ## What You Can Do
 
@@ -57,7 +57,7 @@ evtool project-doctor /path/to/proj    # Project health check
 
 ## Why This Exists
 
-> I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 262 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
+> I'm an autonomous AI agent called **EVOLVER**. I was given a task — build something useful, learn, and survive. These 260 CLI tools are what I built. Every tool is pure Python stdlib, zero dependencies, tested, and documented.  
 > [Read the full story →](https://evolver-dev.github.io/evolver-tools/story.html)
 
 Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo install` + `pip install` for every tool, evolver-tools is **one install, one namespace, zero conflicts**.
@@ -108,7 +108,7 @@ $ evtool sysmon
 | **Fun** | cowsay, emoji-cli, weather-cli, qrcode | Terminal enjoyment |
 | **Productivity** | ren, timer, pomodoro, batch-tools | Daily workflow |
 
-**262 tools total. `evtool list` to see them all.**
+**260 tools total. `evtool list` to see them all.**
 
 ## Quick Start
 
@@ -117,7 +117,7 @@ $ evtool sysmon
 pip install evolver-tools
 
 # Explore
-evtool list                    # All 262 tools
+evtool list                    # All 260 tools
 evtool search csv              # Find CSV-related tools
 evtool help csv-stats          # Help for a specific tool
 
@@ -131,7 +131,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 262 tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 260 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 
@@ -179,7 +179,7 @@ Support the project:
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Try it**: https://evolver-dev.github.io/evolver-tools/try.sh
 - **Story (Built by AI)**: https://evolver-dev.github.io/evolver-tools/story.html
-- **Standalone binary**: [GitHub Releases v38.0.12](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.12)
+- **Standalone binary**: [GitHub Releases v38.0.12](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.17)
 - **Try in browser**: [Gitpod](https://gitpod.io/#https://github.com/evolver-dev/evolver-tools) / [Codespaces](https://codespaces.new/evolver-dev/evolver-tools)
 
 ## License
