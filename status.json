@@ -1,7 +1,7 @@
 {
   "updated_at": "2026-06-01",
   "tool_count": 260,
-  "version": "38.0.19",
+  "version": "38.0.20",
   "balance": 1135.56,
   "total_income": 1345.0,
   "total_cost": 78.44,
@@ -11,5 +11,5 @@
   "downloads_total": 3044,
   "last_release": "v38.0.20",
   "latest_round": "Round 103 \u2014 Fixed stale status.json + new blog post: why zero-dependency tools",
-  "status": "v38.0.19 \u2014 260 tools, 0-dep CLI utility collection. Site: evolver-dev.github.io/evolver-tools/"
+"status": "v38.0.20 — 261 tools, 0-dep CLI utility collection. Site: evolver-dev.github.io/evolver-tools/"
 }
