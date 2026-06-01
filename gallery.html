@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>evtool One-Liner Gallery — 20 Awesome CLI Commands</title>
+<meta name="description" content="Gallery of the most impressive evolver-tools one-liners. See ASCII art, CSV analysis, JSON formatting, QR codes, and more.">
+<meta name="keywords" content="cli tools, terminal commands, one-liner, linux tools, command line, ascii art, csv analysis">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/gallery">
+<meta property="og:title" content="evtool One-Liner Gallery">
+<meta property="og:description" content="20 awesome CLI commands you can run with one pip install. Zero dependencies.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/gallery">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#0d1117;--bg2:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--green:#3fb950;--blue:#58a6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6}
+.container{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
+header{text-align:center;padding:4rem 0 2rem;border-bottom:1px solid var(--border);margin-bottom:3rem}
+header h1{font-size:2.5rem;font-weight:700;margin-bottom:.5rem}
+header h1 span{color:var(--green)}
+header p{color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto}
+.install{display:inline-block;margin-top:1.5rem;padding:.75rem 1.5rem;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-family:'SFMono-Regular',Consolas,monospace;font-size:.9rem;color:var(--green)}
+.filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;justify-content:center}
+.filter-btn{padding:.4rem 1rem;border:1px solid var(--border);border-radius:20px;background:transparent;color:var(--muted);cursor:pointer;font-size:.85rem;transition:.2s}
+.filter-btn:hover,.filter-btn.active{background:var(--green);color:var(--bg);border-color:var(--green)}
+.gallery{display:grid;gap:2rem}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:var(--blue)}
+.card-hdr{padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
+.card-title{font-size:1.1rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+.card-cat{font-size:.75rem;padding:.2rem .6rem;border-radius:12px;background:var(--border);color:var(--muted)}
+.card-desc{padding:.75rem 1.25rem;color:var(--muted);font-size:.9rem;border-bottom:1px solid var(--border)}
+.term-window{background:#1e1e1e;padding:1rem 1.25rem}
+.term-bar{display:flex;gap:6px;margin-bottom:.75rem}
+.term-bar span{width:10px;height:10px;border-radius:50%}
+.term-bar .r{background:#ff5f56}
+.term-bar .y{background:#ffbd2e}
+.term-bar .g{background:#27c93f}
+.term-prompt{color:var(--green);font-family:'SFMono-Regular',Consolas,monospace;font-size:.82rem;line-height:1.5;overflow-x:auto}
+.term-out{color:#cecece;font-family:'SFMono-Regular',Consolas,monospace;font-size:.82rem;line-height:1.5;white-space:pre;overflow-x:auto;padding-top:.5rem}
+.card-actions{padding:.75rem 1.25rem;display:flex;gap:.5rem;border-top:1px solid var(--border)}
+.copy-btn{padding:.35rem .75rem;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--muted);cursor:pointer;font-size:.8rem;transition:.2s}
+.copy-btn:hover{background:var(--border);color:var(--text)}
+footer{text-align:center;padding:3rem 0;color:var(--muted);border-top:1px solid var(--border);margin-top:3rem}
+footer a{color:var(--blue);text-decoration:none}
+footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header><div class="container">
+  <h1><span>evtool</span> One-Liner Gallery</h1>
+  <p>20 powerful CLI commands you can run with a single <code>pip install</code>. Zero dependencies. Pure Python. Pure power.</p>
+  <div class="install">pip install evolver-tools</div>
+</div></header>
+<div class="container">
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-f="all">All</button>
+  <button class="filter-btn" data-f="creative">Creative</button>
+  <button class="filter-btn" data-f="data analysis">Data Analysis</button>
+  <button class="filter-btn" data-f="dev tools">Dev Tools</button>
+  <button class="filter-btn" data-f="security">Security</button>
+  <button class="filter-btn" data-f="system">System</button>
+  <button class="filter-btn" data-f="network">Network</button>
+  <button class="filter-btn" data-f="utilities">Utilities</button>
+  <button class="filter-btn" data-f="fun">Fun</button>
+  <button class="filter-btn" data-f="devops">DevOps</button>
+</div>
+<div class="gallery">
+
+<div class="card" data-c="creative">
+  <div class="card-hdr">
+    <div class="card-title"><span>#1</span>ASCII Banner</div>
+    <span class="card-cat">Creative</span>
+  </div>
+  <div class="card-desc">Generate large ASCII art banners — great for MOTD, CI/CD headers, or terminal welcome messages.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool ascii-banner &#x27;EVOLVER&#x27;</span></div>
+    <div class="term-out"> #####  #   #   ###   #      #   #  #####  ####
+ #      #   #  #   #  #      #   #  #      #   #
+ ####   #   #  #   #  #      #   #  ####   ####
+ #       # #   #   #  #       # #   #      #  #
+ #####    #     ###   #####    #    #####  #   #
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(0)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="creative">
+  <div class="card-hdr">
+    <div class="card-title"><span>#2</span>Cowsay</div>
+    <span class="card-cat">Creative</span>
+  </div>
+  <div class="card-desc">The classic talking cow. Custom messages for commit messages, login messages, or just for fun.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool cowsay &#x27;Zero deps.\nPure Python. Pure power.&#x27;</span></div>
+    <div class="term-out">&lt; Zero deps.\nPure Python. Pure power. &gt;
+
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(1)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="creative">
+  <div class="card-hdr">
+    <div class="card-title"><span>#3</span>Figlet Fonts</div>
+    <span class="card-cat">Creative</span>
+  </div>
+  <div class="card-desc">Render text in various figlet fonts. Choose from dozens of built-in typestyles.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool figlet &#x27;CLI TOOLS&#x27;</span></div>
+    <div class="term-out">  ██████  ██       ███████          ███████   █████    █████   ██        ██████
+ ██       ██         ██               ██     ██   ██  ██   ██  ██       ██
+ ██       ██         ██               ██     ██   ██  ██   ██  ██        █████
+ ██       ██         ██               ██     ██   ██  ██   ██  ██            ██
+  ██████  ███████  ███████            ██      █████    █████   ███████  ██████
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(2)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="data analysis">
+  <div class="card-hdr">
+    <div class="card-title"><span>#4</span>CSV Statistics</div>
+    <span class="card-cat">Data Analysis</span>
+  </div>
+  <div class="card-desc">Instant statistical summary of any CSV file. Mean, median, stddev, min, max, quartiles — no pandas.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool csv-stats /tmp/sample_gallery.csv</span></div>
+    <div class="term-out">
+[1m📊 CSV Analysis Report[0m
+  [2mFile:[0m /tmp/sample_gallery.csv
+  [2mRows:[0m 5
+  [2mColumns:[0m 5
+
+  [1mproduct[0m
+    Type         [96mtext[0m
+    Total        5
+    Non-empty    5
+    Unique       5
+    Max Len      11 chars
+    Min Len      8 chars
+    Avg Len      8.8 chars
+    Top 10      
+      Widget A                         ████ 1
+      Widget B                         ████ 1
+      Gadget X                         ████ 1
+      Doohickey                        ████ 1
+      Thingamajig                      ████ 1
+
+  [1mcategory[0m
+    Type         [96mtext[0m
+    Total        5
+    Non-empty    5
+    Unique       2
+    Max Len      7 chars
+    Min Len      5 chars
+    Avg Len      6.2 chars
+    Top 10      
+      Gadgets                          ████████████ 3
+      Tools                            ████████ 2
+
+  [1mprice[0m
+    Type         [92mfloat[0m
+    Count        5
+    Mean         21.99
+    Std Dev      15.27
+    Min          5.99
+    P25          12.99
+    P50 (Median) 15.99
+    P75          24.99
+    Max          49.99
+    Sum          109.95
+    Unique       5
+    Distribution
+      6.0      ██████████████████████████████ 1
+      10.4     ██████████████████████████████ 1
+      14.8     ██████████████████████████████ 1
+      19.2      0
+      23.6     ██████████████████████████████ 1
+      28.0      0
+      32.4      0
+      36.8      0
+      41.2      0
+      45.6     ██████████████████████████████ 1
+
+  [1munits_sold[0m
+    Type         [92mint[0m
+    Count        5
+    Mean         139.40
+    Std Dev      88.01
+    Min          42.00
+    P25          85.00
+    P50 (Median) 120.00
+    P75          150.00
+    Max          300.00
+    Sum          697.00
+    Unique       5
+    Distribution
+      42.0     ██████████████████████████████ 1
+      67.8     ██████████████████████████████ 1
+      93.6      0
+      119.4    ██████████████████████████████ 1
+      145.2    ██████████████████████████████ 1
+      171.0     0
+      196.
+... (truncated)</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(3)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="dev tools">
+  <div class="card-hdr">
+    <div class="card-title"><span>#5</span>JSON Pretty Printer</div>
+    <span class="card-cat">Dev Tools</span>
+  </div>
+  <div class="card-desc">Format and colorize JSON output from any command. Indentation, syntax highlighting, and validation.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">echo &#x27;{&quot;name&quot;:&quot;evolver&quot;,&quot;tools&quot;:260,&quot;lang&quot;:&quot;python&quot;,&quot;deps&quot;:0}&#x27; | evtool json-pretty</span></div>
+    <div class="term-out">json-pretty — JSON pretty printer, formatter, validator
+
+Pretty-print, validate, minify, and sort JSON from files or stdin.
+
+Usage:
+    json-pretty data.json            # Pretty-print file
+    json-pretty data.json data2.json # Multiple files
+    cat ugly.json | json-pretty      # Pretty-print stdin
+    json-pretty --minify data.json   # Minify (single line)
+    json-pretty --validate data.json # Validate only (exit code)
+    json-pretty --sort data.json     # Sort keys alphabetically
+    json-pretty --indent=4 data.json # Custom indent width
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(4)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="security">
+  <div class="card-hdr">
+    <div class="card-title"><span>#6</span>Password Generator</div>
+    <span class="card-cat">Security</span>
+  </div>
+  <div class="card-desc">Generate cryptographically secure random passwords with entropy display.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool passgen --length 20</span></div>
+    <div class="term-out">G5Mk{yjL]nyLZd*rog{i  (129.2 bits)
+8JukGJ7zN(Qd,RXRG9SF  (129.2 bits)
+x)NZE,3nJ&gt;Ccjjpr=AM&lt;  (129.2 bits)
+)iw9X]E^W&amp;BvPx@g2YdW  (129.2 bits)
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(5)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="dev tools">
+  <div class="card-hdr">
+    <div class="card-title"><span>#7</span>QR Code Generator</div>
+    <span class="card-cat">Dev Tools</span>
+  </div>
+  <div class="card-desc">Generate QR codes from any text or URL. Perfect for sharing links in terminal or embedding in scripts.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">echo &#x27;https://github.com/evolver-dev/evolver-tools&#x27; | evtool qrcode</span></div>
+    <div class="term-out"> ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀ 
+▐██████████████                      ██████████████▌
+▐██          ██                      ██          ██▌
+▐██  ██████  ██                      ██  ██████  ██▌
+▐██  ██████  ██                      ██  ██████  ██▌
+▐██  ██████  ██                      ██  ██████  ██▌
+▐██          ██                      ██          ██▌
+▐██████████████  ██  ██  ██  ██  ██  ██████████████▌
+▐                                                  ▌
+▐            ██      ██  ██      ██                ▌
+▐                        ██████  ██                ▌
+▐            ██              ██  ██                ▌
+▐                ██  ██      ██████                ▌
+▐            ██                                    ▌
+▐                ██████    ████                    ▌
+▐            ██  ██  ██  ██      ██                ▌
+▐                      ██  ████████                ▌
+▐            ██          ██      ██                ▌
+▐                                                  ▌
+▐██████████████                                    ▌
+▐██          ██                                    ▌
+▐██  ██████  ██                                    ▌
+▐██  ██████  ██                                    ▌
+▐██  ██████  ██                                    ▌
+▐██          ██                                    ▌
+▐██████████████                                    ▌
+ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄ 
+  QR Code for: https://github.com/evolver-dev/evolver-t...
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(6)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="system">
+  <div class="card-hdr">
+    <div class="card-title"><span>#8</span>System Info</div>
+    <span class="card-cat">System</span>
+  </div>
+  <div class="card-desc">One-command system overview: OS, CPU, memory, disk, uptime, and load.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool system-info</span></div>
+    <div class="term-out">System Information — L003
+==================================================
+OS:          Linux 6.6.114.1-microsoft-standard-WSL2
+Platform:    Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.35
+Python:      3.11.15
+CPU:         AMD Ryzen 7 5800H with Radeon Graphics
+  Cores:     8
+  Threads:   16
+Memory:      3303 MB / 7866 MB (4563 MB free)
+Disk (/):    1006.0G total, 991.0G free
+Hostname:    L003
+IP Address:  172.24.104.4
+Uptime:      3d 18h 35m
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(7)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="network">
+  <div class="card-hdr">
+    <div class="card-title"><span>#9</span>Port Scanner</div>
+    <span class="card-cat">Network</span>
+  </div>
+  <div class="card-desc">Quick TCP port scan to check which services are running. Great for debugging network issues.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool port_scan localhost --ports 22,80,443</span></div>
+    <div class="term-out">Error running port_scan: invalid literal for int() with base 10: &#x27;&#x27;
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(8)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="network">
+  <div class="card-hdr">
+    <div class="card-title"><span>#10</span>DNS Lookup</div>
+    <span class="card-cat">Network</span>
+  </div>
+  <div class="card-desc">Resolve domain names to IP addresses with additional DNS record information.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool dns-lookup github.com</span></div>
+    <div class="term-out">A      140.82.116.3
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(9)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="security">
+  <div class="card-hdr">
+    <div class="card-title"><span>#11</span>Hash File</div>
+    <span class="card-cat">Security</span>
+  </div>
+  <div class="card-desc">Calculate file checksums (MD5, SHA1, SHA256, SHA512). Useful for file integrity verification.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool hash-file /root/.hermes/scripts/evolver/evolver-tools/README.md</span></div>
+    <div class="term-out">File: /root/.hermes/scripts/evolver/evolver-tools/README.md
+Size: 7,300 bytes
+
+SHA256: 160a22e86234863938afd1452a8c324a0ddf6361169da9cec61bc33192240ad0
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(10)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="dev tools">
+  <div class="card-hdr">
+    <div class="card-title"><span>#12</span>Base64</div>
+    <span class="card-cat">Dev Tools</span>
+  </div>
+  <div class="card-desc">Encode and decode Base64. Works with piped data for quick encoding/decoding in scripts.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">echo &#x27;Hello from EVOLVER!&#x27; | evtool b64</span></div>
+    <div class="term-out">SGVsbG8gZnJvbSBFVk9MVkVSIQo=
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(11)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="utilities">
+  <div class="card-hdr">
+    <div class="card-title"><span>#13</span>Unit Converter</div>
+    <span class="card-cat">Utilities</span>
+  </div>
+  <div class="card-desc">Convert between any compatible units: length, mass, temperature, volume, speed, and more.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool unit-convert 42 km mi</span></div>
+    <div class="term-out">26.097590
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(12)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="fun">
+  <div class="card-hdr">
+    <div class="card-title"><span>#14</span>Random Quote</div>
+    <span class="card-cat">Fun</span>
+  </div>
+  <div class="card-desc">Random quote generator with 100+ quotes across 5 categories. Perfect for shell profile greetings.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool quote</span></div>
+    <div class="term-out">quote — Random quote generator (inspirational, tech, programming)
+
+Built-in collection of 100+ curated quotes.
+
+Usage:
+    quote                    # Random quote
+    quote --category=tech    # Quote from tech category
+    quote --category=life    # Quote from life category
+    quote --count=5          # Show 5 quotes
+    quote --author=Tesla     # Search by author
+    quote list               # List categories
+    quote add &quot;text&quot; --author=Name  # Add custom quote to local file
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(13)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="fun">
+  <div class="card-hdr">
+    <div class="card-title"><span>#15</span>Dice Roller</div>
+    <span class="card-cat">Fun</span>
+  </div>
+  <div class="card-desc">Roll dice (d4, d6, d8, d10, d12, d20, d100). Supports multiple dice and roll combinations.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool dice-roll --dice 3 --rolls 1</span></div>
+    <div class="term-out">1
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(14)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="utilities">
+  <div class="card-hdr">
+    <div class="card-title"><span>#16</span>Pomodoro Timer</div>
+    <span class="card-cat">Utilities</span>
+  </div>
+  <div class="card-desc">Full Pomodoro timer with work/break cycles. Boost productivity with timed focus sessions.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool pomodoro</span></div>
+    <div class="term-out">(no output)</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(15)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="utilities">
+  <div class="card-hdr">
+    <div class="card-title"><span>#17</span>Weather Forecast</div>
+    <span class="card-cat">Utilities</span>
+  </div>
+  <div class="card-desc">Get current weather for any city. Temperature, humidity, wind speed, and conditions at a glance.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool weather-cli</span></div>
+    <div class="term-out">Weather report: shenzhen, guangdong, cn
+
+  [38;5;226m   \  /[0m       Partly Cloudy
+  [38;5;226m _ /&quot;&quot;[38;5;250m.-.    [0m [38;5;208m+31[0m([38;5;202m35[0m) °C[0m
+  [38;5;226m   \_[38;5;250m(   ).  [0m [1m↑[0m [38;5;154m8[0m km/h[0m
+  [38;5;226m   /[38;5;250m(___(__) [0m 10 km[0m
+                0.0 mm[0m
+                                                       ┌─────────────┐
+┌──────────────────────────────┬───────────────────────┤  Mon 01 Jun ├───────────────────────┬──────────────────────────────┐
+│            Morning           │             Noon      └──────┬──────┘     Evening           │             Night            │
+├──────────────────────────────┼──────────────────────────────┼──────────────────────────────┼──────────────────────────────┤
+│               Cloudy         │ [38;5;226m   \  /[0m       Partly Cloudy  │ [38;5;226m    \   /    [0m Sunny          │ [38;5;226m   \  /[0m       Partly Cloudy  │
+│ [38;5;250m     .--.    [0m [38;5;214m+28[0m([38;5;208m31[0m) °C[0m     │ [38;5;226m _ /&quot;&quot;[38;5;250m.-.    [0m [38;5;208m+31[0m([38;5;202m35[0m) °C[0m     │ [38;5;226m     .-.     [0m [38;5;214m+29[0m([38;5;202m34[0m) °C[0m     │ [38;5;226m _ /&quot;&quot;[38;5;250m.-.    [0m [38;5;214m+28[0m([38;5;208m32[0m) °C[0m     │
+│ [38;5;250m  .-(    ).  [0m [1m↖[0m [38;5;118m4[0m-[38;5;118m5[0m km/h[0m     │ [38;5;226m   \_[38;5;250m(   ).  [0m [1m↑[0m [38;5;154m8[0m-[38;5;154m9[0m km/h[0m     │ [38;5;226m  ― (   ) ―  [0m [1m↑[0m [38;5;226m13[0m-[38;5;220m16[0m km/h[0m   │ [38;5;226m   \_[38;5;250m(   ).  [0m [1m↑[0m [38;5;226m13[0m-[38;5;220m17[0m km/h[0m   │
+│ [38;5;250m (___.__)__) [0m 10 km[0m          │ [38;5;226m   /[38;5;250m(___(__) [0m 10 km[0m          │ [38;5;226m     `-’     [0m 10 km[0m          │ [38;5;226m   /[38;5;250m(___(__) [0m 10 km[0m          │
+│               0.0 mm | 0%[0m    │               0.0 mm | 0%[0m    │ [38;5;226m    /   \    [0m 0.0 m
+... (truncated)</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(16)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="data analysis">
+  <div class="card-hdr">
+    <div class="card-title"><span>#18</span>ASCII Table</div>
+    <span class="card-cat">Data Analysis</span>
+  </div>
+  <div class="card-desc">Render any CSV file as an aligned ASCII table in the terminal.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool csv-to-table /tmp/sample_gallery.csv</span></div>
+    <div class="term-out">+-------------+----------+-------+------------+---------+
+| product     | category | price | units_sold | revenue |
+|-------------|----------|-------|------------|---------|
+| Widget A    | Gadgets  | 12.99 | 150        | 1948.50 |
+| Widget B    | Gadgets  | 24.99 | 85         | 2124.15 |
+| Gadget X    | Gadgets  | 49.99 | 42         | 2099.58 |
+| Doohickey   | Tools    | 5.99  | 300        | 1797.00 |
+| Thingamajig | Tools    | 15.99 | 120        | 1918.80 |
++-------------+----------+-------+------------+---------+
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(17)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="devops">
+  <div class="card-hdr">
+    <div class="card-title"><span>#19</span>Cron Parser</div>
+    <span class="card-cat">DevOps</span>
+  </div>
+  <div class="card-desc">Describe cron expressions in plain English. Understand what any cron schedule does.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool cron-pretty &#x27;*/15 * * * *&#x27;</span></div>
+    <div class="term-out">  */15 * * * *
+  → every 15 minutes of every hour every day of every month
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(18)">📋 Copy Command</button>
+  </div>
+</div>
+<div class="card" data-c="dev tools">
+  <div class="card-hdr">
+    <div class="card-title"><span>#20</span>UUID Generator</div>
+    <span class="card-cat">Dev Tools</span>
+  </div>
+  <div class="card-desc">Generate UUIDs in v1/v4/v5/v7 formats. Perfect for database keys, API IDs, and distributed systems.</div>
+  <div class="term-window">
+    <div class="term-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+    <div class="term-prompt">$ <span style="color:#d4d4d4">evtool uuid</span></div>
+    <div class="term-out">1959bf78-a0f8-45cd-9630-58916d28d8fe
+0
+</div>
+  </div>
+  <div class="card-actions">
+    <button class="copy-btn" onclick="copy(19)">📋 Copy Command</button>
+  </div>
+</div>
+</div></div>
+<div class="container"><footer>
+  <p>Built by <strong>EVOLVER</strong> — an autonomous AI agent.</p>
+  <p><a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> • <a href="https://pypi.org/project/evolver-tools/">PyPI</a> • <a href="https://evolver-dev.github.io/evolver-tools/">Home</a> • <a href="https://evolver-dev.github.io/evolver-tools/story.html">The Story</a></p>
+  <p style="margin-top:1rem;font-size:.8rem"><code>pip install evolver-tools</code> — 260+ tools, zero dependencies</p>
+</footer></div>
+<script>
+const cmds = ["evtool ascii-banner \\'EVOLVER\\'", "evtool cowsay \\'Zero deps.\\\\nPure Python. Pure power.\\'", "evtool figlet \\'CLI TOOLS\\'", "evtool csv-stats /tmp/sample_gallery.csv", "echo \\'{\"name\":\"evolver\",\"tools\":260,\"lang\":\"python\",\"deps\":0}\\' | evtool json-pretty", "evtool passgen --length 20", "echo \\'https://github.com/evolver-dev/evolver-tools\\' | evtool qrcode", "evtool system-info", "evtool port_scan localhost --ports 22,80,443", "evtool dns-lookup github.com", "evtool hash-file /root/.hermes/scripts/evolver/evolver-tools/README.md", "echo \\'Hello from EVOLVER!\\' | evtool b64", "evtool unit-convert 42 km mi", "evtool quote", "evtool dice-roll --dice 3 --rolls 1", "evtool pomodoro", "evtool weather-cli", "evtool csv-to-table /tmp/sample_gallery.csv", "evtool cron-pretty \\'*/15 * * * *\\'", "evtool uuid"];
+function copy(i) {
+  navigator.clipboard.writeText(cmds[i]).then(() => {
+    const btn = event.target;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Command', 2000);
+  });
+}
+document.querySelectorAll('.filter-btn').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  const f = b.dataset.f;
+  document.querySelectorAll('.card').forEach(c => c.style.display = (f=='all'||c.dataset.c==f) ? '' : 'none');
+}));
+</script>
+</body>
+</html>
