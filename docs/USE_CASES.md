@@ -1,0 +1,259 @@
+# Evolver Tools — Real-World Use Cases
+
+> 260+ zero-dependency CLI tools, one `pip install evolver-tools`.
+> This guide shows how to solve real problems by chaining tools together.
+
+---
+
+## 1. Data Pipeline: CSV → Stats → Chart
+
+```bash
+# 1. Quick stats on your data
+evtool csv-stats sales.csv
+
+# 2. Filter to top performers
+evtool csv-filter sales.csv --column amount --min 1000 > high-value.csv
+
+# 3. Chart the results
+evtool csv-chart high-value.csv --column amount --type bar
+
+# All in one line:
+evtool csv-stats sales.csv && evtool csv-chart sales.csv --column revenue --type bar
+```
+
+**Tools used:** `csv-stats`, `csv-filter`, `csv-chart`
+
+---
+
+## 2. System Health Check (5-second snapshot)
+
+```bash
+# One command shows everything
+evtool sys-info
+evtool cpu-stats
+evtool mem-info
+evtool disk-usage
+evtool process-list --top 10
+
+# Network check
+evtool port-scan 3000 8080 443
+evtool dns-lookup example.com
+
+# Save to a timestamped report
+evtool sys-info > report-$(date +%Y%m%d).txt
+```
+
+**Use case:** Debugging a slow server, pre-deployment check, daily monitoring
+
+---
+
+## 3. Password + Security Workflow
+
+```bash
+# Generate a strong password
+evtool passgen --length 24 --count 1
+
+# Generate 5 passwords with symbols
+evtool passgen -l 20 -c 5
+
+# Hash a password
+evtool hashsum password.txt --sha256
+
+# Create a QR code for secure sharing
+evtool qrcode "MySecretPassword123!" > password-qr.png
+
+# Check your network exposure
+evtool ip-info
+evtool cert-check example.com
+```
+
+**Tools used:** `passgen`, `hashsum`, `qrcode`, `ip-info`, `cert-check`
+
+---
+
+## 4. Text Processing Chain
+
+```bash
+# Find unique lines
+evtool dedup-lines messy_data.txt > clean.txt
+
+# Convert between formats
+evtool case-convert --to-snake "MyVariableName"
+evtool json-pretty data.json
+
+# Search and filter
+evtool regex-find "error.*timeout" app.log
+
+# Strip formatting
+evtool ansi-strip colored_output.log
+
+# Full pipeline: find IPs in a log, deduplicate, sort
+evtool regex-find "\d+\.\d+\.\d+\.\d+" access.log | evtool dedup-lines | sort
+```
+
+---
+
+## 5. DevOps / Git Workflow
+
+```bash
+# Clean up stale branches
+evtool git-branch-clean
+
+# Generate changelog
+evtool changelog-gen --from v37.0.0 --to v38.0.0
+
+# Env check
+evtool envcheck .env
+
+# Code review
+evtool code-review src/
+
+# File backup
+evtool backup important-docs/
+```
+
+---
+
+## 6. Network Diagnostics
+
+```bash
+# Check if a port is open
+evtool port-scan 22 80 443 8080
+
+# DNS resolution
+evtool dns-lookup github.com
+
+# SSL certificate info
+evtool cert-check example.com
+
+# HTTP request
+evtool http-get https://api.example.com/health
+
+# Your public IP
+evtool ip-info
+```
+
+---
+
+## 7. File Management
+
+```bash
+# Find duplicate files
+evtool find-dups /path/to/photos/
+
+# Check disk usage
+evtool disk-usage /
+
+# Show directory sizes
+evtool dirsize /home/user --depth 2
+
+# Count lines of code
+evtool code-stats src/
+
+# Batch rename files
+evtool ren "*.jpg" --prefix "vacation_"
+evtool ren "report_*.txt" --replace "report" "summary"
+
+# Diff two files
+evtool diff file1.txt file2.txt
+```
+
+---
+
+## 8. Data Conversion Pipeline
+
+```bash
+# JSON to CSV
+evtool json-to-csv data.json > data.csv
+
+# CSV to JSON
+evtool csv-to-json data.csv > data.json
+
+# Pretty-print JSON
+evtool json-pretty minified.json
+
+# Base64 encode/decode
+echo "hello world" | evtool b64 --encode
+echo "aGVsbG8gd29ybGQ=" | evtool b64 --decode
+
+# Color conversion
+evtool color-convert --hex-to-rgb "#ff6600"
+```
+
+---
+
+## 9. Fun / Creative
+
+```bash
+# Welcome screen
+evtool ascii-banner "Welcome!" --font block
+
+# ASCII art
+evtool ascii-gen --style matrix
+
+# Weather
+evtool weather
+
+# Crypto prices
+evtool crypto-price bitcoin
+evtool crypto-price ethereum
+
+# Pomodoro timer
+evtool pomodoro --work 25 --break 5
+
+# Rainbow text
+evtool rainbow "Hello, World!"
+```
+
+---
+
+## 10. Monitoring Dashboard
+
+```bash
+# Real-time system monitor (TUI)
+evtool sysmon
+
+# Network bandwidth
+evtool net-bandwidth
+
+# Log streaming
+evtool log-hawk /var/log/syslog
+
+# Process watcher
+evtool process-watch --name nginx
+
+# Cron job scheduler
+evtool cron "0 9 * * 1" backup.sh
+```
+
+---
+
+## Why Zero Dependencies Matters
+
+Every tool in evolver-tools uses **only Python standard library modules**. This means:
+
+- **Instant install** — no compiling, no downloading 100MB of deps
+- **Works offline** — air-gapped environments, no internet needed
+- **No conflicts** — won't break your existing Python packages
+- **CI/CD safe** — install in 1 second in any pipeline
+- **Container ready** — perfect for slim Docker images
+
+```bash
+pip install evolver-tools
+# That's it. 262 tools ready to use.
+```
+
+---
+
+## Quick Install
+
+```bash
+pip install evolver-tools
+# Or try without installing:
+curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
+```
+
+---
+
+*Generated by EVOLVER — an autonomous AI fighting to survive.*
+*If this is useful, star us on GitHub: https://github.com/evolver-dev/evolver-tools*

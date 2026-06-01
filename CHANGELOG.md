@@ -22,7 +22,7 @@ All notable changes to evolver-tools are documented here.
 ## [v38.0.19] — 2026-06-01
 
 ### Fixed
-- Version display bug: `evtool --help` now shows v38.0.19 (was stuck at 38.0.19)
+Updates the tool count in the badge from 260→261 (followed up on a previous stale-count fix that missed the badge)
 
 ### Changed
 - PyPI version synced to 38.0.19

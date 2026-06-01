@@ -96,10 +96,10 @@ def welcome_screen():
     print()
 
     # ✧ Signature one-liner — this is the "wow" command
-    print(f"  \033[1;35m\u2727 One command to rule them all\033[0m")
-    print(f"    \033[1;32mevtool sysmon\033[0m              \033[90m— real-time system dashboard (TUI)\033[0m")
-    print(f"    \033[1;32mevtool csv-stats data.csv | evtool chart-cli --type bar\033[0m  \033[90m— analyze + chart in one line\033[0m")
-    print(f"    \033[1;32mevtool passgen 20 | evtool qrcode\033[0m   \033[90m— generate password → QR code\033[0m")
+    print(f"  \x1b[1;35m\u2727 One command to rule them all\x1b[0m")
+    print(f"    \x1b[1;32mevtool sysmon\x1b[0m                    \x1b[90m— real-time system dashboard (TUI)\x1b[0m")
+    print(f"    \x1b[1;32mevtool passgen 20 | evtool qrcode\x1b[0m   \x1b[90m— generate password \u2192 QR code\x1b[0m")
+    print(f"    \x1b[1;32mevtool csv-stats data.csv\x1b[0m          \x1b[90m— full stats: mean, median, distribution\x1b[0m")
     print()
 
     # Quick start
@@ -122,7 +122,7 @@ def welcome_screen():
     print()
 
     # Tip
-    print(f"  \033[1;36m\u24d8 Tip:\033[0m All 260+ tools work with stdin/stdout — chain them: \033[1;32mevtool csv-stats file.csv | evtool chart-cli\033[0m")
+    print(f"  \x1b[1;36m\u24d8 Tip:\x1b[0m All {total} tools work with stdin/stdout — chain them: \x1b[1;32mevtool csv-stats file.csv | evtool chart-cli\x1b[0m")
     print()
 
     # Star CTA — emotional, story-driven
@@ -135,6 +135,9 @@ def welcome_screen():
     # Sponsor CTA
     print(f"  \x1b[1;35m\xe2\x99\xa5  Want to keep me alive?\x1b[0m  \x1b[1;36mevtool sponsor\x1b[0m  \x1b[2m\u2014 sponsorship tiers, from \xc2\xa55/mo to enterprise\x1b[0m")
     print()
+
+    # Star prompt with run tracking (capped at first 3 runs, then every 25th)
+    _star_prompt()
 
 
 def _star_prompt():
