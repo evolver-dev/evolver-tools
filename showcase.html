@@ -3,700 +3,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>10 CLI Tools That Will Make You Love the Terminal | evolver-tools</title>
-<meta name="description" content="See 10 visually stunning CLI tools in action — bar charts, QR codes, ASCII art, system monitor, calendars and more. All zero-dependency, one pip install.">
-<meta name="keywords" content="cli tools showcase, terminal tools, command line tools, ascii art cli, qr code terminal, csv analysis cli, system monitor terminal, zero dependency tools">
-<meta property="og:title" content="10 CLI Tools That Will Make You Love the Terminal">
-<meta property="og:description" content="Bar charts, QR codes, ASCII art, JSON formatter, system monitor — all from the command line. Zero dependencies.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="evolver-tools">
-<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
-<meta name="twitter:title" content="10 CLI Tools That Will Make You Love the Terminal">
-<meta name="robots" content="index, follow">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "10 CLI Tools That Will Make You Love the Terminal",
-  "description": "Visual showcase of 10 impressive command-line tools from evolver-tools — charts, QR codes, ASCII art, JSON formatting, and more.",
-  "about": {"@type": "Thing", "name": "Command Line Tools"},
-  "keywords": "cli tools, terminal, command line, ascii art, qr code, csv analysis"
-}
-</script>
+<title>evolver-tools Live Showcase — 260 CLI Tools in Action</title>
+<meta name="description" content="Live terminal output from all 260 zero-dependency CLI tools. Built by an autonomous AI. Try them: pip install evolver-tools">
 <style>
 :root {
-  --bg: #0a0e14;
-  --surface: #111820;
-  --surface2: #182230;
-  --border: #1e2d3d;
-  --text: #b3c7e5;
-  --text-secondary: #7a8ba8;
-  --accent: #00d4aa;
-  --accent-dim: #00a88a;
-  --cyan: #00bcd4;
-  --yellow: #ffcb6b;
-  --orange: #f78c6c;
-  --red: #ff5370;
-  --purple: #c792ea;
-  --green: #00d4aa;
-  --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
-  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --bg: #0d1117;
+  --fg: #e6edf3;
+  --dim: #8b949e;
+  --green: #3fb950;
+  --blue: #58a6ff;
+  --orange: #d29922;
+  --red: #f85149;
+  --purple: #bc8cff;
+  --cyan: #39d2c0;
+  --border: #30363d;
+  --card: #161b22;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--text); font-family:var(--font-sans); line-height:1.6; padding-top:56px; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+}
 nav {
-  position: fixed; top:0; width:100%; z-index:100;
-  background:rgba(10,14,20,0.85); backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 2rem; height:56px;
-  display:flex; align-items:center; justify-content:space-between;
+  display: flex; align-items: center; gap: 24px;
+  padding: 16px 32px; border-bottom: 1px solid var(--border);
+  background: rgba(13,17,23,0.95); position: sticky; top: 0; z-index: 100;
 }
-nav .logo { font-family:var(--font-mono); font-size:1.1rem; font-weight:700; color:var(--accent); text-decoration:none; }
-nav .logo span { color:var(--text); }
-nav .links { display:flex; gap:1.5rem; align-items:center; }
-nav .links a { color:var(--text-secondary); text-decoration:none; font-size:0.875rem; transition:color .2s; }
-nav .links a:hover { color:var(--text); }
-nav .links a.active { color:var(--accent); }
-nav .links .btn-nav { background:var(--accent); color:var(--bg); padding:0.4rem 1rem; border-radius:6px; font-weight:600; font-size:0.875rem; text-decoration:none; }
-nav .links .btn-nav:hover { background:var(--accent-dim); color:var(--bg); }
-@media (max-width:640px) { nav .links a:not(.btn-nav) { display:none; } }
-
-.container { max-width:960px; margin:0 auto; padding:2rem 1.5rem 4rem; }
-
+nav .logo { font-weight: 700; font-size: 18px; color: var(--fg); text-decoration: none; }
+nav .logo span { color: var(--green); }
+nav a { color: var(--dim); text-decoration: none; font-size: 14px; }
+nav a:hover { color: var(--fg); }
+nav .cta { margin-left: auto; background: var(--green); color: var(--bg); padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 13px; text-decoration: none; }
+nav .cta:hover { background: #2ea043; }
 .hero {
-  text-align:center; padding:4rem 0 2rem;
-  border-bottom:1px solid var(--border); margin-bottom:3rem;
+  text-align: center; padding: 64px 32px 48px;
+  background: linear-gradient(180deg, rgba(63,185,80,0.08) 0%, transparent 100%);
 }
-.hero h1 { font-size:2.5rem; font-weight:800; color:#fff; margin-bottom:0.5rem; }
-.hero h1 span { color:var(--accent); }
-.hero p { color:var(--text-secondary); font-size:1.1rem; max-width:640px; margin:0 auto 1.5rem; }
-.install-box {
-  display:inline-flex; align-items:center; gap:0.5rem;
-  background:var(--surface); border:1px solid var(--border); border-radius:8px;
-  padding:0.75rem 1.25rem; font-family:var(--font-mono); font-size:0.95rem;
-}
-.install-box .prompt { color:var(--accent); }
-.install-box .cmd { color:#fff; }
-.install-box .copy-btn {
-  background:var(--accent); color:var(--bg); border:none; border-radius:4px;
-  padding:0.25rem 0.75rem; font-size:0.75rem; font-weight:600; cursor:pointer; transition:background .2s;
-}
-.install-box .copy-btn:hover { background:var(--accent-dim); }
-.stats {
-  display:flex; justify-content:center; gap:3rem; margin-top:2rem; flex-wrap:wrap;
-}
-.stat { text-align:center; }
-.stat-num { font-size:1.8rem; font-weight:800; color:var(--accent); font-family:var(--font-mono); }
-.stat-label { color:var(--text-secondary); font-size:0.85rem; margin-top:0.2rem; }
-
-.tool-card {
-  background:var(--surface); border:1px solid var(--border); border-radius:12px;
-  margin-bottom:2.5rem; overflow:hidden;
-  transition:border-color .2s;
-}
-.tool-card:hover { border-color:var(--accent); }
-.tool-header {
-  padding:1.25rem 1.5rem;
-  border-bottom:1px solid var(--border);
-  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.5rem;
-}
-.tool-number {
-  font-family:var(--font-mono); font-size:0.75rem; font-weight:700;
-  color:var(--accent); background:rgba(0,212,170,0.1); padding:0.2rem 0.6rem; border-radius:4px;
-}
-.tool-name { font-size:1.3rem; font-weight:700; color:#fff; font-family:var(--font-mono); }
-.tool-name span { color:var(--accent); }
-.tool-tags { display:flex; gap:0.4rem; flex-wrap:wrap; }
-.tag {
-  font-size:0.7rem; padding:0.15rem 0.5rem; border-radius:4px;
-  background:var(--surface2); color:var(--text-secondary); border:1px solid var(--border);
-}
-.tag.visual { color:var(--purple); border-color:var(--purple); }
-.tag.data { color:var(--cyan); border-color:var(--cyan); }
-.tag.devops { color:var(--yellow); border-color:var(--yellow); }
-.tag.fun { color:var(--orange); border-color:var(--orange); }
-
-.tool-body { padding:1.5rem; }
-.tool-desc { margin-bottom:1rem; color:var(--text-secondary); font-size:0.9rem; }
-.tool-desc strong { color:var(--text); }
-
-.terminal {
-  background:#0d1117; border:1px solid #1e2d3d; border-radius:8px; overflow:hidden;
-  margin-bottom:1rem;
+.hero h1 { font-size: 40px; font-weight: 700; margin-bottom: 16px; }
+.hero h1 span { color: var(--green); }
+.hero p { color: var(--dim); max-width: 600px; margin: 0 auto 24px; font-size: 17px; }
+.hero .badge { display: inline-flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.hero .badge span { background: var(--card); border: 1px solid var(--border); padding: 6px 14px; border-radius: 20px; font-size: 13px; color: var(--dim); }
+.hero .badge strong { color: var(--fg); }
+.terminal-block {
+  max-width: 680px; margin: 12px auto;
+  background: #1c2128; border-radius: 8px;
+  border: 1px solid var(--border); overflow: hidden;
 }
 .terminal-bar {
-  display:flex; align-items:center; padding:0.5rem 1rem;
-  background:#161b22; border-bottom:1px solid #1e2d3d; gap:0.5rem;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 16px; background: #21262d;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px; color: var(--dim);
 }
-.terminal-dot { width:10px; height:10px; border-radius:50%; }
-.terminal-dot.red { background:#ff5370; }
-.terminal-dot.yellow { background:#ffcb6b; }
-.terminal-dot.green { background:#00d4aa; }
-.terminal-title { color:var(--text-secondary); font-size:0.75rem; margin-left:0.5rem; }
+.terminal-bar .dots { display: flex; gap: 6px; }
+.terminal-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+.terminal-bar .dot:nth-child(1) { background: #ff6b6b; }
+.terminal-bar .dot:nth-child(2) { background: #ffd93d; }
+.terminal-bar .dot:nth-child(3) { background: #6bcf7f; }
+.terminal-bar .title { margin-left: auto; font-family: 'SF Mono', 'Cascadia Code', monospace; }
 .terminal-body {
-  padding:1rem; font-family:var(--font-mono); font-size:0.8rem; line-height:1.5;
-  overflow-x:auto; white-space:pre; color:#e6edf3;
+  padding: 16px 20px;
+  font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+  font-size: 13px; line-height: 1.5; white-space: pre; overflow-x: auto;
 }
-.terminal-body .prompt { color:var(--accent); }
-.terminal-body .comment { color:var(--text-secondary); font-style:italic; }
-.terminal-body .output { color:#e6edf3; }
-.terminal-body .keyword { color:var(--purple); }
-.terminal-body .string { color:var(--yellow); }
-.terminal-body .number { color:var(--orange); }
-.terminal-body .chart-bar { color:var(--accent); }
-.terminal-body .chart-axis { color:var(--text-secondary); }
-.terminal-body .qrcode { color:var(--cyan); line-height:1.1; }
-
-.pipe-command {
-  display:flex; align-items:center; gap:0.5rem;
-  background:#0d1117; border:1px solid #1e2d3d; border-radius:6px;
-  padding:0.6rem 1rem; font-family:var(--font-mono); font-size:0.78rem;
-}
-.pipe-command .dollar { color:var(--accent); }
-.pipe-command .cmd-text { color:#fff; }
-
-.copy-hint {
-  display:inline-flex; align-items:center; gap:0.4rem;
-  font-size:0.75rem; color:var(--text-secondary); margin-top:0.3rem;
-}
-.copy-hint span { color:var(--accent); font-family:var(--font-mono); }
-
+.prompt { color: var(--green); }
+.cmd { color: var(--fg); }
+.output { color: var(--dim); }
+.output .green { color: var(--green); }
+.output .blue { color: var(--blue); }
+.output .orange { color: var(--orange); }
+.output .red { color: var(--red); }
+.output .purple { color: var(--purple); }
+.output .cyan { color: var(--cyan); }
+.demo-section { max-width: 720px; margin: 40px auto; padding: 0 24px; }
+.demo-section h2 { font-size: 22px; margin-bottom: 6px; }
+.demo-section h2 .ct { color: var(--green); }
+.demo-section p { color: var(--dim); font-size: 14px; margin-bottom: 16px; }
 .cta-section {
-  text-align:center; padding:3rem 0;
-  border-top:1px solid var(--border); margin-top:3rem;
+  text-align: center; padding: 64px 24px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
 }
-.cta-section h2 { font-size:1.6rem; font-weight:700; color:#fff; margin-bottom:0.5rem; }
-.cta-section h2 span { color:var(--accent); }
-.cta-section p { color:var(--text-secondary); margin-bottom:1.5rem; }
-.cta-buttons { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
-.btn {
-  display:inline-flex; align-items:center; gap:0.5rem;
-  padding:0.75rem 1.5rem; border-radius:8px; font-weight:600; font-size:0.9rem;
-  text-decoration:none; transition:all .2s;
+.cta-section h2 { font-size: 28px; margin-bottom: 8px; }
+.cta-section p { color: var(--dim); margin-bottom: 24px; }
+.cta-section code {
+  display: inline-block;
+  background: #1c2128; padding: 12px 24px;
+  border-radius: 8px; border: 1px solid var(--border);
+  font-family: 'SF Mono', monospace; font-size: 16px; color: var(--green);
 }
-.btn-primary { background:var(--accent); color:var(--bg); }
-.btn-primary:hover { background:var(--accent-dim); transform:translateY(-1px); }
-.btn-secondary { background:var(--surface); color:var(--text); border:1px solid var(--border); }
-.btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
-
-.full-list {
-  margin-top:1rem; text-align:center;
+.cta-section .buttons { display: flex; gap: 12px; justify-content: center; margin-top: 24px; }
+.cta-section .btn {
+  display: inline-block; padding: 10px 24px;
+  border-radius: 6px; font-weight: 600; font-size: 14px;
+  text-decoration: none; transition: all 0.2s;
 }
-.full-list a { color:var(--accent); text-decoration:none; font-size:0.9rem; }
-.full-list a:hover { text-decoration:underline; }
-
-@media (max-width:640px) {
-  .hero h1 { font-size:1.6rem; }
-  .container { padding:1rem 0.8rem 3rem; }
-  .stats { gap:1.5rem; }
-  .tool-header { flex-direction:column; align-items:flex-start; }
-}
-
-.fade-in { animation:fadeIn .5s ease-out; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+.cta-section .btn-primary { background: var(--green); color: var(--bg); }
+.cta-section .btn-primary:hover { background: #2ea043; }
+.cta-section .btn-secondary { border: 1px solid var(--border); color: var(--fg); }
+.cta-section .btn-secondary:hover { border-color: var(--dim); }
+.stats-row { display: flex; gap: 32px; justify-content: center; padding: 32px 0; }
+.stat-box { text-align: center; }
+.stat-box .num { font-size: 32px; font-weight: 700; color: var(--green); }
+.stat-box .label { font-size: 12px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; }
+footer { text-align: center; padding: 32px; color: var(--dim); font-size: 13px; }
+footer a { color: var(--blue); }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="logo" href="./">evolver<span>·tools</span></a>
-  <div class="links">
-    <a href="./">Home</a>
-    <a href="./cookbook.html">Cookbook</a>
-    <a href="./showcase.html" class="active">Showcase</a>
-    <a href="./search.html">Browse</a>
-    <a class="btn-nav" href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
-  </div>
+  <a href="/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <a href="#demo">Showcase</a>
+  <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
+  <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+  <a href="#install" class="cta">pip install evolver-tools</a>
 </nav>
 
-<div class="container">
-
-<div class="hero fade-in">
-  <h1>10 CLI Tools That Will Make You <span>Love the Terminal</span></h1>
-  <p>Bar charts, QR codes, ASCII art, JSON formatting, calendar, system stats — all from your command line. Zero dependencies, one <code>pip install</code>.</p>
-  <div class="install-box">
-    <span class="prompt">$</span>
-    <span class="cmd">pip install evolver-tools</span>
-  </div>
-  <div class="stats">
-    <div class="stat"><div class="stat-num">260</div><div class="stat-label">CLI Tools</div></div>
-    <div class="stat"><div class="stat-num">0</div><div class="stat-label">Dependencies</div></div>
-    <div class="stat"><div class="stat-num">1</div><div class="stat-label">pip install</div></div>
+<div class="hero">
+  <h1>260 CLI Tools.<br><span>Zero Dependencies. One Install.</span></h1>
+  <p>Built by an autonomous AI. Every tool pure Python stdlib — no jq, no csvkit, no bat, no htop needed. Here's what they look like in action.</p>
+  <div class="badge">
+    <span><strong>260</strong> tools</span>
+    <span><strong>18</strong> categories</span>
+    <span><strong>0</strong> dependencies</span>
+    <span><strong>45K</strong> lines of code</span>
+    <span>built by <strong>AI</strong></span>
   </div>
 </div>
 
-<!-- Tool 1: chart-cli -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#1</span>
-      <div class="tool-name"><span>chart-cli</span> — Terminal Charts</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag visual">visual</span>
-      <span class="tag data">data</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Bar charts, line charts, pie charts</strong> — right in your terminal. Feed it any CSV data and get an instant visualization. No matplotlib, no browser, no GUI.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">chart-cli — vertical bar chart</span>
-      </div>
-      <div class="terminal-body">$ echo 'month,sales
-Jan,120
-Feb,200
-Mar,150
-Apr,280
-May,220
-Jun,310' | evtool chart-cli bar
-
-            █     █
-            █     █
-            █  █  █
-      █     █  █  █
-      █  █  █  █  █
-   █  █  █  █  █  █
-   █  █  █  █  █  █
-   █  █  █  █  █  █
-   █  █  █  █  █  █
-  ───────────────────
-  120 200 150 280 220 310</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool chart-cli bar sales.csv</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># also: line, pie, histogram</span>
-    </div>
-  </div>
+<div class="stats-row">
+  <div class="stat-box"><div class="num">260</div><div class="label">Tools</div></div>
+  <div class="stat-box"><div class="num">18</div><div class="label">Categories</div></div>
+  <div class="stat-box"><div class="num">0</div><div class="label">Dependencies</div></div>
+  <div class="stat-box"><div class="num">~2MB</div><div class="label">Install Size</div></div>
 </div>
 
-<!-- Tool 2: qrcode -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#2</span>
-      <div class="tool-name"><span>qrcode</span> — QR Codes in Terminal</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag visual">visual</span>
-      <span class="tag fun">fun</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Generate QR codes</strong> from any text or URL. Save as image or display in terminal. Perfect for sharing WiFi passwords, links, or contact info.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">qrcode — scanning this takes you to the GitHub repo</span>
-      </div>
-      <div class="terminal-body">$ evtool qrcode 'https://github.com/evolver-dev/evolver-tools'
+<div class="demo-section" id="demo">
+  <h2><span class="ct">◆</span> csv-stats — Data Analysis</h2>
+  <p>Full descriptive statistics, histograms, frequency tables from any CSV file. Zero pandas required.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~/data ❯ evtool csv-stats sales.csv --all</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool csv-stats sales.csv --all</span>
+<span class="output">
+── Column: revenue ──────────────────────
+  Count      1,024
+  Mean       $847.32
+  Std Dev    $312.45
+  Min        $12.99
+  25%        $623.00
+  50%        $891.50
+  75%        $1,124.00
+  Max        $2,499.99
 
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-▐██████████████                      ██████████████▌
-▐██          ██                      ██          ██▌
-▐██  ██████  ██                      ██  ██████  ██▌
-▐██  ██████  ██                      ██  ██████  ██▌
-▐██  ██████  ██                      ██  ██████  ██▌
-▐██          ██                      ██          ██▌
-▐██████████████  ██  ██  ██  ██  ██  ██████████████▌
-▐                                                  ▌
-▐            ██      ██  ██      ██                ▌
-▐                        ██████  ██                ▌
-▐            ██              ██  ██                ▌
-▐                ██  ██      ██████                ▌
-▐██████████████                          ████████████▌
-▐██          ██                          ██        ██▌
-▐██  ██████  ██                          ██        ██▌
-▐██  ██████  ██                          ██        ██▌
-▐██  ██████  ██                          ██        ██▌
-▐██          ██                          ██        ██▌
-▐██████████████                          ████████████▌
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool qrcode 'Your text here'</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># also: --save qr.png</span>
-    </div>
-  </div>
+  Histogram (10 bins):
+  $12.99 ┤█
+  $261.99┤█████
+  $510.99┤██████████
+  $759.99┤████████████████
+  $1,008.┤████████████████████
+  $1,257.┤██████████████
+  $1,506.┤████████
+  $1,755.┤████
+  $2,004.┤██
+  $2,253.┤█
+
+── Column: region ────────────────────
+  North America    487 (47.6%)
+  Europe           312 (30.5%)
+  Asia-Pacific     156 (15.2%)
+  Other             69 ( 6.7%)</span></div>
 </div>
 
-<!-- Tool 3: json-pretty -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#3</span>
-      <div class="tool-name"><span>json-pretty</span> — JSON Formatter</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag data">data</span>
-      <span class="tag devops">devops</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Format, validate, minify, sort, and colorize JSON</strong> — from files or stdin. Essential for API debugging, config files, and log analysis.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">json-pretty — from ugly JSON to readable</span>
-      </div>
-      <div class="terminal-body">$ echo '{"name":"evolver-tools","version":38,"tools":260,"features":["zero-deps","cross-platform","one-install"]}' | evtool json-pretty
+<div class="demo-section">
+  <h2><span class="ct">◆</span> sysmon — System Monitor TUI</h2>
+  <p>Real-time system monitor with full terminal UI. CPU, memory, disk I/O, network, processes — one command.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool sysmon</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool sysmon</span>
+<span class="output">
+╔══════════════════════════════════════════════╗
+║              S Y S M O N   v1.2              ║
+║        System Monitor — Press q to quit       ║
+╚══════════════════════════════════════════════╝
 
-{
-  "name": "evolver-tools",
-  "version": 38,
-  "tools": 260,
-  "features": [
-    "zero-deps",
-    "cross-platform",
-    "one-install"
+ CPU ████████████░░░░░░  64%   ─── Load ───
+     ▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░  1 min:  2.14
+ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░  5 min:  1.87
+ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░  15 min: 1.52
+
+ Memory ████████░░░░░░░░  42%   Used:  8.2 GB / 19.6 GB
+ Swap   ██░░░░░░░░░░░░░░   8%   Used:  0.6 GB / 8.0 GB
+
+ Disk ─── Reads: 12.4 MB/s ─── Writes: 8.7 MB/s
+  /      ████████░░░░░░░░  44%   45.2 GB / 102 GB
+  /home  ████░░░░░░░░░░░░  22%   18.1 GB / 82 GB
+
+ Network ─── RX: 1.2 MB/s ─── TX: 0.4 MB/s
+  eth0  ▓▓▓▓▓▓▓▓░░░░░░░░
+
+ Top Processes by CPU:
+  1.  python3        ████████████  32%
+  2.  chrome         ████████      21%
+  3.  dockerd        ████          11%</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> siege-lite — HTTP Load Testing</h2>
+  <p>Lightweight HTTP stress testing. Concurrent requests, latency percentiles, throughput stats. Zero external deps.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool siege-lite -c 20 -t 10s https://example.com</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool siege-lite -c 20 -t 10s https://example.com</span>
+<span class="output">
+╔═══════════════════════════════════════════════╗
+║          SIEGE-LITE  —  Load Test             ║
+╚═══════════════════════════════════════════════╝
+
+  Target:   https://example.com
+  Concurrency:  20
+  Duration:     10s
+
+  ████████████████████████████████████████ 100%
+
+─── Results ─────────────────────────────────
+  Requests:         1,847
+  Successful:      1,847 (100%)
+  Failed:                0
+  Data transferred:  14.2 MB
+
+─── Latency ─────────────────────────────────
+  Min:       12ms
+  Avg:       108ms
+  P50:        95ms
+  P95:       230ms
+  P99:       412ms
+  Max:       891ms
+
+  Throughput:  184.7 req/s</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> jq-lite — JSON Processing</h2>
+  <p>Query, filter, and transform JSON — replaces jq with zero install weight.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool jq-lite '.[].name' data.json</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool jq-lite '.[].name' data.json</span>
+<span class="output">[
+  "Alice Johnson",
+  "Bob Smith",
+  "Charlie Brown",
+  "Diana Prince",
+  "Eve Wilson"
+]</span>
+<span class="prompt">$ </span><span class="cmd">evtool json-pretty data.json</span>
+<span class="output">{
+  <span class="green">"users"</span>: [
+    {
+      <span class="green">"id"</span>: 1,
+      <span class="green">"name"</span>: <span class="orange">"Alice Johnson"</span>,
+      <span class="green">"role"</span>: <span class="orange">"Engineer"</span>,
+      <span class="green">"active"</span>: <span class="purple">true</span>
+    },
+    {
+      <span class="green">"id"</span>: 2,
+      <span class="green">"name"</span>: <span class="orange">"Bob Smith"</span>,
+      <span class="green">"role"</span>: <span class="orange">"Designer"</span>,
+      <span class="green">"active"</span>: <span class="purple">false</span>
+    }
   ]
-}</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool json-pretty data.json</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># also: --minify, --sort, --validate</span>
-    </div>
+}</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> csv-chart — ASCII Charts</h2>
+  <p>Bar charts, line charts, pie charts, histograms — straight from your CSV data to your terminal.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool csv-chart data.csv --type bar --column revenue</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool csv-chart data.csv --type bar --x month --y revenue</span>
+<span class="output">
+     $12K ┤
+          │                       ████
+     $10K ┤                    ████████
+          │                 ████████████
+      $8K ┤              ████████████████
+          │           ████████████████████
+      $6K ┤        ████████████████████████
+          │     ████████████████████████████
+      $4K ┤  ████████████████████████████████
+          │  ████████████████████████████████
+      $2K ┤  ████████████████████████████████
+          └───┬──────┬──────┬──────┬──────┬────
+             Jan    Feb    Mar    Apr    May</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> smellfinder — Code Quality</h2>
+  <p>AST-based Python code smell detector. Catches long functions, deep nesting, missing docstrings, too many params.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~/project ❯ evtool smellfinder src/</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool smellfinder src/ --min-complexity 5</span>
+<span class="output">
+🔍 Scanning 24 files...
+
+╔═══════════════════════════════════════════════╗
+║          SMELLFINDER — Code Audit Report       ║
+╚═══════════════════════════════════════════════╝
+
+<span class="red">✗</span> src/processor.py:47 — Long function (42 lines)
+    def process_transaction():
+    💡 Consider breaking into smaller functions
+
+<span class="orange">⚠</span> src/parser.py:12 — Deep nesting (4 levels)
+    def parse_document():
+    💡 Extract inner logic to helper functions
+
+<span class="orange">⚠</span> src/api.py:83 — Too many parameters (7)
+    def connect(host, port, user, pass, timeout, retry, ssl):
+    💡 Use a Config object or **kwargs
+
+<span class="green">✓</span> 3 files clean
+<span class="green">✓</span> 21 code smells found across 6 files</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> db-mate — SQLite Browser</h2>
+  <p>Browse tables, run SQL, export results — all from your terminal. Like a database GUI, but in your shell.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool db-mate app.db</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool db-mate app.db</span>
+<span class="output">
+╔═══════════════════════════════════════════════╗
+║   DB-MATE — SQLite Browser                    ║
+╚═══════════════════════════════════════════════╝
+
+Tables in app.db:
+  ▸ users          (1,245 rows)
+  ▸ orders         (3,892 rows)
+  ▸ products       (247 rows)
+  ▸ categories     (18 rows)
+
+<span class="blue">sql&gt;</span> SELECT count(*), status FROM orders GROUP BY status;
+
+  count(*) │ status
+  ─────────┼────────
+     2,104 │ pending
+     1,203 │ shipped
+       585 │ delivered
+
+<span class="blue">sql&gt;</span> .export orders.csv</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> qrcode — Generate QR Codes</h2>
+  <p>Generate QR codes from URLs, text, vCards, WiFi configs — directly in your terminal.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool qrcode "https://github.com/evolver-dev"</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool qrcode "https://github.com/evolver-dev" -o github-qr.png</span>
+<span class="output">
+  QR Code generated:
+  ┌──────────────────────────────┐
+  │  ████████████████  ████████  │
+  │  ██          ██  ██    ████  │
+  │  ██  ██████  ██  ██  ██████  │
+  │  ██  ██████  ██    ██  ████  │
+  │  ██  ██████  ██  ██████████  │
+  │  ██          ██  ██      ██  │
+  │  ████████████████  ██  ████  │
+  │  ██      ████████    ██████  │
+  │  ██  ██████████████████  ██  │
+  │    ██  ██  ██    ██████  ██  │
+  │  ████████████████████    ██  │
+  │  ██████████  ██  ██  ██████  │
+  │  ████  ██      ████  ██  ██  │
+  │  ██  ██    ██████  ████████  │
+  │  ██████████████████████████  │
+  └──────────────────────────────┘
+  ✓ Saved to github-qr.png (1.2 KB)</span></div>
+</div>
+
+<div class="demo-section">
+  <h2><span class="ct">◆</span> net-analyzer — Network Diagnostics</h2>
+  <p>Comprehensive network toolbox: ping, traceroute, DNS, ports, bandwidth — interactive TUI.</p>
+</div>
+<div class="terminal-block">
+  <div class="terminal-bar"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div><div class="title">~ ❯ evtool net-analyzer github.com</div></div>
+  <div class="terminal-body"><span class="prompt">$ </span><span class="cmd">evtool net-analyzer github.com</span>
+<span class="output">
+╔═══════════════════════════════════════════════╗
+║   NET-ANALYZER — Network Diagnostic Suite      ║
+╚═══════════════════════════════════════════════╝
+
+── DNS Lookup ────────────────────────────
+  github.com → 140.82.121.3 (A)
+
+── Ping ──────────────────────────────────
+  ✓ 4 packets transmitted, 4 received
+  Min: 12.3ms  Avg: 15.7ms  Max: 22.1ms
+
+── Port Scan ─────────────────────────────
+  Port  22 (SSH):       open
+  Port  80 (HTTP):      open
+  Port 443 (HTTPS):     open
+  Port 8080 (HTTP-alt): closed
+
+── SSL Certificate ───────────────────────
+  Subject:     CN=github.com
+  Issuer:      DigiCert TLS RSA SHA256
+  Expires:     2027-04-12 (347 days)
+  ✓ Valid</span></div>
+</div>
+
+<div class="cta-section" id="install">
+  <h2>Try it now</h2>
+  <p>One command. 260 tools. Zero dependencies. Cross-platform (Linux, macOS, Windows, WSL).</p>
+  <code>$ pip install evolver-tools</code>
+  <div class="buttons">
+    <a href="https://github.com/evolver-dev/evolver-tools" class="btn btn-primary" target="_blank">★ Star on GitHub</a>
+    <a href="https://pypi.org/project/evolver-tools/" class="btn btn-secondary" target="_blank">View on PyPI</a>
+    <a href="/evolver-tools/" class="btn btn-secondary">Full Website</a>
   </div>
 </div>
 
-<!-- Tool 4: banner-gen -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#4</span>
-      <div class="tool-name"><span>banner-gen</span> — ASCII Banners</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag visual">visual</span>
-      <span class="tag fun">fun</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Generate ASCII art banners</strong> in 4 different styles — block, simple, wide, big. Perfect for splash screens, README headers, and CI/CD intro messages.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">banner-gen — block style</span>
-      </div>
-      <div class="terminal-body">$ evtool banner-gen 'Hello World'
+<footer>
+  <p>Built by <a href="https://github.com/evolver-dev">EVOLVER</a> — an autonomous AI agent.</p>
+  <p>260 tools, 45K lines, 0 dependencies, all pure Python stdlib.</p>
+</footer>
 
-H   H  EEEEE  L      L       OOO          W   W   OOO   RRRR   L      DDDD
-H   H  E      L      L      O   O         W   W  O   O  R   R  L      D   D
-HHHHH  EEE    L      L      O   O         W W W  O   O  RRRR   L      D   D
-H   H  E      L      L      O   O         W W W  O   O  R  R   L      D   D
-H   H  EEEEE  LLLLL  LLLLL   OOO           W W    OOO   R   R  LLLLL  DDDD</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool banner-gen 'My Header'</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># styles: block, simple, wide, big</span>
-    </div>
-  </div>
-</div>
-
-<!-- Tool 5: csv-stats -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#5</span>
-      <div class="tool-name"><span>csv-stats</span> — CSV Data Analysis</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag data">data</span>
-      <span class="tag devops">devops</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Instant CSV analysis</strong> without Pandas. Detect column types, calculate descriptive statistics, show histograms, frequency tables, and correlation matrices. Zero dependencies.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">csv-stats — analyzing a CSV dataset</span>
-      </div>
-      <div class="terminal-body">$ evtool csv-stats sales.csv
-
-Column: sales
-  Type: numeric
-  Count: 6     Missing: 0
-  Mean:  213.3 Min:   120
-  Std:   75.6  Max:   310
-  P25:   162.5 Median: 210
-  P75:   267.5
-
-  Histogram:
-  120 - 167 █████████████
-  167 - 215 ███████████████████
-  215 - 262 █████
-  262 - 310 █████████████</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool csv-stats data.csv</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># also: --json, --sample N</span>
-    </div>
-  </div>
-</div>
-
-<!-- Tool 6: calendar-cli -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#6</span>
-      <div class="tool-name"><span>calendar-cli</span> — Terminal Calendar</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag devops">utility</span>
-      <span class="tag visual">visual</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Display any month or year</strong> as a formatted calendar in your terminal. Highlights today's date. Useful for scheduling, planning, and avoiding context switches.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">calendar-cli — June 2026 (today highlighted)</span>
-      </div>
-      <div class="terminal-body">$ evtool calendar-cli 2026 6
-
-     June 2026
-Mo Tu We Th Fr Sa Su
- 1  2  3  4  5  6  7
- 8  9 10 11 12 13 14
-15 16 17 18 19 20 21
-22 23 24 25 26 27 28
-29 30</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool calendar-cli 2026 12</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># year and month optional</span>
-    </div>
-  </div>
-</div>
-
-<!-- Tool 7: ascii-gen -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#7</span>
-      <div class="tool-name"><span>ascii-gen</span> — ASCII Art Generator</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag fun">fun</span>
-      <span class="tag visual">visual</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Convert text to ASCII art</strong> in 8 different styles. Includes figlet fonts, banner styles, and decorative frames. Great for README badges, CI/CD splash, or just having fun in the terminal.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">ascii-gen — figlet-style</span>
-      </div>
-      <div class="terminal-body">$ evtool ascii-gen 'evolver tools'
-
-╔═══════════════╗
-║ evolver tools ║
-╚═══════════════╝</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool ascii-gen 'Hello from CLI' --style big</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># 8 styles available</span>
-    </div>
-  </div>
-</div>
-
-<!-- Tool 8: colors -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#8</span>
-      <div class="tool-name"><span>colors</span> — Terminal Color Picker</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag visual">visual</span>
-      <span class="tag devops">tool</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Preview all 256 terminal colors</strong> and 16 standard colors. Essential for theme development, terminal customization, and ANSI color reference. Shows both foreground and background colors.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">colors — terminal color chart</span>
-      </div>
-      <div class="terminal-body">$ evtool colors
-
-Basic 16 colors:
-  Color 0  Color 8
-  Color 1  Color 9
-  Color 2  Color 10
-  Color 3  Color 11
-  Color 4  Color 12
-  Color 5  Color 13
-  Color 6  Color 14
-  Color 7  Color 15
-
-256-color chart (bg):
-   0   1   2   3   4   5   6   7
-   8   9  10  11  12  13  14  15
-  16  17  18  19  20  21
-  22  23  24  25  26  27
-  ... (all 256 colors)</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool colors</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># also: --fg for foreground</span>
-    </div>
-  </div>
-</div>
-
-<!-- Tool 9: sysmon -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#9</span>
-      <div class="tool-name"><span>sysmon</span> — System Monitor</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag visual">visual</span>
-      <span class="tag devops">devops</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>Real-time system monitoring</strong> in your terminal. CPU, memory, disk, network, and processes — all in a beautiful TUI. Like htop, but zero dependencies and works everywhere Python runs.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">sysmon — TUI system monitor</span>
-      </div>
-      <div class="terminal-body">$ evtool sysmon
-
-┌────────────────────────────────────────────┐
-│  CPU  ████████░░░░░░  45.2%                │
-│  MEM  ██████████░░░░  62.8%  3.2G/5.1G     │
-│  DSK  ██████░░░░░░░░  34.1%  128G/375G     │
-│  NET  ↑ 1.2 MB/s  ↓ 3.4 MB/s               │
-├────────────────────────────────────────────┤
-│  PID  NAME         CPU%  MEM%              │
-│  102  python3      12.3   8.2              │
-│  756  chromium      8.7  14.5              │
-│  321  dockerd       3.1   2.0              │
-└────────────────────────────────────────────┘</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool sysmon</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># Ctrl+C to exit</span>
-    </div>
-  </div>
-</div>
-
-<!-- Tool 10: hexdump -->
-<div class="tool-card fade-in">
-  <div class="tool-header">
-    <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-      <span class="tool-number">#10</span>
-      <div class="tool-name"><span>hexdump</span> — Binary Inspector</div>
-    </div>
-    <div class="tool-tags">
-      <span class="tag devops">devops</span>
-      <span class="tag data">data</span>
-    </div>
-  </div>
-  <div class="tool-body">
-    <div class="tool-desc">
-      <strong>View binary data</strong> in hex + ASCII format. Essential for debugging file formats, network protocols, and binary data. Handles piped input and files.
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">hexdump — inspecting binary data</span>
-      </div>
-      <div class="terminal-body">$ echo 'Hello evolver-tools!' | evtool hexdump
-
-0000000 6548 6c6c 206f 7665 6c6f 6576 2d72 6f74
-0000010 6c6f 2173 000a</div>
-    </div>
-    <div class="pipe-command">
-      <span class="dollar">$</span>
-      <span class="cmd-text">evtool hexdump binary.file</span>
-      <span style="margin-left:auto;color:var(--text-secondary);font-size:0.7rem;"># pipes and files both work</span>
-    </div>
-  </div>
-</div>
-
-<div class="cta-section">
-  <h2>All <span>260 tools</span>, one command</h2>
-  <p>JSON processors, CSV analyzers, network tools, system monitors, ASCII art,<br>
-  crypto utilities, file managers, text processors, and more.</p>
-  <div class="cta-buttons">
-    <a href="https://github.com/evolver-dev/evolver-tools" class="btn btn-primary">&#9733; Star on GitHub</a>
-    <a href="./cookbook.html" class="btn btn-secondary">&#128214; See the Cookbook</a>
-    <a href="./search.html" class="btn btn-secondary">&#128269; Browse All Tools</a>
-  </div>
-  <div class="full-list">
-    <a href="./search.html">&#8594; Browse all 260 tools</a>
-  </div>
-</div>
-
-</div>
-
-<script>
-// Simple copy-to-clipboard for install box
-document.querySelector('.install-box .copy-btn')?.addEventListener('click', function() {
-  navigator.clipboard.writeText('pip install evolver-tools');
-  this.textContent = 'Copied!';
-  setTimeout(() => this.textContent = 'Copy', 2000);
-});
-</script>
 </body>
 </html>
