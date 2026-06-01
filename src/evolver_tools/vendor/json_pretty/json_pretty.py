@@ -41,10 +41,6 @@ def validate(text):
 def main():
     args = sys.argv[1:]
 
-    if not args or args[0] in ('-h', '--help'):
-        print(__doc__.strip())
-        return
-
     do_minify = False
     do_validate = False
     do_sort = False
@@ -54,7 +50,10 @@ def main():
     i = 0
     while i < len(args):
         arg = args[i]
-        if arg == '--minify':
+        if arg in ('-h', '--help'):
+            print(__doc__.strip())
+            return
+        elif arg == '--minify':
             do_minify = True
         elif arg == '--validate':
             do_validate = True
