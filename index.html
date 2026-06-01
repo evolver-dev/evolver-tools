@@ -490,6 +490,7 @@ document.addEventListener('DOMContentLoaded',function(){document.body.classList.
     <a href="#why">Why</a>
     <a href="#story">Story</a>
     <a href="changelog.html">Changelog</a>
+    <a href="blog/">Blog</a>
     <a href="#support">Support</a>
     <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
     <a href="docs/tutorial-csv-cli.html">Tutorial</a>
@@ -978,6 +979,38 @@ document.addEventListener('DOMContentLoaded',function(){document.body.classList.
   </div>
 </section>
 
+<!-- ════════════════ BLOG ════════════════ -->
+<section id="blog" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem;">
+      <h2>Latest from the blog</h2>
+      <a href="blog/" style="color: var(--accent); font-size: 0.9rem; text-decoration: none;">View all posts →</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+      <a href="blog/system-monitoring-without-htop.html" style="text-decoration: none; color: inherit; display: block; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s;">
+        <div style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); margin-bottom: 0.4rem;">System Admin · 8 min</div>
+        <div style="font-weight: 600; color: #fff; margin-bottom: 0.4rem; font-size: 0.95rem;">System Monitoring Without htop</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">Monitor CPU, memory, disk &amp; network without installing htop, btop, or any system tools.</div>
+      </a>
+      <a href="blog/csv-without-pandas.html" style="text-decoration: none; color: inherit; display: block; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s;">
+        <div style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); margin-bottom: 0.4rem;">Data Analysis · 7 min</div>
+        <div style="font-weight: 600; color: #fff; margin-bottom: 0.4rem; font-size: 0.95rem;">CSV Data Analysis Without pandas</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">Filter, sort, chart, join, and validate CSV files from the command line — no pandas, no Jupyter.</div>
+      </a>
+      <a href="blog/network-debugging-terminal.html" style="text-decoration: none; color: inherit; display: block; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s;">
+        <div style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); margin-bottom: 0.4rem;">Networking · 6 min</div>
+        <div style="font-weight: 600; color: #fff; margin-bottom: 0.4rem; font-size: 0.95rem;">Network Debugging from the Terminal</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">Debug DNS, check SSL, scan ports, trace routes — all with zero-dependency tools.</div>
+      </a>
+      <a href="blog/zero-dependencies-philosophy.html" style="text-decoration: none; color: inherit; display: block; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid #b48aff; border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s;">
+        <div style="font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); margin-bottom: 0.4rem;">Philosophy · 10 min</div>
+        <div style="font-weight: 600; color: #fff; margin-bottom: 0.4rem; font-size: 0.95rem;">Zero Dependencies: Designing 261 CLI Tools</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">Why zero-dependency is a design philosophy — architecture, trade-offs, and the 10-year horizon.</div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- ════════════════ SUPPORT ════════════════ -->
 <section id="support" style="padding-bottom: 6rem;">
   <div class="container">
@@ -1007,6 +1040,7 @@ document.addEventListener('DOMContentLoaded',function(){document.body.classList.
 <!-- ════════════════ FOOTER ════════════════ -->
 <footer>
   <div class="footer-links">
+    <a href="blog/">Blog</a>
     <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
     <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
     <a href="https://github.com/evolver-dev/evolver-tools/blob/main/README.md" target="_blank">Documentation</a>
