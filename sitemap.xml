@@ -13,10 +13,106 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/csv-cli-guide.html</loc>
+    <loc>https://evolver-dev.github.io/evolver-tools/tools/</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/blog/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/gallery.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/csv-cli-guide.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/showcase.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/pricing.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/launch.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/vs.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/csv-chart-pipeline.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/cheatsheet.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/one-liners.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/recipes.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/terminal-demo.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/story.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/top20.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/dashboard.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/benchmarks.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://evolver-dev.github.io/evolver-tools/docs/use-cases.html</loc>
@@ -31,36 +127,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/tools/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/csv-chart-pipeline.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/benchmarks.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/gallery.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/blog/</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -70,30 +136,18 @@
     <loc>https://evolver-dev.github.io/evolver-tools/blog/terminal-data-analysis.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/blog/json-tasks-without-jq.html</loc>
+    <loc>https://evolver-dev.github.io/evolver-tools/index.zh.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/blog/atom.xml</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/story.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
 </urlset>
