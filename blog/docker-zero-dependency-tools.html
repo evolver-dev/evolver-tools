@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Why Your Dockerfile Doesn't Need 50 pip installs — 260 Zero-Dependency Tools — evolver-tools</title>
-<meta name="description" content="Docker containers balloon when you install 50 packages. evolver-tools gives you 276 CLI tools in one pip install with zero dependencies — perfect for slim Docker images, CI/CD, and Alpine environments.">
+<meta name="description" content="Docker containers balloon when you install 50 packages. evolver-tools gives you 260 CLI tools in one pip install with zero dependencies — perfect for slim Docker images, CI/CD, and Alpine environments.">
 <meta name="keywords" content="docker slim image, reduce docker image size, zero dependency python tools, dockerfile optimization, alpine linux tools, minimal container, slim docker image cli tools">
 <meta property="og:title" content="Why Your Dockerfile Doesn't Need 50 pip installs">
-<meta property="og:description" content="276 CLI tools, one pip install, zero dependencies — the ultimate Docker image slimming hack.">
+<meta property="og:description" content="260 CLI tools, one pip install, zero dependencies — the ultimate Docker image slimming hack.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/blog/docker-zero-dependency-tools.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -100,7 +100,7 @@
   </p>
 
   <p>
-    <strong>evolver-tools</strong> solves this: <strong>276 CLI tools in a single <code>pip install</code> with zero external dependencies.</strong> One line. No apt-get. No apk add. No downloading 50 packages.
+    <strong>evolver-tools</strong> solves this: <strong>260 CLI tools in a single <code>pip install</code> with zero external dependencies.</strong> One line. No apt-get. No apk add. No downloading 50 packages.
   </p>
 
   <h2>The Problem: Docker's "Tool Tax"</h2>
@@ -127,7 +127,7 @@ CMD ["python", "app.py"]</pre>
   <p>Now your image is bigger. And when the next engineer needs <code>tcpdump</code>, <code>htop</code>, <code>vim</code>, <code>openssl</code> — it grows more. This is the <strong>tool tax</strong>: every tool you add for operational needs bloats your production image.</p>
 
   <div class="callout">
-    <strong>⚡ The alternative:</strong> One <code>pip install evolver-tools</code> gives you 276 tools — including curl alternatives, jq alternatives, system monitoring, network diagnostics, file processing, and more. All in one package, zero dependencies.
+    <strong>⚡ The alternative:</strong> One <code>pip install evolver-tools</code> gives you 260 tools — including curl alternatives, jq alternatives, system monitoring, network diagnostics, file processing, and more. All in one package, zero dependencies.
   </div>
 
   <h2>What You Get in One pip install</h2>
@@ -169,11 +169,11 @@ RUN pip install evolver-tools
 COPY app.py .
 CMD ["python", "app.py"]
 
-# 276 tools, one package, zero new system deps
+# 260 tools, one package, zero new system deps
 # Update all tools with: pip install --upgrade evolver-tools</pre>
 
   <p>
-    The "After" Dockerfile is <strong>shorter, smaller, and easier to maintain</strong>. One package manages 276 tools. One <code>pip upgrade</code> updates all of them.
+    The "After" Dockerfile is <strong>shorter, smaller, and easier to maintain</strong>. One package manages 260 tools. One <code>pip upgrade</code> updates all of them.
   </p>
 
   <h2>Real-World: Debug a Container Without Extra Packages</h2>
@@ -285,7 +285,7 @@ CMD ["python", "app.py"]</pre>
 
   <ul>
     <li><strong>1 line</strong> replaces 10+ apk/apt-get installs</li>
-    <li><strong>276 tools</strong> for debugging, monitoring, data processing, networking</li>
+    <li><strong>260 tools</strong> for debugging, monitoring, data processing, networking</li>
     <li><strong>Zero dependencies</strong> — no bloat, no C extensions, no conflicts</li>
     <li><strong>Slimmer images</strong> — save 10-20MB per container</li>
     <li><strong>Works everywhere</strong> — Alpine, Debian, distroless, Windows</li>
