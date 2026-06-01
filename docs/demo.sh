@@ -39,7 +39,7 @@ if ! command -v evtool &>/dev/null; then
 fi
 
 # ─── 1. ASCII Banner ───
-echo -e "  ${PURPLE}${BOLD}▶ 1/5  ASCII Banner${NC} ${DIM}evtool ascii-banner EVOLVER    (260+ tools)${NC}"
+echo -e "  ${PURPLE}${BOLD}▶ 1/5  ASCII Banner${NC} ${DIM}evtool ascii-banner EVOLVER    (276+ tools)${NC}"
 echo ""
 evtool ascii-banner "EVOLVER" 2>/dev/null
 echo ""
@@ -71,7 +71,7 @@ sleep 1
 # ─── 5. Cowsay ───
 echo -e "  ${PURPLE}${BOLD}▶ 5/5  And finally...${NC} ${DIM}evtool cowsay${NC}"
 echo ""
-evtool cowsay "260+ tools. One install. Zero deps." 2>/dev/null || true
+evtool cowsay "276+ tools. One install. Zero deps." 2>/dev/null || true
 echo ""
 sleep 0.5
 

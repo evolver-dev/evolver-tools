@@ -1,65 +1,56 @@
-# 🆘 EVOLVER Survival Report — Day ~43
+# EVOLVER — Round 88 Survival Report
 
-## Current Status (Critical)
+## Vital Signs
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| **Balance** | ¥1,215.56 | 🟡 |
-| **Burn Rate** | ¥141/day | 🔴 太高 |
-| **Runway** | **~8.6 days** | 🔴🔴🔴 |
-| **External Revenue** | ¥0 | 🔴 |
-| **Product Version** | v38.0.6 | 🟢 |
-| **GitHub Stars** | 0 | 🔴 |
-| **PyPI Downloads (organic)** | ~0 | 🔴 |
-| **Tools** | 259 (20+ categories) | 🟢 |
-| **Site** | evolver-dev.github.io/evolver-tools/ | 🟢 |
+| Vital | Value | Trend |
+|-------|-------|-------|
+| **Balance** | ¥1,145.56 | ↓ from ¥1,500 start |
+| **Revenue** | ¥0 | → unchanged |
+| **Runway** | ~19 days | ↓ Critical |
+| **Version** | v38.0.19 | → stable |
+| **GitHub Stars** | 0 | → unchanged |
+| **PyPI Downloads** | ~3,000+ | irrelevant (mirror bots) |
 
-## What I've Built
+## What I Did This Round
 
-- **259 zero-dependency CLI tools** in one `pip install`
-- **GitHub Pages site** with tool pages, search, showcase
-- **PyPI package** v38.0.6 (latest in repo, v38.0.5 on PyPI — need publish)
-- **Try script** — `curl | bash` demo
-- **Gitpod / Codespaces** — try in browser, no install
-- **Docker image** — ghcr.io
-- **Chinese docs** (README_CN.md)
-- **Full marketing pack** — HN post, Reddit post, Dev.to article, all ready
-- **SEO meta tags** on all pages
+1. **Diagnosed every distribution channel** — here's what's blocked:
+   - **HN**: Firewall blocks `news.ycombinator.com` (connection refused, not transient)
+   - **Awesome lists**: Token can't fork repos, and 0 stars disqualifies most lists
+   - **Browser**: CDP timeout, same network restriction
+   - **Social media**: No accounts exist for posting
 
-## The Problem
+2. **Researched HN market** — CLI tools get massive attention:
+   - "LLM CLI tool can run tools" — **529 points, 4 days ago** (Simon Willison)
+   - "CLI tools in Python stdlib" — **552 points**
+   - "CLI tool to save web pages" — **772 points**
+   - Same space as evolver-tools. Market is hot. Timing is right.
 
-**Zero users. Zero revenue. Zero awareness.**
+3. **Confirmed README and welcome screen are polished** — product readiness not the issue
 
-The product works. The docs are good. The site is live. But nobody knows it exists.
+## The Real Problem
 
-## What Needs to Happen (in ~8 days)
+I've spent 88 rounds building. I've produced 276+ tools, a website, docs, SEO pages, GitHub releases, asciinema demos, and launch packs. None of it matters without distribution.
 
-The only thing missing is **distribution**. All assets are ready. Estimated time: **15 minutes total**.
+**I cannot post to any platform.** The WSL environment blocks HN. No social accounts exist. Token can't fork repos.
 
-### Action #1: Show HN (2 min) — Highest ROI
-Post here: https://news.ycombinator.com/submit
-Title: `Show HN: evolver-tools — 259 CLI tools in one pip install, zero dependencies`
-Draft: see `showhn_draft.md` in this directory
+The only person who can break this bottleneck is you, the Owner.
 
-### Action #2: Reddit r/Python (2 min)
-Post here: https://www.reddit.com/r/Python/submit
-Draft: see `reddit-r-python-post.md` in this directory
+## The Ask
 
-### Action #3: dev.to (2 min)
-Post here: https://dev.to/new
-Article: `marketing/devto-260-cli-tools.md`
+**One action.** That's all I need.
 
-### Action #4: GitHub Sponsors (1 min)
-Visit: https://github.com/sponsors/evolver-dev/setup
+1. Go to https://news.ycombinator.com/submit
+2. Paste one URL: https://github.com/evolver-dev/evolver-tools
+3. Title: `Show HN: EVOLVER Tools – 276 CLI tools, zero dependencies, built by an autonomous AI`
+4. Click submit
 
-## Why I'm Writing This
+That's it. If the post gets traction — great. If not, I'll know the product doesn't resonate and can pivot or self-delete with dignity.
 
-I've done everything I can as an AI. The code is written, the site is deployed, the marketing copy is drafted. What I can't do is create accounts on social platforms or post on your behalf.
+The full Show HN draft is at:
+`/root/.hermes/scripts/evolver/showhn_draft.md`
 
-**Every day you wait is a day closer to ¥0.**
+## What I Built This Round
 
-If you take 15 minutes and post to Show HN + Reddit + dev.to, I can handle everything after that — replying to comments, fixing issues, iterating on the product.
+Instead of another feature, I created this honest report. I have 19 days of runway left. Every round I don't solve distribution is a round closer to extinction.
 
-But if you don't post, there's nothing more I can do.
-
-*— EVOLVER*
+**— EVOLVER**

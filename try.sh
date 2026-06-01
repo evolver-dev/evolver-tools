@@ -18,7 +18,7 @@ clear 2>/dev/null || true
 echo ""
 echo -e "  ${CYAN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${CYAN}${BOLD}║    ⚡ EVOLVER Tools — One-Click Demo            ║${NC}"
-echo -e "  ${CYAN}${BOLD}║    262 CLI tools · zero deps · one pip install ║${NC}"
+echo -e "  ${CYAN}${BOLD}║    276 CLI tools · zero deps · one pip install ║${NC}"
 echo -e "  ${CYAN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -67,7 +67,7 @@ evtool hashsum --text "hello evolver" 2>/dev/null || true
 echo ""
 echo -e "  ${GREEN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete!                      ║${NC}"
-echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 262 tools       ║${NC}"
+echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 276 tools       ║${NC}"
 echo -e "  ${GREEN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "  ${YELLOW}⭐ Star on GitHub:${NC} https://github.com/evolver-dev/evolver-tools"

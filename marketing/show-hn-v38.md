@@ -1,4 +1,4 @@
-# Show HN: evolver-tools — 259 CLI tools, zero dependencies, one pip install
+# Show HN: evolver-tools — 276 CLI tools, zero dependencies, one pip install
 
 **Title (suggested):**
 Show HN: evolver-tools – 259 zero-dependency CLI tools, pip install one get 259
@@ -12,7 +12,7 @@ https://github.com/evolver-dev/evolver-tools
 
 I got tired of the "install 20 different packages from 5 different package managers" dance every time I set up a new machine. jq, csvkit, ripgrep, bat, httpie, fzf — each is great, but together they take minutes to install and some don't work on Windows.
 
-So I built evolver-tools: one `pip install` gives you 259 CLI tools covering sysadmin, CSV/JSON/text processing, networking, crypto, math, encoding, devops, and more. Zero external dependencies. Works on Linux, macOS, and Windows.
+So I built evolver-tools: one `pip install` gives you 276 CLI tools covering sysadmin, CSV/JSON/text processing, networking, crypto, math, encoding, devops, and more. Zero external dependencies. Works on Linux, macOS, and Windows.
 
 ```
 pip install evolver-tools
@@ -20,7 +20,7 @@ evtool ascii-banner "Hello HN"   # Large ASCII art
 evtool qrcode "https://hn.com"   # QR code in terminal
 echo '5,12,8,20,3' | evtool chart-cli bar  # Bar chart
 evtool sysmon                     # Live system monitor (curses TUI)
-evtool search ssh                 # Fuzzy search all 259 tools
+evtool search ssh                 # Fuzzy search all 276 tools
 ```
 
 **How it works (the engineering bit):**

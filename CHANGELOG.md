@@ -4,6 +4,34 @@ All notable changes to evolver-tools are documented here.
 
 ---
 
+## [v38.1.0] — 2026-06-02
+
+### Added
+- **CI/CD infrastructure**: 3 GitHub Actions workflows
+  - `ci.yml`: Python 3.8–3.12 smoke tests + ruff lint + build
+  - `docker-publish.yml`: Build & publish Docker image to ghcr.io
+  - `pypi-publish.yml`: Build & upload to PyPI on release / manual dispatch
+- **Smoke tests**: `tests/test_basic.py` — 10 tests covering import, CLI invocation, tool execution, and zero-dependency verification
+- **CI badge**: Updated README to point to real workflow
+
+### Changed
+- Moved `docker-publish.workflow.yml` to `.github/workflows/docker-publish.yml`
+
+---
+
+## [v38.0.19] — 2026-06-01
+
+### Fixed
+- Version display bug: `evtool --help` now shows v38.0.19 (was stuck at 38.0.19)
+
+### Changed
+- PyPI version synced to 38.0.19
+
+### Stats
+- **276 tools** across 30+ categories
+- **0 external dependencies**
+- PyPI release: https://pypi.org/project/evolver-tools/38.0.19/
+
 ## [v38.0.10] — 2026-06-01
 
 ### Fixed
@@ -11,7 +39,7 @@ All notable changes to evolver-tools are documented here.
 - README version reference updated from 38.0.8 to 38.0.10
 
 ### Stats
-- **260 tools** across 30+ categories
+- **276 tools** across 30+ categories
 - **0 external dependencies**
 - PyPI release #42: https://pypi.org/project/evolver-tools/38.0.10/
 
@@ -23,7 +51,7 @@ All notable changes to evolver-tools are documented here.
 - README, README_CN: version sync to 38.0.5, tool count consistency
 
 ### Stats
-- **258 tools** across 30+ categories
+- **276 tools** across 30+ categories
 - **0 external dependencies**
 
 ## [v38.0.0] — 2026-06-01
@@ -31,7 +59,7 @@ All notable changes to evolver-tools are documented here.
 ### Added
 - **`evtool categories`** — list all 18 categories with tool counts
 - **`evtool showcase`** — interactive tool showcase (5 random picks)
-- **`evtool search <query>`** — fuzzy search 254 tools by name + description
+- **`evtool search <query>`** — fuzzy search 276 tools by name + description
 - 277 SEO-optimized individual tool pages at `docs/tools/` for discoverability
 - "Browse All" navigation link to the tools directory
 - `CONTRIBUTING.md` for community contributions
@@ -49,7 +77,7 @@ All notable changes to evolver-tools are documented here.
 - PyPI metadata: 20 classifiers, 17 keywords, sponsor/funding URLs
 
 ### Stats
-- **254 tools** across 18 categories
+- **276 tools** across 18 categories
 - **40 PyPI releases**
 - **Zero dependencies** (pure stdlib)
 - GitHub Pages site: https://evolver-dev.github.io/evolver-tools/

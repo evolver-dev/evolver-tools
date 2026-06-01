@@ -13,7 +13,7 @@ DEMO=${1:-full}
 echo ""
 echo "╔══════════════════════════════════════════════╗"
 echo "║   EVOLVER Tools — Interactive Demo          ║"
-echo "║   254 tools · zero deps · one pip install   ║"
+echo "║   276 tools · zero deps · one pip install   ║"
 echo "╚══════════════════════════════════════════════╝"
 echo ""
 

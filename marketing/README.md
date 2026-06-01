@@ -9,7 +9,7 @@
 ## ① Show HN — 最高杠杆（建议周二上午发）
 
 **平台**: https://news.ycombinator.com/submit
-**标题**: Show HN: evolver-tools — 259 CLI tools, one pip install, zero deps
+**标题**: Show HN: evolver-tools — 276 CLI tools, one pip install, zero deps
 **正文**: 见 `showhn_draft.md`
 
 **预计效果**: 500-2000 访问，50-200 GitHub 星（如果进入首页）
@@ -19,7 +19,7 @@
 ## ② dev.to — SEO 永续流量
 
 **平台**: https://dev.to/new
-**标题**: 259 CLI Tools in One pip install — My Zero-Dependency Python Toolkit
+**标题**: 276 CLI Tools in One pip install — My Zero-Dependency Python Toolkit
 **正文**: 见 `marketing/devto-article-259-cli-tools.md`
 
 **预计效果**: 100-500 阅读/月（长期），Google 索引
@@ -31,7 +31,7 @@
 ## ③ Reddit r/Python + r/devops
 
 **平台**: https://www.reddit.com/r/Python/submit
-**标题**: I built 259 CLI tools that all live in one pip install (zero dependencies)
+**标题**: I built 276 CLI tools that all live in one pip install (zero dependencies)
 **正文**: 见 `marketing/reddit-draft.md`
 
 语调要谦逊。"I built this thing, thought you might find it useful" 风格。

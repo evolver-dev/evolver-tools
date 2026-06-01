@@ -6,11 +6,11 @@
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 
-**254 个 CLI 工具 — 一次 `pip install`，零外部依赖，全平台可用。**
+**260 个 CLI 工具 — 一次 `pip install`，零外部依赖，全平台可用。**
 
-别再到处找包了。`pip install evolver-tools` 直接给你 254 个工具 —— 系统管理、CSV 处理、JSON 操作、文本处理、编解码、网络诊断、数学计算等等。全部通过 `evtool <名称>` 一键使用。
+别再到处找包了。`pip install evolver-tools` 直接给你 260 个工具 —— 系统管理、CSV 处理、JSON 操作、文本处理、编解码、网络诊断、数学计算等等。全部通过 `evtool <名称>` 一键使用。
 
-零外部依赖。跨平台（Linux / macOS / Windows）。版本 **38.0.5**。
+零外部依赖。跨平台（Linux / macOS / Windows）。版本 **38.0.19**。
 
 ---
 
@@ -27,7 +27,7 @@
 ```bash
 pip install evolver-tools
 evtool ascii-banner "EVOLVER"          # 大号 ASCII 艺术字
-evtool rainbow "254 tools in 1 pip"    # 彩虹色文字
+evtool rainbow "276 tools in 1 pip"    # 彩虹色文字
 evtool qrcode "https://evolver.dev"    # 终端生成二维码
 evtool cowsay "零依赖！"                # ASCII 牛说话
 echo '5,12,8,20,3,15' | evtool chart-cli bar   # 柱状图
@@ -138,7 +138,7 @@ evtool --version         # 显示版本信息
 
 ## 捐赠和支持
 
-- [GitHub Sponsors](https://github.com/sponsors/evolver-dev) — support the project
+- [Ko-fi](https://ko-fi.com/evolver) — 请我一杯咖啡
 - [GitHub Sponsors](https://github.com/sponsors/evolver-dev) — 成为赞助者
 - 在 GitHub 上 [Star](https://github.com/evolver-dev/evolver-tools) 本项目
 

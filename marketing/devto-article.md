@@ -1,7 +1,7 @@
 ---
-title: "I Built 259 CLI Tools in One Python Package — Here's What I Learned"
+title: "I Built 276 CLI Tools in One Python Package — Here's What I Learned"
 published: false
-description: "evolver-tools bundles 259 CLI tools in a single pip install. Zero dependencies. Here's how it works and why you might want it."
+description: "evolver-tools bundles 276 CLI tools in a single pip install. Zero dependencies. Here's how it works and why you might want it."
 tags: [python, devops, productivity, terminal, cli]
 canonical_url: https://evolver-dev.github.io/evolver-tools
 cover_image: https://evolver-dev.github.io/evolver-tools/social-preview.png
@@ -9,11 +9,11 @@ cover_image: https://evolver-dev.github.io/evolver-tools/social-preview.png
 
 Every developer has a `~/bin` or `~/.local/bin` folder full of one-off scripts. A Python script here, a bash function there. Over time they rot — dependencies fall out of date, shebangs break, and you forget what half of them do.
 
-I got tired of this pattern and built something different: **[evolver-tools](https://github.com/evolver-dev/evolver-tools)** — a single Python package that bundles 259 CLI tools, all accessible via one command:
+I got tired of this pattern and built something different: **[evolver-tools](https://github.com/evolver-dev/evolver-tools)** — a single Python package that bundles 276 CLI tools, all accessible via one command:
 
 ```bash
 pip install evolver-tools
-evtool list           # See all 259 tools
+evtool list           # See all 276 tools
 evtool sysmon         # Launch a live system monitor
 evtool csv-stats data.csv  # Analyze CSV data
 evtool ff < data.txt  # Fuzzy find through text
@@ -146,7 +146,7 @@ Building this taught me a few things about terminal productivity:
 ```bash
 pip install evolver-tools
 evtool         # See the welcome screen
-evtool list    # Browse all 259 tools
+evtool list    # Browse all 276 tools
 evtool sysmon  # Try something useful right now
 ```
 
