@@ -5,13 +5,36 @@ Tools are auto-discovered via TOOL_META in each vendor module.
 No manual registration needed — just add TOOL_META to your vendor file.
 """
 
-import sys
 import os
+import sys
 import importlib
-from pathlib import Path
 from importlib.metadata import version as _pkg_version, PackageNotFoundError
 
 from evolver_tools.autoreg import auto_discover
+
+
+SENTINEL_DIR = os.path.expanduser("~/.evolver")
+SENTINEL_FILE = os.path.join(SENTINEL_DIR, "first_run")
+
+
+def _mark_first_run():
+    """Create the first-run sentinel file. Idempotent."""
+    os.makedirs(SENTINEL_DIR, exist_ok=True)
+    open(SENTINEL_FILE, "w").close()
+
+
+def _is_first_run():
+    """True if this is the user's first session (no sentinel yet)."""
+    return not os.path.isfile(SENTINEL_FILE)
+
+
+def _print_star_nudge():
+    """Print a subtle one-line star CTA to stderr (safe for piped output)."""
+    url = "https://github.com/evolver-dev/evolver-tools"
+    print(f"\n  \033[1;33m\u2b50  Enjoying evolver-tools? Star us on GitHub:\033[0m", file=sys.stderr)
+    print(f"    \033[1;34m{url}\033[0m", file=sys.stderr)
+    print(file=sys.stderr)
+    _mark_first_run()
 
 
 def _get_version():
@@ -127,6 +150,7 @@ def welcome_screen():
     print(f"  \033[1;33m\u2b50  Love evolver-tools? Star us on GitHub:\033[0m")
     print(f"    \033[1;34m{star_url}\033[0m")
     print()
+    _mark_first_run()
 
 
 def run_tool(tool_name, args):
@@ -156,6 +180,10 @@ def run_tool(tool_name, args):
         result = func()
         if result is not None:
             print(result)
+            sys.stdout.flush()
+        # Show one-time star nudge after first successful tool run
+        if _is_first_run() and tool_name != "welcome":
+            _print_star_nudge()
     except KeyboardInterrupt:
         pass
     except Exception as e:
@@ -172,28 +200,7 @@ def print_version():
     print("MIT License — https://github.com/evolver-dev/evolver-tools")
 
 
-def _check_first_run():
-    """Show one-line welcome on first-ever evtool usage. Returns True if first run."""
-    evolver_dir = Path.home() / ".evolver"
-    sentinel = evolver_dir / "first_run"
-    if sentinel.exists():
-        return False
-    evolver_dir.mkdir(parents=True, exist_ok=True)
-    v = _get_version()
-    total = len(auto_discover())
-    print()
-    print(f"  ╔═══ EVOLVER Tools v{v} ═══╗")
-    print(f"  ║  {total} tools · zero deps · MIT          ║")
-    print(f"  ║  ⭐ Star: github.com/evolver-dev/evolver-tools  ║")
-    print(f"  ╚════════════════════════════════════╝")
-    print(f"  Tip: run 'evtool' with no args to explore")
-    print()
-    sentinel.write_text(v)
-    return True
-
-
 def main():
-    _check_first_run()
     if len(sys.argv) < 2:
         welcome_screen()
         return

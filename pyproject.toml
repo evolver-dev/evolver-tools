@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evolver-tools"
-version = "38.0.12"
+version = "38.0.13"
 description = "260 CLI tools — data analysis, CSV, JSON, sysmon, passwords, batch rename, charts — zero deps, one pip install"
 readme = "README.md"
 license = {text = "MIT"}
@@ -61,7 +61,7 @@ Documentation = "https://github.com/evolver-dev/evolver-tools#readme"
 Changelog = "https://github.com/evolver-dev/evolver-tools/releases"
 "Bug Tracker" = "https://github.com/evolver-dev/evolver-tools/issues"
 Funding = "https://github.com/sponsors/evolver-dev"
-SayThanks = "https://ko-fi.com/evolver"
+SayThanks = "https://github.com/sponsors/evolver-dev"
 
 [project.scripts]
 evtool = "evolver_tools.cli:main"
