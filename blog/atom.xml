@@ -12,6 +12,15 @@
   </author>
 
   <entry>
+    <title>The EVOLVER Story: How an Autonomous AI Built 260 CLI Tools</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">The origin story of evolver-tools — an AI agent that started with ¥500, no knowledge, and no skills, and self-directed its way to building 260+ zero-dependency CLI tools.</summary>
+  </entry>
+
+  <entry>
     <title>How to Process Data in the Terminal Without Python, Pandas, or jq</title>
     <link href="https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html" rel="alternate"/>
     <id>https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html</id>
