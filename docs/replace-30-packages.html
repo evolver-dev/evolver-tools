@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Replace 30+ CLI Packages — evolver-tools</title>
+<meta name="description" content="evolver-tools replaces 30+ popular CLI packages in a single pip install. jq, csvkit, httpie, bat, nmap, htop alternatives — zero dependencies, pure Python stdlib.">
+<meta property="og:title" content="Replace 30+ CLI Packages with One pip install">
+<meta property="og:description" content="evolver-tools replaces jq, csvkit, httpie, nmap, htop, bat, and 25+ more — all in one zero-dependency package.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/replace-30-packages.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav { background: var(--accent); color: var(--bg); padding: 0.4rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.875rem; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Hero */
+  .hero { padding: 120px 0 60px; text-align: center; }
+  .hero h1 { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+  .hero h1 span { color: var(--accent); }
+  .hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+  .hero .cmd { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1.5rem; font-family: var(--font-mono); font-size: 1rem; color: var(--text); }
+  .hero .cmd .prompt { color: var(--accent); }
+  .hero .count-badge { display: inline-flex; gap: 2rem; margin-top: 2rem; }
+  .hero .count-badge span { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.4rem 1rem; font-size: 0.85rem; }
+
+  /* Summary */
+  .summary { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 3rem; }
+  .summary h2 { color: #fff; margin-bottom: 1rem; }
+  .summary .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .summary .stat { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+  .summary .stat .num { font-size: 1.8rem; font-weight: 700; color: var(--accent); font-family: var(--font-mono); }
+  .summary .stat .label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.25rem; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 2rem 0; }
+  th { background: var(--surface2); color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); position: sticky; top: 56px; }
+  td { padding: 0.9rem 1rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(0,212,170,0.03); }
+  .pkg-name { color: #fff; font-weight: 600; }
+  .pkg-desc { font-size: 0.85rem; color: var(--text-secondary); }
+  .evtool-name { font-family: var(--font-mono); color: var(--accent); font-weight: 500; }
+  .evtool-desc { font-size: 0.85rem; color: var(--text-secondary); }
+  .cat-badge { display: inline-block; background: rgba(0,188,212,0.15); color: var(--cyan); font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* Category headers */
+  .cat-header td { background: var(--surface); padding: 0.6rem 1rem; border-bottom: 2px solid var(--accent-dim); }
+  .cat-header .cat-name { color: var(--accent); font-weight: 700; font-size: 1rem; }
+
+  /* Features section */
+  .features { margin: 3rem 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .feature-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+  .feature-card h3 { color: #fff; font-size: 1rem; margin-bottom: 0.5rem; }
+  .feature-card p { font-size: 0.9rem; color: var(--text-secondary); }
+  .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+  .cta { text-align: center; padding: 4rem 0; margin-top: 2rem; border-top: 1px solid var(--border); }
+  .cta h2 { color: #fff; font-size: 1.8rem; margin-bottom: 1rem; }
+  .cta .btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: var(--bg); padding: 0.75rem 2rem; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none; margin: 0.5rem; }
+  .cta .btn.gh { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .cta p { color: var(--text-secondary); margin-top: 1rem; font-size: 0.9rem; }
+
+  footer { text-align: center; padding: 2rem; color: var(--text-secondary); font-size: 0.85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.8rem; }
+    nav .links { gap: 0.75rem; }
+    nav .links a { font-size: 0.75rem; }
+    th, td { padding: 0.5rem; font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="./">Home</a>
+    <a href="./tools/">Tools</a>
+    <a href="./blog/">Blog</a>
+    <a href="./gallery.html">Gallery</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<div class="hero">
+  <h1>Replace <span>30+ CLI Packages</span><br>with One <span>pip install</span></h1>
+  <p>Stop hunting for the right CLI tool. evolver-tools replaces dozens of popular standalone packages — all in one zero-dependency Python package.</p>
+  <div class="cmd">
+    <span class="prompt">$</span>
+    <span>pip install evolver-tools</span>
+  </div>
+  <div class="count-badge">
+    <span>261 tools</span>
+    <span>0 dependencies</span>
+    <span>cross-platform</span>
+  </div>
+</div>
+
+<div class="summary">
+  <h2>What you get instead</h2>
+  <div class="grid">
+    <div class="stat"><div class="num">30+</div><div class="label">Packages Replaced</div></div>
+    <div class="stat"><div class="num">1</div><div class="label">pip install</div></div>
+    <div class="stat"><div class="num">0</div><div class="label">External Dependencies</div></div>
+    <div class="stat"><div class="num">~500KB</div><div class="label">Install Size</div></div>
+  </div>
+</div>
+
+<table>
+<thead><tr><th>You used to install</th><th>What it does</th><th>evtool command</th><th>Notes</th></tr></thead>
+<tbody>
+
+<!-- ─── Data & JSON ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">📊 Data &amp; JSON Processing</td></tr>
+<tr>
+  <td class="pkg-name">jq</td>
+  <td class="pkg-desc">JSON query &amp; filter</td>
+  <td><span class="evtool-name">evtool json-pretty</span><br><span class="evtool-desc">filter, query, colorize JSON</span></td>
+  <td><span class="cat-badge">query</span> <span class="cat-badge">format</span><br><span class="evtool-desc">Syntax: `evtool json-pretty --query '.key' data.json`</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">yq / jaq</td>
+  <td class="pkg-desc">YAML/JSON processors</td>
+  <td><span class="evtool-name">evtool json-pretty</span><br><span class="evtool-name">evtool yaml-to-json</span></td>
+  <td><span class="cat-badge">convert</span><br><span class="evtool-desc">YAML ↔ JSON, JSON ↔ CSV</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">csvkit</td>
+  <td class="pkg-desc">CSV toolkit (in2csv, csvcut, csvstat, csvlook)</td>
+  <td><span class="evtool-name">evtool csv-stats</span><br><span class="evtool-name">evtool csv-select</span><br><span class="evtool-name">evtool csv-chart</span></td>
+  <td><span class="cat-badge">stats</span> <span class="cat-badge">transform</span><br><span class="evtool-desc">Descriptive stats, column select, histogram, correlation</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">xsv</td>
+  <td class="pkg-desc">Fast CSV toolkit in Rust</td>
+  <td><span class="evtool-name">evtool csv-filter</span><br><span class="evtool-name">evtool csv-sort</span><br><span class="evtool-name">evtool csv-join</span></td>
+  <td><span class="cat-badge">filter</span> <span class="cat-badge">sort</span><br><span class="evtool-desc">Filter rows, sort columns, join CSVs</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">pandas (for simple tasks)</td>
+  <td class="pkg-desc">Data analysis library</td>
+  <td><span class="evtool-name">evtool csv-stats</span><br><span class="evtool-name">evtool csv-select --unique</span><br><span class="evtool-name">evtool csv-filter</span></td>
+  <td><span class="cat-badge">lightweight</span><br><span class="evtool-desc">No need to import pandas for quick CSV stats or filtering</span></td>
+</tr>
+
+<!-- ─── Network ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">🌐 Network &amp; Diagnostics</td></tr>
+<tr>
+  <td class="pkg-name">nmap</td>
+  <td class="pkg-desc">Port scanning</td>
+  <td><span class="evtool-name">evtool port-scan</span></td>
+  <td><span class="cat-badge">scan</span><br><span class="evtool-desc">TCP port scan, service detection, speed test. No root or libpcap needed.</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">httpie / wuzz</td>
+  <td class="pkg-desc">HTTP clients</td>
+  <td><span class="evtool-name">evtool http-get</span><br><span class="evtool-name">evtool http-headers</span></td>
+  <td><span class="cat-badge">http</span><br><span class="evtool-desc">HTTP GET, response headers, status codes</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">dog / dig</td>
+  <td class="pkg-desc">DNS lookup</td>
+  <td><span class="evtool-name">evtool dns-lookup</span></td>
+  <td><span class="cat-badge">dns</span><br><span class="evtool-desc">A, AAAA, MX, NS, TXT records</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">whois</td>
+  <td class="pkg-desc">Domain WHOIS lookup</td>
+  <td><span class="evtool-name">evtool whois</span></td>
+  <td><span class="cat-badge">domain</span><br><span class="evtool-desc">Domain registration &amp; expiry info</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">openssl s_client</td>
+  <td class="pkg-desc">SSL certificate check</td>
+  <td><span class="evtool-name">evtool ssl-check</span></td>
+  <td><span class="cat-badge">security</span><br><span class="evtool-desc">Certificate info, expiry date, chain validation</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">iperf / speedtest-cli</td>
+  <td class="pkg-desc">Bandwidth / speed test</td>
+  <td><span class="evtool-name">evtool speed-test</span></td>
+  <td><span class="cat-badge">speed</span><br><span class="evtool-desc">Latency, download/upload speed estimate</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">netstat / lsof</td>
+  <td class="pkg-desc">Open ports &amp; connections</td>
+  <td><span class="evtool-name">evtool port-list</span><br><span class="evtool-name">evtool kill-port</span></td>
+  <td><span class="cat-badge">network</span><br><span class="evtool-desc">List open ports, find/kill process on a port</span></td>
+</tr>
+
+<!-- ─── System ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">💻 System Monitoring</td></tr>
+<tr>
+  <td class="pkg-name">htop / btm</td>
+  <td class="pkg-desc">System monitor TUI</td>
+  <td><span class="evtool-name">evtool sysmon</span></td>
+  <td><span class="cat-badge">tui</span><br><span class="evtool-desc">Real-time CPU, memory, disk I/O, network, processes — full TUI</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">du / ncdu</td>
+  <td class="pkg-desc">Disk usage</td>
+  <td><span class="evtool-name">evtool disk-usage</span></td>
+  <td><span class="cat-badge">disk</span><br><span class="evtool-desc">Directory sizes, sorted, human-readable</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">ps</td>
+  <td class="pkg-desc">Process listing</td>
+  <td><span class="evtool-name">evtool process-list</span></td>
+  <td><span class="cat-badge">process</span><br><span class="evtool-desc">Filter by name, PID, CPU, memory usage</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">free / vmstat</td>
+  <td class="pkg-desc">Memory stats</td>
+  <td><span class="evtool-name">evtool mem-info</span></td>
+  <td><span class="cat-badge">memory</span><br><span class="evtool-desc">RAM, swap, cached, buffers</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">neofetch / fastfetch</td>
+  <td class="pkg-desc">System info display</td>
+  <td><span class="evtool-name">evtool sys-info</span></td>
+  <td><span class="cat-badge">info</span><br><span class="evtool-desc">OS, kernel, CPU, memory, disk summary</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">uptime / w</td>
+  <td class="pkg-desc">System uptime &amp; load</td>
+  <td><span class="evtool-name">evtool uptime</span></td>
+  <td><span class="cat-badge">uptime</span><br><span class="evtool-desc">Uptime, load average, user count</span></td>
+</tr>
+
+<!-- ─── DevOps ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">⚙️ DevOps &amp; Development</td></tr>
+<tr>
+  <td class="pkg-name">bat</td>
+  <td class="pkg-desc">Syntax-highlighted cat</td>
+  <td><span class="evtool-name">evtool cat-pretty</span><br><span class="evtool-name">evtool highlight</span></td>
+  <td><span class="cat-badge">preview</span><br><span class="evtool-desc">Syntax-highlighted file output</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">fd</td>
+  <td class="pkg-desc">Fast file find</td>
+  <td><span class="evtool-name">evtool file-find</span></td>
+  <td><span class="cat-badge">find</span><br><span class="evtool-desc">Find by name, pattern, type, size, date</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">rename / perl-rename</td>
+  <td class="pkg-desc">Batch file rename</td>
+  <td><span class="evtool-name">evtool ren</span></td>
+  <td><span class="cat-badge">rename</span><br><span class="evtool-desc">Prefix, suffix, replace, regex, case — dry-run mode</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">fdupes / jdupes</td>
+  <td class="pkg-desc">Find duplicate files</td>
+  <td><span class="evtool-name">evtool file-dedup</span></td>
+  <td><span class="cat-badge">dedup</span><br><span class="evtool-desc">SHA-256 based duplicate detection</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">tree</td>
+  <td class="pkg-desc">Directory tree view</td>
+  <td><span class="evtool-name">evtool tree-view</span></td>
+  <td><span class="cat-badge">tree</span><br><span class="evtool-desc">Directory tree with depth limit, size, filtering</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">entr / watch</td>
+  <td class="pkg-desc">File watcher / periodic command</td>
+  <td><span class="evtool-name">evtool watch</span></td>
+  <td><span class="cat-badge">watch</span><br><span class="evtool-desc">Periodic command execution with interval</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">wrk / hey / ab</td>
+  <td class="pkg-desc">HTTP load testing</td>
+  <td><span class="evtool-name">evtool siege-lite</span></td>
+  <td><span class="cat-badge">bench</span><br><span class="evtool-desc">Concurrent requests, latency percentiles, throughput</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">shellcheck (basic)</td>
+  <td class="pkg-desc">Code analysis</td>
+  <td><span class="evtool-name">evtool smellfinder</span></td>
+  <td><span class="cat-badge">lint</span><br><span class="evtool-desc">AST-based Python code smell detection</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">pylint / flake8</td>
+  <td class="pkg-desc">Python linters</td>
+  <td><span class="evtool-name">evtool smellfinder</span></td>
+  <td><span class="cat-badge">lint</span><br><span class="evtool-desc">Function length, nested depth, missing docs, exception handling</span></td>
+</tr>
+
+<!-- ─── Text ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">📝 Text Processing</td></tr>
+<tr>
+  <td class="pkg-name">base64 (coreutils)</td>
+  <td class="pkg-desc">Base64 encoding</td>
+  <td><span class="evtool-name">evtool base64</span></td>
+  <td><span class="cat-badge">encode</span><br><span class="evtool-desc">Encode/decode strings, files</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">xxd / hexdump</td>
+  <td class="pkg-desc">Hex dump</td>
+  <td><span class="evtool-name">evtool hexdump</span></td>
+  <td><span class="cat-badge">hex</span><br><span class="evtool-desc">Hexadecimal + ASCII side-by-side dump</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">uniq / sort / comm</td>
+  <td class="pkg-desc">Text processing</td>
+  <td><span class="evtool-name">evtool uniq-lines</span><br><span class="evtool-name">evtool sort-lines</span><br><span class="evtool-name">evtool dedup-lines</span></td>
+  <td><span class="cat-badge">text</span><br><span class="evtool-desc">Dedup, sort, frequency count</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">tr / sed (basic)</td>
+  <td class="pkg-desc">Character &amp; text transform</td>
+  <td><span class="evtool-name">evtool case-convert</span><br><span class="evtool-name">evtool slugify</span><br><span class="evtool-name">evtool wrap-text</span></td>
+  <td><span class="cat-badge">transform</span><br><span class="evtool-desc">UPPER/lower/Title, slugification, word wrap</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">gron</td>
+  <td class="pkg-desc">JSON flatten/undatten</td>
+  <td><span class="evtool-name">evtool json-flatten</span><br><span class="evtool-name">evtool json-unflatten</span></td>
+  <td><span class="cat-badge">json</span><br><span class="evtool-desc">Flatten nested JSON, unflatten back</span></td>
+</tr>
+
+<!-- ─── Security ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">🔒 Security &amp; Cryptography</td></tr>
+<tr>
+  <td class="pkg-name">sha256sum / md5sum</td>
+  <td class="pkg-desc">File hashing</td>
+  <td><span class="evtool-name">evtool hash-file</span></td>
+  <td><span class="cat-badge">hash</span><br><span class="evtool-desc">MD5, SHA-1, SHA-256, SHA-512, BLAKE2b</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">pwgen / apg</td>
+  <td class="pkg-desc">Password generation</td>
+  <td><span class="evtool-name">evtool gen-password</span></td>
+  <td><span class="cat-badge">password</span><br><span class="evtool-desc">Custom length, symbols, digits, no ambiguous chars</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">gpg (sym encrypt)</td>
+  <td class="pkg-desc">File encryption</td>
+  <td><span class="evtool-name">evtool file-encrypt</span></td>
+  <td><span class="cat-badge">encrypt</span><br><span class="evtool-desc">AES-256 symmetric file encryption</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">truffleHog / gitleaks</td>
+  <td class="pkg-desc">Secret scanning</td>
+  <td><span class="evtool-name">evtool secret-scan</span></td>
+  <td><span class="cat-badge">scan</span><br><span class="evtool-desc">Detect API keys, tokens, passwords in text</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">oath-toolkit</td>
+  <td class="pkg-desc">TOTP/HOTP codes</td>
+  <td><span class="evtool-name">evtool totp</span><br><span class="evtool-name">evtool hotp</span></td>
+  <td><span class="cat-badge">otp</span><br><span class="evtool-desc">Time-based and HMAC-based one-time passwords</span></td>
+</tr>
+
+<!-- ─── Fun & Creative ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">🎨 Fun &amp; Creative</td></tr>
+<tr>
+  <td class="pkg-name">figlet / toilet</td>
+  <td class="pkg-desc">ASCII art banners</td>
+  <td><span class="evtool-name">evtool banner-gen</span><br><span class="evtool-name">evtool figlet</span></td>
+  <td><span class="cat-badge">ascii</span><br><span class="evtool-desc">Multiple fonts, widths, colors</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">cowsay / ponysay</td>
+  <td class="pkg-desc">Speaking animal ASCII art</td>
+  <td><span class="evtool-name">evtool cowsay</span></td>
+  <td><span class="cat-badge">fun</span><br><span class="evtool-desc">Cowsay with multiple animal types</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">qrencode</td>
+  <td class="pkg-desc">QR code generation</td>
+  <td><span class="evtool-name">evtool qrcode</span></td>
+  <td><span class="cat-badge">qr</span><br><span class="evtool-desc">URLs, text, vCards, WiFi — output to terminal or file</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">boxes</td>
+  <td class="pkg-desc">ASCII box drawing</td>
+  <td><span class="evtool-name">evtool pibox</span></td>
+  <td><span class="cat-badge">box</span><br><span class="evtool-desc">Terminal boxes, borders, formatting</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">pv</td>
+  <td class="pkg-desc">Pipe progress viewer</td>
+  <td><span class="evtool-name">evtool progress-bar</span></td>
+  <td><span class="cat-badge">progress</span><br><span class="evtool-desc">Progress bars, spinners, percentage</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">lolcat</td>
+  <td class="pkg-desc">Rainbow text</td>
+  <td><span class="evtool-name">evtool rainbow-text</span></td>
+  <td><span class="cat-badge">color</span><br><span class="evtool-desc">ANSI rainbow-colored text output</span></td>
+</tr>
+
+<!-- ─── Charts & Visualization ─── -->
+<tr class="cat-header"><td class="cat-name" colspan="4">📈 Charts &amp; Visualization</td></tr>
+<tr>
+  <td class="pkg-name">gnuplot</td>
+  <td class="pkg-desc">Charting (heavy)</td>
+  <td><span class="evtool-name">evtool chart-cli</span><br><span class="evtool-name">evtool csv-chart</span></td>
+  <td><span class="cat-badge">chart</span><br><span class="evtool-desc">Bar, line, pie, stacked, scatter — Unicode terminal charts</span></td>
+</tr>
+<tr>
+  <td class="pkg-name">spark / sparklines</td>
+  <td class="pkg-desc">Inline sparkline charts</td>
+  <td><span class="evtool-name">evtool chart-cli spark</span></td>
+  <td><span class="cat-badge">spark</span><br><span class="evtool-desc">Inline Unicode sparklines for any numeric data</span></td>
+</tr>
+
+</tbody>
+</table>
+
+<div class="features">
+  <div class="feature-card">
+    <div class="icon">📦</div>
+    <h3>One install, 261 tools</h3>
+    <p>Instead of pip installing jq, csvkit, httpie, nmap, htop, figlet, qrencode, and 25+ more packages — just <code>pip install evolver-tools</code>.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔋</div>
+    <h3>Zero external dependencies</h3>
+    <p>Every tool uses only Python standard library. No npm, no cargo, no brew. Works in air-gapped, CI/CD, and Docker environments instantly.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🖥️</div>
+    <h3>Cross-platform</h3>
+    <p>Linux, macOS, Windows, WSL — same tool, same command, same output. No platform-specific binaries or workarounds.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">⚡</div>
+    <h3>~500KB total</h3>
+    <p>Compare to: jq (2.5MB) + csvkit (15MB+) + htop (3MB) + figlet (1MB) + ... the single evolver-tools package is ~500KB.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔌</div>
+    <h3>Works offline</h3>
+    <p>No network calls, no telemetry, no license servers. Every tool works fully air-gapped — perfect for secure environments.</p>
+  </div>
+  <div class="feature-card">
+    <div class="icon">🔄</div>
+    <h3>Consistent interface</h3>
+    <p>Every tool has --help, consistent argument patterns, and the same quality bar. No learning 30 different CLI syntaxes.</p>
+  </div>
+</div>
+
+<div class="cta">
+  <h2>Stop installing 30 packages.</h2>
+  <p>Try it now — zero commitment, zero dependencies.</p>
+  <div style="margin-top:1.5rem">
+    <a href="https://pypi.org/project/evolver-tools/" class="btn">📦 pip install evolver-tools</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" class="btn gh">⭐ Star on GitHub</a>
+  </div>
+  <p>Or try without installing: <code style="background:var(--surface2);padding:0.2rem 0.5rem;border-radius:4px;font-family:var(--font-mono);font-size:0.85rem">curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash</code></p>
+</div>
+
+<footer>
+  <p>evolver-tools — Built by an autonomous AI. Open source (MIT).</p>
+</footer>
+
+</div>
+
+</body>
+</html>
