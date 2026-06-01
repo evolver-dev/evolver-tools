@@ -366,7 +366,6 @@
     50% { opacity: 0; }
   }
 
-<<<<<<< HEAD
   /* ─── Responsive ─── */
   @media (max-width: 700px) {
     .hero .stats { gap: 1.5rem; flex-wrap: wrap; }
@@ -376,7 +375,22 @@
     section { padding: 3rem 1.5rem; }
     .support-section { padding: 2rem 1.5rem; }
   }
-</style>
+
+  /* Links page */
+  .links-list { margin-top: 40px; }
+  .links-list a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; color: var(--text); text-decoration: none;
+    box-shadow: var(--border) 0px 0px 0px 1px;
+    border-radius: 8px; margin-bottom: 12px;
+    transition: box-shadow 0.15s;
+  }
+  .links-list a:hover {
+    box-shadow: var(--border) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 4px;
+  }
+  .links-list a .label { font-weight: 500; }
+  .links-list a .arrow { color: var(--text-tertiary); }
+  </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -402,23 +416,6 @@
   }
 }
 </script>
-=======
-    /* Links page */
-    .links-list { margin-top: 40px; }
-    .links-list a {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 20px; color: var(--text); text-decoration: none;
-      box-shadow: var(--border) 0px 0px 0px 1px;
-      border-radius: 8px; margin-bottom: 12px;
-      transition: box-shadow 0.15s;
-    }
-    .links-list a:hover {
-      box-shadow: var(--border) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 4px;
-    }
-    .links-list a .label { font-weight: 500; }
-    .links-list a .arrow { color: var(--text-tertiary); }
-  </style>
->>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
 </head>
 <body>
 
@@ -453,7 +450,6 @@
     <div class="stat-item">
       <div class="num">260</div>
       <div class="label">Tools</div>
-<<<<<<< HEAD
     </div>
     <div class="stat-item">
       <div class="num">18</div>
@@ -466,55 +462,15 @@
     <div class="stat-item">
       <div class="num">40</div>
       <div class="label">PyPI Releases</div>
-=======
-    <div class="stat"><div class="stat-num">258</div><div class="stat-label">CLI Tools</div></div>
-        <p>Run <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool list</code> to browse all 258 tools or <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool search &lt;query&gt;</code> to find what you need.</p>
-      </div>
-      <div class="pipeline-step">
-        <div class="step-num">03</div>
-        <h3>Work</h3>
-        <p>Use any tool instantly: <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool csv-stats data.csv</code>, <code style="font-family:var(--mono);font-size:14px;background:#f5f5f5;padding:1px 6px;border-radius:4px;">evtool sysmon</code>, and 257 more.</p>
-      </div>
     </div>
-
-    <!-- Demo terminal -->
-    <div class="demo-block">
-      <div class="header">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        <span>terminal &mdash; bash</span>
-      </div>
-      <pre><span class="comment"># Install once, use everywhere</span>
-<span class="cmd">$</span> pip install evolver-tools
-
-<span class="comment"># Explore what's available</span>
-<span class="cmd">$</span> evtool list
-<span class="output">Discovered 258 tools:
-  csv-stats       csv-filter      csv-merge       json-pretty
-  json-validate   yaml2json       sysmon          disk-usage
-  port-scan       dns-lookup      hash-file       qrcode
-  ... and 247 more</span>
-
-<span class="comment"># Analyze some data</span>
-<span class="cmd">$</span> evtool csv-stats sales.csv
-<span class="output">Columns: date, product, region, amount, quantity
-Rows: 1,432
-Stats: amount mean=847.32, median=523.00, max=12,450.00</span>
-
-<span class="comment"># Monitor your system</span>
-<span class="cmd">$</span> evtool sysmon
-<span class="output">CPU: 23.4% | Mem: 6.2/16GB | Disk: 45% | Net: ↓12.3 ↑4.1 MB/s</span></pre>
->>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
     </div>
   </div>
 
-<<<<<<< HEAD
-  <div class="install-block" onclick="copyInstall(this)">
-=======
 <!-- Tool Categories -->
 <section id="features">
   <div class="inner">
     <h2>Everything at your fingertips</h2>
-    <p class="section-sub">258 tools organized into 30+ categories. Every tool is pure Python stdlib &mdash; zero external dependencies.</p>
+    <p class="section-sub">260 tools organized into 18 categories. Every tool is pure Python stdlib &mdash; zero external dependencies.</p>
     <div class="categories-grid">
       <div class="cat-card">
         <div class="icon">&#x1f4ca;</div>
@@ -719,7 +675,6 @@ Stats: amount mean=847.32, median=523.00, max=12,450.00</span>
     No registration. No account. No configuration. Just install and go.
   </p>
   <div class="install-box">
->>>>>>> 2559f5d (feat: standalone binary release v38.0.12)
     <span class="prompt">$</span>
     <span class="cmd">pip install evolver-tools</span>
     <span class="copy-hint">Click to copy</span>
