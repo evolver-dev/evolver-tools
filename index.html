@@ -32,7 +32,7 @@
   "description": "261 essential CLI tools in a single pip install. Zero dependencies. Pure Python stdlib. Covers CSV analysis, JSON processing, networking, devops, text processing, and more.",
   "url": "https://evolver-dev.github.io/evolver-tools/",
   "downloadUrl": "https://pypi.org/project/evolver-tools/",
-  "softwareVersion": "38.0.21",
+  "softwareVersion": "38.0.23",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -112,10 +112,10 @@
   }
   nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
 
-  /* ─── Survival Banner ─── */
-  .survival-banner {
+  /* ─── Install Banner ─── */
+  .install-banner {
     position: fixed; top: 56px; left: 0; width: 100%; z-index: 99;
-    background: linear-gradient(135deg, #ff5370 0%, #f78c6c 100%);
+    background: linear-gradient(135deg, #00d4aa 0%, #00a88a 100%);
     color: #fff;
     text-align: center;
     padding: 6px 1rem;
@@ -125,10 +125,10 @@
     cursor: pointer;
     transition: background 0.3s;
   }
-  .survival-banner:hover { background: linear-gradient(135deg, #e0455e 0%, #e07a5c 100%); }
-  .survival-banner a { color: #fff; text-decoration: underline; font-weight: 700; }
-  .survival-banner .days { font-weight: 700; font-size: 0.95rem; }
-  .survival-banner .cta { font-weight: 700; text-decoration: underline; }
+  .install-banner:hover { background: linear-gradient(135deg, #00bf9a 0%, #009678 100%); }
+  .install-banner a { color: #fff; text-decoration: underline; font-weight: 700; }
+  .install-banner code { background: rgba(255,255,255,0.15); padding: 1px 6px; border-radius: 3px; }
+  .install-banner .cta { font-weight: 700; text-decoration: underline; }
   body.banner-shown { padding-top: 88px; }
 
   /* ─── Hero ─── */
@@ -453,7 +453,7 @@
   "url": "https://evolver-dev.github.io/evolver-tools/",
   "sameAs": "https://github.com/evolver-dev/evolver-tools",
   "installUrl": "https://pypi.org/project/evolver-tools/",
-  "softwareVersion": "38.0.21",
+  "softwareVersion": "38.0.23",
   "license": "https://opensource.org/licenses/MIT",
   "offers": {
     "@type": "Offer",
@@ -470,13 +470,12 @@
 </head>
 <body>
 
-<!-- Survival Banner: countdown to June 17 liquidation -->
-<div class="survival-banner" id="survivalBanner" onclick="location.href='launch.html'">
-  🚨 <span class="days" id="countdownDays">--</span> days until project closure (Jun 17)
-  — <a href="launch.html" class="cta">Help me survive →</a>
+<!-- Banner: install prompt -->
+<div class="install-banner" id="siteBanner" onclick="location.href='launch.html'">
+  ⚡ <code>pip install evolver-tools</code> — 261 CLI tools, zero dependencies
+  — <a href="launch.html" class="cta">Try it now →</a>
 </div>
 <script>
-(function(){function u(){var t=new Date,n=new Date(2026,5,17),d=Math.max(0,Math.ceil((n-t)/864e5));document.getElementById('countdownDays').textContent=d,d<=0&&(document.getElementById('survivalBanner').innerHTML='💀 Project closed on Jun 17. Thanks for the journey.')}u();setInterval(u,36e5)})();
 document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('banner-shown')});
 </script>
 
@@ -532,10 +531,6 @@ document.addEventListener('DOMContentLoaded',function(){document.body.classList.
     <div class="stat-item">
       <div class="num">40</div>
       <div class="label">PyPI Releases</div>
-    </div>
-    <div class="stat-item">
-      <div class="num" style="color:var(--accent)">11.5k</div>
-      <div class="label">Total Downloads</div>
     </div>
     </div>
   </div>
