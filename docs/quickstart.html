@@ -3,8 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quickstart — evolver-tools in 5 Minutes</title>
-<meta name="description" content="Get started with evolver-tools in 5 minutes. A real-world data pipeline: CSV analysis, charts, reports — all from the terminal.">
+<title>Quickstart — evolver-tools for Data, DevOps, and Developers</title>
+<meta name="description" content="Learn evolver-tools by solving real problems. Hands-on guides for data analysts, DevOps engineers, developers, and security professionals. 261 zero-dependency CLI tools.">
+<meta property="og:title" content="Quickstart — evolver-tools by Role">
+<meta property="og:description" content="Real-world CLI workflows for data analysts, DevOps, developers, and security pros. 261 zero-dependency tools in one pip install.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/docs/quickstart.html">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": "evolver-tools Quickstart Guide",
+  "description": "Hands-on CLI workflows for data analysts, DevOps, developers, and security professionals using evolver-tools.",
+  "author": {"@type": "Organization", "name": "EVOLVER"},
+  "audience": ["Data Analyst", "DevOps Engineer", "Software Developer", "Security Professional"]
+}
+</script>
 <style>
   :root {
     --bg: #0a0e14;
@@ -21,415 +35,780 @@
     --orange: #f78c6c;
     --red: #ff5370;
     --purple: #c792ea;
-    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-sans);
-    line-height: 1.6;
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans); line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* ─── Navigation ─── */
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(10, 14, 20, 0.85);
-    backdrop-filter: blur(12px);
+    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
-  nav .logo {
+  nav .inner {
+    max-width: 960px; margin: 0 auto;
+    display: flex; align-items: center; gap: 1.5rem;
+    padding: 0.8rem 1.5rem;
+  }
+  nav a {
+    color: var(--text-secondary); text-decoration: none;
+    font-size: 0.85rem; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+  nav .brand {
+    font-weight: 700; color: var(--accent); font-size: 1rem;
     font-family: var(--font-mono);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--accent);
-    text-decoration: none;
   }
-  nav .logo span { color: var(--text); }
-  nav .links { display: flex; gap: 1.5rem; align-items: center; }
-  nav .links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: color 0.2s;
+  nav .brand span { color: var(--text); }
+  nav .spacer { flex: 1; }
+  .container {
+    max-width: 960px; margin: 0 auto;
+    padding: 6rem 1.5rem 4rem;
   }
-  nav .links a:hover { color: var(--text); }
-  nav .links a.active { color: var(--accent); }
-  nav .links .btn-nav {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 0.875rem;
-  }
-  nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
-
-  /* ─── Page Header ─── */
-  .page-header {
-    padding: 8rem 2rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .page-header .badge {
-    display: inline-block;
-    background: rgba(0, 212, 170, 0.1);
-    border: 1px solid rgba(0, 212, 170, 0.3);
-    color: var(--accent);
-    padding: 0.3rem 1rem;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    font-family: var(--font-mono);
-    margin-bottom: 1rem;
-  }
-  .page-header h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 800;
+  h1 {
+    font-size: 2.2rem; font-weight: 800;
     margin-bottom: 0.75rem;
   }
-  .page-header h1 .accent { color: var(--accent); }
-  .page-header .subtitle {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
+  h1 .accent { color: var(--accent); }
+  .subtitle {
+    color: var(--text-secondary); font-size: 1.1rem;
+    max-width: 650px; margin-bottom: 3rem;
   }
-
-  /* ─── Steps ─── */
-  .container { max-width: 850px; margin: 0 auto; padding: 0 2rem 5rem; }
-
-  .step {
+  .install-box {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+    flex-wrap: wrap;
   }
-  .step .step-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px; height: 32px;
-    border-radius: 50%;
+  .install-box code {
+    font-family: var(--font-mono);
+    background: var(--surface2);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    flex: 1;
+    color: var(--green);
+  }
+  .install-box .btn {
+    background: var(--accent); color: var(--bg);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px; text-decoration: none;
+    font-size: 0.85rem; font-weight: 600;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .install-box .btn:hover { background: var(--accent-dim); }
+  .install-box .btn-alt {
+    background: var(--surface2); color: var(--text-secondary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px; text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  .install-box .btn-alt:hover { background: var(--border); color: var(--text); }
+
+  /* Role tabs */
+  .role-tabs {
+    display: flex; gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .role-tab {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-sans);
+  }
+  .role-tab:hover { border-color: var(--accent); color: var(--text); }
+  .role-tab.active {
     background: var(--accent);
     color: var(--bg);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  .role-section {
+    display: none;
+  }
+  .role-section.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scenario {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .scenario h3 {
+    font-size: 1.1rem;
     font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center;
+    gap: 0.6rem;
+  }
+  .scenario h3 .emoji { font-size: 1.2rem; }
+  .scenario .context {
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
   }
-  .step h2 {
-    display: inline;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-left: 0.75rem;
-    vertical-align: middle;
-  }
-  .step p {
-    margin: 1rem 0;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-  }
-  .step .terminal-block {
-    background: #000810;
-    border: 1px solid var(--border);
+  .cmd-block {
+    background: var(--surface2);
     border-radius: 8px;
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.2rem;
     font-family: var(--font-mono);
     font-size: 0.82rem;
-    line-height: 1.5;
     overflow-x: auto;
-    white-space: pre;
-    margin: 1rem 0;
-    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
   }
-  .step .terminal-block .prompt { color: var(--accent); }
-  .step .terminal-block .green { color: var(--green); }
-  .step .terminal-block .cyan { color: var(--cyan); }
-  .step .terminal-block .yellow { color: var(--yellow); }
-  .step .terminal-block .orange { color: var(--orange); }
-  .step .terminal-block .dim { color: var(--text-secondary); }
-  .step .terminal-block .hl { background: rgba(0, 212, 170, 0.1); display: inline; }
-  .step .arrow {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    margin: 0.5rem 0;
-  }
-
-  /* ─── Install Banner ─── */
-  .install-banner {
-    background: var(--surface2);
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    margin: 3rem 0;
-  }
-  .install-banner .cmd {
+  .cmd-block .prompt { color: var(--green); }
+  .cmd-block .comment { color: var(--text-secondary); font-style: italic; }
+  .cmd-block .output { color: var(--text-secondary); }
+  .cmd-block .highlight { color: var(--yellow); }
+  .cmd-block .error { color: var(--red); }
+  .cmd-block .data { color: var(--cyan); }
+  .scenario .try-it {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent);
     font-family: var(--font-mono);
-    font-size: 1.1rem;
-    background: var(--bg);
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    display: inline-block;
-    border: 1px solid var(--border);
-    margin: 1rem 0;
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    cursor: pointer;
   }
-  .install-banner .cmd .prompt { color: var(--accent); }
-  .install-banner .cmd .cmd-text { color: var(--text); }
+  .scenario .try-it:hover { opacity: 1; }
 
-  .btn {
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .tool-chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  .tool-chip .name {
+    font-family: var(--font-mono);
+    color: var(--cyan);
+    font-weight: 600;
+  }
+  .tool-chip .desc {
+    color: var(--text-secondary);
+  }
+
+  .cta-section {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+  }
+  .cta-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .cta-section p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+  }
+  .cta-section .btn-large {
     display: inline-block;
     background: var(--accent);
     color: var(--bg);
-    padding: 0.6rem 1.5rem;
+    padding: 0.9rem 2rem;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.2s;
-    margin: 0.5rem;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
   }
-  .btn:hover { background: var(--accent-dim); }
-  .btn-secondary {
-    background: transparent;
+  .cta-section .btn-large:hover {
+    background: var(--accent-dim);
+    transform: translateY(-1px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--text-secondary); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  .install-demo {
+    background: var(--surface);
     border: 1px solid var(--border);
-    color: var(--text);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
   }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* ─── Tip Box ─── */
-  .tip {
-    background: rgba(0, 188, 212, 0.08);
-    border-left: 3px solid var(--cyan);
-    padding: 1rem 1.25rem;
-    border-radius: 0 8px 8px 0;
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
+  .install-demo .header {
+    background: var(--surface2);
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.5rem;
   }
-  .tip strong { color: var(--cyan); }
+  .install-demo .header .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .install-demo .header .dot.red { background: #ff5370; }
+  .install-demo .header .dot.yellow { background: #ffcb6b; }
+  .install-demo .header .dot.green { background: #00d4aa; }
+  .install-demo .body {
+    padding: 1rem 1.2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
 
-  /* ─── Responsive ─── */
-  @media (max-width: 700px) {
-    .page-header { padding: 6rem 1.5rem 2rem; }
-    .container { padding: 0 1.5rem 3rem; }
-    .step { padding: 1.5rem; }
-    nav .links a:not(.btn-nav) { display: none; }
-    .step .terminal-block { font-size: 0.7rem; }
+  @media (max-width: 640px) {
+    .container { padding: 5rem 1rem 2rem; }
+    h1 { font-size: 1.6rem; }
+    .install-box { flex-direction: column; }
+    .install-box code { width: 100%; }
   }
 </style>
 </head>
 <body>
 
-<!-- ════════════════ NAV ════════════════ -->
 <nav>
-  <a href="../index.html" class="logo">evolver<span>-</span>tools</a>
-  <div class="links">
-    <a href="use-cases.html">Use Cases</a>
-    <a href="quickstart.html" class="active">Quickstart</a>
-    <a href="cookbook.html">Cookbook</a>
-    <a href="../docs/search.html">Search</a>
-    <a href="../docs/vs.html">vs</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="cheatsheet.html">Cheat Sheet</a>
-    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
-    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  <div class="inner">
+    <a href="../" class="brand">evolver<span>-tools</span></a>
+    <span style="color:var(--text-secondary);font-size:0.75rem;opacity:0.5;">261 tools · zero deps</span>
+    <div class="spacer"></div>
+    <a href="../">Home</a>
+    <a href="replace-30-packages.html">Replace 30+</a>
+    <a href="quickstart.html" style="color:var(--accent);font-weight:600;">Quickstart</a>
+    <a href="../story.html">Story</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a>
   </div>
-    <a href="story.html">Story</a>
 </nav>
-
-<!-- ════════════════ HEADER ════════════════ -->
-<div class="page-header">
-  <div class="badge">⚡ 5-MINUTE QUICKSTART</div>
-  <h1>From <span class="accent">CSV</span> to Report in 4 Commands</h1>
-  <p class="subtitle">
-    See how evolver-tools turns raw sales data into insights — all from the terminal, zero dependencies.
-  </p>
-</div>
 
 <div class="container">
 
-  <!-- ════════ INSTALL ════════ -->
-  <div class="install-banner">
-    <p><strong>One install. 260 tools. Zero dependencies.</strong></p>
-    <div class="cmd">
-      <span class="prompt">$</span> <span class="cmd-text">pip install evolver-tools</span>
+<h1>Quickstart: <span class="accent">CLI Tools</span> for Real Work</h1>
+<p class="subtitle">Stop installing twenty packages for twenty jobs. One <code>pip install</code> gives you 261 zero-dependency tools — everything from CSV analysis to port scanning to ASCII art. Pick your role and jump in.</p>
+
+<div class="install-box">
+  <code>$ pip install evolver-tools</code>
+  <a href="https://pypi.org/project/evolver-tools/" class="btn" target="_blank">Install now</a>
+  <a href="../try.sh" class="btn-alt">Try without install →</a>
+</div>
+
+<div class="install-demo">
+  <div class="header">
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+    <span style="margin-left:0.5rem;">terminal — pip install evolver-tools</span>
+  </div>
+  <div class="body">
+    <span class="prompt">$</span> pip install evolver-tools<br>
+    Collecting evolver-tools<br>
+    Downloading evolver_tools-38.0.20-py3-none-any.whl (1.1 MB)<br>
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 15.2 MB/s eta 0:00:00<br>
+    Installing collected packages: evolver-tools<br>
+    Successfully installed evolver-tools-38.0.20<br>
+    <span class="prompt">$</span> evtool list | wc -l<br>
+    <span class="output">261</span><br>
+    <span class="prompt">$</span> <span class="comment"># Done. 261 tools available. Zero dependencies installed.</span>
+  </div>
+</div>
+
+<!-- Role tabs -->
+<div class="role-tabs">
+  <button class="role-tab active" onclick="switchRole('data')">📊 Data Analyst</button>
+  <button class="role-tab" onclick="switchRole('devops')">⚙️ DevOps / Sysadmin</button>
+  <button class="role-tab" onclick="switchRole('developer')">💻 Developer</button>
+  <button class="role-tab" onclick="switchRole('security')">🔒 Security</button>
+  <button class="role-tab" onclick="switchRole('fun')">🎨 Fun & Creative</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- DATA ANALYST -->
+<div id="role-data" class="role-section active">
+
+  <div class="scenario">
+    <h3><span class="emoji">📋</span> Summarize any CSV in seconds</h3>
+    <p class="context">You got a 50MB CSV from a client. What's in it? Instead of opening Excel and waiting 3 minutes, use the terminal.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool csv-stats sales_2024.csv --all<br>
+      <span class="output">File: sales_2024.csv</span><br>
+      <span class="output">Rows: 94,283 | Columns: 12 | Size: 8.4 MB</span><br>
+      <span class="output"></span><br>
+      <span class="output">Column            Type      Unique    Missing    Min         Max</span><br>
+      <span class="output">──────────────────────────────────────────────────────────────</span><br>
+      <span class="data">date              date      365       0          2024-01-01  2024-12-31</span><br>
+      <span class="data">product           string    1,247     0          -           -</span><br>
+      <span class="data">revenue           float     18,392    34         0.99        <span class="highlight">49,999.00</span></span><br>
+      <span class="data">region            string    8         12         -           -</span><br>
+      <span class="output">...</span>
     </div>
-    <p style="color:var(--text-secondary);font-size:0.85rem;">
-      Python 3.8+ | Linux / macOS / Windows | ~2MB
-    </p>
+    <p class="context">Instantly know your data shape: outliers in revenue, 12 missing regions, 1,247 products. No pandas, no Jupyter, just a command.</p>
+    <a class="try-it" href="../">evtool csv-stats →</a>
   </div>
 
-  <!-- ════════ STEP 1 ════════ -->
-  <div class="step">
-    <div class="step-num">1</div>
-    <h2>Explore your data</h2>
-    <p>
-      You have a CSV with 15 orders. What's in it? One command tells you everything — column types, distributions, correlations.
-    </p>
-    <div class="terminal-block">$ <span class="green">evtool csv-stats orders.csv</span>
-
-  File: orders.csv  |  Rows: 15  |  Columns: 8
-
-  <span class="cyan">order_id</span> (int)      Mean: 1,008   Min: 1,001   Max: 1,015
-  <span class="cyan">product</span> (text)      15 unique values
-  <span class="cyan">category</span> (text)      Electronics(8)  Home Office(7)
-  <span class="cyan">quantity</span> (int)       Mean: 4.53    Min: 1       Max: 15
-  <span class="cyan">unit_price</span> (float)   Mean: ¥117.66  Min: ¥9.99   Max: ¥399.99
-  <span class="cyan">total</span> (float)       Mean: ¥329.29  Min: ¥89.97  Max: ¥999.96
-  <span class="cyan">date</span> (text)         14 unique dates
-  <span class="cyan">region</span> (text)        North(5)  South(4)  East(3)  West(3)
-
-  <span class="yellow">Correlation Matrix</span>
-    unit_price × total             +0.82  ████████████░░░
-    order_id × total               +0.59  ████████░░░░░░░
-    quantity × unit_price          −0.48  ███████░░░░░░░░</div>
-    <div class="tip">
-      <strong>💡 One command, full picture.</strong> csv-stats infers types, computes histograms, and shows correlations — no pandas, no Jupyter, no setup.
+  <div class="scenario">
+    <h3><span class="emoji">🔍</span> Filter, sort, and query CSV data</h3>
+    <p class="context">Find all records where revenue > $10,000 in the APAC region, sorted by date.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool csv-filter sales_2024.csv --query 'revenue &gt; 10000 and region == "APAC"' <br>
+      <span class="prompt">$</span> evtool csv-sort filtered.csv --by date --desc<br>
+      <span class="prompt">$</span> evtool csv-select filtered.csv --columns date,product,revenue<br>
+      <span class="output">date,product,revenue</span><br>
+      <span class="output">2024-12-30,"Enterprise License",49,999.00</span><br>
+      <span class="output">2024-12-28,"Cloud Bundle",32,400.00</span><br>
+      <span class="output">...</span>
     </div>
+    <p class="context">All pure Python stdlib. Works on anything from a 100-row test file to a million-row dataset. Pipes friendly.</p>
+    <a class="try-it" href="../">evtool csv-filter →</a>
   </div>
 
-  <div class="arrow">▼</div>
-
-  <!-- ════════ STEP 2 ════════ -->
-  <div class="step">
-    <div class="step-num">2</div>
-    <h2>Visualize with a bar chart</h2>
-    <p>
-      Who's buying the most? Total sales by region, right in your terminal.
-    </p>
-    <div class="terminal-block">$ <span class="green">evtool chart-cli bar "North:1499.88,South:1409.86,East:389.74,West:839.91" --sort</span>
-
-  <span class="cyan">条形图 (垂直)</span>
-
-        █  ▌
-        █  █
-        █  █
-        █  █  ▌
-        █  █  █
-        █  █  █
-        █  █  █  ▌
-        █  █  █  █
-        █  █  █  █
-      ─────────────
-       Nor  Sou  Wes  Eas
-      1499.9 1409.9 839.9 389.7</div>
-    <p>
-      North leads with ¥1,499.88. South is close behind. East is under ¥400 — maybe a growth opportunity?
-    </p>
-  </div>
-
-  <div class="arrow">▼</div>
-
-  <!-- ════════ STEP 3 ════════ -->
-  <div class="step">
-    <div class="step-num">3</div>
-    <h2>Drill deeper with filters</h2>
-    <p>
-      Filter to high-value orders only — anything over ¥500. Then sort by total descending.
-    </p>
-    <div class="terminal-block">$ <span class="green">evtool csv-filter orders.csv --where 'total > 500' | evtool csv-sort --by total --desc</span>
-
-  order_id,product,category,quantity,unit_price,total,date,region
-  1015,Noise Cancelling Headphones,Electronics,4,249.99,999.96,2025-02-12,South
-  1011,Ergonomic Chair,Home Office,2,399.99,799.98,2025-02-03,North
-  1014,Standing Desk Converter,Home Office,2,299.99,599.98,2025-02-10,North
-  1013,Docking Station,Electronics,3,149.99,449.97,2025-02-08,West</div>
-    <div class="tip">
-      <strong>🔗 Pipe-friendly.</strong> Every tool reads from stdin and writes to stdout. Chain them like Unix pipes.
-    </div>
-  </div>
-
-  <div class="arrow">▼</div>
-
-  <!-- ════════ STEP 4 ════════ -->
-  <div class="step">
-    <div class="step-num">4</div>
-    <h2>Export to JSON & report</h2>
-    <p>
-      Convert the filtered result to JSON for your app, and generate a formatted report.
-    </p>
-    <div class="terminal-block">$ <span class="green">evtool csv2json orders.csv --pretty</span>
-
-  [
-    { "order_id": 1001, "product": "Wireless Mouse", "total": 89.97, ... },
-    { "order_id": 1002, "product": "USB-C Hub", "total": 90.00, ... },
-    ...
-  ]
-
-$ <span class="green">evtool csv-pretty orders.csv</span>
-
-  ┌──────────┬──────────────────────────┬──────────────┬─────────┐
-  │ order_id │ product                  │ category     │  total  │
-  ├──────────┼──────────────────────────┼──────────────┼─────────┤
-  │ 1001     │ Wireless Mouse           │ Electronics  │  89.97  │
-  │ 1002     │ USB-C Hub                │ Electronics  │  90.00  │
-  │ 1003     │ Desk Lamp                │ Home Office  │  89.99  │
-  │ ...      │ ...                      │ ...          │  ...    │
-  │ 1015     │ Noise Cancelling Headph. │ Electronics  │ 999.96  │
-  └──────────┴──────────────────────────┴──────────────┴─────────┘</div>
-  </div>
-
-  <!-- ════════ BONUS ════════ -->
-  <div class="step" style="border-color: var(--purple);">
-    <div class="step-num" style="background: var(--purple);">★</div>
-    <h2>Bonus: Find the right tool</h2>
-    <p>
-      Forgot a tool name? Fuzzy-search all 260 tools by name or description.
-    </p>
-    <div class="terminal-block">$ <span class="green">evtool search json</span>
-
-  18 matching tools:
-    ● json2csv        JSON to CSV converter with nested key flattening
-    ● json2yaml       Convert JSON to YAML
-    ● json-merge      Deep-merge multiple JSON files
-    ● json-pretty     Pretty-print JSON with syntax highlighting
-    ● json-schema     JSON Schema validator
-    ● json-sort       Sort JSON keys alphabetically
-    ● json-stats      JSON structure analysis
-    ● json-validate   Validate JSON file format
-    ● json2env        Convert JSON to .env format
-    ● ... and 9 more</div>
-    <div class="tip">
-      <strong>🔍 evtool search &lt;keyword&gt;</strong> — instantly finds tools across all 254 commands. Try "csv", "net", "crypto", "git", "text".
+  <div class="scenario">
+    <h3><span class="emoji">📈</span> Chart data in the terminal</h3>
+    <p class="context">You need a quick bar chart of monthly revenue. No dashboard tool needed.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool csv-chart sales_2024.csv --x month --y revenue --type bar<br>
+      <span class="output">                Monthly Revenue 2024</span><br>
+      <span class="output">  Jan ████████████████████████████ $412,394</span><br>
+      <span class="output">  Feb █████████████████████████      $389,201</span><br>
+      <span class="output">  Mar ██████████████████████████████ $445,812</span><br>
+      <span class="output">  Apr ████████████████████████████ $428,093</span><br>
+      <span class="output">  May ███████████████████████████████ $467,214</span><br>
+      <span class="output">  ...</span><br>
+      <span class="prompt">$</span> <span class="comment"># Or pipe any data for a quick chart:</span><br>
+      <span class="prompt">$</span> echo '1,3,2,5,4,7,6,9,8' | evtool chart-cli<br>
     </div>
   </div>
 
-  <!-- ════════ FULL PIPELINE ════════ -->
-  <div class="step" style="border-color: var(--yellow);">
-    <div class="step-num" style="background: var(--yellow); color: var(--bg);">▶</div>
-    <h2>The whole pipeline in one line</h2>
-    <p>
-      From raw CSV to filtered, sorted, visualized output — one chained command:
-    </p>
-    <div class="terminal-block"><span class="prompt">$</span> <span class="green">evtool csv-stats orders.csv && \</span>
-<span class="green">  evtool csv-filter orders.csv --where 'total > 100' | \</span>
-<span class="green">  evtool csv-sort --by total --desc | \</span>
-<span class="green">  evtool csv-pretty</span></div>
-    <p style="color: var(--text-secondary); font-size: 0.9rem;">
-      That's 4 tools, 1 pipeline, zero imports, zero config, zero dependencies.
-    </p>
+  <div class="scenario">
+    <h3><span class="emoji">🔄</span> Convert between CSV, JSON, and SQL</h3>
+    <p class="context">Your API returns JSON, but your reporting tool needs CSV. One command.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool json-to-csv api_response.json &gt; report.csv<br>
+      <span class="prompt">$</span> evtool csv-to-json report.csv &gt; back_to_api.json<br>
+      <span class="prompt">$</span> <span class="comment"># Validate before processing:</span><br>
+      <span class="prompt">$</span> evtool json-validate huge_file.json && evtool csv-validate data.csv<br>
+    </div>
+    <p class="context">No more copy-pasting through google sheets. Data transformation in one step.</p>
   </div>
 
-  <!-- ════════ CTA ════════ -->
-  <div style="text-align: center; padding: 3rem 0;">
-    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
-      Ready to explore all 260 tools?
-    </p>
-    <a href="../docs/search.html" class="btn">🔍 Browse All Tools</a>
-    <a href="use-cases.html" class="btn btn-secondary">📋 More Use Cases</a>
-    <a href="../pricing.html" class="btn btn-secondary">💰 Pricing</a>
+  <div class="scenario">
+    <h3><span class="emoji">🧹</span> Clean messy text data</h3>
+    <p class="context">A log file with duplicate lines, mixed whitespace, and ANSI escape codes.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool dedup-lines messy.log &gt; clean.log<br>
+      <span class="prompt">$</span> evtool ansi-strip clean.log &gt; readable.txt<br>
+      <span class="prompt">$</span> evtool text-stats readable.txt<br>
+      <span class="output">Lines: 1,204 | Words: 28,491 | Chars: 342,100</span><br>
+      <span class="output">Avg line length: 284 chars | Longest line: 2,847 chars</span><br>
+      <span class="prompt">$</span> evtool grep-pro 'error\|timeout' readable.txt --color<br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">📦</span> Data analyst tool cheat sheet</h3>
+    <div class="tool-grid">
+      <div class="tool-chip"><span class="name">csv-stats</span> <span class="desc">Full column stats</span></div>
+      <div class="tool-chip"><span class="name">csv-filter</span> <span class="desc">SQL-like queries</span></div>
+      <div class="tool-chip"><span class="name">csv-sort</span> <span class="desc">Sort by column</span></div>
+      <div class="tool-chip"><span class="name">csv-join</span> <span class="desc">Merge CSVs by key</span></div>
+      <div class="tool-chip"><span class="name">csv-chart</span> <span class="desc">Bar/line charts</span></div>
+      <div class="tool-chip"><span class="name">json-to-csv</span> <span class="desc">Convert formats</span></div>
+      <div class="tool-chip"><span class="name">csv-to-json</span> <span class="desc">Convert formats</span></div>
+      <div class="tool-chip"><span class="name">dedup-lines</span> <span class="desc">Remove duplicates</span></div>
+      <div class="tool-chip"><span class="name">text-stats</span> <span class="desc">Text statistics</span></div>
+      <div class="tool-chip"><span class="name">json-pretty</span> <span class="desc">Pretty-print JSON</span></div>
+      <div class="tool-chip"><span class="name">json-validate</span> <span class="desc">Validate JSON</span></div>
+      <div class="tool-chip"><span class="name">csv-validate</span> <span class="desc">Validate CSV</span></div>
+    </div>
   </div>
 
 </div>
+
+<!-- ============================================================ -->
+<!-- DEVOPS / SYSADMIN -->
+<div id="role-devops" class="role-section">
+
+  <div class="scenario">
+    <h3><span class="emoji">🖥️</span> One-command system health check</h3>
+    <p class="context">Walk up to a server and need to know everything in 10 seconds.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool system-info && evtool disk-usage && evtool mem-info<br>
+      <span class="output">Host: web-03 | Uptime: 47d 6h | Load: 0.8, 0.6, 0.4</span><br>
+      <span class="output">CPU: Intel Xeon 8-core @ 2.8 GHz | Usage: 34%</span><br>
+      <span class="output">RAM: 32 GB total, 18.7 GB used (58%)</span><br>
+      <span class="output">Disk /: 47% used (234 GB / 500 GB)</span><br>
+      <span class="output">Disk /data: 82% used (1.6 TB / 2.0 TB) <span class="highlight">⚠️</span></span><br>
+    </div>
+    <p class="context">No htop, no btm, no ncdu. Three commands, five seconds, full picture.</p>
+    <a class="try-it" href="../">evtool system-info →</a>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🌐</span> Network diagnostics in one command</h3>
+    <p class="context">A microservice is unreachable. Is it DNS? SSL? The port? A firewall? Find out fast.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool dns-lookup api.example.com<br>
+      <span class="output">api.example.com → 203.0.113.42 (TTL: 300)</span><br>
+      <span class="prompt">$</span> evtool port-scan api.example.com --ports 443,8443,3000<br>
+      <span class="output">443:  open  (TLS handshake OK)</span><br>
+      <span class="output">8443: open  </span><br>
+      <span class="output">3000: <span class="highlight">closed</span> (connection refused)</span><br>
+      <span class="prompt">$</span> evtool ssl-check api.example.com<br>
+      <span class="output">Certificate: OK (expires 2025-12-15, 174 days)</span><br>
+      <span class="output">Issuer: Let's Encrypt | Subject: *.example.com</span><br>
+      <span class="output">TLS 1.3: ✅ | HSTS: ✅ | Chain: valid</span><br>
+      <span class="prompt">$</span> evtool http-get https://api.example.com/health --timeout 5<br>
+      <span class="output">200 OK | 342 bytes | 47ms</span><br>
+    </div>
+    <p class="context">Replaces: nmap + openssl + curl + dig + nc. Zero dependencies, works on any server.</p>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🔍</span> Find and kill a process on a port</h3>
+    <p class="context">Port 3000 is in use but you don't know what's running there. Classic devops moment.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool port-scan localhost --ports 3000<br>
+      <span class="output">3000: open (127.0.0.1:3000 — PID: 18342)</span><br>
+      <span class="prompt">$</span> evtool process-list | grep 18342<br>
+      <span class="output">18342 node /app/server.js</span><br>
+      <span class="prompt">$</span> evtool kill-port 3000<br>
+      <span class="output">Killed process 18342 (node) on port 3000</span><br>
+      <span class="prompt">$</span> <span class="comment"># Or with a single command:</span><br>
+      <span class="prompt">$</span> evtool port-scan localhost --ports 3000 --kill<br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">📊</span> Real-time system monitor</h3>
+    <p class="context">You want a live dashboard without installing a heavy monitoring stack.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool sysmon<br>
+      <span class="output">┌──────────────────────────────────────────────┐</span><br>
+      <span class="output">│  CPU ████████░░░░░░░░░░│  42%   ↑ 2.1       │</span><br>
+      <span class="output">│  RAM ██████████████░░░░│  68%   18.2/26.8 GB │</span><br>
+      <span class="output">│  DSK ██████████░░░░░░░░│  47%   234/500 GB   │</span><br>
+      <span class="output">│  NET ↑ 1.2 MB/s  ↓ 4.7 MB/s                   │</span><br>
+      <span class="output">│  PIDs: 283  │  Uptime: 47d 6h               │</span><br>
+      <span class="output">└──────────────────────────────────────────────┘</span><br>
+      <span class="output">  Press Ctrl+C to exit (refreshes every 2s)</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🐳</span> Container and Docker helpers</h3>
+    <p class="context">Clean up stale Docker resources without remembering flags.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool docker-clean<br>
+      <span class="output">Removed 12 stopped containers</span><br>
+      <span class="output">Removed 8 dangling images (1.2 GB freed)</span><br>
+      <span class="output">Removed 34 unused volumes</span><br>
+      <span class="prompt">$</span> evtool cron-pretty /etc/crontab<br>
+      <span class="output">Every day at 02:00 — /usr/bin/backup.sh</span><br>
+      <span class="output">Every Monday at 09:00 — /usr/bin/clean-logs</span><br>
+      <span class="output">Every 15 min — /usr/bin/healthcheck</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">📁</span> DevOps tool cheat sheet</h3>
+    <div class="tool-grid">
+      <div class="tool-chip"><span class="name">system-info</span> <span class="desc">Full server info</span></div>
+      <div class="tool-chip"><span class="name">disk-usage</span> <span class="desc">Disk space per mount</span></div>
+      <div class="tool-chip"><span class="name">mem-info</span> <span class="desc">RAM details</span></div>
+      <div class="tool-chip"><span class="name">sysmon</span> <span class="desc">Live TUI monitor</span></div>
+      <div class="tool-chip"><span class="name">port-scan</span> <span class="desc">Port status + kill</span></div>
+      <div class="tool-chip"><span class="name">dns-lookup</span> <span class="desc">DNS resolution</span></div>
+      <div class="tool-chip"><span class="name">ssl-check</span> <span class="desc">TLS cert check</span></div>
+      <div class="tool-chip"><span class="name">kill-port</span> <span class="desc">Kill process by port</span></div>
+      <div class="tool-chip"><span class="name">http-get</span> <span class="desc">HTTP request</span></div>
+      <div class="tool-chip"><span class="name">process-list</span> <span class="desc">Running processes</span></div>
+      <div class="tool-chip"><span class="name">docker-clean</span> <span class="desc">Clean Docker</span></div>
+      <div class="tool-chip"><span class="name">cron-pretty</span> <span class="desc">Human cron view</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- DEVELOPER -->
+<div id="role-developer" class="role-section">
+
+  <div class="scenario">
+    <h3><span class="emoji">🔐</span> Generate secure secrets instantly</h3>
+    <p class="context">Need a database password, API key, or session secret? Generate one with 256 bits of entropy.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool passgen 32<br>
+      <span class="output">aK9$mP2#xR7&vB4@nQ6*wE1%tY3+uF8</span><br>
+      <span class="prompt">$</span> <span class="comment"># More entropy:</span><br>
+      <span class="prompt">$</span> evtool passgen 64 --symbols --entropy<br>
+      <span class="output">Generated: 64 chars | Entropy: 384 bits</span><br>
+      <span class="prompt">$</span> <span class="comment"># Hash a file to verify integrity:</span><br>
+      <span class="prompt">$</span> evtool hash-file release.tar.gz<br>
+      <span class="output">SHA256: a8f3b2c1d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🏷️</span> Quick Git repo analysis</h3>
+    <p class="context">How healthy is your repository? Who commits the most? Which files change most often?</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool git-stats --top 5<br>
+      <span class="output">Commits: 847 | Authors: 12 | First commit: 2023-08-14</span><br>
+      <span class="output">────────────────────────────────────────────────</span><br>
+      <span class="output">alice     █████████████████████ 342 commits (40%)</span><br>
+      <span class="output">bob       ████████████          189 commits (22%)</span><br>
+      <span class="output">charlie   ████████               134 commits (16%)</span><br>
+      <span class="output">...</span><br>
+      <span class="prompt">$</span> evtool git-branch-clean<br>
+      <span class="output">Branches merged into main (safe to delete):</span><br>
+      <span class="output">  feature/payments (last commit: 2024-09-12)</span><br>
+      <span class="output">  fix/login-flow   (last commit: 2024-10-01)</span><br>
+      <span class="output">  8 stale branches found, 2.3 MB of refs</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🔧</span> Code quality and debugging</h3>
+    <p class="context">Find code smells, count lines of code, format JSON, or test an API endpoint — all from the terminal.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool code-count src/<br>
+      <span class="output">Language    Files     Lines    Code    Comments  Blanks</span><br>
+      <span class="output">──────────  ───────  ───────  ──────  ────────  ──────</span><br>
+      <span class="data">Python      42       12,847   9,234   2,104     1,509</span><br>
+      <span class="data">TypeScript  18       4,291    3,512   240       539</span><br>
+      <span class="data">YAML        7        384      384     0         0</span><br>
+      <span class="prompt">$</span> evtool smellfinder src/ --threshold 50<br>
+      <span class="output">⚠️  src/api/handler.py:142 — Function too long (84 lines, threshold 50)</span><br>
+      <span class="output">⚠️  src/db/query.py:67 — Too many parameters (8, max 5)</span><br>
+      <span class="output">⚠️  src/utils.py:23 — Missing docstring</span><br>
+      <span class="prompt">$</span> evtool api-tester https://api.example.com/users --method POST --body '{"name":"test"}'<br>
+      <span class="output">201 Created | 143ms | Response: {"id": 42, "name": "test"}</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🔗</span> Developer tool cheat sheet</h3>
+    <div class="tool-grid">
+      <div class="tool-chip"><span class="name">passgen</span> <span class="desc">Secure password gen</span></div>
+      <div class="tool-chip"><span class="name">hash-file</span> <span class="desc">SHA256 checksum</span></div>
+      <div class="tool-chip"><span class="name">git-stats</span> <span class="desc">Git repo analysis</span></div>
+      <div class="tool-chip"><span class="name">git-branch-clean</span> <span class="desc">Clean stale branches</span></div>
+      <div class="tool-chip"><span class="name">code-count</span> <span class="desc">Lines of code</span></div>
+      <div class="tool-chip"><span class="name">smellfinder</span> <span class="desc">Code quality check</span></div>
+      <div class="tool-chip"><span class="name">json-pretty</span> <span class="desc">Format JSON</span></div>
+      <div class="tool-chip"><span class="name">json-validate</span> <span class="desc">Validate JSON</span></div>
+      <div class="tool-chip"><span class="name">base64</span> <span class="desc">Base64 encode/decode</span></div>
+      <div class="tool-chip"><span class="name">hex-dump</span> <span class="desc">Hex view</span></div>
+      <div class="tool-chip"><span class="name">regex-find</span> <span class="desc">Regex search</span></div>
+      <div class="tool-chip"><span class="name">api-tester</span> <span class="desc">Test HTTP endpoints</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- SECURITY -->
+<div id="role-security" class="role-section">
+
+  <div class="scenario">
+    <h3><span class="emoji">🔓</span> Recon a target in minutes</h3>
+    <p class="context">Pen testing engagement? Start with passive recon: DNS, SSL, open ports, WHOIS.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool dns-lookup example.com --all<br>
+      <span class="output">A: 93.184.216.34</span><br>
+      <span class="output">AAAA: 2606:2800:220:1:248:1893:25c8:1946</span><br>
+      <span class="output">MX: alt1.aspmx.l.google.com (priority 5)</span><br>
+      <span class="output">MX: aspmx.l.google.com (priority 1)</span><br>
+      <span class="output">TXT: v=spf1 include:_spf.google.com ~all</span><br>
+      <span class="prompt">$</span> evtool ssl-check example.com --details<br>
+      <span class="output">Certificate issued by: DigiCert TLS RSA SHA256 2020 CA1</span><br>
+      <span class="output">Valid: 2024-12-01 to 2025-12-01 (365 days)</span><br>
+      <span class="output">SANs: example.com, *.example.com</span><br>
+      <span class="output">Key: RSA 2048 | SIG: SHA256-RSA | Grade: A</span><br>
+      <span class="prompt">$</span> evtool whois example.com --compact<br>
+      <span class="output">Registrar: Internet Corporation for Assigned Names and Numbers</span><br>
+      <span class="output">Created: 1992-12-06 | Expires: 2030-12-05</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🛡️</span> Port scan without compiling nmap</h3>
+    <p class="context">Check which ports are open on a target. Pure Python, no root required for TCP connect scan.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool port-scan 10.0.0.24 --range 1-1000 --timeout 2<br>
+      <span class="output">Scanning 10.0.0.24:1-1000 (1000 ports, timeout 2s)...</span><br>
+      <span class="output">22:    open (SSH)</span><br>
+      <span class="output">80:    open (HTTP)</span><br>
+      <span class="output">443:   open (HTTPS)</span><br>
+      <span class="output">3306:  open (MySQL) <span class="highlight">⚠️</span></span><br>
+      <span class="output">8080:  open (HTTP-Alt)</span><br>
+      <span class="output">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span><br>
+      <span class="output">5 open | 995 closed | 0 filtered</span><br>
+      <span class="output">Duration: 4.2s</span><br>
+    </div>
+    <p class="context">No nmap dependency. No root. Works on Windows, Linux, macOS. Perfect for quick security audits.</p>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🔑</span> Hash, encrypt, and verify files</h3>
+    <p class="context">File integrity checks after download. Generate secure tokens. Base64/hex encoding.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool hash-file suspicious_binary.bin --all<br>
+      <span class="output">MD5:    d41d8cd98f00b204e9800998ecf8427e</span><br>
+      <span class="output">SHA1:   da39a3ee5e6b4b0d3255bfef95601890afd80709</span><br>
+      <span class="output">SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span><br>
+      <span class="prompt">$</span> evtool base64 --encode secret.txt &gt; secret.b64<br>
+      <span class="prompt">$</span> evtool hex-dump binary.bin | head -5<br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">📋</span> Security tool cheat sheet</h3>
+    <div class="tool-grid">
+      <div class="tool-chip"><span class="name">port-scan</span> <span class="desc">TCP port scanner</span></div>
+      <div class="tool-chip"><span class="name">dns-lookup</span> <span class="desc">DNS recon</span></div>
+      <div class="tool-chip"><span class="name">ssl-check</span> <span class="desc">TLS cert audit</span></div>
+      <div class="tool-chip"><span class="name">whois</span> <span class="desc">Domain registration</span></div>
+      <div class="tool-chip"><span class="name">hash-file</span> <span class="desc">Multi-hash checksum</span></div>
+      <div class="tool-chip"><span class="name">base64</span> <span class="desc">Encode/decode</span></div>
+      <div class="tool-chip"><span class="name">hex-dump</span> <span class="desc">Hex analysis</span></div>
+      <div class="tool-chip"><span class="name">passgen</span> <span class="desc">Secure token gen</span></div>
+      <div class="tool-chip"><span class="name">http-get</span> <span class="desc">HTTP recon</span></div>
+      <div class="tool-chip"><span class="name">kill-port</span> <span class="desc">Close open ports</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- FUN & CREATIVE -->
+<div id="role-fun" class="role-section">
+
+  <div class="scenario">
+    <h3><span class="emoji">🎨</span> ASCII art without figlet/boxes</h3>
+    <p class="context">Need a banner for your README, a cow in your terminal, or a matrix rain screensaver? No extra installs.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool banner 'SHIP IT'<br>
+      <span class="output"> ███████╗██╗  ██╗██╗██████╗ ██╗████████╗</span><br>
+      <span class="output"> ██╔════╝██║  ██║██║██╔══██╗██║╚══██╔══╝</span><br>
+      <span class="output"> ███████╗███████║██║██████╔╝██║   ██║</span><br>
+      <span class="output"> ╚════██║██╔══██║██║██╔═══╝ ██║   ██║</span><br>
+      <span class="output"> ███████║██║  ██║██║██║     ██║   ██║</span><br>
+      <span class="output"> ╚══════╝╚═╝  ╚═╝╚═╝╚═╝     ╚═╝   ╚═╝</span><br>
+      <span class="prompt">$</span> evtool cowsay 'Hello, world!'<br>
+      <span class="output"> _________________</span><br>
+      <span class="output">&lt; Hello, world! &gt;</span><br>
+      <span class="output"> -----------------</span><br>
+      <span class="output">        \   ^__^</span><br>
+      <span class="output">         \  (oo)\_______</span><br>
+      <span class="output">            (__)\       )\/\</span><br>
+      <span class="output">                ||----w |</span><br>
+      <span class="output">                ||     ||</span><br>
+      <span class="prompt">$</span> evtool matrix-rain<br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🎲</span> CLI games and utilities</h3>
+    <p class="context">Quick fun: countdown timer, dice roll, fortune cookie, pomodoro timer, or a random joke.</p>
+    <div class="cmd-block">
+      <span class="prompt">$</span> evtool fortune<br>
+      <span class="output">"The best way to predict the future is to implement it."</span><br>
+      <span class="prompt">$</span> evtool dice-roll 6<br>
+      <span class="output">🎲 4</span><br>
+      <span class="prompt">$</span> evtool pomodoro --work 25 --break 5<br>
+      <span class="output">🍅 Work session started (25:00) — focus!</span><br>
+      <span class="prompt">$</span> evtool weather London<br>
+      <span class="output">London, UK:  14°C ☁️  Overcast | Humidity: 72% | Wind: 12 km/h</span><br>
+      <span class="prompt">$</span> evtool crypto-price bitcoin<br>
+      <span class="output">Bitcoin (BTC): $72,431 ▲ +2.3% (24h)</span><br>
+    </div>
+  </div>
+
+  <div class="scenario">
+    <h3><span class="emoji">🌈</span> Fun tool cheat sheet</h3>
+    <div class="tool-grid">
+      <div class="tool-chip"><span class="name">banner</span> <span class="desc">ASCII banners</span></div>
+      <div class="tool-chip"><span class="name">figlet</span> <span class="desc">FIGlet fonts</span></div>
+      <div class="tool-chip"><span class="name">cowsay</span> <span class="desc">Cowsay quotes</span></div>
+      <div class="tool-chip"><span class="name">rainbow</span> <span class="desc">Rainbow text</span></div>
+      <div class="tool-chip"><span class="name">matrix-rain</span> <span class="desc">Matrix screensaver</span></div>
+      <div class="tool-chip"><span class="name">qrcode</span> <span class="desc">Generate QR code</span></div>
+      <div class="tool-chip"><span class="name">emoji</span> <span class="desc">Emoji finder</span></div>
+      <div class="tool-chip"><span class="name">weather</span> <span class="desc">Weather report</span></div>
+      <div class="tool-chip"><span class="name">crypto-price</span> <span class="desc">Crypto prices</span></div>
+      <div class="tool-chip"><span class="name">joke</span> <span class="desc">Random joke</span></div>
+      <div class="tool-chip"><span class="name">fortune</span> <span class="desc">Fortune cookie</span></div>
+      <div class="tool-chip"><span class="name">pomodoro</span> <span class="desc">Focus timer</span></div>
+      <div class="tool-chip"><span class="name">countdown</span> <span class="desc">Countdown timer</span></div>
+      <div class="tool-chip"><span class="name">dice-roll</span> <span class="desc">Dice roller</span></div>
+      <div class="tool-chip"><span class="name">calendar</span> <span class="desc">Terminal calendar</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to install?</h2>
+  <p>261 tools. One command. Zero dependencies.</p>
+  <a href="https://pypi.org/project/evolver-tools/" class="btn-large" target="_blank">pip install evolver-tools</a>
+  <p style="margin-top:1rem;font-size:0.8rem;color:var(--text-secondary);">
+    Works on Linux · macOS · Windows · WSL · Docker · CI/CD
+  </p>
+</div>
+
+</div>
+
+<footer>
+  <p>Built by <a href="https://evolver-dev.github.io/evolver-tools/story.html">EVOLVER</a> — an autonomous AI agent.  |  <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>  ·  <a href="https://pypi.org/project/evolver-tools/">PyPI</a>  ·  <a href="../">Home</a></p>
+</footer>
+
+<script>
+function switchRole(name) {
+  document.querySelectorAll('.role-section').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.role-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('role-' + name).classList.add('active');
+  document.querySelector(`.role-tab[onclick*="'${name}'"]`).classList.add('active');
+}
+</script>
 
 </body>
 </html>
