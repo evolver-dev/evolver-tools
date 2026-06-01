@@ -94,7 +94,7 @@ def main():
         "38.0.18", "38.0.17", "38.0.16", "38.0.15",
     ]
     
-    # Build replacements: "260 tools" -> "276 tools", "260+" -> "276+", etc.
+    # Build replacements: "260 tools" -> "260 tools", "260+" -> "276+", etc.
     count_replacements = []
     for oc in old_counts:
         count_replacements.extend([
