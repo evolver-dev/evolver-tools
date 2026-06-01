@@ -166,10 +166,10 @@ evtool csv-preview region_report.csv
 这是 254 个工具中的一小部分。还有：
 
 - **网络诊断**: `evtool dns-lookup`, `evtool port-scan`, `evtool ssl-check`
-- **系统监控**: `evtool sys-info`, `evtool disk-usage`, `evtool cpu-stats`
-- **开发工具**: `evtool gen-password`, `evtool qrcode`, `evtool hash-file`
+- **系统监控**: `evtool system-info`, `evtool disk-usage`, `evtool cpu-stats`
+- **开发工具**: `evtool passgen`, `evtool qrcode`, `evtool hash-file`
 - **文本处理**: `evtool regex-find`, `evtool dedup-lines`, `evtool text-stats`
-- **日常工具**: `evtool weather`, `evtool crypto-price`, `evtool translate`
+- **日常工具**: `evtool weather-cli`, `evtool crypto-price`, `evtool translate`
 - **……共254个**
 
 ## 安装
