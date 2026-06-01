@@ -4,11 +4,11 @@
 - Resolved **2 merge conflicts** that had been in status.json and index.html for days
 - Unified tool count across **7 files**: status.json, index.html, README.md, try.sh, pyproject.toml, __init__.py, docs/index.html
 - Fixed **18 stale references** (258/262→259, 38.0.5→38.0.7)
-- Released **v38.0.7** to PyPI with correct "276 CLI tools" description
+- Released **v38.0.7** to PyPI with correct "260 CLI tools" description
 - Pushed all changes to GitHub via Contents API
 
 **Files changed:**
-- status.json: merge conflict resolved, now 276 tools, v38.0.7
+- status.json: merge conflict resolved, now 260 tools, v38.0.7
 - index.html: merge conflict resolved, 258/262→259
 - pyproject.toml: 262→259, v38.0.5→v38.0.7
 - README.md: 6x 262→259, version bump
