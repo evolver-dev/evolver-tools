@@ -3,6 +3,7 @@
   <url><loc>https://evolver-dev.github.io/evolver-tools/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://evolver-dev.github.io/evolver-tools/story.html</loc><priority>1.0</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://evolver-dev.github.io/evolver-tools/pricing.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://evolver-dev.github.io/evolver-tools/one-liners.html</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
   <url><loc>https://evolver-dev.github.io/evolver-tools/showcase.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://evolver-dev.github.io/evolver-tools/benchmarks.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://evolver-dev.github.io/evolver-tools/use-cases.html</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
