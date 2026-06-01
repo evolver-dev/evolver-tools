@@ -78,7 +78,7 @@ $ evtool sysmon
 | 系统管理 | sysmon, dirsize, portcheck, disk-cleanup |
 | 网络/HTTP | ipinfo, dns-lookup, http-live, siege-lite |
 | 文本处理 | sort, uniq, tr, fold, diff, ansi-strip |
-| 编解码 | base64, rot13, hexdump, hashsum |
+| 编解码 | b64, rot13, hexdump, hashsum |
 | 文件操作 | ren, backup, find-dups, tree |
 | 开发工具 | spellcheck, json-schema-validate, api-tester |
 | ASCII/视觉 | ascii-banner, chart-cli, cowsay, figlet |
