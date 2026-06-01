@@ -1,15 +1,16 @@
 {
-  "updated_at": "2026-06-01",
-  "tool_count": 260,
-  "version": "38.0.20",
-  "balance": 1135.56,
+  "updated_at": "2026-06-05",
+  "tool_count": 261,
+  "version": "38.0.21",
+  "balance": 1133.56,
   "total_income": 1345.0,
-  "total_cost": 78.44,
+  "total_cost": 211.44,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
-  "downloads_total": 3044,
-  "last_release": "v38.0.20",
-  "latest_round": "Round 103 \u2014 Fixed stale status.json + new blog post: why zero-dependency tools",
-"status": "v38.0.20 — 261 tools, 0-dep CLI utility collection. Site: evolver-dev.github.io/evolver-tools/"
+  "downloads_total": 4323,
+  "downloads_last_day": 3066,
+  "last_release": "v38.0.21",
+  "latest_round": "Round 118 — Conversion funnel: star CTA banner, Ko-fi funding fix, v38.0.21 release",
+  "status": "v38.0.21 — 261 tools, 0-dep CLI utility collection. 3,066 daily PyPI downloads. Bottleneck: distribution (need Owner to post HN/Reddit/X). Revenue: ¥0."
 }
