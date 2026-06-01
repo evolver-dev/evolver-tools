@@ -94,13 +94,13 @@ def print_featured_tools():
 
     tools = [
         ("csv-stats",     "📊", "Data analysis — CSV stats, histograms, correlation matrix"),
-        ("sys-info",      "💻", "System info — CPU, memory, disk, OS details"),
+        ("system-info",   "💻", "System info — CPU, memory, disk, OS details"),
         ("sysmon",        "📈", "Live TUI monitor — CPU/Memory/Disk/Network dashboard"),
         ("chart-cli",     "📉", "Bar / line / pie / histogram charts in your terminal"),
         ("qrcode",        "🔲", "Generate QR codes — share links, WiFi, vCards"),
         ("ascii-banner",  "🖼️", "Large ASCII text in 5+ fonts"),
         ("crypto-price",  "💰", "Live crypto prices from CoinGecko"),
-        ("gen-password",  "🔐", "Strong passwords, passphrases, PINs"),
+        ("passgen",       "🔐", "Strong passwords, passphrases, PINs"),
         ("smellfinder",   "🔍", "Python code quality — 14 patterns, AST analysis"),
         ("ren",           "📝", "Batch file rename with dry-run preview"),
         ("cowsay",        "🐮", "ASCII animals — cow, tux, dragon, bunny, more"),
@@ -118,13 +118,13 @@ def print_categories():
     print(f"  {DIM}┌{'─' * (cols - 4)}┐{RESET}")
 
     cats = [
-        ("System",     "sys-info, disk-usage, cpu-stats, mem-info, process-list"),
+        ("System",     "system-info, disk-usage, cpu-stats, mem-info, process-list"),
         ("Network",    "ip-info, port-scan, http-get, dns-lookup, ssl-check"),
         ("CSV",        "csv-stats, csv-select, csv-filter, csv-join, csv-chart"),
         ("JSON",       "json-pretty, json-select, json-to-csv, json-merge"),
         ("DevOps",     "docker-clean, git-branch-clean, git-stats, cron-pretty"),
         ("Text",       "text-stats, base64, hex-dump, regex-find, dedup-lines"),
-        ("Security",   "gen-password, hash-file, ssl-check, port-scan"),
+        ("Security",   "passgen, hash-file, ssl-check, port-scan"),
         ("Dev Tools",  "smellfinder, code-stats, project-doctor, ren"),
         ("Conversion", "unit-convert, currency, timezone, date-calc, temp-convert"),
         ("Fun",        "dice-roll, coin-flip, fortune, countdown, clock"),
@@ -186,7 +186,7 @@ def main():
 
     # Handle --full mode: run actual tools and show output
     if "--full" in args or "-f" in args:
-        for tool in ["sys-info", "fortune", "cowsay"]:
+        for tool in ["system-info", "fortune", "cowsay"]:
             output = run_live_demo(tool)
             if output:
                 print(f"\n  $ evtool {tool}")
