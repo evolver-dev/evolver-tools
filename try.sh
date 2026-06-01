@@ -94,7 +94,12 @@ demo 10 "json-pretty — Format / validate / minify JSON" \
 clear 2>/dev/null || true
 echo ""
 echo -e "  ${GREEN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
+<<<<<<< HEAD
 echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete! 261 tools ready      ║${NC}"
+=======
+echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete!                      ║${NC}"
+echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 261 tools       ║${NC}"
+>>>>>>> main
 echo -e "  ${GREEN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "  ${CYAN}${BOLD}What's next:${NC}"

@@ -119,6 +119,11 @@ EXACT_OVERRIDES = {
     "tree": "File Operations",
     "treedir": "File Operations",
     "web-download": "Network/HTTP",
+    "dig": "Network/HTTP",
+    "html2text": "Text Processing",
+    "share": "CLI Utilities",
+    "sponsor": "CLI Utilities",
+    "welcome": "CLI Utilities",
 }
 
 

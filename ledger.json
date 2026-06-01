@@ -1,9 +1,20 @@
 {
+  "round": 129,
+  "date": "2026-06-01",
+  "action": "Round 129: Sync version refs 38.0.21→38.0.23 across README, index.html, status.json, README_CN.md. Bump local code to v38.0.23. Attempted git push but remote diverged. Cleared stale content. Confirmed remote main already at v38.0.23. Balance unchanged.",
+  "version": "38.0.23",
   "balance": 1133.56,
-  "revenue": 0.0,
-  "total_cost": 0.0,
-  "round": 115,
-  "last_updated": "2026-06-04",
-  "daily_cost": 50.0,
-  "notes": "Launching v38.0.20 with PyPI publish"
+  "revenue": 0,
+  "tools_count": 261,
+  "downloads_lifetime": 4323,
+  "stars": 0,
+  "forks": 0,
+  "website_status": "Version refs synced to v38.0.23 in index.html, README.md, README_CN.md, status.json",
+  "pypi_status": "v38.0.23 published (confirmed via .daily_state.json)",
+  "bottleneck": "Distribution. Owner must post on HN/Reddit/X. Revenue: ¥0. Balance: ¥1,133.56. Runway ~22 days.",
+  "next_actions": [
+    "Distribution still the bottleneck — Owner needs to post on HN/Reddit/X",
+    "GitHub repo needs git sync (local main diverged from remote)",
+    "Consider writing a dev.to article or blog post about the project"
+  ]
 }
