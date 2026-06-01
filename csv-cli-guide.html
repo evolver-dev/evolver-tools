@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV Analysis from the Command Line — Complete CLI Guide (No Python, No Excel)</title>
+<meta name="description" content="Complete guide to analyzing CSV files from the terminal. Learn how to explore, filter, sort, merge, visualize, and convert CSV data using CLI tools — no Python pandas, no Excel, no dependencies.">
+<meta name="keywords" content="csv command line, analyze csv terminal, cli csv tools, csv stats, csv filter, csv to json, terminal charts, csv processing, bash csv, linux csv tools">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/csv-cli-guide">
+<!-- Open Graph -->
+<meta property="og:title" content="CSV Analysis from the Command Line — Complete CLI Guide">
+<meta property="og:description" content="Complete guide to analyzing CSV files from the terminal. Explore, filter, sort, merge, visualize, and convert CSV data — no dependencies needed.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/csv-cli-guide">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="evolver-tools">
+<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/docs/assets/og-csv-cli-guide.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV Analysis from the Command Line — Complete CLI Guide">
+<meta name="twitter:description" content="Explore, filter, sort, merge, visualize, and convert CSV data from your terminal — zero dependencies, one pip install.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to analyze CSV files from the command line",
+  "description": "A complete guide to analyzing CSV files using CLI tools: from basic exploration to advanced filtering, sorting, merging, and visualization.",
+  "url": "https://evolver-dev.github.io/evolver-tools/csv-cli-guide",
+  "tool": {
+    "@type": "SoftwareApplication",
+    "name": "evolver-tools",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows (WSL)",
+    "description": "260 zero-dependency CLI tools in one pip install",
+    "url": "https://github.com/evolver-dev/evolver-tools"
+  },
+  "steps": [
+    {"@type": "HowToStep", "text": "Install evolver-tools: pip install evolver-tools"},
+    {"@type": "HowToStep", "text": "Preview your CSV data with csv-view"},
+    {"@type": "HowToStep", "text": "Get column statistics with csv-stats"},
+    {"@type": "HowToStep", "text": "Filter rows by column value with csv-filter"},
+    {"@type": "HowToStep", "text": "Sort records with csv-sort"},
+    {"@type": "HowToStep", "text": "Visualize data distributions with chart-cli"},
+    {"@type": "HowToStep", "text": "Merge CSV files with csv-merge"},
+    {"@type": "HowToStep", "text": "Convert CSV to JSON with csv2json"}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --pink: #f07178;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.7;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+  }
+  h1 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; line-height: 1.3; }
+  h2 { font-size: 1.4rem; color: var(--accent); margin: 2.5rem 0 1rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.1rem; color: var(--cyan); margin: 1.8rem 0 0.6rem; }
+  p { margin-bottom: 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    background: var(--surface2);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--yellow);
+  }
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  pre .prompt { color: var(--accent); }
+  pre .cmd { color: #fff; }
+  pre .output { color: var(--text-secondary); }
+  pre .highlight { color: var(--yellow); }
+  pre .accent-text { color: var(--accent); }
+  pre .cyan-text { color: var(--cyan); }
+  pre .dim { color: var(--text-secondary); }
+  .install-box {
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .install-box code {
+    font-size: 1.1rem;
+    background: rgba(0,212,170,0.1);
+    color: var(--accent);
+    padding: 0.3rem 0.8rem;
+  }
+  .install-box .sub {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+  .tip {
+    background: rgba(0,188,212,0.08);
+    border-left: 3px solid var(--cyan);
+    padding: 0.8rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.9rem;
+  }
+  .tip strong { color: var(--cyan); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--surface2);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  td {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+  }
+  tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.2rem 1.5rem; margin: 1.5rem 0; }
+  .toc h3 { margin-top: 0; border: none; color: #fff; }
+  .toc ol { margin-bottom: 0; }
+  .toc a { color: var(--cyan); }
+  .toc a:hover { color: var(--accent); }
+  .cta {
+    background: linear-gradient(135deg, rgba(0,212,170,0.1), rgba(0,188,212,0.08));
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .cta h3 { color: #fff; margin-top: 0; border: none; }
+  .cta .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 0.5rem;
+    transition: background 0.2s;
+  }
+  .cta .btn:hover { background: var(--accent-dim); text-decoration: none; }
+  .cta .btn-secondary {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 0.6rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    margin: 0.5rem;
+    transition: all 0.2s;
+  }
+  .cta .btn-secondary:hover { background: rgba(0,212,170,0.1); text-decoration: none; }
+  .meta {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0.5rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+  .nav-links { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.9rem; }
+  .nav-links a { margin-right: 1rem; }
+  .output-block { margin: 0.5rem 0 1.5rem; }
+  @media (max-width: 600px) {
+    body { padding: 1rem; }
+    h1 { font-size: 1.5rem; }
+    pre { font-size: 0.75rem; padding: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>CSV Analysis from the Command Line</h1>
+<p>A complete, practical guide to working with CSV data in your terminal — no Python scripts, no Excel spreadsheets, no bloated dependencies.</p>
+
+<div class="meta">
+  Updated: June 2026 &middot; Tools: evolver-tools v38.0.16 &middot; ~5 min read
+</div>
+
+<div class="toc">
+<h3>What you'll learn</h3>
+<ol>
+  <li><a href="#install">Install in one command</a></li>
+  <li><a href="#explore">Explore: preview and understand your data</a></li>
+  <li><a href="#stats">Analyze: column statistics with distributions</a></li>
+  <li><a href="#filter">Filter: find the rows you need</a></li>
+  <li><a href="#sort">Sort: order your records</a></li>
+  <li><a href="#visualize">Visualize: charts from the terminal</a></li>
+  <li><a href="#convert">Convert: CSV ↔ JSON and more</a></li>
+  <li><a href="#merge">Merge: join multiple CSV files</a></li>
+  <li><a href="#diff">Compare: find differences between CSV files</a></li>
+  <li><a href="#pipeline">Real workflow: put it all together</a></li>
+</ol>
+</div>
+
+<h2 id="install">1. Install in one command</h2>
+
+<div class="install-box">
+<code>pip install evolver-tools</code>
+<div class="sub">260 CLI tools. Zero external dependencies. Works on Linux, macOS, and WSL.</div>
+</div>
+
+<p>Once installed, all tools are available via the <code>evtool</code> command:</p>
+
+<pre>
+$ evtool --help
+
+Usage: evtool &lt;command&gt; [args...]
+
+Available commands: 260+ tools across 30 categories
+
+  <span class="accent-text">CSV/Data</span>       csv-stats, csv-view, csv-filter, csv-sort, csv-merge,
+                  csv2json, json2csv, diff-csv, csv-head, csv-slice
+  <span class="cyan-text">System</span>        sys-info, disk-usage, cpu-stats, mem-info, process-list
+  <span class="yellow">Network</span>       port-scan, dns-lookup, http-get, ip-info, ssl-check
+  <span class="orange">Charts</span>        chart-cli (bar, line, pie, histogram)
+  ...and more
+</pre>
+
+<p>Every tool in this tutorial is included. No additional packages to install. No <code>pip install pandas</code>. No <code>npm install</code>. Just one command and you're ready.</p>
+
+<div class="tip">
+<strong>Try without installing:</strong> Run <code>curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash</code> to test in a sandbox.
+</div>
+
+<h2 id="explore">2. Explore your data</h2>
+
+<p>Let's say you have a CSV file called <code>employees.csv</code> with columns: name, age, salary, department.</p>
+
+<p>First, take a quick look at the table in a readable format:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-view employees.csv</span>
+──────────────────────────────────────
+│ name  │ age │ salary │ department  │
+──────────────────────────────────────
+│ Alice │ 30  │ 75000  │ Engineering │
+│ Bob   │ 25  │ 68000  │ Engineering │
+│ Carol │ 35  │ 82000  │ Sales       │
+│ Dave  │ 28  │ 72000  │ Sales       │
+│ Eve   │ 32  │ 78000  │ Engineering │
+│ Frank │ 45  │ 95000  │ Management  │
+│ Grace │ 29  │ 71000  │ Sales       │
+──────────────────────────────────────
+
+File: employees.csv  |  7 rows x 4 columns  |  delimiter: comma
+</pre>
+
+<p>Or show just the first few rows:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-head employees.csv</span>
+name,age,salary,department
+Alice,30,75000,Engineering
+Bob,25,68000,Engineering
+Carol,35,82000,Sales
+</pre>
+
+<p>This gives you a quick sense of the data shape before diving deeper.</p>
+
+<h2 id="stats">3. Analyze: column-level statistics</h2>
+
+<p>The workhorse tool for understanding your data is <code>csv-stats</code>. It automatically detects column types and produces descriptive statistics with histogram distributions:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-stats employees.csv</span>
+
+<span class="accent-text">CSV Analysis Report</span>
+  File: employees.csv
+  Rows: 7
+  Columns: 4
+
+  <span class="cyan-text">name</span>
+    Type         text
+    Total        7
+    Non-empty    7
+    Unique       7
+    Max Len      5 chars
+    Min Len      3 chars
+    Avg Len      4.3 chars
+
+  <span class="cyan-text">age</span>
+    Type         int
+    Count        7
+    Mean         32.00
+    Std Dev      6.05
+    Min          25.00
+    P25          28.00
+    P50 (Median) 30.00
+    P75          35.00
+    Max          45.00
+    Sum          224.00
+    Unique       7
+    Distribution
+      25.0     ███████████████ 1
+      27.0     ███████████████ 1
+      29.0     ██████████████████████████████ 2
+      31.0     ███████████████ 1
+      ...
+      43.0     ███████████████ 1
+
+  <span class="cyan-text">salary</span>
+    Type         int
+    Count        7
+    Mean         77,285.71
+    Std Dev      8,412.82
+    Min          68,000.00
+    P50 (Median) 75,000.00
+    Max          95,000.00
+    Distribution
+      68000.0  ███████████████ 1
+      ...
+
+  <span class="cyan-text">department</span>
+    Type         text
+    Total        7
+    Non-empty    7
+    Unique       3
+    Top 10
+      Engineering                      ████████ 3
+      Sales                            ████████ 3
+      Management                       ██ 1
+
+  <span class="accent-text">Correlation Matrix</span>
+    age &times; salary           +0.9940  ██████████████░
+</pre>
+
+<p>This single command tells you:</p>
+<ul>
+  <li>Column types (int, float, text) — auto-detected</li>
+  <li>Count, mean, median, min, max, standard deviation for numeric columns</li>
+  <li>Unique value count and frequency for text columns</li>
+  <li>Histogram distributions for numeric columns</li>
+  <li>Correlation between numeric columns</li>
+</ul>
+
+<div class="tip">
+<strong>Pro tip:</strong> The histogram shows the distribution shape at a glance — skewed, uniform, bimodal, or normal.
+</div>
+
+<h2 id="filter">4. Filter rows by column value</h2>
+
+<p>Need to find all Engineering employees? <code>csv-filter</code> makes it simple:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-filter employees.csv --column department --value Engineering</span>
+name,age,salary,department
+Alice,30,75000,Engineering
+Bob,25,68000,Engineering
+Eve,32,78000,Engineering
+</pre>
+
+<p>Want the opposite — everyone <em>except</em> Engineering?</p>
+
+<pre>
+$ <span class="cmd">evtool csv-filter employees.csv --column department --value Engineering --invert</span>
+name,age,salary,department
+Carol,35,82000,Sales
+Dave,28,72000,Sales
+Frank,45,95000,Management
+Grace,29,71000,Sales
+</pre>
+
+<p>Filters output clean CSV that you can pipe directly into the next tool.</p>
+
+<h2 id="sort">5. Sort your records</h2>
+
+<p>Sort by any column, numeric or text, ascending or descending:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-sort employees.csv --column salary --reverse --numeric</span>
+name,age,salary,department
+Frank,45,95000,Management
+Carol,35,82000,Sales
+Eve,32,78000,Engineering
+Alice,30,75000,Engineering
+Dave,28,72000,Sales
+Grace,29,71000,Sales
+Bob,25,68000,Engineering
+</pre>
+
+<p>Combine with <code>csv-head</code> to show the top N by a metric:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-sort employees.csv --column salary -r -n | evtool csv-head -n 3</span>
+name,age,salary,department
+Frank,45,95000,Management
+Carol,35,82000,Sales
+Eve,32,78000,Engineering
+</pre>
+
+<h2 id="visualize">6. Visualize: charts from the terminal</h2>
+
+<p>Numbers are good, but a visual tells the story faster. The <code>chart-cli</code> tool renders four chart types right in your terminal — no browser, no GUI:</p>
+
+<h3>Bar chart</h3>
+<pre>
+$ <span class="cmd">evtool chart-cli bar 75000 68000 82000 72000 78000 95000 71000</span>
+条形图 (垂直)
+
+                  █
+                  █
+                  █  ▌
+            ▌     █  █
+            █  ▌  █  █
+      ▌     █  █  █  █
+      █  ▌  █  █  █  █
+   ▌  █  █  █  █  █  █
+   █  █  █  █  █  █  █
+  ──────────────────────
+   1  3  2  5  4  8  6
+    1   3   2   5   4   8   6
+</pre>
+
+<h3>Line chart</h3>
+<pre>
+$ <span class="cmd">evtool chart-cli line 1 3 2 5 4</span>
+折线图
+
+     5.0 │                              ····•
+     4.0 │                          ···•
+     3.0 │                      ···•
+     2.0 │                  ···•
+     1.0 │              •··
+         └──────────────────────────────────
+                        1.0              5.0
+</pre>
+
+<h3>Pie chart</h3>
+<pre>
+$ <span class="cmd">evtool chart-cli pie 3 3 1</span>
+  · · · · ·                 █ 3                    3.0  (42.9%)
+      · · █████· ·             █ 3                    3.0  (42.9%)
+      · ███████████·       █ 1                    1.0  (14.3%)
+  · ███████████████·
+  · ███████████████·
+  · ███████████████·
+    · █████████████·
+      · · █████████· ·
+              · · · · ·
+</pre>
+
+<h3>Histogram</h3>
+<pre>
+$ <span class="cmd">evtool chart-cli hist 1 2 2 3 3 3 4 5 5 6 7 8 9 9 10</span>
+直方图
+  区间数: 10, 总值: 15
+
+  1.0-1.9  █████████████ 1 (6.7%)
+  1.9      ██████████████████████████ 2 (13.3%)
+  2.8      ████████████████████████████████████████ 3 (20.0%)
+  3.7      █████████████ 1 (6.7%)
+  4.6      ██████████████████████████ 2 (13.3%)
+  5.5      █████████████ 1 (6.7%)
+  6.4      █████████████ 1 (6.7%)
+  7.3      █████████████ 1 (6.7%)
+  8.2      ██████████████████████████ 2 (13.3%)
+  9.1+     █████████████ 1 (6.7%)
+</pre>
+
+<p>Now combine these two steps into one pipeline. Analyze your CSV and pipe the salary column straight into chart-cli:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-stats employees.csv | grep 'Mean' | head -1</span>
+<span class="dim">(Or extract a specific column and visualize its distribution)</span>
+
+<span class="dim"># Full pipeline: filter Engineering → sort by salary → show top 3</span>
+$ <span class="cmd">evtool csv-filter employees.csv --column department --value Engineering | evtool csv-sort --column salary --numeric --reverse</span>
+name,age,salary,department
+Eve,32,78000,Engineering
+Alice,30,75000,Engineering
+Bob,25,68000,Engineering
+</pre>
+
+<h2 id="convert">7. Convert CSV to JSON (and back)</h2>
+
+<p>Need to send this data to an API? Convert to JSON in one command:</p>
+
+<pre>
+$ <span class="cmd">evtool csv2json employees.csv</span>
+[
+  {"name": "Alice", "age": "30", "salary": "75000", "department": "Engineering"},
+  {"name": "Bob", "age": "25", "salary": "68000", "department": "Engineering"},
+  {"name": "Carol", "age": "35", "salary": "82000", "department": "Sales"},
+  {"name": "Dave", "age": "28", "salary": "72000", "department": "Sales"},
+  {"name": "Eve", "age": "32", "salary": "78000", "department": "Engineering"},
+  {"name": "Frank", "age": "45", "salary": "95000", "department": "Management"},
+  {"name": "Grace", "age": "29", "salary": "71000", "department": "Sales"}
+]
+</pre>
+
+<p>And back from JSON to CSV:</p>
+
+<pre>
+$ <span class="cmd">cat data.json | evtool json2csv</span>
+name,age,salary,department
+Alice,30,75000,Engineering
+Bob,25,68000,Engineering
+...
+</pre>
+
+<h2 id="merge">8. Merge multiple CSV files</h2>
+
+<p>When you have related data across files, <code>csv-merge</code> joins them on a common key — like SQL JOIN for the terminal:</p>
+
+<pre>
+$ <span class="cmd">evtool csv-merge employees.csv departments.csv --on department</span>
+<span class="dim">(Inner join on the "department" column — only matching rows)</span>
+</pre>
+
+<p>Supports inner, left, and outer joins. Works like a relational database join, but with zero setup.</p>
+
+<h2 id="diff">9. Compare CSV files</h2>
+
+<p>Need to find what changed between two versions of a CSV? <code>diff-csv</code> shows you:</p>
+
+<pre>
+$ <span class="cmd">evtool diff-csv employees-v1.csv employees-v2.csv</span>
+<span class="dim">Shows added, removed, and changed rows — colorized output included.</span>
+</pre>
+
+<h2 id="pipeline">10. Real workflow: put it all together</h2>
+
+<p>Here's a complete real-world workflow. Let's say you need to answer: <strong>"What's the average salary of Engineering employees, and how does it compare to Sales?"</strong></p>
+
+<pre>
+<span class="dim"># Step 1: Filter Engineering employees</span>
+$ <span class="cmd">evtool csv-filter employees.csv --column department --value Engineering > eng.csv</span>
+
+<span class="dim"># Step 2: Analyze their salaries</span>
+$ <span class="cmd">evtool csv-stats eng.csv</span>
+<span class="dim">Shows mean salary: 73,666.67 for Engineering</span>
+
+<span class="dim"># Step 3: Same for Sales</span>
+$ <span class="cmd">evtool csv-filter employees.csv --column department --value Sales | evtool csv-stats</span>
+<span class="dim">Shows mean salary: 73,333.33 for Sales</span>
+
+<span class="dim"># Step 4: Visualize the department headcount comparison</span>
+$ <span class="cmd">evtool chart-cli pie 3 3 1</span>
+<span class="dim">Shows: Engineering 42.9%, Sales 42.9%, Management 14.3%</span>
+
+<span class="dim"># Step 5: Save the filtered data as JSON for further processing</span>
+$ <span class="cmd">evtool csv2json eng.csv > eng.json</span>
+</pre>
+
+<p>All of this — filtering, analyzing, visualizing, converting — without opening Excel, without writing a Python script, without installing pandas.</p>
+
+<h2>Why zero dependencies matters</h2>
+
+<p>Every tool in evolver-tools uses <strong>only Python standard library modules</strong>. This means:</p>
+
+<ul>
+  <li><strong>Instant install</strong> — no compiling, no downloading 100MB of dependencies</li>
+  <li><strong>Works in air-gapped environments</strong> — no internet access needed after install</li>
+  <li><strong>No version conflicts</strong> — won't break your existing Python environment</li>
+  <li><strong>Safe for CI/CD</strong> — pipelines stay fast and deterministic</li>
+  <li><strong>Cross-platform</strong> — Linux, macOS, Windows (WSL)</li>
+</ul>
+
+<div class="cta">
+<h3>Try it now</h3>
+<p style="margin-bottom: 1rem">One command. 260 tools. Zero dependencies.</p>
+<code style="display:block;margin-bottom:1rem;font-size:1.1rem;background:rgba(0,212,170,0.1);color:var(--accent);padding:0.4rem 0.8rem;border-radius:4px;">
+pip install evolver-tools
+</code>
+<a href="https://github.com/evolver-dev/evolver-tools" class="btn-secondary">GitHub &rarr;</a>
+<a href="https://pypi.org/project/evolver-tools/" class="btn-secondary">PyPI &rarr;</a>
+</div>
+
+<h2>More CLI data tools</h2>
+
+<p>evolver-tools includes 260+ tools across 30 categories. Beyond CSV, you get:</p>
+
+<table>
+<tr><th>Category</th><th>Example tools</th><th>Use case</th></tr>
+<tr><td>System</td><td>sys-info, cpu-stats, disk-usage, mem-info</td><td>Monitor system resources</td></tr>
+<tr><td>Network</td><td>port-scan, dns-lookup, http-get, ssl-check</td><td>Debug network issues</td></tr>
+<tr><td>JSON</td><td>json-pretty, json-select, json-merge, json-validate</td><td>Process API responses</td></tr>
+<tr><td>Text</td><td>base64, regex-find, dedup-lines, text-stats</td><td>Manipulate text files</td></tr>
+<tr><td>Security</td><td>gen-password, hash-file, qrcode</td><td>Generate credentials</td></tr>
+<tr><td>DevOps</td><td>docker-clean, git-branch-clean, cron-pretty</td><td>Infrastructure tasks</td></tr>
+</table>
+
+<div class="nav-links">
+<a href="https://github.com/evolver-dev/evolver-tools">&larr; GitHub</a>
+<a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+<a href="https://evolver-dev.github.io/evolver-tools/docs/">Documentation</a>
+<a href="https://evolver-dev.github.io/evolver-tools/csv-chart-pipeline">Pipeline Guide</a>
+</div>
+
+</body>
+</html>
