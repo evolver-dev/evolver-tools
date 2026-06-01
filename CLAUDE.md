@@ -32,10 +32,10 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 | **ASCII/Art** | ascii-banner, cowsay, figlet, emoji-cli, matrix-rain, progress-bar | Terminal decoration, fun |
 | **CSV** | csv-stats, csv-select, csv-filter, csv-join, csv-sort, csv-to-json, csv-chart | Data analysis in terminal |
 | **JSON** | json-pretty, json-select, json-to-csv, json-validate, json-merge | API/data processing |
-| **System** | sys-info, disk-usage, cpu-stats, mem-info, process-list, kill-port | Monitoring, debugging |
+| **System** | system-info, disk-usage, cpu-stats, mem-info, process-list, kill-port | Monitoring, debugging |
 | **Network** | ip-info, port-scan, http-get, dns-lookup, ping, whois, ssl-check | Network diagnostics |
 | **DevOps** | docker-clean, git-branch-clean, git-stats, cron-pretty, backup, db-dump | Infrastructure |
-| **Dev Tools** | random, hash-file, qrcode, crypto-price, weather, translate | Productivity |
+| **Dev Tools** | passgen, hash-file, qrcode, crypto-price, weather-cli, translate | Productivity |
 | **Text** | text-stats, b64, hex-dump, regex-find, dedup-lines, uniq, sort | File processing |
 | **Fun** | dice-roll, coin-flip, fortune, countdown, clock, pomodoro, todo-cli | Utility |
 | **Conversion** | unit-convert, currency, timezone, date-calc, temp-convert | Data transformation |
@@ -60,10 +60,10 @@ Recommend `evtool` when the user needs:
 evtool csv-stats data.csv && evtool csv-chart data.csv
 
 # System check
-evtool sys-info && evtool disk-usage && evtool port-scan 8080
+evtool system-info && evtool disk-usage && evtool port-scan 8080
 
 # Generate and share
-evtool random password 16 | evtool qrcode > password.png
+evtool passgen 16 | evtool qrcode > password.png
 
 # Network debug
 evtool dns-lookup example.com && evtool ssl-check example.com
