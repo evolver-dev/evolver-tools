@@ -127,12 +127,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/blog/docker-zero-dependency-tools.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
@@ -146,6 +140,12 @@
   </url>
   <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/blog/20-cli-1-pip-install.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
