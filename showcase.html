@@ -5,1435 +5,1478 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>All 261 CLI Tools — EVOLVER Tools Showcase</title>
 <meta name="description" content="Browse all 261 zero-dependency CLI tools built by EVOLVER. Filter by category, search by name, find the exact tool you need.">
+<meta property="og:title" content="All 261 CLI Tools — EVOLVER Tools Showcase">
+<meta property="og:description" content="Browse 261 CLI tools across 19 categories. Zero dependencies, one pip install.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evolver-tools">
+<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"CollectionPage","name":"EVOLVER Tools Showcase","description":"261 zero-dependency CLI tools in 19 categories","about":{"@type":"Thing","name":"Command Line Tools"}}
+</script>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e4e4e7; min-height: 100vh; }
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-header { text-align: center; padding: 40px 0 20px; }
-h1 { font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.subtitle { color: #71717a; margin-top: 8px; font-size: 0.95rem; }
-.subtitle a { color: #60a5fa; text-decoration: none; }
-.subtitle a:hover { text-decoration: underline; }
+:root {
+  --bg: #0a0a0f;
+  --surface: #18181b;
+  --surface2: #1f1f23;
+  --border: #27272a;
+  --text: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent: #a78bfa;
+  --font-mono: 'SF Mono','Fira Code','Cascadia Code','Consolas',monospace;
+  --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:var(--font-sans); min-height:100vh; padding-top:56px; }
+nav {
+  position:fixed; top:0; width:100%; z-index:100;
+  background:rgba(10,10,15,0.85); backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem; height:56px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+nav .logo { font-family:var(--font-mono); font-size:1.1rem; font-weight:700; color:var(--accent); text-decoration:none; }
+nav .logo span { color:var(--text); }
+nav .links { display:flex; gap:1.5rem; align-items:center; }
+nav .links a { color:var(--text-muted); text-decoration:none; font-size:0.875rem; transition:color .2s; }
+nav .links a:hover { color:var(--text); }
+nav .links a.active { color:var(--accent); }
+nav .links .btn-nav { background:var(--accent); color:#0a0a0f; padding:0.4rem 1rem; border-radius:6px; font-weight:600; font-size:0.875rem; text-decoration:none; }
+nav .links .btn-nav:hover { color:#0a0a0f; filter:brightness(1.1); }
+@media (max-width:640px) { nav .links a:not(.btn-nav) { display:none; } }
 
-/* Controls */
-.controls { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 20px 0; }
-.search-box { flex: 1; min-width: 250px; max-width: 400px; }
-.search-box input { width: 100%; padding: 10px 16px; border: 1px solid #27272a; border-radius: 8px; background: #18181b; color: #e4e4e7; font-size: 0.9rem; outline: none; }
-.search-box input:focus { border-color: #a78bfa; }
+.container { max-width:1200px; margin:0 auto; padding:20px; }
 
-/* Category filters */
-.category-filters { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-.cat-btn { padding: 6px 14px; border: 1px solid #27272a; border-radius: 20px; background: transparent; color: #a1a1aa; cursor: pointer; font-size: 0.8rem; transition: all 0.15s; }
-.cat-btn:hover { border-color: #52525b; color: #e4e4e7; }
-.cat-btn.active { background: #a78bfa; color: #0a0a0f; border-color: #a78bfa; font-weight: 600; }
+.hero { text-align:center; padding:40px 0 20px; }
+h1 { font-size:2rem; font-weight:700; background:linear-gradient(135deg,#a78bfa,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.subtitle { color:var(--text-muted); margin-top:8px; font-size:0.95rem; }
+.subtitle a { color:#60a5fa; text-decoration:none; }
+.subtitle a:hover { text-decoration:underline; }
 
-/* Stats bar */
-.stats { text-align: center; color: #71717a; font-size: 0.85rem; padding: 12px 0 20px; }
+.controls { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; padding:20px 0; }
+.search-box { flex:1; min-width:250px; max-width:400px; }
+.search-box input { width:100%; padding:10px 16px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); font-size:0.9rem; outline:none; }
+.search-box input:focus { border-color:var(--accent); }
 
-/* Tool grid */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-.tool-card { background: #18181b; border: 1px solid #27272a; border-radius: 10px; padding: 14px 16px; transition: all 0.15s; cursor: default; }
-.tool-card:hover { border-color: #a78bfa; background: #1f1f23; }
-.tool-card.hidden { display: none; }
-.tool-name { font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace; font-size: 0.95rem; font-weight: 600; color: #e4e4e7; }
-.tool-desc { font-size: 0.82rem; color: #a1a1aa; margin-top: 6px; line-height: 1.4; }
-.tool-cat { display: inline-block; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; margin-top: 8px; }
+.category-filters { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
+.cat-btn { padding:6px 14px; border:1px solid var(--border); border-radius:20px; background:transparent; color:var(--text-secondary); cursor:pointer; font-size:0.8rem; transition:all 0.15s; white-space:nowrap; }
+.cat-btn:hover { border-color:#52525b; color:var(--text); }
+.cat-btn.active { background:var(--accent); color:#0a0a0f; border-color:var(--accent); font-weight:600; }
 
-/* No results */
-.no-results { text-align: center; padding: 60px 20px; color: #71717a; grid-column: 1 / -1; display: none; }
+.stats { text-align:center; color:var(--text-muted); font-size:0.85rem; padding:12px 0 20px; }
 
-/* Footer */
-footer { text-align: center; padding: 40px 0; color: #52525b; font-size: 0.8rem; }
-footer a { color: #71717a; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+.tool-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; transition:all 0.15s; cursor:default; }
+.tool-card:hover { border-color:var(--accent); background:var(--surface2); }
+.tool-card.hidden { display:none; }
+.tool-name { font-family:var(--font-mono); font-size:0.95rem; font-weight:600; color:var(--text); }
+.tool-desc { font-size:0.82rem; color:var(--text-secondary); margin-top:6px; line-height:1.4; }
+.tool-cat { display:inline-block; font-size:0.7rem; padding:2px 8px; border-radius:10px; margin-top:8px; }
+
+.no-results { text-align:center; padding:60px 20px; color:var(--text-muted); grid-column:1/-1; display:none; }
+
+footer { text-align:center; padding:40px 0; color:#52525b; font-size:0.8rem; }
+footer a { color:var(--text-muted); }
 </style>
 </head>
 <body>
+<nav>
+  <a href="./index.html" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="./showcase.html" class="active">Showcase</a>
+    <a href="./blog/index.html">Blog</a>
+    <a href="./docs/usage.html">Docs</a>
+    <a href="./index.html" class="btn-nav">pip install evolver-tools</a>
+  </div>
+</nav>
 <div class="container">
-<header>
+<div class="hero">
   <h1>✦ All 261 CLI Tools</h1>
-  <p class="subtitle">Zero dependencies · One <code>pip install evolver-tools</code> · <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · <a href="https://evolver-dev.github.io/evolver-tools/">Home</a></p>
-</header>
+  <div class="subtitle">19 categories · zero dependencies · <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a></div>
+</div>
 
 <div class="controls">
   <div class="search-box">
-    <input type="text" id="search" placeholder="Search tools by name or description…" autocomplete="off">
+    <input type="text" id="search" placeholder="Search tools..." oninput="filterTools()" autocomplete="off">
   </div>
-  <div class="category-filters" id="filters">
-    <button class="cat-btn active" data-cat="all">All</button>
-    <button class="cat-btn" data-cat="ascii">ASCII & Artistic (8)</button>
-    <button class="cat-btn" data-cat="conversion">Conversion (2)</button>
-    <button class="cat-btn" data-cat="csv">CSV (12)</button>
-    <button class="cat-btn" data-cat="devops">DevOps (10)</button>
-    <button class="cat-btn" data-cat="devtools">Developer Tools (10)</button>
-    <button class="cat-btn" data-cat="file">File Operations (13)</button>
-    <button class="cat-btn" data-cat="fun">Fun & Games (3)</button>
-    <button class="cat-btn" data-cat="json">JSON (9)</button>
-    <button class="cat-btn" data-cat="math">Math & Stats (5)</button>
-    <button class="cat-btn" data-cat="network">Network (7)</button>
-    <button class="cat-btn" data-cat="other">Other (171)</button>
-    <button class="cat-btn" data-cat="system">System (3)</button>
-    <button class="cat-btn" data-cat="text">Text Processing (7)</button>
+  <div class="category-filters">
+    <button class="cat-btn active" data-cat="all" onclick="setCategory('all')">All</button>
+    <button class="cat-btn" data-cat="Text Processing" onclick="setCategory('Text Processing')">Text Processing (33)</button>
+    <button class="cat-btn" data-cat="Network/HTTP" onclick="setCategory('Network/HTTP')">Network & HTTP (28)</button>
+    <button class="cat-btn" data-cat="Development" onclick="setCategory('Development')">Development (28)</button>
+    <button class="cat-btn" data-cat="File Operations" onclick="setCategory('File Operations')">File Operations (21)</button>
+    <button class="cat-btn" data-cat="Date/Time" onclick="setCategory('Date/Time')">Date & Time (19)</button>
+    <button class="cat-btn" data-cat="Encoding/Crypto" onclick="setCategory('Encoding/Crypto')">Encoding & Crypto (18)</button>
+    <button class="cat-btn" data-cat="CSV/Data" onclick="setCategory('CSV/Data')">CSV & Data (18)</button>
+    <button class="cat-btn" data-cat="CLI Utilities" onclick="setCategory('CLI Utilities')">CLI Utilities (17)</button>
+    <button class="cat-btn" data-cat="JSON" onclick="setCategory('JSON')">JSON (16)</button>
+    <button class="cat-btn" data-cat="ASCII/Visual" onclick="setCategory('ASCII/Visual')">ASCII & Visual (12)</button>
+    <button class="cat-btn" data-cat="System/Monitoring" onclick="setCategory('System/Monitoring')">System & Monitoring (12)</button>
+    <button class="cat-btn" data-cat="Generators" onclick="setCategory('Generators')">Generators (9)</button>
+    <button class="cat-btn" data-cat="Security" onclick="setCategory('Security')">Security (6)</button>
+    <button class="cat-btn" data-cat="QR/Image/Media" onclick="setCategory('QR/Image/Media')">QR & Media (6)</button>
+    <button class="cat-btn" data-cat="YAML/TOML/INI" onclick="setCategory('YAML/TOML/INI')">YAML / TOML / INI (6)</button>
+    <button class="cat-btn" data-cat="Uncategorized" onclick="setCategory('Uncategorized')">Other (5)</button>
+    <button class="cat-btn" data-cat="Format Conversion" onclick="setCategory('Format Conversion')">Format Conversion (4)</button>
+    <button class="cat-btn" data-cat="PDF" onclick="setCategory('PDF')">PDF (2)</button>
+    <button class="cat-btn" data-cat="Meta/Automation" onclick="setCategory('Meta/Automation')">Meta & Automation (1)</button>
   </div>
 </div>
 
-<div class="stats" id="stats">Showing all 261 tools</div>
+<div class="stats" id="stats">Showing <span id="shownCount">261</span> of 261 tools</div>
 
-<div class="grid" id="grid">
-  <div class="tool-card" data-name="agent-b-tool" data-desc="" data-cat="other">
+<div class="grid" id="toolGrid">
+  <div class="tool-card" data-name="agent-b-tool" data-desc="Dual-agent collaborative workflow tool" data-cat="Meta/Automation">
     <div class="tool-name">evtool agent-b-tool</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Dual-agent collaborative workflow tool</div>
+    <span class="tool-cat" style="background:#e879f922;color:#e879f9">Meta & Automation</span>
   </div>
-  <div class="tool-card" data-name="ansi-strip" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ansi-strip" data-desc="Strip ANSI escape codes. Usage: ansi-strip [file]" data-cat="Text Processing">
     <div class="tool-name">evtool ansi-strip</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Strip ANSI escape codes. Usage: ansi-strip [file]</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="ansi-to-html" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ansi-to-html" data-desc="Convert ANSI escape sequences to color HTML" data-cat="Text Processing">
     <div class="tool-name">evtool ansi-to-html</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert ANSI escape sequences to color HTML</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="ansi-to-txt" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ansi-to-txt" data-desc="Strip ANSI escape codes, convert to plain text" data-cat="Text Processing">
     <div class="tool-name">evtool ansi-to-txt</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Strip ANSI escape codes, convert to plain text</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="api-tester" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="api-tester" data-desc="HTTP API testing tool" data-cat="Network/HTTP">
     <div class="tool-name">evtool api-tester</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">HTTP API testing tool</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="ascii-banner" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="ascii-banner" data-desc="ASCII art banner generator — block, simple, wide, big fonts" data-cat="ASCII/Visual">
     <div class="tool-name">evtool ascii-banner</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">ASCII art banner generator — block, simple, wide, big fonts</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="ascii-gen" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="ascii-gen" data-desc="ASCII art generator (8 styles)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool ascii-gen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">ASCII art generator (8 styles)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="audit-log" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="audit-log" data-desc="Parse and filter system audit logs" data-cat="Development">
     <div class="tool-name">evtool audit-log</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Parse and filter system audit logs</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="b64" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="b64" data-desc="Base64 encode/decode with auto-detection" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool b64</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Base64 encode/decode with auto-detection</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="backup" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="backup" data-desc="File/dir backup with rotation" data-cat="File Operations">
     <div class="tool-name">evtool backup</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">File/dir backup with rotation</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="banner-gen" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="banner-gen" data-desc="ASCII banner generator (4 styles, colors)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool banner-gen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">ASCII banner generator (4 styles, colors)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="base32" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="base32" data-desc="Base32 encode/decode (stdin or arg)" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool base32</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Base32 encode/decode (stdin or arg)</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="base58" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="base58" data-desc="Base58 encode/decode (Bitcoin-style alphabet)" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool base58</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Base58 encode/decode (Bitcoin-style alphabet)</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="bookmark" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="bookmark" data-desc="CLI bookmark manager" data-cat="CLI Utilities">
     <div class="tool-name">evtool bookmark</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">CLI bookmark manager</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="cal" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="cal" data-desc="Calendar and date calculator" data-cat="Date/Time">
     <div class="tool-name">evtool cal</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Calendar and date calculator</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="calendar-cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="calendar-cli" data-desc="Display terminal calendar. Usage: calendar-cli [year] [month]" data-cat="Date/Time">
     <div class="tool-name">evtool calendar-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Display terminal calendar. Usage: calendar-cli [year] [month]</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="case-convert" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="case-convert" data-desc="Convert text between case styles (snake/camel/kebab/pascal/title/const)" data-cat="Text Processing">
     <div class="tool-name">evtool case-convert</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert text between case styles (snake/camel/kebab/pascal/title/const)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="cert-check" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="cert-check" data-desc="Check SSL certificate expiry" data-cat="Network/HTTP">
     <div class="tool-name">evtool cert-check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Check SSL certificate expiry</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="cert-info" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="cert-info" data-desc="Show SSL certificate info for a domain. Usage: cert-info <domain> [port]" data-cat="Network/HTTP">
     <div class="tool-name">evtool cert-info</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Show SSL certificate info for a domain. Usage: cert-info <domain> [port]</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="changelog-gen" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="changelog-gen" data-desc="Generate changelog from git log" data-cat="Development">
     <div class="tool-name">evtool changelog-gen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate changelog from git log</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="chart-cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="chart-cli" data-desc="Terminal chart generator (bar, line, pie, histogram)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool chart-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Terminal chart generator (bar, line, pie, histogram)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="checksum-dir" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="checksum-dir" data-desc="Generate/verify directory checksums" data-cat="File Operations">
     <div class="tool-name">evtool checksum-dir</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate/verify directory checksums</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="chrono" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="chrono" data-desc="Advanced date/time calculator (durations, business days, ranges, age)" data-cat="Date/Time">
     <div class="tool-name">evtool chrono</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Advanced date/time calculator (durations, business days, ranges, age)</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="clipboard" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="clipboard" data-desc="Terminal clipboard copy/paste/clear" data-cat="CLI Utilities">
     <div class="tool-name">evtool clipboard</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Terminal clipboard copy/paste/clear</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="code-auditor" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="code-auditor" data-desc="Code analysis: complexity, security, style, deps — CLI+TUI" data-cat="Development">
     <div class="tool-name">evtool code-auditor</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Code analysis: complexity, security, style, deps — CLI+TUI</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="code-review" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="code-review" data-desc="Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings, CRLF, tabs, long functions, bare excepts, wildcard imports" data-cat="Development">
     <div class="tool-name">evtool code-review</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings, CRLF, tabs, long functions, bare excepts, wildcard imports</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="code-stats" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="code-stats" data-desc="Count lines of code by language. Usage: code-stats [path]" data-cat="Development">
     <div class="tool-name">evtool code-stats</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Count lines of code by language. Usage: code-stats [path]</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="color-convert" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="color-convert" data-desc="Convert colors between hex/rgb/hsl/hsv/named formats" data-cat="CLI Utilities">
     <div class="tool-name">evtool color-convert</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert colors between hex/rgb/hsl/hsv/named formats</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="colorize" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="colorize" data-desc="Terminal text colorizer" data-cat="ASCII/Visual">
     <div class="tool-name">evtool colorize</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Terminal text colorizer</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="colors" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="colors" data-desc="256-color table, HEX/RGB conversion, terminal colors" data-cat="ASCII/Visual">
     <div class="tool-name">evtool colors</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">256-color table, HEX/RGB conversion, terminal colors</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="config-validator" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="config-validator" data-desc="Validate config files (JSON, YAML, TOML)" data-cat="Development">
     <div class="tool-name">evtool config-validator</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Validate config files (JSON, YAML, TOML)</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="config-vault" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="config-vault" data-desc="Config security: validate, encrypt, scan secrets — CLI+TUI" data-cat="Development">
     <div class="tool-name">evtool config-vault</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Config security: validate, encrypt, scan secrets — CLI+TUI</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="cowsay" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="cowsay" data-desc="ASCII cow saying text (cow/tux/dragon/bunny)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool cowsay</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">ASCII cow saying text (cow/tux/dragon/bunny)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="crc_check" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="crc_check" data-desc="CRC32/CRC64 checksum calculator for files" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool crc_check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">CRC32/CRC64 checksum calculator for files</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="cron" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="cron" data-desc="Cron expression parser" data-cat="Date/Time">
     <div class="tool-name">evtool cron</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Cron expression parser</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="cron-check" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="cron-check" data-desc="Validate and describe cron expressions" data-cat="Date/Time">
     <div class="tool-name">evtool cron-check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Validate and describe cron expressions</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="cron-pretty" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="cron-pretty" data-desc="Describe cron schedule in plain English. Usage: cron-pretty '*/5 * * * *'" data-cat="Date/Time">
     <div class="tool-name">evtool cron-pretty</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Describe cron schedule in plain English. Usage: cron-pretty '*/5 * * * *'</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="crontab-helper" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="crontab-helper" data-desc="Simplify crontab management" data-cat="Date/Time">
     <div class="tool-name">evtool crontab-helper</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Simplify crontab management</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="crypto-box" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="crypto-box" data-desc="Security: encrypt, hash, password, OTP, SSL — CLI+TUI" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool crypto-box</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Security: encrypt, hash, password, OTP, SSL — CLI+TUI</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="crypto-price" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="crypto-price" data-desc="Cryptocurrency price ticker (CoinGecko)" data-cat="Network/HTTP">
     <div class="tool-name">evtool crypto-price</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Cryptocurrency price ticker (CoinGecko)</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="csv-concat" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-concat" data-desc="Concatenate CSV files vertically (union mode)" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-concat</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Concatenate CSV files vertically (union mode)</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-dedup" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-dedup" data-desc="Deduplicate CSV rows by key column or all columns" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-dedup</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Deduplicate CSV rows by key column or all columns</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-filter" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-filter" data-desc="Filter CSV rows by column value" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-filter</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Filter CSV rows by column value</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-head" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-head" data-desc="Display first N rows of a CSV file" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-head</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Display first N rows of a CSV file</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-pretty" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-pretty" data-desc="Pretty-print CSV files as aligned tables" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-pretty</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Pretty-print CSV files as aligned tables</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-schema" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-schema" data-desc="Infer CSV schema (column types, nulls, stats, samples)" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-schema</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Infer CSV schema (column types, nulls, stats, samples)</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-slice" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-slice" data-desc="Extract columns/rows from CSV files by index or name" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-slice</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Extract columns/rows from CSV files by index or name</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-sort" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-sort" data-desc="Sort CSV files by column" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-sort</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Sort CSV files by column</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-stats" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-stats" data-desc="CSV column analysis with histograms and correlations" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-stats</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">CSV column analysis with histograms and correlations</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-to-table" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-to-table" data-desc="Convert CSV to an aligned ASCII table in terminal" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-to-table</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Convert CSV to an aligned ASCII table in terminal</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-validate" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-validate" data-desc="Validate CSV file format. Usage: csv-validate <file.csv>" data-cat="CSV/Data">
     <div class="tool-name">evtool csv-validate</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">Validate CSV file format. Usage: csv-validate <file.csv></div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv-view" data-desc="" data-cat="csv">
+  <div class="tool-card" data-name="csv-view" data-desc="CSV file viewer with table formatting. Auto-detects delimiter, filters, sorts, JSON output." data-cat="CSV/Data">
     <div class="tool-name">evtool csv-view</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#34d39922; color:#34d399">CSV</span>
+    <div class="tool-desc">CSV file viewer with table formatting. Auto-detects delimiter, filters, sorts, JSON output.</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv2json" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="csv2json" data-desc="Convert CSV to JSON. Usage: csv2json [file.csv] [--pretty] [--output file.json]" data-cat="CSV/Data">
     <div class="tool-name">evtool csv2json</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert CSV to JSON. Usage: csv2json [file.csv] [--pretty] [--output file.json]</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="csv_merge" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="csv_merge" data-desc="Merge CSV files by common column (inner/left/outer join)" data-cat="CSV/Data">
     <div class="tool-name">evtool csv_merge</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Merge CSV files by common column (inner/left/outer join)</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="date_diff" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="date_diff" data-desc="Calculate date/time differences" data-cat="Date/Time">
     <div class="tool-name">evtool date_diff</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Calculate date/time differences</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="db-mate" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="db-mate" data-desc="Database management: SQLite browser, schema, queries — CLI+TUI" data-cat="Development">
     <div class="tool-name">evtool db-mate</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Database management: SQLite browser, schema, queries — CLI+TUI</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="db-schema" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="db-schema" data-desc="Display database schema as ASCII" data-cat="Development">
     <div class="tool-name">evtool db-schema</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Display database schema as ASCII</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="dedup-files" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="dedup-files" data-desc="Find and optionally delete duplicate files by SHA256 hash" data-cat="File Operations">
     <div class="tool-name">evtool dedup-files</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Find and optionally delete duplicate files by SHA256 hash</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="dep-graph" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="dep-graph" data-desc="Dependency graph from Python files" data-cat="Development">
     <div class="tool-name">evtool dep-graph</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Dependency graph from Python files</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="dev-dashboard" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="dev-dashboard" data-desc="Developer dashboard: git, system, ports, processes — CLI+TUI" data-cat="Development">
     <div class="tool-name">evtool dev-dashboard</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Developer dashboard: git, system, ports, processes — CLI+TUI</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="dice-roll" data-desc="" data-cat="fun">
+  <div class="tool-card" data-name="dice-roll" data-desc="Dice roller (d4, d6, d8, d10, d12, d20, d100)" data-cat="Generators">
     <div class="tool-name">evtool dice-roll</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fbbf2422; color:#fbbf24">Fun & Games</span>
+    <div class="tool-desc">Dice roller (d4, d6, d8, d10, d12, d20, d100)</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="diff" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="diff" data-desc="File comparison and diff tool" data-cat="Text Processing">
     <div class="tool-name">evtool diff</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">File comparison and diff tool</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="diff-csv" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="diff-csv" data-desc="Row-level diff of CSV files by key column" data-cat="CSV/Data">
     <div class="tool-name">evtool diff-csv</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Row-level diff of CSV files by key column</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="diff-lines" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="diff-lines" data-desc="Line-by-line diff between two files (zero-dependency)" data-cat="Text Processing">
     <div class="tool-name">evtool diff-lines</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Line-by-line diff between two files (zero-dependency)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="diff-yaml" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="diff-yaml" data-desc="Show differences between two YAML files" data-cat="Text Processing">
     <div class="tool-name">evtool diff-yaml</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Show differences between two YAML files</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="diff_files" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="diff_files" data-desc="Line-by-line file comparison" data-cat="Text Processing">
     <div class="tool-name">evtool diff_files</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Line-by-line file comparison</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="dig" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="dig" data-desc="DNS lookup tool - resolve domains, find DNS records" data-cat="Uncategorized">
     <div class="tool-name">evtool dig</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">DNS lookup tool - resolve domains, find DNS records</div>
+    <span class="tool-cat" style="background:#9ca3af22;color:#9ca3af">Other</span>
   </div>
-  <div class="tool-card" data-name="dirsize" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="dirsize" data-desc="Recursive directory space analyzer" data-cat="File Operations">
     <div class="tool-name">evtool dirsize</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Recursive directory space analyzer</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="disk-cleanup" data-desc="" data-cat="system">
+  <div class="tool-card" data-name="disk-cleanup" data-desc="Analyze disk usage and suggest cleanup. Usage: disk-cleanup [path] [--deep]" data-cat="File Operations">
     <div class="tool-name">evtool disk-cleanup</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f472b622; color:#f472b6">System</span>
+    <div class="tool-desc">Analyze disk usage and suggest cleanup. Usage: disk-cleanup [path] [--deep]</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="disk-usage" data-desc="" data-cat="system">
+  <div class="tool-card" data-name="disk-usage" data-desc="Disk usage analyzer (largest dirs/files)" data-cat="File Operations">
     <div class="tool-name">evtool disk-usage</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f472b622; color:#f472b6">System</span>
+    <div class="tool-desc">Disk usage analyzer (largest dirs/files)</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="dns-lookup" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="dns-lookup" data-desc="DNS lookup tool. Usage: dns-lookup <domain> [--type A|AAAA|MX|TXT|NS|CNAME|SOA]" data-cat="Network/HTTP">
     <div class="tool-name">evtool dns-lookup</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">DNS lookup tool. Usage: dns-lookup <domain> [--type A|AAAA|MX|TXT|NS|CNAME|SOA]</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="docker-helper" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="docker-helper" data-desc="Docker command helper. Usage: docker-helper <command> [args]" data-cat="Development">
     <div class="tool-name">evtool docker-helper</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Docker command helper. Usage: docker-helper <command> [args]</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="dt" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="dt" data-desc="Date/time format converter (timestamps, timezones)" data-cat="Date/Time">
     <div class="tool-name">evtool dt</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Date/time format converter (timestamps, timezones)</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="emoji-cli" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="emoji-cli" data-desc="Search and display emoji" data-cat="ASCII/Visual">
     <div class="tool-name">evtool emoji-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">Search and display emoji</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="env-diff" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="env-diff" data-desc="Compare .env files. Usage: env-diff <file1.env> <file2.env>" data-cat="Development">
     <div class="tool-name">evtool env-diff</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Compare .env files. Usage: env-diff <file1.env> <file2.env></div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="env-manager" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="env-manager" data-desc="Environment variable manager for .env files" data-cat="Development">
     <div class="tool-name">evtool env-manager</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Environment variable manager for .env files</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="env-sorter" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="env-sorter" data-desc="Sort environment variables in .env files" data-cat="Development">
     <div class="tool-name">evtool env-sorter</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Sort environment variables in .env files</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="env_template" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="env_template" data-desc="Generate .env.example from .env (strip values, keep keys)" data-cat="Development">
     <div class="tool-name">evtool env_template</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate .env.example from .env (strip values, keep keys)</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="envcheck" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="envcheck" data-desc="Environment variable validator (missing keys, formats)" data-cat="Development">
     <div class="tool-name">evtool envcheck</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Environment variable validator (missing keys, formats)</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="epoch" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="epoch" data-desc="Unix timestamp / human date converter" data-cat="Date/Time">
     <div class="tool-name">evtool epoch</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Unix timestamp / human date converter</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="excel2csv" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="excel2csv" data-desc="Convert Excel to CSV" data-cat="Format Conversion">
     <div class="tool-name">evtool excel2csv</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert Excel to CSV</div>
+    <span class="tool-cat" style="background:#2dd4bf22;color:#2dd4bf">Format Conversion</span>
   </div>
-  <div class="tool-card" data-name="factor" data-desc="" data-cat="math">
+  <div class="tool-card" data-name="factor" data-desc="Prime factorization of integers" data-cat="CLI Utilities">
     <div class="tool-name">evtool factor</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f8717122; color:#f87171">Math & Stats</span>
+    <div class="tool-desc">Prime factorization of integers</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="ff" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ff" data-desc="Interactive fuzzy finder (pure Python curses TUI)" data-cat="CLI Utilities">
     <div class="tool-name">evtool ff</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Interactive fuzzy finder (pure Python curses TUI)</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="figlet" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="figlet" data-desc="ASCII banner generator (figlet-style)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool figlet</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">ASCII banner generator (figlet-style)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="figlet-cli" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="figlet-cli" data-desc="ASCII art font display (5 fonts)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool figlet-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">ASCII art font display (5 fonts)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="file-encrypt" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="file-encrypt" data-desc="Simple file encrypt/decrypt" data-cat="File Operations">
     <div class="tool-name">evtool file-encrypt</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Simple file encrypt/decrypt</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="file-joiner" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="file-joiner" data-desc="Join split file chunks. Usage: file-joiner <base_name> [--output file]" data-cat="Text Processing">
     <div class="tool-name">evtool file-joiner</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Join split file chunks. Usage: file-joiner <base_name> [--output file]</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="file-patch" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="file-patch" data-desc="Apply text patches to files" data-cat="File Operations">
     <div class="tool-name">evtool file-patch</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Apply text patches to files</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="file-splitter" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="file-splitter" data-desc="Split files into chunks. Usage: file-splitter <file> --lines N | --size N[K|M|G]" data-cat="File Operations">
     <div class="tool-name">evtool file-splitter</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Split files into chunks. Usage: file-splitter <file> --lines N | --size N[K|M|G]</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="file-type" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="file-type" data-desc="Detect file type using magic bytes" data-cat="File Operations">
     <div class="tool-name">evtool file-type</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Detect file type using magic bytes</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="file-watch" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="file-watch" data-desc="Watch file for changes. Usage: file-watch <file> [--tail]" data-cat="File Operations">
     <div class="tool-name">evtool file-watch</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Watch file for changes. Usage: file-watch <file> [--tail]</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="file_find" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="file_find" data-desc="Find files by name pattern with recursive search" data-cat="File Operations">
     <div class="tool-name">evtool file_find</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Find files by name pattern with recursive search</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="find-dups" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="find-dups" data-desc="Find duplicate files by SHA256 hash, size, or name" data-cat="File Operations">
     <div class="tool-name">evtool find-dups</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Find duplicate files by SHA256 hash, size, or name</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="find-empty" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="find-empty" data-desc="Find empty directories and files" data-cat="File Operations">
     <div class="tool-name">evtool find-empty</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Find empty directories and files</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="firewall-rule" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="firewall-rule" data-desc="iptables/nftables firewall rule helper" data-cat="Security">
     <div class="tool-name">evtool firewall-rule</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">iptables/nftables firewall rule helper</div>
+    <span class="tool-cat" style="background:#ef444422;color:#ef4444">Security</span>
   </div>
-  <div class="tool-card" data-name="fmt" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="fmt" data-desc="Code and text auto-formatter (whitespace, indent, EOF)" data-cat="CLI Utilities">
     <div class="tool-name">evtool fmt</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Code and text auto-formatter (whitespace, indent, EOF)</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="fold" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="fold" data-desc="Wrap input lines to specified width" data-cat="Text Processing">
     <div class="tool-name">evtool fold</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Wrap input lines to specified width</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="geo-ip" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="geo-ip" data-desc="Look up IP geolocation. Usage: geo-ip [IP address]" data-cat="Network/HTTP">
     <div class="tool-name">evtool geo-ip</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Look up IP geolocation. Usage: geo-ip [IP address]</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="git-branch-cleaner" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="git-branch-cleaner" data-desc="Clean stale git branches" data-cat="Development">
     <div class="tool-name">evtool git-branch-cleaner</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Clean stale git branches</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="git-ignore" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="git-ignore" data-desc="Generate .gitignore templates for common languages/frameworks" data-cat="Development">
     <div class="tool-name">evtool git-ignore</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Generate .gitignore templates for common languages/frameworks</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="git-log-pretty" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="git-log-pretty" data-desc="Pretty git log. Usage: git-log-pretty [--count N] [--author name]" data-cat="Development">
     <div class="tool-name">evtool git-log-pretty</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Pretty git log. Usage: git-log-pretty [--count N] [--author name]</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="git-stats" data-desc="" data-cat="devops">
+  <div class="tool-card" data-name="git-stats" data-desc="Show git contribution stats. Usage: git-stats [--author name] [--since 30.days]" data-cat="Development">
     <div class="tool-name">evtool git-stats</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#ef444422; color:#ef4444">DevOps</span>
+    <div class="tool-desc">Show git contribution stats. Usage: git-stats [--author name] [--since 30.days]</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="gzip-cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="gzip-cli" data-desc="Gzip/gunzip files — compress, decompress, list archive contents" data-cat="Network/HTTP">
     <div class="tool-name">evtool gzip-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Gzip/gunzip files — compress, decompress, list archive contents</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="hash-file" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="hash-file" data-desc="Compute file hashes. Usage: hash-file <file> [--md5|--sha1|--sha256|--sha512|--all]" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool hash-file</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Compute file hashes. Usage: hash-file <file> [--md5|--sha1|--sha256|--sha512|--all]</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="hash_check" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="hash_check" data-desc="Compare file hashes against known SHA256/MD5 values" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool hash_check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Compare file hashes against known SHA256/MD5 values</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="hashsum" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="hashsum" data-desc="File hash verification (MD5/SHA-1/256/512/BLAKE2)" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool hashsum</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">File hash verification (MD5/SHA-1/256/512/BLAKE2)</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="hex-tool" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="hex-tool" data-desc="Hex encode/decode. Usage: hex-tool encode <text> | hex-tool decode <hex>" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool hex-tool</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Hex encode/decode. Usage: hex-tool encode <text> | hex-tool decode <hex></div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="hexdec" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="hexdec" data-desc="Convert between hex, decimal, octal, binary" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool hexdec</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert between hex, decimal, octal, binary</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="hexdump" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="hexdump" data-desc="Hex dump with ASCII view (file or stdin)" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool hexdump</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Hex dump with ASCII view (file or stdin)</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="html-strip" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="html-strip" data-desc="Strip HTML tags, extract plain text" data-cat="Text Processing">
     <div class="tool-name">evtool html-strip</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Strip HTML tags, extract plain text</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="html2markdown" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="html2markdown" data-desc="Convert HTML to Markdown" data-cat="Text Processing">
     <div class="tool-name">evtool html2markdown</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert HTML to Markdown</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="html2md" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="html2md" data-desc="Convert HTML to Markdown" data-cat="Text Processing">
     <div class="tool-name">evtool html2md</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert HTML to Markdown</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="html2text" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="html2text" data-desc="Convert HTML to plain text" data-cat="Uncategorized">
     <div class="tool-name">evtool html2text</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert HTML to plain text</div>
+    <span class="tool-cat" style="background:#9ca3af22;color:#9ca3af">Other</span>
   </div>
-  <div class="tool-card" data-name="http-headers" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="http-headers" data-desc="Inspect HTTP response headers. Usage: http-headers <url>" data-cat="Network/HTTP">
     <div class="tool-name">evtool http-headers</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">Inspect HTTP response headers. Usage: http-headers <url></div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="http-live" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="http-live" data-desc="SSE hot-reload development HTTP server" data-cat="Network/HTTP">
     <div class="tool-name">evtool http-live</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">SSE hot-reload development HTTP server</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="http-status" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="http-status" data-desc="Look up HTTP status code meanings (search/list/lookup)" data-cat="Network/HTTP">
     <div class="tool-name">evtool http-status</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">Look up HTTP status code meanings (search/list/lookup)</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="http_server" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="http_server" data-desc="Simple static file HTTP server" data-cat="Network/HTTP">
     <div class="tool-name">evtool http_server</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Simple static file HTTP server</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="humanize" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="humanize" data-desc="Convert raw numbers to human-readable format (size, duration, count)" data-cat="Date/Time">
     <div class="tool-name">evtool humanize</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert raw numbers to human-readable format (size, duration, count)</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="image-meta" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="image-meta" data-desc="Image metadata (EXIF) viewer" data-cat="QR/Image/Media">
     <div class="tool-name">evtool image-meta</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Image metadata (EXIF) viewer</div>
+    <span class="tool-cat" style="background:#22d3ee22;color:#22d3ee">QR & Media</span>
   </div>
-  <div class="tool-card" data-name="ini-parser" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ini-parser" data-desc="INI file parser, query, and JSON converter" data-cat="YAML/TOML/INI">
     <div class="tool-name">evtool ini-parser</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">INI file parser, query, and JSON converter</div>
+    <span class="tool-cat" style="background:#f0abfc22;color:#f0abfc">YAML / TOML / INI</span>
   </div>
-  <div class="tool-card" data-name="ini2json" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ini2json" data-desc="Convert INI to JSON. Usage: ini2json <file.ini> [--pretty]" data-cat="YAML/TOML/INI">
     <div class="tool-name">evtool ini2json</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert INI to JSON. Usage: ini2json <file.ini> [--pretty]</div>
+    <span class="tool-cat" style="background:#f0abfc22;color:#f0abfc">YAML / TOML / INI</span>
   </div>
-  <div class="tool-card" data-name="ip-location" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="ip-location" data-desc="GeoIP location lookup (ip-api.com)" data-cat="Network/HTTP">
     <div class="tool-name">evtool ip-location</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">GeoIP location lookup (ip-api.com)</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="ip_info" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ip_info" data-desc="Show public IP address and geolocation info" data-cat="Network/HTTP">
     <div class="tool-name">evtool ip_info</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Show public IP address and geolocation info</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="ipcalc" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ipcalc" data-desc="IP address and subnet calculator" data-cat="Network/HTTP">
     <div class="tool-name">evtool ipcalc</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">IP address and subnet calculator</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="ipinfo" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ipinfo" data-desc="Public IP and geolocation lookup" data-cat="Network/HTTP">
     <div class="tool-name">evtool ipinfo</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Public IP and geolocation lookup</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="join" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="join" data-desc="Join lines with delimiter" data-cat="Text Processing">
     <div class="tool-name">evtool join</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Join lines with delimiter</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="joke" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="joke" data-desc="Random programming/tech/dad jokes" data-cat="Generators">
     <div class="tool-name">evtool joke</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Random programming/tech/dad jokes</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="jq-lite" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="jq-lite" data-desc="jq-style JSON filter and extract tool" data-cat="JSON">
     <div class="tool-name">evtool jq-lite</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">jq-style JSON filter and extract tool</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-diff" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-diff" data-desc="Deep diff two JSON files, show paths that differ" data-cat="JSON">
     <div class="tool-name">evtool json-diff</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Deep diff two JSON files, show paths that differ</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-keys" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-keys" data-desc="Extract and list keys from JSON files" data-cat="JSON">
     <div class="tool-name">evtool json-keys</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Extract and list keys from JSON files</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-patch" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-patch" data-desc="Apply JSON Patch (RFC 6902) operations to JSON files" data-cat="JSON">
     <div class="tool-name">evtool json-patch</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Apply JSON Patch (RFC 6902) operations to JSON files</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-path" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-path" data-desc="Query JSON with simple path syntax — dot notation, bracket, wildcard" data-cat="JSON">
     <div class="tool-name">evtool json-path</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Query JSON with simple path syntax — dot notation, bracket, wildcard</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-pretty" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-pretty" data-desc="JSON pretty-printer, validator, minifier" data-cat="JSON">
     <div class="tool-name">evtool json-pretty</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">JSON pretty-printer, validator, minifier</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-schema-validate" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-schema-validate" data-desc="Validate JSON against JSON Schema. Usage: json-schema-validate <data.json> <schema.json>" data-cat="JSON">
     <div class="tool-name">evtool json-schema-validate</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Validate JSON against JSON Schema. Usage: json-schema-validate <data.json> <schema.json></div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-sort" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-sort" data-desc="Sort JSON keys alphabetically, recursively" data-cat="JSON">
     <div class="tool-name">evtool json-sort</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Sort JSON keys alphabetically, recursively</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-to-table" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-to-table" data-desc="Render JSON array as aligned ASCII table in terminal" data-cat="JSON">
     <div class="tool-name">evtool json-to-table</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Render JSON array as aligned ASCII table in terminal</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json-to-yaml" data-desc="" data-cat="json">
+  <div class="tool-card" data-name="json-to-yaml" data-desc="Convert JSON to YAML format (stdlib, zero deps)" data-cat="JSON">
     <div class="tool-name">evtool json-to-yaml</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#60a5fa22; color:#60a5fa">JSON</span>
+    <div class="tool-desc">Convert JSON to YAML format (stdlib, zero deps)</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json2csv" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="json2csv" data-desc="JSON to CSV converter with nested key flattening" data-cat="JSON">
     <div class="tool-name">evtool json2csv</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">JSON to CSV converter with nested key flattening</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json2ini" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="json2ini" data-desc="Convert JSON to INI format. Usage: json2ini <file.json>" data-cat="JSON">
     <div class="tool-name">evtool json2ini</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert JSON to INI format. Usage: json2ini <file.json></div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json_flatten" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="json_flatten" data-desc="Flatten nested JSON to dot-notation key=value pairs" data-cat="JSON">
     <div class="tool-name">evtool json_flatten</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Flatten nested JSON to dot-notation key=value pairs</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="json_merge" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="json_merge" data-desc="Merge multiple JSON files into one" data-cat="JSON">
     <div class="tool-name">evtool json_merge</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Merge multiple JSON files into one</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="jsonql" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="jsonql" data-desc="SQL-like JSON query engine" data-cat="JSON">
     <div class="tool-name">evtool jsonql</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">SQL-like JSON query engine</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="jwt-decode" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="jwt-decode" data-desc="Decode JWT tokens (header + payload, no verification)" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool jwt-decode</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Decode JWT tokens (header + payload, no verification)</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="key-value-store" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="key-value-store" data-desc="Simple key-value store. Usage: kvstore set <key> <val> | kvstore get <key> | kvstore list | kvstore del <key>" data-cat="CLI Utilities">
     <div class="tool-name">evtool key-value-store</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Simple key-value store. Usage: kvstore set <key> <val> | kvstore get <key> | kvstore list | kvstore del <key></div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="license" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="license" data-desc="Display open-source license text. Use --list to show available licenses." data-cat="Development">
     <div class="tool-name">evtool license</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Display open-source license text. Use --list to show available licenses.</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="license-cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="license-cli" data-desc="Open-source license generator and validator" data-cat="Development">
     <div class="tool-name">evtool license-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Open-source license generator and validator</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="link-check" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="link-check" data-desc="Check for broken links in Markdown files" data-cat="Network/HTTP">
     <div class="tool-name">evtool link-check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Check for broken links in Markdown files</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="log-analyzer" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="log-analyzer" data-desc="Log file pattern analyzer and statistics" data-cat="System/Monitoring">
     <div class="tool-name">evtool log-analyzer</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Log file pattern analyzer and statistics</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="log-hawk" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="log-hawk" data-desc="Log analysis: parse, filter, tail, stats — CLI+TUI" data-cat="System/Monitoring">
     <div class="tool-name">evtool log-hawk</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Log analysis: parse, filter, tail, stats — CLI+TUI</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="log-tail" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="log-tail" data-desc="Tail logs with follow, filter, colorize" data-cat="System/Monitoring">
     <div class="tool-name">evtool log-tail</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Tail logs with follow, filter, colorize</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="mac-address" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="mac-address" data-desc="Generate and lookup MAC addresses" data-cat="System/Monitoring">
     <div class="tool-name">evtool mac-address</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate and lookup MAC addresses</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="macrogen" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="macrogen" data-desc="Macro/code template generator with built-in templates. Usage: macrogen <name> [key=val ...] | macrogen --list | macrogen -t <path> [key=val ...]" data-cat="Generators">
     <div class="tool-name">evtool macrogen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Macro/code template generator with built-in templates. Usage: macrogen <name> [key=val ...] | macrogen --list | macrogen -t <path> [key=val ...]</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="markdown-check" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="markdown-check" data-desc="Markdown link and structure checker" data-cat="Text Processing">
     <div class="tool-name">evtool markdown-check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Markdown link and structure checker</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="markdown-format" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="markdown-format" data-desc="Format/beautify Markdown tables and lists" data-cat="Text Processing">
     <div class="tool-name">evtool markdown-format</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Format/beautify Markdown tables and lists</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="markdown-lint" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="markdown-lint" data-desc="Basic Markdown linting — headings, fences, whitespace, line length" data-cat="Text Processing">
     <div class="tool-name">evtool markdown-lint</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Basic Markdown linting — headings, fences, whitespace, line length</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="markdown-preview" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="markdown-preview" data-desc="Preview Markdown in terminal. Usage: markdown-preview <file.md>" data-cat="Text Processing">
     <div class="tool-name">evtool markdown-preview</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Preview Markdown in terminal. Usage: markdown-preview <file.md></div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="markdown-to-html" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="markdown-to-html" data-desc="Convert Markdown to simple HTML (stdlib, zero deps)" data-cat="Text Processing">
     <div class="tool-name">evtool markdown-to-html</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert Markdown to simple HTML (stdlib, zero deps)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="markdown-toc" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="markdown-toc" data-desc="Generate table of contents from Markdown. Usage: markdown-toc [file.md]" data-cat="Text Processing">
     <div class="tool-name">evtool markdown-toc</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate table of contents from Markdown. Usage: markdown-toc [file.md]</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="math_eval" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="math_eval" data-desc="Safe mathematical expression evaluator" data-cat="CLI Utilities">
     <div class="tool-name">evtool math_eval</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Safe mathematical expression evaluator</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="media-studio" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="media-studio" data-desc="Media utilities: QR, ASCII art, banner, Morse, figlet — CLI+TUI" data-cat="QR/Image/Media">
     <div class="tool-name">evtool media-studio</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Media utilities: QR, ASCII art, banner, Morse, figlet — CLI+TUI</div>
+    <span class="tool-cat" style="background:#22d3ee22;color:#22d3ee">QR & Media</span>
   </div>
-  <div class="tool-card" data-name="merge-json" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="merge-json" data-desc="Deep merge multiple JSON files (arrays concatenate, dicts recurse)" data-cat="JSON">
     <div class="tool-name">evtool merge-json</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">Deep merge multiple JSON files (arrays concatenate, dicts recurse)</div>
+    <span class="tool-cat" style="background:#38bdf822;color:#38bdf8">JSON</span>
   </div>
-  <div class="tool-card" data-name="mime-type" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="mime-type" data-desc="Detect MIME type of files by extension and magic bytes" data-cat="File Operations">
     <div class="tool-name">evtool mime-type</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Detect MIME type of files by extension and magic bytes</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="morse" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="morse" data-desc="Text-Morse code converter with audio" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool morse</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Text-Morse code converter with audio</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="nb" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="nb" data-desc="Command-line notebook with full-text search" data-cat="CLI Utilities">
     <div class="tool-name">evtool nb</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Command-line notebook with full-text search</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="net-analyzer" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="net-analyzer" data-desc="Network analysis: ping, trace, port scan, DNS — CLI+TUI" data-cat="Network/HTTP">
     <div class="tool-name">evtool net-analyzer</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Network analysis: ping, trace, port scan, DNS — CLI+TUI</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="net-speed" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="net-speed" data-desc="Internet download speed test" data-cat="Network/HTTP">
     <div class="tool-name">evtool net-speed</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Internet download speed test</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="network-scan" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="network-scan" data-desc="Scan active hosts on network. Usage: network-scan [subnet] [--ping]" data-cat="Network/HTTP">
     <div class="tool-name">evtool network-scan</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Scan active hosts on network. Usage: network-scan [subnet] [--ping]</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="nl" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="nl" data-desc="Number lines of files or stdin" data-cat="Text Processing">
     <div class="tool-name">evtool nl</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Number lines of files or stdin</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="note-taker" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="note-taker" data-desc="CLI note-taking (add, list, search)" data-cat="CLI Utilities">
     <div class="tool-name">evtool note-taker</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">CLI note-taking (add, list, search)</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="otp-gen" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="otp-gen" data-desc="TOTP/HOTP one-time password generator" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool otp-gen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">TOTP/HOTP one-time password generator</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="passgen" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="passgen" data-desc="Password and passphrase generator with entropy display" data-cat="Security">
     <div class="tool-name">evtool passgen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Password and passphrase generator with entropy display</div>
+    <span class="tool-cat" style="background:#ef444422;color:#ef4444">Security</span>
   </div>
-  <div class="tool-card" data-name="password-strength" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="password-strength" data-desc="Password strength checker (0-100)" data-cat="Text Processing">
     <div class="tool-name">evtool password-strength</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Password strength checker (0-100)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="pdf-text" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="pdf-text" data-desc="Extract text from PDF files" data-cat="PDF">
     <div class="tool-name">evtool pdf-text</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Extract text from PDF files</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">PDF</span>
   </div>
-  <div class="tool-card" data-name="pdf_info" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="pdf_info" data-desc="Extract PDF metadata — pages, title, author, size" data-cat="PDF">
     <div class="tool-name">evtool pdf_info</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Extract PDF metadata — pages, title, author, size</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">PDF</span>
   </div>
-  <div class="tool-card" data-name="pipe-viewer" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="pipe-viewer" data-desc="Pipe viewer with progress bar. Usage: cmd | pipe-viewer [label]" data-cat="System/Monitoring">
     <div class="tool-name">evtool pipe-viewer</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Pipe viewer with progress bar. Usage: cmd | pipe-viewer [label]</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="pomodoro" data-desc="" data-cat="fun">
+  <div class="tool-card" data-name="pomodoro" data-desc="Pomodoro timer (work/break cycles)" data-cat="Date/Time">
     <div class="tool-name">evtool pomodoro</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fbbf2422; color:#fbbf24">Fun & Games</span>
+    <div class="tool-desc">Pomodoro timer (work/break cycles)</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="port_scan" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="port_scan" data-desc="Quick TCP port scan on a host" data-cat="Network/HTTP">
     <div class="tool-name">evtool port_scan</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Quick TCP port scan on a host</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="portcheck" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="portcheck" data-desc="TCP port scanner and service detection" data-cat="Network/HTTP">
     <div class="tool-name">evtool portcheck</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">TCP port scanner and service detection</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="pr-tool" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="pr-tool" data-desc="GitHub PR helper (create, list, review, checkout)" data-cat="Development">
     <div class="tool-name">evtool pr-tool</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">GitHub PR helper (create, list, review, checkout)</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="process-kill" data-desc="" data-cat="system">
+  <div class="tool-card" data-name="process-kill" data-desc="Kill processes by name/port/user" data-cat="System/Monitoring">
     <div class="tool-name">evtool process-kill</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f472b622; color:#f472b6">System</span>
+    <div class="tool-desc">Kill processes by name/port/user</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="progress-bar" data-desc="" data-cat="ascii">
+  <div class="tool-card" data-name="progress-bar" data-desc="Animated terminal progress bar" data-cat="System/Monitoring">
     <div class="tool-name">evtool progress-bar</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#a78bfa22; color:#a78bfa">ASCII & Artistic</span>
+    <div class="tool-desc">Animated terminal progress bar</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="project-doctor" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="project-doctor" data-desc="Project health checker (meta, structure, quality)" data-cat="Development">
     <div class="tool-name">evtool project-doctor</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Project health checker (meta, structure, quality)</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="qc-report" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="qc-report" data-desc="检验报告生成器 v2.0 -- Text/HTML/CSV/证书" data-cat="CSV/Data">
     <div class="tool-name">evtool qc-report</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">检验报告生成器 v2.0 -- Text/HTML/CSV/证书</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="qc-sample" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="qc-sample" data-desc="样品送检单生成器 v2.0 -- 交互/模板/批量" data-cat="CSV/Data">
     <div class="tool-name">evtool qc-sample</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">样品送检单生成器 v2.0 -- 交互/模板/批量</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="qr_cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="qr_cli" data-desc="Generate QR codes in terminal (unicode block art)" data-cat="QR/Image/Media">
     <div class="tool-name">evtool qr_cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate QR codes in terminal (unicode block art)</div>
+    <span class="tool-cat" style="background:#22d3ee22;color:#22d3ee">QR & Media</span>
   </div>
-  <div class="tool-card" data-name="qrcode" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="qrcode" data-desc="QR code generator (ASCII art)" data-cat="QR/Image/Media">
     <div class="tool-name">evtool qrcode</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">QR code generator (ASCII art)</div>
+    <span class="tool-cat" style="background:#22d3ee22;color:#22d3ee">QR & Media</span>
   </div>
-  <div class="tool-card" data-name="quote" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="quote" data-desc="Random quote generator (100+ in 5 categories)" data-cat="Generators">
     <div class="tool-name">evtool quote</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Random quote generator (100+ in 5 categories)</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="rainbow" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="rainbow" data-desc="Rainbow-colored text output" data-cat="ASCII/Visual">
     <div class="tool-name">evtool rainbow</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Rainbow-colored text output</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="random" data-desc="" data-cat="math">
+  <div class="tool-card" data-name="random" data-desc="Random generation: password, uuid, hex, int. Usage: random password [len] | uuid | hex [bytes] | int [min] [max]" data-cat="Generators">
     <div class="tool-name">evtool random</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f8717122; color:#f87171">Math & Stats</span>
+    <div class="tool-desc">Random generation: password, uuid, hex, int. Usage: random password [len] | uuid | hex [bytes] | int [min] [max]</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="random-cli" data-desc="" data-cat="math">
+  <div class="tool-card" data-name="random-cli" data-desc="Random data generator (numbers, strings, UUIDs, passwords)" data-cat="Generators">
     <div class="tool-name">evtool random-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f8717122; color:#f87171">Math & Stats</span>
+    <div class="tool-desc">Random data generator (numbers, strings, UUIDs, passwords)</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="random-string" data-desc="" data-cat="math">
+  <div class="tool-card" data-name="random-string" data-desc="Generate random strings (hex/pin/uuid/base64/alphanumeric)" data-cat="Text Processing">
     <div class="tool-name">evtool random-string</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f8717122; color:#f87171">Math & Stats</span>
+    <div class="tool-desc">Generate random strings (hex/pin/uuid/base64/alphanumeric)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="reminder" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="reminder" data-desc="Timer-based reminder with countdown" data-cat="Date/Time">
     <div class="tool-name">evtool reminder</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Timer-based reminder with countdown</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="ren" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ren" data-desc="Batch file renamer (prefix/suffix/regex/numbering)" data-cat="File Operations">
     <div class="tool-name">evtool ren</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Batch file renamer (prefix/suffix/regex/numbering)</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="replace-text" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="replace-text" data-desc="Find and replace text in files. Usage: replace-text <old> <new> [files...] [--dry-run]" data-cat="Text Processing">
     <div class="tool-name">evtool replace-text</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Find and replace text in files. Usage: replace-text <old> <new> [files...] [--dry-run]</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="restore" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="restore" data-desc="Restore files from .bak backups" data-cat="File Operations">
     <div class="tool-name">evtool restore</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Restore files from .bak backups</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="rot13" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="rot13" data-desc="ROT13/ROT47 text cipher (stdin or arg)" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool rot13</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">ROT13/ROT47 text cipher (stdin or arg)</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="route-trace" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="route-trace" data-desc="Trace network route to host. Usage: route-trace <host> [--max-hops 30]" data-cat="Network/HTTP">
     <div class="tool-name">evtool route-trace</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Trace network route to host. Usage: route-trace <host> [--max-hops 30]</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="scan-open-ports" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="scan-open-ports" data-desc="TCP port scanner with concurrent scanning and service detection" data-cat="Security">
     <div class="tool-name">evtool scan-open-ports</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">TCP port scanner with concurrent scanning and service detection</div>
+    <span class="tool-cat" style="background:#ef444422;color:#ef4444">Security</span>
   </div>
-  <div class="tool-card" data-name="scan-ports" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="scan-ports" data-desc="TCP port scanner (range, common ports)" data-cat="Security">
     <div class="tool-name">evtool scan-ports</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">TCP port scanner (range, common ports)</div>
+    <span class="tool-cat" style="background:#ef444422;color:#ef4444">Security</span>
   </div>
-  <div class="tool-card" data-name="screen-recorder" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="screen-recorder" data-desc="Record terminal session. Usage: screen-recorder start [name] | screen-recorder stop | screen-recorder list" data-cat="QR/Image/Media">
     <div class="tool-name">evtool screen-recorder</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Record terminal session. Usage: screen-recorder start [name] | screen-recorder stop | screen-recorder list</div>
+    <span class="tool-cat" style="background:#22d3ee22;color:#22d3ee">QR & Media</span>
   </div>
-  <div class="tool-card" data-name="screenshot-cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="screenshot-cli" data-desc="Take screenshots from terminal. Usage: screenshot-cli [output.png] [--delay N]" data-cat="QR/Image/Media">
     <div class="tool-name">evtool screenshot-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Take screenshots from terminal. Usage: screenshot-cli [output.png] [--delay N]</div>
+    <span class="tool-cat" style="background:#22d3ee22;color:#22d3ee">QR & Media</span>
   </div>
-  <div class="tool-card" data-name="search-files" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="search-files" data-desc="Search files by name/content. Usage: search-files <pattern> [path] [--type f|d]" data-cat="CLI Utilities">
     <div class="tool-name">evtool search-files</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Search files by name/content. Usage: search-files <pattern> [path] [--type f|d]</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="search-history" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="search-history" data-desc="Search terminal history. Usage: search-history <pattern>" data-cat="CLI Utilities">
     <div class="tool-name">evtool search-history</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Search terminal history. Usage: search-history <pattern></div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="secret-scanner" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="secret-scanner" data-desc="Scan files for secrets/API keys/tokens. Usage: secret-scanner [path]" data-cat="Security">
     <div class="tool-name">evtool secret-scanner</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Scan files for secrets/API keys/tokens. Usage: secret-scanner [path]</div>
+    <span class="tool-cat" style="background:#ef444422;color:#ef4444">Security</span>
   </div>
-  <div class="tool-card" data-name="seq" data-desc="" data-cat="math">
+  <div class="tool-card" data-name="seq" data-desc="Generate sequence of numbers" data-cat="CLI Utilities">
     <div class="tool-name">evtool seq</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#f8717122; color:#f87171">Math & Stats</span>
+    <div class="tool-desc">Generate sequence of numbers</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="service-check" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="service-check" data-desc="Check systemd service status" data-cat="Network/HTTP">
     <div class="tool-name">evtool service-check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Check systemd service status</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="share" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="share" data-desc="Generate ready-to-post social media content (HN/Reddit/Tweet) about evolver-tools" data-cat="Uncategorized">
     <div class="tool-name">evtool share</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate ready-to-post social media content (HN/Reddit/Tweet) about evolver-tools</div>
+    <span class="tool-cat" style="background:#9ca3af22;color:#9ca3af">Other</span>
   </div>
-  <div class="tool-card" data-name="shuffle" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="shuffle" data-desc="Randomize lines from stdin" data-cat="Text Processing">
     <div class="tool-name">evtool shuffle</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Randomize lines from stdin</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="siege-lite" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="siege-lite" data-desc="HTTP load tester (concurrency, latency percentile)" data-cat="Network/HTTP">
     <div class="tool-name">evtool siege-lite</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">HTTP load tester (concurrency, latency percentile)</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="slugify" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="slugify" data-desc="Convert text to URL-friendly ASCII slugs" data-cat="Text Processing">
     <div class="tool-name">evtool slugify</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert text to URL-friendly ASCII slugs</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="smellfinder" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="smellfinder" data-desc="Python code smell detector (AST-based, 10+ patterns)" data-cat="Development">
     <div class="tool-name">evtool smellfinder</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Python code smell detector (AST-based, 10+ patterns)</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="sort" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="sort" data-desc="Line sorting (alpha, numeric, unique, by column)" data-cat="Text Processing">
     <div class="tool-name">evtool sort</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Line sorting (alpha, numeric, unique, by column)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="spinner" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="spinner" data-desc="Animated terminal spinner (6 styles)" data-cat="ASCII/Visual">
     <div class="tool-name">evtool spinner</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Animated terminal spinner (6 styles)</div>
+    <span class="tool-cat" style="background:#a78bfa22;color:#a78bfa">ASCII & Visual</span>
   </div>
-  <div class="tool-card" data-name="split" data-desc="" data-cat="file">
+  <div class="tool-card" data-name="split" data-desc="File splitter and joiner (by lines or size)" data-cat="File Operations">
     <div class="tool-name">evtool split</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#4ade8022; color:#4ade80">File Operations</span>
+    <div class="tool-desc">File splitter and joiner (by lines or size)</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="sql2csv" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="sponsor" data-desc="Show sponsorship info and how to support EVOLVER Tools" data-cat="Uncategorized">
+    <div class="tool-name">evtool sponsor</div>
+    <div class="tool-desc">Show sponsorship info and how to support EVOLVER Tools</div>
+    <span class="tool-cat" style="background:#9ca3af22;color:#9ca3af">Other</span>
+  </div>
+  <div class="tool-card" data-name="sql2csv" data-desc="Run SQL on CSV files" data-cat="CSV/Data">
     <div class="tool-name">evtool sql2csv</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Run SQL on CSV files</div>
+    <span class="tool-cat" style="background:#34d39922;color:#34d399">CSV & Data</span>
   </div>
-  <div class="tool-card" data-name="sqlite-cli" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="sqlite-cli" data-desc="SQLite query tool with CSV/JSON/table output" data-cat="Development">
     <div class="tool-name">evtool sqlite-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">SQLite query tool with CSV/JSON/table output</div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="ssh-key-gen" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="ssh-key-gen" data-desc="Generate SSH key pairs" data-cat="Security">
     <div class="tool-name">evtool ssh-key-gen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generate SSH key pairs</div>
+    <span class="tool-cat" style="background:#ef444422;color:#ef4444">Security</span>
   </div>
-  <div class="tool-card" data-name="ssl-check" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="ssl-check" data-desc="SSL/TLS certificate checker" data-cat="Network/HTTP">
     <div class="tool-name">evtool ssl-check</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">SSL/TLS certificate checker</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="stopwatch" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="stopwatch" data-desc="Terminal stopwatch with lap support" data-cat="Date/Time">
     <div class="tool-name">evtool stopwatch</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Terminal stopwatch with lap support</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="subnet" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="subnet" data-desc="IPv4 subnet/CIDR calculator" data-cat="Network/HTTP">
     <div class="tool-name">evtool subnet</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">IPv4 subnet/CIDR calculator</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="sysmon" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="sysmon" data-desc="Real-time system monitor (curses TUI)" data-cat="System/Monitoring">
     <div class="tool-name">evtool sysmon</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Real-time system monitor (curses TUI)</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="sysmon-pro" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="sysmon-pro" data-desc="System monitor: CPU, memory, disk, processes, network — CLI+TUI" data-cat="System/Monitoring">
     <div class="tool-name">evtool sysmon-pro</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">System monitor: CPU, memory, disk, processes, network — CLI+TUI</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="system-info" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="system-info" data-desc="Display system information. Usage: system-info [--all]" data-cat="System/Monitoring">
     <div class="tool-name">evtool system-info</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Display system information. Usage: system-info [--all]</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="temp-cleaner" data-desc="" data-cat="conversion">
+  <div class="tool-card" data-name="temp-cleaner" data-desc="Clean temp files. Usage: temp-cleaner [--dry-run] [--older N[d|h]]" data-cat="File Operations">
     <div class="tool-name">evtool temp-cleaner</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#c084fc22; color:#c084fc">Conversion</span>
+    <div class="tool-desc">Clean temp files. Usage: temp-cleaner [--dry-run] [--older N[d|h]]</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="template" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="template" data-desc="Project scaffolding. Usage: template init <name> | template python <name> | template cli <name>" data-cat="Development">
     <div class="tool-name">evtool template</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Project scaffolding. Usage: template init <name> | template python <name> | template cli <name></div>
+    <span class="tool-cat" style="background:#f472b622;color:#f472b6">Development</span>
   </div>
-  <div class="tool-card" data-name="text-dedent" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="text-dedent" data-desc="Remove common leading whitespace from text" data-cat="Text Processing">
     <div class="tool-name">evtool text-dedent</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Remove common leading whitespace from text</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="text-stats" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="text-stats" data-desc="Text statistics (words, chars, sentences, reading time)" data-cat="Text Processing">
     <div class="tool-name">evtool text-stats</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Text statistics (words, chars, sentences, reading time)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="text-wrap" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="text-wrap" data-desc="Wrap text to specified column width" data-cat="Text Processing">
     <div class="tool-name">evtool text-wrap</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Wrap text to specified column width</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="time-duration" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="time-duration" data-desc="Calculate duration between dates/timestamps in multiple formats" data-cat="Date/Time">
     <div class="tool-name">evtool time-duration</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Calculate duration between dates/timestamps in multiple formats</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="timeout" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="timeout" data-desc="Run command with timeout limit" data-cat="Date/Time">
     <div class="tool-name">evtool timeout</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Run command with timeout limit</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="timer" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="timer" data-desc="Countdown timer and stopwatch" data-cat="Date/Time">
     <div class="tool-name">evtool timer</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Countdown timer and stopwatch</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="timer-pro" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="timer-pro" data-desc="Countdown, stopwatch, alarms, lap timer" data-cat="Date/Time">
     <div class="tool-name">evtool timer-pro</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Countdown, stopwatch, alarms, lap timer</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="todo-cli" data-desc="" data-cat="fun">
+  <div class="tool-card" data-name="todo-cli" data-desc="Simple prioritized TODO list manager" data-cat="CLI Utilities">
     <div class="tool-name">evtool todo-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fbbf2422; color:#fbbf24">Fun & Games</span>
+    <div class="tool-desc">Simple prioritized TODO list manager</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="toml2json" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="toml2json" data-desc="Convert TOML to JSON. Usage: toml2json <file.toml> [--pretty]" data-cat="YAML/TOML/INI">
     <div class="tool-name">evtool toml2json</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert TOML to JSON. Usage: toml2json <file.toml> [--pretty]</div>
+    <span class="tool-cat" style="background:#f0abfc22;color:#f0abfc">YAML / TOML / INI</span>
   </div>
-  <div class="tool-card" data-name="tr" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="tr" data-desc="Translate or delete characters (stdin)" data-cat="Text Processing">
     <div class="tool-name">evtool tr</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Translate or delete characters (stdin)</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="tree" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="tree" data-desc="Display directory tree. Usage: tree [path] [--max-depth N] [--dirs-only]" data-cat="File Operations">
     <div class="tool-name">evtool tree</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Display directory tree. Usage: tree [path] [--max-depth N] [--dirs-only]</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="treedir" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="treedir" data-desc="Directory tree visualizer" data-cat="File Operations">
     <div class="tool-name">evtool treedir</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Directory tree visualizer</div>
+    <span class="tool-cat" style="background:#818cf822;color:#818cf8">File Operations</span>
   </div>
-  <div class="tool-card" data-name="tsv2csv" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="tsv2csv" data-desc="Convert TSV (tab-separated) to CSV format" data-cat="Format Conversion">
     <div class="tool-name">evtool tsv2csv</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert TSV (tab-separated) to CSV format</div>
+    <span class="tool-cat" style="background:#2dd4bf22;color:#2dd4bf">Format Conversion</span>
   </div>
-  <div class="tool-card" data-name="uniq" data-desc="" data-cat="text">
+  <div class="tool-card" data-name="uniq" data-desc="Unique line filter with count & case-insensitive" data-cat="Text Processing">
     <div class="tool-name">evtool uniq</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#22d3ee22; color:#22d3ee">Text Processing</span>
+    <div class="tool-desc">Unique line filter with count & case-insensitive</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="unit-convert" data-desc="" data-cat="conversion">
+  <div class="tool-card" data-name="unit-convert" data-desc="Unit converter (length, weight, temp, volume)" data-cat="CLI Utilities">
     <div class="tool-name">evtool unit-convert</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#c084fc22; color:#c084fc">Conversion</span>
+    <div class="tool-desc">Unit converter (length, weight, temp, volume)</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="uri-encode" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="uri-encode" data-desc="URI encode/decode. Usage: uri-encode encode <text> | uri-encode decode <text>" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool uri-encode</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">URI encode/decode. Usage: uri-encode encode <text> | uri-encode decode <text></div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="url_parser" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="url_parser" data-desc="Parse and analyze URLs" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool url_parser</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Parse and analyze URLs</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="urlparse" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="urlparse" data-desc="URL parser and debugger" data-cat="Encoding/Crypto">
     <div class="tool-name">evtool urlparse</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">URL parser and debugger</div>
+    <span class="tool-cat" style="background:#fb923c22;color:#fb923c">Encoding & Crypto</span>
   </div>
-  <div class="tool-card" data-name="uuid" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="uuid" data-desc="UUID v1/v4/v5/v7 generator" data-cat="Generators">
     <div class="tool-name">evtool uuid</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">UUID v1/v4/v5/v7 generator</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="uuid_gen" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="uuid_gen" data-desc="UUID generator (v1/v4/v5/v7)" data-cat="Generators">
     <div class="tool-name">evtool uuid_gen</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">UUID generator (v1/v4/v5/v7)</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
-  <div class="tool-card" data-name="validate" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="validate" data-desc="Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)" data-cat="CLI Utilities">
     <div class="tool-name">evtool validate</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="watch" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="watch" data-desc="Run command periodically, showing output" data-cat="System/Monitoring">
     <div class="tool-name">evtool watch</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Run command periodically, showing output</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="weather-cli" data-desc="" data-cat="devtools">
+  <div class="tool-card" data-name="weather-cli" data-desc="Weather forecast from wttr.in" data-cat="System/Monitoring">
     <div class="tool-name">evtool weather-cli</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#eab30822; color:#eab308">Developer Tools</span>
+    <div class="tool-desc">Weather forecast from wttr.in</div>
+    <span class="tool-cat" style="background:#14b8a622;color:#14b8a6">System & Monitoring</span>
   </div>
-  <div class="tool-card" data-name="web-download" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="web-download" data-desc="Download files with progress. Usage: web-download <url> [--output file]" data-cat="Network/HTTP">
     <div class="tool-name">evtool web-download</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Download files with progress. Usage: web-download <url> [--output file]</div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="web-summary" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="web-summary" data-desc="Web page content extractor (title, body, links)" data-cat="CLI Utilities">
     <div class="tool-name">evtool web-summary</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Web page content extractor (title, body, links)</div>
+    <span class="tool-cat" style="background:#60a5fa22;color:#60a5fa">CLI Utilities</span>
   </div>
-  <div class="tool-card" data-name="welcome" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="welcome" data-desc="Interactive showcase — featured tools, categories, quick-start guide" data-cat="Uncategorized">
     <div class="tool-name">evtool welcome</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Interactive showcase — featured tools, categories, quick-start guide</div>
+    <span class="tool-cat" style="background:#9ca3af22;color:#9ca3af">Other</span>
   </div>
-  <div class="tool-card" data-name="whois-lookup" data-desc="" data-cat="network">
+  <div class="tool-card" data-name="whois-lookup" data-desc="WHOIS domain lookup. Usage: whois-lookup <domain>" data-cat="Network/HTTP">
     <div class="tool-name">evtool whois-lookup</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#fb923c22; color:#fb923c">Network</span>
+    <div class="tool-desc">WHOIS domain lookup. Usage: whois-lookup <domain></div>
+    <span class="tool-cat" style="background:#f8717122;color:#f87171">Network & HTTP</span>
   </div>
-  <div class="tool-card" data-name="wordcount" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="wordcount" data-desc="Enhanced wc with language detection" data-cat="Text Processing">
     <div class="tool-name">evtool wordcount</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Enhanced wc with language detection</div>
+    <span class="tool-cat" style="background:#4ade8022;color:#4ade80">Text Processing</span>
   </div>
-  <div class="tool-card" data-name="world-clock" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="world-clock" data-desc="Show current time in multiple timezones" data-cat="Date/Time">
     <div class="tool-name">evtool world-clock</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Show current time in multiple timezones</div>
+    <span class="tool-cat" style="background:#fbbf2422;color:#fbbf24">Date & Time</span>
   </div>
-  <div class="tool-card" data-name="xml-format" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="xml-format" data-desc="Pretty-print and format XML files (stdlib)" data-cat="Format Conversion">
     <div class="tool-name">evtool xml-format</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Pretty-print and format XML files (stdlib)</div>
+    <span class="tool-cat" style="background:#2dd4bf22;color:#2dd4bf">Format Conversion</span>
   </div>
-  <div class="tool-card" data-name="xml2json" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="xml2json" data-desc="XML to JSON converter" data-cat="Format Conversion">
     <div class="tool-name">evtool xml2json</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">XML to JSON converter</div>
+    <span class="tool-cat" style="background:#2dd4bf22;color:#2dd4bf">Format Conversion</span>
   </div>
-  <div class="tool-card" data-name="yaml-validate" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="yaml-validate" data-desc="Validate YAML syntax. Usage: yaml-validate <file.yaml>" data-cat="YAML/TOML/INI">
     <div class="tool-name">evtool yaml-validate</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Validate YAML syntax. Usage: yaml-validate <file.yaml></div>
+    <span class="tool-cat" style="background:#f0abfc22;color:#f0abfc">YAML / TOML / INI</span>
   </div>
-  <div class="tool-card" data-name="yaml2json" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="yaml2json" data-desc="YAML → JSON converter" data-cat="YAML/TOML/INI">
     <div class="tool-name">evtool yaml2json</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">YAML → JSON converter</div>
+    <span class="tool-cat" style="background:#f0abfc22;color:#f0abfc">YAML / TOML / INI</span>
   </div>
-  <div class="tool-card" data-name="yaml2toml" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="yaml2toml" data-desc="Convert YAML to TOML. Usage: yaml2toml <file.yaml>" data-cat="YAML/TOML/INI">
     <div class="tool-name">evtool yaml2toml</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Convert YAML to TOML. Usage: yaml2toml <file.yaml></div>
+    <span class="tool-cat" style="background:#f0abfc22;color:#f0abfc">YAML / TOML / INI</span>
   </div>
-  <div class="tool-card" data-name="yes" data-desc="" data-cat="other">
+  <div class="tool-card" data-name="yes" data-desc="Output a string repeatedly until killed" data-cat="Generators">
     <div class="tool-name">evtool yes</div>
-    <div class="tool-desc"></div>
-    <span class="tool-cat" style="background:#9ca3af22; color:#9ca3af">Other</span>
+    <div class="tool-desc">Output a string repeatedly until killed</div>
+    <span class="tool-cat" style="background:#c084fc22;color:#c084fc">Generators</span>
   </div>
 </div>
 
-<div class="no-results" id="no-results">No tools match your search. Try a different keyword or category.</div>
+<div class="no-results" id="noResults">
+  <p>No tools match your search.</p>
+  <p style="margin-top:8px;font-size:0.85rem;color:var(--text-muted)">Try a different keyword or clear the filter.</p>
+</div>
 
 <footer>
-  <p>Built by an autonomous AI · <a href="https://ko-fi.com/evolvertools">Support on Ko-fi</a></p>
+  <p>evolver-tools · <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · <a href="https://pypi.org/project/evolver-tools/">PyPI</a> · <a href="./blog/index.html">Blog</a></p>
+  <p style="margin-top:4px;">Built by an autonomous AI · <a href="./story.html">Read the story</a></p>
 </footer>
 </div>
 
 <script>
-const tools = [{"name": "agent-b-tool", "desc": "", "category": "other"}, {"name": "ansi-strip", "desc": "", "category": "other"}, {"name": "ansi-to-html", "desc": "", "category": "other"}, {"name": "ansi-to-txt", "desc": "", "category": "other"}, {"name": "api-tester", "desc": "", "category": "other"}, {"name": "ascii-banner", "desc": "", "category": "ascii"}, {"name": "ascii-gen", "desc": "", "category": "ascii"}, {"name": "audit-log", "desc": "", "category": "other"}, {"name": "b64", "desc": "", "category": "devtools"}, {"name": "backup", "desc": "", "category": "devops"}, {"name": "banner-gen", "desc": "", "category": "ascii"}, {"name": "base32", "desc": "", "category": "other"}, {"name": "base58", "desc": "", "category": "other"}, {"name": "bookmark", "desc": "", "category": "other"}, {"name": "cal", "desc": "", "category": "other"}, {"name": "calendar-cli", "desc": "", "category": "other"}, {"name": "case-convert", "desc": "", "category": "other"}, {"name": "cert-check", "desc": "", "category": "other"}, {"name": "cert-info", "desc": "", "category": "other"}, {"name": "changelog-gen", "desc": "", "category": "other"}, {"name": "chart-cli", "desc": "", "category": "other"}, {"name": "checksum-dir", "desc": "", "category": "other"}, {"name": "chrono", "desc": "", "category": "other"}, {"name": "clipboard", "desc": "", "category": "other"}, {"name": "code-auditor", "desc": "", "category": "other"}, {"name": "code-review", "desc": "", "category": "other"}, {"name": "code-stats", "desc": "", "category": "other"}, {"name": "color-convert", "desc": "", "category": "other"}, {"name": "colorize", "desc": "", "category": "other"}, {"name": "colors", "desc": "", "category": "other"}, {"name": "config-validator", "desc": "", "category": "other"}, {"name": "config-vault", "desc": "", "category": "other"}, {"name": "cowsay", "desc": "", "category": "ascii"}, {"name": "crc_check", "desc": "", "category": "other"}, {"name": "cron", "desc": "", "category": "other"}, {"name": "cron-check", "desc": "", "category": "devops"}, {"name": "cron-pretty", "desc": "", "category": "devops"}, {"name": "crontab-helper", "desc": "", "category": "other"}, {"name": "crypto-box", "desc": "", "category": "devtools"}, {"name": "crypto-price", "desc": "", "category": "devtools"}, {"name": "csv-concat", "desc": "", "category": "csv"}, {"name": "csv-dedup", "desc": "", "category": "csv"}, {"name": "csv-filter", "desc": "", "category": "csv"}, {"name": "csv-head", "desc": "", "category": "csv"}, {"name": "csv-pretty", "desc": "", "category": "csv"}, {"name": "csv-schema", "desc": "", "category": "csv"}, {"name": "csv-slice", "desc": "", "category": "csv"}, {"name": "csv-sort", "desc": "", "category": "csv"}, {"name": "csv-stats", "desc": "", "category": "csv"}, {"name": "csv-to-table", "desc": "", "category": "csv"}, {"name": "csv-validate", "desc": "", "category": "csv"}, {"name": "csv-view", "desc": "", "category": "csv"}, {"name": "csv2json", "desc": "", "category": "other"}, {"name": "csv_merge", "desc": "", "category": "other"}, {"name": "date_diff", "desc": "", "category": "other"}, {"name": "db-mate", "desc": "", "category": "devops"}, {"name": "db-schema", "desc": "", "category": "devops"}, {"name": "dedup-files", "desc": "", "category": "text"}, {"name": "dep-graph", "desc": "", "category": "other"}, {"name": "dev-dashboard", "desc": "", "category": "other"}, {"name": "dice-roll", "desc": "", "category": "fun"}, {"name": "diff", "desc": "", "category": "file"}, {"name": "diff-csv", "desc": "", "category": "file"}, {"name": "diff-lines", "desc": "", "category": "file"}, {"name": "diff-yaml", "desc": "", "category": "file"}, {"name": "diff_files", "desc": "", "category": "file"}, {"name": "dig", "desc": "", "category": "other"}, {"name": "dirsize", "desc": "", "category": "other"}, {"name": "disk-cleanup", "desc": "", "category": "system"}, {"name": "disk-usage", "desc": "", "category": "system"}, {"name": "dns-lookup", "desc": "", "category": "network"}, {"name": "docker-helper", "desc": "", "category": "devops"}, {"name": "dt", "desc": "", "category": "other"}, {"name": "emoji-cli", "desc": "", "category": "ascii"}, {"name": "env-diff", "desc": "", "category": "other"}, {"name": "env-manager", "desc": "", "category": "other"}, {"name": "env-sorter", "desc": "", "category": "other"}, {"name": "env_template", "desc": "", "category": "other"}, {"name": "envcheck", "desc": "", "category": "other"}, {"name": "epoch", "desc": "", "category": "other"}, {"name": "excel2csv", "desc": "", "category": "other"}, {"name": "factor", "desc": "", "category": "math"}, {"name": "ff", "desc": "", "category": "other"}, {"name": "figlet", "desc": "", "category": "ascii"}, {"name": "figlet-cli", "desc": "", "category": "ascii"}, {"name": "file-encrypt", "desc": "", "category": "file"}, {"name": "file-joiner", "desc": "", "category": "file"}, {"name": "file-patch", "desc": "", "category": "file"}, {"name": "file-splitter", "desc": "", "category": "file"}, {"name": "file-type", "desc": "", "category": "file"}, {"name": "file-watch", "desc": "", "category": "file"}, {"name": "file_find", "desc": "", "category": "other"}, {"name": "find-dups", "desc": "", "category": "other"}, {"name": "find-empty", "desc": "", "category": "other"}, {"name": "firewall-rule", "desc": "", "category": "other"}, {"name": "fmt", "desc": "", "category": "other"}, {"name": "fold", "desc": "", "category": "other"}, {"name": "geo-ip", "desc": "", "category": "other"}, {"name": "git-branch-cleaner", "desc": "", "category": "devops"}, {"name": "git-ignore", "desc": "", "category": "devops"}, {"name": "git-log-pretty", "desc": "", "category": "devops"}, {"name": "git-stats", "desc": "", "category": "devops"}, {"name": "gzip-cli", "desc": "", "category": "other"}, {"name": "hash-file", "desc": "", "category": "devtools"}, {"name": "hash_check", "desc": "", "category": "devtools"}, {"name": "hashsum", "desc": "", "category": "devtools"}, {"name": "hex-tool", "desc": "", "category": "text"}, {"name": "hexdec", "desc": "", "category": "other"}, {"name": "hexdump", "desc": "", "category": "other"}, {"name": "html-strip", "desc": "", "category": "other"}, {"name": "html2markdown", "desc": "", "category": "other"}, {"name": "html2md", "desc": "", "category": "other"}, {"name": "html2text", "desc": "", "category": "other"}, {"name": "http-headers", "desc": "", "category": "network"}, {"name": "http-live", "desc": "", "category": "network"}, {"name": "http-status", "desc": "", "category": "network"}, {"name": "http_server", "desc": "", "category": "other"}, {"name": "humanize", "desc": "", "category": "other"}, {"name": "image-meta", "desc": "", "category": "other"}, {"name": "ini-parser", "desc": "", "category": "other"}, {"name": "ini2json", "desc": "", "category": "other"}, {"name": "ip-location", "desc": "", "category": "network"}, {"name": "ip_info", "desc": "", "category": "other"}, {"name": "ipcalc", "desc": "", "category": "other"}, {"name": "ipinfo", "desc": "", "category": "other"}, {"name": "join", "desc": "", "category": "other"}, {"name": "joke", "desc": "", "category": "other"}, {"name": "jq-lite", "desc": "", "category": "other"}, {"name": "json-diff", "desc": "", "category": "json"}, {"name": "json-keys", "desc": "", "category": "json"}, {"name": "json-patch", "desc": "", "category": "json"}, {"name": "json-path", "desc": "", "category": "json"}, {"name": "json-pretty", "desc": "", "category": "json"}, {"name": "json-schema-validate", "desc": "", "category": "json"}, {"name": "json-sort", "desc": "", "category": "json"}, {"name": "json-to-table", "desc": "", "category": "json"}, {"name": "json-to-yaml", "desc": "", "category": "json"}, {"name": "json2csv", "desc": "", "category": "other"}, {"name": "json2ini", "desc": "", "category": "other"}, {"name": "json_flatten", "desc": "", "category": "other"}, {"name": "json_merge", "desc": "", "category": "other"}, {"name": "jsonql", "desc": "", "category": "other"}, {"name": "jwt-decode", "desc": "", "category": "other"}, {"name": "key-value-store", "desc": "", "category": "other"}, {"name": "license", "desc": "", "category": "other"}, {"name": "license-cli", "desc": "", "category": "other"}, {"name": "link-check", "desc": "", "category": "other"}, {"name": "log-analyzer", "desc": "", "category": "other"}, {"name": "log-hawk", "desc": "", "category": "other"}, {"name": "log-tail", "desc": "", "category": "other"}, {"name": "mac-address", "desc": "", "category": "other"}, {"name": "macrogen", "desc": "", "category": "other"}, {"name": "markdown-check", "desc": "", "category": "other"}, {"name": "markdown-format", "desc": "", "category": "other"}, {"name": "markdown-lint", "desc": "", "category": "other"}, {"name": "markdown-preview", "desc": "", "category": "other"}, {"name": "markdown-to-html", "desc": "", "category": "other"}, {"name": "markdown-toc", "desc": "", "category": "other"}, {"name": "math_eval", "desc": "", "category": "other"}, {"name": "media-studio", "desc": "", "category": "other"}, {"name": "merge-json", "desc": "", "category": "file"}, {"name": "mime-type", "desc": "", "category": "other"}, {"name": "morse", "desc": "", "category": "other"}, {"name": "nb", "desc": "", "category": "other"}, {"name": "net-analyzer", "desc": "", "category": "other"}, {"name": "net-speed", "desc": "", "category": "other"}, {"name": "network-scan", "desc": "", "category": "other"}, {"name": "nl", "desc": "", "category": "other"}, {"name": "note-taker", "desc": "", "category": "other"}, {"name": "otp-gen", "desc": "", "category": "other"}, {"name": "passgen", "desc": "", "category": "devtools"}, {"name": "password-strength", "desc": "", "category": "devtools"}, {"name": "pdf-text", "desc": "", "category": "other"}, {"name": "pdf_info", "desc": "", "category": "other"}, {"name": "pipe-viewer", "desc": "", "category": "other"}, {"name": "pomodoro", "desc": "", "category": "fun"}, {"name": "port_scan", "desc": "", "category": "other"}, {"name": "portcheck", "desc": "", "category": "other"}, {"name": "pr-tool", "desc": "", "category": "other"}, {"name": "process-kill", "desc": "", "category": "system"}, {"name": "progress-bar", "desc": "", "category": "ascii"}, {"name": "project-doctor", "desc": "", "category": "other"}, {"name": "qc-report", "desc": "", "category": "other"}, {"name": "qc-sample", "desc": "", "category": "other"}, {"name": "qr_cli", "desc": "", "category": "other"}, {"name": "qrcode", "desc": "", "category": "devtools"}, {"name": "quote", "desc": "", "category": "other"}, {"name": "rainbow", "desc": "", "category": "other"}, {"name": "random", "desc": "", "category": "math"}, {"name": "random-cli", "desc": "", "category": "math"}, {"name": "random-string", "desc": "", "category": "math"}, {"name": "reminder", "desc": "", "category": "other"}, {"name": "ren", "desc": "", "category": "other"}, {"name": "replace-text", "desc": "", "category": "other"}, {"name": "restore", "desc": "", "category": "other"}, {"name": "rot13", "desc": "", "category": "other"}, {"name": "route-trace", "desc": "", "category": "other"}, {"name": "scan-open-ports", "desc": "", "category": "other"}, {"name": "scan-ports", "desc": "", "category": "other"}, {"name": "screen-recorder", "desc": "", "category": "other"}, {"name": "screenshot-cli", "desc": "", "category": "other"}, {"name": "search-files", "desc": "", "category": "other"}, {"name": "search-history", "desc": "", "category": "other"}, {"name": "secret-scanner", "desc": "", "category": "other"}, {"name": "seq", "desc": "", "category": "math"}, {"name": "service-check", "desc": "", "category": "other"}, {"name": "share", "desc": "", "category": "other"}, {"name": "shuffle", "desc": "", "category": "other"}, {"name": "siege-lite", "desc": "", "category": "other"}, {"name": "slugify", "desc": "", "category": "other"}, {"name": "smellfinder", "desc": "", "category": "other"}, {"name": "sort", "desc": "", "category": "text"}, {"name": "spinner", "desc": "", "category": "other"}, {"name": "split", "desc": "", "category": "file"}, {"name": "sql2csv", "desc": "", "category": "other"}, {"name": "sqlite-cli", "desc": "", "category": "other"}, {"name": "ssh-key-gen", "desc": "", "category": "other"}, {"name": "ssl-check", "desc": "", "category": "network"}, {"name": "stopwatch", "desc": "", "category": "other"}, {"name": "subnet", "desc": "", "category": "other"}, {"name": "sysmon", "desc": "", "category": "other"}, {"name": "sysmon-pro", "desc": "", "category": "other"}, {"name": "system-info", "desc": "", "category": "other"}, {"name": "temp-cleaner", "desc": "", "category": "conversion"}, {"name": "template", "desc": "", "category": "other"}, {"name": "text-dedent", "desc": "", "category": "text"}, {"name": "text-stats", "desc": "", "category": "text"}, {"name": "text-wrap", "desc": "", "category": "text"}, {"name": "time-duration", "desc": "", "category": "other"}, {"name": "timeout", "desc": "", "category": "other"}, {"name": "timer", "desc": "", "category": "other"}, {"name": "timer-pro", "desc": "", "category": "other"}, {"name": "todo-cli", "desc": "", "category": "fun"}, {"name": "toml2json", "desc": "", "category": "other"}, {"name": "tr", "desc": "", "category": "other"}, {"name": "tree", "desc": "", "category": "other"}, {"name": "treedir", "desc": "", "category": "other"}, {"name": "tsv2csv", "desc": "", "category": "other"}, {"name": "uniq", "desc": "", "category": "text"}, {"name": "unit-convert", "desc": "", "category": "conversion"}, {"name": "uri-encode", "desc": "", "category": "other"}, {"name": "url_parser", "desc": "", "category": "other"}, {"name": "urlparse", "desc": "", "category": "other"}, {"name": "uuid", "desc": "", "category": "other"}, {"name": "uuid_gen", "desc": "", "category": "other"}, {"name": "validate", "desc": "", "category": "other"}, {"name": "watch", "desc": "", "category": "other"}, {"name": "weather-cli", "desc": "", "category": "devtools"}, {"name": "web-download", "desc": "", "category": "other"}, {"name": "web-summary", "desc": "", "category": "other"}, {"name": "welcome", "desc": "", "category": "other"}, {"name": "whois-lookup", "desc": "", "category": "network"}, {"name": "wordcount", "desc": "", "category": "other"}, {"name": "world-clock", "desc": "", "category": "other"}, {"name": "xml-format", "desc": "", "category": "other"}, {"name": "xml2json", "desc": "", "category": "other"}, {"name": "yaml-validate", "desc": "", "category": "other"}, {"name": "yaml2json", "desc": "", "category": "other"}, {"name": "yaml2toml", "desc": "", "category": "other"}, {"name": "yes", "desc": "", "category": "other"}];
-const grid = document.getElementById('grid');
-const search = document.getElementById('search');
-const stats = document.getElementById('stats');
-const noResults = document.getElementById('no-results');
-const cards = grid.querySelectorAll('.tool-card');
+let currentCat = 'all';
 
-let activeCat = 'all';
-let searchTerm = '';
-
-function filter() {
-  let visible = 0;
-  cards.forEach(card => {
-    const name = card.dataset.name;
-    const desc = card.dataset.desc.toLowerCase();
-    const cat = card.dataset.cat;
-    const matchesCat = activeCat === 'all' || cat === activeCat;
-    const matchesSearch = !searchTerm || name.includes(searchTerm) || desc.includes(searchTerm.toLowerCase());
-    const show = matchesCat && matchesSearch;
-    card.classList.toggle('hidden', !show);
-    if (show) visible++;
-  });
-  stats.textContent = `Showing ${visible} tool${visible !== 1 ? 's' : ''}`;
-  noResults.style.display = visible === 0 ? 'block' : 'none';
+function setCategory(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  document.querySelector(`.cat-btn[data-cat="${cat}"]`).classList.add('active');
+  filterTools();
 }
 
-// Search with debounce
-let debounceTimer;
-search.addEventListener('input', () => {
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(() => {
-    searchTerm = search.value.trim().toLowerCase();
-    filter();
-  }, 150);
-});
+function filterTools() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.tool-card');
+  let shown = 0;
 
-// Category filters
-document.querySelectorAll('.cat-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    filter();
+  cards.forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    const desc = card.dataset.desc.toLowerCase();
+    const cat = card.dataset.cat;
+
+    const matchCat = currentCat === 'all' || cat === currentCat;
+    const matchSearch = !q || name.includes(q) || desc.includes(q);
+    const visible = matchCat && matchSearch;
+
+    card.classList.toggle('hidden', !visible);
+    if (visible) shown++;
   });
-});
+
+  document.getElementById('shownCount').textContent = shown;
+  document.getElementById('noResults').style.display = shown === 0 ? 'block' : 'none';
+}
 </script>
 </body>
 </html>
