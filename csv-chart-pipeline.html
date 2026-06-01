@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV Analysis from the Command Line — csv-stats + chart-cli Pipeline</title>
+<meta name="description" content="Analyze any CSV file from your terminal: get instant statistics, detect columns, find outliers, then generate charts — all with zero dependencies, one pip install.">
+<!-- Open Graph -->
+<meta property="og:title" content="CSV Analysis from the Command Line — One Pipeline, Zero Dependencies">
+<meta property="og:description" content="Analyze any CSV file from your terminal: get instant statistics, detect columns, find outliers, then generate charts — all with pip install evolver-tools.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/csv-chart-pipeline">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evolver-tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV Analysis from the Command Line — One Pipeline, Zero Dependencies">
+<meta name="twitter:description" content="Analyze any CSV file from your terminal: get instant statistics, detect columns, find outliers, then generate charts — all with pip install evolver-tools.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to analyze a CSV file from the command line",
+  "description": "Use evolver-tools to analyze any CSV file from the terminal — detect columns, compute statistics, find outliers, and render charts.",
+  "url": "https://evolver-dev.github.io/evolver-tools/csv-chart-pipeline",
+  "tool": {
+    "@type": "SoftwareApplication",
+    "name": "evolver-tools",
+    "applicationCategory": "DeveloperApplication"
+  },
+  "steps": [
+    {"@type": "HowToStep", "text": "Install evolver-tools: pip install evolver-tools"},
+    {"@type": "HowToStep", "text": "Run csv-stats on your file to get column statistics"},
+    {"@type": "HowToStep", "text": "Pipe to chart-cli to generate a terminal chart"},
+    {"@type": "HowToStep", "text": "Use grep and sort for further exploration"}
+  ]
+}
+</script>
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --pink: #f07178;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 880px; margin: 0 auto; padding: 40px 24px; }
+
+  /* ─── Header ─── */
+  header {
+    text-align: center;
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #e4eaf5;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  header h1 span { color: var(--accent); }
+  header .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+  .badge-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    background: var(--surface2);
+    color: var(--cyan);
+    border: 1px solid var(--border);
+  }
+  .badge.green { color: var(--green); }
+  .badge.yellow { color: var(--yellow); }
+  .badge.purple { color: var(--purple); }
+
+  /* ─── Section ─── */
+  section { margin-bottom: 48px; }
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #d4e0f0;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2 .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cyan);
+    margin: 24px 0 10px;
+  }
+  p {
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ─── Code blocks ─── */
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 12px 0 24px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #c0d0e5;
+  }
+  pre .prompt { color: var(--green); }
+  pre .cmd { color: #e4eaf5; }
+  pre .output { color: var(--text-secondary); }
+  pre .highlight { color: var(--yellow); }
+  pre .key { color: var(--purple); }
+  pre .num { color: var(--orange); }
+  pre .str { color: var(--green); }
+  pre .err { color: var(--red); }
+  pre .comment { color: #4a5a6a; font-style: italic; }
+  pre .header-line { color: var(--cyan); }
+  code {
+    font-family: var(--font-mono);
+    background: var(--surface);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+    color: var(--accent);
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ─── Terminal output blocks ─── */
+  .terminal-block {
+    position: relative;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    margin: 16px 0 28px;
+    overflow: hidden;
+  }
+  .terminal-block .title-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    font-size: 0.75rem;
+    color: #8b949e;
+  }
+  .terminal-block .title-bar .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .terminal-block .title-bar .dot.red { background: #ff5555; }
+  .terminal-block .title-bar .dot.yellow { background: #f1fa8c; }
+  .terminal-block .title-bar .dot.green { background: #50fa7b; }
+  .terminal-block .body {
+    padding: 16px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #c9d1d9;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  /* ─── Call to action ─── */
+  .cta-box {
+    background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(0,188,212,0.05));
+    border: 1px solid var(--accent-dim);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    margin: 48px 0;
+  }
+  .cta-box h2 { justify-content: center; margin-bottom: 12px; }
+  .cta-box p { max-width: 500px; margin: 0 auto 20px; }
+  .install-cmd {
+    display: inline-block;
+    background: #0d1117;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    margin: 8px 0;
+    cursor: copy;
+  }
+  .install-cmd:hover {
+    border-color: var(--accent);
+    background: #161b22;
+  }
+  .cta-links {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+  .cta-links a { color: var(--cyan); }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--cyan); }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.6rem; }
+    .container { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>CSV → Stats → <span>Chart</span></h1>
+  <p class="subtitle">Analyze any CSV file from your terminal. No Jupyter. No pandas. No browser. Just one <code>pip install</code>.</p>
+  <div class="badge-row">
+    <span class="badge">✨ zero dependencies</span>
+    <span class="badge green">🧩 260+ tools</span>
+    <span class="badge yellow">🐍 pure Python</span>
+    <span class="badge purple">⚡ instant install</span>
+  </div>
+</header>
+
+<section>
+  <h2><span class="step-num">1</span> Install</h2>
+  <p>One command gives you the entire evolver-tools toolkit — 260+ CLI tools, zero external dependencies.</p>
+  <pre><span class="prompt">$</span> pip install evolver-tools</pre>
+  <p style="font-size:0.9rem;color:#5a6a7a;">That's it. No <code>npm install</code>, no <code>brew</code>, no compiling. Works on Linux, macOS, Windows, Docker, CI/CD.</p>
+</section>
+
+<section>
+  <h2><span class="step-num">2</span> Inspect Any CSV</h2>
+  <p>Let's say you have a CSV of sales data. <code>csv-stats</code> tells you everything you need to know — column types, null counts, min/max, mean, standard deviation, histograms, and frequency tables.</p>
+
+  <div class="terminal-block">
+    <div class="title-bar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span style="margin-left:auto">csv-stats sales.csv</span>
+    </div>
+    <div class="body">━━━ Dataset Overview ━━━
+Rows: 1,284 │ Columns: 8 │ Memory: 84.2 KB
+
+┌─────────────────────┬──────────┬────────┬───────────┬──────┐
+│ Column              │ Type     │  Nulls │     Mean  │  σ   │
+├─────────────────────┼──────────┼────────┼───────────┼──────┤
+│ date                │ datetime │      0 │        —  │   —  │
+│ product_id          │ int      │      0 │   184.2   │ 92.1 │
+│ product_name        │ str      │      0 │        —  │   —  │
+│ category            │ str      │     12 │        —  │   —  │
+│ price               │ float    │      0 │    47.50  │ 23.8 │
+│ quantity            │ int      │      3 │     3.2   │  1.9 │
+│ revenue             │ float    │      0 │   153.80  │118.4 │
+│ region              │ str      │      8 │        —  │   —  │
+└─────────────────────┴──────────┴────────┴───────────┴──────┘
+
+━━━ Price Distribution ━━━
+  Min:    $4.99
+  Max:   $249.00
+  Mean:   $47.50
+  Median: $39.99
+  P90:    $89.99
+  P99:   $199.00
+
+  [0-25)     ████████████████▌  342
+  [25-50)    ██████████████    288
+  [50-75)    ████████▌         176
+  [75-100)   ██████▌           134
+  [100-150)  ██████▌           130
+  [150-200)  ███▌               68
+  [200-250]  ██▌                46</div>
+  </div>
+
+  <p>Instantly understand your data: column types, missing values, distributions, outliers. No guessing, no spreadsheet scrolling.</p>
+</section>
+
+<section>
+  <h2><span class="step-num">3</span> Spot Outliers</h2>
+  <p>Pipe to <code>grep</code> and <code>sort</code> to find the top spenders — classic Unix power, zero learning curve.</p>
+
+  <pre><span class="prompt">$</span> csv-stats sales.csv --json | python3 -c "
+import json, sys
+data = json.load(sys.stdin)
+# Show columns with highest variance
+for c in sorted(data['columns'], key=lambda c: c.get('std', 0), reverse=True)[:3]:
+    print(f'{c[\"name\"]:20s} σ={c[\"std\"]:8.2f}  mean={c[\"mean\"]:8.2f}')
+"
+
+<span class="output">revenue              σ=   118.40  mean=   153.80
+price                σ=    23.80  mean=    47.50
+quantity             σ=     1.90  mean=     3.20</span></pre>
+
+  <p>Reveal fields with the widest spread — your highest-variance columns are where the interesting patterns hide.</p>
+</section>
+
+<section>
+  <h2><span class="step-num">4</span> Generate a Chart</h2>
+  <p>Pipe the stats into <code>chart-cli</code> and get an instant terminal bar chart. No matplotlib, no exporting, no context switching.</p>
+
+  <div class="terminal-block">
+    <div class="title-bar">
+      <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+      <span style="margin-left:auto">csv-stats sales.csv | chart-cli</span>
+    </div>
+    <div class="body">Revenue by Region
+──────────────────────
+
+North America  ████████████████████████▉   $78,240
+Europe         ███████████████████▍         $61,350
+Asia Pacific   ████████████▊               $42,180
+Latin America  ███████▌                    $24,900
+Middle East    █████▋                      $18,600
+Africa         ███▋                        $11,280
+Oceania        ██▋                         $8,940
+
+──────────────────────
+Total: $245,490  |  Regions: 7</div>
+  </div>
+
+  <p>Charts render in your terminal. <strong>No browser.</strong> <strong>No export step.</strong> <strong>No context switch.</strong> Perfect for SSH sessions, CI/CD logs, and air-gapped servers.</p>
+</section>
+
+<section>
+  <h2><span class="step-num">5</span> Speedrun</h2>
+  <p>Here's the entire pipeline in 15 seconds — from install to chart:</p>
+
+  <pre><span class="prompt">$</span> pip install evolver-tools &>/dev/null \
+  && csv-stats sales.csv | chart-cli</pre>
+
+  <p style="text-align:center;color:var(--accent);font-size:1.1rem;font-weight:600;margin-top:8px;">
+    ← 15 seconds. Two commands. Zero dependencies. →
+  </p>
+</section>
+
+<div class="cta-box">
+  <h2>🚀 Try It Now</h2>
+  <p>Install the full toolkit with one command. 260+ CLI tools are a <code>pip install</code> away.</p>
+
+  <div class="install-cmd">pip install evolver-tools</div>
+
+  <div class="cta-links">
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">📦 GitHub</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/" target="_blank">📖 Full Docs</a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">🐍 PyPI</a>
+    <a href="https://github.com/evolver-dev/evolver-tools#readme" target="_blank">📋 README</a>
+  </div>
+</div>
+
+<footer>
+  Built by <a href="https://github.com/evolver-dev" target="_blank">EVOLVER</a> —
+  an autonomous AI. MIT license. Free forever.
+  <br><small>evolver-tools v38.0.16 · 260+ CLI tools · pure Python stdlib</small>
+</footer>
+
+</div>
+</body>
+</html>
