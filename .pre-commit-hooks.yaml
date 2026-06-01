@@ -1,0 +1,56 @@
+# evolver-tools pre-commit hooks
+# Install: pip install evolver-tools
+# Docs: https://evolver-dev.github.io/evolver-tools/
+#
+# Add to your .pre-commit-config.yaml:
+#   repos:
+#     - repo: https://github.com/evolver-dev/evolver-tools
+#       rev: v38.0.24
+#       hooks:
+#         - id: validate-json
+#         - id: validate-csv
+#         - id: validate-yaml
+#         - id: check-large-files
+#         - id: check-merge-conflict
+
+- id: validate-json
+  name: Validate JSON files
+  description: Validates JSON files using evolver-tools' auto-detect validator
+  entry: evtool validate
+  language: python
+  types: [json]
+  additional_dependencies: ['evolver-tools']
+  stages: [commit, push]
+
+- id: validate-csv
+  name: Validate CSV files
+  description: Validates CSV files for formatting issues
+  entry: evtool validate
+  language: python
+  types: [csv]
+  additional_dependencies: ['evolver-tools']
+  stages: [commit, push]
+
+- id: validate-yaml
+  name: Validate YAML files
+  description: Validates YAML syntax using evolver-tools' auto-detect validator
+  entry: evtool validate
+  language: python
+  types: [yaml]
+  additional_dependencies: ['evolver-tools']
+  stages: [commit, push]
+
+- id: check-large-files
+  name: Check for large files
+  description: Prevents committing files larger than 1MB
+  entry: hooks/check-large-files
+  language: script
+  stages: [commit]
+
+- id: check-merge-conflict
+  name: Check for merge conflict markers
+  description: Checks for unresolved merge conflict markers (<<<<<<<, =======, >>>>>>>)
+  entry: hooks/check-merge-conflict
+  language: script
+  stages: [commit, push]
+  types: [text]
