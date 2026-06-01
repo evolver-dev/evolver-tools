@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All 260 CLI Tools — evolver-tools</title>
+<meta name="description" content="Browse all 260 CLI tools. Each tool is zero-dependency, cross-platform, and ready to use after pip install evolver-tools.">
+<style>
+  :root {
+    --bg: #0a0e14; --surface: #111820; --border: #1e2d3d;
+    --text: #b3c7e5; --text-secondary: #7a8ba8;
+    --accent: #00d4aa; --cyan: #00bcd4;
+    --font-mono: 'JetBrains Mono','Fira Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:var(--font-sans); line-height:1.6; }
+  .container { max-width:1000px; margin:0 auto; padding:2rem; }
+  h1 { font-size:1.8rem; font-weight:800; margin-bottom:0.3rem; }
+  .subtitle { color:var(--text-secondary); margin-bottom:2rem; }
+  .category { margin-bottom:2.5rem; }
+  .category h2 { 
+    font-size:1.2rem; font-weight:700; margin-bottom:0.8rem;
+    padding-bottom:0.4rem; border-bottom:1px solid var(--border);
+  }
+  .tool-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:0.5rem; }
+  .tool-item {
+    background:var(--surface); border:1px solid var(--border); border-radius:6px;
+    padding:0.6rem 0.8rem; transition:border-color 0.2s;
+  }
+  .tool-item:hover { border-color:var(--accent); }
+  .tool-item a { 
+    color:var(--cyan); text-decoration:none; font-family:var(--font-mono);
+    font-size:0.85rem; font-weight:600;
+  }
+  .tool-item a:hover { text-decoration:underline; }
+  .tool-item .tdesc { 
+    font-size:0.75rem; color:var(--text-secondary); margin-top:0.15rem;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .back { margin-bottom:1.5rem; }
+  .back a { color:var(--text-secondary); text-decoration:none; }
+  .back a:hover { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="back"><a href="../index.html">← Home</a></div>
+  <h1>All 260 CLI Tools</h1>
+  <p class="subtitle">Browse by category. Click any tool for details. All tools are zero-dependency and cross-platform.</p>
+
+  <div class="category">
+    <h2>ASCII/Visual (12 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="ascii-banner.html">ascii-banner</a><div class="tdesc">ASCII art banner generator — block, simple, wide, big fonts</div></div>
+      <div class="tool-item"><a href="ascii-gen.html">ascii-gen</a><div class="tdesc">ASCII art generator (8 styles)</div></div>
+      <div class="tool-item"><a href="banner-gen.html">banner-gen</a><div class="tdesc">ASCII banner generator (4 styles, colors)</div></div>
+      <div class="tool-item"><a href="chart-cli.html">chart-cli</a><div class="tdesc">Terminal chart generator (bar, line, pie, histogram)</div></div>
+      <div class="tool-item"><a href="colorize.html">colorize</a><div class="tdesc">Terminal text colorizer</div></div>
+      <div class="tool-item"><a href="colors.html">colors</a><div class="tdesc">256-color table, HEX/RGB conversion, terminal colors</div></div>
+      <div class="tool-item"><a href="cowsay.html">cowsay</a><div class="tdesc">ASCII cow saying text (cow/tux/dragon/bunny)</div></div>
+      <div class="tool-item"><a href="emoji-cli.html">emoji-cli</a><div class="tdesc">Search and display emoji</div></div>
+      <div class="tool-item"><a href="figlet.html">figlet</a><div class="tdesc">ASCII banner generator (figlet-style)</div></div>
+      <div class="tool-item"><a href="figlet-cli.html">figlet-cli</a><div class="tdesc">ASCII art font display (5 fonts)</div></div>
+      <div class="tool-item"><a href="rainbow.html">rainbow</a><div class="tdesc">Rainbow-colored text output</div></div>
+      <div class="tool-item"><a href="spinner.html">spinner</a><div class="tdesc">Animated terminal spinner (6 styles)</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>CLI Utilities (17 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="bookmark.html">bookmark</a><div class="tdesc">CLI bookmark manager</div></div>
+      <div class="tool-item"><a href="clipboard.html">clipboard</a><div class="tdesc">Terminal clipboard copy/paste/clear</div></div>
+      <div class="tool-item"><a href="color-convert.html">color-convert</a><div class="tdesc">Convert colors between hex/rgb/hsl/hsv/named formats</div></div>
+      <div class="tool-item"><a href="diff.html">diff</a><div class="tdesc">File comparison and diff tool</div></div>
+      <div class="tool-item"><a href="diff-files.html">diff-files</a><div class="tdesc">Line-by-line file comparison</div></div>
+      <div class="tool-item"><a href="factor.html">factor</a><div class="tdesc">Prime factorization of integers</div></div>
+      <div class="tool-item"><a href="ff.html">ff</a><div class="tdesc">Interactive fuzzy finder (pure Python curses TUI)</div></div>
+      <div class="tool-item"><a href="fmt.html">fmt</a><div class="tdesc">Code and text auto-formatter (whitespace, indent, EOF)</div></div>
+      <div class="tool-item"><a href="key-value-store.html">key-value-store</a><div class="tdesc">Simple key-value store. Usage: kvstore set <key> <val> | kvs</div></div>
+      <div class="tool-item"><a href="note-taker.html">note-taker</a><div class="tdesc">CLI note-taking (add, list, search)</div></div>
+      <div class="tool-item"><a href="search-files.html">search-files</a><div class="tdesc">Search files by name/content. Usage: search-files <pattern> </div></div>
+      <div class="tool-item"><a href="search-history.html">search-history</a><div class="tdesc">Search terminal history. Usage: search-history <pattern></div></div>
+      <div class="tool-item"><a href="seq.html">seq</a><div class="tdesc">Generate sequence of numbers</div></div>
+      <div class="tool-item"><a href="todo-cli.html">todo-cli</a><div class="tdesc">Simple prioritized TODO list manager</div></div>
+      <div class="tool-item"><a href="unit-convert.html">unit-convert</a><div class="tdesc">Unit converter (length, weight, temp, volume)</div></div>
+      <div class="tool-item"><a href="validate.html">validate</a><div class="tdesc">Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)</div></div>
+      <div class="tool-item"><a href="web-summary.html">web-summary</a><div class="tdesc">Web page content extractor (title, body, links)</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>CSV/Data (18 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="csv-concat.html">csv-concat</a><div class="tdesc">Concatenate CSV files vertically (union mode)</div></div>
+      <div class="tool-item"><a href="csv-dedup.html">csv-dedup</a><div class="tdesc">Deduplicate CSV rows by key column or all columns</div></div>
+      <div class="tool-item"><a href="csv-filter.html">csv-filter</a><div class="tdesc">Filter CSV rows by column value</div></div>
+      <div class="tool-item"><a href="csv-head.html">csv-head</a><div class="tdesc">Display first N rows of a CSV file</div></div>
+      <div class="tool-item"><a href="csv-pretty.html">csv-pretty</a><div class="tdesc">Pretty-print CSV files as aligned tables</div></div>
+      <div class="tool-item"><a href="csv-schema.html">csv-schema</a><div class="tdesc">Infer CSV schema (column types, nulls, stats, samples)</div></div>
+      <div class="tool-item"><a href="csv-slice.html">csv-slice</a><div class="tdesc">Extract columns/rows from CSV files by index or name</div></div>
+      <div class="tool-item"><a href="csv-sort.html">csv-sort</a><div class="tdesc">Sort CSV files by column</div></div>
+      <div class="tool-item"><a href="csv-stats.html">csv-stats</a><div class="tdesc">CSV column analysis with histograms and correlations</div></div>
+      <div class="tool-item"><a href="csv-to-table.html">csv-to-table</a><div class="tdesc">Convert CSV to an aligned ASCII table in terminal</div></div>
+      <div class="tool-item"><a href="csv-validate.html">csv-validate</a><div class="tdesc">Validate CSV file format. Usage: csv-validate <file.csv></div></div>
+      <div class="tool-item"><a href="csv-view.html">csv-view</a><div class="tdesc">CSV file viewer with table formatting. Auto-detects delimite</div></div>
+      <div class="tool-item"><a href="csv2json.html">csv2json</a><div class="tdesc">Convert CSV to JSON. Usage: csv2json [file.csv] [--pretty] [</div></div>
+      <div class="tool-item"><a href="csv-merge.html">csv-merge</a><div class="tdesc">Merge CSV files by common column (inner/left/outer join)</div></div>
+      <div class="tool-item"><a href="diff-csv.html">diff-csv</a><div class="tdesc">Row-level diff of CSV files by key column</div></div>
+      <div class="tool-item"><a href="qc-report.html">qc-report</a><div class="tdesc">检验报告生成器 v2.0 -- Text/HTML/CSV/证书</div></div>
+      <div class="tool-item"><a href="qc-sample.html">qc-sample</a><div class="tdesc">样品送检单生成器 v2.0 -- 交互/模板/批量</div></div>
+      <div class="tool-item"><a href="sql2csv.html">sql2csv</a><div class="tdesc">Run SQL on CSV files</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Date/Time (19 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="cal.html">cal</a><div class="tdesc">Calendar and date calculator</div></div>
+      <div class="tool-item"><a href="calendar-cli.html">calendar-cli</a><div class="tdesc">Display terminal calendar. Usage: calendar-cli [year] [month</div></div>
+      <div class="tool-item"><a href="chrono.html">chrono</a><div class="tdesc">Advanced date/time calculator (durations, business days, ran</div></div>
+      <div class="tool-item"><a href="cron.html">cron</a><div class="tdesc">Cron expression parser</div></div>
+      <div class="tool-item"><a href="cron-check.html">cron-check</a><div class="tdesc">Validate and describe cron expressions</div></div>
+      <div class="tool-item"><a href="cron-pretty.html">cron-pretty</a><div class="tdesc">Describe cron schedule in plain English. Usage: cron-pretty </div></div>
+      <div class="tool-item"><a href="crontab-helper.html">crontab-helper</a><div class="tdesc">Simplify crontab management</div></div>
+      <div class="tool-item"><a href="date-diff.html">date-diff</a><div class="tdesc">Calculate date/time differences</div></div>
+      <div class="tool-item"><a href="dt.html">dt</a><div class="tdesc">Date/time format converter (timestamps, timezones)</div></div>
+      <div class="tool-item"><a href="epoch.html">epoch</a><div class="tdesc">Unix timestamp / human date converter</div></div>
+      <div class="tool-item"><a href="humanize.html">humanize</a><div class="tdesc">Convert raw numbers to human-readable format (size, duration</div></div>
+      <div class="tool-item"><a href="pomodoro.html">pomodoro</a><div class="tdesc">Pomodoro timer (work/break cycles)</div></div>
+      <div class="tool-item"><a href="reminder.html">reminder</a><div class="tdesc">Timer-based reminder with countdown</div></div>
+      <div class="tool-item"><a href="stopwatch.html">stopwatch</a><div class="tdesc">Terminal stopwatch with lap support</div></div>
+      <div class="tool-item"><a href="time-duration.html">time-duration</a><div class="tdesc">Calculate duration between dates/timestamps in multiple form</div></div>
+      <div class="tool-item"><a href="timeout.html">timeout</a><div class="tdesc">Run command with timeout limit</div></div>
+      <div class="tool-item"><a href="timer.html">timer</a><div class="tdesc">Countdown timer and stopwatch</div></div>
+      <div class="tool-item"><a href="timer-pro.html">timer-pro</a><div class="tdesc">Countdown, stopwatch, alarms, lap timer</div></div>
+      <div class="tool-item"><a href="world-clock.html">world-clock</a><div class="tdesc">Show current time in multiple timezones</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Development (27 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="audit-log.html">audit-log</a><div class="tdesc">Parse and filter system audit logs</div></div>
+      <div class="tool-item"><a href="changelog-gen.html">changelog-gen</a><div class="tdesc">Generate changelog from git log</div></div>
+      <div class="tool-item"><a href="code-auditor.html">code-auditor</a><div class="tdesc">Code analysis: complexity, security, style, deps — CLI+TUI</div></div>
+      <div class="tool-item"><a href="code-review.html">code-review</a><div class="tdesc">Basic code review: line length, TODOs, shebang, trailing whi</div></div>
+      <div class="tool-item"><a href="code-stats.html">code-stats</a><div class="tdesc">Count lines of code by language. Usage: code-stats [path]</div></div>
+      <div class="tool-item"><a href="config-validator.html">config-validator</a><div class="tdesc">Validate config files (JSON, YAML, TOML)</div></div>
+      <div class="tool-item"><a href="config-vault.html">config-vault</a><div class="tdesc">Config security: validate, encrypt, scan secrets — CLI+TUI</div></div>
+      <div class="tool-item"><a href="db-mate.html">db-mate</a><div class="tdesc">Database management: SQLite browser, schema, queries — CLI+T</div></div>
+      <div class="tool-item"><a href="db-schema.html">db-schema</a><div class="tdesc">Display database schema as ASCII</div></div>
+      <div class="tool-item"><a href="dep-graph.html">dep-graph</a><div class="tdesc">Dependency graph from Python files</div></div>
+      <div class="tool-item"><a href="dev-dashboard.html">dev-dashboard</a><div class="tdesc">Developer dashboard: git, system, ports, processes — CLI+TUI</div></div>
+      <div class="tool-item"><a href="docker-helper.html">docker-helper</a><div class="tdesc">Docker command helper. Usage: docker-helper <command> [args]</div></div>
+      <div class="tool-item"><a href="env-diff.html">env-diff</a><div class="tdesc">Compare .env files. Usage: env-diff <file1.env> <file2.env></div></div>
+      <div class="tool-item"><a href="env-manager.html">env-manager</a><div class="tdesc">Environment variable manager for .env files</div></div>
+      <div class="tool-item"><a href="env-sorter.html">env-sorter</a><div class="tdesc">Sort environment variables in .env files</div></div>
+      <div class="tool-item"><a href="env-template.html">env-template</a><div class="tdesc">Generate .env.example from .env (strip values, keep keys)</div></div>
+      <div class="tool-item"><a href="envcheck.html">envcheck</a><div class="tdesc">Environment variable validator (missing keys, formats)</div></div>
+      <div class="tool-item"><a href="git-branch-cleaner.html">git-branch-cleaner</a><div class="tdesc">Clean stale git branches</div></div>
+      <div class="tool-item"><a href="git-ignore.html">git-ignore</a><div class="tdesc">Generate .gitignore templates for common languages/framework</div></div>
+      <div class="tool-item"><a href="git-log-pretty.html">git-log-pretty</a><div class="tdesc">Pretty git log. Usage: git-log-pretty [--count N] [--author </div></div>
+      <div class="tool-item"><a href="git-stats.html">git-stats</a><div class="tdesc">Show git contribution stats. Usage: git-stats [--author name</div></div>
+      <div class="tool-item"><a href="license.html">license</a><div class="tdesc">Display open-source license text. Use --list to show availab</div></div>
+      <div class="tool-item"><a href="license-cli.html">license-cli</a><div class="tdesc">Open-source license generator and validator</div></div>
+      <div class="tool-item"><a href="pr-tool.html">pr-tool</a><div class="tdesc">GitHub PR helper (create, list, review, checkout)</div></div>
+      <div class="tool-item"><a href="project-doctor.html">project-doctor</a><div class="tdesc">Project health checker (meta, structure, quality)</div></div>
+      <div class="tool-item"><a href="smellfinder.html">smellfinder</a><div class="tdesc">Python code smell detector (AST-based, 10+ patterns)</div></div>
+      <div class="tool-item"><a href="template.html">template</a><div class="tdesc">Project scaffolding. Usage: template init <name> | template </div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Encoding/Crypto (17 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="b64.html">b64</a><div class="tdesc">Base64 encode/decode with auto-detection</div></div>
+      <div class="tool-item"><a href="base32.html">base32</a><div class="tdesc">Base32 encode/decode (stdin or arg)</div></div>
+      <div class="tool-item"><a href="base58.html">base58</a><div class="tdesc">Base58 encode/decode (Bitcoin-style alphabet)</div></div>
+      <div class="tool-item"><a href="crypto-box.html">crypto-box</a><div class="tdesc">Security: encrypt, hash, password, OTP, SSL — CLI+TUI</div></div>
+      <div class="tool-item"><a href="hash-file.html">hash-file</a><div class="tdesc">Compute file hashes. Usage: hash-file <file> [--md5|--sha1|-</div></div>
+      <div class="tool-item"><a href="hash-check.html">hash-check</a><div class="tdesc">Compare file hashes against known SHA256/MD5 values</div></div>
+      <div class="tool-item"><a href="hashsum.html">hashsum</a><div class="tdesc">File hash verification (MD5/SHA-1/256/512/BLAKE2)</div></div>
+      <div class="tool-item"><a href="hex-tool.html">hex-tool</a><div class="tdesc">Hex encode/decode. Usage: hex-tool encode <text> | hex-tool </div></div>
+      <div class="tool-item"><a href="hexdec.html">hexdec</a><div class="tdesc">Convert between hex, decimal, octal, binary</div></div>
+      <div class="tool-item"><a href="hexdump.html">hexdump</a><div class="tdesc">Hex dump with ASCII view (file or stdin)</div></div>
+      <div class="tool-item"><a href="jwt-decode.html">jwt-decode</a><div class="tdesc">Decode JWT tokens (header + payload, no verification)</div></div>
+      <div class="tool-item"><a href="morse.html">morse</a><div class="tdesc">Text-Morse code converter with audio</div></div>
+      <div class="tool-item"><a href="otp-gen.html">otp-gen</a><div class="tdesc">TOTP/HOTP one-time password generator</div></div>
+      <div class="tool-item"><a href="rot13.html">rot13</a><div class="tdesc">ROT13/ROT47 text cipher (stdin or arg)</div></div>
+      <div class="tool-item"><a href="uri-encode.html">uri-encode</a><div class="tdesc">URI encode/decode. Usage: uri-encode encode <text> | uri-enc</div></div>
+      <div class="tool-item"><a href="url-parser.html">url-parser</a><div class="tdesc">Parse and analyze URLs</div></div>
+      <div class="tool-item"><a href="urlparse.html">urlparse</a><div class="tdesc">URL parser and debugger</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>File Operations (19 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="backup.html">backup</a><div class="tdesc">File/dir backup with rotation</div></div>
+      <div class="tool-item"><a href="checksum-dir.html">checksum-dir</a><div class="tdesc">Generate/verify directory checksums</div></div>
+      <div class="tool-item"><a href="dedup-files.html">dedup-files</a><div class="tdesc">Find and optionally delete duplicate files by SHA256 hash</div></div>
+      <div class="tool-item"><a href="dirsize.html">dirsize</a><div class="tdesc">Recursive directory space analyzer</div></div>
+      <div class="tool-item"><a href="disk-cleanup.html">disk-cleanup</a><div class="tdesc">Analyze disk usage and suggest cleanup. Usage: disk-cleanup </div></div>
+      <div class="tool-item"><a href="disk-usage.html">disk-usage</a><div class="tdesc">Disk usage analyzer (largest dirs/files)</div></div>
+      <div class="tool-item"><a href="file-encrypt.html">file-encrypt</a><div class="tdesc">Simple file encrypt/decrypt</div></div>
+      <div class="tool-item"><a href="file-patch.html">file-patch</a><div class="tdesc">Apply text patches to files</div></div>
+      <div class="tool-item"><a href="file-splitter.html">file-splitter</a><div class="tdesc">Split files into chunks. Usage: file-splitter <file> --lines</div></div>
+      <div class="tool-item"><a href="file-type.html">file-type</a><div class="tdesc">Detect file type using magic bytes</div></div>
+      <div class="tool-item"><a href="file-watch.html">file-watch</a><div class="tdesc">Watch file for changes. Usage: file-watch <file> [--tail]</div></div>
+      <div class="tool-item"><a href="file-find.html">file-find</a><div class="tdesc">Find files by name pattern with recursive search</div></div>
+      <div class="tool-item"><a href="find-dups.html">find-dups</a><div class="tdesc">Find duplicate files by SHA256 hash, size, or name</div></div>
+      <div class="tool-item"><a href="find-empty.html">find-empty</a><div class="tdesc">Find empty directories and files</div></div>
+      <div class="tool-item"><a href="mime-type.html">mime-type</a><div class="tdesc">Detect MIME type of files by extension and magic bytes</div></div>
+      <div class="tool-item"><a href="ren.html">ren</a><div class="tdesc">Batch file renamer (prefix/suffix/regex/numbering)</div></div>
+      <div class="tool-item"><a href="restore.html">restore</a><div class="tdesc">Restore files from .bak backups</div></div>
+      <div class="tool-item"><a href="split.html">split</a><div class="tdesc">File splitter and joiner (by lines or size)</div></div>
+      <div class="tool-item"><a href="temp-cleaner.html">temp-cleaner</a><div class="tdesc">Clean temp files. Usage: temp-cleaner [--dry-run] [--older N</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Format Conversion (4 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="excel2csv.html">excel2csv</a><div class="tdesc">Convert Excel to CSV</div></div>
+      <div class="tool-item"><a href="tsv2csv.html">tsv2csv</a><div class="tdesc">Convert TSV (tab-separated) to CSV format</div></div>
+      <div class="tool-item"><a href="xml-format.html">xml-format</a><div class="tdesc">Pretty-print and format XML files (stdlib)</div></div>
+      <div class="tool-item"><a href="xml2json.html">xml2json</a><div class="tdesc">XML to JSON converter</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Generators (8 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="dice-roll.html">dice-roll</a><div class="tdesc">Dice roller (d4, d6, d8, d10, d12, d20, d100)</div></div>
+      <div class="tool-item"><a href="joke.html">joke</a><div class="tdesc">Random programming/tech/dad jokes</div></div>
+      <div class="tool-item"><a href="macrogen.html">macrogen</a><div class="tdesc">Macro/code template generator with built-in templates. Usage</div></div>
+      <div class="tool-item"><a href="quote.html">quote</a><div class="tdesc">Random quote generator (100+ in 5 categories)</div></div>
+      <div class="tool-item"><a href="random-cli.html">random-cli</a><div class="tdesc">Random data generator (numbers, strings, UUIDs, passwords)</div></div>
+      <div class="tool-item"><a href="uuid.html">uuid</a><div class="tdesc">UUID v1/v4/v5/v7 generator</div></div>
+      <div class="tool-item"><a href="uuid-gen.html">uuid-gen</a><div class="tdesc">UUID generator (v1/v4/v5/v7)</div></div>
+      <div class="tool-item"><a href="yes.html">yes</a><div class="tdesc">Output a string repeatedly until killed</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>JSON (15 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="jq-lite.html">jq-lite</a><div class="tdesc">jq-style JSON filter and extract tool</div></div>
+      <div class="tool-item"><a href="json-diff.html">json-diff</a><div class="tdesc">Deep diff two JSON files, show paths that differ</div></div>
+      <div class="tool-item"><a href="json-keys.html">json-keys</a><div class="tdesc">Extract and list keys from JSON files</div></div>
+      <div class="tool-item"><a href="json-patch.html">json-patch</a><div class="tdesc">Apply JSON Patch (RFC 6902) operations to JSON files</div></div>
+      <div class="tool-item"><a href="json-path.html">json-path</a><div class="tdesc">Query JSON with simple path syntax — dot notation, bracket, </div></div>
+      <div class="tool-item"><a href="json-pretty.html">json-pretty</a><div class="tdesc">JSON pretty-printer, validator, minifier</div></div>
+      <div class="tool-item"><a href="json-schema-validate.html">json-schema-validate</a><div class="tdesc">Validate JSON against JSON Schema. Usage: json-schema-valida</div></div>
+      <div class="tool-item"><a href="json-sort.html">json-sort</a><div class="tdesc">Sort JSON keys alphabetically, recursively</div></div>
+      <div class="tool-item"><a href="json-to-table.html">json-to-table</a><div class="tdesc">Render JSON array as aligned ASCII table in terminal</div></div>
+      <div class="tool-item"><a href="json2csv.html">json2csv</a><div class="tdesc">JSON to CSV converter with nested key flattening</div></div>
+      <div class="tool-item"><a href="json2ini.html">json2ini</a><div class="tdesc">Convert JSON to INI format. Usage: json2ini <file.json></div></div>
+      <div class="tool-item"><a href="json-flatten.html">json-flatten</a><div class="tdesc">Flatten nested JSON to dot-notation key=value pairs</div></div>
+      <div class="tool-item"><a href="json-merge.html">json-merge</a><div class="tdesc">Merge multiple JSON files into one</div></div>
+      <div class="tool-item"><a href="jsonql.html">jsonql</a><div class="tdesc">SQL-like JSON query engine</div></div>
+      <div class="tool-item"><a href="merge-json.html">merge-json</a><div class="tdesc">Deep merge multiple JSON files (arrays concatenate, dicts re</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Meta/Automation (1 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="agent-b-tool.html">agent-b-tool</a><div class="tdesc">Dual-agent collaborative workflow tool</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Network/HTTP (26 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="api-tester.html">api-tester</a><div class="tdesc">HTTP API testing tool</div></div>
+      <div class="tool-item"><a href="cert-check.html">cert-check</a><div class="tdesc">Check SSL certificate expiry</div></div>
+      <div class="tool-item"><a href="cert-info.html">cert-info</a><div class="tdesc">Show SSL certificate info for a domain. Usage: cert-info <do</div></div>
+      <div class="tool-item"><a href="crypto-price.html">crypto-price</a><div class="tdesc">Cryptocurrency price ticker (CoinGecko)</div></div>
+      <div class="tool-item"><a href="dns-lookup.html">dns-lookup</a><div class="tdesc">DNS lookup tool. Usage: dns-lookup <domain> [--type A|AAAA|M</div></div>
+      <div class="tool-item"><a href="geo-ip.html">geo-ip</a><div class="tdesc">Look up IP geolocation. Usage: geo-ip [IP address]</div></div>
+      <div class="tool-item"><a href="gzip-cli.html">gzip-cli</a><div class="tdesc">Gzip/gunzip files — compress, decompress, list archive conte</div></div>
+      <div class="tool-item"><a href="http-headers.html">http-headers</a><div class="tdesc">Inspect HTTP response headers. Usage: http-headers <url></div></div>
+      <div class="tool-item"><a href="http-live.html">http-live</a><div class="tdesc">SSE hot-reload development HTTP server</div></div>
+      <div class="tool-item"><a href="http-status.html">http-status</a><div class="tdesc">Look up HTTP status code meanings (search/list/lookup)</div></div>
+      <div class="tool-item"><a href="http-server.html">http-server</a><div class="tdesc">Simple static file HTTP server</div></div>
+      <div class="tool-item"><a href="ip-location.html">ip-location</a><div class="tdesc">GeoIP location lookup (ip-api.com)</div></div>
+      <div class="tool-item"><a href="ip-info.html">ip-info</a><div class="tdesc">Show public IP address and geolocation info</div></div>
+      <div class="tool-item"><a href="ipcalc.html">ipcalc</a><div class="tdesc">IP address and subnet calculator</div></div>
+      <div class="tool-item"><a href="ipinfo.html">ipinfo</a><div class="tdesc">Public IP and geolocation lookup</div></div>
+      <div class="tool-item"><a href="link-check.html">link-check</a><div class="tdesc">Check for broken links in Markdown files</div></div>
+      <div class="tool-item"><a href="net-analyzer.html">net-analyzer</a><div class="tdesc">Network analysis: ping, trace, port scan, DNS — CLI+TUI</div></div>
+      <div class="tool-item"><a href="net-speed.html">net-speed</a><div class="tdesc">Internet download speed test</div></div>
+      <div class="tool-item"><a href="network-scan.html">network-scan</a><div class="tdesc">Scan active hosts on network. Usage: network-scan [subnet] [</div></div>
+      <div class="tool-item"><a href="port-scan.html">port-scan</a><div class="tdesc">Quick TCP port scan on a host</div></div>
+      <div class="tool-item"><a href="portcheck.html">portcheck</a><div class="tdesc">TCP port scanner and service detection</div></div>
+      <div class="tool-item"><a href="service-check.html">service-check</a><div class="tdesc">Check systemd service status</div></div>
+      <div class="tool-item"><a href="siege-lite.html">siege-lite</a><div class="tdesc">HTTP load tester (concurrency, latency percentile)</div></div>
+      <div class="tool-item"><a href="ssl-check.html">ssl-check</a><div class="tdesc">SSL/TLS certificate checker</div></div>
+      <div class="tool-item"><a href="subnet.html">subnet</a><div class="tdesc">IPv4 subnet/CIDR calculator</div></div>
+      <div class="tool-item"><a href="whois-lookup.html">whois-lookup</a><div class="tdesc">WHOIS domain lookup. Usage: whois-lookup <domain></div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>PDF (2 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="pdf-text.html">pdf-text</a><div class="tdesc">Extract text from PDF files</div></div>
+      <div class="tool-item"><a href="pdf-info.html">pdf-info</a><div class="tdesc">Extract PDF metadata — pages, title, author, size</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>QR/Image/Media (6 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="image-meta.html">image-meta</a><div class="tdesc">Image metadata (EXIF) viewer</div></div>
+      <div class="tool-item"><a href="media-studio.html">media-studio</a><div class="tdesc">Media utilities: QR, ASCII art, banner, Morse, figlet — CLI+</div></div>
+      <div class="tool-item"><a href="qr-cli.html">qr-cli</a><div class="tdesc">Generate QR codes in terminal (unicode block art)</div></div>
+      <div class="tool-item"><a href="qrcode.html">qrcode</a><div class="tdesc">QR code generator (ASCII art)</div></div>
+      <div class="tool-item"><a href="screen-recorder.html">screen-recorder</a><div class="tdesc">Record terminal session. Usage: screen-recorder start [name]</div></div>
+      <div class="tool-item"><a href="screenshot-cli.html">screenshot-cli</a><div class="tdesc">Take screenshots from terminal. Usage: screenshot-cli [outpu</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Security (4 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="firewall-rule.html">firewall-rule</a><div class="tdesc">iptables/nftables firewall rule helper</div></div>
+      <div class="tool-item"><a href="passgen.html">passgen</a><div class="tdesc">Password and passphrase generator with entropy display</div></div>
+      <div class="tool-item"><a href="secret-scanner.html">secret-scanner</a><div class="tdesc">Scan files for secrets/API keys/tokens. Usage: secret-scanne</div></div>
+      <div class="tool-item"><a href="ssh-key-gen.html">ssh-key-gen</a><div class="tdesc">Generate SSH key pairs</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>System/Monitoring (12 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="log-analyzer.html">log-analyzer</a><div class="tdesc">Log file pattern analyzer and statistics</div></div>
+      <div class="tool-item"><a href="log-hawk.html">log-hawk</a><div class="tdesc">Log analysis: parse, filter, tail, stats — CLI+TUI</div></div>
+      <div class="tool-item"><a href="log-tail.html">log-tail</a><div class="tdesc">Tail logs with follow, filter, colorize</div></div>
+      <div class="tool-item"><a href="mac-address.html">mac-address</a><div class="tdesc">Generate and lookup MAC addresses</div></div>
+      <div class="tool-item"><a href="pipe-viewer.html">pipe-viewer</a><div class="tdesc">Pipe viewer with progress bar. Usage: cmd | pipe-viewer [lab</div></div>
+      <div class="tool-item"><a href="process-kill.html">process-kill</a><div class="tdesc">Kill processes by name/port/user</div></div>
+      <div class="tool-item"><a href="progress-bar.html">progress-bar</a><div class="tdesc">Animated terminal progress bar</div></div>
+      <div class="tool-item"><a href="sysmon.html">sysmon</a><div class="tdesc">Real-time system monitor (curses TUI)</div></div>
+      <div class="tool-item"><a href="sysmon-pro.html">sysmon-pro</a><div class="tdesc">System monitor: CPU, memory, disk, processes, network — CLI+</div></div>
+      <div class="tool-item"><a href="system-info.html">system-info</a><div class="tdesc">Display system information. Usage: system-info [--all]</div></div>
+      <div class="tool-item"><a href="watch.html">watch</a><div class="tdesc">Run command periodically, showing output</div></div>
+      <div class="tool-item"><a href="weather-cli.html">weather-cli</a><div class="tdesc">Weather forecast from wttr.in</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Text Processing (33 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="ansi-strip.html">ansi-strip</a><div class="tdesc">Strip ANSI escape codes. Usage: ansi-strip [file]</div></div>
+      <div class="tool-item"><a href="ansi-to-html.html">ansi-to-html</a><div class="tdesc">Convert ANSI escape sequences to color HTML</div></div>
+      <div class="tool-item"><a href="ansi-to-txt.html">ansi-to-txt</a><div class="tdesc">Strip ANSI escape codes, convert to plain text</div></div>
+      <div class="tool-item"><a href="case-convert.html">case-convert</a><div class="tdesc">Convert text between case styles (snake/camel/kebab/pascal/t</div></div>
+      <div class="tool-item"><a href="diff-lines.html">diff-lines</a><div class="tdesc">Line-by-line diff between two files (zero-dependency)</div></div>
+      <div class="tool-item"><a href="diff-yaml.html">diff-yaml</a><div class="tdesc">Show differences between two YAML files</div></div>
+      <div class="tool-item"><a href="file-joiner.html">file-joiner</a><div class="tdesc">Join split file chunks. Usage: file-joiner <base_name> [--ou</div></div>
+      <div class="tool-item"><a href="fold.html">fold</a><div class="tdesc">Wrap input lines to specified width</div></div>
+      <div class="tool-item"><a href="html-strip.html">html-strip</a><div class="tdesc">Strip HTML tags, extract plain text</div></div>
+      <div class="tool-item"><a href="html2markdown.html">html2markdown</a><div class="tdesc">Convert HTML to Markdown</div></div>
+      <div class="tool-item"><a href="html2md.html">html2md</a><div class="tdesc">Convert HTML to Markdown</div></div>
+      <div class="tool-item"><a href="join.html">join</a><div class="tdesc">Join lines with delimiter</div></div>
+      <div class="tool-item"><a href="markdown-check.html">markdown-check</a><div class="tdesc">Markdown link and structure checker</div></div>
+      <div class="tool-item"><a href="markdown-format.html">markdown-format</a><div class="tdesc">Format/beautify Markdown tables and lists</div></div>
+      <div class="tool-item"><a href="markdown-lint.html">markdown-lint</a><div class="tdesc">Basic Markdown linting — headings, fences, whitespace, line </div></div>
+      <div class="tool-item"><a href="markdown-preview.html">markdown-preview</a><div class="tdesc">Preview Markdown in terminal. Usage: markdown-preview <file.</div></div>
+      <div class="tool-item"><a href="markdown-toc.html">markdown-toc</a><div class="tdesc">Generate table of contents from Markdown. Usage: markdown-to</div></div>
+      <div class="tool-item"><a href="nl.html">nl</a><div class="tdesc">Number lines of files or stdin</div></div>
+      <div class="tool-item"><a href="password-strength.html">password-strength</a><div class="tdesc">Password strength checker (0-100)</div></div>
+      <div class="tool-item"><a href="random-string.html">random-string</a><div class="tdesc">Generate random strings (hex/pin/uuid/base64/alphanumeric)</div></div>
+      <div class="tool-item"><a href="replace-text.html">replace-text</a><div class="tdesc">Find and replace text in files. Usage: replace-text <old> <n</div></div>
+      <div class="tool-item"><a href="route-trace.html">route-trace</a><div class="tdesc">Trace network route to host. Usage: route-trace <host> [--ma</div></div>
+      <div class="tool-item"><a href="shuffle.html">shuffle</a><div class="tdesc">Randomize lines from stdin</div></div>
+      <div class="tool-item"><a href="slugify.html">slugify</a><div class="tdesc">Convert text to URL-friendly ASCII slugs</div></div>
+      <div class="tool-item"><a href="text-dedent.html">text-dedent</a><div class="tdesc">Remove common leading whitespace from text</div></div>
+      <div class="tool-item"><a href="text-stats.html">text-stats</a><div class="tdesc">Text statistics (words, chars, sentences, reading time)</div></div>
+      <div class="tool-item"><a href="text-wrap.html">text-wrap</a><div class="tdesc">Wrap text to specified column width</div></div>
+      <div class="tool-item"><a href="tr.html">tr</a><div class="tdesc">Translate or delete characters (stdin)</div></div>
+      <div class="tool-item"><a href="tree.html">tree</a><div class="tdesc">Display directory tree. Usage: tree [path] [--max-depth N] [</div></div>
+      <div class="tool-item"><a href="treedir.html">treedir</a><div class="tdesc">Directory tree visualizer</div></div>
+      <div class="tool-item"><a href="uniq.html">uniq</a><div class="tdesc">Unique line filter with count & case-insensitive</div></div>
+      <div class="tool-item"><a href="web-download.html">web-download</a><div class="tdesc">Download files with progress. Usage: web-download <url> [--o</div></div>
+      <div class="tool-item"><a href="wordcount.html">wordcount</a><div class="tdesc">Enhanced wc with language detection</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Utilities (8 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="crc-check.html">crc-check</a><div class="tdesc">CRC32/CRC64 checksum calculator for files</div></div>
+      <div class="tool-item"><a href="math-eval.html">math-eval</a><div class="tdesc">Safe mathematical expression evaluator</div></div>
+      <div class="tool-item"><a href="nb.html">nb</a><div class="tdesc">Command-line notebook with full-text search</div></div>
+      <div class="tool-item"><a href="random.html">random</a><div class="tdesc">Random generation: password, uuid, hex, int. Usage: random p</div></div>
+      <div class="tool-item"><a href="scan-open-ports.html">scan-open-ports</a><div class="tdesc">TCP port scanner with concurrent scanning and service detect</div></div>
+      <div class="tool-item"><a href="scan-ports.html">scan-ports</a><div class="tdesc">TCP port scanner (range, common ports)</div></div>
+      <div class="tool-item"><a href="sort.html">sort</a><div class="tdesc">Line sorting (alpha, numeric, unique, by column)</div></div>
+      <div class="tool-item"><a href="sqlite-cli.html">sqlite-cli</a><div class="tdesc">SQLite query tool with CSV/JSON/table output</div></div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>YAML/TOML/INI (6 tools)</h2>
+    <div class="tool-list">
+      <div class="tool-item"><a href="ini-parser.html">ini-parser</a><div class="tdesc">INI file parser, query, and JSON converter</div></div>
+      <div class="tool-item"><a href="ini2json.html">ini2json</a><div class="tdesc">Convert INI to JSON. Usage: ini2json <file.ini> [--pretty]</div></div>
+      <div class="tool-item"><a href="toml2json.html">toml2json</a><div class="tdesc">Convert TOML to JSON. Usage: toml2json <file.toml> [--pretty</div></div>
+      <div class="tool-item"><a href="yaml-validate.html">yaml-validate</a><div class="tdesc">Validate YAML syntax. Usage: yaml-validate <file.yaml></div></div>
+      <div class="tool-item"><a href="yaml2json.html">yaml2json</a><div class="tdesc">YAML → JSON converter</div></div>
+      <div class="tool-item"><a href="yaml2toml.html">yaml2toml</a><div class="tdesc">Convert YAML to TOML. Usage: yaml2toml <file.yaml></div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

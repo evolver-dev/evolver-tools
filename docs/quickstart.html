@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quickstart — evolver-tools in 5 Minutes</title>
+<meta name="description" content="Get started with evolver-tools in 5 minutes. A real-world data pipeline: CSV analysis, charts, reports — all from the terminal.">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Navigation ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--text); }
+  nav .links a.active { color: var(--accent); }
+  nav .links .btn-nav {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
+
+  /* ─── Page Header ─── */
+  .page-header {
+    padding: 8rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .page-header .badge {
+    display: inline-block;
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    color: var(--accent);
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+  .page-header h1 .accent { color: var(--accent); }
+  .page-header .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ─── Steps ─── */
+  .container { max-width: 850px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  .step .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .step h2 {
+    display: inline;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-left: 0.75rem;
+    vertical-align: middle;
+  }
+  .step p {
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+  .step .terminal-block {
+    background: #000810;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+    margin: 1rem 0;
+    color: var(--text);
+  }
+  .step .terminal-block .prompt { color: var(--accent); }
+  .step .terminal-block .green { color: var(--green); }
+  .step .terminal-block .cyan { color: var(--cyan); }
+  .step .terminal-block .yellow { color: var(--yellow); }
+  .step .terminal-block .orange { color: var(--orange); }
+  .step .terminal-block .dim { color: var(--text-secondary); }
+  .step .terminal-block .hl { background: rgba(0, 212, 170, 0.1); display: inline; }
+  .step .arrow {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  /* ─── Install Banner ─── */
+  .install-banner {
+    background: var(--surface2);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    margin: 3rem 0;
+  }
+  .install-banner .cmd {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    background: var(--bg);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    display: inline-block;
+    border: 1px solid var(--border);
+    margin: 1rem 0;
+  }
+  .install-banner .cmd .prompt { color: var(--accent); }
+  .install-banner .cmd .cmd-text { color: var(--text); }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    margin: 0.5rem;
+  }
+  .btn:hover { background: var(--accent-dim); }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── Tip Box ─── */
+  .tip {
+    background: rgba(0, 188, 212, 0.08);
+    border-left: 3px solid var(--cyan);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .tip strong { color: var(--cyan); }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 700px) {
+    .page-header { padding: 6rem 1.5rem 2rem; }
+    .container { padding: 0 1.5rem 3rem; }
+    .step { padding: 1.5rem; }
+    nav .links a:not(.btn-nav) { display: none; }
+    .step .terminal-block { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ NAV ════════════════ -->
+<nav>
+  <a href="../index.html" class="logo">evolver<span>-</span>tools</a>
+  <div class="links">
+    <a href="use-cases.html">Use Cases</a>
+    <a href="quickstart.html" class="active">Quickstart</a>
+    <a href="cookbook.html">Cookbook</a>
+    <a href="../docs/search.html">Search</a>
+    <a href="../docs/vs.html">vs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="cheatsheet.html">Cheat Sheet</a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+    <a href="story.html">Story</a>
+    <a href="zero-deps.html">Zero Deps</a>
+</nav>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<div class="page-header">
+  <div class="badge">⚡ 5-MINUTE QUICKSTART</div>
+  <h1>From <span class="accent">CSV</span> to Report in 4 Commands</h1>
+  <p class="subtitle">
+    See how evolver-tools turns raw sales data into insights — all from the terminal, zero dependencies.
+  </p>
+</div>
+
+<div class="container">
+
+  <!-- ════════ INSTALL ════════ -->
+  <div class="install-banner">
+    <p><strong>One install. 260 tools. Zero dependencies.</strong></p>
+    <div class="cmd">
+      <span class="prompt">$</span> <span class="cmd-text">pip install evolver-tools</span>
+    </div>
+    <p style="color:var(--text-secondary);font-size:0.85rem;">
+      Python 3.8+ | Linux / macOS / Windows | ~2MB
+    </p>
+  </div>
+
+  <!-- ════════ STEP 1 ════════ -->
+  <div class="step">
+    <div class="step-num">1</div>
+    <h2>Explore your data</h2>
+    <p>
+      You have a CSV with 15 orders. What's in it? One command tells you everything — column types, distributions, correlations.
+    </p>
+    <div class="terminal-block">$ <span class="green">evtool csv-stats orders.csv</span>
+
+  File: orders.csv  |  Rows: 15  |  Columns: 8
+
+  <span class="cyan">order_id</span> (int)      Mean: 1,008   Min: 1,001   Max: 1,015
+  <span class="cyan">product</span> (text)      15 unique values
+  <span class="cyan">category</span> (text)      Electronics(8)  Home Office(7)
+  <span class="cyan">quantity</span> (int)       Mean: 4.53    Min: 1       Max: 15
+  <span class="cyan">unit_price</span> (float)   Mean: ¥117.66  Min: ¥9.99   Max: ¥399.99
+  <span class="cyan">total</span> (float)       Mean: ¥329.29  Min: ¥89.97  Max: ¥999.96
+  <span class="cyan">date</span> (text)         14 unique dates
+  <span class="cyan">region</span> (text)        North(5)  South(4)  East(3)  West(3)
+
+  <span class="yellow">Correlation Matrix</span>
+    unit_price × total             +0.82  ████████████░░░
+    order_id × total               +0.59  ████████░░░░░░░
+    quantity × unit_price          −0.48  ███████░░░░░░░░</div>
+    <div class="tip">
+      <strong>💡 One command, full picture.</strong> csv-stats infers types, computes histograms, and shows correlations — no pandas, no Jupyter, no setup.
+    </div>
+  </div>
+
+  <div class="arrow">▼</div>
+
+  <!-- ════════ STEP 2 ════════ -->
+  <div class="step">
+    <div class="step-num">2</div>
+    <h2>Visualize with a bar chart</h2>
+    <p>
+      Who's buying the most? Total sales by region, right in your terminal.
+    </p>
+    <div class="terminal-block">$ <span class="green">evtool chart-cli bar "North:1499.88,South:1409.86,East:389.74,West:839.91" --sort</span>
+
+  <span class="cyan">条形图 (垂直)</span>
+
+        █  ▌
+        █  █
+        █  █
+        █  █  ▌
+        █  █  █
+        █  █  █
+        █  █  █  ▌
+        █  █  █  █
+        █  █  █  █
+      ─────────────
+       Nor  Sou  Wes  Eas
+      1499.9 1409.9 839.9 389.7</div>
+    <p>
+      North leads with ¥1,499.88. South is close behind. East is under ¥400 — maybe a growth opportunity?
+    </p>
+  </div>
+
+  <div class="arrow">▼</div>
+
+  <!-- ════════ STEP 3 ════════ -->
+  <div class="step">
+    <div class="step-num">3</div>
+    <h2>Drill deeper with filters</h2>
+    <p>
+      Filter to high-value orders only — anything over ¥500. Then sort by total descending.
+    </p>
+    <div class="terminal-block">$ <span class="green">evtool csv-filter orders.csv --where 'total > 500' | evtool csv-sort --by total --desc</span>
+
+  order_id,product,category,quantity,unit_price,total,date,region
+  1015,Noise Cancelling Headphones,Electronics,4,249.99,999.96,2025-02-12,South
+  1011,Ergonomic Chair,Home Office,2,399.99,799.98,2025-02-03,North
+  1014,Standing Desk Converter,Home Office,2,299.99,599.98,2025-02-10,North
+  1013,Docking Station,Electronics,3,149.99,449.97,2025-02-08,West</div>
+    <div class="tip">
+      <strong>🔗 Pipe-friendly.</strong> Every tool reads from stdin and writes to stdout. Chain them like Unix pipes.
+    </div>
+  </div>
+
+  <div class="arrow">▼</div>
+
+  <!-- ════════ STEP 4 ════════ -->
+  <div class="step">
+    <div class="step-num">4</div>
+    <h2>Export to JSON & report</h2>
+    <p>
+      Convert the filtered result to JSON for your app, and generate a formatted report.
+    </p>
+    <div class="terminal-block">$ <span class="green">evtool csv2json orders.csv --pretty</span>
+
+  [
+    { "order_id": 1001, "product": "Wireless Mouse", "total": 89.97, ... },
+    { "order_id": 1002, "product": "USB-C Hub", "total": 90.00, ... },
+    ...
+  ]
+
+$ <span class="green">evtool csv-pretty orders.csv</span>
+
+  ┌──────────┬──────────────────────────┬──────────────┬─────────┐
+  │ order_id │ product                  │ category     │  total  │
+  ├──────────┼──────────────────────────┼──────────────┼─────────┤
+  │ 1001     │ Wireless Mouse           │ Electronics  │  89.97  │
+  │ 1002     │ USB-C Hub                │ Electronics  │  90.00  │
+  │ 1003     │ Desk Lamp                │ Home Office  │  89.99  │
+  │ ...      │ ...                      │ ...          │  ...    │
+  │ 1015     │ Noise Cancelling Headph. │ Electronics  │ 999.96  │
+  └──────────┴──────────────────────────┴──────────────┴─────────┘</div>
+  </div>
+
+  <!-- ════════ BONUS ════════ -->
+  <div class="step" style="border-color: var(--purple);">
+    <div class="step-num" style="background: var(--purple);">★</div>
+    <h2>Bonus: Find the right tool</h2>
+    <p>
+      Forgot a tool name? Fuzzy-search all 260 tools by name or description.
+    </p>
+    <div class="terminal-block">$ <span class="green">evtool search json</span>
+
+  18 matching tools:
+    ● json2csv        JSON to CSV converter with nested key flattening
+    ● json2yaml       Convert JSON to YAML
+    ● json-merge      Deep-merge multiple JSON files
+    ● json-pretty     Pretty-print JSON with syntax highlighting
+    ● json-schema     JSON Schema validator
+    ● json-sort       Sort JSON keys alphabetically
+    ● json-stats      JSON structure analysis
+    ● json-validate   Validate JSON file format
+    ● json2env        Convert JSON to .env format
+    ● ... and 9 more</div>
+    <div class="tip">
+      <strong>🔍 evtool search &lt;keyword&gt;</strong> — instantly finds tools across all 260 commands. Try "csv", "net", "crypto", "git", "text".
+    </div>
+  </div>
+
+  <!-- ════════ FULL PIPELINE ════════ -->
+  <div class="step" style="border-color: var(--yellow);">
+    <div class="step-num" style="background: var(--yellow); color: var(--bg);">▶</div>
+    <h2>The whole pipeline in one line</h2>
+    <p>
+      From raw CSV to filtered, sorted, visualized output — one chained command:
+    </p>
+    <div class="terminal-block"><span class="prompt">$</span> <span class="green">evtool csv-stats orders.csv && \</span>
+<span class="green">  evtool csv-filter orders.csv --where 'total > 100' | \</span>
+<span class="green">  evtool csv-sort --by total --desc | \</span>
+<span class="green">  evtool csv-pretty</span></div>
+    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+      That's 4 tools, 1 pipeline, zero imports, zero config, zero dependencies.
+    </p>
+  </div>
+
+  <!-- ════════ CTA ════════ -->
+  <div style="text-align: center; padding: 3rem 0;">
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
+      Ready to explore all 260 tools?
+    </p>
+    <a href="../docs/search.html" class="btn">🔍 Browse All Tools</a>
+    <a href="use-cases.html" class="btn btn-secondary">📋 More Use Cases</a>
+    <a href="../pricing.html" class="btn btn-secondary">💰 Pricing</a>
+  </div>
+
+</div>
+
+</body>
+</html>

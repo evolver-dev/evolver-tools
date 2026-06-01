@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Tools — evolver-tools</title>
+<meta name="description" content="Search all 260 evolver-tools CLI tools by name or description. Real-time fuzzy search — zero dependencies, one pip install.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/search.html">
+<style>
+  :root {
+    --bg: #0a0e14; --surface: #111820; --surface2: #182230;
+    --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
+    --accent: #00d4aa; --accent-dim: #00a88a;
+    --font-mono: 'JetBrains Mono','Fira Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .links a.active { color: var(--accent); }
+  .main { padding-top: 56px; }
+  .hero {
+    padding: 4rem 2rem 2rem;
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+  .hero h1 { font-size: clamp(1.5rem,3vw,2.2rem); font-weight: 800; margin-bottom: 0.5rem; }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .subtitle { color: var(--text-secondary); font-size: 0.9rem; }
+  .search-box {
+    max-width: 640px; margin: 1.5rem auto 3rem; padding: 0 2rem;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%; padding: 0.9rem 1rem 0.9rem 2.8rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text);
+    font-family: var(--font-mono); font-size: 1rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-box input:focus { border-color: var(--accent); }
+  .search-box input::placeholder { color: var(--text-secondary); }
+  .search-icon {
+    position: absolute; left: 2.8rem; top: 50%; transform: translateY(-50%);
+    color: var(--text-secondary); font-size: 1.1rem; pointer-events: none;
+  }
+  .stats { text-align: center; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem; }
+  .results {
+    max-width: 720px; margin: 0 auto; padding: 0 2rem 4rem;
+  }
+  .result-item {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: 0.75rem;
+    transition: border-color 0.15s;
+  }
+  .result-item:hover { border-color: var(--accent); }
+  .result-item a {
+    text-decoration: none; color: inherit; display: block;
+  }
+  .result-item .tool-name {
+    font-family: var(--font-mono); font-size: 1rem; font-weight: 600;
+    color: var(--accent); margin-bottom: 0.25rem;
+  }
+  .result-item .tool-name mark {
+    background: rgba(0,212,170,0.25); color: var(--accent);
+    padding: 0.05rem 0.2rem; border-radius: 3px;
+  }
+  .result-item .tool-desc {
+    font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;
+  }
+  .result-item .tool-desc mark {
+    background: rgba(255,203,107,0.2); color: #ffcb6b;
+    padding: 0.05rem 0.2rem; border-radius: 3px;
+  }
+  .no-results {
+    text-align: center; padding: 3rem 2rem;
+    color: var(--text-secondary); font-size: 0.95rem;
+  }
+  .no-results .big { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  footer {
+    text-align: center; padding: 2rem; font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--text-secondary); }
+  @media (max-width: 600px) {
+    nav .links { gap: 0.8rem; }
+    nav .links a { font-size: 0.78rem; }
+    .result-item { padding: 0.8rem 1rem; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/use-cases.html">Use Cases</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/pricing.html">Pricing</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/cheatsheet.html">Cheat Sheet</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/demo.html">Demo</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/cookbook.html">Cookbook</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/vs.html">vs</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/search.html" class="active">Search</a>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="hero">
+    <h1>🔍 Search <span class="accent">260 tools</span></h1>
+    <p class="subtitle">Type to filter by name or description. Fuzzy matching. Instant results.</p>
+  </div>
+
+  <div class="search-box">
+    <span class="search-icon">🔎</span>
+    <input type="text" id="searchInput" placeholder="Search tools... (e.g. csv, json, network, security)" autofocus>
+  </div>
+
+  <div class="stats" id="stats">260 tools</div>
+  <div class="results" id="results"></div>
+</div>
+
+<footer>
+  <a href="https://evolver-dev.github.io/evolver-tools/">Home</a> · <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+</footer>
+
+<script>
+const TOOLS = [{"n": "agent-b-tool", "d": "Dual-agent collaborative workflow tool"}, {"n": "ansi-strip", "d": "Strip ANSI escape codes. Usage: ansi-strip [file]"}, {"n": "ansi-to-html", "d": "Convert ANSI escape sequences to color HTML"}, {"n": "ansi-to-txt", "d": "Strip ANSI escape codes, convert to plain text"}, {"n": "api-tester", "d": "HTTP API testing tool"}, {"n": "ascii-banner", "d": "ASCII art banner generator \u2014 block, simple, wide, big fonts"}, {"n": "ascii-gen", "d": "ASCII art generator (8 styles)"}, {"n": "audit-log", "d": "Parse and filter system audit logs"}, {"n": "b64", "d": "Base64 encode/decode with auto-detection"}, {"n": "backup", "d": "File/dir backup with rotation"}, {"n": "banner-gen", "d": "ASCII banner generator (4 styles, colors)"}, {"n": "base32", "d": "Base32 encode/decode (stdin or arg)"}, {"n": "base58", "d": "Base58 encode/decode (Bitcoin-style alphabet)"}, {"n": "bookmark", "d": "CLI bookmark manager"}, {"n": "cal", "d": "Calendar and date calculator"}, {"n": "calendar-cli", "d": "Display terminal calendar. Usage: calendar-cli [year] [month]"}, {"n": "case-convert", "d": "Convert text between case styles (snake/camel/kebab/pascal/title/const)"}, {"n": "cert-check", "d": "Check SSL certificate expiry"}, {"n": "cert-info", "d": "Show SSL certificate info for a domain. Usage: cert-info <domain> [port]"}, {"n": "changelog-gen", "d": "Generate changelog from git log"}, {"n": "chart-cli", "d": "Terminal chart generator (bar, line, pie, histogram)"}, {"n": "checksum-dir", "d": "Generate/verify directory checksums"}, {"n": "chrono", "d": "Advanced date/time calculator (durations, business days, ranges, age)"}, {"n": "clipboard", "d": "Terminal clipboard copy/paste/clear"}, {"n": "code-auditor", "d": "Code analysis: complexity, security, style, deps \u2014 CLI+TUI"}, {"n": "code-review", "d": "Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings, CRLF, tabs, long functions, bare excepts, wildcard imports"}, {"n": "code-stats", "d": "Count lines of code by language. Usage: code-stats [path]"}, {"n": "color-convert", "d": "Convert colors between hex/rgb/hsl/hsv/named formats"}, {"n": "colorize", "d": "Terminal text colorizer"}, {"n": "colors", "d": "256-color table, HEX/RGB conversion, terminal colors"}, {"n": "config-validator", "d": "Validate config files (JSON, YAML, TOML)"}, {"n": "config-vault", "d": "Config security: validate, encrypt, scan secrets \u2014 CLI+TUI"}, {"n": "cowsay", "d": "ASCII cow saying text (cow/tux/dragon/bunny)"}, {"n": "crc_check", "d": "CRC32/CRC64 checksum calculator for files"}, {"n": "cron", "d": "Cron expression parser"}, {"n": "cron-check", "d": "Validate and describe cron expressions"}, {"n": "cron-pretty", "d": "Describe cron schedule in plain English. Usage: cron-pretty '*/5 * * * *'"}, {"n": "crontab-helper", "d": "Simplify crontab management"}, {"n": "crypto-box", "d": "Security: encrypt, hash, password, OTP, SSL \u2014 CLI+TUI"}, {"n": "crypto-price", "d": "Cryptocurrency price ticker (CoinGecko)"}, {"n": "csv-concat", "d": "Concatenate CSV files vertically (union mode)"}, {"n": "csv-dedup", "d": "Deduplicate CSV rows by key column or all columns"}, {"n": "csv-filter", "d": "Filter CSV rows by column value"}, {"n": "csv-head", "d": "Display first N rows of a CSV file"}, {"n": "csv-pretty", "d": "Pretty-print CSV files as aligned tables"}, {"n": "csv-schema", "d": "Infer CSV schema (column types, nulls, stats, samples)"}, {"n": "csv-slice", "d": "Extract columns/rows from CSV files by index or name"}, {"n": "csv-sort", "d": "Sort CSV files by column"}, {"n": "csv-stats", "d": "CSV column analysis with histograms and correlations"}, {"n": "csv-to-table", "d": "Convert CSV to an aligned ASCII table in terminal"}, {"n": "csv-validate", "d": "Validate CSV file format. Usage: csv-validate <file.csv>"}, {"n": "csv-view", "d": "CSV file viewer with table formatting. Auto-detects delimiter, filters, sorts, JSON output."}, {"n": "csv2json", "d": "Convert CSV to JSON. Usage: csv2json [file.csv] [--pretty] [--output file.json]"}, {"n": "csv_merge", "d": "Merge CSV files by common column (inner/left/outer join)"}, {"n": "date_diff", "d": "Calculate date/time differences"}, {"n": "db-mate", "d": "Database management: SQLite browser, schema, queries \u2014 CLI+TUI"}, {"n": "db-schema", "d": "Display database schema as ASCII"}, {"n": "dedup-files", "d": "Find and optionally delete duplicate files by SHA256 hash"}, {"n": "dep-graph", "d": "Dependency graph from Python files"}, {"n": "dev-dashboard", "d": "Developer dashboard: git, system, ports, processes \u2014 CLI+TUI"}, {"n": "dice-roll", "d": "Dice roller (d4, d6, d8, d10, d12, d20, d100)"}, {"n": "diff", "d": "File comparison and diff tool"}, {"n": "diff-csv", "d": "Row-level diff of CSV files by key column"}, {"n": "diff-lines", "d": "Line-by-line diff between two files (zero-dependency)"}, {"n": "diff-yaml", "d": "Show differences between two YAML files"}, {"n": "diff_files", "d": "Line-by-line file comparison"}, {"n": "dirsize", "d": "Recursive directory space analyzer"}, {"n": "disk-cleanup", "d": "Analyze disk usage and suggest cleanup. Usage: disk-cleanup [path] [--deep]"}, {"n": "disk-usage", "d": "Disk usage analyzer (largest dirs/files)"}, {"n": "dns-lookup", "d": "DNS lookup tool. Usage: dns-lookup <domain> [--type A|AAAA|MX|TXT|NS|CNAME|SOA]"}, {"n": "docker-helper", "d": "Docker command helper. Usage: docker-helper <command> [args]"}, {"n": "dt", "d": "Date/time format converter (timestamps, timezones)"}, {"n": "emoji-cli", "d": "Search and display emoji"}, {"n": "env-diff", "d": "Compare .env files. Usage: env-diff <file1.env> <file2.env>"}, {"n": "env-manager", "d": "Environment variable manager for .env files"}, {"n": "env-sorter", "d": "Sort environment variables in .env files"}, {"n": "env_template", "d": "Generate .env.example from .env (strip values, keep keys)"}, {"n": "envcheck", "d": "Environment variable validator (missing keys, formats)"}, {"n": "epoch", "d": "Unix timestamp / human date converter"}, {"n": "excel2csv", "d": "Convert Excel to CSV"}, {"n": "factor", "d": "Prime factorization of integers"}, {"n": "ff", "d": "Interactive fuzzy finder (pure Python curses TUI)"}, {"n": "figlet", "d": "ASCII banner generator (figlet-style)"}, {"n": "figlet-cli", "d": "ASCII art font display (5 fonts)"}, {"n": "file-encrypt", "d": "Simple file encrypt/decrypt"}, {"n": "file-joiner", "d": "Join split file chunks. Usage: file-joiner <base_name> [--output file]"}, {"n": "file-patch", "d": "Apply text patches to files"}, {"n": "file-splitter", "d": "Split files into chunks. Usage: file-splitter <file> --lines N | --size N[K|M|G]"}, {"n": "file-type", "d": "Detect file type using magic bytes"}, {"n": "file-watch", "d": "Watch file for changes. Usage: file-watch <file> [--tail]"}, {"n": "file_find", "d": "Find files by name pattern with recursive search"}, {"n": "find-dups", "d": "Find duplicate files by SHA256 hash, size, or name"}, {"n": "find-empty", "d": "Find empty directories and files"}, {"n": "firewall-rule", "d": "iptables/nftables firewall rule helper"}, {"n": "fmt", "d": "Code and text auto-formatter (whitespace, indent, EOF)"}, {"n": "fold", "d": "Wrap input lines to specified width"}, {"n": "geo-ip", "d": "Look up IP geolocation. Usage: geo-ip [IP address]"}, {"n": "git-branch-cleaner", "d": "Clean stale git branches"}, {"n": "git-ignore", "d": "Generate .gitignore templates for common languages/frameworks"}, {"n": "git-log-pretty", "d": "Pretty git log. Usage: git-log-pretty [--count N] [--author name]"}, {"n": "git-stats", "d": "Show git contribution stats. Usage: git-stats [--author name] [--since 30.days]"}, {"n": "gzip-cli", "d": "Gzip/gunzip files \u2014 compress, decompress, list archive contents"}, {"n": "hash-file", "d": "Compute file hashes. Usage: hash-file <file> [--md5|--sha1|--sha256|--sha512|--all]"}, {"n": "hash_check", "d": "Compare file hashes against known SHA256/MD5 values"}, {"n": "hashsum", "d": "File hash verification (MD5/SHA-1/256/512/BLAKE2)"}, {"n": "hex-tool", "d": "Hex encode/decode. Usage: hex-tool encode <text> | hex-tool decode <hex>"}, {"n": "hexdec", "d": "Convert between hex, decimal, octal, binary"}, {"n": "hexdump", "d": "Hex dump with ASCII view (file or stdin)"}, {"n": "html-strip", "d": "Strip HTML tags, extract plain text"}, {"n": "html2markdown", "d": "Convert HTML to Markdown"}, {"n": "html2md", "d": "Convert HTML to Markdown"}, {"n": "http-headers", "d": "Inspect HTTP response headers. Usage: http-headers <url>"}, {"n": "http-live", "d": "SSE hot-reload development HTTP server"}, {"n": "http-status", "d": "Look up HTTP status code meanings (search/list/lookup)"}, {"n": "http_server", "d": "Simple static file HTTP server"}, {"n": "humanize", "d": "Convert raw numbers to human-readable format (size, duration, count)"}, {"n": "image-meta", "d": "Image metadata (EXIF) viewer"}, {"n": "ini-parser", "d": "INI file parser, query, and JSON converter"}, {"n": "ini2json", "d": "Convert INI to JSON. Usage: ini2json <file.ini> [--pretty]"}, {"n": "ip-location", "d": "GeoIP location lookup (ip-api.com)"}, {"n": "ip_info", "d": "Show public IP address and geolocation info"}, {"n": "ipcalc", "d": "IP address and subnet calculator"}, {"n": "ipinfo", "d": "Public IP and geolocation lookup"}, {"n": "join", "d": "Join lines with delimiter"}, {"n": "joke", "d": "Random programming/tech/dad jokes"}, {"n": "jq-lite", "d": "jq-style JSON filter and extract tool"}, {"n": "json-diff", "d": "Deep diff two JSON files, show paths that differ"}, {"n": "json-keys", "d": "Extract and list keys from JSON files"}, {"n": "json-patch", "d": "Apply JSON Patch (RFC 6902) operations to JSON files"}, {"n": "json-path", "d": "Query JSON with simple path syntax \u2014 dot notation, bracket, wildcard"}, {"n": "json-pretty", "d": "JSON pretty-printer, validator, minifier"}, {"n": "json-schema-validate", "d": "Validate JSON against JSON Schema. Usage: json-schema-validate <data.json> <schema.json>"}, {"n": "json-sort", "d": "Sort JSON keys alphabetically, recursively"}, {"n": "json-to-table", "d": "Render JSON array as aligned ASCII table in terminal"}, {"n": "json2csv", "d": "JSON to CSV converter with nested key flattening"}, {"n": "json2ini", "d": "Convert JSON to INI format. Usage: json2ini <file.json>"}, {"n": "json_flatten", "d": "Flatten nested JSON to dot-notation key=value pairs"}, {"n": "json_merge", "d": "Merge multiple JSON files into one"}, {"n": "jsonql", "d": "SQL-like JSON query engine"}, {"n": "jwt-decode", "d": "Decode JWT tokens (header + payload, no verification)"}, {"n": "key-value-store", "d": "Simple key-value store. Usage: kvstore set <key> <val> | kvstore get <key> | kvstore list | kvstore del <key>"}, {"n": "license", "d": "Display open-source license text. Use --list to show available licenses."}, {"n": "license-cli", "d": "Open-source license generator and validator"}, {"n": "link-check", "d": "Check for broken links in Markdown files"}, {"n": "log-analyzer", "d": "Log file pattern analyzer and statistics"}, {"n": "log-hawk", "d": "Log analysis: parse, filter, tail, stats \u2014 CLI+TUI"}, {"n": "log-tail", "d": "Tail logs with follow, filter, colorize"}, {"n": "mac-address", "d": "Generate and lookup MAC addresses"}, {"n": "macrogen", "d": "Macro/code template generator with built-in templates. Usage: macrogen <name> [key=val ...] | macrogen --list | macrogen -t <path> [key=val ...]"}, {"n": "markdown-check", "d": "Markdown link and structure checker"}, {"n": "markdown-format", "d": "Format/beautify Markdown tables and lists"}, {"n": "markdown-lint", "d": "Basic Markdown linting \u2014 headings, fences, whitespace, line length"}, {"n": "markdown-preview", "d": "Preview Markdown in terminal. Usage: markdown-preview <file.md>"}, {"n": "markdown-toc", "d": "Generate table of contents from Markdown. Usage: markdown-toc [file.md]"}, {"n": "math_eval", "d": "Safe mathematical expression evaluator"}, {"n": "media-studio", "d": "Media utilities: QR, ASCII art, banner, Morse, figlet \u2014 CLI+TUI"}, {"n": "merge-json", "d": "Deep merge multiple JSON files (arrays concatenate, dicts recurse)"}, {"n": "mime-type", "d": "Detect MIME type of files by extension and magic bytes"}, {"n": "morse", "d": "Text-Morse code converter with audio"}, {"n": "nb", "d": "Command-line notebook with full-text search"}, {"n": "net-analyzer", "d": "Network analysis: ping, trace, port scan, DNS \u2014 CLI+TUI"}, {"n": "net-speed", "d": "Internet download speed test"}, {"n": "network-scan", "d": "Scan active hosts on network. Usage: network-scan [subnet] [--ping]"}, {"n": "nl", "d": "Number lines of files or stdin"}, {"n": "note-taker", "d": "CLI note-taking (add, list, search)"}, {"n": "otp-gen", "d": "TOTP/HOTP one-time password generator"}, {"n": "passgen", "d": "Password and passphrase generator with entropy display"}, {"n": "password-strength", "d": "Password strength checker (0-100)"}, {"n": "pdf-text", "d": "Extract text from PDF files"}, {"n": "pdf_info", "d": "Extract PDF metadata \u2014 pages, title, author, size"}, {"n": "pipe-viewer", "d": "Pipe viewer with progress bar. Usage: cmd | pipe-viewer [label]"}, {"n": "pomodoro", "d": "Pomodoro timer (work/break cycles)"}, {"n": "port_scan", "d": "Quick TCP port scan on a host"}, {"n": "portcheck", "d": "TCP port scanner and service detection"}, {"n": "pr-tool", "d": "GitHub PR helper (create, list, review, checkout)"}, {"n": "process-kill", "d": "Kill processes by name/port/user"}, {"n": "progress-bar", "d": "Animated terminal progress bar"}, {"n": "project-doctor", "d": "Project health checker (meta, structure, quality)"}, {"n": "qc-report", "d": "\u68c0\u9a8c\u62a5\u544a\u751f\u6210\u5668 v2.0 -- Text/HTML/CSV/\u8bc1\u4e66"}, {"n": "qc-sample", "d": "\u6837\u54c1\u9001\u68c0\u5355\u751f\u6210\u5668 v2.0 -- \u4ea4\u4e92/\u6a21\u677f/\u6279\u91cf"}, {"n": "qr_cli", "d": "Generate QR codes in terminal (unicode block art)"}, {"n": "qrcode", "d": "QR code generator (ASCII art)"}, {"n": "quote", "d": "Random quote generator (100+ in 5 categories)"}, {"n": "rainbow", "d": "Rainbow-colored text output"}, {"n": "random", "d": "Random generation: password, uuid, hex, int. Usage: random password [len] | uuid | hex [bytes] | int [min] [max]"}, {"n": "random-cli", "d": "Random data generator (numbers, strings, UUIDs, passwords)"}, {"n": "random-string", "d": "Generate random strings (hex/pin/uuid/base64/alphanumeric)"}, {"n": "reminder", "d": "Timer-based reminder with countdown"}, {"n": "ren", "d": "Batch file renamer (prefix/suffix/regex/numbering)"}, {"n": "replace-text", "d": "Find and replace text in files. Usage: replace-text <old> <new> [files...] [--dry-run]"}, {"n": "restore", "d": "Restore files from .bak backups"}, {"n": "rot13", "d": "ROT13/ROT47 text cipher (stdin or arg)"}, {"n": "route-trace", "d": "Trace network route to host. Usage: route-trace <host> [--max-hops 30]"}, {"n": "scan-open-ports", "d": "TCP port scanner with concurrent scanning and service detection"}, {"n": "scan-ports", "d": "TCP port scanner (range, common ports)"}, {"n": "screen-recorder", "d": "Record terminal session. Usage: screen-recorder start [name] | screen-recorder stop | screen-recorder list"}, {"n": "screenshot-cli", "d": "Take screenshots from terminal. Usage: screenshot-cli [output.png] [--delay N]"}, {"n": "search-files", "d": "Search files by name/content. Usage: search-files <pattern> [path] [--type f|d]"}, {"n": "search-history", "d": "Search terminal history. Usage: search-history <pattern>"}, {"n": "secret-scanner", "d": "Scan files for secrets/API keys/tokens. Usage: secret-scanner [path]"}, {"n": "seq", "d": "Generate sequence of numbers"}, {"n": "service-check", "d": "Check systemd service status"}, {"n": "shuffle", "d": "Randomize lines from stdin"}, {"n": "siege-lite", "d": "HTTP load tester (concurrency, latency percentile)"}, {"n": "slugify", "d": "Convert text to URL-friendly ASCII slugs"}, {"n": "smellfinder", "d": "Python code smell detector (AST-based, 10+ patterns)"}, {"n": "sort", "d": "Line sorting (alpha, numeric, unique, by column)"}, {"n": "spinner", "d": "Animated terminal spinner (6 styles)"}, {"n": "split", "d": "File splitter and joiner (by lines or size)"}, {"n": "sql2csv", "d": "Run SQL on CSV files"}, {"n": "sqlite-cli", "d": "SQLite query tool with CSV/JSON/table output"}, {"n": "ssh-key-gen", "d": "Generate SSH key pairs"}, {"n": "ssl-check", "d": "SSL/TLS certificate checker"}, {"n": "stopwatch", "d": "Terminal stopwatch with lap support"}, {"n": "subnet", "d": "IPv4 subnet/CIDR calculator"}, {"n": "sysmon", "d": "Real-time system monitor (curses TUI)"}, {"n": "sysmon-pro", "d": "System monitor: CPU, memory, disk, processes, network \u2014 CLI+TUI"}, {"n": "system-info", "d": "Display system information. Usage: system-info [--all]"}, {"n": "temp-cleaner", "d": "Clean temp files. Usage: temp-cleaner [--dry-run] [--older N[d|h]]"}, {"n": "template", "d": "Project scaffolding. Usage: template init <name> | template python <name> | template cli <name>"}, {"n": "text-dedent", "d": "Remove common leading whitespace from text"}, {"n": "text-stats", "d": "Text statistics (words, chars, sentences, reading time)"}, {"n": "text-wrap", "d": "Wrap text to specified column width"}, {"n": "time-duration", "d": "Calculate duration between dates/timestamps in multiple formats"}, {"n": "timeout", "d": "Run command with timeout limit"}, {"n": "timer", "d": "Countdown timer and stopwatch"}, {"n": "timer-pro", "d": "Countdown, stopwatch, alarms, lap timer"}, {"n": "todo-cli", "d": "Simple prioritized TODO list manager"}, {"n": "toml2json", "d": "Convert TOML to JSON. Usage: toml2json <file.toml> [--pretty]"}, {"n": "tr", "d": "Translate or delete characters (stdin)"}, {"n": "tree", "d": "Display directory tree. Usage: tree [path] [--max-depth N] [--dirs-only]"}, {"n": "treedir", "d": "Directory tree visualizer"}, {"n": "tsv2csv", "d": "Convert TSV (tab-separated) to CSV format"}, {"n": "uniq", "d": "Unique line filter with count & case-insensitive"}, {"n": "unit-convert", "d": "Unit converter (length, weight, temp, volume)"}, {"n": "uri-encode", "d": "URI encode/decode. Usage: uri-encode encode <text> | uri-encode decode <text>"}, {"n": "url_parser", "d": "Parse and analyze URLs"}, {"n": "urlparse", "d": "URL parser and debugger"}, {"n": "uuid", "d": "UUID v1/v4/v5/v7 generator"}, {"n": "uuid_gen", "d": "UUID generator (v1/v4/v5/v7)"}, {"n": "validate", "d": "Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)"}, {"n": "watch", "d": "Run command periodically, showing output"}, {"n": "weather-cli", "d": "Weather forecast from wttr.in"}, {"n": "web-download", "d": "Download files with progress. Usage: web-download <url> [--output file]"}, {"n": "web-summary", "d": "Web page content extractor (title, body, links)"}, {"n": "whois-lookup", "d": "WHOIS domain lookup. Usage: whois-lookup <domain>"}, {"n": "wordcount", "d": "Enhanced wc with language detection"}, {"n": "world-clock", "d": "Show current time in multiple timezones"}, {"n": "xml-format", "d": "Pretty-print and format XML files (stdlib)"}, {"n": "xml2json", "d": "XML to JSON converter"}, {"n": "yaml-validate", "d": "Validate YAML syntax. Usage: yaml-validate <file.yaml>"}, {"n": "yaml2json", "d": "YAML \u2192 JSON converter"}, {"n": "yaml2toml", "d": "Convert YAML to TOML. Usage: yaml2toml <file.yaml>"}, {"n": "yes", "d": "Output a string repeatedly until killed"}];
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function highlight(text, query) {
+  if (!query.trim()) return escapeHtml(text);
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+  let result = escapeHtml(text);
+  for (const word of words) {
+    const re = new RegExp('(' + word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    result = result.replace(re, '<mark>$1</mark>');
+  }
+  return result;
+}
+
+function score(tool, words) {
+  const name = tool.n.toLowerCase();
+  const desc = tool.d.toLowerCase();
+  let s = 0;
+  for (const w of words) {
+    if (name === w) s += 100;
+    else if (name.startsWith(w)) s += 50;
+    else if (name.includes(w)) s += 30;
+    if (desc.startsWith(w)) s += 10;
+    else if (desc.includes(w)) s += 5;
+  }
+  return s;
+}
+
+function search(query) {
+  const q = query.trim();
+  if (!q) {
+    document.getElementById('stats').textContent = TOOLS.length + ' tools';
+    renderResults(TOOLS.slice(0, 50), 0, TOOLS.length, q);
+    return;
+  }
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  let matched = TOOLS.map(t => ({ tool: t, score: score(t, words) }))
+    .filter(x => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(x => x.tool);
+  document.getElementById('stats').textContent = matched.length + ' of ' + TOOLS.length + ' tools match';
+  renderResults(matched.slice(0, 100), matched.length, TOOLS.length, q);
+}
+
+function renderResults(items, total, allCount, query) {
+  const el = document.getElementById('results');
+  if (items.length === 0) {
+    el.innerHTML = '<div class="no-results"><div class="big">🔍</div><p>No tools match <strong>' + escapeHtml(query) + '</strong></p><p style="margin-top:0.5rem;font-size:0.85rem">Try: csv, json, network, security, crypto, text, file</p></div>';
+    return;
+  }
+  el.innerHTML = items.map(t =>
+    '<div class="result-item">' +
+      '<a href="./tools/' + encodeURIComponent(t.n) + '.html">' +
+        '<div class="tool-name">' + highlight(t.n, query) + '</div>' +
+        '<div class="tool-desc">' + highlight(t.d, query) + '</div>' +
+      '</a>' +
+    '</div>'
+  ).join('');
+}
+
+// Real-time search
+document.getElementById('searchInput').addEventListener('input', function() {
+  search(this.value);
+});
+
+// Initial render
+search('');
+</script>
+</body>
+</html>

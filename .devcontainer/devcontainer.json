@@ -1,0 +1,14 @@
+{
+  "name": "evolver-tools",
+  "image": "ghcr.io/evolver-dev/evolver-tools:latest",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python"],
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+      }
+    }
+  },
+  "postCreateCommand": "evtool list | head -10 && echo '---' && echo '✨ evolver-tools ready! Run evtool <name> to try any tool'",
+  "forwardPorts": []
+}

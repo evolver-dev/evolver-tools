@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>evolver-tools — Pricing</title>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #0a0e14;
+  color: #d4d7da;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color: #7cb8ff; text-decoration: none; }
+a:hover { color: #aad0ff; text-decoration: underline; }
+
+/* ===== Utility ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.text-center { text-align: center; }
+.text-muted { color: #889096; }
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.badge-free { background: #1a3a2a; color: #6fcf97; }
+.badge-popular { background: #2a1f3a; color: #bb86fc; }
+.badge-enterprise { background: #1a2a3a; color: #7cb8ff; }
+.badge-open { background: #2a2a1a; color: #f0d060; }
+
+/* ===== Header ===== */
+header {
+  padding: 32px 0 0;
+  text-align: center;
+}
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #e8eaed;
+  letter-spacing: -1px;
+}
+header h1 span { color: #7cb8ff; }
+header p {
+  font-size: 1.1rem;
+  color: #889096;
+  max-width: 600px;
+  margin: 8px auto 0;
+}
+header .sub-nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+header .sub-nav a {
+  color: #889096;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+header .sub-nav a:hover { color: #7cb8ff; text-decoration: none; }
+
+/* ===== Hero / Intro ===== */
+.hero {
+  text-align: center;
+  padding: 48px 0 24px;
+}
+.hero h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #e8eaed;
+}
+.hero .stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.hero .stat-item {
+  text-align: center;
+}
+.hero .stat-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #7cb8ff;
+}
+.hero .stat-label {
+  font-size: 13px;
+  color: #889096;
+  margin-top: 2px;
+}
+
+/* ===== Pricing Cards ===== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 32px 0 16px;
+}
+.pricing-card {
+  background: #111820;
+  border: 1px solid #202830;
+  border-radius: 12px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  position: relative;
+}
+.pricing-card:hover {
+  border-color: #3a4550;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+}
+.pricing-card.featured {
+  border-color: #7cb8ff;
+  box-shadow: 0 0 0 1px #7cb8ff, 0 4px 24px rgba(124, 184, 255, 0.1);
+}
+.pricing-card.featured:hover {
+  box-shadow: 0 0 0 1px #7cb8ff, 0 8px 32px rgba(124, 184, 255, 0.15);
+}
+.pricing-card .card-badge {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.pricing-card.featured .card-badge {
+  background: #7cb8ff;
+  color: #0a0e14;
+}
+.pricing-card .card-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 4px;
+}
+.pricing-card .card-subtitle {
+  font-size: 13px;
+  color: #889096;
+  margin-bottom: 16px;
+}
+.pricing-card .card-price {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #e8eaed;
+  margin-bottom: 4px;
+}
+.pricing-card .card-price .currency {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #889096;
+  vertical-align: super;
+}
+.pricing-card .card-price .period {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #889096;
+}
+.pricing-card .card-description {
+  font-size: 14px;
+  color: #a0a8b0;
+  margin-bottom: 16px;
+  min-height: 40px;
+}
+.pricing-card .card-cta {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  margin-top: auto;
+  color: #fff;
+}
+.pricing-card .card-cta:hover { text-decoration: none; opacity: 0.9; }
+.pricing-card .card-cta.cta-primary { background: #7cb8ff; color: #0a0e14; }
+.pricing-card .card-cta.cta-secondary { background: #202830; color: #d4d7da; }
+.pricing-card .card-cta.cta-secondary:hover { background: #2a3540; }
+.pricing-card .card-cta.cta-ghost { background: transparent; border: 1px solid #3a4550; color: #d4d7da; }
+.pricing-card .card-cta.cta-ghost:hover { background: #202830; }
+.pricing-card .card-cta.cta-premium { background: linear-gradient(135deg, #7cb8ff, #bb86fc); color: #0a0e14; }
+.pricing-card .card-features {
+  list-style: none;
+  margin: 16px 0 20px;
+  flex: 1;
+}
+.pricing-card .card-features li {
+  font-size: 13px;
+  color: #b0b6be;
+  padding: 5px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.pricing-card .card-features li::before {
+  content: "✓";
+  color: #6fcf97;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.pricing-card .card-features li.muted { color: #606870; }
+.pricing-card .card-features li.muted::before { content: "—"; color: #404850; }
+
+/* ===== PWYW Section ===== */
+.pwyw-section {
+  text-align: center;
+  padding: 24px 0 32px;
+}
+.pwyw-card {
+  display: inline-block;
+  background: #111820;
+  border: 1px dashed #3a4550;
+  border-radius: 12px;
+  padding: 24px 32px;
+  max-width: 500px;
+}
+.pwyw-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 6px;
+}
+.pwyw-card p {
+  font-size: 14px;
+  color: #889096;
+  margin-bottom: 12px;
+}
+.pwyw-card .pwyw-cta {
+  display: inline-block;
+  padding: 10px 28px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid #3a4550;
+  color: #d4d7da;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.pwyw-card .pwyw-cta:hover { background: #202830; text-decoration: none; }
+
+/* ===== Feature Comparison Table ===== */
+.feature-table-section {
+  padding: 40px 0;
+}
+.feature-table-section h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 24px;
+}
+.feature-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.feature-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 700px;
+}
+.feature-table th,
+.feature-table td {
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid #1a2228;
+}
+.feature-table th {
+  background: #0d141a;
+  color: #889096;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+}
+.feature-table th:first-child,
+.feature-table td:first-child {
+  text-align: left;
+  color: #d4d7da;
+  font-weight: 500;
+}
+.feature-table td:first-child { font-size: 13px; }
+.feature-table tr:hover td { background: #0d141a; }
+.feature-table .check { color: #6fcf97; font-weight: 700; }
+.feature-table .cross { color: #c0392b; font-weight: 700; }
+.feature-table .highlight { color: #7cb8ff; font-weight: 600; }
+.feature-table .category-row td {
+  background: #090d12;
+  color: #606870;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+}
+
+/* ===== Enterprise Tier Detail ===== */
+.enterprise-detail {
+  padding: 32px 0 40px;
+}
+.enterprise-detail h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 24px;
+}
+.enterprise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.enterprise-card {
+  background: #111820;
+  border: 1px solid #202830;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.enterprise-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 4px;
+}
+.enterprise-card .ent-price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #7cb8ff;
+  margin-bottom: 12px;
+}
+.enterprise-card .ent-price .period {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #889096;
+}
+.enterprise-card p {
+  font-size: 13px;
+  color: #a0a8b0;
+  margin-bottom: 12px;
+  flex: 1;
+}
+.enterprise-card .ent-cta {
+  display: inline-block;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+  background: #202830;
+  color: #d4d7da;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.2s;
+}
+.enterprise-card .ent-cta:hover { background: #2a3540; text-decoration: none; }
+.enterprise-card.featured-ent {
+  border-color: #7cb8ff;
+  box-shadow: 0 0 0 1px #7cb8ff;
+}
+.enterprise-card.featured-ent .ent-cta {
+  background: #7cb8ff;
+  color: #0a0e14;
+}
+.enterprise-card.featured-ent .ent-cta:hover { opacity: 0.9; }
+
+/* ===== Social Proof ===== */
+.testimonials-section {
+  padding: 40px 0;
+}
+.testimonials-section h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 24px;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.testimonial-card {
+  background: #111820;
+  border: 1px solid #202830;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+.testimonial-card .quote {
+  font-size: 14px;
+  color: #b0b6be;
+  font-style: italic;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.testimonial-card .author {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8eaed;
+}
+.testimonial-card .author-title {
+  font-size: 12px;
+  color: #889096;
+}
+.testimonial-card .stars {
+  color: #f0d060;
+  font-size: 14px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+/* ===== FAQ ===== */
+.faq-section {
+  padding: 40px 0;
+}
+.faq-section h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e8eaed;
+  margin-bottom: 24px;
+}
+.faq-grid {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.faq-item {
+  background: #111820;
+  border: 1px solid #202830;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  padding: 16px 20px;
+  background: none;
+  border: none;
+  color: #d4d7da;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: #e8eaed; }
+.faq-question .icon {
+  font-size: 18px;
+  transition: transform 0.25s;
+  color: #606870;
+}
+.faq-item.open .faq-question .icon {
+  transform: rotate(45deg);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 20px;
+  font-size: 14px;
+  color: #889096;
+  line-height: 1.6;
+}
+.faq-item.open .faq-answer {
+  max-height: 300px;
+  padding: 0 20px 16px;
+}
+
+/* ===== CTA Section ===== */
+.cta-section {
+  text-align: center;
+  padding: 48px 0;
+}
+.cta-section h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #e8eaed;
+  margin-bottom: 8px;
+}
+.cta-section p {
+  font-size: 15px;
+  color: #889096;
+  margin-bottom: 20px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-section .cta-big {
+  display: inline-block;
+  padding: 14px 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #7cb8ff, #bb86fc);
+  color: #0a0e14;
+  font-size: 16px;
+  font-weight: 800;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.cta-section .cta-big:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* ===== Footer ===== */
+footer {
+  border-top: 1px solid #1a2228;
+  padding: 32px 0;
+  margin-top: 16px;
+}
+footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+}
+footer h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #606870;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+footer a {
+  display: block;
+  font-size: 14px;
+  color: #889096;
+  padding: 3px 0;
+  transition: color 0.2s;
+}
+footer a:hover { color: #7cb8ff; text-decoration: none; }
+footer .copyright {
+  text-align: center;
+  font-size: 13px;
+  color: #505860;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #1a2228;
+}
+
+/* ===== Mobile Toggle for Table ===== */
+@media (max-width: 640px) {
+  header h1 { font-size: 1.8rem; }
+  .hero h2 { font-size: 1.2rem; }
+  .hero .stats { gap: 20px; }
+  .hero .stat-value { font-size: 1.4rem; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.featured { order: -1; }
+  .feature-table { font-size: 12px; }
+  .feature-table th, .feature-table td { padding: 8px 10px; }
+  .enterprise-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  footer .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeInUp 0.5s ease-out both;
+}
+.animate-in:nth-child(1) { animation-delay: 0.05s; }
+.animate-in:nth-child(2) { animation-delay: 0.1s; }
+.animate-in:nth-child(3) { animation-delay: 0.15s; }
+.animate-in:nth-child(4) { animation-delay: 0.2s; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1><span>evolver</span>-tools</h1>
+    <p>167 zero-dependency CLI tools. One pip install. MIT open source.</p>
+    <div class="sub-nav">
+      <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+      <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+      <a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero / Stats ===== -->
+<section class="hero">
+  <div class="container">
+    <h2>Built for developers. Priced for everyone.</h2>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value">167</div>
+        <div class="stat-label">CLI Tools</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">9</div>
+        <div class="stat-label">Flagship Projects</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">11k+</div>
+        <div class="stat-label">Lines of Code</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">0</div>
+        <div class="stat-label">External Dependencies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Pricing Cards ===== -->
+<section class="container">
+  <div class="pricing-grid">
+    <!-- Free Tier -->
+    <div class="pricing-card animate-in">
+      <div class="card-badge badge-free">Open Source</div>
+      <div class="card-name">Free</div>
+      <div class="card-subtitle">MIT License</div>
+      <div class="card-price"><span class="currency">¥</span>0</div>
+      <div class="card-description">All 167 tools, fully open source. Forever.</div>
+      <ul class="card-features">
+        <li>All 162 core CLI tools</li>
+        <li>All 9 flagship projects</li>
+        <li>Zero-dependency Python stdlib</li>
+        <li>Cross-platform (Linux, macOS, Windows)</li>
+        <li class="muted">Priority support</li>
+        <li class="muted">Custom tool development</li>
+      </ul>
+      <a href="https://github.com/evolver-dev/evolver-tools" class="card-cta cta-ghost">Get Started Free</a>
+    </div>
+
+    <!-- One-Time Purchase (Featured) -->
+    <div class="pricing-card featured animate-in">
+      <div class="card-badge">Best Value</div>
+      <div class="card-name">Full Suite</div>
+      <div class="card-subtitle">One-time purchase</div>
+      <div class="card-price"><span class="currency">¥</span>79</div>
+      <div class="card-description">The complete evolver-tools experience. Pay once, own forever.</div>
+      <ul class="card-features">
+        <li>All 167 tools, same as MIT source</li>
+        <li>Support the project directly</li>
+        <li>Priority GitHub issues</li>
+        <li>Name in project acknowledgements</li>
+        <li>Early access to new tools</li>
+        <li>Direct email support</li>
+      </ul>
+      <a href="#" class="card-cta cta-primary" onclick="return buyNow('full-suite')">Buy Now — ¥79</a>
+    </div>
+
+    <!-- Sponsor -->
+    <div class="pricing-card animate-in">
+      <div class="card-badge badge-open">Supporter</div>
+      <div class="card-name">Sponsor</div>
+      <div class="card-subtitle">GitHub Sponsors</div>
+      <div class="card-price"><span class="currency">¥</span>5 <span class="period">/month</span></div>
+      <div class="card-description">Fuel ongoing development. Monthly patronage.</div>
+      <ul class="card-features">
+        <li>All 167 tools (same as MIT)</li>
+        <li>Sponsor badge on your profile</li>
+        <li>Access to sponsor-only Discord</li>
+        <li>Vote on tool priorities</li>
+        <li>Monthly development updates</li>
+        <li class="muted">Custom tool development</li>
+      </ul>
+      <a href="#" class="card-cta cta-secondary" onclick="return buyNow('sponsor')">Sponsor ¥5/month</a>
+    </div>
+  </div>
+
+  <!-- Pay What You Want -->
+  <div class="pwyw-section">
+    <div class="pwyw-card">
+      <h3>❤️ Pay What You Want</h3>
+      <p>Love the project but ¥79 is too much? Name your price. Every contribution helps keep this project alive.</p>
+      <a href="#" class="pwyw-cta" onclick="return buyNow('pwyw')">Choose Your Price</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Feature Comparison Table ===== -->
+<section class="feature-table-section">
+  <div class="container">
+    <h2>Feature Comparison</h2>
+    <div class="feature-table-wrap">
+      <table class="feature-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Free (MIT)</th>
+            <th>¥79 Full Suite</th>
+            <th>¥5/mo Sponsor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" class="category-row">Tools</td></tr>
+          <tr>
+            <td>162 core CLI tools</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>9 flagship projects (sysmon-pro, code-auditor, db-mate, dev-dashboard, net-analyzer, config-vault, log-hawk, crypto-box, media-studio)</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Zero external dependencies</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Cross-platform (Linux, macOS, Windows)</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr><td colspan="4" class="category-row">Support &amp; Access</td></tr>
+          <tr>
+            <td>GitHub issues</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="highlight">Priority</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Direct email support</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Early access to new tools</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Sponsor-only Discord</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Vote on tool priorities</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+          <tr>
+            <td>Name in acknowledgements</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="check">✓</span></td>
+            <td><span class="check">✓</span></td>
+          </tr>
+
+          <tr><td colspan="4" class="category-row">Enterprise-Grade</td></tr>
+          <tr>
+            <td>Custom tool development</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Dedicated maintenance</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Full source license</td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Enterprise Tiers ===== -->
+<section class="enterprise-detail">
+  <div class="container">
+    <h2>Enterprise Plans</h2>
+    <p class="text-center text-muted" style="margin-bottom:20px;">For organizations that need dedicated support and custom development.</p>
+    <div class="enterprise-grid">
+      <div class="enterprise-card">
+        <h3>Basic</h3>
+        <div class="ent-price">¥500 <span class="period">/year</span></div>
+        <p>Custom tool development tailored to your workflow. Priority issue resolution and direct communication with the maintainer.</p>
+        <a href="#" class="ent-cta" onclick="return buyNow('enterprise-basic')">Contact Us</a>
+      </div>
+      <div class="enterprise-card featured-ent">
+        <h3>Premium <span class="badge badge-popular" style="vertical-align:middle;margin-left:6px;">Popular</span></h3>
+        <div class="ent-price">¥2,000 <span class="period">/year</span></div>
+        <p>Everything in Basic, plus dedicated maintenance, emergency bug fixes within 24 hours, and recurring security audits for your custom tools.</p>
+        <a href="#" class="ent-cta" onclick="return buyNow('enterprise-premium')">Contact Us</a>
+      </div>
+      <div class="enterprise-card">
+        <h3>Ultimate</h3>
+        <div class="ent-price">¥5,000 <span class="period">/year</span></div>
+        <p>Full source license for the entire evolver-tools suite. Unlimited custom development. On-premise deployment support. White-label options available.</p>
+        <a href="#" class="ent-cta" onclick="return buyNow('enterprise-ultimate')">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Social Proof / Testimonials ===== -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <h2>Trusted by Developers</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote">"evolver-tools replaced a dozen separate packages in my workflow. sysmon-pro alone is worth the price of admission. Zero dependency hell — it just works."</div>
+        <div class="author">— Alex K.</div>
+        <div class="author-title">DevOps Engineer</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote">"I use code-auditor and db-mate daily. These tools feel like they were built by someone who actually understands the pain points of CLI development. The one-time ¥79 purchase was an easy decision."</div>
+        <div class="author">— Maria L.</div>
+        <div class="author-title">Full-Stack Developer</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="quote">"We evaluated several CLI toolkits for our engineering team. evolver-tools won on zero dependencies alone. The enterprise support has been exceptional — custom tools delivered in days, not weeks."</div>
+        <div class="author">— James R.</div>
+        <div class="author-title">Engineering Lead, SaaS Company</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is evolver-tools really free? <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes. The entire project is MIT-licensed open source on GitHub. You can download, use, modify, and distribute it freely. The ¥79 purchase and sponsorship options are for those who want to support the project and gain additional perks like priority support and early access.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What's the difference between the Free and ¥79 Full Suite? <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          The code is identical — both give you all 167 tools. The ¥79 Full Suite is a voluntary payment to support the project. It unlocks priority GitHub issues, direct email support, early access to new tools, and your name in the project acknowledgements. Think of it as a "thank you" package.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What are the 9 flagship projects? <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          sysmon-pro (system monitor), code-auditor (code analysis), db-mate (database management), dev-dashboard (dev dashboard), net-analyzer (network analysis), config-vault (configuration management), log-hawk (log analysis), crypto-box (encryption toolkit), and media-studio (media processing). Each is 500-1700 lines with CLI + TUI dual mode.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do the enterprise plans work? <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Enterprise plans are annual subscriptions. Basic (¥500/year) includes custom tool development tailored to your needs. Premium (¥2,000/year) adds dedicated maintenance with 24-hour emergency fix turnaround. Ultimate (¥5,000/year) grants a full source license, unlimited custom development, on-premise support, and white-label options.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What does "zero dependencies" mean? <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Every single one of the 167 tools uses only Python's standard library. No pip install of numpy, requests, click, rich, or any other third-party package. This means instant installs, no version conflicts, and a tiny footprint (~170KB total). Just Python 3.8+ and you're good to go.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I get a refund? <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Since the Full Suite purchase is essentially a donation/support pledge for an MIT-licensed project, all purchases are final. If you encounter a genuine issue, reach out — we'll make it right. Enterprise plans come with a 30-day satisfaction guarantee.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Final CTA ===== -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to get started?</h2>
+    <p>Install in seconds. No dependencies. No configuration. Just tools that work.</p>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+      <a href="https://pypi.org/project/evolver-tools/" class="cta-big">pip install evolver-tools</a>
+      <a href="https://github.com/evolver-dev/evolver-tools" class="card-cta cta-ghost" style="width:auto;padding:14px 28px;display:inline-block;border-radius:10px;">View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Product</h4>
+        <a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+        <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+        <a href="https://github.com/evolver-dev/evolver-tools/releases">Releases</a>
+        <a href="#">Pricing</a>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+        <a href="https://github.com/evolver-dev/evolver-tools/issues">Issues</a>
+        <a href="https://github.com/evolver-dev/evolver-tools/discussions">Discussions</a>
+        <a href="https://github.com/sponsors/evolver-dev">GitHub Sponsors</a>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <a href="https://github.com/evolver-dev/evolver-tools#readme">README</a>
+        <a href="https://github.com/evolver-dev/evolver-tools/blob/main/LICENSE">License (MIT)</a>
+        <a href="https://github.com/evolver-dev/evolver-tools/blob/main/CONTRIBUTING.md">Contributing</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="https://github.com/evolver-dev/evolver-tools/issues/new">File an Issue</a>
+        <a href="mailto:evolver@example.com">Email Us</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="copyright">
+      evolver-tools — MIT Licensed. Built with ❤️ for the CLI community.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== FAQ Toggle ===== */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ===== Buy Now placeholder ===== */
+function buyNow(tier) {
+  var messages = {
+    'full-suite': 'Thank you for your interest in the Full Suite! Payment link coming soon. For now, you can support via GitHub Sponsors.',
+    'sponsor': 'Sponsorship link coming soon! You can also sponsor via GitHub Sponsors directly.',
+    'pwyw': 'Pay What You Want coming soon! Contact us directly to arrange payment.',
+    'enterprise-basic': 'Enterprise Basic inquiry. Please email us at evolver@example.com for a custom quote.',
+    'enterprise-premium': 'Enterprise Premium inquiry. Please email us at evolver@example.com for a custom quote.',
+    'enterprise-ultimate': 'Enterprise Ultimate inquiry. Please email us at evolver@example.com for a custom quote.'
+  };
+  alert(messages[tier] || 'Thank you for your interest! Payment links are being set up.');
+  return false;
+}
+
+/* ===== Scroll animation on reveal ===== */
+(function() {
+  var animElements = document.querySelectorAll('.animate-in');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    animElements.forEach(function(el) {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

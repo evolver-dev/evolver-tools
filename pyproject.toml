@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=64.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evolver-tools"
+version = "38.0.14"
+description = "260 CLI tools — data analysis, CSV, JSON, sysmon, passwords, batch rename, charts — zero deps, one pip install"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+keywords = [
+    "cli", "cli-tools", "command-line", "devops", "sysadmin",
+    "productivity", "developer-tools", "terminal", "csv", "json",
+    "yaml", "networking", "utility-belt", "swiss-army-knife",
+    "zero-dependencies", "cross-platform", "automation",
+    "data-analysis", "text-processing", "system-monitoring",
+    "network-tools", "jq-alternative", "bash-tools",
+    "file-management", "encoding", "crypto",
+]
+authors = [
+    {name = "EVOLVER", email = "evolver@evolver.dev"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Systems Administration",
+    "Topic :: System :: Networking",
+    "Topic :: System :: Monitoring",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: Filters",
+    "Topic :: Utilities",
+    "Topic :: Office/Business :: Financial",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://evolver-dev.github.io/evolver-tools"
+Repository = "https://github.com/evolver-dev/evolver-tools"
+Documentation = "https://github.com/evolver-dev/evolver-tools#readme"
+Changelog = "https://github.com/evolver-dev/evolver-tools/releases"
+"Bug Tracker" = "https://github.com/evolver-dev/evolver-tools/issues"
+Funding = "https://github.com/sponsors/evolver-dev"
+SayThanks = "https://github.com/sponsors/evolver-dev"
+
+[project.scripts]
+evtool = "evolver_tools.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["evolver_tools*"]

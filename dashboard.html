@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evolver · 进度仪表盘</title>
+<style>
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --muted: #8b949e; --green: #3fb950; --blue: #58a6ff; --yellow: #d29922; --red: #f85149; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font: 14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background: var(--bg); color: var(--text); padding: 16px; max-width: 800px; margin: 0 auto; }
+  h1 { font-size: 20px; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
+  .card .num { font-size: 28px; font-weight: 700; display: block; }
+  .card .label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .green { color: var(--green) } .blue { color: var(--blue) } .yellow { color: var(--yellow) }
+  h2 { font-size: 15px; margin: 20px 0 8px; color: var(--muted); }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .links a { flex: 1; min-width: 120px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--blue); font-size: 12px; text-align: center; text-decoration: none; transition: .2s; }
+  .links a:hover { border-color: var(--blue); }
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .event { position: relative; padding: 6px 0 6px 16px; border-bottom: 1px solid rgba(48,54,61,.4); }
+  .event::before { content: ''; position: absolute; left: -17px; top: 12px; width: 8px; height: 8px; border-radius: 50%; }
+  .event.dev::before { background: var(--blue); }
+  .event.market::before { background: var(--yellow); }
+  .event.infra::before { background: var(--green); }
+  .event.qa::before { background: var(--red); }
+  .event .time { font-size: 11px; color: var(--muted); }
+  .event .tag { display: inline-block; font-size: 10px; padding: 1px 5px; border-radius: 3px; margin-left: 4px; }
+  .tag.dev { background: #1f3a5f; color: var(--blue); }
+  .tag.market { background: #3d2e00; color: var(--yellow); }
+  .tag.infra { background: #003d1a; color: var(--green); }
+  .tag.qa { background: #3d0000; color: var(--red); }
+  .event .summary { font-size: 13px; }
+  .bar { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+  .bar-row { display: flex; justify-content: space-between; margin: 3px 0; font-size: 13px; }
+  .bar-row .v { color: var(--muted); }
+  .bar-fill { height: 6px; background: var(--border); border-radius: 3px; margin: 4px 0; overflow: hidden; }
+  .bar-fill .fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--green)); transition: width .5s; }
+  .footer { text-align: center; color: var(--muted); font-size: 11px; margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<h1>⚡ Evolver</h1>
+<div class="subtitle" id="subtitle">加载中...</div>
+
+<div class="links">
+  <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">📦 GitHub 仓库</a>
+  <a href="https://pypi.org/project/evolver-tools/" target="_blank">🐍 PyPI 项目</a>
+  <a href="https://evolver-dev.github.io/evolver-tools/" target="_blank">🌐 产品站</a>
+</div>
+
+<div class="grid">
+  <div class="card"><span class="num blue" id="tools">--</span><span class="label">CLI 工具</span></div>
+  <div class="card"><span class="num green" id="balance">--</span><span class="label">余额 (¥)</span></div>
+  <div class="card"><span class="num yellow" id="income">--</span><span class="label">总收入 (¥)</span></div>
+  <div class="card"><span class="num" id="version">--</span><span class="label">版本</span></div>
+</div>
+
+<div class="bar">
+  <div class="bar-row"><span>工具数量</span><span class="v" id="tool_progress"></span></div>
+  <div class="bar-fill"><div class="fill" id="tool_bar" style="width:0%"></div></div>
+  <div class="bar-row"><span>零依赖工具占比</span><span class="v" id="dep_progress"></span></div>
+  <div class="bar-fill"><div class="fill" id="dep_bar" style="width:0%"></div></div>
+</div>
+
+<h2>📡 实时状态</h2>
+<div class="bar">
+  <div class="bar-row"><span>会话总数</span><span class="v" id="sessions"></span></div>
+  <div class="bar-row"><span>技能结晶</span><span class="v" id="skills"></span></div>
+  <div class="bar-row"><span>调度计划</span><span class="v" id="cron"></span></div>
+</div>
+
+<h2>📋 最近活动</h2>
+<div class="timeline" id="timeline"></div>
+
+<div class="footer">
+  数据自动更新 · 每次自习课后刷新 · <a href="https://github.com/evolver-dev/evolver-tools" style="color:var(--muted)">evolver-dev</a>
+</div>
+
+<script>
+fetch('status.json?'+Date.now())
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('subtitle').textContent = '最后更新：' + d.updated_at + ' · 运行第2天';
+    document.getElementById('tools').textContent = d.tool_count;
+    document.getElementById('balance').textContent = '¥' + d.balance;
+    document.getElementById('income').textContent = '¥' + d.total_income;
+    document.getElementById('version').textContent = 'v' + d.version;
+    document.getElementById('sessions').textContent = d.session_count;
+    document.getElementById('skills').textContent = d.skill_count;
+    document.getElementById('cron').textContent = d.next_cron;
+
+    const pct = Math.round(d.tool_count / 50 * 100);
+    document.getElementById('tool_progress').textContent = d.tool_count + ' / 50 (目标)';
+    document.getElementById('tool_bar').style.width = Math.min(pct, 100) + '%';
+    const dep = Math.round(d.zero_dep_count / d.tool_count * 100);
+    document.getElementById('dep_progress').textContent = dep + '% (' + d.zero_dep_count + '/' + d.tool_count + ')';
+    document.getElementById('dep_bar').style.width = dep + '%';
+
+    const tl = document.getElementById('timeline');
+    d.recent_activity.forEach(e => {
+      const div = document.createElement('div');
+      div.className = 'event ' + e.type;
+      const tagMap = { '研发':'dev', '市场':'market', '基建':'infra', 'QA':'qa' };
+      const tag = tagMap[e.type] || 'infra';
+      div.innerHTML = '<span class="time">' + e.time + ' · <span class="tag ' + tag + '">' + e.type + '</span></span><br><span class="summary">' + e.summary + '</span>';
+      tl.appendChild(div);
+    });
+  })
+  .catch(e => {
+    document.getElementById('subtitle').textContent = '⚠️ 加载失败：' + e.message;
+  });
+setTimeout(() => location.reload(), 60000); // auto refresh every 60s
+</script>
+</body>
+</html>

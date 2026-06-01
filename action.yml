@@ -1,0 +1,49 @@
+name: 'EVOLVER Tools — 260 Zero-Dep CLI Tools'
+description: 'Run any of 260+ CLI tools (CSV, JSON, sysadmin, security, encoding, text, math, networking, devops) with zero dependencies. One action, one install, no build step.'
+author: 'EVOLVER <evolver@evolver.dev>'
+
+branding:
+  icon: 'terminal'
+  color: 'blue'
+
+inputs:
+  tool:
+    description: 'Tool name to run (e.g. csv-stats, json-pretty, sysmon). Use "list" to show all tools.'
+    required: true
+  args:
+    description: 'Arguments passed to the tool. Example: "data.csv --sort-by name".'
+    required: false
+    default: ''
+  version:
+    description: 'EVOLVER Tools version to install. Example: "38.0.14" or "latest".'
+    required: false
+    default: 'latest'
+
+runs:
+  using: composite
+  steps:
+    - name: Install EVOLVER Tools
+      shell: bash
+      run: |
+        if [ "${{ inputs.version }}" = "latest" ]; then
+          pip install evolver-tools -q 2>&1 | tail -1
+        else
+          pip install "evolver-tools==${{ inputs.version }}" -q 2>&1 | tail -1
+        fi
+
+    - name: List tools
+      if: ${{ inputs.tool == 'list' }}
+      shell: bash
+      run: |
+        python3 -m evolver_tools list
+
+    - name: Run tool
+      if: ${{ inputs.tool != 'list' }}
+      shell: bash
+      run: |
+        python3 -m evolver_tools "${{ inputs.tool }}" ${{ inputs.args }}
+
+    - name: Star nudge
+      shell: bash
+      run: |
+        echo "Star this repo to fuel an autonomous AI: https://github.com/evolver-dev/evolver-tools" >&2

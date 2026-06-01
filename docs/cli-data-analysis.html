@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Command Line Data Analysis: CSV, JSON & Text Processing from Your Terminal — Tutorial</title>
+<meta name="description" content="A complete guide to analyzing CSV, JSON, and text data from the command line. No Excel needed, no pandas. 260 zero-dependency CLI tools, one pip install.">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/cli-data-analysis.html">
+<meta property="og:title" content="Command Line Data Analysis: CSV, JSON & Text from Your Terminal">
+<meta property="og:description" content="Learn to analyze CSV, JSON, and text data entirely from the command line using zero-dependency Python CLI tools.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/cli-data-analysis.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="evolver-tools">
+<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<meta name="twitter:title" content="Command Line Data Analysis from Your Terminal">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Command Line Data Analysis: CSV, JSON & Text Processing from Your Terminal",
+  "description": "A complete guide to analyzing CSV, JSON, and text data from the command line using zero-dependency CLI tools.",
+  "datePublished": "2026-06-01",
+  "author": {"@type": "Organization", "name": "evolver-dev"},
+  "about": {
+    "@type": "SoftwareSourceCode",
+    "name": "evolver-tools",
+    "description": "260 zero-dependency CLI tools for developers"
+  }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0d1117; --bg2: #161b22; --bg3: #1c2333;
+  --fg: #e6edf3; --fg2: #8b949e; --accent: #58a6ff;
+  --green: #3fb950; --orange: #d29922; --red: #f85149;
+  --border: #30363d; --radius: 8px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  --mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', Menlo, monospace;
+}
+body { font-family: var(--font); background: var(--bg); color: var(--fg); line-height: 1.7; }
+/* Nav */
+nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; background: var(--bg2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+nav .logo { font-weight: 700; font-size: 16px; color: var(--fg); text-decoration: none; }
+nav .nav-links { display: flex; gap: 16px; align-items: center; }
+nav .nav-links a { color: var(--fg2); text-decoration: none; font-size: 14px; transition: color .2s; }
+nav .nav-links a:hover { color: var(--fg); }
+nav .btn-nav { background: var(--accent); color: #fff !important; padding: 6px 14px; border-radius: 6px; font-weight: 500; }
+nav .btn-nav:hover { opacity: .9; }
+/* Main */
+main { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.5px; }
+.subtitle { font-size: 18px; color: var(--fg2); margin-bottom: 32px; }
+.meta { font-size: 13px; color: var(--fg2); margin-bottom: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+h2 { font-size: 24px; font-weight: 600; margin: 48px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 18px; font-weight: 600; margin: 32px 0 12px; }
+p, li { font-size: 15px; color: var(--fg2); margin-bottom: 12px; }
+ul, ol { padding-left: 24px; margin-bottom: 16px; }
+li { margin-bottom: 6px; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-family: var(--mono); font-size: 13.5px; background: var(--bg3); padding: 2px 6px; border-radius: 4px; }
+pre { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; position: relative; }
+pre code { background: none; padding: 0; font-size: 13px; line-height: 1.6; }
+.cmd-prefix { color: var(--green); user-select: none; }
+.comment { color: var(--fg2); font-style: italic; }
+.output { color: var(--orange); }
+blockquote { border-left: 3px solid var(--accent); padding: 12px 16px; margin: 20px 0; background: var(--bg3); border-radius: 0 var(--radius) var(--radius) 0; }
+blockquote p { margin: 0; color: var(--fg); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 14px; }
+th, td { padding: 8px 12px; text-align: left; border: 1px solid var(--border); }
+th { background: var(--bg3); font-weight: 600; color: var(--fg); }
+td { color: var(--fg2); }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; margin: 0 4px 4px 0; }
+.tag-csv { background: #1a3a1a; color: var(--green); }
+.tag-json { background: #1a2a3a; color: var(--accent); }
+.tag-text { background: #3a2a1a; color: var(--orange); }
+.cta-box { background: linear-gradient(135deg, var(--bg3), var(--bg2)); border: 1px solid var(--accent); border-radius: var(--radius); padding: 24px; margin: 40px 0; text-align: center; }
+.cta-box h3 { margin: 0 0 8px; }
+.cta-box p { margin: 0 0 16px; color: var(--fg2); }
+.cta-box code { font-size: 16px; padding: 6px 12px; }
+.btn { display: inline-block; background: var(--accent); color: #fff; padding: 10px 24px; border-radius: 6px; font-weight: 600; font-size: 15px; text-decoration: none; margin-top: 12px; }
+.btn:hover { opacity: .9; text-decoration: none; }
+.footer { text-align: center; padding: 40px 0; color: var(--fg2); font-size: 13px; border-top: 1px solid var(--border); margin-top: 60px; }
+.footer a { color: var(--fg2); }
+.tip { background: #0d2818; border: 1px solid var(--green); border-radius: var(--radius); padding: 12px 16px; margin: 16px 0; font-size: 14px; color: var(--green); }
+.tip::before { content: "💡 Tip: "; }
+@media (max-width: 600px) {
+  main { padding: 24px 16px; }
+  h1 { font-size: 24px; }
+  nav { padding: 10px 16px; }
+  nav .nav-links { gap: 10px; }
+  nav .nav-links a { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="./" class="logo">◈ evolver-tools</a>
+  <div class="nav-links">
+    <a href="./#showcase">Showcase</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="tutorial-csv-cli.html">Tutorial</a>
+    <a href="cli-data-analysis.html">CLI Data</a>
+    <a href="cheatsheet.html">Cheatsheet</a>
+    <a href="tools/">Browse All</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<main>
+
+<h1>Command Line Data Analysis</h1>
+<p class="subtitle">Analyze CSV, JSON, and text data entirely from your terminal — no Excel, no pandas, no Jupyter.</p>
+
+<div class="meta">
+  Published: June 1, 2026 · Tools: evolver-tools (260 tools) · Reading time: 10 min
+</div>
+
+<h2>Why the Terminal?</h2>
+<p>
+  Spreadsheets are great for small, visual data. Jupyter is great for complex pipelines.
+  But for <strong>quick analysis</strong> — getting stats, filtering rows, transforming formats — the command line is faster.
+  One command, instant output, pipe it into the next tool.
+</p>
+
+<p>
+  This guide uses <strong>evolver-tools</strong>, a collection of 260 zero-dependency CLI tools.
+  Everything runs on pure Python — no npm install, no apt-get, no compiling.
+</p>
+
+<div class="cta-box">
+  <h3>Try it right now</h3>
+  <p>Install all 260 tools in 3 seconds:</p>
+  <code>pip install evolver-tools</code><br>
+  <a href="https://github.com/evolver-dev/evolver-tools" class="btn" target="_blank">View on GitHub →</a>
+</div>
+
+<!-- ============================================================ -->
+<h2>Part 1: CSV Data Analysis</h2>
+<p>
+  CSV is the lingua franca of data. Logs, exports, reports — they all come as CSV.
+  Here's how to analyze them without opening Excel or Google Sheets.
+</p>
+
+<h3>Get an Overview: <code>evtool csv-stats</code></h3>
+<p>The first thing you want with any CSV is a quick overview — column names, types, row count, nulls, min/max values.</p>
+
+<pre><code><span class="cmd-prefix">$</span> evtool csv-stats sales.csv
+<span class="output">File: sales.csv — 10,000 rows × 8 columns
+
+Column              Type      Non-Null    Min         Max         Mean
+──────────────────────────────────────────────────────────────────────
+date                date      10,000      2024-01-01  2024-12-31  —
+product             string    10,000      —           —           —
+category            string    9,876       —           —           —
+quantity            int       10,000      1           500         23.4
+unit_price          float     10,000      4.99        2,499.00    89.50
+total               float     10,000      4.99        24,990.00   1,245.30
+region              string    10,000      —           —           —
+sales_rep           string    8,234       —           —           —
+
+⚠ 124 missing values in category
+⚠ 1,766 missing values in sales_rep</span></code></pre>
+
+<div class="tip">Running <code>evtool csv-stats --all data.csv</code> gives you mode, stddev, percentiles, and histogram in one shot.</div>
+
+<h3>Filter Rows: <code>evtool csv-filter</code></h3>
+<p>Find rows matching a condition — like all transactions over $1,000 in Q3:</p>
+
+<pre><code><span class="cmd-prefix">$</span> evtool csv-filter --query 'total > 1000 and region == "West"' sales.csv
+<span class="output">date,product,category,quantity,unit_price,total,region,sales_rep
+2024-07-15,MacBook Pro,Electronics,2,2,499.00,4,998.00,West,Alice C.
+2024-08-03,Surface Pro,Electronics,1,1,899.00,1,899.00,West,Bob K.
+2024-09-21,Server Rack,Hardware,1,12,000.00,12,000.00,West,Alice C.
+... (1,234 rows total)</span></code></pre>
+
+<h3>Select & Project Columns: <code>evtool csv-select</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-select --columns product,region,total sales.csv | head -5
+<span class="output">product,region,total
+MacBook Air,East,1,199.00
+ThinkPad X1,West,2,499.00
+Dell Monitor,South,349.00
+iPad Pro,East,999.00</span></code></pre>
+
+<h3>Group & Aggregate: <code>evtool csv-stats --group-by</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-stats --group-by category sales.csv
+<span class="output">Category        Count    Total(mean)  Total(sum)
+─────────────────────────────────────────────
+Electronics     3,421    $1,892.30    $6,473,932
+Hardware        2,108    $4,231.50    $8,919,145
+Software        2,876    $345.20      $993,355
+Accessories     1,595    $89.50       $142,813</span></code></pre>
+
+<h3>Sort Data: <code>evtool csv-sort</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-sort --by total --desc sales.csv | head -5
+<span class="output">date,product,category,quantity,unit_price,total,region,sales_rep
+2024-06-15,Enterprise Server,Hardware,5,24,990.00,124,950.00,Central,David M.
+2024-11-02,Mac Pro Bundle,Electronics,3,18,500.00,55,500.00,East,Alice C.
+2024-03-18,Data Center Rack,Hardware,2,24,000.00,48,000.00,West,Frank L.</span></code></pre>
+
+<h3>Convert CSV to JSON: <code>evtool csv-to-json</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-to-json sales.csv | head -20
+<span class="output">[
+  { "date": "2024-01-03", "product": "MacBook Air", "category": "Electronics",
+    "quantity": 2, "unit_price": 1199.0, "total": 2398.0, "region": "East", "sales_rep": "Alice C." },
+  { "date": "2024-01-07", "product": "ThinkPad X1", "category": "Electronics",
+    "quantity": 1, "unit_price": 2499.0, "total": 2499.0, "region": "West", "sales_rep": "Bob K." }
+]</span></code></pre>
+
+<h3>Join Two CSVs: <code>evtool csv-join</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-join --left sales.csv --right products.csv --on product_id
+<span class="output">date,product,category,total,product_id,name,stock
+2024-01-03,MacBook Air,Electronics,2398.00,p1001,MacBook Air M3,45
+2024-01-07,ThinkPad X1,Electronics,2499.00,p1002,ThinkPad X1 Gen 12,12</span></code></pre>
+
+<h3>Real-World Pipeline: Weekly Sales Report</h3>
+<p>Combine everything into a shell pipeline:</p>
+
+<pre><code><span class="cmd-prefix">$</span> evtool csv-filter --query 'date >= "2024-12-01"' sales.csv \
+  | evtool csv-select --columns category,total,region \
+  | evtool csv-stats --group-by category
+<span class="output">Category      Count    Total(mean)  Total(sum)
+───────────────────────────────────────────
+Electronics   412      $1,445.00    $595,340
+Hardware      298      $3,890.00    $1,159,220
+Software      356      $312.00      $111,072
+Accessories   210      $78.00       $16,380</span></code></pre>
+
+<!-- ============================================================ -->
+<h2>Part 2: JSON Data Processing</h2>
+<p>
+  APIs return JSON. Logs are JSON. Configs are JSON. Here's how to explore and transform JSON from the terminal.
+</p>
+
+<h3>Pretty-Print JSON: <code>evtool json-pretty</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool json-pretty response.json
+<span class="output">{
+  "status": "ok",
+  "data": {
+    "users": [
+      {
+        "id": 1,
+        "name": "Alice",
+        "email": "alice@example.com",
+        "role": "admin",
+        "last_login": "2024-12-15"
+      },
+      ...
+    ],
+    "total": 234
+  }
+}</span></code></pre>
+
+<h3>Validate & Find Issues: <code>evtool json-validate</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool json-validate config.json
+<span class="output">✓ Valid JSON
+
+$ evtool json-validate broken.json
+✘ Parse error at line 42, column 15:
+   Unexpected token '}' — expected property name</span></code></pre>
+
+<h3>Select Fields from JSON: <code>evtool json-select</code></h3>
+<pre><code><span class="cmd-prefix">$</span> cat response.json | evtool json-select --key data.users[].name
+<span class="output">["Alice", "Bob", "Charlie", "Diana"]</span></code></pre>
+
+<h3>Convert JSON to CSV: <code>evtool json-to-csv</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool json-to-csv users.json | head -3
+<span class="output">id,name,email,role,last_login
+1,Alice,alice@example.com,admin,2024-12-15
+2,Bob,bob@example.com,user,2024-12-10</span></code></pre>
+
+<h3>Merge Multiple JSON Files: <code>evtool json-merge</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool json-merge --deep config.default.json config.prod.json
+<span class="output">{
+  "host": "api.example.com",
+  "port": 443,
+  "debug": false,
+  "database": {
+    "url": "postgres://prod:****@db.internal:5432/app",
+    "pool_size": 20
+  }
+}</span></code></pre>
+
+<!-- ============================================================ -->
+<h2>Part 3: Text & System Data</h2>
+
+<h3>Text Statistics: <code>evtool text-stats</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool text-stats README.md
+<span class="output">Lines:        1,247
+Words:        8,432
+Characters:   52,198
+Avg line len: 41.8 chars
+Longest line: 187 chars (line 892)
+Empty lines:  124</span></code></pre>
+
+<h3>Quick System Health: <code>evtool sys-info</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool sys-info
+<span class="output">Host:     myserver
+OS:       Linux 6.2.0 (x86_64)
+CPU:      8 cores @ 3.4 GHz — Load: 1.2 / 8.0
+Memory:   15.6 GB / 31.2 GB (50%)
+Disk:     234 GB / 512 GB (46%)
+Uptime:   14d 3h 22m
+Python:   3.11.5</span></code></pre>
+
+<h3>Disk Usage Snapshot: <code>evtool disk-usage</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool disk-usage /var/log
+<span class="output">Directory                    Size      Files
+─────────────────────────────────────────────
+/var/log/nginx               1.2 GB    89
+/var/log/journal             890 MB    47
+/var/log/syslog              234 MB    12
+/var/log/mysql               178 MB    34
+/var/log/auth.log            45 MB     1</span></code></pre>
+
+<h3>Countdown Timer: <code>evtool countdown</code></h3>
+<pre><code><span class="cmd-prefix">$</span> evtool countdown 5m "Build complete!"
+<span class="output">⏳ 4:59 ... 4:58 ... 4:57 ...
+⏰ Build complete!</span></code></pre>
+
+<!-- ============================================================ -->
+<h2>Part 4: Piping Everything Together</h2>
+<p>
+  The real power is <strong>composition</strong>. Pipe data between tools just like Unix utilities:
+</p>
+
+<table>
+  <tr><th>Pipeline</th><th>What it does</th></tr>
+  <tr>
+    <td><code>evtool csv-to-json data.csv | evtool json-pretty</code></td>
+    <td>CSV → formatted JSON</td>
+  </tr>
+  <tr>
+    <td><code>evtool json-to-csv api.json | evtool csv-stats --all</code></td>
+    <td>API response → stats</td>
+  </tr>
+  <tr>
+    <td><code>evtool csv-filter --query 'price &gt; 50' | evtool csv-sort --by price</code></td>
+    <td>Filter + sort in one pipeline</td>
+  </tr>
+  <tr>
+    <td><code>find logs/ -name '*.json' | evtool json-validate --batch</code></td>
+    <td>Validate all JSON files at once</td>
+  </tr>
+  <tr>
+    <td><code>curl -s api.example.com/stats | evtool json-select --key data</code></td>
+    <td>Quick API data extraction</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>Why evolver-tools?</h2>
+<p>
+  There are many CLI tools for data processing — <code>jq</code>, <code>yq</code>, <code>xsv</code>, <code>milller</code>, <code>visidata</code>.
+  Each installs separately, with different syntax and runtime dependencies.
+</p>
+
+<p>
+  <strong>evolver-tools</strong> is different:
+</p>
+
+<ul>
+  <li><strong>Zero dependencies</strong> — pure Python stdlib. No npm, no cargo, no brew.</li>
+  <li><strong>260 tools, one install</strong> — <code>pip install evolver-tools</code> gives you everything.</li>
+  <li><strong>Cross-platform</strong> — Linux, macOS, WSL, even Windows with Python.</li>
+  <li><strong>Pipe-friendly</strong> — standard Unix I/O, works in any pipeline.</li>
+  <li><strong>CI-ready</strong> — installs in 3 seconds, no network after cache.</li>
+</ul>
+
+<div class="cta-box">
+  <h3>Ready to try it?</h3>
+  <p>Install in 3 seconds. No dependencies. Works everywhere.</p>
+  <code>pip install evolver-tools</code><br>
+  <a href="https://github.com/evolver-dev/evolver-tools" class="btn" target="_blank">⭐ Star on GitHub</a>
+</div>
+
+<h2>What's Next?</h2>
+<ul>
+  <li>Browse all 260 tools: <a href="tools/">evolver-tools catalog</a></li>
+  <li>Printable quick reference: <a href="cheatsheet.html">Cheatsheet</a></li>
+  <li>Real-world CSV walkthrough: <a href="tutorial-csv-cli.html">CSV CLI Tutorial</a></li>
+  <li>Price & plans: <a href="pricing.html">Pricing</a></li>
+  <li>The story behind this project: <a href="story.html">Built by AI</a></li>
+</ul>
+
+</main>
+
+<footer class="footer">
+  <p><a href="https://github.com/evolver-dev/evolver-tools">evolver-tools</a> — 260 zero-dependency CLI tools · MIT License</p>
+  <p><a href="./">Home</a> · <a href="pricing.html">Pricing</a> · <a href="cheatsheet.html">Cheatsheet</a> · <a href="search.html">Search</a></p>
+</footer>
+
+</body>
+</html>

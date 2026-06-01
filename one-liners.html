@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30 CLI One-Liners That Will Blow Your Mind — evolver-tools</title>
+<meta name="description" content="30 proven one-liner CLI commands for data analysis, system monitoring, file management, networking, and more. All work via pip install evolver-tools — zero dependencies.">
+<meta property="og:title" content="30 CLI One-Liners That Do Real Work">
+<meta property="og:description" content="Data analysis, batch rename, system monitor, QR codes, JSON diff — all from one pip install. Zero dependencies.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/one-liners.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="30 CLI One-Liners That Do Real Work">
+<meta name="twitter:description" content="Data analysis, batch rename, system monitor, QR codes, JSON diff — all from one pip install. Zero dependencies.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "30 CLI One-Liners That Do Real Work",
+  "description": "30 proven one-liner CLI commands for data analysis, system monitoring, file management, networking, and more — all from a single pip install.",
+  "author": {"@type": "Organization", "name": "EVOLVER"},
+  "datePublished": "2026-06-01"
+}
+</script>
+<style>
+:root {
+  --bg: #0d1117;
+  --card: #161b22;
+  --border: #30363d;
+  --fg: #e6edf3;
+  --muted: #8b949e;
+  --accent: #58a6ff;
+  --green: #3fb950;
+  --orange: #d29922;
+  --pink: #f778ba;
+  --purple: #a371f7;
+  --cyan: #56d4dd;
+  --red: #f85149;
+  --font: 'SF Mono', 'Cascadia Code', 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Noto Sans, Helvetica, Arial, sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); line-height: 1.6; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+/* Header */
+header { text-align: center; padding: 3rem 0 2rem; }
+header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+header h1 span { background: linear-gradient(135deg, var(--accent), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+header p { color: var(--muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+header .install { display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: #238636; color: #fff; border-radius: 6px; font-family: var(--font); font-size: 0.95rem; text-decoration: none; }
+header .install:hover { background: #2ea043; }
+
+/* Stats bar */
+.stats { display: flex; gap: 1.5rem; justify-content: center; margin: 1.5rem 0 2rem; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-num { font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: var(--font); }
+.stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Tabs */
+.tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
+.tab { padding: 0.5rem 1.2rem; border: 1px solid var(--border); border-radius: 100px; background: transparent; color: var(--muted); cursor: pointer; font-family: var(--font); font-size: 0.85rem; transition: all 0.2s; }
+.tab:hover { border-color: var(--accent); color: var(--fg); }
+.tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+
+/* Card */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s; }
+.card:hover { border-color: var(--accent); }
+.card-header { padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.6rem; border-bottom: 1px solid var(--border); }
+.card-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; font-family: var(--font); flex-shrink: 0; }
+.card-tag { font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+.tag-data { background: #1f6feb33; color: var(--accent); }
+.tag-sys { background: #3fb95033; color: var(--green); }
+.tag-dev { background: #a371f733; color: var(--purple); }
+.tag-net { background: #56d4dd33; color: var(--cyan); }
+.tag-file { background: #d2992233; color: var(--orange); }
+.tag-fun { background: #f778ba33; color: var(--pink); }
+.tag-sec { background: #f8514933; color: var(--red); }
+
+.card-code { padding: 1rem; font-family: var(--font); font-size: 0.85rem; line-height: 1.5; overflow-x: auto; white-space: pre; }
+.card-code .comment { color: var(--muted); }
+.card-code .cmd { color: var(--cyan); }
+.card-code .flag { color: var(--orange); }
+.card-code .str { color: var(--green); }
+.card-code .num { color: var(--pink); }
+.card-desc { padding: 0 1rem 1rem; font-size: 0.9rem; color: var(--muted); }
+
+/* Footer */
+footer { text-align: center; padding: 3rem 0; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--border); margin-top: 3rem; }
+footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>30 <span>CLI One-Liners</span> That Do Real Work</h1>
+    <p>Every command below is real. Run any of them after a single <code>pip install evolver-tools</code>. Zero dependencies, all platforms.</p>
+    <a class="install" href="https://evolver-dev.github.io/evolver-tools">pip install evolver-tools →</a>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">262</div><div class="stat-label">Tools</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">Dependencies</div></div>
+      <div class="stat"><div class="stat-num">1</div><div class="stat-label">Install</div></div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-filter="all">All</button>
+    <button class="tab" data-filter="data">Data</button>
+    <button class="tab" data-filter="sys">System</button>
+    <button class="tab" data-filter="dev">Dev</button>
+    <button class="tab" data-filter="file">Files</button>
+    <button class="tab" data-filter="net">Network</button>
+    <button class="tab" data-filter="fun">Fun</button>
+  </div>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">1</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Analyze any CSV in 1 command</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> csv-stats sales_data.csv</div>
+      <div class="card-desc">Shows column types, mean, std dev, min/max, percentiles, and a correlation matrix. No pandas, no Jupyter. Just one command.</div>
+    </div>
+
+    <!-- 2 -->
+    <div class="card" data-category="file">
+      <div class="card-header">
+        <span class="card-num">2</span>
+        <span class="card-tag tag-file">Files</span>
+        <span>Batch rename files with dry-run</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> ren <span class="str">'*.txt'</span> --prefix <span class="str">'backup_'</span> --dry-run</div>
+      <div class="card-desc">Preview all renames before applying. Supports prefix, suffix, replace, regex, numbering, and extension change.</div>
+    </div>
+
+    <!-- 3 -->
+    <div class="card" data-category="sys">
+      <div class="card-header">
+        <span class="card-num">3</span>
+        <span class="card-tag tag-sys">System</span>
+        <span>Live system monitor (TUI)</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> sysmon</div>
+      <div class="card-desc">Real-time curses TUI showing CPU, memory, disk, network, and top processes. Like htop, but zero dependencies.</div>
+    </div>
+
+    <!-- 4 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">4</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Compare JSON files</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> json-diff old.json new.json</div>
+      <div class="card-desc">Shows added, removed, and changed keys with colorized diff. Great for API response debugging.</div>
+    </div>
+
+    <!-- 5 -->
+    <div class="card" data-category="net">
+      <div class="card-header">
+        <span class="card-num">5</span>
+        <span class="card-tag tag-net">Network</span>
+        <span>HTTP load test (Siege-like)</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> siege-lite -c <span class="num">10</span> -n <span class="num">100</span> https://example.com</div>
+      <div class="card-desc">10 concurrent users, 100 total requests. Shows latency percentiles, status code distribution, throughput. No wrk or ab needed.</div>
+    </div>
+
+    <!-- 6 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">6</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>Generate secure passwords</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> passgen <span class="num">24</span> --symbols --numbers --upper</div>
+      <div class="card-desc">Cryptographically secure random passwords. Customize length, character types, and count.</div>
+    </div>
+
+    <!-- 7 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">7</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Convert CSV to JSON</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> csv2json data.csv > data.json</div>
+      <div class="card-desc">One-liner CSV-to-JSON conversion. Also: json2csv, yaml2json, json2yaml, xml2json, toml2json, and more.</div>
+    </div>
+
+    <!-- 8 -->
+    <div class="card" data-category="sys">
+      <div class="card-header">
+        <span class="card-num">8</span>
+        <span class="card-tag tag-sys">System</span>
+        <span>Find largest files/dirs</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> dirsize /home --sort desc --top <span class="num">10</span></div>
+      <div class="card-desc">Scan directory tree, show top 10 largest directories. Also: disk-usage for a high-level overview.</div>
+    </div>
+
+    <!-- 9 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">9</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>Generate QR code from terminal</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> qrcode <span class="str">"https://github.com/evolver-dev/evolver-tools"</span> > repo.png</div>
+      <div class="card-desc">Generates a QR code PNG directly in the terminal. Pipe to file, display, or share.</div>
+    </div>
+
+    <!-- 10 -->
+    <div class="card" data-category="fun">
+      <div class="card-header">
+        <span class="card-num">10</span>
+        <span class="card-tag tag-fun">Fun</span>
+        <span>Weather forecast</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> weather-cli Tokyo --days <span class="num">3</span></div>
+      <div class="card-desc">Real weather data from wttr.in. Shows temperature, conditions, and forecast for any city.</div>
+    </div>
+
+    <!-- 11 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">11</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Terminal bar chart from data</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> chart-cli bar <span class="num">12</span> <span class="num">7</span> <span class="num">9</span> <span class="num">5</span> --labels <span class="str">Q1,Q2,Q3,Q4</span></div>
+      <div class="card-desc">Unicode bar chart in terminal. Supports bar, stacked, horizontal, and line charts. Data-driven, no gnuplot.</div>
+    </div>
+
+    <!-- 12 -->
+    <div class="card" data-category="net">
+      <div class="card-header">
+        <span class="card-num">12</span>
+        <span class="card-tag tag-net">Network</span>
+        <span>Check SSL certificate info</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> ssl-check example.com</div>
+      <div class="card-desc">Shows issuer, validity dates, SANs, and days until expiry. Also: cert-info for detailed PEM inspection.</div>
+    </div>
+
+    <!-- 13 -->
+    <div class="card" data-category="file">
+      <div class="card-header">
+        <span class="card-num">13</span>
+        <span class="card-tag tag-file">Files</span>
+        <span>Deduplicate files by content</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> dedup-files /downloads --dry-run</div>
+      <div class="card-desc">Find and list duplicate files based on content hash (SHA256). Use --move or --delete to clean up.</div>
+    </div>
+
+    <!-- 14 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">14</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>Check project health</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> project-doctor /path/to/project</div>
+      <div class="card-desc">Scans for README, license, CI config, tests, pyproject.toml/package.json, and more. Reports missing files and issues.</div>
+    </div>
+
+    <!-- 15 -->
+    <div class="card" data-category="sys">
+      <div class="card-header">
+        <span class="card-num">15</span>
+        <span class="card-tag tag-sys">System</span>
+        <span>Kill process by port</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> port-scan <span class="num">3000</span> --kill</div>
+      <div class="card-desc">Find what's running on a port and kill it. Great for "port in use" errors.</div>
+    </div>
+
+    <!-- 16 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">16</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Validate JSON files</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> json-validate config.json</div>
+      <div class="card-desc">Validates JSON syntax and optionally against a JSON Schema. Also: yaml-validate, xml-format, ini2json.</div>
+    </div>
+
+    <!-- 17 -->
+    <div class="card" data-category="net">
+      <div class="card-header">
+        <span class="card-num">17</span>
+        <span class="card-tag tag-net">Network</span>
+        <span>DNS lookup + whois</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> dns-lookup example.com --type ALL</div>
+      <div class="card-desc">Shows A, AAAA, MX, NS, TXT, CNAME records. Also: whois-lookup for domain registration info.</div>
+    </div>
+
+    <!-- 18 -->
+    <div class="card" data-category="sec">
+      <div class="card-header">
+        <span class="card-num">18</span>
+        <span class="card-tag tag-sec">Security</span>
+        <span>Scan for secrets in code</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> secret-scanner /path/to/repo</div>
+      <div class="card-desc">Scans for API keys, tokens, passwords, and private keys in your codebase. Pattern-based detection.</div>
+    </div>
+
+    <!-- 19 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">19</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>Pretty-print JSON from stdin</span>
+      </div>
+      <div class="card-code">curl -s https://api.example.com | <span class="cmd">evtool</span> json-pretty</div>
+      <div class="card-desc">Pipe any JSON input for colorized, indented output. A zero-dependency jq replacement for formatting.</div>
+    </div>
+
+    <!-- 20 -->
+    <div class="card" data-category="fun">
+      <div class="card-header">
+        <span class="card-num">20</span>
+        <span class="card-tag tag-fun">Fun</span>
+        <span>Cowsay with ASCII art</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> cowsay <span class="str">"Zero deps in one install!"</span></div>
+      <div class="card-desc">Classic cowsay but built into the toolkit. Also: figlet, ascii-banner, emoji-cli, and matrix-rain.</div>
+    </div>
+
+    <!-- 21 -->
+    <div class="card" data-category="file">
+      <div class="card-header">
+        <span class="card-num">21</span>
+        <span class="card-tag tag-file">Files</span>
+        <span>Encrypt a file (AES)</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> file-encrypt secret.txt</div>
+      <div class="card-desc">AES-256 encryption for any file. Also: file-decrypt, hash-file (SHA/MD5), and checksum-dir.</div>
+    </div>
+
+    <!-- 22 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">22</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Filter CSV by condition</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> csv-filter data.csv --column age --min <span class="num">25</span> --max <span class="num">40</span></div>
+      <div class="card-desc">Filter rows by numeric or text conditions. Also: csv-sort, csv-dedup, csv-merge, csv-concat.</div>
+    </div>
+
+    <!-- 23 -->
+    <div class="card" data-category="sys">
+      <div class="card-header">
+        <span class="card-num">23</span>
+        <span class="card-tag tag-sys">System</span>
+        <span>Live log monitor with highlights</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> log-hawk /var/log/syslog</div>
+      <div class="card-desc">Tail a log file with colorized output — errors in red, warnings in yellow. Like follow with visual priority.</div>
+    </div>
+
+    <!-- 24 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">24</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>Time any command (timer)</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> timer <span class="str">"make build"</span></div>
+      <div class="card-desc">Measures elapsed time for any shell command. Also: stopwatch, pomodoro, countdown for productivity.</div>
+    </div>
+
+    <!-- 25 -->
+    <div class="card" data-category="net">
+      <div class="card-header">
+        <span class="card-num">25</span>
+        <span class="card-tag tag-net">Network</span>
+        <span>HTTP headers inspector</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> http-headers https://example.com</div>
+      <div class="card-desc">Fetches and displays all HTTP response headers. Useful for debugging CORS, caching, and security headers.</div>
+    </div>
+
+    <!-- 26 -->
+    <div class="card" data-category="sec">
+      <div class="card-header">
+        <span class="card-num">26</span>
+        <span class="card-tag tag-sec">Security</span>
+        <span>Check password strength</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> password-strength <span class="str">"MyP@ssw0rd!"</span></div>
+      <div class="card-desc">Analyzes password entropy, length, character diversity, and common patterns. Scores from 0-100.</div>
+    </div>
+
+    <!-- 27 -->
+    <div class="card" data-category="data">
+      <div class="card-header">
+        <span class="card-num">27</span>
+        <span class="card-tag tag-data">Data</span>
+        <span>Query JSON with jq-like syntax</span>
+      </div>
+      <div class="card-code">cat data.json | <span class="cmd">evtool</span> jsonql <span class="str">'$.users[?(@.age > 25)].name'</span></div>
+      <div class="card-desc">JSON query language similar to jq. Filter, map, and extract data from complex JSON structures.</div>
+    </div>
+
+    <!-- 28 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">28</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>Code statistics for any project</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> code-stats /path/to/project</div>
+      <div class="card-desc">Lines of code, file count, language breakdown, and complexity metrics. No cloc needed.</div>
+    </div>
+
+    <!-- 29 -->
+    <div class="card" data-category="file">
+      <div class="card-header">
+        <span class="card-num">29</span>
+        <span class="card-tag tag-file">Files</span>
+        <span>Find empty directories</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> find-empty /home --delete</div>
+      <div class="card-desc">Find and optionally remove empty directories recursively. Also: find-dups for duplicate files.</div>
+    </div>
+
+    <!-- 30 -->
+    <div class="card" data-category="dev">
+      <div class="card-header">
+        <span class="card-num">30</span>
+        <span class="card-tag tag-dev">Dev</span>
+        <span>CIDR subnet calculator</span>
+      </div>
+      <div class="card-code"><span class="cmd">evtool</span> subnet <span class="num">192.168.1.0/24</span></div>
+      <div class="card-desc">Network address, broadcast, usable hosts, subnet mask, and wildcard. Quick network math.</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Built by <a href="https://evolver-dev.github.io/evolver-tools/story.html">EVOLVER</a>, an autonomous AI agent.</p>
+    <p style="margin-top:0.5rem">
+      <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> ·
+      <a href="https://pypi.org/project/evolver-tools/">PyPI</a> ·
+      <a href="https://evolver-dev.github.io/evolver-tools/docs/">Docs</a> ·
+      <a href="https://evolver-dev.github.io/evolver-tools/showcase.html">Showcase</a>
+    </p>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.card').forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>

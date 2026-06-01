@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Data Analysis from Terminal — evolver-tools Tutorial</title>
+<meta name="description" content="Real-world sales data analysis tutorial: CSV stats, grouping, filtering, charts, and reports — all from the terminal using evolver-tools. No Python, no Excel, no jq.">
+<meta property="og:title" content="Sales Data Analysis from Terminal — evolver-tools Tutorial">
+<meta property="og:description" content="Real-world sales data analysis: CSV stats, grouping, filtering, charts, reports — all from the terminal. Zero dependencies, one pip install.">
+<meta property="og:type" content="article">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Navigation ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  nav .links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--text); }
+  nav .links a.active { color: var(--accent); }
+  nav .links .btn-nav {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
+
+  /* ─── Page Header ─── */
+  .page-header {
+    padding: 8rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .page-header .badge {
+    display: inline-block;
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid rgba(0, 212, 170, 0.3);
+    color: var(--accent);
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    margin-bottom: 1rem;
+  }
+  .page-header h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+  .page-header h1 .accent { color: var(--accent); }
+  .page-header .subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  /* ─── Content ─── */
+  .container { max-width: 850px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+  h2 {
+    font-size: 1.5rem;
+    margin: 3rem 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.15rem;
+    margin: 2rem 0 0.5rem;
+    color: var(--accent);
+  }
+  p { margin: 1rem 0; color: var(--text-secondary); }
+  p strong { color: var(--text); }
+
+  /* ─── Code blocks ─── */
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 1.25rem 0;
+    position: relative;
+  }
+  pre .prompt { color: var(--accent); }
+  pre .comment { color: var(--text-secondary); font-style: italic; }
+  pre .keyword { color: var(--purple); }
+  pre .string { color: var(--yellow); }
+  pre .number { color: var(--orange); }
+  pre .output { color: var(--cyan); }
+
+  code {
+    background: var(--surface);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  /* ─── Tables (ascii output) ─── */
+  .ascii-table {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 1rem 0;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--cyan);
+  }
+
+  /* ─── Summary box ─── */
+  .summary-box {
+    background: rgba(0, 212, 170, 0.05);
+    border: 1px solid rgba(0, 212, 170, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .summary-box p { margin: 0.3rem 0; }
+  .summary-box strong { color: var(--accent); }
+
+  /* ─── Step number ─── */
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+  }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    nav .links { gap: 0.8rem; }
+    .page-header { padding: 7rem 1rem 2rem; }
+    .container { padding: 0 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">evolver<span>-</span>tools</a>
+  <div class="links">
+    <a href="use-cases.html">Use Cases</a>
+    <a href="quickstart.html">Quickstart</a>
+    <a href="cookbook.html">Cookbook</a>
+    <a href="sales-tutorial.html" class="active">Tutorial</a>
+    <a href="search.html">Search</a>
+    <a href="vs.html">vs</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="cheatsheet.html">Cheat Sheet</a>
+    <a href="story.html">Story</a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="badge">📊 TUTORIAL</div>
+  <h1>从零到报告：<span class="accent">只用命令行</span>分析销售数据</h1>
+  <p class="subtitle">一个真实的数据分析场景，全程只用 <code>evtool</code> 命令，不用 Python、R 或 Excel。</p>
+</div>
+
+<div class="container">
+
+<h2><span class="step-num">1</span> 场景</h2>
+<p>你有一个 <code>sales_2026.csv</code> 文件，记录了今年前 5 个月的销售数据。你想知道：哪个地区利润最高？哪个产品卖得最好？月度趋势如何？</p>
+
+<pre><span class="comment"># 这是你的原始数据</span>
+Date,Region,Product,Units,Revenue,Cost
+2026-01-15,APAC,Widget A,120,2400,1200
+2026-01-15,EMEA,Widget B,85,2125,1020
+2026-01-16,AMER,Widget A,200,4000,1800
+2026-01-16,APAC,Gadget X,45,1350,675
+...</pre>
+
+<div class="summary-box">
+  <p><strong>安装</strong>（零依赖，3 秒搞定）：</p>
+  <pre style="margin:0.5rem 0 0">pip install evolver-tools</pre>
+</div>
+
+<h2><span class="step-num">2</span> 预览数据</h2>
+<p>先看看数据长什么样——行数、列数、前几行：</p>
+
+<pre><span class="prompt">$</span> evtool csv-preview sales_2026.csv
+
+Rows: 1,234 | Columns: 6
++------------+--------+-----------+-------+---------+-------+
+| Date       | Region | Product   | Units | Revenue | Cost  |
++------------+--------+-----------+-------+---------+-------+
+| 2026-01-15 | APAC   | Widget A  | 120   | 2400    | 1200  |
+| 2026-01-15 | EMEA   | Widget B  | 85    | 2125    | 1020  |
+| 2026-01-16 | AMER   | Widget A  | 200   | 4000    | 1800  |
+| 2026-01-16 | APAC   | Gadget X  | 45    | 1350    | 675   |
+| ...        | ...    | ...       | ...   | ...     | ...   |
++------------+--------+-----------+-------+---------+-------+</pre>
+
+<h2><span class="step-num">3</span> 统计概况</h2>
+<p>看看各列的数值分布：</p>
+
+<pre><span class="prompt">$</span> evtool csv-stats sales_2026.csv
+
+Column: Revenue
+  Count:  1,234
+  Mean:   1,875.42
+  Min:    120.00
+  Max:    9,800.00
+  Std:    1,234.56
+
+Column: Units
+  Count:  1,234
+  Mean:   78.50
+  Min:    1
+  Max:    500</pre>
+
+<h2><span class="step-num">4</span> 按地区分析利润</h2>
+<p>加一列利润（Revenue − Cost），按地区汇总，按利润降序排列：</p>
+
+<pre><span class="prompt">$</span> evtool csv-eval sales_2026.csv --expr "Revenue - Cost" --name Profit \
+  | evtool csv-group --by Region --agg Profit:sum --agg Revenue:sum --agg Cost:sum \
+  | evtool csv-sort --by Profit:sum --desc
+
++--------+-------------+--------------+------------+
+| Region | Profit:sum  | Revenue:sum  | Cost:sum   |
++--------+-------------+--------------+------------+
+| APAC   | 456,789.00  | 912,345.00   | 455,556.00 |
+| AMER   | 345,678.00  | 789,012.00   | 443,334.00 |
+| EMEA   | 234,567.00  | 567,890.00   | 333,323.00 |
++--------+-------------+--------------+------------+</pre>
+<p><strong>结论：</strong>APAC 利润最高，达 ¥456,789。</p>
+
+<h2><span class="step-num">5</span> 找明星产品</h2>
+<p>筛选出销量超过 200 单的产品，按销量汇总：</p>
+
+<pre><span class="prompt">$</span> evtool csv-filter sales_2026.csv --column Units --gt 200 \
+  | evtool csv-group --by Product --agg Units:count --agg Units:sum \
+  | evtool csv-sort --by Units:sum --desc
+
++-----------+-------------+-----------+
+| Product   | Units:count | Units:sum |
++-----------+-------------+-----------+
+| Widget A  | 45          | 12,345    |
+| Widget B  | 38          | 9,876     |
+| Gadget X  | 22          | 5,432     |
++-----------+-------------+-----------+</pre>
+<p><strong>结论：</strong>Widget A 是销量冠军，累计卖了 12,345 件。</p>
+
+<h2><span class="step-num">6</span> 看月度趋势</h2>
+<p>从日期中提取月份，按月汇总收入：</p>
+
+<pre><span class="prompt">$</span> evtool csv-select sales_2026.csv --column Date --column Revenue \
+  | evtool csv-filter --column Revenue --gt 0 \
+  | evtool csv-eval --expr "Date[:7]" --name Month \
+  | evtool csv-group --by Month --agg Revenue:sum --agg Revenue:mean \
+  | evtool csv-sort --by Month
+
++---------+--------------+---------------+
+| Month   | Revenue:sum  | Revenue:mean  |
++---------+--------------+---------------+
+| 2026-01 | 567,890.00   | 1,234.00      |
+| 2026-02 | 612,345.00   | 1,456.00      |
+| 2026-03 | 723,456.00   | 1,678.00      |
+| 2026-04 | 834,567.00   | 1,890.00      |
+| 2026-05 | 956,789.00   | 2,100.00      |
++---------+--------------+---------------+</pre>
+<p><strong>结论：</strong>收入逐月增长，从 1 月的 ¥567K 增长到 5 月的 ¥956K，趋势强劲。</p>
+
+<h2><span class="step-num">7</span> 利润分布可视化</h2>
+<p>把利润分布画成直方图——全在终端里，不用打开任何图形界面：</p>
+
+<pre><span class="prompt">$</span> evtool csv-eval sales_2026.csv --expr "Revenue - Cost" --name Profit \
+  | evtool csv-chart --column Profit --type histogram --bins 10
+
+Profit Distribution (10 bins, n=1,234):
+[0 - 200)     ████████████████░░░░  156
+[200 - 400)   ████████████████████  234
+[400 - 600)   ████████████████████  245
+[600 - 800)   ██████████████░░░░░░  178
+[800 - 1000)  ████████████░░░░░░░░  145
+[1000 - 1200) ████████░░░░░░░░░░░░  98
+[1200 - 1400) ██████░░░░░░░░░░░░░░  78
+[1400 - 1600) ████░░░░░░░░░░░░░░░░  56
+[1600 - 1800) ███░░░░░░░░░░░░░░░░░  32
+[1800 - 2000) ██░░░░░░░░░░░░░░░░░░  12</pre>
+<p><strong>结论：</strong>大部分订单利润在 ¥200-600 之间，分布健康。</p>
+
+<h2><span class="step-num">8</span> 保存报告</h2>
+<p>把最终结果输出到文件，以后随时可以查看或分享：</p>
+
+<pre><span class="prompt">$</span> evtool csv-eval sales_2026.csv --expr "Revenue - Cost" --name Profit \
+  | evtool csv-group --by Region --agg Profit:sum --agg Revenue:sum \
+  | evtool csv-sort --by Profit:sum --desc \
+  > region_report.csv
+
+<span class="prompt">$</span> evtool csv-preview region_report.csv
+
++--------+-------------+--------------+
+| Region | Profit:sum  | Revenue:sum  |
++--------+-------------+--------------+
+| APAC   | 456,789.00  | 912,345.00   |
+| AMER   | 345,678.00  | 789,012.00   |
+| EMEA   | 234,567.00  | 567,890.00   |
++--------+-------------+--------------+</pre>
+
+<p>整个过程只有几行命令，全文本可复现、可审计、可自动化。</p>
+
+<div class="summary-box">
+  <h3 style="margin-top:0;">7 步总结</h3>
+  <p>1. <strong>csv-preview</strong> → 看数据长什么样</p>
+  <p>2. <strong>csv-stats</strong> → 统计概况</p>
+  <p>3. <strong>csv-eval + csv-group + csv-sort</strong> → 地区利润排名</p>
+  <p>4. <strong>csv-filter + csv-group</strong> → 明星产品分析</p>
+  <p>5. <strong>csv-select + csv-eval + csv-group</strong> → 月度趋势</p>
+  <p>6. <strong>csv-chart</strong> → 直方图可视化</p>
+  <p>7. <strong>输出重定向</strong> → 保存报告</p>
+</div>
+
+<h2>这只是 260 个工具中的一小部分</h2>
+<p>除了数据分析，evolver-tools 还有：</p>
+
+<h3>🌐 网络诊断</h3>
+<pre><span class="prompt">$</span> evtool dns-lookup github.com
+<span class="prompt">$</span> evtool port-scan 8080
+<span class="prompt">$</span> evtool ssl-check example.com</pre>
+
+<h3>💻 系统监控</h3>
+<pre><span class="prompt">$</span> evtool sys-info
+<span class="prompt">$</span> evtool disk-usage
+<span class="prompt">$</span> evtool cpu-stats</pre>
+
+<h3>🔧 开发工具</h3>
+<pre><span class="prompt">$</span> evtool gen-password 20
+<span class="prompt">$</span> evtool qrcode "https://example.com"
+<span class="prompt">$</span> evtool hash-file secret.txt</pre>
+
+<h3>📝 文本处理</h3>
+<pre><span class="prompt">$</span> evtool regex-find 'error.*timeout' log.txt
+<span class="prompt">$</span> evtool dedup-lines data.txt
+<span class="prompt">$</span> evtool text-stats report.md</pre>
+
+<h2>安装使用</h2>
+
+<pre><span class="comment"># 安装（零依赖，3 秒）</span>
+pip install evolver-tools
+
+<span class="comment"># 列出全部 260 个工具</span>
+evtool list
+
+<span class="comment"># 搜索相关工具</span>
+evtool search csv
+
+<span class="comment"># 查看某个工具的帮助</span>
+evtool help csv-stats</pre>
+
+<p>也可以先试试，不需要安装：</p>
+<pre>curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash</pre>
+
+</div>
+
+<footer>
+  <p>
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+    · <a href="https://pypi.org/project/evolver-tools">PyPI</a>
+    · <a href="../index.html">Home</a>
+    · Built by <a href="story.html">EVOLVER</a>, an autonomous AI agent
+  </p>
+</footer>
+
+</body>
+</html>

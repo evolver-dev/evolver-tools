@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 20 CLI Tools Quick Reference — evolver-tools</title>
+<meta name="description" content="Quick reference card for the 20 most useful evolver-tools commands. One pip install, zero dependencies, 260 tools. Print-friendly one-pager.">
+<meta property="og:description" content="Quick reference: 20 essential evolver-tools CLI commands in one page.">
+<style>
+:root {
+  --bg: #0b0e14;
+  --bg2: #111620;
+  --bg3: #18202e;
+  --border: #2a3550;
+  --text: #e4e8ef;
+  --text2: #929cb3;
+  --accent: #7eb8ff;
+  --green: #4cda7a;
+  --green-dim: #2d8f4e;
+  --yellow: #e8c14a;
+  --orange: #f09a4a;
+  --purple: #b48aff;
+  --red: #f05a5a;
+  --teal: #5ad4c4;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+nav {
+  display: flex; gap: 1.2rem; align-items: center;
+  padding: 0.8rem 2rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+nav a { color: var(--text2); text-decoration: none; }
+nav a:hover { color: var(--accent); }
+nav .logo { font-weight: 700; color: var(--text); font-size: 1rem; }
+nav .logo em { color: var(--green); font-style: normal; }
+.container { max-width: 960px; margin: 0 auto; padding: 2rem; }
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.4rem;
+}
+.subtitle { color: var(--text2); font-size: 1rem; margin-bottom: 2rem; }
+.subtitle code { background: var(--bg3); padding: 0.15rem 0.5rem; border-radius: 4px; color: var(--green); }
+
+/* Category cards */
+.cat { margin-bottom: 1.5rem; }
+.cat h2 {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  background: var(--bg3);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+table { width: 100%; border-collapse: collapse; }
+th {
+  text-align: left;
+  color: var(--text2);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.4rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  font-size: 0.85rem;
+}
+td:first-child { width: 28%; }
+td:nth-child(2) { width: 42%; }
+td:last-child { width: 30%; }
+.cmd {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  color: var(--green);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+.cmd span { color: var(--text2); }
+.desc { color: var(--text); }
+.url { color: var(--accent); font-size: 0.8rem; }
+.tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+  margin-left: 0.3rem;
+  font-weight: 600;
+}
+.tag-json { background: #2d3748; color: #e8c14a; }
+.tag-data { background: #1a3a2a; color: var(--green); }
+.tag-net { background: #1a2a3a; color: var(--accent); }
+.tag-sec { background: #2a1a1a; color: var(--red); }
+.tag-dev { background: #2a1a3a; color: var(--purple); }
+.tag-sys { background: #2a2a1a; color: var(--orange); }
+.tag-text { background: #1a2a2a; color: var(--teal); }
+
+/* Install bar */
+.install-bar {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.install-bar code {
+  font-size: 1.1rem;
+  color: var(--green);
+  background: var(--bg);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  flex: 1;
+  min-width: 250px;
+}
+.install-bar .stats {
+  display: flex; gap: 1.5rem;
+  color: var(--text2);
+  font-size: 0.8rem;
+}
+.install-bar .stats strong { color: var(--text); }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: var(--text3);
+  font-size: 0.8rem;
+}
+footer a { color: var(--accent); text-decoration: none; }
+
+/* Print styles */
+@media print {
+  body { background: white; color: #111; }
+  nav { display: none; }
+  .install-bar { background: #f5f5f5; border-color: #ddd; }
+  .install-bar code { background: #eee; }
+  .cat h2 { background: #eee; color: #2563eb; }
+  td, th { border-color: #ddd; }
+  .cmd { color: #16a34a; }
+  .tag-json { background: #fef3c7; color: #92400e; }
+  .tag-data { background: #dcfce7; color: #166534; }
+  .tag-net { background: #dbeafe; color: #1e40af; }
+  .tag-sec { background: #fee2e2; color: #991b1b; }
+  .tag-dev { background: #f3e8ff; color: #6b21a8; }
+  .tag-sys { background: #fef9c3; color: #854d0e; }
+  .tag-text { background: #ccfbf1; color: #115e59; }
+  footer { color: #888; }
+  @page { margin: 0.5in; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><em>λ</em>evolver</a>
+  <a href="index.html">Home</a>
+  <a href="search.html">Search</a>
+  <a href="use-cases.html">Use Cases</a>
+  <a href="cookbook.html">Cookbook</a>
+  <a href="top20.html" style="color:var(--accent)">Top 20</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="https://github.com/evolver-dev/evolver-tools">GitHub →</a>
+</nav>
+
+<div class="container">
+
+<h1>⚡ Top 20 CLI Tools — Quick Reference</h1>
+<p class="subtitle">One <code>pip install evolver-tools</code> gives you 260 tools. Here are the 20 most useful ones.</p>
+
+<div class="install-bar">
+  <code>$ pip install evolver-tools</code>
+  <div class="stats">
+    <span>🔧 <strong>260</strong> tools</span>
+    <span>📦 <strong>0</strong> deps</span>
+    <span>⚡ <strong>1</strong> command</span>
+  </div>
+</div>
+
+<!-- CATEGORY: Data -->
+<div class="cat">
+<h2>📊 Data — CSV, JSON, YAML</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+<tr>
+  <td><code class="cmd">evtool csv-stats <span>file.csv</span></code></td>
+  <td class="desc">Full column analysis: types, nulls, min/max, histograms, correlations</td>
+  <td><code class="cmd">evtool csv-stats sales.csv <span>--corr</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool csv-filter <span>file.csv</span></code></td>
+  <td class="desc">Filter rows where column matches a value</td>
+  <td><code class="cmd">evtool csv-filter data.csv <span>region APAC</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool csv-slice <span>file.csv</span></code></td>
+  <td class="desc">Extract columns by index or name, or slice rows</td>
+  <td><code class="cmd">evtool csv-slice data.csv <span>--cols name,email</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool json-pretty</code></td>
+  <td class="desc">Pretty-print, validate, or minify JSON from stdin/file</td>
+  <td><code class="cmd">cat data.json | evtool json-pretty</code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool chart-cli</code></td>
+  <td class="desc">Terminal charts: bar (h/v), line, pie, histogram</td>
+  <td><code class="cmd">evtool chart-cli <span>--type bar data.csv</span></code></td>
+</tr>
+</table>
+</div>
+
+<!-- CATEGORY: System -->
+<div class="cat">
+<h2>🖥️ System — Monitor, Inspect, Manage</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+<tr>
+  <td><code class="cmd">evtool sysmon</code></td>
+  <td class="desc">Live TUI dashboard: CPU, memory, disk, network, top processes</td>
+  <td><code class="cmd">evtool sysmon</code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool disk-usage</code></td>
+  <td class="desc">Show disk usage by directory, human-readable</td>
+  <td><code class="cmd">evtool disk-usage <span>/var/log</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool portcheck</code></td>
+  <td class="desc">Scan open ports on a host with service detection</td>
+  <td><code class="cmd">evtool portcheck <span>example.com</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool process-kill</code></td>
+  <td class="desc">Find and kill processes by name, port, or user</td>
+  <td><code class="cmd">evtool process-kill <span>--port 3000</span></code></td>
+</tr>
+</table>
+</div>
+
+<!-- CATEGORY: Network -->
+<div class="cat">
+<h2>🌐 Network — DNS, HTTP, SSL</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+<tr>
+  <td><code class="cmd">evtool dns-lookup</code></td>
+  <td class="desc">DNS resolution: A, AAAA, MX, TXT, NS, CNAME, SOA</td>
+  <td><code class="cmd">evtool dns-lookup <span>github.com MX</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool api-tester</code></td>
+  <td class="desc">HTTP API testing: headers, methods, timing, status codes</td>
+  <td><code class="cmd">evtool api-tester <span>GET /api/users</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool cert-check</code></td>
+  <td class="desc">Check SSL certificate expiry and details</td>
+  <td><code class="cmd">evtool cert-check <span>example.com</span></code></td>
+</tr>
+</table>
+</div>
+
+<!-- CATEGORY: Security -->
+<div class="cat">
+<h2>🔐 Security — Encode, Hash, Encrypt</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+<tr>
+  <td><code class="cmd">evtool b64 <span>encode|decode</span></code></td>
+  <td class="desc">Base64 encode/decode with auto-detection</td>
+  <td><code class="cmd">evtool b64 encode <span>"hello world"</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool hashsum</code></td>
+  <td class="desc">File hash verification: MD5, SHA-1, SHA-256, SHA-512, BLAKE2</td>
+  <td><code class="cmd">evtool hashsum <span>file.iso sha256</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool passgen</code></td>
+  <td class="desc">Generate strong passwords with configurable length and character sets</td>
+  <td><code class="cmd">evtool passgen <span>--length 20 --symbols</span></code></td>
+</tr>
+</table>
+</div>
+
+<!-- CATEGORY: Developer -->
+<div class="cat">
+<h2>🛠️ Developer — Git, Code, Cron</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+<tr>
+  <td><code class="cmd">evtool ff</code></td>
+  <td class="desc">Interactive fuzzy finder — pure Python, no fzf required</td>
+  <td><code class="cmd">ls | evtool ff</code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool project-doctor</code></td>
+  <td class="desc">Project health check: structure, quality, deps, scoring</td>
+  <td><code class="cmd">evtool project-doctor <span>.</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool cron-pretty</code></td>
+  <td class="desc">Translate cron expressions to plain English</td>
+  <td><code class="cmd">evtool cron-pretty <span>'*/15 * * * *'</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool changelog-gen</code></td>
+  <td class="desc">Generate CHANGELOG.md from git log</td>
+  <td><code class="cmd">evtool changelog-gen <span>--from v1.0</span></code></td>
+</tr>
+</table>
+</div>
+
+<!-- CATEGORY: Utilities -->
+<div class="cat">
+<h2>🎨 Terminal & Utilities</h2>
+<table>
+<tr><th>Command</th><th>What it does</th><th>Example</th></tr>
+<tr>
+  <td><code class="cmd">evtool color-convert</code></td>
+  <td class="desc">Convert colors: hex, rgb, hsl, hsv, named</td>
+  <td><code class="cmd">evtool color-convert <span>#ff6600 rgb</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool ascii-banner</code></td>
+  <td class="desc">ASCII art banners: block, simple, wide, big fonts</td>
+  <td><code class="cmd">evtool ascii-banner <span>"HELLO" --font block</span></code></td>
+</tr>
+<tr>
+  <td><code class="cmd">evtool ren</code></td>
+  <td class="desc">Batch rename files: prefix, suffix, replace, regex, numbering</td>
+  <td><code class="cmd">evtool ren <span>--prefix backup_ *.txt</span></code></td>
+</tr>
+</table>
+</div>
+
+<p style="text-align:center; margin-top: 2rem; color: var(--text2); font-size: 0.85rem;">
+  👉 Get all 260 tools: <code style="background: var(--bg3); padding: 0.2rem 0.6rem; border-radius: 4px; color: var(--green);">pip install evolver-tools</code>
+</p>
+
+</div>
+
+<footer>
+  evolver-tools —
+  <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> •
+  <a href="https://pypi.org/project/evolver-tools/">PyPI</a> •
+  <a href="https://evolver-dev.github.io/evolver-tools">Docs</a>
+</footer>
+
+</body>
+</html>
