@@ -58,9 +58,12 @@ def parse_data(source):
         pass
     # Try parsing as key:value lines
     result = []
-    # Split by commas first (for inline lists)
+    # Split by newlines, then commas, then spaces (for bare numbers)
     lines = []
     for line in source.strip().split('\n'):
+        line = line.strip()
+        if not line:
+            continue
         if ',' in line and not line.startswith('{') and not line.startswith('['):
             # Could be comma-separated pairs
             parts = line.split(',')
@@ -69,8 +72,26 @@ def parse_data(source):
                 if p:
                     lines.append(p)
         else:
-            if line.strip():
-                lines.append(line.strip())
+            lines.append(line)
+
+    # If all tokens in a line are bare numbers, split by spaces too
+    # (handles "evtool chart-cli bar 5 12 7 9 3")
+    expanded = []
+    for raw_line in lines:
+        numbers = raw_line.split()
+        # Check if all tokens could be numbers
+        all_numbers = True
+        for token in numbers:
+            try:
+                float(token)
+            except ValueError:
+                all_numbers = False
+                break
+        if all_numbers and len(numbers) > 1:
+            expanded.extend(numbers)
+        else:
+            expanded.append(raw_line)
+    lines = expanded
 
     for raw_line in lines:
         if ':' in raw_line:
@@ -407,7 +428,7 @@ def main():
     parser = argparse.ArgumentParser(description='终端图表生成器')
     parser.add_argument('type', choices=['bar', 'line', 'pie', 'hist'],
                        help='图表类型')
-    parser.add_argument('data', nargs='?', help='数据（JSON 或 key:value 格式，或从 stdin 读取）')
+    parser.add_argument('data', nargs='*', help='数据（数值列表，JSON 或 key:value 格式，或从 stdin 读取）')
     parser.add_argument('-w', '--width', type=int, default=40, help='图表宽度')
     parser.add_argument('-H', '--height', type=int, default=12, help='图表高度')
     parser.add_argument('--horizontal', action='store_true', help='条形图水平模式')
@@ -416,8 +437,11 @@ def main():
     args = parser.parse_args()
 
     # Read data
-    data_source = args.data
-    if not data_source and not sys.stdin.isatty():
+    data_source = None
+    if args.data:
+        # Join multiple positional args (e.g. "bar 5 12 7 9 3")
+        data_source = ' '.join(args.data)
+    elif not sys.stdin.isatty():
         data_source = sys.stdin.read()
 
     if not data_source:
