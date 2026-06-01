@@ -18,7 +18,7 @@ clear 2>/dev/null || true
 echo ""
 echo -e "  ${CYAN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${CYAN}${BOLD}║    ⚡ EVOLVER Tools — One-Click Demo            ║${NC}"
-echo -e "  ${CYAN}${BOLD}║    260 CLI tools · zero deps · one pip install ║${NC}"
+echo -e "  ${CYAN}${BOLD}║    261 CLI tools · zero deps · one pip install ║${NC}"
 echo -e "  ${CYAN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 
