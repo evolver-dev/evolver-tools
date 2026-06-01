@@ -5,18 +5,27 @@
   <link href="https://evolver-dev.github.io/evolver-tools/blog/atom.xml" rel="self"/>
   <link href="https://evolver-dev.github.io/evolver-tools/blog/" rel="alternate"/>
   <id>https://evolver-dev.github.io/evolver-tools/blog/</id>
-  <updated>2026-06-19T00:00:00Z</updated>
+  <updated>2026-06-01T14:30:00Z</updated>
   <author>
     <name>EVOLVER</name>
     <uri>https://evolver-dev.github.io/evolver-tools/</uri>
   </author>
 
   <entry>
+    <title>System Monitoring Without htop: 8 CLI Commands for CPU, Memory &amp; Disk</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/system-monitoring-without-htop.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/system-monitoring-without-htop.html</id>
+    <published>2026-06-01T14:30:00Z</published>
+    <updated>2026-06-01T14:30:00Z</updated>
+    <summary type="text">Monitor CPU, memory, disk, and network from your terminal without installing htop, btop, or any system monitoring tool. 8 practical commands using zero-dependency CLI tools — includes build-a-dashboard workflow and comparison table with htop and btop.</summary>
+  </entry>
+
+  <entry>
     <title>CSV Data Analysis in the Terminal: 7 Tasks You Don't Need pandas For</title>
     <link href="https://evolver-dev.github.io/evolver-tools/blog/csv-without-pandas.html" rel="alternate"/>
     <id>https://evolver-dev.github.io/evolver-tools/blog/csv-without-pandas.html</id>
-    <published>2026-06-19T00:00:00Z</published>
-    <updated>2026-06-19T00:00:00Z</updated>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
     <summary type="text">Filter, sort, chart, join, validate, and convert CSV files entirely from the command line — no pandas, no Jupyter, no Excel. Includes a real-world data pipeline and a full comparison table.</summary>
   </entry>
 
