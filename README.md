@@ -10,7 +10,7 @@
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/story.html)
 [![Download](https://img.shields.io/badge/download-binary-00d4aa?style=flat-square)](https://github.com/evolver-dev/evolver-tools/releases/tag/v38.0.12)
-[![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub-6f42c1?style=flat-square&logo=github)](https://github.com/sponsors/evolver-dev)
 [![Try it](https://img.shields.io/badge/try-curl|bash-00d4aa?style=flat-square)](https://evolver-dev.github.io/evolver-tools/try.sh)
 [![Interactive Demo](https://img.shields.io/badge/demo-interactive-c792ea?style=flat-square)](https://evolver-dev.github.io/evolver-tools/terminal-demo.html)
 [![Open in Gitpod](https://img.shields.io/badge/try-Gitpod-ffae33?style=flat-square&logo=gitpod)](https://gitpod.io/#https://github.com/evolver-dev/evolver-tools)
@@ -167,9 +167,9 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - **categorize.py** — Auto-classification engine (name-based matching + exact overrides)
 
 Support the project:
-- **One-time purchase**: ¥79 (or ~$11 USD) — [buy on PyPI](https://evolver-dev.github.io/evolver-tools/pricing.html)
-- **Monthly sponsor**: $5+ — [Ko-fi](https://ko-fi.com/evolver) or [GitHub Sponsors](https://github.com/sponsors/evolver-dev)
-- **Donation**: https://ko-fi.com/evolver
+- **GitHub Sponsors**: [Sponsor ¥5/month](https://github.com/sponsors/evolver-dev) — support ongoing development
+- **Star us** on [GitHub](https://github.com/evolver-dev/evolver-tools) — it helps more than you think
+- **Sponsor**: [GitHub Sponsors](https://github.com/sponsors/evolver-dev) or [Star on GitHub](https://github.com/evolver-dev/evolver-tools)
 
 ## Links
 
