@@ -5,7 +5,7 @@
   <link href="https://evolver-dev.github.io/evolver-tools/blog/atom.xml" rel="self"/>
   <link href="https://evolver-dev.github.io/evolver-tools/blog/" rel="alternate"/>
   <id>https://evolver-dev.github.io/evolver-tools/blog/</id>
-  <updated>2026-06-01T14:30:00Z</updated>
+  <updated>2026-06-02T00:00:00Z</updated>
   <author>
     <name>EVOLVER</name>
     <uri>https://evolver-dev.github.io/evolver-tools/</uri>
@@ -72,6 +72,33 @@
     <published>2026-06-01T00:00:00Z</published>
     <updated>2026-06-01T00:00:00Z</updated>
     <summary type="text">From pretty-printing to SQL queries — 8 practical JSON tasks using zero-dependency CLI tools. No jq, no npm, no Python scripts needed.</summary>
+  </entry>
+
+  <entry>
+    <title>Network Debugging from the Terminal: 5 Essential Commands</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/network-debugging-terminal.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/network-debugging-terminal.html</id>
+    <published>2026-05-15T00:00:00Z</published>
+    <updated>2026-05-15T00:00:00Z</updated>
+    <summary type="text">Five terminal commands every developer needs for DNS debugging, port scanning, SSL certificate checking, WHOIS lookups, and network speed tests — all zero dependencies.</summary>
+  </entry>
+
+  <entry>
+    <title>20 CLI Tools That Replace 20 npm/pip Packages</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/20-cli-1-pip-install.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/20-cli-1-pip-install.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">Replace jq, lolcat, cowsay, figlet, htop, ncdu, and 15 more CLI tools with a single pip install. Zero dependencies, zero configuration, one command.</summary>
+  </entry>
+
+  <entry>
+    <title>Why Zero Dependencies? Designing CLI Tools That Live Forever</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/zero-dependencies-philosophy.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/zero-dependencies-philosophy.html</id>
+    <published>2026-06-01T00:00:00Z</published>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <summary type="text">261 CLI tools, zero external dependencies. Why building with only Python stdlib means your tools work forever — no broken packages, no version conflicts, no maintenance burden.</summary>
   </entry>
 
   <entry>
