@@ -152,11 +152,11 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - **Fixed PyPI metadata** — version string (259→260) in `__init__.py` docstring
 - Rebuilt + republished
 
-### v38.0.8 — 2026-06-01 (+269→260 split, 260 tools)
+### v38.0.8 — 2026-06-01 (+260→260 split, 260 tools)
 - **Fixed stale count bug** — `sync_tool_count.py` now handles cross-directory vendor tools
 - All tool pages show correct count (260)
 
-### v38.0.7 — 2026-06-01 (+platform-tools integration, 269 visible)
+### v38.0.7 — 2026-06-01 (+platform-tools integration, 260 visible)
 - **platform-tools merged** into main vendor directory
 - `_list_tools.py` now auto-discovers tools from both directories
 - Used `_round60.py` to build: gzip-cli, json-merge, scan-open-ports, siege-lite, flavor
