@@ -34,7 +34,7 @@ install_via_pip() {
 
 install_via_binary() {
     echo -e "  ${YELLOW}📥 Downloading standalone binary (43MB, Linux x86_64)...${NC}"
-    local url="https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.15/evt"
+    local url="https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.16/evt"
     local dest="/tmp/evt"
     if curl -sL "$url" -o "$dest" && chmod +x "$dest"; then
         echo -e "  ${GREEN}✅ Downloaded to $dest${NC}"
