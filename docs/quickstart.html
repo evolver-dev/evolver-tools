@@ -694,7 +694,7 @@
       <span class="output">MD5:    d41d8cd98f00b204e9800998ecf8427e</span><br>
       <span class="output">SHA1:   da39a3ee5e6b4b0d3255bfef95601890afd80709</span><br>
       <span class="output">SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span><br>
-      <span class="prompt">$</span> evtool base64 --encode secret.txt &gt; secret.b64<br>
+      <span class="prompt">$</span> evtool b64 --encode secret.txt &gt; secret.b64<br>
       <span class="prompt">$</span> evtool hex-dump binary.bin | head -5<br>
     </div>
   </div>
@@ -755,7 +755,7 @@
       <span class="output">🎲 4</span><br>
       <span class="prompt">$</span> evtool pomodoro --work 25 --break 5<br>
       <span class="output">🍅 Work session started (25:00) — focus!</span><br>
-      <span class="prompt">$</span> evtool weather London<br>
+      <span class="prompt">$</span> evtool weather-cli London<br>
       <span class="output">London, UK:  14°C ☁️  Overcast | Humidity: 72% | Wind: 12 km/h</span><br>
       <span class="prompt">$</span> evtool crypto-price bitcoin<br>
       <span class="output">Bitcoin (BTC): $72,431 ▲ +2.3% (24h)</span><br>

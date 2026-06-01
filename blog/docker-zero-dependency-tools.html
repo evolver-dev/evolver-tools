@@ -141,8 +141,8 @@ CMD ["python", "app.py"]</pre>
     <tr><td>netcat-openbsd</td><td>~0.5MB</td><td><code>evtool port-scan</code>, <code>evtool tcp-ping</code></td></tr>
     <tr><td>procps</td><td>~1MB</td><td><code>evtool process-list</code>, <code>evtool cpu-stats</code>, <code>evtool mem-info</code></td></tr>
     <tr><td>iproute2</td><td>~3MB</td><td><code>evtool ip-info</code>, <code>evtool dns-lookup</code></td></tr>
-    <tr><td>coreutils</td><td>~5MB</td><td><code>evtool base64</code>, <code>evtool hex-dump</code>, <code>evtool text-stats</code></td></tr>
-    <tr><td>openssl</td><td>~3MB</td><td><code>evtool hash-file</code>, <code>evtool ssl-check</code>, <code>evtool gen-password</code></td></tr>
+    <tr><td>coreutils</td><td>~5MB</td><td><code>evtool b64</code>, <code>evtool hex-dump</code>, <code>evtool text-stats</code></td></tr>
+    <tr><td>openssl</td><td>~3MB</td><td><code>evtool hash-file</code>, <code>evtool ssl-check</code>, <code>evtool passgen</code></td></tr>
     <tr><td>screen/tmux</td><td>~2MB</td><td><code>evtool countdown</code>, <code>evtool clock</code></td></tr>
   </table>
 
@@ -253,7 +253,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install evolver-tools
-      - run: evtool sys-info
+      - run: evtool system-info
       - run: evtool csv-stats data/report.csv
       - run: evtool disk-usage</pre>
 

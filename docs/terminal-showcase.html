@@ -370,13 +370,13 @@
   </div>
   <div class="feature-card">
     <div class="icon">🖥️</div>
-    <h3>sys-info</h3>
-    <p>System monitoring without htop. CPU, memory, disk, network, processes — all from Python stdlib. `evtool sys-info`</p>
+    <h3>system-info</h3>
+    <p>System monitoring without htop. CPU, memory, disk, network, processes — all from Python stdlib. `evtool system-info`</p>
   </div>
   <div class="feature-card">
     <div class="icon">🔐</div>
-    <h3>gen-password</h3>
-    <p>Cryptographically secure password generator. Custom length, symbols, digits. `evtool gen-password 20`</p>
+    <h3>passgen</h3>
+    <p>Cryptographically secure password generator. Custom length, symbols, digits. `evtool passgen 20`</p>
   </div>
 </div>
 
@@ -430,8 +430,8 @@ const DEMOS = {
     ]
   },
   sys: {
-    label: "🖥️ sys-info",
-    cmd: "$ evtool sys-info",
+    label: "🖥️ system-info",
+    cmd: "$ evtool system-info",
     lines: [
       { text: "", cls: "output dim" },
       { text: "╔══════════════════════════════════╗", cls: "output cyan" },
@@ -532,7 +532,7 @@ const DEMOS = {
       { text: " SOL  ████████████████░░   $142.50  +4.1%", cls: "output green" },
       { text: " DOGE ██████░░░░░░░░░░░░   $0.152   -1.2%", cls: "output red" },
       { text: "", cls: "output dim" },
-      { text: " $ evtool weather tokyo", cls: "prompt" },
+      { text: " $ evtool weather-cli tokyo", cls: "prompt" },
       { text: " Tokyo, JP  🌤️  22°C  Feels like 24°C", cls: "output" },
       { text: " Humidity: 65%  |  Wind: 12 km/h  |  UV: 4", cls: "output" },
     ]
@@ -568,8 +568,8 @@ const DEMOS = {
     ]
   },
   password: {
-    label: "🔐 gen-password",
-    cmd: "$ evtool gen-password 24 --symbols --digits",
+    label: "🔐 passgen",
+    cmd: "$ evtool passgen 24 --symbols --digits",
     lines: [
       { text: "", cls: "output dim" },
       { text: " Generated Password (24 chars)", cls: "output" },
@@ -581,8 +581,8 @@ const DEMOS = {
       { text: " Includes: uppercase, lowercase, digits, symbols", cls: "output" },
       { text: "", cls: "output dim" },
       { text: " More:", cls: "output" },
-      { text: " $ evtool gen-password 12  →  3fK8mZ2!qR7v", cls: "output" },
-      { text: " $ evtool gen-password 8   →  aB4$dE9#", cls: "output" },
+      { text: " $ evtool passgen 12  →  3fK8mZ2!qR7v", cls: "output" },
+      { text: " $ evtool passgen 8   →  aB4$dE9#", cls: "output" },
       { text: " $ evtool gen-passphrase 4  →  correct-horse-battery-staple", cls: "output green" },
     ]
   },

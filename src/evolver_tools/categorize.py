@@ -119,11 +119,6 @@ EXACT_OVERRIDES = {
     "tree": "File Operations",
     "treedir": "File Operations",
     "web-download": "Network/HTTP",
-    "dig": "Network/HTTP",
-    "html2text": "Text Processing",
-    "share": "CLI Utilities",
-    "sponsor": "CLI Utilities",
-    "welcome": "CLI Utilities",
 }
 
 
@@ -192,7 +187,7 @@ def print_showcase():
         ("sysmon", "Real-time terminal system monitor", "evtool sysmon"),
         ("chart-cli", "Unicode charts in terminal", "echo '1,3,2,5,4' | evtool chart-cli"),
         ("qrcode", "Generate QR codes in terminal", "evtool qrcode 'https://github.com/evolver-dev'"),
-        ("weather", "Weather forecast for any city", "evtool weather Beijing"),
+        ("weather-cli", "Weather forecast for any city", "evtool weather-cli Beijing"),
         ("joke", "Random programming jokes", "evtool joke"),
         ("crypto-price", "Cryptocurrency price ticker", "evtool crypto-price bitcoin"),
         ("ascii-banner", "Generate ASCII art from images or text", "evtool ascii-banner EVOLVER"),

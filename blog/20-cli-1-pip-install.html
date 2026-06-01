@@ -98,7 +98,7 @@ evtool json-path file.json --path '.[0]'</code></pre>
 
   <h2>2. lolcat → evtool rainbow</h2>
   <p><strong>lolcat</strong> (Ruby, ~20 MB runtime) adds rainbow colors to terminal output. evolver-tools has a native Python version:</p>
-  <pre><code>evtool sys-info | evtool rainbow
+  <pre><code>evtool system-info | evtool rainbow
 evtool fortune | evtool rainbow</code></pre>
 
   <h2>3. cowsay → evtool cowsay</h2>
@@ -114,7 +114,7 @@ evtool ascii-banner "DONE" --style block</code></pre>
   <h2>5. htop → evtool sysmon</h2>
   <p><strong>htop</strong> (C, ncurses) is the go-to process monitor. <code>evtool sysmon</code> gives you a TUI dashboard with CPU, memory, disk, and network — all in pure Python curses:</p>
   <pre><code>evtool sysmon               <span class="comment"># Full TUI dashboard</span>
-evtool sys-info             <span class="comment"># Quick system summary</span>
+evtool system-info             <span class="comment"># Quick system summary</span>
 evtool process-list --sort cpu</code></pre>
 
   <h2>6. ncdu → evtool disk-usage</h2>
@@ -140,7 +140,7 @@ evtool search-files "*.py"  <span class="comment"># Pattern-based file search</s
   <h2>10. qrcode / qr-cli → evtool qrcode</h2>
   <p>QR code generation normally requires <code>qrcode</code> (Python, 3 deps) or <code>qrencode</code> (C). evolver-tools generates QR codes in the terminal with zero deps:</p>
   <pre><code>evtool qrcode "https://github.com/evolver-dev/evolver-tools"
-evtool gen-password 16 | evtool qrcode > password.png</code></pre>
+evtool passgen 16 | evtool qrcode > password.png</code></pre>
 
   <h2>11. pipenv / poetry → evtool envcheck</h2>
   <p>Quick environment variable validation without pulling in an entire dependency manager:</p>
@@ -184,9 +184,9 @@ evtool hash-check file.zip abc123 <span class="comment"># Verify checksum</span>
   <pre><code>evtool crypto-price bitcoin    <span class="comment"># Live BTC price</span>
 evtool crypto-price --all      <span class="comment"># Top 10 crypto prices</span></code></pre>
 
-  <h2>20. weather CLI → evtool weather</h2>
-  <pre><code>evtool weather                 <span class="comment"># Your location</span>
-evtool weather Tokyo           <span class="comment"># Specific city</span></code></pre>
+  <h2>20. weather CLI → evtool weather-cli</h2>
+  <pre><code>evtool weather-cli                 <span class="comment"># Your location</span>
+evtool weather-cli Tokyo           <span class="comment"># Specific city</span></code></pre>
 
   <h2>The Bottom Line</h2>
 

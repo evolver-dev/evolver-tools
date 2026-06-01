@@ -269,9 +269,9 @@ cert-check · cert-info · net-speed</span></code>
     </div>
     <div class="tool-box">
       <h4>✅ evtool sysmon</h4>
-      <p>Full TUI system monitor: CPU, memory, disk I/O, network, processes — all in one terminal view. Also: sys-info, disk-usage.</p>
+      <p>Full TUI system monitor: CPU, memory, disk I/O, network, processes — all in one terminal view. Also: system-info, disk-usage.</p>
       <code>evtool sysmon<span style="color:var(--text-secondary)">
-sysmon (TUI) · sys-info · disk-usage · cpu-stats
+sysmon (TUI) · system-info · disk-usage · cpu-stats
 mem-info · process-list · kill-port · net-analyzer (TUI)</span></code>
     </div>
   </div>
@@ -314,7 +314,7 @@ shasum -a 256 file                # checksum</code>
       <p>Hash (SHA1/256/512, MD5), AES-256 encrypt/decrypt, password gen, OTP, entropy check — all same CLI syntax.</p>
       <code>evtool hash-file file.txt --sha256<span style="color:var(--text-secondary)">
 evtool file-encrypt file.txt       # AES-256
-evtool gen-password 32             # secure password
+evtool passgen 32             # secure password
 evtool b64 file.txt                # base64</span></code>
     </div>
   </div>
@@ -336,7 +336,7 @@ evtool b64 file.txt                # base64</span></code>
       <p>Markdown format, TOC generation, syntax highlight, base64, hex dump, regex, dedup, sort, uniq, diff.</p>
       <code>evtool markdown-format README.md<span style="color:var(--text-secondary)">
 evtool text-stats file.txt        # word/line/char count
-evtool base64 file.txt            # encode/decode
+evtool b64 file.txt            # encode/decode
 evtool hex-dump file.bin          # hex viewer
 evtool regex-find pattern file    # regex search</span></code>
     </div>
@@ -466,7 +466,7 @@ All replaced by one <code style="color:var(--accent)">pip install evolver-tools<
     <tr><td>JSON &amp; YAML</td><td>jq, yq, jless, fx, toml-cli</td><td>evtool json-pretty, json-select, json-merge, yaml2json</td></tr>
     <tr><td>Network &amp; DNS</td><td>dig, dog, httpie, whois, nmap, ssl-check</td><td>evtool dns-lookup, http-headers, port-scan, ssl-check</td></tr>
     <tr><td>System Monitor</td><td>htop, btm, ncdu, free, df, du</td><td>evtool sysmon (TUI), disk-usage, mem-info, cpu-stats</td></tr>
-    <tr><td>Security</td><td>openssl, gpg, hashcat, shasum, base64</td><td>evtool hash-file, file-encrypt, gen-password, b64</td></tr>
+    <tr><td>Security</td><td>openssl, gpg, hashcat, shasum, base64</td><td>evtool hash-file, file-encrypt, passgen, b64</td></tr>
     <tr><td>Text &amp; Markdown</td><td>bat, pandoc (basic), grep (basic), sed (basic)</td><td>evtool markdown-format, text-stats, regex-find</td></tr>
     <tr><td>ASCII &amp; Art</td><td>figlet, cowsay, lolcat, cmatrix</td><td>evtool figlet, cowsay, ascii-banner, matrix-rain</td></tr>
     <tr><td>Dev Tools</td><td>fzf, qrencode, uuidgen, entr</td><td>evtool ff, qrcode, uuid, watch</td></tr>
