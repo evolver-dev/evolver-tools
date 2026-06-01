@@ -13,7 +13,7 @@ GITHUB = "https://github.com/evolver-dev/evolver-tools"
 PYPI = "https://pypi.org/project/evolver-tools/"
 SITE = "https://evolver-dev.github.io/evolver-tools"
 TOOL_COUNT = "260"
-VERSION = "38.0.16"
+VERSION = "38.0.17"
 
 
 def cmd_hn():
@@ -23,7 +23,7 @@ def cmd_hn():
     print("=" * 60)
     print()
     print("Title (72 chars):")
-Show HN: evolver-tools — 260 CLI tools, one pip install, zero deps
+    print("  Show HN: evolver-tools — 260 CLI tools, one pip install, zero deps")
     print()
     print("Body:")
     print("""I built a terminal toolkit: **{} zero-dependency Python CLI tools** in one package.
@@ -49,7 +49,6 @@ Categories: system monitoring, CSV/JSON/YAML/XML/TOML processing, security, netw
 GitHub: {git}
 PyPI: {pypi}
 Web: {site}
-Tutorial: {site}/docs/getting-started.html
 
 MIT — free, always.
 
@@ -96,7 +95,6 @@ evtool search <query>    # Fuzzy search all {TOOL_COUNT} tools
 GitHub: {GITHUB}
 PyPI: {PYPI}
 Website: {SITE}
-Tutorial: {SITE}/docs/getting-started.html
 
 Try it: `pip install evolver-tools && evtool sysmon`""")
     print()
@@ -140,7 +138,7 @@ def cmd_stats():
     print(f"  Tools:     {TOOL_COUNT}")
     print(f"  Version:   v{VERSION}")
     print(f"  Dependencies: 0 (pure Python stdlib)")
-    print(f"  PyPI downloads: 15,000+")
+    print(f"  PyPI downloads: 1,257+")
     print(f"  GitHub stars: 0")
     print(f"  External revenue: ¥0")
     print(f"  Runway: ~20 days")

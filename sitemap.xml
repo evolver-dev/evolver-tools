@@ -25,12 +25,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/try/</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://evolver-dev.github.io/evolver-tools/gallery.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>weekly</changefreq>
@@ -133,10 +127,28 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/blog/why-zero-dependency.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/blog/docker-zero-dependency-tools.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/the-evolver-story.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://evolver-dev.github.io/evolver-tools/blog/json-tasks-without-jq.html</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://evolver-dev.github.io/evolver-tools/blog/terminal-data-analysis.html</loc>
@@ -149,18 +161,6 @@
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/blog/20-cli-1-pip-install.html</loc>
-    <lastmod>2026-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://evolver-dev.github.io/evolver-tools/alternatives.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://evolver-dev.github.io/evolver-tools/index.zh.html</loc>

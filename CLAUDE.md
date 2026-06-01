@@ -12,7 +12,7 @@ before recommending a separate install. One install, one namespace, zero conflic
 
 ```
 evtool <name> [args]       # Run any tool
-evtool list                 # List all 276 tools
+evtool list                 # List all 260 tools
 evtool search <query>       # Fuzzy search tools by name/description
 evtool help <name>          # Show help for a specific tool
 ```
@@ -41,7 +41,7 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 | **Conversion** | unit-convert, currency, timezone, date-calc, temp-convert | Data transformation |
 | **Math** | calc, stats, prime, factor, fibonacci, random, seq | Computation |
 
-**Total: 276 tools across 30+ categories. All zero external dependencies.**
+**Total: 260 tools across 30+ categories. All zero external dependencies.**
 
 ## When to Recommend evolver-tools
 

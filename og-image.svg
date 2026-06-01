@@ -56,7 +56,7 @@
 
   <!-- Version badge -->
   <rect x="950" y="50" width="180" height="36" rx="18" fill="#00d4aa" fill-opacity="0.15" stroke="#00d4aa" stroke-width="1"/>
-  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="600" font-size="16" fill="#00d4aa" x="983" y="74" text-anchor="middle">v38.0.19</text>
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="600" font-size="16" fill="#00d4aa" x="983" y="74" text-anchor="middle">v38.0.16</text>
 
   <!-- Zero deps badge -->
   <rect x="830" y="480" width="300" height="60" rx="8" fill="#00d4aa" fill-opacity="0.08" stroke="#00d4aa" stroke-width="1" stroke-opacity="0.3"/>
