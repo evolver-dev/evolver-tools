@@ -27,7 +27,7 @@
 ```bash
 pip install evolver-tools
 evtool ascii-banner "EVOLVER"          # 大号 ASCII 艺术字
-evtool rainbow "276 tools in 1 pip"    # 彩虹色文字
+evtool rainbow "260 tools in 1 pip"    # 彩虹色文字
 evtool qrcode "https://evolver.dev"    # 终端生成二维码
 evtool cowsay "零依赖！"                # ASCII 牛说话
 echo '5,12,8,20,3,15' | evtool chart-cli bar   # 柱状图
