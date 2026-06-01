@@ -162,7 +162,9 @@ def _star_prompt():
         pass
     # Show on first 3 runs, then every 25th
     if run_count <= 3 or run_count % 25 == 0:
-        print("\033[1;33m\u2b50 Enjoying evolver-tools? Star it on GitHub (takes 2s): https://github.com/evolver-dev/evolver-tools\033[0m",
+        print("\033[1;33m\u2b50 Star evolver-tools on GitHub (2s): https://github.com/evolver-dev/evolver-tools\033[0m",
+              file=sys.stderr)
+        print("\033[1;33m\u2615 Support development (Ko-fi): https://ko-fi.com/evolvertools\033[0m",
               file=sys.stderr)
 
 
