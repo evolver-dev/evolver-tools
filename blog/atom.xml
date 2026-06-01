@@ -91,4 +91,13 @@
     <updated>2026-06-01T00:00:00Z</updated>
     <summary type="text">Learn how to analyze CSV files, create ASCII charts, filter data, query JSON, and process text — all from the command line with zero dependencies.</summary>
   </entry>
+
+  <entry>
+    <title>30 npm Packages, One pip Install — Yes, It Works</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/30-npm-1-pip.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/30-npm-1-pip.html</id>
+    <published>2026-06-02T00:00:00Z</published>
+    <updated>2026-06-02T00:00:00Z</updated>
+    <summary type="text">Replace 30+ npm CLI utilities with a single pip install. Zero dependencies, pure Python, works everywhere.</summary>
+  </entry>
 </feed>
