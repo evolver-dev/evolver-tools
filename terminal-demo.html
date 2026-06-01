@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>evolver-tools — Interactive Terminal Demo</title>
+<meta name="description" content="Watch 260+ CLI tools in action — live terminal simulation showing csv-stats, batch-renaming, code analysis, and more.">
+<meta property="og:title" content="evolver-tools — Interactive Terminal Demo">
+<meta property="og:description" content="Watch 260+ CLI tools in action. One pip install, zero dependencies.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/terminal-demo.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Header ── */
+  .header {
+    width: 100%;
+    max-width: 900px;
+    padding: 3rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+  .header h1 {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .header h1 span { color: var(--text); }
+  .header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Terminal ── */
+  .terminal-wrapper {
+    width: 100%;
+    max-width: 860px;
+    padding: 0 1.5rem;
+  }
+  .terminal {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .terminal-bar {
+    background: var(--surface2);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-red { background: #ff5370; }
+  .dot-yellow { background: #ffcb6b; }
+  .dot-green { background: #00d4aa; }
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-left: 8px;
+  }
+  .terminal-body {
+    padding: 20px 24px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    min-height: 400px;
+    max-height: 550px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .terminal-body::-webkit-scrollbar { width: 6px; }
+  .terminal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── Terminal content ── */
+  .line { white-space: pre-wrap; word-break: break-all; }
+  .prompt { color: var(--accent); }
+  .cmd { color: #e6edf3; }
+  .output { color: var(--text-secondary); }
+  .highlight { color: var(--yellow); }
+  .highlight-green { color: var(--green); }
+  .highlight-cyan { color: var(--cyan); }
+  .highlight-orange { color: var(--orange); }
+  .highlight-purple { color: var(--purple); }
+  .highlight-red { color: var(--red); }
+  .dim { color: #484f58; }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    background: var(--accent);
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 1px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ── Table output ── */
+  .table-line { color: var(--text-secondary); }
+  .table-header { color: var(--cyan); font-weight: 700; }
+  .table-border { color: #484f58; }
+  .bar { color: var(--accent); }
+  .bar-empty { color: #484f58; }
+
+  /* ── Controls ── */
+  .controls {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    padding: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .controls button {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .controls button:hover {
+    background: var(--border);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .controls button.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── Status ── */
+  .status-bar {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    padding: 0.5rem 1.5rem 2rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    text-align: center;
+    padding: 2rem 1.5rem 3rem;
+  }
+  .cta-code {
+    display: inline-block;
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+  }
+  .cta-code:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(0,212,170,0.15);
+  }
+  .cta-sub {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  .cta-sub a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .cta-sub a:hover { text-decoration: underline; }
+
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    padding: 0 1.5rem 0.5rem;
+  }
+  .progress-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .progress-dot.active { background: var(--accent); }
+  .progress-dot.done { background: var(--accent-dim); }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.2rem; }
+    .terminal-body { padding: 14px 16px; font-size: 0.75rem; min-height: 320px; max-height: 450px; }
+    .cta-code { font-size: 0.9rem; padding: 12px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⟳ <span>evolver-tools</span></h1>
+  <p>Watch 260+ zero-dependency CLI tools in action. Each demo runs a real command — <strong>pip install evolver-tools</strong> to try them yourself.</p>
+</div>
+
+<div class="terminal-wrapper">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="terminal-dot dot-red"></span>
+      <span class="terminal-dot dot-yellow"></span>
+      <span class="terminal-dot dot-green"></span>
+      <span class="terminal-title">evolver-tools — interactive demo</span>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="line"><span class="dim"># Welcome! Watch me auto-type commands...</span></div>
+      <div class="line"><span class="dim"># Press ▶ Play or click a demo below to start.</span></div>
+      <div class="line">&nbsp;</div>
+      <div class="line"><span class="prompt">$ </span><span id="typed-line"></span><span class="cursor" id="cursor"></span></div>
+      <div id="output-area"></div>
+    </div>
+  </div>
+</div>
+
+<div class="progress-dots" id="progress-dots"></div>
+
+<div class="controls">
+  <button id="btn-play" onclick="playAll()">▶ Play All</button>
+  <button onclick="runDemo(0)">csv-stats</button>
+  <button onclick="runDemo(1)">batch rename</button>
+  <button onclick="runDemo(2)">chart-cli</button>
+  <button onclick="runDemo(3)">smellfinder</button>
+  <button onclick="runDemo(4)">sysmon</button>
+  <button onclick="runDemo(5)">pipe tricks</button>
+</div>
+
+<div class="status-bar">
+  <div class="stat">
+    <div class="stat-num">260+</div>
+    <div class="stat-label">CLI Tools</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Dependencies</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">1</div>
+    <div class="stat-label">pip install</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">20</div>
+    <div class="stat-label">Categories</div>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="cta-code">
+    <span style="color:var(--text-secondary)">$</span> pip install evolver-tools
+  </div>
+  <div class="cta-sub">
+    Linux · macOS · Windows — pure Python, zero deps &nbsp;·&nbsp;
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank">GitHub</a> &nbsp;·&nbsp;
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">PyPI</a> &nbsp;·&nbsp;
+    <a href="https://evolver-dev.github.io/evolver-tools/" target="_blank">Docs</a>
+  </div>
+</div>
+
+<script>
+// ── Demo scenarios ──
+const demos = [
+  {
+    name: 'csv-stats',
+    cmd: 'evtool csv-stats data.csv',
+    lines: [
+      { type: 'output', text: '📊 CSV Analysis Report' },
+      { type: 'output', text: '  File: data.csv  |  Rows: 1,024  |  Columns: 12' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  category (text)     price (float)        rating (float)       stock (int)' },
+      { type: 'output', text: '  ──────────────     ────────────         ──────────────       ──────────' },
+      { type: 'output', text: '  Electronics         Mean: 342.50         Mean: 4.23           Mean: 1,247' },
+      { type: 'output', text: '  Clothing            Std Dev: 156.20      Std Dev: 0.89        Std Dev: 892' },
+      { type: 'output', text: '  Books               Min: 9.99            Min: 1.50            Min: 5' },
+      { type: 'output', text: '  Home & Garden       Max: 2,499.00       Max: 5.00            Max: 15,000' },
+      { type: 'output', text: '  Sports              P50: 189.00         P50: 4.50            P50: 524' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Correlation Matrix:' },
+      { type: 'output', text: '    price × rating     +0.32  ████████░░░░░░░' },
+      { type: 'output', text: '    price × stock      +0.18  ████░░░░░░░░░░░' },
+      { type: 'output', text: '    rating × stock     -0.05  █░░░░░░░░░░░░░░' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Top Categories by Records:' },
+      { type: 'output', text: '    Electronics    ████████████████████ 342' },
+      { type: 'output', text: '    Clothing       █████████████████   287' },
+      { type: 'output', text: '    Books          ████████████        198' },
+      { type: 'output', text: '    Home & Garden  ████████            145' },
+      { type: 'output', text: '    Sports         ██████              106' },
+    ]
+  },
+  {
+    name: 'batch rename',
+    cmd: 'evtool ren "*.log" --prefix "archive_" --date --dry-run',
+    lines: [
+      { type: 'output', text: '🔍 Dry Run — no files changed' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  server.log       →  archive_2026-06-01_server.log' },
+      { type: 'output', text: '  error.log        →  archive_2026-06-01_error.log' },
+      { type: 'output', text: '  access.log       →  archive_2026-06-01_access.log' },
+      { type: 'output', text: '  debug.log        →  archive_2026-06-01_debug.log' },
+      { type: 'output', text: '  audit.log        →  archive_2026-06-01_audit.log' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  ──── Summary ────' },
+      { type: 'output', text: '  Matches:   5 files' },
+      { type: 'output', text: '  Pattern:   *.log → archive_%DATE%_*' },
+      { type: 'output', text: '  Status:    ⚡ DRY RUN (use --exec to apply)' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Also try: --suffix, --replace, --number, --lower, --regex' },
+    ]
+  },
+  {
+    name: 'chart-cli',
+    cmd: 'evtool chart-cli --title "Monthly Sales by Region" --type bar',
+    lines: [
+      { type: 'output', text: '📈 Monthly Sales by Region' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  North America  ████████████████████████  $342,500  ██████████' },
+      { type: 'output', text: '  Europe         █████████████████████    $298,200  ████████░' },
+      { type: 'output', text: '  Asia-Pacific   ████████████████         $215,800  ██████░░░' },
+      { type: 'output', text: '  Latin America  █████████                 $98,400  ███░░░░░░' },
+      { type: 'output', text: '  Middle East    ██████                    $72,100  ██░░░░░░░' },
+      { type: 'output', text: '  Africa         ████                      $45,600  █░░░░░░░░' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Total: $1,072,600  │  QoQ Growth: +12.4%  │  Trend: ▴' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  ── Also available ──' },
+      { type: 'output', text: '  evtool chart-cli --type pie        Pie charts in terminal' },
+      { type: 'output', text: '  evtool chart-cli --type line       Line/trend charts' },
+      { type: 'output', text: '  evtool chart-cli --type hist       Histogram distribution' },
+    ]
+  },
+  {
+    name: 'smellfinder',
+    cmd: 'evtool smellfinder src/ --json | head -20',
+    lines: [
+      { type: 'output', text: '🔍 Analyzing 47 Python files in src/ ...' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  14 patterns checked:' },
+      { type: 'output', text: '  ✓ Long functions      found 3  (> 50 lines)' },
+      { type: 'output', text: '  ✓ Bare excepts         found 1' },
+      { type: 'output', text: '  ✓ Too many params      found 2  (> 5 parameters)' },
+      { type: 'output', text: '  ✓ Deep nesting         found 1  (> 4 levels)' },
+      { type: 'output', text: '  ✓ Missing docstrings   found 5' },
+      { type: 'output', text: '  ✓ Wildcard imports     found 0  ✨ clean' },
+      { type: 'output', text: '  ✓ Mutable defaults     found 0  ✨ clean' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  ═══ Results ═══' },
+      { type: 'output', text: '  Total issues:  12  (6 critical, 6 warning)' },
+      { type: 'output', text: '  Score:         74/100  🟡' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Worst file: src/legacy_parser.py (8 issues)' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Tip: evtool smellfinder src/ --fix  auto-fix what it can' },
+    ]
+  },
+  {
+    name: 'sysmon',
+    cmd: 'evtool sysmon',
+    lines: [
+      { type: 'output', text: '🖥️  System Monitor  (refresh every 2s — press Ctrl+C to exit)' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  CPU   ████████████████░░░░░  68.2%  (12 cores @ 2.4 GHz)' },
+      { type: 'output', text: '  MEM   ██████████████████░░░  82.1%  (12.4 / 15.1 GB)' },
+      { type: 'output', text: '  SWAP  ████████░░░░░░░░░░░░  32.5%  (1.2 / 3.7 GB)' },
+      { type: 'output', text: '  DISK  ████████████████░░░░░  74.8%  (187 / 250 GB)' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  ── Top Processes ──' },
+      { type: 'output', text: '   PID   CPU%  MEM%  COMMAND' },
+      { type: 'output', text: '  3842   12.4   8.2   python3 ./train.py' },
+      { type: 'output', text: '  1276    4.1  12.5   chrome            ' },
+      { type: 'output', text: '  2910    3.8   2.1   dockerd           ' },
+      { type: 'output', text: '  1562    2.2   4.7   code-server       ' },
+      { type: 'output', text: '  4021    1.5   0.8   evtool sysmon     ' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  Network: ↓ 2.4 MB/s  ↑ 1.1 MB/s  │  Uptime: 14d 7h 32m' },
+    ]
+  },
+  {
+    name: 'pipe tricks',
+    cmd: '# chain tools together with pipes',
+    lines: [
+      { type: 'cmd', text: 'cat server.log | evtool smellfinder --stdin' },
+      { type: 'output', text: '  🔍 Scanning 847 lines from stdin...' },
+      { type: 'output', text: '  Found 3 potential issues (2 warnings, 1 info)' },
+      { type: 'output', text: '' },
+      { type: 'cmd', text: 'ps aux | evtool csv-stats' },
+      { type: 'output', text: '  📊 Parsed as TSV — 47 rows, 11 columns' },
+      { type: 'output', text: '  CPU% Mean: 3.2%  │  MEM% Mean: 5.8%  │  Top: chrome (12.5%)' },
+      { type: 'output', text: '' },
+      { type: 'cmd', text: 'find . -name "*.py" | evtool ren --prefix "v2_" --dry-run' },
+      { type: 'output', text: '  🔍 Dry Run — 23 files matched' },
+      { type: 'output', text: '    ./main.py          →  ./v2_main.py' },
+      { type: 'output', text: '    ./utils/helpers.py →  ./v2_helpers.py' },
+      { type: 'output', text: '    ... (21 more)' },
+      { type: 'output', text: '' },
+      { type: 'output', text: '  💡 All tools accept stdin. Chain them like LEGO blocks.' },
+    ]
+  },
+];
+
+let currentDemo = -1;
+let isPlaying = false;
+let isAnimating = false;
+
+function escapeHtml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function buildProgressDots() {
+  const container = document.getElementById('progress-dots');
+  container.innerHTML = '';
+  demos.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.className = 'progress-dot';
+    dot.onclick = () => runDemo(i);
+    container.appendChild(dot);
+  });
+}
+buildProgressDots();
+
+function updateProgressDots(active) {
+  document.querySelectorAll('.progress-dot').forEach((dot, i) => {
+    dot.className = 'progress-dot';
+    if (i < active) dot.classList.add('done');
+    if (i === active) dot.classList.add('active');
+  });
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function typeText(element, text, speed = 30) {
+  for (let i = 0; i < text.length; i++) {
+    element.textContent += text[i];
+    await sleep(speed + Math.random() * speed);
+  }
+}
+
+async function runDemo(index) {
+  if (isAnimating) return;
+  isAnimating = true;
+  isPlaying = false;
+  document.getElementById('btn-play').textContent = '⏸ Stop';
+  document.getElementById('btn-play').disabled = false;
+
+  const body = document.getElementById('terminal-body');
+  const typedLine = document.getElementById('typed-line');
+  const cursor = document.getElementById('cursor');
+  const outputArea = document.getElementById('output-area');
+
+  // Show cursor, clear old output
+  cursor.style.display = 'inline-block';
+  typedLine.textContent = '';
+  outputArea.innerHTML = '';
+
+  const demo = demos[index];
+  currentDemo = index;
+  updateProgressDots(index);
+
+  // Type the command
+  typedLine.textContent = '';
+  await typeText(typedLine, demo.cmd, 25);
+
+  // Brief pause before output
+  await sleep(300);
+
+  // Show output
+  let outputHtml = '';
+  for (const line of demo.lines) {
+    outputHtml += '<div class="line ';
+    if (line.type === 'cmd') outputHtml += 'highlight-cyan';
+    else outputHtml += 'output';
+    outputHtml += '">' + escapeHtml(line.text || ' ') + '</div>';
+  }
+  outputArea.innerHTML = outputHtml;
+
+  // Scroll to bottom
+  body.scrollTop = body.scrollHeight;
+
+  await sleep(300);
+  cursor.style.display = 'none';
+  isAnimating = false;
+
+  // If playing, schedule next
+  if (isPlaying) {
+    await sleep(2000);
+    const next = (index + 1) % demos.length;
+    if (isPlaying) runDemo(next);
+  } else {
+    document.getElementById('btn-play').textContent = '▶ Play All';
+  }
+}
+
+async function playAll() {
+  const btn = document.getElementById('btn-play');
+  if (isAnimating || isPlaying) {
+    isPlaying = false;
+    isAnimating = false;
+    btn.textContent = '▶ Play All';
+    return;
+  }
+  isPlaying = true;
+  btn.textContent = '⏹ Stop';
+  const start = (currentDemo + 1) % demos.length;
+  await runDemo(start);
+}
+
+// Initial state: show first demo hint
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.controls button')[0].textContent = '▶ Play All';
+});
+</script>
+</body>
+</html>
