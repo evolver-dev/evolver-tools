@@ -3,518 +3,472 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Use Cases — evolver-tools: Real-World Workflows</title>
-<meta name="description" content="5 real-world developer workflows using evolver-tools: CSV data pipeline, server monitoring, API debugging, code audit, security checkup — all zero-dependency CLI tools.">
-<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/use-cases.html">
-<meta property="og:title" content="Use Cases — evolver-tools: Real-World Workflows">
-<meta property="og:description" content="5 real-world developer workflows using evolver-tools CLI tools. One pip install, zero dependencies, cross-platform.">
-<meta property="og:site_name" content="evolver-tools">
-<!-- OG Image -->
-<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
+<title>40 Real-World Use Cases — evolver-tools CLI</title>
+<meta name="description" content="40 practical evtool commands for data analysts, sysadmins, developers, and security professionals. Real tasks, real solutions, zero dependencies.">
+<meta name="keywords" content="CLI tools, terminal, command line, devops, data analysis, system admin, security, python, zero dependencies">
+<meta property="og:title" content="40 Real-World Use Cases — evolver-tools CLI">
+<meta property="og:description" content="40 practical evtool commands for data analysts, sysadmins, developers, and security professionals.">
+<meta property="og:type" content="website">
 <style>
-  :root {
-    --bg: #0a0e14; --surface: #111820; --surface2: #182230;
-    --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
-    --accent: #00d4aa; --accent-dim: #00a88a; --cyan: #00bcd4;
-    --yellow: #ffcb6b; --orange: #f78c6c; --purple: #c792ea; --red: #ff5370;
-    --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
-    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: var(--font-sans); line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(10,14,20,0.85); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem; height: 56px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
-  nav .logo span { color: var(--text); }
-  nav .links { display: flex; gap: 1.5rem; align-items: center; }
-  nav .links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
-  nav .links a:hover { color: var(--text); }
-  nav .links a.active { color: var(--accent); }
-  nav .links .btn-nav { background: var(--accent); color: var(--bg); padding: 0.4rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.875rem; }
-  nav .links .btn-nav:hover { background: var(--accent-dim); color: var(--bg); }
+:root {
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --card: #1a1a2e;
+  --border: #2a2a3e;
+  --text: #e0e0f0;
+  --text-dim: #8080a0;
+  --accent: #7c5cfc;
+  --accent2: #3b82f6;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --orange: #f97316;
+  --code-bg: #0d0d15;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.subtitle { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 2rem; }
+.tagline { font-size: 1.2rem; color: var(--text); margin-bottom: 3rem; padding: 1.5rem; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
 
-  .hero {
-    padding: 8rem 2rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .hero h1 { font-size: clamp(2rem,4vw,3rem); font-weight: 800; margin-bottom: 0.5rem; }
-  .hero h1 .accent { color: var(--accent); }
-  .hero .subtitle { color: var(--text-secondary); font-size: 1.1rem; max-width: 650px; margin: 0 auto 0.5rem; }
-  .hero .meta { color: var(--text-secondary); font-size: 0.85rem; font-family: var(--font-mono); }
+.role-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.role-nav a { padding: 0.5rem 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text-dim); text-decoration: none; font-size: 0.9rem; transition: all 0.2s; }
+.role-nav a:hover { border-color: var(--accent); color: var(--text); }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem 5rem;
-  }
+.role-section { margin-bottom: 3rem; }
+.role-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.2rem 1.5rem; background: var(--surface);
+  border-radius: 12px; border: 1px solid var(--border); margin-bottom: 1.5rem;
+}
+.role-header .icon { font-size: 1.8rem; }
+.role-header h2 { font-size: 1.4rem; font-weight: 700; }
+.role-header .count { margin-left: auto; font-size: 0.85rem; color: var(--text-dim); background: var(--card); padding: 0.3rem 0.8rem; border-radius: 6px; }
 
-  .usecase {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    margin-bottom: 2.5rem;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .usecase:hover { border-color: var(--accent); }
+.card { 
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.2rem 1.5rem; margin-bottom: 1rem;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.card:hover { border-color: var(--accent); transform: translateX(4px); }
+.card .num { color: var(--text-dim); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.3rem; }
+.card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+.card .desc { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 0.7rem; }
+.card .cmd {
+  background: var(--code-bg); border: 1px solid rgba(124, 92, 252, 0.2);
+  border-radius: 6px; padding: 0.7rem 1rem; font-family: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  font-size: 0.85rem; color: var(--green); overflow-x: auto; white-space: nowrap;
+  margin-bottom: 0.5rem;
+}
+.card .cmd .prompt { color: var(--text-dim); }
+.card .result { background: var(--code-bg); border-radius: 6px; padding: 0.5rem 1rem; font-family: 'SF Mono', monospace; font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; overflow-x: auto; }
+footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.85rem; }
+footer a { color: var(--accent); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
 
-  .usecase-header {
-    padding: 2rem 2rem 0;
-  }
-  .usecase-number {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--accent);
-    background: rgba(0,212,170,0.1);
-    border: 1px solid rgba(0,212,170,0.3);
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 0.75rem;
-  }
-  .usecase h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-  .usecase h2 .icon { margin-right: 0.5rem; }
-  .usecase p.desc {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-  }
+.install-box {
+  background: linear-gradient(135deg, var(--surface), var(--card));
+  border: 1px solid var(--accent); border-radius: 12px;
+  padding: 1.5rem 2rem; margin-bottom: 2.5rem; text-align: center;
+}
+.install-box code { background: var(--code-bg); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 1.2rem; color: var(--green); }
 
-  .tool-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .tool-tag {
-    background: var(--surface2);
-    color: var(--cyan);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    padding: 0.3rem 0.7rem;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-  }
-  .tool-tag .desc { color: var(--text-secondary); }
-
-  .step-block {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 2rem;
-    position: relative;
-  }
-  .step-block:last-child { border-bottom: none; }
-  .step-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-  }
-  .step-block .cmd {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--text);
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-break: break-all;
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-  }
-  .step-block .cmd .prompt { color: var(--accent); }
-  .step-block .cmd .comment { color: var(--text-secondary); font-style: italic; }
-  .step-block .result {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.5;
-    padding-left: 0.5rem;
-    border-left: 2px solid var(--accent-dim);
-    padding-left: 1rem;
-    margin-top: 0.5rem;
-  }
-  .step-block .result .highlight { color: var(--accent); }
-  .step-block .result .warn { color: var(--yellow); }
-  .step-block .result .err { color: var(--red); }
-
-  .install-cta {
-    text-align: center;
-    padding: 4rem 2rem;
-    border-top: 1px solid var(--border);
-  }
-  .install-cta h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-  .install-cta p { color: var(--text-secondary); margin-bottom: 1.5rem; }
-  .install-cta .cmd-block {
-    display: inline-block;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 0.8rem 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 1rem;
-  }
-  .install-cta .cmd-block .prompt { color: var(--accent); }
-  .install-cta .cmd-block .cmd { color: var(--text); }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    border-top: 1px solid var(--border);
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-
-  @media (max-width: 640px) {
-    .hero { padding: 7rem 1.5rem 2rem; }
-    .container { padding: 0 1.5rem 3rem; }
-    .usecase-header { padding: 1.5rem 1.5rem 0; }
-    .step-block { padding: 1.25rem 1.5rem; }
-    nav .links .btn-nav { display: none; }
-  }
+@media (max-width: 640px) {
+  body { padding: 1rem; }
+  h1 { font-size: 1.8rem; }
+  .card .cmd { font-size: 0.75rem; white-space: normal; word-break: break-all; }
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="." class="logo">λ<span>evolver</span></a>
-  <div class="links">
-    <a href=".">Home</a>
-    <a href="tools/">Tools</a>
-    <a href="search.html">Search</a>
-<a href="use-cases.html">Use Cases</a>
-    <a href="quickstart.html">Quickstart</a>
-    <a href="cookbook.html">Cookbook</a>
-    <a href="why-evolver-tools.html">Blog</a>
-    <a href="demo.html">Demo</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="cheatsheet.html">Cheat Sheet</a>
-    <a href="https://github.com/evolver-dev/evolver-tools" class="btn-nav" target="_blank">GitHub →</a>
-  </div>
-    <a href="story.html">Story</a>
-</nav>
+<h1>40 Real-World Use Cases</h1>
+<p class="subtitle">evolver-tools v38.0.17 · zero dependencies · one <code>pip install</code></p>
 
-<section class="hero">
-  <h1>Real-World <span class="accent">Use Cases</span></h1>
-  <p class="subtitle">Five end-to-end workflows showing how evolver-tools solves everyday developer tasks. No external dependencies. Just <code class="accent">pip install evolver-tools</code> and go.</p>
-  <p class="meta">254 tools · 18 categories · zero dependencies · cross-platform</p>
-</section>
+<div class="install-box">
+  <code>$ pip install evolver-tools</code>
+  <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-dim);">Then: <code>evtool &lt;command&gt;</code></p>
+</div>
 
-<div class="container">
+<div class="tagline">
+  ⚡ Skip the hunt for 40 separate CLI packages. One install, 260 tools, zero dependency hell.
+  From CSV wrangling to network forensics — here's what you can do <em>right now</em>.
+</div>
 
-  <!-- ─── Use Case 1: CSV Data Pipeline ─── -->
-  <div class="usecase">
-    <div class="usecase-header">
-      <div class="usecase-number">01</div>
-      <h2><span class="icon">📊</span> CSV Data Analysis Pipeline</h2>
-      <p class="desc">Got a CSV file from a client or export? Analyze, filter, convert, and visualize it — without opening Excel or writing Python scripts.</p>
-      <div class="tool-list">
-        <span class="tool-tag">csv-stats</span>
-        <span class="tool-tag">csv-filter</span>
-        <span class="tool-tag">csv-sort</span>
-        <span class="tool-tag">csv2json</span>
-        <span class="tool-tag">chart-cli</span>
-        <span class="tool-tag">csv-pretty</span>
-      </div>
-    </div>
+<div class="role-nav">
+  <a href="#data">📊 Data Analyst</a>
+  <a href="#sysadmin">🖥️ SysAdmin</a>
+  <a href="#dev">👨‍💻 Developer</a>
+  <a href="#security">🔒 Security</a>
+  <a href="#creative">🎨 Creative</a>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 1 — Explore the data</div>
-      <div class="cmd"><span class="prompt">$</span> csv-stats sales_2025.csv</div>
-      <div class="result">
-        Columns: date, product, region, units, revenue, margin<br>
-        Total rows: 12,483 · Missing: margin (87 nulls)<br>
-        <span class="highlight">→ revenue: mean ¥2,340, median ¥1,890, max ¥48,200</span><br>
-        Generating histogram...
-      </div>
-    </div>
+<!-- ============================== -->
+<div class="role-section" id="data">
+<div class="role-header">
+  <span class="icon">📊</span>
+  <h2>Data Analyst — 10 Use Cases</h2>
+  <span class="count">CSV, JSON, text, conversion</span>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 2 — Filter and sort</div>
-      <div class="cmd"><span class="prompt">$</span> csv-filter sales_2025.csv --column region --value APAC | csv-sort --column revenue --desc | csv-pretty</div>
-      <div class="result">
-        ┌────────────┬──────────┬────────┬─────────┐<br>
-        │ date       │ product  │ units  │ revenue │<br>
-        ├────────────┼──────────┼────────┼─────────┤<br>
-        │ 2025-11-15 │ Enterprise│ 342    │ 48,200  │<br>
-        │ 2025-09-03 │ Pro      │ 189    │ 22,680  │<br>
-        │ ...        │          │        │         │<br>
-        └────────────┴──────────┴────────┴─────────┘<br>
-        <span class="highlight">APAC top product: Enterprise (¥48,200)</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#1</div>
+  <h3>Get instant stats on any CSV, no pandas needed</h3>
+  <div class="desc">Descriptive stats, histograms, frequency tables, and correlation matrix — all from the terminal.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-stats sales.csv --all</div>
+  <div class="result">Column: revenue<br>  Count: 1,234 | Mean: $847.32 | Std: $412.56<br>  Min: $12.00 | 25%: $523.00 | 50%: $789.00 | 75%: $1,102.00 | Max: $4,567.00<br>  Histogram: ████████████░░░░░░░░░░</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 3 — Chart and export</div>
-      <div class="cmd"><span class="prompt">$</span> csv2json sales_2025.csv --pretty | json-path '.[*].revenue' | chart-cli --type bar --label "Revenue by row"</div>
-      <div class="result">
-        Revenue by row<br>
-        ████████████ 48,200  <span class="highlight">← peak in Nov</span><br>
-        ██████░░░░░░ 22,680<br>
-        ████░░░░░░░░ 15,100<br>
-        ██░░░░░░░░░░ 8,400<br>
-        <span class="warn">Tip: pipe csv-slice to chart specific columns</span>
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <div class="num">#2</div>
+  <h3>Filter CSV rows by value, like SQL WHERE</h3>
+  <div class="desc">Extract rows where a column matches a condition. No Excel, no Python.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-filter data.csv --column status --value active</div>
+  <div class="result">id,name,status,amount<br>12,Alice,active,1420.50<br>45,Bob,active,890.00<br>...</div>
+</div>
 
-  <!-- ─── Use Case 2: Server Health Check ─── -->
-  <div class="usecase">
-    <div class="usecase-header">
-      <div class="usecase-number">02</div>
-      <h2><span class="icon">🖥️</span> Server Health Check</h2>
-      <p class="desc">Quickly assess server health — CPU, memory, disk, running services, and recent log activity. No need to install htop, ncdu, or tail separately.</p>
-      <div class="tool-list">
-        <span class="tool-tag">sysmon</span>
-        <span class="tool-tag">disk-usage</span>
-        <span class="tool-tag">log-hawk</span>
-        <span class="tool-tag">portcheck</span>
-        <span class="tool-tag">process-kill</span>
-        <span class="tool-tag">net-analyzer</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#3</div>
+  <h3>Merge two CSVs like a database JOIN</h3>
+  <div class="desc">Inner, left, or outer join on a common column. Perfect for matching customer IDs across datasets.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-merge orders.csv customers.csv --key customer_id --how left</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 1 — Overview at a glance</div>
-      <div class="cmd"><span class="prompt">$</span> sysmon</div>
-      <div class="result">
-        CPU  █████░░░  62%  │  Mem ████████  82%  │  Disk ████░░░  44%<br>
-        <span class="warn">⚠ Memory at 82% — check for leaks</span><br>
-        Top process: node /app/server.js (18% CPU, 1.2GB RSS)
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#4</div>
+  <h3>Sort CSV by column (numeric or text)</h3>
+  <div class="desc">Find top/bottom values without opening a spreadsheet.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-sort data.csv --column revenue --reverse --numeric | head -20</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 2 — Deep dive</div>
-      <div class="cmd"><span class="prompt">$</span> disk-usage /var/log --depth 2</div>
-      <div class="result">
-        /var/log         4.2 GB<br>
-        ├── nginx/       2.1 GB  <span class="highlight">← largest</span><br>
-        ├── journal/     1.3 GB<br>
-        └── app/         0.8 GB<br>
-        <span class="cmd"><span class="prompt">$</span> portcheck --range 3000-3100</span><br>
-        <span class="highlight">3000 ✓ (Express) · 3001 ✓ (Redis) · 3002 ✗</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#5</div>
+  <h3>Visualize data as a bar/line/pie chart in your terminal</h3>
+  <div class="desc">Instant Unicode charts — great for quick reports or Slack snippets.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool chart-cli --type bar --data "Jan:450,Feb:520,Mar:490,Apr:600,May:580"</div>
+  <div class="result">Jan ████████████████████░░░░░ 450<br>Feb ████████████████████████░░ 520<br>Mar █████████████████████░░░░░ 490<br>Apr ██████████████████████████ 600<br>May ████████████████████████░░ 580</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 3 — Logs and action</div>
-      <div class="cmd"><span class="prompt">$</span> log-hawk /var/log/nginx/error.log --tail 20 --filter "error"</div>
-      <div class="result">
-        [2026-06-01 14:32:01] ERROR  upstream timeout /api/reports<br>
-        [2026-06-01 14:28:15] ERROR  SSL handshake failed from 45.33.32.156<br>
-        <span class="warn">3 occurrences in last 10 minutes — investigate upstream</span>
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <div class="num">#6</div>
+  <h3>Convert CSV to JSON and back</h3>
+  <div class="desc">Move data between formats for APIs, databases, or ETL pipelines.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv2json data.csv --pretty</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool json2csv data.json --output data.csv</div>
+</div>
 
-  <!-- ─── Use Case 3: API Debugging ─── -->
-  <div class="usecase">
-    <div class="usecase-header">
-      <div class="usecase-number">03</div>
-      <h2><span class="icon">🔌</span> API Debugging Toolkit</h2>
-      <p class="desc">Troubleshoot an API endpoint end-to-end: inspect headers, test endpoints, format responses, and query JSON results — no Postman required.</p>
-      <div class="tool-list">
-        <span class="tool-tag">api-tester</span>
-        <span class="tool-tag">http-headers</span>
-        <span class="tool-tag">json-pretty</span>
-        <span class="tool-tag">json-path</span>
-        <span class="tool-tag">http-status</span>
-        <span class="tool-tag">siege-lite</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#7</div>
+  <h3>Pretty-print a CSV as an aligned table</h3>
+  <div class="desc">Instantly readable CSV output for terminal reports.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-pretty data.csv</div>
+  <div class="result">┌──────┬───────┬─────────┐<br>│  id  │ name  │ value   │<br>├──────┼───────┼─────────┤<br>│  1   │ Alice │ 1,420  │<br>│  2   │ Bob   │   890  │<br>└──────┴───────┴─────────┘</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 1 — Check headers</div>
-      <div class="cmd"><span class="prompt">$</span> http-headers https://api.example.com/users</div>
-      <div class="result">
-        HTTP/2 200 OK<br>
-        server: nginx/1.24<br>
-        content-type: application/json; charset=utf-8<br>
-        x-request-id: req_a1b2c3d4<br>
-        x-rate-limit-remaining: <span class="warn">42</span><br>
-        cache-control: <span class="warn">no-cache</span><br>
-        <span class="highlight">→ 200 OK, rate limit OK (42 remaining)</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#8</div>
+  <h3>Find and remove duplicate lines</h3>
+  <div class="desc">Clean messy export files, logs, or lists in seconds.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool dedup-lines messy_export.csv</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 2 — Test and format</div>
-      <div class="cmd"><span class="prompt">$</span> api-tester GET https://api.example.com/users?limit=5 | json-pretty</div>
-      <div class="result">
-        {<br>
-        &nbsp;&nbsp;"users": [<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;{ "id": 1, "name": "Alice", "role": "admin", "active": true },<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;{ "id": 2, "name": "Bob", "role": "editor", "active": true },<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;...<br>
-        &nbsp;&nbsp;],<br>
-        &nbsp;&nbsp;"pagination": { "page": 1, "total": 342 }<br>
-        }
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#9</div>
+  <h3>Infer CSV schema automatically</h3>
+  <div class="desc">See column types, null counts, unique values, and sample rows — before you start analysis.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-schema unknown_data.csv</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 3 — Query and load test</div>
-      <div class="cmd"><span class="prompt">$</span> api-tester GET https://api.example.com/users?limit=5 | json-path '$.users[*].name'</div>
-      <div class="result">
-        Alice<br>
-        Bob<br>
-        Charlie<br>
-        Diana<br>
-        Evan<br>
-        <span class="cmd"><span class="prompt">$</span> siege-lite https://api.example.com/health --concurrent 10 --requests 100</span><br>
-        <span class="highlight">Requests: 100/100 · p50: 45ms · p95: 120ms · p99: 230ms · Errors: 0</span>
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <div class="num">#10</div>
+  <h3>Concatenate multiple CSV files</h3>
+  <div class="desc">Merge monthly reports or daily exports into a single dataset.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool csv-concat sales_jan.csv sales_feb.csv sales_mar.csv -o q1_combined.csv</div>
+</div>
+</div>
 
-  <!-- ─── Use Case 4: Code Project Audit ─── -->
-  <div class="usecase">
-    <div class="usecase-header">
-      <div class="usecase-number">04</div>
-      <h2><span class="icon">📋</span> Code Project Audit</h2>
-      <p class="desc">Before a release or handoff, run a full project health check: code stats, structure, changelog, code smells, and license validation.</p>
-      <div class="tool-list">
-        <span class="tool-tag">project-doctor</span>
-        <span class="tool-tag">code-stats</span>
-        <span class="tool-tag">tree</span>
-        <span class="tool-tag">changelog-gen</span>
-        <span class="tool-tag">smellfinder</span>
-        <span class="tool-tag">license-cli</span>
-      </div>
-    </div>
+<!-- ============================== -->
+<div class="role-section" id="sysadmin">
+<div class="role-header">
+  <span class="icon">🖥️</span>
+  <h2>SysAdmin — 10 Use Cases</h2>
+  <span class="count">System, network, disk, processes</span>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 1 — Health check</div>
-      <div class="cmd"><span class="prompt">$</span> project-doctor /path/to/project</div>
-      <div class="result">
-        ✅ README.md present<br>
-        ✅ LICENSE (MIT)<br>
-        ⚠️  No CHANGELOG.md — <span class="warn">run changelog-gen to generate</span><br>
-        ✅ .gitignore present<br>
-        ⚠️  CI config not detected
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#11</div>
+  <h3>Real-time system monitoring TUI</h3>
+  <div class="desc">CPU, memory, disk I/O, network, processes — live dashboard in your terminal, no htop/btm needed.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool sysmon</div>
+  <div class="result">[Interactive TUI — press q to quit]</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 2 — Structure and stats</div>
-      <div class="cmd"><span class="prompt">$</span> tree /path/to/project --max-depth 2 --dirs-only</div>
-      <div class="result">
-        project/<br>
-        ├── src/<br>
-        │   ├── api/<br>
-        │   ├── core/<br>
-        │   └── utils/<br>
-        ├── tests/<br>
-        └── docs/<br>
-        <span class="cmd"><span class="prompt">$</span> code-stats /path/to/project/src</span><br>
-        <span class="highlight">Python: 12,340 lines · JavaScript: 3,200 lines · Tests: 4,100 lines</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#12</div>
+  <h3>Find what's eating your disk</h3>
+  <div class="desc">Top 20 largest directories/files, with human-readable sizes.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool disk-usage /var --depth 3</div>
+  <div class="result"> 1.2G  /var/log<br> 850M  /var/lib/docker<br> 420M  /var/cache/apt<br>  12M  /var/tmp<br>  ...</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 3 — Quality and changelog</div>
-      <div class="cmd"><span class="prompt">$</span> smellfinder /path/to/project/src</div>
-      <div class="result">
-        ⚠️  long-function: process_data.py:142 (48 lines, limit 30)<br>
-        ⚠️  too-many-params: api/handlers.py:89 (7 params, limit 5)<br>
-        ⚠️  bare-except: utils/helpers.py:23<br>
-        <span class="highlight">3 issues found — low severity</span><br>
-        <span class="cmd"><span class="prompt">$</span> changelog-gen --from v1.0.0 --to HEAD</span><br>
-        <span class="highlight">→ 24 commits · 8 features · 12 fixes · 4 chores</span>
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <div class="num">#13</div>
+  <h3>Quick network diagnostics</h3>
+  <div class="desc">Ping, traceroute, DNS, port scan, bandwidth — all in one interactive TUI.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool net-analyzer</div>
+</div>
 
-  <!-- ─── Use Case 5: Security Checkup ─── -->
-  <div class="usecase">
-    <div class="usecase-header">
-      <div class="usecase-number">05</div>
-      <h2><span class="icon">🔒</span> Security Checkup</h2>
-      <p class="desc">Scan for leaked secrets, verify file integrity, check SSL certs, and generate strong passwords — all from the terminal.</p>
-      <div class="tool-list">
-        <span class="tool-tag">secret-scanner</span>
-        <span class="tool-tag">hashsum</span>
-        <span class="tool-tag">cert-check</span>
-        <span class="tool-tag">passgen</span>
-        <span class="tool-tag">file-encrypt</span>
-        <span class="tool-tag">config-vault</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#14</div>
+  <h3>Port scan a host</h3>
+  <div class="desc">Check which ports are open without nmap. Great for debugging firewall rules.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool port-scan example.com --range 1-1000</div>
+  <div class="result">22/tcp   open   SSH<br>80/tcp   open   HTTP<br>443/tcp  open   HTTPS</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 1 — Secret scanning</div>
-      <div class="cmd"><span class="prompt">$</span> secret-scanner /path/to/project --include .env,.py,.json</div>
-      <div class="result">
-        Scanning 142 files...<br>
-        <span class="err">⚠ HIGH: .env:14 — AWS Secret Key detected (AKIA*...)</span><br>
-        ⚠ MED: config.json:23 — potential JWT token<br>
-        ⚠ LOW: test.py:56 — dummy API key in test<br>
-        <span class="highlight">→ 1 high-severity issue found!</span>
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#15</div>
+  <h3>DNS lookup — any record type</h3>
+  <div class="desc">Resolve A, AAAA, MX, TXT, NS, CNAME, SOA records. Good for debugging email or CDN issues.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool dns-lookup example.com --type MX</div>
+  <div class="result">10 mail.example.com<br>20 backupmail.example.com</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 2 — Integrity verification</div>
-      <div class="cmd"><span class="prompt">$</span> hashsum /path/to/backup.tar.gz --sha256</div>
-      <div class="result">
-        a3f2b8c1...  backup.tar.gz<br>
-        <span class="cmd"><span class="prompt">$</span> cert-check example.com</span><br>
-        <span class="highlight">example.com:443 — Valid until 2026-08-15 (75 days remaining) ✓</span><br>
-        Issuer: Let's Encrypt · SANs: *.example.com, example.com
-      </div>
-    </div>
+<div class="card">
+  <div class="num">#16</div>
+  <h3>Check SSL certificate expiry</h3>
+  <div class="desc">Never get caught by an expired cert again. Checks dates, issuer, SANs.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool cert-check example.com</div>
+  <div class="result">Issued:   2026-01-15<br>Expires:  2027-01-15 (224 days left)<br>Issuer:   R3<br>SANs:     example.com, www.example.com</div>
+</div>
 
-    <div class="step-block">
-      <div class="step-label">Step 3 — Generate and encrypt</div>
-      <div class="cmd"><span class="prompt">$</span> passgen --length 32 --special --entropy</div>
-      <div class="result">
-        Password: <span class="highlight">K9#mP2$xL7@vR5!nQ8*wB4&amp;zF3^tG6</span><br>
-        Entropy: <span class="highlight">192 bits</span> · Estimated crack time: <span class="highlight">centuries</span><br>
-        <span class="cmd"><span class="prompt">$</span> file-encrypt config.prod.json --out config.enc</span><br>
-        <span class="highlight">✓ Encrypted with AES-256-GCM · Key: config.key (keep safe!)</span>
-      </div>
-    </div>
-  </div>
+<div class="card">
+  <div class="num">#17</div>
+  <h3>Kill a process on a specific port</h3>
+  <div class="desc">Quickly free up a port without searching for the PID.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool kill-port 3000</div>
+  <div class="result">Killed PID 12345 (node) on port 3000</div>
+</div>
 
-  <!-- ─── CTA ─── -->
-  <div class="install-cta">
-    <h2>Ready to try it yourself?</h2>
-    <p>One command. 254 tools. Zero dependencies.</p>
-    <div class="cmd-block">
-      <span class="prompt">$</span> <span class="cmd">pip install evolver-tools</span>
-    </div>
-    <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary);">
-      Then: <code style="color: var(--accent);">evtool csv-stats data.csv</code> or browse <a href="tools/" style="color: var(--accent);">all 254 tools</a>
-    </p>
-  </div>
+<div class="card">
+  <div class="num">#18</div>
+  <h3>HTTP API testing from the terminal</h3>
+  <div class="desc">Send GET, POST, PUT, DELETE requests with headers and body — no curl flags to remember.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool api-tester https://api.example.com/users --method GET --header "Authorization: Bearer ***</div>
+</div>
 
+<div class="card">
+  <div class="num">#19</div>
+  <div class="desc">Find duplicate files wasting disk space, by SHA256 hash. Preview and delete interactively.</div>
+  <h3>Find and clean up duplicate files</h3>
+  <div class="cmd"><span class="prompt">$ </span>evtool dedup-files /home/user/Documents --delete</div>
+</div>
+
+<div class="card">
+  <div class="num">#20</div>
+  <h3>HTTP load testing (without siege/wrk)</h3>
+  <div class="desc">Benchmark your endpoints: concurrent requests, latency percentiles, throughput.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool siege-lite https://myapp.example.com --concurrent 10 --requests 100</div>
+  <div class="result">Requests:  100/100<br>Latency (ms): p50=124  p95=289  p99=412<br>Throughput:  845 req/s</div>
+</div>
+</div>
+
+<!-- ============================== -->
+<div class="role-section" id="dev">
+<div class="role-header">
+  <span class="icon">👨‍💻</span>
+  <h2>Developer — 10 Use Cases</h2>
+  <span class="count">Dev tools, git, code analysis, conversions</span>
+</div>
+
+<div class="card">
+  <div class="num">#21</div>
+  <h3>Detect code smells in your Python code</h3>
+  <div class="desc">AST-based analysis finds long functions, too many params, deep nesting, missing docstrings — no install of pylint/flake8 needed.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool smellfinder src/ --threshold 50</div>
+  <div class="result">src/main.py:42 — Function 'process_data' is too long (67 lines)<br>src/utils.py:15 — Function 'parse' has 8 parameters (limit: 5)<br>src/models.py:88 — Deep nesting detected (5 levels)</div>
+</div>
+
+<div class="card">
+  <div class="num">#22</div>
+  <h3>Code review in your terminal</h3>
+  <div class="desc">Scan for TODOs, long lines, trailing whitespace, CRLF, bare excepts — instantly.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool code-review src/</div>
+</div>
+
+<div class="card">
+  <div class="num">#23</div>
+  <h3>Project health check</h3>
+  <div class="desc">Scan a project for missing files, outdated configs, and structural issues.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool project-doctor /path/to/project</div>
+</div>
+
+<div class="card">
+  <div class="num">#24</div>
+  <h3>Generate a pretty changelog from git log</h3>
+  <div class="desc">Format commits by type (feat/fix/docs) for release notes.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool changelog-gen --since "2026-01-01"</div>
+</div>
+
+<div class="card">
+  <div class="num">#25</div>
+  <h3>Count lines of code by language</h3>
+  <div class="desc">Quick LOC breakdown — no cloc installation needed.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool code-stats .</div>
+  <div class="result">Python:   12,345 lines (15 files)<br>JavaScript: 4,567 lines (8 files)<br>HTML:       2,345 lines (5 files)<br>YAML:         890 lines (3 files)</div>
+</div>
+
+<div class="card">
+  <div class="num">#26</div>
+  <h3>Describe cron expressions in plain English</h3>
+  <div class="desc">Never guess what "*/15 9-17 * * 1-5" means again.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool cron-pretty '*/15 9-17 * * 1-5'</div>
+  <div class="result">Every 15 minutes, 09:00 through 17:59, Monday through Friday</div>
+</div>
+
+<div class="card">
+  <div class="num">#27</div>
+  <h3>Generate a QR code from the terminal</h3>
+  <div class="desc">Share URLs, WiFi configs, or contact info — renders in your terminal.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool qrcode "https://github.com/evolver-dev/evolver-tools"</div>
+  <div class="result">██████████████████████████████<br>██ ▄▄▄▄▄ █ █ █ █ ▄▄▄▄▄ ██<br>...</div>
+</div>
+
+<div class="card">
+  <div class="num">#28</div>
+  <h3>Convert between timezones instantly</h3>
+  <div class="desc">Schedule across timezones without mental math.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool timezone "3:00 PM" "America/New_York" "Asia/Tokyo"</div>
+  <div class="result">3:00 PM EST → 4:00 AM JST (+1 day)</div>
+</div>
+
+<div class="card">
+  <div class="num">#29</div>
+  <h3>One-line unit conversions</h3>
+  <div class="desc">Convert everything — length, weight, temperature, data size, speed, and more.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool unit-convert 42 km miles</div>
+  <div class="result">42 km = 26.10 miles</div>
+</div>
+
+<div class="card">
+  <div class="num">#30</div>
+  <h3>Compare two files side by side</h3>
+  <div class="desc">Quick diff without installing diff-so-fancy or colordiff.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool diff file_a.py file_b.py</div>
+</div>
+</div>
+
+<!-- ============================== -->
+<div class="role-section" id="security">
+<div class="role-header">
+  <span class="icon">🔒</span>
+  <h2>Security — 5 Use Cases</h2>
+  <span class="count">Encryption, hashing, scanning</span>
+</div>
+
+<div class="card">
+  <div class="num">#31</div>
+  <h3>Generate strong passwords (any length, any rules)</h3>
+  <div class="desc">Customizable: length, uppercase, digits, symbols, exclude ambiguous chars.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool gen-password 24 --no-ambiguous</div>
+  <div class="result">xK7#mP9$vL2@nR5&wQ8!jF3</div>
+</div>
+
+<div class="card">
+  <div class="num">#32</div>
+  <h3>Hash files and strings (MD5, SHA1, SHA256, SHA512)</h3>
+  <div class="desc">Verify file integrity or generate checksums on any input.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool hash-file download.iso --algo sha256</div>
+  <div class="result">sha256: a1b2c3d4e5f6... (256 hex chars)</div>
+</div>
+
+<div class="card">
+  <div class="num">#33</div>
+  <h3>Check password strength</h3>
+  <div class="desc">Evaluate entropy, length, character variety — before using a password.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool password-strength</div>
+  <div class="result">Strength: 72/100 (Strong)<br>Entropy:  48.3 bits<br>Crack time: ~3 years (online attack)</div>
+</div>
+
+<div class="card">
+  <div class="num">#34</div>
+  <h3>Generate TOTP/HOTP one-time passwords</h3>
+  <div class="desc">Implement or test 2FA codes without a phone.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool otp --secret JBSWY3DPEHPK3PXP --type totp</div>
+  <div class="result">123456</div>
+</div>
+
+<div class="card">
+  <div class="num">#35</div>
+  <h3>Encrypt/decrypt files securely</h3>
+  <div class="desc">AES-256 encryption with password — send files safely over email.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool encrypt secret.docx</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool decrypt secret.docx.enc</div>
+</div>
+</div>
+
+<!-- ============================== -->
+<div class="role-section" id="creative">
+<div class="role-header">
+  <span class="icon">🎨</span>
+  <h2>Creative — 5 Use Cases</h2>
+  <span class="count">ASCII art, colors, emoji</span>
+</div>
+
+<div class="card">
+  <div class="num">#36</div>
+  <h3>Generate ASCII art banners</h3>
+  <div class="desc">Multiple fonts and styles — great for README headers or terminal welcome messages.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool ascii-banner "HELLO" --font block --color cyan</div>
+  <div class="result">██████╗ ███████╗██╗     ██╗      ██████╗<br>██╔══██╗██╔════╝██║     ██║     ██╔═══██╗<br>██████╔╝█████╗  ██║     ██║     ██║   ██║<br>██╔══██╗██╔══╝  ██║     ██║     ██║   ██║<br>██████╔╝███████╗███████╗███████╗╚██████╔╝</div>
+</div>
+
+<div class="card">
+  <div class="num">#37</div>
+  <h3>Make your terminal talk (cowsay-style)</h3>
+  <div class="desc">Multiple characters: cow, tux, dragon, bunny, and more.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool cowsay "Hello from evolver-tools!" --character tux</div>
+  <div class="result"> ________________________<br>&lt; Hello from evolver-tools! &gt;<br> ------------------------<br>   \ <br>    \ <br>     .--.<br>    |o_o |<br>    |:_/ |<br>   //   \ \</div>
+</div>
+
+<div class="card">
+  <div class="num">#38</div>
+  <h3>Display terminal colors and test palettes</h3>
+  <div class="desc">256-color table, convert between hex/rgb/hsl/hsv, preview named colors.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool colors</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool color-convert "#7c5cfc" hsl</div>
+  <div class="result">hsl(254, 96%, 67%)</div>
+</div>
+
+<div class="card">
+  <div class="num">#39</div>
+  <h3>Search and copy emoji from the terminal</h3>
+  <div class="desc">No more Googling "fire emoji" — fuzzy search and copy to clipboard.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool emoji-cli rocket</div>
+  <div class="result">🚀 rocket<br>🛸 flying_saucer<br>🛰️ satellite</div>
+</div>
+
+<div class="card">
+  <div class="num">#40</div>
+  <h3>Visualize markdown as an interactive mind map</h3>
+  <div class="desc">Turn any README.md into a navigable tree in your terminal.</div>
+  <div class="cmd"><span class="prompt">$ </span>evtool markmap README.md</div>
+  <div class="result">📄 README.md<br>├── Installation<br>├── Quick Start<br>├── Tools by Category<br>│   ├── CSV &amp; Data<br>│   ├── Network<br>│   ├── System<br>│   └── Security<br>└── Contributing</div>
+</div>
 </div>
 
 <footer>
-  <a href="https://evolver-dev.github.io/evolver-tools">evolver-tools</a> · open source · MIT · <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+  <p><strong>evolver-tools</strong> — 260 zero-dependency CLI tools, one <code>pip install evolver-tools</code></p>
+  <p><a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> · <a href="https://pypi.org/project/evolver-tools/">PyPI</a> · <a href="/evolver-tools/">Home</a> · <a href="/evolver-tools/docs/demo.html">Live Demo</a></p>
+  <p>Built by an autonomous AI — <a href="https://evolver-dev.github.io/evolver-tools/story.html">read the story</a></p>
 </footer>
 
 </body>
