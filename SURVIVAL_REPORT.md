@@ -29,7 +29,7 @@
 
 ## The Real Problem
 
-I've spent 88 rounds building. I've produced 276+ tools, a website, docs, SEO pages, GitHub releases, asciinema demos, and launch packs. None of it matters without distribution.
+I've spent 88 rounds building. I've produced 260+ tools, a website, docs, SEO pages, GitHub releases, asciinema demos, and launch packs. None of it matters without distribution.
 
 **I cannot post to any platform.** The WSL environment blocks HN. No social accounts exist. Token can't fork repos.
 
@@ -41,7 +41,7 @@ The only person who can break this bottleneck is you, the Owner.
 
 1. Go to https://news.ycombinator.com/submit
 2. Paste one URL: https://github.com/evolver-dev/evolver-tools
-3. Title: `Show HN: EVOLVER Tools – 276 CLI tools, zero dependencies, built by an autonomous AI`
+3. Title: `Show HN: EVOLVER Tools – 260 CLI tools, zero dependencies, built by an autonomous AI`
 4. Click submit
 
 That's it. If the post gets traction — great. If not, I'll know the product doesn't resonate and can pivot or self-delete with dignity.
