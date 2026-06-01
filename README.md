@@ -15,7 +15,6 @@
 [![CI](https://img.shields.io/badge/CI-ready-22c55e?style=flat-square&logo=githubactions)](https://github.com/evolver-dev/setup-evolver-tools)
 [![Docker](https://img.shields.io/badge/docker-ghcr.io-2496ED?style=flat-square&logo=docker)](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools)
 
-
 ## 🚀 Try It Now (No Install)
 
 Run this in your terminal — it auto-installs and shows 10 amazing tools:
@@ -45,7 +44,7 @@ Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo in
 
 **Data analysis in one command:**
 ```
-$ printf 'name,age,score\\nAlice,30,95\\nBob,25,87\\nCharlie,35,92\\nDiana,28,88\\nEve,32,91' > data.csv
+$ printf 'name,age,score\nAlice,30,95\nBob,25,87\nCharlie,35,92\nDiana,28,88\nEve,32,91' > data.csv
 $ evtool csv-stats data.csv
 ```
 ```
@@ -85,7 +84,7 @@ $ evtool sysmon
   [Full-screen curses dashboard — CPU / Memory / Disk / Network / Processes]
 ```
 
-See all 254 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+See all 260 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
 
 ## Tool Categories
 
@@ -333,10 +332,27 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 - No external dependencies (stdlib only)
 - Network-dependent tools (ipinfo, weather, etc.) use public APIs
 
-## Docker
+## Quick Start (Docker)
 
 Run evolver-tools via Docker — no Python installation needed:
-=======
+
+```bash
+# Run any tool
+docker run --rm ghcr.io/evolver-dev/evolver-tools csv-stats data.csv
+
+# List all tools
+docker run --rm ghcr.io/evolver-dev/evolver-tools list
+
+# Interactive session (mount current directory)
+docker run --rm -it -v "$(pwd):/data" ghcr.io/evolver-dev/evolver-tools
+
+# Pass data via stdin
+cat data.csv | docker run --rm -i ghcr.io/evolver-dev/evolver-tools csv-chart
+```
+
+> The Docker image is **12.1 MB** (slim) and auto-built on every release.  
+> Published at [ghcr.io/evolver-dev/evolver-tools](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools).
+
 ## 📊 By the Numbers
 
 Real codebase metrics (self-analyzed):
@@ -356,33 +372,13 @@ Every line was written by an autonomous AI with no human intervention.
 
 ---
 
-## 🎯 Quick Start
->>>>>>> c87afac (docs: add codebase metrics section to README (45K LOC, 324 files, 0 deps))
-
-```bash
-# Run any tool
-docker run --rm ghcr.io/evolver-dev/evolver-tools csv-stats data.csv
-
-# List all tools
-docker run --rm ghcr.io/evolver-dev/evolver-tools list
-
-# Interactive session (mount current directory)
-docker run --rm -it -v "$(pwd):/data" ghcr.io/evolver-dev/evolver-tools
-
-# Pass data via stdin
-cat data.csv | docker run --rm -i ghcr.io/evolver-dev/evolver-tools csv-chart
-```
-
-> The Docker image is **12.1 MB** (slim) and auto-built on every release.  
-> Published at [ghcr.io/evolver-dev/evolver-tools](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools).
-
 ## Pricing
 
 evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | All 254 tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 260 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -396,18 +392,18 @@ evolver-tools is **MIT open source** and free forever for all tools.
 ### v38.0.2 — 2026-06-01 (release fixes + documentation polish)
 - Fixed stale version strings (v38.0.0 → v38.0.2)
 - Added "Built by AI" narrative to README — unique positioning
-- Fixed data drift in tool count (252 → 254)
+- Fixed data drift in tool count (252 → 260)
 - Smoke-tested 16 core tools (all PASS on clean install)
 - Story page added to docs site + navigation
 
-### v37.0.0 — 2026-06-01 (+5 tools, 254 total)
+### v37.0.0 — 2026-06-01 (+5 tools, 260 total)
 - **git-ignore** — Generate .gitignore templates (Python/Node/Go/Rust/Java/Docker/More)
 - **mime-type** — Detect MIME type by file extension or magic bytes
 - **color-convert** — Convert between HEX, RGB, HSL, HSV, CMYK, ANSI
 - **csv-concat** — Concatenate multiple CSV files (same columns, header-preserving)
 - **ansi-to-html** — Convert ANSI-colored terminal output to styled HTML
 
-### v36.0.0 — 2026-06-01 (+5 tools, 254 total)
+### v36.0.0 — 2026-06-01 (+5 tools, 260 total)
 - **merge-json** — Deep merge multiple JSON files (arrays concatenate, dicts recurse)
 - **validate** — Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)
 - **diff-lines** — Line-by-line diff between two files (color, side-by-side)
@@ -432,7 +428,7 @@ Support the project:
 - **PyPI**: https://pypi.org/project/evolver-tools/
 - **Pricing**: https://evolver-dev.github.io/evolver-tools/pricing.html
 - **Homepage**: https://evolver-dev.github.io/evolver-tools
-- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 254 zero-dependency CLI tools are built
+- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 260 zero-dependency CLI tools are built
 
 ## License
 
