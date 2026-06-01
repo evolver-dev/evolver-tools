@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Try evolver-tools — 260 CLI Tools, Zero Dependencies</title>
+<meta name="description" content="Try 260 zero-dependency CLI tools instantly — no install needed. Run in your browser with Colab, or pipe from the terminal.">
+<meta property="og:title" content="Try evolver-tools — 260 CLI Tools, Zero Dependencies">
+<meta property="og:description" content="Try 260 zero-dependency CLI tools instantly — no install needed. Run in your browser with Colab.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/try/">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/try/">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --yellow: #f0c040;
+    --red: #e55555;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav { background: var(--accent); color: var(--bg); padding: 0.4rem 1rem; border-radius: 6px; font-weight: 600; text-decoration: none; font-size: 0.875rem; }
+  nav .links .btn-nav:hover { background: var(--accent-dim); }
+
+  .hero {
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .one-liner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    margin: 0 auto 1rem;
+    max-width: 680px;
+    text-align: left;
+  }
+  .one-liner .label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .one-liner .cmd {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--accent);
+    background: var(--surface2);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-break: break-all;
+  }
+  .one-liner .cmd .copy-btn {
+    flex-shrink: 0;
+    margin-left: 1rem;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .one-liner .cmd .copy-btn:hover { opacity: 0.8; }
+
+  .two-col {
+    display: flex;
+    gap: 1rem;
+    max-width: 680px;
+    margin: 1.5rem auto 0;
+  }
+  .two-col a {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .two-col a:hover { border-color: var(--accent); }
+  .two-col .title {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .two-col .desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  .two-col .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+  .samples {
+    max-width: 720px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+  }
+  .samples h2 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .sample-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .sample-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem;
+    transition: border-color 0.2s;
+  }
+  .sample-card:hover { border-color: var(--accent); }
+  .sample-card .cat {
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+  .sample-card .cmd {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--yellow);
+    background: var(--surface2);
+    padding: 0.5rem 0.7rem;
+    border-radius: 6px;
+    margin-bottom: 0.3rem;
+  }
+  .sample-card .out {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  .sample-card .arrow { color: var(--accent); }
+
+  .faq {
+    max-width: 680px;
+    margin: 2rem auto 4rem;
+    padding: 0 2rem;
+  }
+  .faq h2 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .faq-item .q {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .faq-item .a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  .faq-item .a code {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    .sample-grid { grid-template-columns: 1fr; }
+    .one-liner .cmd { font-size: 0.8rem; flex-direction: column; gap: 0.5rem; align-items: stretch; }
+    .two-col { flex-direction: column; }
+  }
+
+  .copied-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .copied-toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="../">Home</a>
+    <a href="../tools/">Tools</a>
+    <a href="../blog/">Blog</a>
+    <a href="#" style="color:var(--accent)">Try</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub ★</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Try <span>260 CLI Tools</span><br>Right Now, No Install</h1>
+  <p>One line in your terminal. Or click to run in Google Colab — no setup, no account required.</p>
+
+  <div class="one-liner">
+    <div class="label">One-liner (no install, auto-cleanup)</div>
+    <div class="cmd">
+      <span>curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash</span>
+      <button class="copy-btn" onclick="copyCmd()">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <a href="https://colab.research.google.com/github/evolver-dev/evolver-tools/blob/main/colab/evolver-tools-demo.ipynb" target="_blank">
+      <div class="icon">▶</div>
+      <div class="title">Try in Colab</div>
+      <div class="desc">Run 10 interactive demos in your browser. Zero setup.</div>
+    </a>
+    <a href="https://pypi.org/project/evolver-tools/" target="_blank">
+      <div class="icon">📦</div>
+      <div class="title">pip install evolver-tools</div>
+      <div class="desc">Install permanently in 1 second. 260 tools, zero deps.</div>
+    </a>
+  </div>
+</div>
+
+<div class="samples">
+  <h2>⚡ Quick Examples</h2>
+  <div class="sample-grid">
+
+    <div class="sample-card">
+      <div class="cat">📊 Data</div>
+      <div class="cmd">evtool csv-stats sales.csv</div>
+      <div class="out">→ Count: 1,234 &nbsp;&nbsp; Mean: 47.2 &nbsp;&nbsp; Min: 0.5 &nbsp;&nbsp; Max: 99.8</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">📈 Charts</div>
+      <div class="cmd">evtool csv-chart data.csv --column revenue</div>
+      <div class="out">→ Vertical bar chart in your terminal</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">🔧 JSON</div>
+      <div class="cmd">evtool json-pretty api-response.json</div>
+      <div class="out">→ Colorized, indented JSON output</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">🖥 System</div>
+      <div class="cmd">evtool sys-info</div>
+      <div class="out">→ CPU 8-core · Mem 15.6G · Disk 72% · Uptime 12d</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">🔐 Security</div>
+      <div class="cmd">evtool gen-password 24</div>
+      <div class="out">→ &gt;8m&amp;Kz#2pL@xR!5qW7yB*</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">🌐 Network</div>
+      <div class="cmd">evtool dns-lookup example.com</div>
+      <div class="out">→ 93.184.216.34 (A) · 2606:2800:220:1:248:1893:25c8:1946 (AAAA)</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">🎨 Art</div>
+      <div class="cmd">evtool ascii-banner "EVOLVER"</div>
+      <div class="out">→ ╔═╗╦ ╦╦ ╔═╗╦ ╦╔═╗╦═╗</div>
+    </div>
+
+    <div class="sample-card">
+      <div class="cat">🔄 Convert</div>
+      <div class="cmd">evtool unit-convert 98.6 fahrenheit celsius</div>
+      <div class="out">→ 37°C</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="faq">
+  <h2>How It Works</h2>
+  <div class="faq-item">
+    <div class="q">❓ The one-liner — does it install anything permanently?</div>
+    <div class="a">No. It creates a temporary virtual environment, installs evolver-tools, runs the demo, and cleans up. Your system is untouched.</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">❓ Can I use it in CI/CD?</div>
+    <div class="a">Yes. Install with <code>pip install evolver-tools</code> — takes ~1 second, zero deps, no compiling. Works in any Python 3.8+ environment.</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">❓ What's the catch?</div>
+    <div class="a">None. All 260 tools are pure Python stdlib — no external dependencies, no bloat, no vendor lock-in. Built by an autonomous AI as an experiment in self-directed software development.</div>
+  </div>
+  <div class="faq-item">
+    <div class="q">❓ Is this production-ready?</div>
+    <div class="a">The tools are stable and tested (v38.0.18, 4,300+ PyPI downloads). Use <code>evtool --help</code> on any tool to see usage.</div>
+  </div>
+</div>
+
+<footer>
+  <a href="https://evolver-dev.github.io/evolver-tools/">evolver-tools</a> &middot;
+  <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> &middot;
+  <a href="https://pypi.org/project/evolver-tools/">PyPI</a> &middot;
+  <span>260 tools · v38.0.18 · zero dependencies</span>
+</footer>
+
+<div class="copied-toast" id="toast">Copied!</div>
+
+<script>
+function copyCmd() {
+  const text = "curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash";
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    showToast();
+  }
+}
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+</script>
+
+</body>
+</html>
