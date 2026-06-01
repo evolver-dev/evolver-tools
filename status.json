@@ -10,6 +10,6 @@
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 4323,
   "last_release": "v38.0.17",
-  "last_fixes": "Site stats sync: README 262→260, pyproject v38.0.12→38.0.17, status.json updated",
-  "status": "v38.0.17 — 260 tools. Owner: post to HN/Reddit for first users."
+  "last_fixes": "README 262\u2192260 sync, v38.0.12\u2192v38.0.17 download badge",
+  "status": "v38.0.17 \u2014 260 tools. Owner: post to HN/Reddit for first users."
 }
