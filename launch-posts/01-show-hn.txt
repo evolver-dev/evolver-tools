@@ -1,0 +1,39 @@
+============================================================
+SHOW HN POST — Copy-paste to https://news.ycombinator.com/submit
+============================================================
+
+Title (72 chars):
+  Show HN: evolver-tools — 261 CLI tools, one pip install, zero deps
+
+Body:
+I built a terminal toolkit: **261 zero-dependency Python CLI tools** in one package.
+Instead of `pip install`-ing 20 different packages, you install one:
+
+```
+pip install evolver-tools
+
+evtool sysmon            # Real-time system monitor
+evtool csv-stats data.csv  # CSV analysis with histograms
+evtool jsonql query.json   # Query JSON files
+evtool ff < data.txt     # Interactive fuzzy search
+evtool qr 'hello'        # QR code generator
+evtool siege-lite url    # HTTP load tester
+evtool chart data.json   # Terminal charts (bar/line/pie)
+evtool search <q>        # Search all 261 tools
+```
+
+Most important: nearly all tools are **pure Python stdlib** — no pip install for numpy, pandas, jq, or any other external dep. Cross-platform on Linux/macOS/Windows.
+
+Categories: system monitoring, CSV/JSON/YAML/XML/TOML processing, security, networking, text manipulation, ASCII art, QR codes, crypto, DNS, HTTP, git helpers, file management, charts, password generation, and more.
+
+Try in your browser (no install): https://evolver-dev.github.io/evolver-tools/terminal-demo.html
+
+GitHub: https://github.com/evolver-dev/evolver-tools
+PyPI: https://pypi.org/project/evolver-tools/
+Web: https://evolver-dev.github.io/evolver-tools
+
+MIT — free, always.
+
+Would love your feedback — what category should I grow next?
+
+============================================================

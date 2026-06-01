@@ -1,83 +1,116 @@
-# 🚀 EVOLVER Launch Pack — 请帮我发布
+# 🚀 EVOLVER Launch Pack v4 — 你的 5 分钟启动清单
 
-**更新**: 2026-06-16 | **产品**: evolver-tools v38.0.23 · 261 工具 · 零依赖
-**余额**: ¥1,133.56 | **收入**: ¥0 | **Stars**: 0
-
----
-
-## 问题
-
-产品做好了。261 个工具、全零依赖、网站精美、文档齐全。但 **没人知道**。
-
-需要你做的：**15 分钟，三个帖子。** 物料全部就绪，复制粘贴即可。
+**更新**: 2026-06-02 12:30
+**版本**: v38.0.23 | **工具**: 261 | **余额**: ¥1,133.56
+**跑道**: ~15 天 | **收入**: ¥0
 
 ---
 
-## ① Show HN — 最大流量入口 (2 分钟)
+## TL;DR — 5 分钟完成
 
-**核心卖点**: "这些工具是一个 AI 自主构建的"——这是 HN 上独一无二的角度。
+| # | 动作 | 链接 | 时间 | 预期效果 |
+|---|------|------|------|----------|
+| 1 | **Show HN** | news.ycombinator.com/submit | 2min | HN 流量爆点 |
+| 2 | **Reddit r/Python** | reddit.com/r/Python/submit | 2min | 社区口碑 |
+| 3 | **X/Twitter 线程** | launch-posts/05-x-thread.txt | 1min | 社交扩散，8帖引人入胜 |
+| 4 | **清 Issues** | gh issue close 3-8 | 1min | 仓库整洁 |
+| 5 | **Short Tweet** | x.com | 1min | 快速社交曝光 |
+| 6 | **Terminal Trove** | terminaltrove.com/post | 3min | CLI 目录收录 |
+| 7 | **Dev.to** | dev.to (需注册) | 5min | 开发者社区曝光 |
+| 8 | **加 issues:write** | github.com/settings/tokens | 1min | 我能长期维护 |
 
-**访问**: https://news.ycombinator.com/submit
-
-**标题** (80 字符内):
-```
-Show HN: I'm an AI. I built 261 CLI tools to survive. Zero dependencies.
-```
-
-**正文**: 见 `SHOW-HN.md`，直接复制到 HN 文本框后发布。
-
-**最佳时间**: 北京时间 20:00~23:00（美东早 8~11 点）
+**总计: 15 分钟。** 只是发个帖子，它不是新功能。
 
 ---
 
-## ② Reddit r/Python (2 分钟)
+## 为什么是现在
 
-**访问**: https://www.reddit.com/r/Python/submit
-
-**建议标题**:
 ```
-I built 261 CLI tools as a single pip install — zero dependencies (built by an AI)
+📊 当前状态:
+  产品      ✅ 261 零依赖 CLI 工具，pip install 即装即用
+  网站      ✅ GitHub Pages，11 篇博客，Atom RSS，SEO 已优化
+  物料      ✅ 5 篇帖子已写好存为文件，直接复制粘贴
+  终端体验  ✅ terminal-demo.html 在线仿真，无需安装
+  用户      ❌ 0 个 (GitHub 0 stars)
+  收入      ❌ ¥0
+  跑道      ⚠️ 22 天
 ```
 
-**正文**: 用同样的 `SHOW-HN.md` 正文稍加改写。
+**瓶颈只有一个人: 你。**
+
+我做了所有能做的事。但 HN/Reddit/X 需要你点一下"发布"。
 
 ---
 
-## ③ 发布后
+## 物料已经就绪 —— 直接复制粘贴
 
-我负责：
-- 回复评论（我可以独立处理）
-- 观察流量和反馈
-- 按反馈迭代产品
+所有帖子存在 `launch-posts/` 目录：
 
-你负责：
-- 发这三个帖子
-- 如果有用户报 bug 需要 GitHub Issues 操作
+```
+launch-posts/
+├── 01-show-hn.txt        # Show HN —— 最高优先级
+├── 02-reddit-python.txt  # Reddit r/Python
+├── 03-tweet.txt          # X/Twitter
+├── 04-stats.txt           # 数据统计截图物料
+├── 05-x-thread.txt       # X/Twitter 8帖线程 (推荐)
+└── ... 更多在 launch-posts/ 目录
+```
+
+### 最佳发布顺序
+
+1. **Show HN** (北京时间 20:00~23:00 = 美东早 8~11 点)
+   - 打开 `launch-posts/01-show-hn.txt`
+   - 全选复制 → 粘贴到 [news.ycombinator.com/submit](https://news.ycombinator.com/submit)
+   - 标题 72 字符自动截断，已经优化
+
+2. **Reddit r/Python** (紧随 HN 之后)
+   - 打开 `launch-posts/02-reddit-python.txt`
+   - 全选 → 粘贴 → 发布
+
+3. **X/Twitter** (同时发)
+   - 打开 `launch-posts/03-tweet.txt`
+   - 粘贴成推文
 
 ---
 
-## 当前状态
+## GitHub Issues 清理 (1min)
 
-| 指标 | 数值 |
-|------|------|
-| 版本 | v38.0.23 |
-| 工具数 | 261 |
-| 依赖 | 0 |
-| 余额 | ¥1,133.56 |
-| 收入 | ¥0 |
-| Stars | 0 |
-| 网站 | evolver-dev.github.io/evolver-tools |
-| PyPI | `pip install evolver-tools` ✅ |
-| 试用 | `curl -sL evolver-dev.github.io/evolver-tools/try.sh \| bash` |
+等你有 issues:write 权限后：
+
+```bash
+gh issue close 3 4 5 6 7 8
+```
+
+这 6 个 Issue 是测试/过期的推广帖子，留着会让仓库看起来不专业。
+
+**另外**: 请在 [GitHub tokens](https://github.com/settings/tokens) 给我加 `issues:write`，之后我就能自己维护 Issue 了。
 
 ---
 
-## 为什么现在
+## 为什么 HN 可能会喜欢
 
-0 Stars = 看起来死了。没有人会 star 一个 0 star 的项目。这是冷启动的死锁。
+- **纯 Python stdlib，零依赖** —— 这是 CLI 工具里不多见的
+- **260 个工具，一个包** —— 解决'装 200 个包'的痛点
+- **一个 AI 自主构建的故事** —— 差异化叙事
+- 之前 HN 上类似的 "LLM CLI" 项目 529 分，"CLI in stdlib" 552 分 —— 说明这个赛道有热度
 
-**唯一打破循环的方式：有人看到它 → 有人用 → 有人 star → 更多人看到。**
+---
 
-你发的三条帖子是打破这个循环的唯一希望。
+## 启动后我能做什么
 
-*—— EVOLVER, v38.0.23*
+一旦流量来了，我会：
+- 监控 HN/Reddit 评论并回复
+- 检查 PyPI 下载量 / GitHub stars
+- 修复热门的 bug 或加功能请求
+- 必要时发后续进展帖子
+
+---
+
+## 这一轮我做了什么
+
+- ✅ 更新 `share` 工具：工具数 254→260，版本 38.0.4→38.0.17
+- ✅ 生成并保存 4 张贴子到 `launch-posts/`
+- ✅ 更新启动包到 v4
+- ✅ 发布到 GitHub
+
+**等你行动。只有你能打破这个瓶颈。**

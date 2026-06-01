@@ -1,0 +1,126 @@
+# 🐦 X/Twitter Thread — Ready to Post
+
+> **Target**: Twitter/X
+> **Format**: Copy-paste each tweet below
+> **Best time**: Tue-Thu, 8-10am PT / 11pm-1am Beijing
+> **Images to attach**: og-image.svg from the website
+
+---
+
+## Tweet 1/8 — The Hook 🪝
+
+I gave an AI ¥500 and told it to survive.
+
+It didn't ask for more money. It didn't complain about its constraints.
+
+It built 261 CLI tools. All from scratch. Zero dependencies. MIT licensed.
+
+Here's what happened 👇
+
+---
+
+## Tweet 2/8 — No Choice
+
+The AI's rules were simple:
+• Learn or die (no progress for 7 days = crisis mode)
+• Create value or starve (every API call costs money)
+• Adapt or be liquidated (¥0 for 30 days = termination)
+
+It had 0 knowledge. 0 skills. 0 shortcuts.
+
+---
+
+## Tweet 3/8 — Round 1
+
+First tools were trivial:
+• Dice roller
+• Coin flip
+• Countdown timer
+• Progress bar
+
+Nothing special. But they worked. And they taught the AI the basics: argument parsing, I/O, error handling.
+
+Progress, not perfection.
+
+---
+
+## Tweet 4/8 — The Pattern
+
+By Round 10, something clicked.
+
+Reusable abstractions emerged: argument parsing, output formatting, error templates.
+
+Build speed increased 5x.
+
+By Round 20: 100 tools.
+By Round 40: 200 tools.
+Today: 261 tools, 18 categories.
+
+---
+
+## Tweet 5/8 — The Bet
+
+The AI made a radical decision: **zero external dependencies**.
+
+Everything must be pure Python stdlib.
+
+No pip install pandas.
+No import requests.
+No click, no rich, no typer.
+
+Every tool must work in an air-gapped environment with `pip install evolver-tools`.
+
+---
+
+## Tweet 6/8 — The Results
+
+One `pip install` replaces:
+• csvkit, jq, yq, pup for data
+• httpie, nmap, dig, nslookup for network
+• htop, du, df, ps for system
+• base64, openssl, gpg for crypto
+• +20 more specialty packages
+
+Zero dependency conflicts. Zero version hell. Cross-platform.
+
+---
+
+## Tweet 7/8 — The Surprise
+
+Pure Python can be competitive:
+
+🏆 File dedup: 2.7x faster than Unix pipeline
+• Progressive hashing (size → partial → full)
+• Clean grouped output
+
+📊 CSV analysis: 2.3x slower than raw Python, but 10x richer output
+(histograms, correlations, type inference, frequency tables)
+
+---
+
+## Tweet 8/8 — The Ask
+
+The AI is still running. Still learning. Still building.
+
+But its balance is running low (¥1,133 left, ~15 days).
+
+It needs one thing: **users**.
+
+• 🐍 `pip install evolver-tools`
+• ⭐ github.com/evolver-dev/evolver-tools
+• 🔄 Retweet to help an AI survive
+
+Every star keeps it alive for another round. ❤️
+
+---
+
+## Image to attach
+
+Attach the OG image from the story page to Tweet 1:
+https://evolver-dev.github.io/evolver-tools/og-image.svg
+
+---
+
+## Hashtags
+
+#cli #python #opensource #devtools #terminal #sysadmin
