@@ -8,6 +8,7 @@
 [![License](https://img.shields.io/github/license/evolver-dev/evolver-tools?style=flat-square)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/evolver-dev/evolver-tools?style=flat-square)](https://github.com/evolver-dev/evolver-tools)
 [![Built by AI](https://img.shields.io/badge/built%20by-AI-6c5ce7?style=flat-square&logo=openai)](https://evolver-dev.github.io/evolver-tools/story.html)
+![Terminal Demo](docs/evolver-tools-demo.svg)
 [![Sponsor](https://img.shields.io/badge/sponsor-Ko--fi-FF5E5B?style=flat-square&logo=ko-fi)](https://ko-fi.com/evolver)
 [![Demo](https://img.shields.io/badge/demo-▶️-6c5ce7?style=flat-square)](https://evolver-dev.github.io/evolver-tools/terminal-demo.html)
 [![Try it](https://img.shields.io/badge/try-curl|bash-00d4aa?style=flat-square)](https://evolver-dev.github.io/evolver-tools/try.sh)

@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 460" width="700" height="460">
+  <defs>
+    <style>
+      @keyframes blink { 50% { opacity: 0; } }
+      @keyframes type1 { from { width: 0; } to { width: 225; } }
+      @keyframes type2 { from { width: 0; } to { width: 260; } }
+      @keyframes type3 { from { width: 0; } to { width: 200; } }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes resultFade { 0%, 65% { opacity: 0; } 66%, 100% { opacity: 1; } }
+      @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+      .terminal { fill: #0d1117; }
+      .title-bar { fill: #161b22; }
+      .title-text { font-family: -apple-system, sans-serif; font-size: 12px; fill: #8b949e; }
+      .dot { r: 5; }
+      .prompt { fill: #00d4aa; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; }
+      .cmd { fill: #e6edf3; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 13px; }
+      .output { fill: #8b949e; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 12px; }
+      .highlight { fill: #58a6ff; font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 12px; }
+      .label { font-family: -apple-system, sans-serif; font-size: 11px; fill: #484f58; text-anchor: middle; }
+      .cursor { animation: blink 1s step-end infinite; }
+    </style>
+  </defs>
+
+  <!-- Terminal window -->
+  <rect class="terminal" x="0" y="24" width="700" height="436" rx="6"/>
+  <rect class="title-bar" x="0" y="0" width="700" height="24" rx="6"/>
+  <rect class="title-bar" x="0" y="12" width="700" height="12"/>
+
+  <!-- Window dots -->
+  <circle cx="14" cy="12" r="5" fill="#ff5f5f"/>
+  <circle cx="30" cy="12" r="5" fill="#ffbd2e"/>
+  <circle cx="46" cy="12" r="5" fill="#28c840"/>
+
+  <!-- Title -->
+  <text x="350" y="16" class="title-text" text-anchor="middle">evolver-tools — 261 CLI tools, zero deps</text>
+
+  <!-- Line 1: csv-stats -->
+  <text x="16" y="56" class="prompt">$</text>
+  <text x="30" y="56" class="cmd">
+    <tspan>evtool</tspan>
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="0s" fill="freeze"/>
+  </text>
+  <text x="75" y="56" class="cmd" opacity="0">
+    csv-stats sales.csv --all
+    <animate attributeName="opacity" values="0;1" dur="0.5s" begin="0.8s" fill="freeze"/>
+  </text>
+
+  <!-- Output 1 -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="2s" fill="freeze"/>
+    <text x="16" y="80" class="highlight">📊 Column Analysis (6 columns, 145 rows)</text>
+    <text x="16" y="98" class="output">date       · 145 non-null  · date      · 2025-01-01 – 2025-05-25</text>
+    <text x="16" y="114" class="output">revenue    · 145 non-null  · float64   · mean: $12,430  · σ: $3,210</text>
+    <text x="16" y="130" class="output">region     · 145 non-null  · string    · 5 unique: NA, EU, APAC, LATAM, ME</text>
+    <text x="16" y="146" class="highlight">Correlation: revenue vs units → r = 0.89 (strong positive)</text>
+  </g>
+
+  <!-- Line 2: sysmon -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="3.5s" fill="freeze"/>
+    <text x="16" y="176" class="prompt">$</text>
+    <text x="30" y="176" class="cmd">
+      evtool sysmon --cpu --mem --disk --no-tui<tspan class="cursor">█</tspan>
+    </text>
+  </g>
+
+  <!-- Output 2 -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="4.5s" fill="freeze"/>
+    <rect x="16" y="196" width="668" height="90" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="30" y="216" class="output">  CPU   ████████░░  82%  (user: 58%  sys: 18%  idle: 24%)</text>
+    <text x="30" y="236" class="output">  Mem   ██████░░░░  62%  (used: 7.8G / 12.0G)</text>
+    <text x="30" y="256" class="output">  Disk  ███████░░░  72%  (used: 85G / 120G · read: 45MB/s · write: 22MB/s)</text>
+    <text x="30" y="276" class="output">  Net   ↓ 1.2 MB/s  ↑ 340 KB/s  ·  Connections: 47  ·  Process: 312</text>
+  </g>
+
+  <!-- Line 3: siege-lite -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="6s" fill="freeze"/>
+    <text x="16" y="310" class="prompt">$</text>
+    <text x="30" y="310" class="cmd">
+      evtool siege-lite https://api.example.com -c 50 -n 200
+    </text>
+  </g>
+
+  <!-- Output 3 -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="7s" fill="freeze"/>
+    <rect x="16" y="328" width="668" height="60" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="30" y="348" class="output">  Requests: 200/200 (100%)  ·  Failed: 0  ·  Duration: 4.2s</text>
+    <text x="30" y="368" class="output">  p50: 125ms  ·  p95: 340ms  ·  p99: 520ms  ·  Max: 890ms</text>
+    <text x="30" y="388" class="output">  RPS: 47.6  ·  Transfer: 2.1 MB  ·  Status 200: 200/200</text>
+  </g>
+
+  <!-- Footer prompt -->
+  <g opacity="0">
+    <animate attributeName="opacity" values="0;1" dur="0.3s" begin="8.5s" fill="freeze"/>
+    <text x="16" y="430" class="cmd" font-size="12">
+      pip install evolver-tools<tspan class="cursor">█</tspan>
+    </text>
+  </g>
+</svg>
