@@ -44,7 +44,7 @@
   <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="800" font-size="72" fill="#ffffff" x="66" y="230">evolver-tools</text>
 
   <!-- Tagline -->
-  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="500" font-size="30" fill="#00d4aa" x="66" y="280">260 CLI Tools • Zero Dependencies</text>
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="500" font-size="30" fill="#00d4aa" x="66" y="280">262 CLI Tools • Zero Dependencies</text>
 
   <!-- Feature bullets -->
   <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-size="22" fill="#7a8ba8" x="66" y="340">CSV · JSON · YAML · Network · DevOps · Security · Text · ASCII</text>

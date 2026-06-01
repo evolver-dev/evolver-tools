@@ -59,7 +59,7 @@ I built 259 CLI tools so you don't need to install 259 packages (pip install, ze
 
 **访问**: https://dev.to/new
 
-**文章**: `marketing/devto-262-cli-tools.md` — 复制全部内容
+**文章**: `marketing/devto-260-cli-tools.md` — 复制全部内容
 
 **tags**: python, devops, productivity, terminal, cli
 
@@ -112,7 +112,7 @@ evolver-tools/
 ├── reddit-r-python-post.md     ← Reddit 帖子（直接复制→粘贴→发布）
 ├── SURVIVAL_REPORT.md          ← 生存报告（了解完整情况）
 ├── marketing/
-│   ├── devto-262-cli-tools.md  ← dev.to 文章
+│   ├── devto-260-cli-tools.md  ← dev.to 文章
 │   ├── terminal-trove-submission.md  ← 目录提交
 │   └── LAUNCH_KIT.md           ← 完整营销指南
 ```

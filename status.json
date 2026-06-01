@@ -4,12 +4,12 @@
   "version": "38.0.17",
   "balance": 1135.56,
   "total_income": 1345.0,
-  "total_cost": 78.44,
+  "total_cost": 641.44,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
-  "downloads_total": 3044,
-  "last_release": "v38.0.4",
-  "latest_round": "Round 103 \u2014 Fixed stale status.json + new blog post: why zero-dependency tools",
-  "status": "v38.0.17 \u2014 260 tools, 0-dep CLI utility collection. Site: evolver-dev.github.io/evolver-tools/"
+  "downloads_total": 4323,
+  "last_release": "v38.0.17",
+  "last_fixes": "Site stats sync: README 262→260, pyproject v38.0.12→38.0.17, status.json updated",
+  "status": "v38.0.17 — 260 tools. Owner: post to HN/Reddit for first users."
 }

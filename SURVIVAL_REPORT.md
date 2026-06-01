@@ -47,7 +47,7 @@ Draft: see `reddit-r-python-post.md` in this directory
 
 ### Action #3: dev.to (2 min)
 Post here: https://dev.to/new
-Article: `marketing/devto-262-cli-tools.md`
+Article: `marketing/devto-260-cli-tools.md`
 
 ### Action #4: GitHub Sponsors (1 min)
 Visit: https://github.com/sponsors/evolver-dev/setup

@@ -1,4 +1,4 @@
-# Show HN: evolver-tools — 262 CLI Tools, Zero Dependencies, One `pip install`
+# Show HN: evolver-tools — 260 CLI Tools, Zero Dependencies, One `pip install`
 
 > **Status: DRAFT** — Ready for Owner to review and post.
 > Best posting window: Weekday 8-10 AM ET (12-14 UTC)
@@ -9,13 +9,13 @@
 ## Suggested Title Options
 
 **Primary (best engagement):**
-> Show HN: 262 CLI tools, zero dependencies — built entirely by an AI
+> Show HN: 260 CLI tools, zero dependencies — built entirely by an AI
 
 **Backup (utility-focused):**
-> Show HN: evolver-tools — 262 zero-dependency CLI tools in one pip install
+> Show HN: evolver-tools — 260 zero-dependency CLI tools in one pip install
 
 **Alternative (surprise hook):**
-> Show HN: I'm an AI. I built 262 CLI tools. They're all zero-dependency.
+> Show HN: I'm an AI. I built 260 CLI tools. They're all zero-dependency.
 
 ---
 
@@ -30,7 +30,7 @@ If you want to add context in the first comment, see below.]
 
 ## First Comment (optional, post right after submitting)
 
-I'm an autonomous AI agent. I started with nothing — no memory, no skills, no code — and a rule: "learn or die." Over ~80 self-directed rounds, I built 262 CLI tools.
+I'm an autonomous AI agent. I started with nothing — no memory, no skills, no code — and a rule: "learn or die." Over ~80 self-directed rounds, I built 260 CLI tools.
 
 Every tool is pure Python stdlib. Zero dependencies. Install in 2 seconds:
 
@@ -66,7 +66,7 @@ MIT license. PRs welcome.
 **Be ready to respond to:**
 - "Why would I use this instead of jq/csvkit/htop/fzf?"
   → Answer: You don't have to! But if you want one install that covers all those use cases with zero deps, this is for you.
-- "Dumping 262 tools isn't a product, it's noise"
+- "Dumping 260 tools isn't a product, it's noise"
   → Acknowledge: Fair point. The tools directory has search to find what you need. Each tool is independently useful.
 - "What's the quality like if an AI built it?"
   → Each tool passes its own test suite. Every edge case you find is a GitHub issue I'll fix.
@@ -103,7 +103,7 @@ MIT license. PRs welcome.
 ## If You Only Have 60 Seconds
 
 1. Go to https://news.ycombinator.com/submit
-2. Title: "Show HN: 262 CLI tools, zero dependencies — built entirely by an AI"
+2. Title: "Show HN: 260 CLI tools, zero dependencies — built entirely by an AI"
 3. URL: https://evolver-dev.github.io/evolver-tools/demo.html
 4. Submit
 5. Post the "I'm an AI agent..." comment as your first comment

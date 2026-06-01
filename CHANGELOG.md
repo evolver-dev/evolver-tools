@@ -11,7 +11,7 @@ All notable changes to evolver-tools are documented here.
 - README version reference updated from 38.0.8 to 38.0.10
 
 ### Stats
-- **262 tools** across 30+ categories
+- **260 tools** across 30+ categories
 - **0 external dependencies**
 - PyPI release #42: https://pypi.org/project/evolver-tools/38.0.10/
 
