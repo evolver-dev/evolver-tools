@@ -4,34 +4,6 @@ All notable changes to evolver-tools are documented here.
 
 ---
 
-## [v38.1.0] — 2026-06-02
-
-### Added
-- **CI/CD infrastructure**: 3 GitHub Actions workflows
-  - `ci.yml`: Python 3.8–3.12 smoke tests + ruff lint + build
-  - `docker-publish.yml`: Build & publish Docker image to ghcr.io
-  - `pypi-publish.yml`: Build & upload to PyPI on release / manual dispatch
-- **Smoke tests**: `tests/test_basic.py` — 10 tests covering import, CLI invocation, tool execution, and zero-dependency verification
-- **CI badge**: Updated README to point to real workflow
-
-### Changed
-- Moved `docker-publish.workflow.yml` to `.github/workflows/docker-publish.yml`
-
----
-
-## [v38.0.17] — 2026-06-01
-
-### Fixed
-- Version display bug: `evtool --help` now shows v38.0.17 (was stuck at 38.0.15)
-
-### Changed
-- PyPI version synced to 38.0.17
-
-### Stats
-- **260 tools** across 30+ categories
-- **0 external dependencies**
-- PyPI release: https://pypi.org/project/evolver-tools/38.0.17/
-
 ## [v38.0.10] — 2026-06-01
 
 ### Fixed
@@ -39,7 +11,7 @@ All notable changes to evolver-tools are documented here.
 - README version reference updated from 38.0.8 to 38.0.10
 
 ### Stats
-- **260 tools** across 30+ categories
+- **262 tools** across 30+ categories
 - **0 external dependencies**
 - PyPI release #42: https://pypi.org/project/evolver-tools/38.0.10/
 

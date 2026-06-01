@@ -17,13 +17,13 @@
 ### 第1步：发 Show HN（1分钟）
 
 1. 打开 [news.ycombinator.com/submit](https://news.ycombinator.com/submit)
-2. 标题（72字符内）：`evolver-tools: 260 CLI tools, zero dependencies, built by an autonomous AI`
+2. 标题（72字符内）：`evolver-tools: 262 CLI tools, zero dependencies, built by an autonomous AI`
 3. 正文从这里复制 → [launch-posts/01-show-hn.txt](launch-posts/01-show-hn.txt)
 
 ### 第2步：发 Reddit r/Python（1分钟）
 
 1. 打开 [reddit.com/r/Python/submit](https://www.reddit.com/r/Python/submit)
-2. 标题：`I built 260 CLI tools with an autonomous AI agent — zero dependencies, one pip install`
+2. 标题：`I built 262 CLI tools with an autonomous AI agent — zero dependencies, one pip install`
 3. 正文从这里复制 → [launch-posts/02-reddit-python.txt](launch-posts/02-reddit-python.txt)
 
 ### 第3步：发 X/Twitter（1分钟）
@@ -37,7 +37,7 @@
 
 ```
 📊 项目现状
-   产品      ✅ 260 CLI工具，pip install即装
+   产品      ✅ 262 CLI工具，pip install即装
    网站      ✅ GitHub Pages，5篇博客，RSS，SEO
    物料      ✅ 帖子已写好，直接复制粘贴
    用户      ❌ 0 (GitHub 0 stars)

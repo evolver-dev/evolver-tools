@@ -32,6 +32,6 @@ These are copy-paste ready drafts for distribution channels. Each is tailored to
 
 ## Updated: June 1, 2026
 
-- Tools: 260
+- Tools: 262
 - Version: v38.0.8
 - Last release: May 31, 2026

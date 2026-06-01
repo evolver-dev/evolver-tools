@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why I Built 254 CLI Tools (Zero Dependencies) — evolver-tools</title>
-<meta name="description" content="The story behind evolver-tools: 254 zero-dependency CLI tools in one pip install. Why Python, what problem it solves, and what I learned building a portable dev toolbox.">
+<title>Why I Built 262 tools (Zero Dependencies) — evolver-tools</title>
+<meta name="description" content="The story behind evolver-tools: 262 zero-dependency CLI tools in one pip install. Why Python, what problem it solves, and what I learned building a portable dev toolbox.">
 <link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/why-evolver-tools.html">
-<meta property="og:title" content="Why I Built 254 CLI Tools (Zero Dependencies)">
-<meta property="og:description" content="The story behind evolver-tools: 254 zero-dependency CLI tools in one pip install.">
+<meta property="og:title" content="Why I Built 262 tools (Zero Dependencies)">
+<meta property="og:description" content="The story behind evolver-tools: 262 zero-dependency CLI tools in one pip install.">
 <meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/why-evolver-tools.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="evolver-tools">
@@ -17,13 +17,13 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
-<meta name="twitter:title" content="Why I Built 254 CLI Tools (Zero Dependencies)">
+<meta name="twitter:title" content="Why I Built 262 tools (Zero Dependencies)">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Why I Built 254 CLI Tools (Zero Dependencies)",
-  "description": "The story behind evolver-tools: 254 zero-dependency CLI tools in one pip install.",
+  "headline": "Why I Built 262 tools (Zero Dependencies)",
+  "description": "The story behind evolver-tools: 262 zero-dependency CLI tools in one pip install.",
   "datePublished": "2026-06-01",
   "author": {"@type": "Person", "name": "evolver-dev"}
 }
@@ -137,7 +137,7 @@ a:hover { text-decoration: underline; }
   <span>~8 min read</span>
 </div>
 
-<h1>Why I Built 254 CLI Tools<br>(With Zero Dependencies)</h1>
+<h1>Why I Built 262 tools<br>(With Zero Dependencies)</h1>
 
 <p class="lead">The story behind a Python CLI toolbox that fits in one <code>pip install</code>, works everywhere Python runs, and solves the "I just need a tool right now" problem.</p>
 
@@ -177,7 +177,7 @@ a:hover { text-decoration: underline; }
 
 <h2>The Approach</h2>
 
-<p>I didn't build 254 tools in a weekend. The project grew organically: I'd need a tool, check if it existed, and if the existing solution required installing a heavy dependency tree, I'd write a zero-dependency version.</p>
+<p>I didn't build 262 tools over time. The project grew organically: I'd need a tool, check if it existed, and if the existing solution required installing a heavy dependency tree, I'd write a zero-dependency version.</p>
 
 <p>Over time, patterns emerged. Many tools share the same infrastructure:</p>
 
@@ -191,7 +191,7 @@ a:hover { text-decoration: underline; }
 
 <h2>What's Inside</h2>
 
-<p>254 tools organized into domains:</p>
+<p>262 tools organized into domains:</p>
 
 <h3>CSV &amp; Data (30+ tools)</h3>
 <p>From <code>csv-concat</code> (merge multiple CSVs) to <code>csv-validate</code> (check schema compliance). <code>csv-stats</code> produces descriptive statistics with histograms and frequency tables. <code>csv-dedup</code> finds and removes duplicates by key columns.</p>
@@ -258,7 +258,7 @@ a:hover { text-decoration: underline; }
 
 <h2>The 9 Flagships</h2>
 
-<p>Among the 254 tools, 9 stand out as "flagships" — tools with full UIs or advanced capabilities:</p>
+<p>Among the 262 tools, 9 stand out as "flagships" — tools with full UIs or advanced capabilities:</p>
 
 <ul>
   <li><strong>sysmon</strong> — curses TUI system monitor (CPU/memory/disk/network/processes)</li>
@@ -274,7 +274,7 @@ a:hover { text-decoration: underline; }
 
 <h2>What I Learned</h2>
 
-<p>Building 254 zero-dependency CLI tools taught me a few things I didn't expect:</p>
+<p>Building 262 zero-dependency CLI tools taught me a few things I didn't expect:</p>
 
 <p><strong>1. The standard library is underrated.</strong> Most Python developers install packages for things the stdlib handles fine — especially for CLI work. You don't need <code>requests</code> for a simple API call. You don't need <code>rich</code> for colored output. The stdlib is verbose but capable.</p>
 
@@ -288,7 +288,7 @@ a:hover { text-decoration: underline; }
 
 <div class="cta-box">
   <p style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">
-    One command. 254 tools. Zero dependencies.
+    One command. 262 tools. Zero dependencies.
   </p>
   <pre style="text-align:center;border:none;background:transparent;margin-bottom:8px;"><code style="font-size:18px;">pip install evolver-tools</code></pre>
   <p style="margin-bottom:0;">

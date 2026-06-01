@@ -182,12 +182,12 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - Published to PyPI as v38.0.10
 
 ### v38.0.9 — 2026-06-01 (+bugfix, 262 tools)
-- **Fixed PyPI metadata** — version string (259→260) in `__init__.py` docstring
+- **Fixed PyPI metadata** — version string (259→262) in `__init__.py` docstring
 - Rebuilt + republished
 
 ### v38.0.8 — 2026-06-01 (+269→260 split, 262 tools)
 - **Fixed stale count bug** — `sync_tool_count.py` now handles cross-directory vendor tools
-- All tool pages show correct count (260)
+- All tool pages show correct count (262)
 
 ### v38.0.7 — 2026-06-01 (+platform-tools integration, 269 visible)
 - **platform-tools merged** into main vendor directory

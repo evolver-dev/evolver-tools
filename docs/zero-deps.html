@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zero Dependencies — How 260 CLI Tools Run on Pure Python stdlib | evolver-tools</title>
-<meta name="description" content="Deep dive into how evolver-tools builds 260 CLI tools using only Python standard library. No pip installs, no npm, no cargo — just pure Python stdlib engineering.">
+<title>Zero Dependencies — How 262 CLI Tools Run on Pure Python stdlib | evolver-tools</title>
+<meta name="description" content="Deep dive into how evolver-tools builds 262 CLI tools using only Python standard library. No pip installs, no npm, no cargo — just pure Python stdlib engineering.">
 <meta name="keywords" content="zero dependency python, python stdlib cli, lightweight cli tools, python standard library tools, no dependency software">
-<meta property="og:title" content="Zero Dependencies — Engineering 260 CLI Tools on Pure Python stdlib">
-<meta property="og:description" content="How 260 CLI tools are built with zero external packages — a deep dive into Python standard library engineering.">
+<meta property="og:title" content="Zero Dependencies — Engineering 262 CLI Tools on Pure Python stdlib">
+<meta property="og:description" content="How 262 CLI tools are built with zero external packages — a deep dive into Python standard library engineering.">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="evolver-tools">
 <meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
@@ -15,14 +15,14 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://evolver-dev.github.io/evolver-tools/social-preview.png">
-<meta name="twitter:title" content="Zero Dependencies — Engineering 260 CLI Tools on Pure Python stdlib">
+<meta name="twitter:title" content="Zero Dependencies — Engineering 262 CLI Tools on Pure Python stdlib">
 <meta name="robots" content="index, follow">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "Zero Dependencies — How 260 CLI Tools Run on Pure Python stdlib",
-  "description": "A deep dive into building 260 CLI tools with zero external dependencies using only Python standard library.",
+  "headline": "Zero Dependencies — How 262 CLI Tools Run on Pure Python stdlib",
+  "description": "A deep dive into building 262 CLI tools with zero external dependencies using only Python standard library.",
   "proficiencyLevel": "Intermediate",
   "about": {"@type": "Thing", "name": "Python Standard Library", "description": "Using Python's built-in modules to build production CLI tools without external packages"}
 }
@@ -146,17 +146,17 @@
 <div class="container">
 
 <h1>Zero Dependencies: The Architecture</h1>
-<p class="subtitle">How 260 CLI tools run on pure <code>import</code> — no pip, no npm, no cargo</p>
+<p class="subtitle">How 262 CLI tools run on pure <code>import</code> — no pip, no npm, no cargo</p>
 
 <div class="meta">
   <span>📅 June 2026</span>
-  <span>⚡ 260 tools · 0 deps · 1 install</span>
+  <span>⚡ 262 tools · 0 deps · 1 install</span>
   <span>📖 ~8 min read</span>
 </div>
 
 <div class="highlight-box">
   <div class="label">⚡ The Promise</div>
-  <p style="margin:0"><code>pip install evolver-tools</code> installs 260 CLI tools. It adds zero packages to your <code>pip list</code>. The install takes ~3 seconds. There is nothing to compile, nothing to download from CDNs, and no version conflicts — ever.</p>
+  <p style="margin:0"><code>pip install evolver-tools</code> installs 262 CLI tools. It adds zero packages to your <code>pip list</code>. The install takes ~3 seconds. There is nothing to compile, nothing to download from CDNs, and no version conflicts — ever.</p>
 </div>
 
 <p>Every tool is built using only Python's standard library. Not "mostly" — entirely. From CSV parsing to network requests, JSON processing to terminal graphics, the entire toolkit runs on modules that ship with every Python installation since 3.8.</p>
@@ -294,7 +294,7 @@ TOOLS = {}  <span class="c"># populated at import time by scanning the tools dir
 <div class="highlight-box purple">
   <div class="label">📦 Package Stats</div>
   <p style="margin:0">
-  <strong>260 files</strong> in the tools directory &middot; <strong>~250KB</strong> total Python code<br>
+  <strong>262 files</strong> in the tools directory &middot; <strong>~250KB</strong> total Python code<br>
   <strong>Zero pip dependencies</strong> &middot; <strong>~3 second</strong> install time<br>
   <strong>3.8 to 3.13</strong> Python versions supported &middot; <strong>Linux / macOS / Windows</strong>
   </p>
@@ -331,7 +331,7 @@ TOOLS = {}  <span class="c"># populated at import time by scanning the tools dir
   <tr><td>Development speed</td><td>Slower — must reimplement basic patterns</td><td>Fast — install what you need</td></tr>
   <tr><td>Feature depth</td><td>Limited to what stdlib provides</td><td>Rich — battle-tested libraries</td></tr>
   <tr><td>Edge cases</td><td>Must handle manually (e.g., encoding, timezones)</td><td>Often handled by the library</td></tr>
-  <tr><td>Code size</td><td>~250KB for 260 tools</td><td>Would be much smaller per tool</td></tr>
+  <tr><td>Code size</td><td>~250KB for 262 tools</td><td>Would be much smaller per tool</td></tr>
   <tr><td>Learning curve</td><td>Requires stdlib expertise</td><td>Requires library API knowledge</td></tr>
 </table>
 
@@ -346,7 +346,7 @@ TOOLS = {}  <span class="c"># populated at import time by scanning the tools dir
 <ul>
   <li><a href="cookbook.html">CLI Cookbook — 100 real-world one-liners</a></li>
   <li><a href="vs.html">evolver-tools vs jq, ripgrep, httpie — Honest Comparison</a></li>
-  <li><a href="story.html">The Story: How an AI Built 260 CLI Tools</a></li>
+  <li><a href="story.html">The Story: How an AI Built 262 CLI Tools</a></li>
   <li><a href="architecture-deep-dive.md">Architecture Deep-Dive — Full Technical Article</a></li>
 </ul>
 
