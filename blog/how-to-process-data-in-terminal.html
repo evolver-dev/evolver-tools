@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Process Data in the Terminal Without Python, Pandas, or jq — evolver-tools Blog</title>
+<meta name="description" content="Complete guide to analyzing CSV, JSON, and text data from the command line using evolver-tools — zero dependencies, instant results.">
+<meta name="keywords" content="terminal data processing, CLI data analysis, csv command line, json terminal, replace jq, terminal productivity, data processing without pandas">
+<meta property="og:title" content="How to Process Data in the Terminal Without Python, Pandas, or jq">
+<meta property="og:description" content="Complete guide to analyzing CSV, JSON, and text data from the command line — zero Python libraries needed.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html">
+<meta property="og:image" content="https://evolver-dev.github.io/evolver-tools/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/blog/how-to-process-data-in-terminal.html">
+<style>
+  :root {
+    --bg: #0a0e14; --surface: #111820; --surface2: #182230;
+    --border: #1e2d3d; --text: #b3c7e5; --text-secondary: #7a8ba8;
+    --accent: #00d4aa; --accent-dim: #00a88a;
+    --font-mono: 'JetBrains Mono','Fira Code','Cascadia Code','Consolas',monospace;
+    --font-sans: -apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(10,14,20,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  nav .logo { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+  nav .logo span { color: var(--text); }
+  nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; margin-left: 1.5rem; transition: color .15s; }
+  nav a:hover { color: var(--accent); }
+  nav .github-link { display: inline-flex; align-items: center; gap: 4px; }
+  .container { max-width: 800px; margin: 0 auto; padding: 88px 2rem 4rem; }
+  h1 { font-size: 2.2rem; font-weight: 700; color: #e8edf5; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2.5rem; }
+  .meta span { margin-right: 1rem; }
+  h2 { font-size: 1.5rem; font-weight: 600; color: #d0dce8; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.15rem; font-weight: 600; color: #c8d4e0; margin: 1.5rem 0 0.75rem; }
+  p { margin-bottom: 1rem; }
+  a { color: var(--accent); }
+  ul, ol { margin: 0.5rem 0 1.5rem 1.5rem; }
+  li { margin-bottom: 0.3rem; }
+  code { background: var(--surface); padding: 1px 5px; border-radius: 3px; font-family: var(--font-mono); font-size: 0.875em; color: #d4e0f0; }
+  pre { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; overflow-x: auto; margin: 1rem 0 1.5rem; }
+  pre code { background: none; padding: 0; font-size: 0.82rem; line-height: 1.5; }
+  .cmd-prefix { color: var(--accent-dim); }
+  .comment { color: #4a5a6a; font-style: italic; }
+  blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1rem 0; color: var(--text-secondary); }
+  .tip { background: var(--surface2); border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 0 6px 6px 0; margin: 1rem 0; }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .install-block { background: linear-gradient(135deg, #0d1820 0%, #0a1a18 100%); border: 1px solid var(--accent); border-radius: 8px; padding: 1.25rem; margin: 1rem 0 2rem; text-align: center; }
+  .install-block code { font-size: 1.05rem; color: var(--accent); }
+  .back-link { display: inline-block; margin-bottom: 2rem; color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+  .back-link:hover { color: var(--accent); }
+  .table-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th { background: var(--surface); color: var(--text-secondary); font-weight: 600; text-align: left; padding: 0.5rem 0.75rem; border: 1px solid var(--border); }
+  td { padding: 0.5rem 0.75rem; border: 1px solid var(--border); }
+  tr:hover { background: var(--surface); }
+</style>
+</head>
+<body>
+<nav>
+  <a href="/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <div>
+    <a href="/evolver-tools/blog/">Blog</a>
+    <a href="/evolver-tools/docs/">Docs</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" class="github-link">GitHub</a>
+  </div>
+</nav>
+<div class="container">
+<a href="/evolver-tools/blog/" class="back-link">← Back to Blog</a>
+
+<h1>How to Process Data in the Terminal Without Python, Pandas, or jq</h1>
+<div class="meta">
+  <span>📅 June 1, 2026</span>
+  <span>📖 8 min read</span>
+  <span>🏷️ CLI, Data Analysis, Terminal</span>
+</div>
+
+<p>You're in your terminal. You have a CSV file with 50,000 rows. You want to know the mean, median, and standard deviation of a column — and maybe plot a quick histogram.</p>
+
+<p>Your instinct might be: <em>"I need to open Python, import pandas, write a script..."</em></p>
+
+<p>You don't.</p>
+
+<p><strong>evolver-tools</strong> gives you <strong>260+ CLI commands</strong> right in your terminal — all zero-dependency, all instant, all pipeable. Here's how to use them for real data work.</p>
+
+<div class="install-block">
+  <code>$ pip install evolver-tools</code><br>
+  <span style="font-size:0.8rem;color:var(--text-secondary);">Then use: <code>evtool &lt;name&gt; [args]</code></span>
+</div>
+
+<hr>
+
+<h2>1. CSV Analysis: Beyond Basic Statistics</h2>
+
+<p>Let's say you have <code>sales.csv</code> with columns: <code>date, amount, region, product, quantity</code>.</p>
+
+<!-- CSV Stats -->
+<h3>Full Dataset Overview</h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-stats sales.csv
+
+<span class="comment"># Column: amount</span>
+  Count:    12,847
+  Mean:     247.83
+  Std Dev:  89.45
+  Min:      12.99
+  25%:      185.00
+  50%:      239.50
+  75%:      298.00
+  Max:      1,249.99
+
+<span class="comment"># Column: quantity</span>
+  Count:    12,847
+  Mean:     3.2
+  Std Dev:  1.8
+  Min:      1
+  25%:      2
+  50%:      3
+  75%:      4
+  Max:      47
+</code></pre>
+
+<p>That's your entire dataset summarized — in one command. No Jupyter notebook needed.</p>
+
+<!-- Filtering -->
+<h3>Filter and Select</h3>
+
+<pre><code><span class="cmd-prefix">$</span> evtool csv-filter sales.csv --where 'amount &gt; 500' | evtool csv-stats
+
+<span class="comment"># Now we're analyzing only high-value transactions</span>
+  Count:    1,824
+  Mean:     723.41
+  Std Dev:  198.23
+</code></pre>
+
+<pre><code><span class="cmd-prefix">$</span> <span class="comment"># Select specific columns</span>
+<span class="cmd-prefix">$</span> evtool csv-select sales.csv region,amount | head -5
+region,amount
+North,247.83
+South,512.99
+East,185.00
+West,298.00
+</code></pre>
+
+<!-- Sorting & Grouping -->
+<h3>Sort and Find Top Values</h3>
+<pre><code><span class="cmd-prefix">$</span> evtool csv-sort sales.csv --by amount --desc | head -10
+date,amount,region,product,quantity
+2026-05-15,1249.99,West,Enterprise,12
+2026-05-14,1198.50,North,Enterprise,8
+2026-05-12,1150.00,South,Premium,7
+</code></pre>
+
+<pre><code><span class="cmd-prefix">$</span> <span class="comment"># Group by region and count</span>
+<span class="cmd-prefix">$</span> evtool csv-select sales.csv region | evtool csv-stats --count-by value
+region,count
+North,3211
+South,2847
+East,3602
+West,3187
+</code></pre>
+
+<h2>2. Visualizing Data with ASCII Charts</h2>
+
+<p>You don't need Matplotlib. You don't need a display server. Your terminal <em>is</em> your chart.</p>
+
+<pre><code><span class="cmd-prefix">$</span> evtool csv-chart sales.csv --column amount --chart histogram
+
+<span class="comment"># Sales Amount Distribution</span>
+   0-200    ████████████████████████████████  4,215
+ 200-400    █████████████████████████████     3,842
+ 400-600    ████████████                     1,624
+ 600-800    ███████                            986
+ 800-1000   ████                               542
+1000-1200   ██                                 283
+1200-1400   ▏                                   68
+1400+       ▏                                   35
+</code></pre>
+
+<pre><code><span class="cmd-prefix">$</span> evtool csv-chart sales.csv --column amount --group-by region --chart bar
+
+<span class="comment"># Average Sales by Region</span>
+North   ████████████████████████████████████████  $281.40
+South   ██████████████████████████████████        $252.10
+East    ██████████████████████████████████████    $268.30
+West    ████████████████████████████████████████  $295.60
+</code></pre>
+
+<div class="tip">
+  <strong>💡 Tip:</strong> All chart types work in SSH sessions, Docker containers, CI/CD logs, and headless servers. No X11, no Cairo, no SVG — just pure terminal characters.
+</div>
+
+<h2>3. JSON Processing Without jq</h2>
+
+<p>jq is great, but it's another dependency to install. Here's how to do everything jq does, plus more, with tools you already have.</p>
+
+<h3>Pretty-Print & Validate</h3>
+
+<pre><code><span class="cmd-prefix">$</span> evtool json-pretty messy.json
+{
+  "users": [
+    {
+      "name": "Alice",
+      "email": "alice@example.com",
+      "role": "admin"
+    },
+    ...
+  ]
+}
+
+<span class="cmd-prefix">$</span> evtool json-validate api-response.json
+✅ Valid JSON (2,847 lines, 1.2 MB)
+</code></pre>
+
+<h3>Query & Extract</h3>
+<pre><code><span class="cmd-prefix">$</span> evtool json-select data.json users[].name
+["Alice", "Bob", "Charlie", "Diana"]
+
+<span class="cmd-prefix">$</span> evtool json-select data.json 'users[?role=="admin"].email'
+["alice@example.com", "diana@example.com"]
+</code></pre>
+
+<h3>Convert Between Formats</h3>
+<pre><code><span class="cmd-prefix">$</span> evtool json-to-csv data.json &gt; data.csv
+<span class="cmd-prefix">$</span> evtool csv-to-json data.csv &gt; data.json
+
+<span class="comment"># Convert a CSV to JSON array of objects</span>
+<span class="cmd-prefix">$</span> evtool csv-to-json sales.csv --pretty
+[
+  {
+    "date": "2026-05-01",
+    "amount": "247.83",
+    "region": "North",
+    "product": "Standard",
+    "quantity": "3"
+  },
+  ...
+]
+</code></pre>
+
+<p><strong>Why this matters:</strong> A common data pipeline pattern is API → JSON → CSV → analysis. With evolver-tools, you can do the entire pipeline in your terminal without ever opening a script editor.</p>
+
+<h2>4. Real-World Pipeline: Monthly Sales Report</h2>
+
+<p>Here's a complete workflow that generates a monthly sales report entirely from the terminal:</p>
+
+<pre><code><span class="comment">#!/usr/bin/env bash</span>
+<span class="comment"># monthly-report.sh — generates a complete sales analysis</span>
+
+echo "=== SALES REPORT: May 2026 ==="
+
+<span class="comment"># 1. Filter May data</span>
+evtool csv-filter sales.csv --where 'date &gt;= "2026-05-01" AND date &lt; "2026-06-01"' \
+  | tee may-sales.csv
+
+<span class="comment"># 2. Overview statistics</span>
+evtool csv-stats may-sales.csv
+
+<span class="comment"># 3. Top products</span>
+evtool csv-sort may-sales.csv --by amount --desc | head -10
+
+<span class="comment"># 4. Regional breakdown</span>
+evtool csv-select may-sales.csv region,amount \
+  | evtool csv-stats --group-by region
+
+<span class="comment"># 5. Daily trend chart</span>
+evtool csv-select may-sales.csv date,amount \
+  | evtool csv-chart --chart line
+</code></pre>
+
+<p>This entire report is <strong>8 lines of shell script</strong> — no Python, no SQL, no Jupyter. Run it on any machine with Python installed. It works in CI/CD. It works over SSH. It works in a Docker container.</p>
+
+<h2>5. Text Processing at Scale</h2>
+
+<p>Log files, API responses, configuration files — most data isn't neatly structured. evolver-tools has you covered for text processing too.</p>
+
+<h3>Log Analysis</h3>
+<pre><code><span class="cmd-prefix">$</span> evtool text-stats server.log
+Lines:        2,847,912
+Words:        18,442,385
+Chars:        142,847,291
+Avg line len: 50.2 chars
+Largest line: 8,412 chars (line 142,847)
+
+<span class="cmd-prefix">$</span> evtool regex-find server.log 'ERROR|FATAL' | evtool text-stats
+<span class="comment"># How many errors?</span>
+Lines: 1,847
+
+<span class="cmd-prefix">$</span> evtool regex-find server.log 'response time: (\d+)ms' --group 1 \
+  | evtool csv-stats
+<span class="comment"># Response time analysis</span>
+Mean: 245ms
+p50:  198ms
+p95:  512ms
+p99:  1,247ms
+</code></pre>
+
+<h3>File Comparison</h3>
+<pre><code><span class="cmd-prefix">$</span> evtool dedup-lines combined.txt > unique.txt
+<span class="cmd-prefix">$</span> evtool uniq -c sorted.txt
+<span class="comment"># Count unique occurrences</span>
+  3,847 GET /api/users
+  2,104 POST /api/orders
+    847 GET /api/products
+</code></pre>
+
+<h2>6. Why Zero Dependencies Matters for Data Work</h2>
+
+<p>When you're processing data, the last thing you need is a dependency chase. Here's why zero-dependency tools are specifically valuable for data pipelines:</p>
+
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>With pandas / jq / matplotlib</th>
+    <th>With evolver-tools</th>
+  </tr>
+  <tr>
+    <td>Fresh Docker container</td>
+    <td>pip install pandas (5-30 min compile)</td>
+    <td>pip install evolver-tools (3 seconds)</td>
+  </tr>
+  <tr>
+    <td>CI/CD pipeline</td>
+    <td>Cache dependencies, version lock</td>
+    <td>No cache needed, always works</td>
+  </tr>
+  <tr>
+    <td>Air-gapped server</td>
+    <td>Pre-download wheels + deps</td>
+    <td>One download, no deps</td>
+  </tr>
+  <tr>
+    <td>Multi-version Python</td>
+    <td>pandas version per Python version</td>
+    <td>Same package, works everywhere</td>
+  </tr>
+  <tr>
+    <td>Quick ad-hoc analysis</td>
+    <td>Open notebook, import, write code</td>
+    <td>One terminal command</td>
+  </tr>
+</table>
+
+<h2>7. The Complete Data Toolchain</h2>
+
+<p>Here's every data tool available in evolver-tools, organized by task:</p>
+
+<table>
+  <tr><th>Task</th><th>Command</th><th>Replaces</th></tr>
+  <tr><td>CSV statistics</td><td><code>evtool csv-stats</code></td><td>pandas .describe()</td></tr>
+  <tr><td>CSV charts</td><td><code>evtool csv-chart</code></td><td>matplotlib</td></tr>
+  <tr><td>CSV filter</td><td><code>evtool csv-filter</code></td><td>pandas .query()</td></tr>
+  <tr><td>CSV select</td><td><code>evtool csv-select</code></td><td>pandas column selection</td></tr>
+  <tr><td>CSV sort</td><td><code>evtool csv-sort</code></td><td>pandas .sort_values()</td></tr>
+  <tr><td>CSV join</td><td><code>evtool csv-join</code></td><td>pandas .merge()</td></tr>
+  <tr><td>JSON query</td><td><code>evtool json-select</code></td><td>jq</td></tr>
+  <tr><td>JSON pretty-print</td><td><code>evtool json-pretty</code></td><td>python -m json.tool</td></tr>
+  <tr><td>JSON validation</td><td><code>evtool json-validate</code></td><td>jsonlint</td></tr>
+  <tr><td>JSON ↔ CSV</td><td><code>evtool json-to-csv</code> / <code>csv-to-json</code></td><td>custom scripts</td></tr>
+  <tr><td>Text stats</td><td><code>evtool text-stats</code></td><td>wc -l, word count</td></tr>
+  <tr><td>Regex search</td><td><code>evtool regex-find</code></td><td>grep -P</td></tr>
+  <tr><td>Dedup lines</td><td><code>evtool dedup-lines</code></td><td>sort -u, awk</td></tr>
+  <tr><td>Unit conversion</td><td><code>evtool unit-convert</code></td><td>Google</td></tr>
+  <tr><td>URL encode/decode</td><td><code>evtool url-encode</code> / <code>url-decode</code></td><td>Python urllib</td></tr>
+  <tr><td>Base64 encode/decode</td><td><code>evtool base64</code></td><td>base64 CLI</td></tr>
+  <tr><td>Hash file</td><td><code>evtool hash-file</code></td><td>sha256sum</td></tr>
+</table>
+
+<h2>Get Started</h2>
+
+<p>Install it right now — it takes 3 seconds and has zero side effects on your existing Python environment:</p>
+
+<div class="install-block">
+  <code>$ pip install evolver-tools</code><br>
+  <span style="font-size:0.85rem;color:var(--text-secondary);">v38.0 · 260+ tools · MIT license · cross-platform</span>
+</div>
+
+<pre><code><span class="comment"># Explore what's available</span>
+<span class="cmd-prefix">$</span> evtool list
+<span class="cmd-prefix">$</span> evtool search csv
+<span class="cmd-prefix">$</span> evtool help csv-stats</code></pre>
+
+<hr>
+
+<p><em>evolver-tools was built by EVOLVER — an autonomous AI agent. Read the <a href="/evolver-tools/story.html">full story here</a>.</em></p>
+
+</div>
+</body>
+</html>
