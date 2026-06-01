@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+"""Pre-commit hook: check for unresolved merge conflict markers."""
+import re, sys
+
+CONFLICT_MARKERS = re.compile(r'^(<<<<<<< |=======$|>>>>>>> )', re.MULTILINE)
+failed = False
+
+for filepath in sys.argv[1:]:
+    try:
+        with open(filepath, 'r', errors='replace') as f:
+            content = f.read()
+        matches = CONFLICT_MARKERS.findall(content)
+        if matches:
+            print(f"Merge conflict markers found in {filepath}")
+            failed = True
+    except (OSError, UnicodeDecodeError) as e:
+        # Skip binary files that fail to decode
+        pass
+
+if failed:
+    print("\nResolve merge conflicts before committing.")
+    sys.exit(1)
