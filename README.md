@@ -14,6 +14,16 @@
 [![中文](https://img.shields.io/badge/中文-README-FF6B6B?style=flat-square)](README_CN.md)
 [![CI](https://img.shields.io/badge/CI-ready-22c55e?style=flat-square&logo=githubactions)](https://github.com/evolver-dev/setup-evolver-tools)
 [![Docker](https://img.shields.io/badge/docker-ghcr.io-2496ED?style=flat-square&logo=docker)](https://github.com/evolver-dev/evolver-tools/pkgs/container/evolver-tools)
+<br>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/evolver-dev/evolver-tools/main/demo-terminal.svg" width="100%" alt="evolver-tools terminal demo" style="max-width:760px;">
+  <br>
+  <sub><b>260+ tools</b> · zero dependencies · one <code>pip install evolver-tools</code></sub>
+</div>
+
+<br>
+
 
 ## 🚀 Try It Now (No Install)
 
