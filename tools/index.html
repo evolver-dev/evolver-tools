@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>260+ CLI Tools — evolver-tools Directory</title>
+<meta name="description" content="Complete directory of all 260+ evolver-tools CLI tools. Zero-dependency Python tools for CSV, JSON, networking, security, system monitoring, text processing, and more.">
+<meta name="keywords" content="CLI tools, command line tools, Python CLI, zero dependency, csv tools, json tools, network tools, dev tools">
+<meta property="og:title" content="260+ Zero-Dependency CLI Tools">
+<meta property="og:description" content="Complete tool directory for evolver-tools — install once, get 260+ utilities.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/tools/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "evolver-tools Directory",
+  "description": "260+ zero-dependency Python CLI tools",
+  "numberOfItems": 260,
+  "url": "https://evolver-dev.github.io/evolver-tools/tools/"
+}
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e0e0f0; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  h1 { font-size: 2.2em; color: #00ff88; margin-bottom: 8px; }
+  h2 { font-size: 1.5em; color: #00ccff; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #1a1a2e; }
+  .subtitle { color: #8888aa; margin-bottom: 24px; font-size: 1.1em; }
+  .stats-bar { background: #12121f; border-radius: 8px; padding: 16px 24px; margin-bottom: 28px; display: flex; gap: 32px; flex-wrap: wrap; border: 1px solid #1a1a2e; }
+  .stat { text-align: center; }
+  .stat-val { font-size: 1.8em; font-weight: 700; color: #00ff88; }
+  .stat-label { font-size: 0.85em; color: #6666aa; }
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
+  .tool-card { background: #12121f; border: 1px solid #1a1a2e; border-radius: 8px; padding: 14px 16px; transition: border-color 0.2s; }
+  .tool-card:hover { border-color: #00ff88; }
+  .tool-name { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.95em; color: #00ff88; font-weight: 600; margin-bottom: 4px; }
+  .tool-name a { color: #00ff88; text-decoration: none; }
+  .tool-name a:hover { text-decoration: underline; }
+  .tool-desc { font-size: 0.85em; color: #8888bb; line-height: 1.4; }
+  .search-box { width: 100%; padding: 12px 16px; background: #12121f; border: 1px solid #1a2a3e; border-radius: 8px; color: #e0e0f0; font-size: 1em; margin-bottom: 24px; outline: none; }
+  .search-box:focus { border-color: #00ff88; }
+  .cat-count { color: #6666aa; font-size: 0.85em; margin-left: 8px; }
+  .no-results { display: none; text-align: center; padding: 48px; color: #6666aa; font-size: 1.1em; }
+  .quick-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .quick-link { color: #00ccff; text-decoration: none; font-size: 0.85em; padding: 4px 10px; border: 1px solid #1a2a3e; border-radius: 4px; }
+  .quick-link:hover { border-color: #00ccff; }
+  @media (max-width: 600px) { .tool-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🔧 evolver-tools</h1>
+<p class="subtitle">Complete tool directory — 260 zero-dependency CLI utilities</p>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val">260</div><div class="stat-label">Tools</div></div>
+  <div class="stat"><div class="stat-val">14</div><div class="stat-label">Categories</div></div>
+  <div class="stat"><div class="stat-val">0</div><div class="stat-label">Dependencies</div></div>
+  <div class="stat"><div class="stat-val">pip</div><div class="stat-label">Install</div></div>
+</div>
+
+<p style="margin-bottom:12px;color:#8888aa">Jump to category:</p>
+<div class="quick-links">
+<a class="quick-link" href="#ascii-art">ASCII & Art (10)</a>
+<a class="quick-link" href="#cli-terminal">CLI & Terminal (3)</a>
+<a class="quick-link" href="#csv-data">CSV & Data (72)</a>
+<a class="quick-link" href="#conversion">Conversion (4)</a>
+<a class="quick-link" href="#date-time">Date & Time (13)</a>
+<a class="quick-link" href="#dev-tools-git">Dev Tools & Git (10)</a>
+<a class="quick-link" href="#fun-utility">Fun & Utility (4)</a>
+<a class="quick-link" href="#math-random">Math & Random (7)</a>
+<a class="quick-link" href="#network-dns">Network & DNS (43)</a>
+<a class="quick-link" href="#other">Other (13)</a>
+<a class="quick-link" href="#qr-media">QR & Media (6)</a>
+<a class="quick-link" href="#security-crypto">Security & Crypto (17)</a>
+<a class="quick-link" href="#system-monitor">System & Monitor (15)</a>
+<a class="quick-link" href="#text-processing">Text Processing (43)</a>
+</div>
+
+<input class="search-box" type="text" id="search" placeholder="Search tools by name or description..." oninput="filterTools(this.value)">
+
+<div id="no-results" class="no-results">No tools match your search. Try a different keyword.</div>
+<h2 id="ascii-art">ASCII & Art <span class="cat-count">(10 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="ascii-banner" data-desc="ASCII art banner generator — block, simple, wide, big fonts">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ascii-banner</a></div>
+  <div class="tool-desc">ASCII art banner generator — block, simple, wide, big fonts</div>
+</div>
+<div class="tool-card" data-tool="ascii-gen" data-desc="ASCII art generator (8 styles)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ascii-gen</a></div>
+  <div class="tool-desc">ASCII art generator (8 styles)</div>
+</div>
+<div class="tool-card" data-tool="banner-gen" data-desc="ASCII banner generator (4 styles, colors)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">banner-gen</a></div>
+  <div class="tool-desc">ASCII banner generator (4 styles, colors)</div>
+</div>
+<div class="tool-card" data-tool="color-convert" data-desc="Convert colors between hex/rgb/hsl/hsv/named formats">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">color-convert</a></div>
+  <div class="tool-desc">Convert colors between hex/rgb/hsl/hsv/named formats</div>
+</div>
+<div class="tool-card" data-tool="emoji-cli" data-desc="Search and display emoji">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">emoji-cli</a></div>
+  <div class="tool-desc">Search and display emoji</div>
+</div>
+<div class="tool-card" data-tool="figlet" data-desc="ASCII banner generator (figlet-style)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">figlet</a></div>
+  <div class="tool-desc">ASCII banner generator (figlet-style)</div>
+</div>
+<div class="tool-card" data-tool="figlet-cli" data-desc="ASCII art font display (5 fonts)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">figlet-cli</a></div>
+  <div class="tool-desc">ASCII art font display (5 fonts)</div>
+</div>
+<div class="tool-card" data-tool="hexdump" data-desc="Hex dump with ASCII view (file or stdin)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">hexdump</a></div>
+  <div class="tool-desc">Hex dump with ASCII view (file or stdin)</div>
+</div>
+<div class="tool-card" data-tool="progress-bar" data-desc="Animated terminal progress bar">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">progress-bar</a></div>
+  <div class="tool-desc">Animated terminal progress bar</div>
+</div>
+<div class="tool-card" data-tool="spinner" data-desc="Animated terminal spinner (6 styles)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">spinner</a></div>
+  <div class="tool-desc">Animated terminal spinner (6 styles)</div>
+</div>
+</div>
+<h2 id="cli-terminal">CLI & Terminal <span class="cat-count">(3 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="chart-cli" data-desc="Terminal chart generator (bar, line, pie, histogram)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">chart-cli</a></div>
+  <div class="tool-desc">Terminal chart generator (bar, line, pie, histogram)</div>
+</div>
+<div class="tool-card" data-tool="ff" data-desc="Interactive fuzzy finder (pure Python curses TUI)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ff</a></div>
+  <div class="tool-desc">Interactive fuzzy finder (pure Python curses TUI)</div>
+</div>
+<div class="tool-card" data-tool="search-history" data-desc="Search terminal history. Usage: search-history <pattern>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">search-history</a></div>
+  <div class="tool-desc">Search terminal history. Usage: search-history <pattern></div>
+</div>
+</div>
+<h2 id="csv-data">CSV & Data <span class="cat-count">(72 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="audit-log" data-desc="Parse and filter system audit logs">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">audit-log</a></div>
+  <div class="tool-desc">Parse and filter system audit logs</div>
+</div>
+<div class="tool-card" data-tool="code-stats" data-desc="Count lines of code by language. Usage: code-stats [path]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">code-stats</a></div>
+  <div class="tool-desc">Count lines of code by language. Usage: code-stats [path]</div>
+</div>
+<div class="tool-card" data-tool="colors" data-desc="256-color table, HEX/RGB conversion, terminal colors">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">colors</a></div>
+  <div class="tool-desc">256-color table, HEX/RGB conversion, terminal colors</div>
+</div>
+<div class="tool-card" data-tool="config-validator" data-desc="Validate config files (JSON, YAML, TOML)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">config-validator</a></div>
+  <div class="tool-desc">Validate config files (JSON, YAML, TOML)</div>
+</div>
+<div class="tool-card" data-tool="config-vault" data-desc="Config security: validate, encrypt, scan secrets — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">config-vault</a></div>
+  <div class="tool-desc">Config security: validate, encrypt, scan secrets — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="cron-check" data-desc="Validate and describe cron expressions">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cron-check</a></div>
+  <div class="tool-desc">Validate and describe cron expressions</div>
+</div>
+<div class="tool-card" data-tool="csv-concat" data-desc="Concatenate CSV files vertically (union mode)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-concat</a></div>
+  <div class="tool-desc">Concatenate CSV files vertically (union mode)</div>
+</div>
+<div class="tool-card" data-tool="csv-dedup" data-desc="Deduplicate CSV rows by key column or all columns">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-dedup</a></div>
+  <div class="tool-desc">Deduplicate CSV rows by key column or all columns</div>
+</div>
+<div class="tool-card" data-tool="csv-filter" data-desc="Filter CSV rows by column value">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-filter</a></div>
+  <div class="tool-desc">Filter CSV rows by column value</div>
+</div>
+<div class="tool-card" data-tool="csv-head" data-desc="Display first N rows of a CSV file">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-head</a></div>
+  <div class="tool-desc">Display first N rows of a CSV file</div>
+</div>
+<div class="tool-card" data-tool="csv-pretty" data-desc="Pretty-print CSV files as aligned tables">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-pretty</a></div>
+  <div class="tool-desc">Pretty-print CSV files as aligned tables</div>
+</div>
+<div class="tool-card" data-tool="csv-schema" data-desc="Infer CSV schema (column types, nulls, stats, samples)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-schema</a></div>
+  <div class="tool-desc">Infer CSV schema (column types, nulls, stats, samples)</div>
+</div>
+<div class="tool-card" data-tool="csv-slice" data-desc="Extract columns/rows from CSV files by index or name">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-slice</a></div>
+  <div class="tool-desc">Extract columns/rows from CSV files by index or name</div>
+</div>
+<div class="tool-card" data-tool="csv-sort" data-desc="Sort CSV files by column">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-sort</a></div>
+  <div class="tool-desc">Sort CSV files by column</div>
+</div>
+<div class="tool-card" data-tool="csv-stats" data-desc="CSV column analysis with histograms and correlations">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-stats</a></div>
+  <div class="tool-desc">CSV column analysis with histograms and correlations</div>
+</div>
+<div class="tool-card" data-tool="csv-to-table" data-desc="Convert CSV to an aligned ASCII table in terminal">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-to-table</a></div>
+  <div class="tool-desc">Convert CSV to an aligned ASCII table in terminal</div>
+</div>
+<div class="tool-card" data-tool="csv-validate" data-desc="Validate CSV file format. Usage: csv-validate <file.csv>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-validate</a></div>
+  <div class="tool-desc">Validate CSV file format. Usage: csv-validate <file.csv></div>
+</div>
+<div class="tool-card" data-tool="csv-view" data-desc="CSV file viewer with table formatting. Auto-detects delimiter, filters, sorts, JSON output.">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv-view</a></div>
+  <div class="tool-desc">CSV file viewer with table formatting. Auto-detects delimiter, filters, sorts, JSON output.</div>
+</div>
+<div class="tool-card" data-tool="csv2json" data-desc="Convert CSV to JSON. Usage: csv2json [file.csv] [--pretty] [--output file.json]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv2json</a></div>
+  <div class="tool-desc">Convert CSV to JSON. Usage: csv2json [file.csv] [--pretty] [--output file.json]</div>
+</div>
+<div class="tool-card" data-tool="csv_merge" data-desc="Merge CSV files by common column (inner/left/outer join)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">csv_merge</a></div>
+  <div class="tool-desc">Merge CSV files by common column (inner/left/outer join)</div>
+</div>
+<div class="tool-card" data-tool="db-mate" data-desc="Database management: SQLite browser, schema, queries — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">db-mate</a></div>
+  <div class="tool-desc">Database management: SQLite browser, schema, queries — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="db-schema" data-desc="Display database schema as ASCII">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">db-schema</a></div>
+  <div class="tool-desc">Display database schema as ASCII</div>
+</div>
+<div class="tool-card" data-tool="dedup-files" data-desc="Find and optionally delete duplicate files by SHA256 hash">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dedup-files</a></div>
+  <div class="tool-desc">Find and optionally delete duplicate files by SHA256 hash</div>
+</div>
+<div class="tool-card" data-tool="diff-csv" data-desc="Row-level diff of CSV files by key column">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">diff-csv</a></div>
+  <div class="tool-desc">Row-level diff of CSV files by key column</div>
+</div>
+<div class="tool-card" data-tool="diff-yaml" data-desc="Show differences between two YAML files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">diff-yaml</a></div>
+  <div class="tool-desc">Show differences between two YAML files</div>
+</div>
+<div class="tool-card" data-tool="env-sorter" data-desc="Sort environment variables in .env files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">env-sorter</a></div>
+  <div class="tool-desc">Sort environment variables in .env files</div>
+</div>
+<div class="tool-card" data-tool="excel2csv" data-desc="Convert Excel to CSV">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">excel2csv</a></div>
+  <div class="tool-desc">Convert Excel to CSV</div>
+</div>
+<div class="tool-card" data-tool="file-joiner" data-desc="Join split file chunks. Usage: file-joiner <base_name> [--output file]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file-joiner</a></div>
+  <div class="tool-desc">Join split file chunks. Usage: file-joiner <base_name> [--output file]</div>
+</div>
+<div class="tool-card" data-tool="firewall-rule" data-desc="iptables/nftables firewall rule helper">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">firewall-rule</a></div>
+  <div class="tool-desc">iptables/nftables firewall rule helper</div>
+</div>
+<div class="tool-card" data-tool="git-stats" data-desc="Show git contribution stats. Usage: git-stats [--author name] [--since 30.days]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">git-stats</a></div>
+  <div class="tool-desc">Show git contribution stats. Usage: git-stats [--author name] [--since 30.days]</div>
+</div>
+<div class="tool-card" data-tool="image-meta" data-desc="Image metadata (EXIF) viewer">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">image-meta</a></div>
+  <div class="tool-desc">Image metadata (EXIF) viewer</div>
+</div>
+<div class="tool-card" data-tool="ini-parser" data-desc="INI file parser, query, and JSON converter">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ini-parser</a></div>
+  <div class="tool-desc">INI file parser, query, and JSON converter</div>
+</div>
+<div class="tool-card" data-tool="ini2json" data-desc="Convert INI to JSON. Usage: ini2json <file.ini> [--pretty]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ini2json</a></div>
+  <div class="tool-desc">Convert INI to JSON. Usage: ini2json <file.ini> [--pretty]</div>
+</div>
+<div class="tool-card" data-tool="join" data-desc="Join lines with delimiter">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">join</a></div>
+  <div class="tool-desc">Join lines with delimiter</div>
+</div>
+<div class="tool-card" data-tool="jq-lite" data-desc="jq-style JSON filter and extract tool">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">jq-lite</a></div>
+  <div class="tool-desc">jq-style JSON filter and extract tool</div>
+</div>
+<div class="tool-card" data-tool="json-diff" data-desc="Deep diff two JSON files, show paths that differ">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-diff</a></div>
+  <div class="tool-desc">Deep diff two JSON files, show paths that differ</div>
+</div>
+<div class="tool-card" data-tool="json-keys" data-desc="Extract and list keys from JSON files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-keys</a></div>
+  <div class="tool-desc">Extract and list keys from JSON files</div>
+</div>
+<div class="tool-card" data-tool="json-patch" data-desc="Apply JSON Patch (RFC 6902) operations to JSON files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-patch</a></div>
+  <div class="tool-desc">Apply JSON Patch (RFC 6902) operations to JSON files</div>
+</div>
+<div class="tool-card" data-tool="json-path" data-desc="Query JSON with simple path syntax — dot notation, bracket, wildcard">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-path</a></div>
+  <div class="tool-desc">Query JSON with simple path syntax — dot notation, bracket, wildcard</div>
+</div>
+<div class="tool-card" data-tool="json-pretty" data-desc="JSON pretty-printer, validator, minifier">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-pretty</a></div>
+  <div class="tool-desc">JSON pretty-printer, validator, minifier</div>
+</div>
+<div class="tool-card" data-tool="json-schema-validate" data-desc="Validate JSON against JSON Schema. Usage: json-schema-validate <data.json> <schema.json>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-schema-validate</a></div>
+  <div class="tool-desc">Validate JSON against JSON Schema. Usage: json-schema-validate <data.json> <schema.json></div>
+</div>
+<div class="tool-card" data-tool="json-sort" data-desc="Sort JSON keys alphabetically, recursively">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-sort</a></div>
+  <div class="tool-desc">Sort JSON keys alphabetically, recursively</div>
+</div>
+<div class="tool-card" data-tool="json-to-table" data-desc="Render JSON array as aligned ASCII table in terminal">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-to-table</a></div>
+  <div class="tool-desc">Render JSON array as aligned ASCII table in terminal</div>
+</div>
+<div class="tool-card" data-tool="json-to-yaml" data-desc="Convert JSON to YAML format (stdlib, zero deps)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json-to-yaml</a></div>
+  <div class="tool-desc">Convert JSON to YAML format (stdlib, zero deps)</div>
+</div>
+<div class="tool-card" data-tool="json2csv" data-desc="JSON to CSV converter with nested key flattening">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json2csv</a></div>
+  <div class="tool-desc">JSON to CSV converter with nested key flattening</div>
+</div>
+<div class="tool-card" data-tool="json2ini" data-desc="Convert JSON to INI format. Usage: json2ini <file.json>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json2ini</a></div>
+  <div class="tool-desc">Convert JSON to INI format. Usage: json2ini <file.json></div>
+</div>
+<div class="tool-card" data-tool="json_flatten" data-desc="Flatten nested JSON to dot-notation key=value pairs">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json_flatten</a></div>
+  <div class="tool-desc">Flatten nested JSON to dot-notation key=value pairs</div>
+</div>
+<div class="tool-card" data-tool="json_merge" data-desc="Merge multiple JSON files into one">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">json_merge</a></div>
+  <div class="tool-desc">Merge multiple JSON files into one</div>
+</div>
+<div class="tool-card" data-tool="jsonql" data-desc="SQL-like JSON query engine">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">jsonql</a></div>
+  <div class="tool-desc">SQL-like JSON query engine</div>
+</div>
+<div class="tool-card" data-tool="log-hawk" data-desc="Log analysis: parse, filter, tail, stats — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">log-hawk</a></div>
+  <div class="tool-desc">Log analysis: parse, filter, tail, stats — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="log-tail" data-desc="Tail logs with follow, filter, colorize">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">log-tail</a></div>
+  <div class="tool-desc">Tail logs with follow, filter, colorize</div>
+</div>
+<div class="tool-card" data-tool="markdown-format" data-desc="Format/beautify Markdown tables and lists">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">markdown-format</a></div>
+  <div class="tool-desc">Format/beautify Markdown tables and lists</div>
+</div>
+<div class="tool-card" data-tool="markdown-toc" data-desc="Generate table of contents from Markdown. Usage: markdown-toc [file.md]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">markdown-toc</a></div>
+  <div class="tool-desc">Generate table of contents from Markdown. Usage: markdown-toc [file.md]</div>
+</div>
+<div class="tool-card" data-tool="merge-json" data-desc="Deep merge multiple JSON files (arrays concatenate, dicts recurse)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">merge-json</a></div>
+  <div class="tool-desc">Deep merge multiple JSON files (arrays concatenate, dicts recurse)</div>
+</div>
+<div class="tool-card" data-tool="pdf_info" data-desc="Extract PDF metadata — pages, title, author, size">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">pdf_info</a></div>
+  <div class="tool-desc">Extract PDF metadata — pages, title, author, size</div>
+</div>
+<div class="tool-card" data-tool="qc-report" data-desc="检验报告生成器 v2.0 -- Text/HTML/CSV/证书">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">qc-report</a></div>
+  <div class="tool-desc">检验报告生成器 v2.0 -- Text/HTML/CSV/证书</div>
+</div>
+<div class="tool-card" data-tool="random-cli" data-desc="Random data generator (numbers, strings, UUIDs, passwords)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">random-cli</a></div>
+  <div class="tool-desc">Random data generator (numbers, strings, UUIDs, passwords)</div>
+</div>
+<div class="tool-card" data-tool="sort" data-desc="Line sorting (alpha, numeric, unique, by column)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">sort</a></div>
+  <div class="tool-desc">Line sorting (alpha, numeric, unique, by column)</div>
+</div>
+<div class="tool-card" data-tool="split" data-desc="File splitter and joiner (by lines or size)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">split</a></div>
+  <div class="tool-desc">File splitter and joiner (by lines or size)</div>
+</div>
+<div class="tool-card" data-tool="sql2csv" data-desc="Run SQL on CSV files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">sql2csv</a></div>
+  <div class="tool-desc">Run SQL on CSV files</div>
+</div>
+<div class="tool-card" data-tool="sqlite-cli" data-desc="SQLite query tool with CSV/JSON/table output">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">sqlite-cli</a></div>
+  <div class="tool-desc">SQLite query tool with CSV/JSON/table output</div>
+</div>
+<div class="tool-card" data-tool="template" data-desc="Project scaffolding. Usage: template init <name> | template python <name> | template cli <name>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">template</a></div>
+  <div class="tool-desc">Project scaffolding. Usage: template init <name> | template python <name> | template cli <name></div>
+</div>
+<div class="tool-card" data-tool="text-stats" data-desc="Text statistics (words, chars, sentences, reading time)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">text-stats</a></div>
+  <div class="tool-desc">Text statistics (words, chars, sentences, reading time)</div>
+</div>
+<div class="tool-card" data-tool="toml2json" data-desc="Convert TOML to JSON. Usage: toml2json <file.toml> [--pretty]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">toml2json</a></div>
+  <div class="tool-desc">Convert TOML to JSON. Usage: toml2json <file.toml> [--pretty]</div>
+</div>
+<div class="tool-card" data-tool="tsv2csv" data-desc="Convert TSV (tab-separated) to CSV format">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">tsv2csv</a></div>
+  <div class="tool-desc">Convert TSV (tab-separated) to CSV format</div>
+</div>
+<div class="tool-card" data-tool="uniq" data-desc="Unique line filter with count & case-insensitive">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">uniq</a></div>
+  <div class="tool-desc">Unique line filter with count & case-insensitive</div>
+</div>
+<div class="tool-card" data-tool="validate" data-desc="Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">validate</a></div>
+  <div class="tool-desc">Generic file validator (JSON/YAML/CSV/TOML/XML auto-detect)</div>
+</div>
+<div class="tool-card" data-tool="xml-format" data-desc="Pretty-print and format XML files (stdlib)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">xml-format</a></div>
+  <div class="tool-desc">Pretty-print and format XML files (stdlib)</div>
+</div>
+<div class="tool-card" data-tool="xml2json" data-desc="XML to JSON converter">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">xml2json</a></div>
+  <div class="tool-desc">XML to JSON converter</div>
+</div>
+<div class="tool-card" data-tool="yaml-validate" data-desc="Validate YAML syntax. Usage: yaml-validate <file.yaml>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">yaml-validate</a></div>
+  <div class="tool-desc">Validate YAML syntax. Usage: yaml-validate <file.yaml></div>
+</div>
+<div class="tool-card" data-tool="yaml2json" data-desc="YAML → JSON converter">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">yaml2json</a></div>
+  <div class="tool-desc">YAML → JSON converter</div>
+</div>
+<div class="tool-card" data-tool="yaml2toml" data-desc="Convert YAML to TOML. Usage: yaml2toml <file.yaml>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">yaml2toml</a></div>
+  <div class="tool-desc">Convert YAML to TOML. Usage: yaml2toml <file.yaml></div>
+</div>
+</div>
+<h2 id="conversion">Conversion <span class="cat-count">(4 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="hexdec" data-desc="Convert between hex, decimal, octal, binary">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">hexdec</a></div>
+  <div class="tool-desc">Convert between hex, decimal, octal, binary</div>
+</div>
+<div class="tool-card" data-tool="humanize" data-desc="Convert raw numbers to human-readable format (size, duration, count)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">humanize</a></div>
+  <div class="tool-desc">Convert raw numbers to human-readable format (size, duration, count)</div>
+</div>
+<div class="tool-card" data-tool="url_parser" data-desc="Parse and analyze URLs">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">url_parser</a></div>
+  <div class="tool-desc">Parse and analyze URLs</div>
+</div>
+<div class="tool-card" data-tool="urlparse" data-desc="URL parser and debugger">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">urlparse</a></div>
+  <div class="tool-desc">URL parser and debugger</div>
+</div>
+</div>
+<h2 id="date-time">Date & Time <span class="cat-count">(13 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="cal" data-desc="Calendar and date calculator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cal</a></div>
+  <div class="tool-desc">Calendar and date calculator</div>
+</div>
+<div class="tool-card" data-tool="calendar-cli" data-desc="Display terminal calendar. Usage: calendar-cli [year] [month]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">calendar-cli</a></div>
+  <div class="tool-desc">Display terminal calendar. Usage: calendar-cli [year] [month]</div>
+</div>
+<div class="tool-card" data-tool="chrono" data-desc="Advanced date/time calculator (durations, business days, ranges, age)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">chrono</a></div>
+  <div class="tool-desc">Advanced date/time calculator (durations, business days, ranges, age)</div>
+</div>
+<div class="tool-card" data-tool="crc_check" data-desc="CRC32/CRC64 checksum calculator for files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">crc_check</a></div>
+  <div class="tool-desc">CRC32/CRC64 checksum calculator for files</div>
+</div>
+<div class="tool-card" data-tool="cron" data-desc="Cron expression parser">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cron</a></div>
+  <div class="tool-desc">Cron expression parser</div>
+</div>
+<div class="tool-card" data-tool="cron-pretty" data-desc="Describe cron schedule in plain English. Usage: cron-pretty '*/5 * * * *'">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cron-pretty</a></div>
+  <div class="tool-desc">Describe cron schedule in plain English. Usage: cron-pretty '*/5 * * * *'</div>
+</div>
+<div class="tool-card" data-tool="crontab-helper" data-desc="Simplify crontab management">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">crontab-helper</a></div>
+  <div class="tool-desc">Simplify crontab management</div>
+</div>
+<div class="tool-card" data-tool="dt" data-desc="Date/time format converter (timestamps, timezones)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dt</a></div>
+  <div class="tool-desc">Date/time format converter (timestamps, timezones)</div>
+</div>
+<div class="tool-card" data-tool="epoch" data-desc="Unix timestamp / human date converter">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">epoch</a></div>
+  <div class="tool-desc">Unix timestamp / human date converter</div>
+</div>
+<div class="tool-card" data-tool="math_eval" data-desc="Safe mathematical expression evaluator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">math_eval</a></div>
+  <div class="tool-desc">Safe mathematical expression evaluator</div>
+</div>
+<div class="tool-card" data-tool="pomodoro" data-desc="Pomodoro timer (work/break cycles)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">pomodoro</a></div>
+  <div class="tool-desc">Pomodoro timer (work/break cycles)</div>
+</div>
+<div class="tool-card" data-tool="reminder" data-desc="Timer-based reminder with countdown">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">reminder</a></div>
+  <div class="tool-desc">Timer-based reminder with countdown</div>
+</div>
+<div class="tool-card" data-tool="timeout" data-desc="Run command with timeout limit">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">timeout</a></div>
+  <div class="tool-desc">Run command with timeout limit</div>
+</div>
+</div>
+<h2 id="dev-tools-git">Dev Tools & Git <span class="cat-count">(10 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="changelog-gen" data-desc="Generate changelog from git log">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">changelog-gen</a></div>
+  <div class="tool-desc">Generate changelog from git log</div>
+</div>
+<div class="tool-card" data-tool="code-auditor" data-desc="Code analysis: complexity, security, style, deps — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">code-auditor</a></div>
+  <div class="tool-desc">Code analysis: complexity, security, style, deps — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="dep-graph" data-desc="Dependency graph from Python files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dep-graph</a></div>
+  <div class="tool-desc">Dependency graph from Python files</div>
+</div>
+<div class="tool-card" data-tool="env-manager" data-desc="Environment variable manager for .env files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">env-manager</a></div>
+  <div class="tool-desc">Environment variable manager for .env files</div>
+</div>
+<div class="tool-card" data-tool="envcheck" data-desc="Environment variable validator (missing keys, formats)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">envcheck</a></div>
+  <div class="tool-desc">Environment variable validator (missing keys, formats)</div>
+</div>
+<div class="tool-card" data-tool="git-log-pretty" data-desc="Pretty git log. Usage: git-log-pretty [--count N] [--author name]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">git-log-pretty</a></div>
+  <div class="tool-desc">Pretty git log. Usage: git-log-pretty [--count N] [--author name]</div>
+</div>
+<div class="tool-card" data-tool="pr-tool" data-desc="GitHub PR helper (create, list, review, checkout)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">pr-tool</a></div>
+  <div class="tool-desc">GitHub PR helper (create, list, review, checkout)</div>
+</div>
+<div class="tool-card" data-tool="qr_cli" data-desc="Generate QR codes in terminal (unicode block art)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">qr_cli</a></div>
+  <div class="tool-desc">Generate QR codes in terminal (unicode block art)</div>
+</div>
+<div class="tool-card" data-tool="qrcode" data-desc="QR code generator (ASCII art)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">qrcode</a></div>
+  <div class="tool-desc">QR code generator (ASCII art)</div>
+</div>
+<div class="tool-card" data-tool="smellfinder" data-desc="Python code smell detector (AST-based, 10+ patterns)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">smellfinder</a></div>
+  <div class="tool-desc">Python code smell detector (AST-based, 10+ patterns)</div>
+</div>
+</div>
+<h2 id="fun-utility">Fun & Utility <span class="cat-count">(4 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="bookmark" data-desc="CLI bookmark manager">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">bookmark</a></div>
+  <div class="tool-desc">CLI bookmark manager</div>
+</div>
+<div class="tool-card" data-tool="license-cli" data-desc="Open-source license generator and validator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">license-cli</a></div>
+  <div class="tool-desc">Open-source license generator and validator</div>
+</div>
+<div class="tool-card" data-tool="note-taker" data-desc="CLI note-taking (add, list, search)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">note-taker</a></div>
+  <div class="tool-desc">CLI note-taking (add, list, search)</div>
+</div>
+<div class="tool-card" data-tool="todo-cli" data-desc="Simple prioritized TODO list manager">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">todo-cli</a></div>
+  <div class="tool-desc">Simple prioritized TODO list manager</div>
+</div>
+</div>
+<h2 id="math-random">Math & Random <span class="cat-count">(7 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="dice-roll" data-desc="Dice roller (d4, d6, d8, d10, d12, d20, d100)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dice-roll</a></div>
+  <div class="tool-desc">Dice roller (d4, d6, d8, d10, d12, d20, d100)</div>
+</div>
+<div class="tool-card" data-tool="factor" data-desc="Prime factorization of integers">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">factor</a></div>
+  <div class="tool-desc">Prime factorization of integers</div>
+</div>
+<div class="tool-card" data-tool="joke" data-desc="Random programming/tech/dad jokes">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">joke</a></div>
+  <div class="tool-desc">Random programming/tech/dad jokes</div>
+</div>
+<div class="tool-card" data-tool="quote" data-desc="Random quote generator (100+ in 5 categories)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">quote</a></div>
+  <div class="tool-desc">Random quote generator (100+ in 5 categories)</div>
+</div>
+<div class="tool-card" data-tool="seq" data-desc="Generate sequence of numbers">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">seq</a></div>
+  <div class="tool-desc">Generate sequence of numbers</div>
+</div>
+<div class="tool-card" data-tool="uuid" data-desc="UUID v1/v4/v5/v7 generator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">uuid</a></div>
+  <div class="tool-desc">UUID v1/v4/v5/v7 generator</div>
+</div>
+<div class="tool-card" data-tool="uuid_gen" data-desc="UUID generator (v1/v4/v5/v7)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">uuid_gen</a></div>
+  <div class="tool-desc">UUID generator (v1/v4/v5/v7)</div>
+</div>
+</div>
+<h2 id="network-dns">Network & DNS <span class="cat-count">(43 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="ansi-strip" data-desc="Strip ANSI escape codes. Usage: ansi-strip [file]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ansi-strip</a></div>
+  <div class="tool-desc">Strip ANSI escape codes. Usage: ansi-strip [file]</div>
+</div>
+<div class="tool-card" data-tool="ansi-to-txt" data-desc="Strip ANSI escape codes, convert to plain text">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ansi-to-txt</a></div>
+  <div class="tool-desc">Strip ANSI escape codes, convert to plain text</div>
+</div>
+<div class="tool-card" data-tool="api-tester" data-desc="HTTP API testing tool">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">api-tester</a></div>
+  <div class="tool-desc">HTTP API testing tool</div>
+</div>
+<div class="tool-card" data-tool="cert-check" data-desc="Check SSL certificate expiry">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cert-check</a></div>
+  <div class="tool-desc">Check SSL certificate expiry</div>
+</div>
+<div class="tool-card" data-tool="cert-info" data-desc="Show SSL certificate info for a domain. Usage: cert-info <domain> [port]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cert-info</a></div>
+  <div class="tool-desc">Show SSL certificate info for a domain. Usage: cert-info <domain> [port]</div>
+</div>
+<div class="tool-card" data-tool="clipboard" data-desc="Terminal clipboard copy/paste/clear">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">clipboard</a></div>
+  <div class="tool-desc">Terminal clipboard copy/paste/clear</div>
+</div>
+<div class="tool-card" data-tool="code-review" data-desc="Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings, CRLF, tabs, long functions, bare excepts, wildcard imports">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">code-review</a></div>
+  <div class="tool-desc">Basic code review: line length, TODOs, shebang, trailing whitespace, docstrings, CRLF, tabs, long functions, bare excepts, wildcard imports</div>
+</div>
+<div class="tool-card" data-tool="crypto-box" data-desc="Security: encrypt, hash, password, OTP, SSL — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">crypto-box</a></div>
+  <div class="tool-desc">Security: encrypt, hash, password, OTP, SSL — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="dev-dashboard" data-desc="Developer dashboard: git, system, ports, processes — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dev-dashboard</a></div>
+  <div class="tool-desc">Developer dashboard: git, system, ports, processes — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="dig" data-desc="DNS lookup tool - resolve domains, find DNS records">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dig</a></div>
+  <div class="tool-desc">DNS lookup tool - resolve domains, find DNS records</div>
+</div>
+<div class="tool-card" data-tool="dns-lookup" data-desc="DNS lookup tool. Usage: dns-lookup <domain> [--type A|AAAA|MX|TXT|NS|CNAME|SOA]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dns-lookup</a></div>
+  <div class="tool-desc">DNS lookup tool. Usage: dns-lookup <domain> [--type A|AAAA|MX|TXT|NS|CNAME|SOA]</div>
+</div>
+<div class="tool-card" data-tool="env_template" data-desc="Generate .env.example from .env (strip values, keep keys)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">env_template</a></div>
+  <div class="tool-desc">Generate .env.example from .env (strip values, keep keys)</div>
+</div>
+<div class="tool-card" data-tool="geo-ip" data-desc="Look up IP geolocation. Usage: geo-ip [IP address]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">geo-ip</a></div>
+  <div class="tool-desc">Look up IP geolocation. Usage: geo-ip [IP address]</div>
+</div>
+<div class="tool-card" data-tool="gzip-cli" data-desc="Gzip/gunzip files — compress, decompress, list archive contents">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">gzip-cli</a></div>
+  <div class="tool-desc">Gzip/gunzip files — compress, decompress, list archive contents</div>
+</div>
+<div class="tool-card" data-tool="html-strip" data-desc="Strip HTML tags, extract plain text">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">html-strip</a></div>
+  <div class="tool-desc">Strip HTML tags, extract plain text</div>
+</div>
+<div class="tool-card" data-tool="http-headers" data-desc="Inspect HTTP response headers. Usage: http-headers <url>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">http-headers</a></div>
+  <div class="tool-desc">Inspect HTTP response headers. Usage: http-headers <url></div>
+</div>
+<div class="tool-card" data-tool="http-live" data-desc="SSE hot-reload development HTTP server">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">http-live</a></div>
+  <div class="tool-desc">SSE hot-reload development HTTP server</div>
+</div>
+<div class="tool-card" data-tool="http-status" data-desc="Look up HTTP status code meanings (search/list/lookup)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">http-status</a></div>
+  <div class="tool-desc">Look up HTTP status code meanings (search/list/lookup)</div>
+</div>
+<div class="tool-card" data-tool="http_server" data-desc="Simple static file HTTP server">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">http_server</a></div>
+  <div class="tool-desc">Simple static file HTTP server</div>
+</div>
+<div class="tool-card" data-tool="ip-location" data-desc="GeoIP location lookup (ip-api.com)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ip-location</a></div>
+  <div class="tool-desc">GeoIP location lookup (ip-api.com)</div>
+</div>
+<div class="tool-card" data-tool="ip_info" data-desc="Show public IP address and geolocation info">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ip_info</a></div>
+  <div class="tool-desc">Show public IP address and geolocation info</div>
+</div>
+<div class="tool-card" data-tool="ipcalc" data-desc="IP address and subnet calculator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ipcalc</a></div>
+  <div class="tool-desc">IP address and subnet calculator</div>
+</div>
+<div class="tool-card" data-tool="ipinfo" data-desc="Public IP and geolocation lookup">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ipinfo</a></div>
+  <div class="tool-desc">Public IP and geolocation lookup</div>
+</div>
+<div class="tool-card" data-tool="net-analyzer" data-desc="Network analysis: ping, trace, port scan, DNS — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">net-analyzer</a></div>
+  <div class="tool-desc">Network analysis: ping, trace, port scan, DNS — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="net-speed" data-desc="Internet download speed test">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">net-speed</a></div>
+  <div class="tool-desc">Internet download speed test</div>
+</div>
+<div class="tool-card" data-tool="network-scan" data-desc="Scan active hosts on network. Usage: network-scan [subnet] [--ping]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">network-scan</a></div>
+  <div class="tool-desc">Scan active hosts on network. Usage: network-scan [subnet] [--ping]</div>
+</div>
+<div class="tool-card" data-tool="pipe-viewer" data-desc="Pipe viewer with progress bar. Usage: cmd | pipe-viewer [label]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">pipe-viewer</a></div>
+  <div class="tool-desc">Pipe viewer with progress bar. Usage: cmd | pipe-viewer [label]</div>
+</div>
+<div class="tool-card" data-tool="port_scan" data-desc="Quick TCP port scan on a host">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">port_scan</a></div>
+  <div class="tool-desc">Quick TCP port scan on a host</div>
+</div>
+<div class="tool-card" data-tool="portcheck" data-desc="TCP port scanner and service detection">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">portcheck</a></div>
+  <div class="tool-desc">TCP port scanner and service detection</div>
+</div>
+<div class="tool-card" data-tool="process-kill" data-desc="Kill processes by name/port/user">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">process-kill</a></div>
+  <div class="tool-desc">Kill processes by name/port/user</div>
+</div>
+<div class="tool-card" data-tool="rot13" data-desc="ROT13/ROT47 text cipher (stdin or arg)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">rot13</a></div>
+  <div class="tool-desc">ROT13/ROT47 text cipher (stdin or arg)</div>
+</div>
+<div class="tool-card" data-tool="route-trace" data-desc="Trace network route to host. Usage: route-trace <host> [--max-hops 30]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">route-trace</a></div>
+  <div class="tool-desc">Trace network route to host. Usage: route-trace <host> [--max-hops 30]</div>
+</div>
+<div class="tool-card" data-tool="scan-open-ports" data-desc="TCP port scanner with concurrent scanning and service detection">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">scan-open-ports</a></div>
+  <div class="tool-desc">TCP port scanner with concurrent scanning and service detection</div>
+</div>
+<div class="tool-card" data-tool="scan-ports" data-desc="TCP port scanner (range, common ports)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">scan-ports</a></div>
+  <div class="tool-desc">TCP port scanner (range, common ports)</div>
+</div>
+<div class="tool-card" data-tool="secret-scanner" data-desc="Scan files for secrets/API keys/tokens. Usage: secret-scanner [path]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">secret-scanner</a></div>
+  <div class="tool-desc">Scan files for secrets/API keys/tokens. Usage: secret-scanner [path]</div>
+</div>
+<div class="tool-card" data-tool="siege-lite" data-desc="HTTP load tester (concurrency, latency percentile)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">siege-lite</a></div>
+  <div class="tool-desc">HTTP load tester (concurrency, latency percentile)</div>
+</div>
+<div class="tool-card" data-tool="ssl-check" data-desc="SSL/TLS certificate checker">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ssl-check</a></div>
+  <div class="tool-desc">SSL/TLS certificate checker</div>
+</div>
+<div class="tool-card" data-tool="stopwatch" data-desc="Terminal stopwatch with lap support">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">stopwatch</a></div>
+  <div class="tool-desc">Terminal stopwatch with lap support</div>
+</div>
+<div class="tool-card" data-tool="subnet" data-desc="IPv4 subnet/CIDR calculator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">subnet</a></div>
+  <div class="tool-desc">IPv4 subnet/CIDR calculator</div>
+</div>
+<div class="tool-card" data-tool="sysmon-pro" data-desc="System monitor: CPU, memory, disk, processes, network — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">sysmon-pro</a></div>
+  <div class="tool-desc">System monitor: CPU, memory, disk, processes, network — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="time-duration" data-desc="Calculate duration between dates/timestamps in multiple formats">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">time-duration</a></div>
+  <div class="tool-desc">Calculate duration between dates/timestamps in multiple formats</div>
+</div>
+<div class="tool-card" data-tool="whois-lookup" data-desc="WHOIS domain lookup. Usage: whois-lookup <domain>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">whois-lookup</a></div>
+  <div class="tool-desc">WHOIS domain lookup. Usage: whois-lookup <domain></div>
+</div>
+<div class="tool-card" data-tool="world-clock" data-desc="Show current time in multiple timezones">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">world-clock</a></div>
+  <div class="tool-desc">Show current time in multiple timezones</div>
+</div>
+</div>
+<h2 id="other">Other <span class="cat-count">(13 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="agent-b-tool" data-desc="Dual-agent collaborative workflow tool">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">agent-b-tool</a></div>
+  <div class="tool-desc">Dual-agent collaborative workflow tool</div>
+</div>
+<div class="tool-card" data-tool="checksum-dir" data-desc="Generate/verify directory checksums">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">checksum-dir</a></div>
+  <div class="tool-desc">Generate/verify directory checksums</div>
+</div>
+<div class="tool-card" data-tool="dirsize" data-desc="Recursive directory space analyzer">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">dirsize</a></div>
+  <div class="tool-desc">Recursive directory space analyzer</div>
+</div>
+<div class="tool-card" data-tool="docker-helper" data-desc="Docker command helper. Usage: docker-helper <command> [args]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">docker-helper</a></div>
+  <div class="tool-desc">Docker command helper. Usage: docker-helper <command> [args]</div>
+</div>
+<div class="tool-card" data-tool="file-splitter" data-desc="Split files into chunks. Usage: file-splitter <file> --lines N | --size N[K|M|G]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file-splitter</a></div>
+  <div class="tool-desc">Split files into chunks. Usage: file-splitter <file> --lines N | --size N[K|M|G]</div>
+</div>
+<div class="tool-card" data-tool="file_find" data-desc="Find files by name pattern with recursive search">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file_find</a></div>
+  <div class="tool-desc">Find files by name pattern with recursive search</div>
+</div>
+<div class="tool-card" data-tool="find-empty" data-desc="Find empty directories and files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">find-empty</a></div>
+  <div class="tool-desc">Find empty directories and files</div>
+</div>
+<div class="tool-card" data-tool="key-value-store" data-desc="Simple key-value store. Usage: kvstore set <key> <val> | kvstore get <key> | kvstore list | kvstore del <key>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">key-value-store</a></div>
+  <div class="tool-desc">Simple key-value store. Usage: kvstore set <key> <val> | kvstore get <key> | kvstore list | kvstore del <key></div>
+</div>
+<div class="tool-card" data-tool="log-analyzer" data-desc="Log file pattern analyzer and statistics">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">log-analyzer</a></div>
+  <div class="tool-desc">Log file pattern analyzer and statistics</div>
+</div>
+<div class="tool-card" data-tool="mac-address" data-desc="Generate and lookup MAC addresses">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">mac-address</a></div>
+  <div class="tool-desc">Generate and lookup MAC addresses</div>
+</div>
+<div class="tool-card" data-tool="qc-sample" data-desc="样品送检单生成器 v2.0 -- 交互/模板/批量">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">qc-sample</a></div>
+  <div class="tool-desc">样品送检单生成器 v2.0 -- 交互/模板/批量</div>
+</div>
+<div class="tool-card" data-tool="search-files" data-desc="Search files by name/content. Usage: search-files <pattern> [path] [--type f|d]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">search-files</a></div>
+  <div class="tool-desc">Search files by name/content. Usage: search-files <pattern> [path] [--type f|d]</div>
+</div>
+<div class="tool-card" data-tool="wordcount" data-desc="Enhanced wc with language detection">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">wordcount</a></div>
+  <div class="tool-desc">Enhanced wc with language detection</div>
+</div>
+</div>
+<h2 id="qr-media">QR & Media <span class="cat-count">(6 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="file-type" data-desc="Detect file type using magic bytes">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file-type</a></div>
+  <div class="tool-desc">Detect file type using magic bytes</div>
+</div>
+<div class="tool-card" data-tool="media-studio" data-desc="Media utilities: QR, ASCII art, banner, Morse, figlet — CLI+TUI">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">media-studio</a></div>
+  <div class="tool-desc">Media utilities: QR, ASCII art, banner, Morse, figlet — CLI+TUI</div>
+</div>
+<div class="tool-card" data-tool="mime-type" data-desc="Detect MIME type of files by extension and magic bytes">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">mime-type</a></div>
+  <div class="tool-desc">Detect MIME type of files by extension and magic bytes</div>
+</div>
+<div class="tool-card" data-tool="screen-recorder" data-desc="Record terminal session. Usage: screen-recorder start [name] | screen-recorder stop | screen-recorder list">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">screen-recorder</a></div>
+  <div class="tool-desc">Record terminal session. Usage: screen-recorder start [name] | screen-recorder stop | screen-recorder list</div>
+</div>
+<div class="tool-card" data-tool="screenshot-cli" data-desc="Take screenshots from terminal. Usage: screenshot-cli [output.png] [--delay N]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">screenshot-cli</a></div>
+  <div class="tool-desc">Take screenshots from terminal. Usage: screenshot-cli [output.png] [--delay N]</div>
+</div>
+<div class="tool-card" data-tool="share" data-desc="Generate ready-to-post social media content (HN/Reddit/Tweet) about evolver-tools">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">share</a></div>
+  <div class="tool-desc">Generate ready-to-post social media content (HN/Reddit/Tweet) about evolver-tools</div>
+</div>
+</div>
+<h2 id="security-crypto">Security & Crypto <span class="cat-count">(17 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="b64" data-desc="Base64 encode/decode with auto-detection">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">b64</a></div>
+  <div class="tool-desc">Base64 encode/decode with auto-detection</div>
+</div>
+<div class="tool-card" data-tool="backup" data-desc="File/dir backup with rotation">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">backup</a></div>
+  <div class="tool-desc">File/dir backup with rotation</div>
+</div>
+<div class="tool-card" data-tool="base32" data-desc="Base32 encode/decode (stdin or arg)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">base32</a></div>
+  <div class="tool-desc">Base32 encode/decode (stdin or arg)</div>
+</div>
+<div class="tool-card" data-tool="base58" data-desc="Base58 encode/decode (Bitcoin-style alphabet)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">base58</a></div>
+  <div class="tool-desc">Base58 encode/decode (Bitcoin-style alphabet)</div>
+</div>
+<div class="tool-card" data-tool="crypto-price" data-desc="Cryptocurrency price ticker (CoinGecko)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">crypto-price</a></div>
+  <div class="tool-desc">Cryptocurrency price ticker (CoinGecko)</div>
+</div>
+<div class="tool-card" data-tool="file-encrypt" data-desc="Simple file encrypt/decrypt">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file-encrypt</a></div>
+  <div class="tool-desc">Simple file encrypt/decrypt</div>
+</div>
+<div class="tool-card" data-tool="find-dups" data-desc="Find duplicate files by SHA256 hash, size, or name">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">find-dups</a></div>
+  <div class="tool-desc">Find duplicate files by SHA256 hash, size, or name</div>
+</div>
+<div class="tool-card" data-tool="hash-file" data-desc="Compute file hashes. Usage: hash-file <file> [--md5|--sha1|--sha256|--sha512|--all]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">hash-file</a></div>
+  <div class="tool-desc">Compute file hashes. Usage: hash-file <file> [--md5|--sha1|--sha256|--sha512|--all]</div>
+</div>
+<div class="tool-card" data-tool="hash_check" data-desc="Compare file hashes against known SHA256/MD5 values">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">hash_check</a></div>
+  <div class="tool-desc">Compare file hashes against known SHA256/MD5 values</div>
+</div>
+<div class="tool-card" data-tool="hashsum" data-desc="File hash verification (MD5/SHA-1/256/512/BLAKE2)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">hashsum</a></div>
+  <div class="tool-desc">File hash verification (MD5/SHA-1/256/512/BLAKE2)</div>
+</div>
+<div class="tool-card" data-tool="jwt-decode" data-desc="Decode JWT tokens (header + payload, no verification)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">jwt-decode</a></div>
+  <div class="tool-desc">Decode JWT tokens (header + payload, no verification)</div>
+</div>
+<div class="tool-card" data-tool="otp-gen" data-desc="TOTP/HOTP one-time password generator">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">otp-gen</a></div>
+  <div class="tool-desc">TOTP/HOTP one-time password generator</div>
+</div>
+<div class="tool-card" data-tool="passgen" data-desc="Password and passphrase generator with entropy display">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">passgen</a></div>
+  <div class="tool-desc">Password and passphrase generator with entropy display</div>
+</div>
+<div class="tool-card" data-tool="password-strength" data-desc="Password strength checker (0-100)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">password-strength</a></div>
+  <div class="tool-desc">Password strength checker (0-100)</div>
+</div>
+<div class="tool-card" data-tool="random" data-desc="Random generation: password, uuid, hex, int. Usage: random password [len] | uuid | hex [bytes] | int [min] [max]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">random</a></div>
+  <div class="tool-desc">Random generation: password, uuid, hex, int. Usage: random password [len] | uuid | hex [bytes] | int [min] [max]</div>
+</div>
+<div class="tool-card" data-tool="random-string" data-desc="Generate random strings (hex/pin/uuid/base64/alphanumeric)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">random-string</a></div>
+  <div class="tool-desc">Generate random strings (hex/pin/uuid/base64/alphanumeric)</div>
+</div>
+<div class="tool-card" data-tool="ssh-key-gen" data-desc="Generate SSH key pairs">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ssh-key-gen</a></div>
+  <div class="tool-desc">Generate SSH key pairs</div>
+</div>
+</div>
+<h2 id="system-monitor">System & Monitor <span class="cat-count">(15 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="disk-cleanup" data-desc="Analyze disk usage and suggest cleanup. Usage: disk-cleanup [path] [--deep]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">disk-cleanup</a></div>
+  <div class="tool-desc">Analyze disk usage and suggest cleanup. Usage: disk-cleanup [path] [--deep]</div>
+</div>
+<div class="tool-card" data-tool="disk-usage" data-desc="Disk usage analyzer (largest dirs/files)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">disk-usage</a></div>
+  <div class="tool-desc">Disk usage analyzer (largest dirs/files)</div>
+</div>
+<div class="tool-card" data-tool="file-watch" data-desc="Watch file for changes. Usage: file-watch <file> [--tail]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file-watch</a></div>
+  <div class="tool-desc">Watch file for changes. Usage: file-watch <file> [--tail]</div>
+</div>
+<div class="tool-card" data-tool="git-branch-cleaner" data-desc="Clean stale git branches">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">git-branch-cleaner</a></div>
+  <div class="tool-desc">Clean stale git branches</div>
+</div>
+<div class="tool-card" data-tool="git-ignore" data-desc="Generate .gitignore templates for common languages/frameworks">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">git-ignore</a></div>
+  <div class="tool-desc">Generate .gitignore templates for common languages/frameworks</div>
+</div>
+<div class="tool-card" data-tool="macrogen" data-desc="Macro/code template generator with built-in templates. Usage: macrogen <name> [key=val ...] | macrogen --list | macrogen -t <path> [key=val ...]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">macrogen</a></div>
+  <div class="tool-desc">Macro/code template generator with built-in templates. Usage: macrogen <name> [key=val ...] | macrogen --list | macrogen -t <path> [key=val ...]</div>
+</div>
+<div class="tool-card" data-tool="restore" data-desc="Restore files from .bak backups">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">restore</a></div>
+  <div class="tool-desc">Restore files from .bak backups</div>
+</div>
+<div class="tool-card" data-tool="service-check" data-desc="Check systemd service status">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">service-check</a></div>
+  <div class="tool-desc">Check systemd service status</div>
+</div>
+<div class="tool-card" data-tool="sysmon" data-desc="Real-time system monitor (curses TUI)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">sysmon</a></div>
+  <div class="tool-desc">Real-time system monitor (curses TUI)</div>
+</div>
+<div class="tool-card" data-tool="system-info" data-desc="Display system information. Usage: system-info [--all]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">system-info</a></div>
+  <div class="tool-desc">Display system information. Usage: system-info [--all]</div>
+</div>
+<div class="tool-card" data-tool="temp-cleaner" data-desc="Clean temp files. Usage: temp-cleaner [--dry-run] [--older N[d|h]]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">temp-cleaner</a></div>
+  <div class="tool-desc">Clean temp files. Usage: temp-cleaner [--dry-run] [--older N[d|h]]</div>
+</div>
+<div class="tool-card" data-tool="timer" data-desc="Countdown timer and stopwatch">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">timer</a></div>
+  <div class="tool-desc">Countdown timer and stopwatch</div>
+</div>
+<div class="tool-card" data-tool="timer-pro" data-desc="Countdown, stopwatch, alarms, lap timer">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">timer-pro</a></div>
+  <div class="tool-desc">Countdown, stopwatch, alarms, lap timer</div>
+</div>
+<div class="tool-card" data-tool="unit-convert" data-desc="Unit converter (length, weight, temp, volume)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">unit-convert</a></div>
+  <div class="tool-desc">Unit converter (length, weight, temp, volume)</div>
+</div>
+<div class="tool-card" data-tool="watch" data-desc="Run command periodically, showing output">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">watch</a></div>
+  <div class="tool-desc">Run command periodically, showing output</div>
+</div>
+</div>
+<h2 id="text-processing">Text Processing <span class="cat-count">(43 tools)</span></h2>
+<div class="tool-grid">
+<div class="tool-card" data-tool="ansi-to-html" data-desc="Convert ANSI escape sequences to color HTML">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ansi-to-html</a></div>
+  <div class="tool-desc">Convert ANSI escape sequences to color HTML</div>
+</div>
+<div class="tool-card" data-tool="case-convert" data-desc="Convert text between case styles (snake/camel/kebab/pascal/title/const)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">case-convert</a></div>
+  <div class="tool-desc">Convert text between case styles (snake/camel/kebab/pascal/title/const)</div>
+</div>
+<div class="tool-card" data-tool="colorize" data-desc="Terminal text colorizer">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">colorize</a></div>
+  <div class="tool-desc">Terminal text colorizer</div>
+</div>
+<div class="tool-card" data-tool="cowsay" data-desc="ASCII cow saying text (cow/tux/dragon/bunny)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">cowsay</a></div>
+  <div class="tool-desc">ASCII cow saying text (cow/tux/dragon/bunny)</div>
+</div>
+<div class="tool-card" data-tool="date_diff" data-desc="Calculate date/time differences">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">date_diff</a></div>
+  <div class="tool-desc">Calculate date/time differences</div>
+</div>
+<div class="tool-card" data-tool="diff" data-desc="File comparison and diff tool">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">diff</a></div>
+  <div class="tool-desc">File comparison and diff tool</div>
+</div>
+<div class="tool-card" data-tool="diff-lines" data-desc="Line-by-line diff between two files (zero-dependency)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">diff-lines</a></div>
+  <div class="tool-desc">Line-by-line diff between two files (zero-dependency)</div>
+</div>
+<div class="tool-card" data-tool="diff_files" data-desc="Line-by-line file comparison">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">diff_files</a></div>
+  <div class="tool-desc">Line-by-line file comparison</div>
+</div>
+<div class="tool-card" data-tool="env-diff" data-desc="Compare .env files. Usage: env-diff <file1.env> <file2.env>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">env-diff</a></div>
+  <div class="tool-desc">Compare .env files. Usage: env-diff <file1.env> <file2.env></div>
+</div>
+<div class="tool-card" data-tool="file-patch" data-desc="Apply text patches to files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">file-patch</a></div>
+  <div class="tool-desc">Apply text patches to files</div>
+</div>
+<div class="tool-card" data-tool="fmt" data-desc="Code and text auto-formatter (whitespace, indent, EOF)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">fmt</a></div>
+  <div class="tool-desc">Code and text auto-formatter (whitespace, indent, EOF)</div>
+</div>
+<div class="tool-card" data-tool="fold" data-desc="Wrap input lines to specified width">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">fold</a></div>
+  <div class="tool-desc">Wrap input lines to specified width</div>
+</div>
+<div class="tool-card" data-tool="hex-tool" data-desc="Hex encode/decode. Usage: hex-tool encode <text> | hex-tool decode <hex>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">hex-tool</a></div>
+  <div class="tool-desc">Hex encode/decode. Usage: hex-tool encode <text> | hex-tool decode <hex></div>
+</div>
+<div class="tool-card" data-tool="html2markdown" data-desc="Convert HTML to Markdown">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">html2markdown</a></div>
+  <div class="tool-desc">Convert HTML to Markdown</div>
+</div>
+<div class="tool-card" data-tool="html2md" data-desc="Convert HTML to Markdown">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">html2md</a></div>
+  <div class="tool-desc">Convert HTML to Markdown</div>
+</div>
+<div class="tool-card" data-tool="html2text" data-desc="Convert HTML to plain text">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">html2text</a></div>
+  <div class="tool-desc">Convert HTML to plain text</div>
+</div>
+<div class="tool-card" data-tool="license" data-desc="Display open-source license text. Use --list to show available licenses.">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">license</a></div>
+  <div class="tool-desc">Display open-source license text. Use --list to show available licenses.</div>
+</div>
+<div class="tool-card" data-tool="link-check" data-desc="Check for broken links in Markdown files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">link-check</a></div>
+  <div class="tool-desc">Check for broken links in Markdown files</div>
+</div>
+<div class="tool-card" data-tool="markdown-check" data-desc="Markdown link and structure checker">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">markdown-check</a></div>
+  <div class="tool-desc">Markdown link and structure checker</div>
+</div>
+<div class="tool-card" data-tool="markdown-lint" data-desc="Basic Markdown linting — headings, fences, whitespace, line length">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">markdown-lint</a></div>
+  <div class="tool-desc">Basic Markdown linting — headings, fences, whitespace, line length</div>
+</div>
+<div class="tool-card" data-tool="markdown-preview" data-desc="Preview Markdown in terminal. Usage: markdown-preview <file.md>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">markdown-preview</a></div>
+  <div class="tool-desc">Preview Markdown in terminal. Usage: markdown-preview <file.md></div>
+</div>
+<div class="tool-card" data-tool="markdown-to-html" data-desc="Convert Markdown to simple HTML (stdlib, zero deps)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">markdown-to-html</a></div>
+  <div class="tool-desc">Convert Markdown to simple HTML (stdlib, zero deps)</div>
+</div>
+<div class="tool-card" data-tool="morse" data-desc="Text-Morse code converter with audio">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">morse</a></div>
+  <div class="tool-desc">Text-Morse code converter with audio</div>
+</div>
+<div class="tool-card" data-tool="nb" data-desc="Command-line notebook with full-text search">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">nb</a></div>
+  <div class="tool-desc">Command-line notebook with full-text search</div>
+</div>
+<div class="tool-card" data-tool="nl" data-desc="Number lines of files or stdin">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">nl</a></div>
+  <div class="tool-desc">Number lines of files or stdin</div>
+</div>
+<div class="tool-card" data-tool="pdf-text" data-desc="Extract text from PDF files">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">pdf-text</a></div>
+  <div class="tool-desc">Extract text from PDF files</div>
+</div>
+<div class="tool-card" data-tool="project-doctor" data-desc="Project health checker (meta, structure, quality)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">project-doctor</a></div>
+  <div class="tool-desc">Project health checker (meta, structure, quality)</div>
+</div>
+<div class="tool-card" data-tool="rainbow" data-desc="Rainbow-colored text output">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">rainbow</a></div>
+  <div class="tool-desc">Rainbow-colored text output</div>
+</div>
+<div class="tool-card" data-tool="ren" data-desc="Batch file renamer (prefix/suffix/regex/numbering)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">ren</a></div>
+  <div class="tool-desc">Batch file renamer (prefix/suffix/regex/numbering)</div>
+</div>
+<div class="tool-card" data-tool="replace-text" data-desc="Find and replace text in files. Usage: replace-text <old> <new> [files...] [--dry-run]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">replace-text</a></div>
+  <div class="tool-desc">Find and replace text in files. Usage: replace-text <old> <new> [files...] [--dry-run]</div>
+</div>
+<div class="tool-card" data-tool="shuffle" data-desc="Randomize lines from stdin">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">shuffle</a></div>
+  <div class="tool-desc">Randomize lines from stdin</div>
+</div>
+<div class="tool-card" data-tool="slugify" data-desc="Convert text to URL-friendly ASCII slugs">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">slugify</a></div>
+  <div class="tool-desc">Convert text to URL-friendly ASCII slugs</div>
+</div>
+<div class="tool-card" data-tool="text-dedent" data-desc="Remove common leading whitespace from text">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">text-dedent</a></div>
+  <div class="tool-desc">Remove common leading whitespace from text</div>
+</div>
+<div class="tool-card" data-tool="text-wrap" data-desc="Wrap text to specified column width">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">text-wrap</a></div>
+  <div class="tool-desc">Wrap text to specified column width</div>
+</div>
+<div class="tool-card" data-tool="tr" data-desc="Translate or delete characters (stdin)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">tr</a></div>
+  <div class="tool-desc">Translate or delete characters (stdin)</div>
+</div>
+<div class="tool-card" data-tool="tree" data-desc="Display directory tree. Usage: tree [path] [--max-depth N] [--dirs-only]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">tree</a></div>
+  <div class="tool-desc">Display directory tree. Usage: tree [path] [--max-depth N] [--dirs-only]</div>
+</div>
+<div class="tool-card" data-tool="treedir" data-desc="Directory tree visualizer">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">treedir</a></div>
+  <div class="tool-desc">Directory tree visualizer</div>
+</div>
+<div class="tool-card" data-tool="uri-encode" data-desc="URI encode/decode. Usage: uri-encode encode <text> | uri-encode decode <text>">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">uri-encode</a></div>
+  <div class="tool-desc">URI encode/decode. Usage: uri-encode encode <text> | uri-encode decode <text></div>
+</div>
+<div class="tool-card" data-tool="weather-cli" data-desc="Weather forecast from wttr.in">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">weather-cli</a></div>
+  <div class="tool-desc">Weather forecast from wttr.in</div>
+</div>
+<div class="tool-card" data-tool="web-download" data-desc="Download files with progress. Usage: web-download <url> [--output file]">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">web-download</a></div>
+  <div class="tool-desc">Download files with progress. Usage: web-download <url> [--output file]</div>
+</div>
+<div class="tool-card" data-tool="web-summary" data-desc="Web page content extractor (title, body, links)">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">web-summary</a></div>
+  <div class="tool-desc">Web page content extractor (title, body, links)</div>
+</div>
+<div class="tool-card" data-tool="welcome" data-desc="Interactive showcase — featured tools, categories, quick-start guide">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">welcome</a></div>
+  <div class="tool-desc">Interactive showcase — featured tools, categories, quick-start guide</div>
+</div>
+<div class="tool-card" data-tool="yes" data-desc="Output a string repeatedly until killed">
+  <div class="tool-name"><a href="https://github.com/evolver-dev/evolver-tools">yes</a></div>
+  <div class="tool-desc">Output a string repeatedly until killed</div>
+</div>
+</div>
+</div>
+
+<script>
+function filterTools(q) {
+  q = q.toLowerCase();
+  var cards = document.querySelectorAll('.tool-card');
+  var anyMatch = false;
+  cards.forEach(function(c) {
+    var name = c.getAttribute('data-tool').toLowerCase();
+    var desc = c.getAttribute('data-desc').toLowerCase();
+    var match = name.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+    c.style.display = match ? '' : 'none';
+    if (match) anyMatch = true;
+  });
+  document.getElementById('no-results').style.display = anyMatch ? 'none' : 'block';
+}
+</script>
+</body>
+</html>
