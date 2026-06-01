@@ -116,7 +116,7 @@ $ evtool siege-lite https://example.com
   Concurrency: 10 | Requests: 100 | P50: 145ms | P99: 890ms | Errors: 0
 ```
 
-See all 260+ tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
+See all 260 tools: `evtool list` or visit [evolver-dev.github.io/evolver-tools](https://evolver-dev.github.io/evolver-tools/).
 
 ## Tool Categories
 
@@ -370,7 +370,7 @@ evolver-tools is **MIT open source** and free forever for all tools.
 
 | Tier | Price | What you get |
 |------|-------|-------------|
-| **Free (MIT)** | ¥0 | 260+ tools, full source, forever |
+| **Free (MIT)** | ¥0 | All 260 tools, full source, forever |
 | **Full Suite** | ¥79 one-time | All tools + priority support + early access + name in credits |
 | **Sponsor** | ¥5/month | GitHub Sponsors badge + Discord + vote on priorities |
 | **Enterprise Basic** | ¥500/year | Custom tool development |
@@ -417,7 +417,7 @@ Support the project:
 - **Try it**: https://evolver-dev.github.io/evolver-tools/try.sh
 - **Interactive Demo**: https://evolver-dev.github.io/evolver-tools/demo.html
 - **Story (Built by AI)**: https://evolver-dev.github.io/evolver-tools/docs/story.html
-- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md) — technical article on how 260+ zero-dependency CLI tools are built
+- **Architecture Deep-Dive**: [docs/architecture-deep-dive.md](docs/architecture-deep-dive.md)
 
 ## License
 
