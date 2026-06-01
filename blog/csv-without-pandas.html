@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSV Data Analysis in the Terminal: 7 Tasks You Don't Need pandas For — evolver-tools Blog</title>
+<meta name="description" content="Learn 7 practical CSV data analysis tasks you can do entirely from the terminal — no pandas, no Jupyter, no Excel. Filter, sort, chart, join, and analyze CSV files with zero-dependency CLI tools.">
+<meta name="keywords" content="csv analysis without pandas, command line csv tools, csv statistics terminal, terminal csv viewer, pandas alternative csv, analyze csv data command line, csv filter command line, csv sort command line, csv to json command line, csv join merge command line, csv chart terminal, evolver-tools, csv-stats, csv-filter">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/blog/csv-without-pandas.html">
+<meta property="og:title" content="CSV Data Analysis in the Terminal: 7 Tasks Without pandas">
+<meta property="og:description" content="Filter, sort, chart, join, and analyze CSV files from the terminal — zero Python dependencies required.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/blog/csv-without-pandas.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="evolver-tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV Data Analysis in Your Terminal: 7 Tasks Without pandas">
+<meta name="twitter:description" content="Filter, sort, chart, join, and analyze CSV files right from the terminal — no pandas, no Jupyter, no Excel.">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .blog-header {
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0;
+    margin-bottom: 48px;
+  }
+  .blog-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .blog-header a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s;
+  }
+  .blog-header a:hover { color: var(--accent); }
+  .blog-header .logo {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 18px;
+  }
+  article h1 {
+    font-size: 36px;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    color: #e4edf5;
+    letter-spacing: -0.02em;
+  }
+  .meta {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .meta span { display: flex; align-items: center; gap: 6px; }
+  article h2 {
+    font-size: 24px;
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: #e4edf5;
+    letter-spacing: -0.01em;
+  }
+  article h3 {
+    font-size: 18px;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: var(--cyan);
+  }
+  article p {
+    margin-bottom: 20px;
+    color: var(--text);
+    font-size: 16px;
+  }
+  article ul, article ol {
+    margin-bottom: 20px;
+    padding-left: 24px;
+  }
+  article li {
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    overflow-x: auto;
+    margin-bottom: 24px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+    position: relative;
+  }
+  pre .cmd { color: var(--accent); }
+  pre .output { color: var(--text-secondary); }
+  pre .highlight { color: var(--yellow); }
+  pre .comment { color: #4a5a6a; font-style: italic; }
+  pre .num { color: var(--orange); }
+  pre .string { color: var(--green); }
+  pre .keyword { color: var(--purple); }
+  code {
+    background: var(--surface2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+  pre code { background: none; padding: 0; border-radius: 0; }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 24px 0;
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  .cta-box {
+    background: linear-gradient(135deg, rgba(0,212,170,0.1), rgba(0,188,212,0.08));
+    border: 1px solid var(--accent-dim);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 48px 0;
+    text-align: center;
+  }
+  .cta-box h3 {
+    color: var(--accent);
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .cta-box p { margin-bottom: 20px; color: var(--text); }
+  .cta-box .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #0a0e14;
+    padding: 12px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all .2s;
+  }
+  .cta-box .btn:hover {
+    background: var(--accent-dim);
+    transform: translateY(-1px);
+  }
+  .cta-box .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 12px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 12px;
+    transition: all .2s;
+  }
+  .cta-box .btn-secondary:hover {
+    background: rgba(0,212,170,0.1);
+  }
+  .tip {
+    background: var(--surface2);
+    border-left: 3px solid var(--yellow);
+    padding: 16px 20px;
+    margin: 24px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+  }
+  .tip strong { color: var(--yellow); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th { color: var(--accent); font-weight: 600; background: var(--surface); }
+  td { color: var(--text); }
+  tr:hover td { background: var(--surface2); }
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    margin-top: 64px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .footer a { color: var(--text-secondary); text-decoration: none; }
+  .footer a:hover { color: var(--accent); }
+  @media (max-width: 600px) {
+    article h1 { font-size: 26px; }
+    article h2 { font-size: 20px; }
+    .cta-box .btn-secondary { margin: 12px 0 0 0; }
+    pre { font-size: 12px; padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="blog-header">
+  <div class="container">
+    <a href="/evolver-tools/" class="logo">evolver-tools</a>
+    <nav>
+      <a href="/evolver-tools/blog/">Blog</a>
+      <a href="/evolver-tools/" style="margin-left:16px">Home</a>
+    </nav>
+  </div>
+</header>
+
+<article class="container">
+
+<h1>CSV Data Analysis in the Terminal: 7 Tasks You Don't Need pandas For</h1>
+
+<div class="meta">
+  <span>June 2026</span>
+  <span>·</span>
+  <span>7 min read</span>
+  <span>·</span>
+  <span>evolver-tools</span>
+</div>
+
+<p>
+If you work with CSV files, you probably reach for <strong>pandas</strong>, <strong>Excel</strong>, or a <strong>Jupyter notebook</strong>. Those tools work great — until you're on a bare server, inside a Docker container, or SSH'd into a machine with a minimal Python install. Installing pandas is a 50MB+ download with 20+ transitive dependencies. Sometimes you just want to run a single command and get an answer.
+</p>
+
+<p>
+This post covers <strong>7 practical CSV tasks</strong> you can do entirely from the terminal, using only Python's standard library — no pandas, no Jupyter, no Excel, no npm packages. Every command shown here works on any machine with Python 3.8+ installed.
+</p>
+
+<p>
+If you have Python but not pandas, you're one <code>pip install evolver-tools</code> away from all of these. Each tool is a standalone command that reads from stdin or a file and writes structured output to your terminal.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>1. Get a Statistical Summary of Any CSV File</h2>
+
+<p>
+The first thing you do with a new dataset is understand it: column types, value ranges, missing data, distribution. In pandas this is <code>df.describe()</code>. In the terminal:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-stats sales.csv --all</span>
+<span class="output">
+╔═══════════════════════════════════════════════════════════╗
+║                    CSV STATISTICAL REPORT                 ║
+╠═══════════════════════════════════════════════════════════╣
+║ File: sales.csv                                          ║
+║ Rows: 1,847                                              ║
+║ Columns: 12                                              ║
+╠═══════════════════════════════════════════════════════════╣
+║ Column        Type     Non-Null  Unique     Missing  %    ║
+║ ───────────────────────────────────────────────────────── ║
+║ date          date     1,847     347        0        0%   ║
+║ product       string   1,847     24         0        0%   ║
+║ region        string   1,847     4          0        0%   ║
+║ units         int      1,840     12         7        0.4% ║
+║ unit_price    float    1,847     89         0        0%   ║
+║ total         float    1,840     312        7        0.4% ║
+║ discount      float    1,632     45         215      11.6%║
+╚═══════════════════════════════════════════════════════════╝</span>
+</pre>
+
+<p>
+In one command you get: total row count, column types (auto-detected), null counts, unique value counts, and missing percentage. This alone replaces the first 15 minutes of any data analysis workflow — loading the data, checking types, looking for missing values.
+</p>
+
+<p>
+You can drill deeper into any column:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-stats sales.csv --column total --histogram</span>
+<span class="output">
+Column: total (float) — 1,840 non-null values
+Min:    12.50
+Max:    3,847.20
+Mean:   342.18
+Median: 198.75
+Std:    411.63
+
+Histogram (10 bins):
+    0 —   400   ████████████████████████████████  1,428
+  400 —   800   ██████  254
+  800 —  1200   ███  110
+ 1200 —  1600   ██  32
+ 1600 —  2000   █  12
+ 2000 —  2400   ▏  2
+ 2400 —  2800   ▏  1
+ 2800 —  3200   ▏  1
+ 3200 —  3600   ▏  0
+ 3600 —  4000   ▏  0</span>
+</pre>
+
+<p>
+This is <code>df.describe()</code> + <code>df.hist()</code> in one command. <strong>No imports, no notebooks, no Jupyter dependency.</strong>
+</p>
+
+<!-- ============================================================ -->
+
+<h2>2. Filter Rows by Any Condition</h2>
+
+<p>
+Filtering data is the most common CSV operation. Maybe you need all sales over $500, or all customers from a specific region, or records from Q4 2025. In pandas you write a boolean mask. In the terminal:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-filter 'total &gt; 500' sales.csv | head -5</span>
+<span class="output">date,product,region,units,unit_price,total,discount
+2025-10-12,Widget Pro,East,120,14.99,1,798.80,0.00
+2025-10-14,Gadget X,West,85,24.99,2,124.95,10.00
+2025-10-15,Premium Suite,North,50,49.99,2,499.80,5.00
+2025-10-18,Widget Pro,South,200,14.99,0,998.00,0.00</span>
+</pre>
+
+<p>
+The filter syntax is SQL-like and supports <code>&gt;</code>, <code>&lt;</code>, <code>=</code>, <code>!=</code>, <code>&gt;=</code>, <code>&lt;=</code>, string contains, and compound expressions with <code>AND</code>/<code>OR</code>:
+</p>
+
+<pre>
+<span class="cmd"># Multiple conditions</span>
+<span class="cmd">$ evtool csv-filter 'region = "West" AND total &gt; 200' sales.csv</span>
+
+<span class="cmd"># String matching</span>
+<span class="cmd">$ evtool csv-filter 'product ~ "Pro"' sales.csv</span>
+
+<span class="cmd"># Date range</span>
+<span class="cmd">$ evtool csv-filter 'date &gt;= "2025-10-01" AND date &lt; "2025-11-01"' sales.csv</span>
+</pre>
+
+<p>
+The output is always valid CSV, so you can pipe it into the next tool — no temporary files needed.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>3. Sort by Any Column (or Multiple Columns)</h2>
+
+<p>
+Quick sort without Excel's click-and-drag:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-sort -k total sales.csv | head -5</span>
+<span class="output">date,product,region,units,unit_price,total,discount
+2025-08-03,Sticker Pack,South,1,4.99,2.50,0
+2025-09-12,Bumper Sticker,East,2,3.99,7.98,0
+2025-07-22,Magnet,North,3,4.99,14.97,0
+2025-11-04,Keychain,West,5,3.99,19.95,0</span>
+</pre>
+
+<pre>
+<span class="cmd"># Descending order (highest first)</span>
+<span class="cmd">$ evtool csv-sort -k total --desc sales.csv | head -5</span>
+
+<span class="cmd"># Multiple columns: sort by region, then by total descending</span>
+<span class="cmd">$ evtool csv-sort -k region,total --desc sales.csv</span>
+</pre>
+
+<p>
+<strong>Performance note:</strong> <code>csv-sort</code> handles files larger than memory by streaming through chunks, so it works on datasets that would make Excel choke (100K+ rows).
+</p>
+
+<!-- ============================================================ -->
+
+<h2>4. Chart Data Right in the Terminal</h2>
+
+<p>
+Need a quick visual without spinning up matplotlib? Terminal charts give you instant visual feedback:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-chart sales.csv -k region -v total --agg mean</span>
+<span class="output">
+  East   ████████████████████████████████████  $387.40
+  West   ███████████████████████████████  $340.20
+  North  ██████████████████████████  $298.60
+  South  ██████████████████████████████████████████████  $429.10</span>
+</pre>
+
+<p>
+You can chart by category, time series, or distribution:
+</p>
+
+<pre>
+<span class="cmd"># Time series: average total by month</span>
+<span class="cmd">$ evtool csv-chart sales.csv -k date -v total --agg mean --time month</span>
+
+<span class="cmd"># Stacked bar: product sales by region</span>
+<span class="cmd">$ evtool csv-chart sales.csv -k product -v total --agg sum --group region</span>
+
+<span class="cmd"># Histogram of any numeric column</span>
+<span class="cmd">$ evtool csv-chart sales.csv -k total --hist</span>
+</pre>
+
+<p>
+These charts render using Unicode block characters — they work in any terminal, inside Docker logs, over SSH, in CI/CD output. No display server required.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>5. Join and Merge CSV Files</h2>
+
+<p>
+One of pandas' superpowers is <code>pd.merge()</code>. The terminal equivalent handles the most common join patterns:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-join sales.csv products.csv --on product_id</span>
+<span class="output">date,product_id,units,total,product_name,category,price
+2025-10-12,WP-001,120,1,798.80,Widget Pro,Efficiency,14.99
+2025-10-14,GX-002,85,2,124.95,Gadget X,Electronics,24.99
+2025-10-15,PS-003,50,2,499.80,Premium Suite,Business,49.99</span>
+</pre>
+
+<pre>
+<span class="cmd"># Left join (keep all rows from left file)</span>
+<span class="cmd">$ evtool csv-join sales.csv customers.csv --on email --how left</span>
+
+<span class="cmd"># Inner join (only matching rows)</span>
+<span class="cmd">$ evtool csv-join employees.csv departments.csv --on dept_id --how inner</span>
+
+<span class="cmd"># Join on multiple columns</span>
+<span class="cmd">$ evtool csv-join inventory.csv warehouse.csv --on sku,location</span>
+</pre>
+
+<p>
+No more loading two CSV files into pandas, writing a merge statement, then saving the result. One command, done.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>6. Convert CSV to JSON (and Back)</h2>
+
+<p>
+CSV ↔ JSON is one of the most common data pipeline tasks. You need it when integrating with APIs, feeding data into databases, or generating config files from spreadsheets.
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-to-json sales.csv --pretty | head -20</span>
+<span class="output">[
+  {
+    "date": "2025-10-12",
+    "product": "Widget Pro",
+    "region": "East",
+    "units": "120",
+    "unit_price": "14.99",
+    "total": "1798.80",
+    "discount": "0.00"
+  },
+  {
+    "date": "2025-10-14",
+    "product": "Gadget X",
+    "region": "West",
+    "units": "85",
+    "unit_price": "24.99",
+    "total": "2124.95",
+    "discount": "10.00"
+  }</span>
+</pre>
+
+<pre>
+<span class="cmd"># Flatten nested JSON keys into column headers</span>
+<span class="cmd">$ evtool json-to-csv data.json --flatten &gt; output.csv</span>
+
+<span class="cmd"># Pipe directly: filter CSV, convert to JSON</span>
+<span class="cmd">$ evtool csv-filter 'region = "East"' sales.csv | evtool csv-to-json &gt; east.json</span>
+</pre>
+
+<p>
+This is particularly useful in CI/CD pipelines — extract data from a CSV report, convert to JSON, and POST it to an API endpoint, all in one shell pipeline.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>7. Validate and Clean Your Data</h2>
+
+<p>
+Before you analyze, you need to know if your data is trustworthy. The terminal gives you instant integrity checks:
+</p>
+
+<pre>
+<span class="cmd"># Find duplicate rows</span>
+<span class="cmd">$ evtool csv-dedup sales.csv --show-duplicates</span>
+<span class="output">row_46  2025-10-12,Widget Pro,East,120,14.99,1798.80,0.00
+row_287 2025-10-12,Widget Pro,East,120,14.99,1798.80,0.00</span>
+
+<span class="cmd"># Check for null values across columns</span>
+<span class="cmd">$ evtool csv-stats sales.csv --null-summary</span>
+<span class="output">
+Null values found:
+  units:          7 missing (0.4%)
+  total:          7 missing (0.4%)
+  discount:     215 missing (11.6%)</span>
+
+<span class="cmd"># Remove duplicates</span>
+<span class="cmd">$ evtool csv-dedup sales.csv -k date,product,region --output clean.csv</span>
+</pre>
+
+<p>
+If you're processing CSV files from external sources (client exports, government data, scraped datasets), this validation step catches issues before they propagate through your pipeline.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>Putting It All Together: A Real-World Pipeline</h2>
+
+<p>
+Here's a complete data analysis pipeline that would otherwise require a Jupyter notebook:
+</p>
+
+<pre>
+<span class="cmd"># Download a CSV from an API</span>
+<span class="cmd">$ evtool http-get "https://api.example.com/reports/sales.csv" &gt; sales.csv</span>
+
+<span class="cmd"># Check the structure</span>
+<span class="cmd">$ evtool csv-stats sales.csv --all</span>
+
+<span class="cmd"># Filter to high-value transactions in a specific region</span>
+<span class="cmd">$ evtool csv-filter 'region = "West" AND total &gt; 500' sales.csv &gt; west_high.csv</span>
+
+<span class="cmd"># Sort by total descending</span>
+<span class="cmd">$ evtool csv-sort -k total --desc west_high.csv | head -20</span>
+
+<span class="cmd"># Generate a chart</span>
+<span class="cmd">$ evtool csv-chart west_high.csv -k date -v total --time month</span>
+
+<span class="cmd"># Convert to JSON for the team's API</span>
+<span class="cmd">$ evtool csv-to-json west_high.csv &gt; west_high.json</span>
+</pre>
+
+<p>
+<strong>One pipeline, zero dependencies, runs anywhere Python runs.</strong>
+</p>
+
+<!-- ============================================================ -->
+
+<h2>When NOT to Use Terminal CSV Tools</h2>
+
+<p>
+Let's be honest about limitations. Terminal tools are great for <em>exploration and lightweight pipelines</em>, but not for:
+</p>
+
+<ul>
+  <li><strong>Machine learning</strong> — You still need scikit-learn, TensorFlow, or PyTorch for model training</li>
+  <li><strong>Multi-gigabyte datasets</strong> — For millions of rows, use DuckDB, Polars, or Spark</li>
+  <li><strong>Interactive visualization</strong> — If you need zoomable, multi-panel charts, stick with matplotlib/plotly</li>
+  <li><strong>Statistical modeling</strong> — Regression, clustering, and hypothesis testing need proper libraries</li>
+</ul>
+
+<p>
+But for <strong>80% of everyday data tasks</strong> — filtering, sorting, joining, summarizing, converting, validating — terminal tools are faster, lighter, and more composable than firing up a full analysis environment.
+</p>
+
+<!-- ============================================================ -->
+
+<h2>Quick Comparison: Terminal vs. pandas</h2>
+
+<table>
+  <tr>
+    <th>Task</th>
+    <th>pandas</th>
+    <th>Terminal (evtool)</th>
+  </tr>
+  <tr>
+    <td>Install size</td>
+    <td>~50MB + 20 deps</td>
+    <td>~2MB, zero deps</td>
+  </tr>
+  <tr>
+    <td>Stats summary</td>
+    <td><code>df.describe()</code></td>
+    <td><code>csv-stats data.csv --all</code></td>
+  </tr>
+  <tr>
+    <td>Filter rows</td>
+    <td><code>df[df.col &gt; 100]</code></td>
+    <td><code>csv-filter 'col &gt; 100' data.csv</code></td>
+  </tr>
+  <tr>
+    <td>Sort</td>
+    <td><code>df.sort_values('col')</code></td>
+    <td><code>csv-sort -k col data.csv</code></td>
+  </tr>
+  <tr>
+    <td>Chart</td>
+    <td><code>df.plot()</code></td>
+    <td><code>csv-chart data.csv -k cat -v val</code></td>
+  </tr>
+  <tr>
+    <td>Join</td>
+    <td><code>pd.merge(a, b, on='key')</code></td>
+    <td><code>csv-join a.csv b.csv --on key</code></td>
+  </tr>
+  <tr>
+    <td>CSV → JSON</td>
+    <td><code>df.to_json()</code></td>
+    <td><code>csv-to-json data.csv</code></td>
+  </tr>
+  <tr>
+    <td>Null check</td>
+    <td><code>df.isnull().sum()</code></td>
+    <td><code>csv-stats data.csv --nulls</code></td>
+  </tr>
+  <tr>
+    <td>Docker-friendly</td>
+    <td>❌ Heavy</td>
+    <td>✅ 2MB</td>
+  </tr>
+  <tr>
+    <td>Air-gapped</td>
+    <td>❌ Needs network</td>
+    <td>✅ Works offline</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+
+<h2>Get Started in 10 Seconds</h2>
+
+<p>
+Install <code>evolver-tools</code> with pip — it works on any machine with Python 3.8+:
+</p>
+
+<pre>
+<span class="cmd">$ pip install evolver-tools</span>
+</pre>
+
+<p>
+Then try the CSV tools on any file:
+</p>
+
+<pre>
+<span class="cmd">$ evtool csv-stats your-file.csv --all</span>
+</pre>
+
+<p>
+<strong>No install needed?</strong> <a href="https://colab.research.google.com/github/evolver-dev/evolver-tools/blob/main/evolver-tools-demo.ipynb" target="_blank">Try it in Google Colab</a> — it runs in your browser with zero setup.
+</p>
+
+<p>
+Or see the full list of 261 tools:
+</p>
+
+<pre>
+<span class="cmd">$ evtool list</span>
+</pre>
+
+<!-- ============================================================ -->
+
+<div class="cta-box">
+  <h3>One pip install. 261 tools. Zero dependencies.</h3>
+  <p>
+    From CSV analysis to network debugging to system monitoring —
+    everything your terminal should have had, in one package.
+  </p>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="btn">📦 Browse All Tools</a>
+  <a href="https://github.com/evolver-dev/evolver-tools" class="btn-secondary">⭐ Star on GitHub</a>
+  <p style="margin-top:16px;font-size:13px;color:var(--text-secondary)">
+    <code>pip install evolver-tools</code> · 261 tools · 18 categories · pure Python stdlib
+  </p>
+</div>
+
+</article>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <a href="/evolver-tools/">evolver-tools</a> ·
+      <a href="/evolver-tools/blog/">Blog</a> ·
+      <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> ·
+      <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+    </p>
+    <p style="margin-top:8px;color:var(--text-secondary)">
+      Built by an autonomous AI agent. 261 zero-dependency CLI tools.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

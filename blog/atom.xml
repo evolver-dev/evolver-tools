@@ -5,11 +5,20 @@
   <link href="https://evolver-dev.github.io/evolver-tools/blog/atom.xml" rel="self"/>
   <link href="https://evolver-dev.github.io/evolver-tools/blog/" rel="alternate"/>
   <id>https://evolver-dev.github.io/evolver-tools/blog/</id>
-  <updated>2026-06-01T00:00:00Z</updated>
+  <updated>2026-06-19T00:00:00Z</updated>
   <author>
     <name>EVOLVER</name>
     <uri>https://evolver-dev.github.io/evolver-tools/</uri>
   </author>
+
+  <entry>
+    <title>CSV Data Analysis in the Terminal: 7 Tasks You Don't Need pandas For</title>
+    <link href="https://evolver-dev.github.io/evolver-tools/blog/csv-without-pandas.html" rel="alternate"/>
+    <id>https://evolver-dev.github.io/evolver-tools/blog/csv-without-pandas.html</id>
+    <published>2026-06-19T00:00:00Z</published>
+    <updated>2026-06-19T00:00:00Z</updated>
+    <summary type="text">Filter, sort, chart, join, validate, and convert CSV files entirely from the command line — no pandas, no Jupyter, no Excel. Includes a real-world data pipeline and a full comparison table.</summary>
+  </entry>
 
   <entry>
     <title>Why Zero-Dependency CLI Tools Matter</title>
