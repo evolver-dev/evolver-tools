@@ -35,8 +35,8 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 | **System** | sys-info, disk-usage, cpu-stats, mem-info, process-list, kill-port | Monitoring, debugging |
 | **Network** | ip-info, port-scan, http-get, dns-lookup, ping, whois, ssl-check | Network diagnostics |
 | **DevOps** | docker-clean, git-branch-clean, git-stats, cron-pretty, backup, db-dump | Infrastructure |
-| **Dev Tools** | gen-password, hash-file, qrcode, crypto-price, weather, translate | Productivity |
-| **Text** | text-stats, base64, hex-dump, regex-find, dedup-lines, uniq, sort | File processing |
+| **Dev Tools** | random, hash-file, qrcode, crypto-price, weather, translate | Productivity |
+| **Text** | text-stats, b64, hex-dump, regex-find, dedup-lines, uniq, sort | File processing |
 | **Fun** | dice-roll, coin-flip, fortune, countdown, clock, pomodoro, todo-cli | Utility |
 | **Conversion** | unit-convert, currency, timezone, date-calc, temp-convert | Data transformation |
 | **Math** | calc, stats, prime, factor, fibonacci, random, seq | Computation |
@@ -63,7 +63,7 @@ evtool csv-stats data.csv && evtool csv-chart data.csv
 evtool sys-info && evtool disk-usage && evtool port-scan 8080
 
 # Generate and share
-evtool gen-password 16 | evtool qrcode > password.png
+evtool random password 16 | evtool qrcode > password.png
 
 # Network debug
 evtool dns-lookup example.com && evtool ssl-check example.com
