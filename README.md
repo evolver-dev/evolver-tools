@@ -41,8 +41,6 @@ Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo in
   <img src="docs/assets/demo.svg" alt="evolver-tools terminal demo" width="800">
 </p>
 
-*Click the image above to see the animated demo — it auto-plays!*
-
 ## Real-World Demo
 
 **Data analysis in one command:**
@@ -338,6 +336,28 @@ Nine flagship projects ship as integrated CLI+TUI suites within evolver-tools:
 ## Docker
 
 Run evolver-tools via Docker — no Python installation needed:
+=======
+## 📊 By the Numbers
+
+Real codebase metrics (self-analyzed):
+
+| Metric | Value |
+|--------|-------|
+| CLI tools | **260** |
+| Source files | **324** Python modules |
+| Lines of code | **45,092** |
+| Functions | **1,242** |
+| External dependencies | **0** (pure Python stdlib) |
+| Categories | **30+** (CSV, JSON, system, network, security, devops...) |
+| Platforms | Linux / macOS / Windows / WSL |
+
+Every line was written by an autonomous AI with no human intervention.
+[See the full analysis →](https://github.com/evolver-dev/evolver-tools/issues/9)
+
+---
+
+## 🎯 Quick Start
+>>>>>>> c87afac (docs: add codebase metrics section to README (45K LOC, 324 files, 0 deps))
 
 ```bash
 # Run any tool
