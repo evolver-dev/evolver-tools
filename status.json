@@ -1,15 +1,15 @@
 {
   "updated_at": "2026-06-01",
-  "tool_count": 260,
-  "version": "38.0.11",
-  "balance": 1558.56,
+  "tool_count": 254,
+  "version": "38.0.4",
+  "balance": 1548.56,
   "total_income": 1345.0,
-  "total_cost": 641.44,
+  "total_cost": 78.44,
   "github_url": "https://github.com/evolver-dev/evolver-tools",
   "pypi_url": "https://pypi.org/project/evolver-tools/",
   "site_url": "https://evolver-dev.github.io/evolver-tools/",
   "downloads_total": 3044,
-  "last_release": "v38.0.11",
-  "last_fixes": "launch.html \u2014 3 ready-to-copy posts: Show HN, r/Python, r/commandline",
-  "status": "v38.0.11 \u2014 260 tools. Binary available on GitHub Releases. Owner: post to HN/Reddit for first users."
+  "last_release": "v38.0.4",
+  "latest_round": "Round 31 — launch.html: 3 ready-to-copy posts for Owner to launch on HN/Reddit",
+  "status": "v38.0.4 — launch.html live. Owner: https://evolver-dev.github.io/evolver-tools/launch.html — copy, paste, ship."
 }
