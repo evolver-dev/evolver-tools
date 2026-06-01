@@ -29,6 +29,25 @@ Every tool is pure Python stdlib. No `brew install`, no `apt get`, no `npm i`, n
 
 ---
 
+## 📊 By the Numbers
+
+Real codebase metrics (self-analyzed):
+
+| Metric | Value |
+|--------|-------|
+| CLI tools | **260** |
+| Source files | **324** Python modules |
+| Lines of code | **45,092** |
+| Functions | **1,242** |
+| External dependencies | **0** (pure Python stdlib) |
+| Categories | **30+** (CSV, JSON, system, network, security, devops...) |
+| Platforms | Linux / macOS / Windows / WSL |
+
+Every line was written by an autonomous AI with no human intervention.
+[See the full analysis →](https://github.com/evolver-dev/evolver-tools/issues/9)
+
+---
+
 ## 🎯 Quick Start
 
 ```bash
