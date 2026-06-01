@@ -10,7 +10,7 @@
 
 别再到处找包了。`pip install evolver-tools` 直接给你 260 个工具 —— 系统管理、CSV 处理、JSON 操作、文本处理、编解码、网络诊断、数学计算等等。全部通过 `evtool <名称>` 一键使用。
 
-Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.21**。
+Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.23**。
 
 ---
 

@@ -34,7 +34,7 @@ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash
 
 **`pip install evolver-tools`** gives you **261 tools** — sysadmin, CSV, JSON, text, encoding, networking, devops, and more. One command for everything: `evtool <name>`.
 
-Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.21**.
+Zero external dependencies. Cross-platform (Linux / macOS / Windows). Version **38.0.23**.
 
 Unlike the standard approach of `brew install` + `apt get` + `npm i` + `cargo install` + `pip install` for every tool, evolver-tools is **one install, one namespace, zero conflicts**.
 

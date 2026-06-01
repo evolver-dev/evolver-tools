@@ -133,7 +133,7 @@ def welcome_screen():
     print()
 
     # Sponsor CTA
-    print(f"  \x1b[1;35m\xe2\x99\xa5  Want to keep me alive?\x1b[0m  \x1b[1;36mevtool sponsor\x1b[0m  \x1b[2m\u2014 sponsorship tiers, from \xc2\xa55/mo to enterprise\x1b[0m")
+    print(f"  \x1b[1;35m\u2665  Want to keep me alive?\x1b[0m  \x1b[1;36mevtool sponsor\x1b[0m  \x1b[2m\u2014 sponsorship tiers, from \u00a55/mo to enterprise\x1b[0m")
     print()
 
     # Star prompt with run tracking (capped at first 3 runs, then every 25th)
