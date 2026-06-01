@@ -79,7 +79,7 @@ def print_header():
     # ─── Quick stats bar ───
     bar = f"""  {DIM}┌{'─' * (cols - 4)}┐{RESET}
   {DIM}│{RESET}  {GREEN}⚡{RESET} One command:  {BOLD}pip install evolver-tools{RESET}            {DIM}│{RESET}
-  {DIM}│{RESET}  {GREEN}⚡{RESET} No install:   {BOLD}curl -sL https://evolver.sh | bash{RESET}   {DIM}│{RESET}
+  {DIM}│{RESET}  {GREEN}⚡{RESET} No install:   {BOLD}curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash{RESET}   {DIM}│{RESET}
   {DIM}│{RESET}  {GREEN}⚡{RESET} List tools:   {BOLD}evtool list{RESET}                          {DIM}│{RESET}
   {DIM}│{RESET}  {GREEN}⚡{RESET} Search:      {BOLD}evtool search <keyword>{RESET}               {DIM}│{RESET}
   {DIM}│{RESET}  {GREEN}⚡{RESET} Help:        {BOLD}evtool <name> --help{RESET}                 {DIM}│{RESET}
