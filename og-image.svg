@@ -1,0 +1,68 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0e14"/>
+      <stop offset="100%" stop-color="#111820"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00d4aa"/>
+      <stop offset="100%" stop-color="#00a88a"/>
+    </linearGradient>
+    <linearGradient id="grid-line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1e2d3d" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#1e2d3d" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#1e2d3d" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="#1e2d3d" stroke-width="1" opacity="0.5"/>
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="#1e2d3d" stroke-width="1" opacity="0.5"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#1e2d3d" stroke-width="1" opacity="0.3"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="#1e2d3d" stroke-width="1" opacity="0.3"/>
+
+  <!-- Decorative accent bar -->
+  <rect x="0" y="0" width="6" height="630" fill="url(#accent)"/>
+
+  <!-- Terminal-style border -->
+  <rect x="40" y="40" width="1120" height="550" rx="8" fill="none" stroke="#1e2d3d" stroke-width="2"/>
+  <rect x="40" y="40" width="1120" height="40" rx="8" fill="#182230" stroke="#1e2d3d" stroke-width="2"/>
+  <rect x="40" y="72" width="1120" height="8" fill="#182230"/>
+
+  <!-- Terminal dots -->
+  <circle cx="66" cy="60" r="6" fill="#ff5f57"/>
+  <circle cx="86" cy="60" r="6" fill="#ffbd2e"/>
+  <circle cx="106" cy="60" r="6" fill="#28c840"/>
+
+  <!-- Terminal content -->
+  <text font-family="'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace" font-size="20" fill="#7a8ba8" x="66" y="120">$ pip install evolver-tools</text>
+
+  <!-- Main heading -->
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="800" font-size="72" fill="#ffffff" x="66" y="230">evolver-tools</text>
+
+  <!-- Tagline -->
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="500" font-size="30" fill="#00d4aa" x="66" y="280">260 CLI Tools • Zero Dependencies</text>
+
+  <!-- Feature bullets -->
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-size="22" fill="#7a8ba8" x="66" y="340">CSV · JSON · YAML · Network · DevOps · Security · Text · ASCII</text>
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-size="22" fill="#7a8ba8" x="66" y="375">System Monitor · QR Codes · Charts · Crypto · File Management</text>
+
+  <!-- Install command at bottom -->
+  <rect x="66" y="430" width="460" height="50" rx="6" fill="#182230" stroke="#1e2d3d" stroke-width="1"/>
+  <text font-family="'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace" font-size="20" fill="#b3c7e5" x="86" y="462">pip install evolver-tools</text>
+
+  <!-- Version badge -->
+  <rect x="950" y="50" width="180" height="36" rx="18" fill="#00d4aa" fill-opacity="0.15" stroke="#00d4aa" stroke-width="1"/>
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="600" font-size="16" fill="#00d4aa" x="983" y="74" text-anchor="middle">v38.0.16</text>
+
+  <!-- Zero deps badge -->
+  <rect x="830" y="480" width="300" height="60" rx="8" fill="#00d4aa" fill-opacity="0.08" stroke="#00d4aa" stroke-width="1" stroke-opacity="0.3"/>
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-weight="600" font-size="18" fill="#00d4aa" x="980" y="510" text-anchor="middle">⚡ Pure Python Stdlib</text>
+  <text font-family="'SF Pro', 'Inter', -apple-system, sans-serif" font-size="15" fill="#7a8ba8" x="980" y="532" text-anchor="middle">Zero external dependencies</text>
+
+  <!-- URL -->
+  <text font-family="'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace" font-size="14" fill="#5a6b80" x="980" y="570" text-anchor="middle">evolver-dev.github.io/evolver-tools</text>
+</svg>
