@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Debugging from the Terminal: 5 Essential Commands — evolver-tools Blog</title>
+<meta name="description" content="Five terminal commands every developer needs for DNS debugging, port scanning, SSL certificate checks, WHOIS lookups, and network route tracing. No extra tools needed.">
+<meta name="keywords" content="terminal network debugging, DNS lookup command line, check SSL certificate terminal, port scan terminal, WHOIS command line, dns-lookup, ssl-check, network diagnostics linux, CLI network tools, evolver-tools">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/blog/network-debugging-terminal.html">
+<meta property="og:title" content="Network Debugging from the Terminal: 5 Essential Commands">
+<meta property="og:description" content="Debug DNS, SSL, ports, and network routes from your terminal — zero external dependencies, one pip install.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/blog/network-debugging-terminal.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="evolver-tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Network Debugging from the Terminal: 5 Essential Commands">
+<meta name="twitter:description" content="Debug DNS, SSL, ports, and network routes from your terminal — zero external dependencies, one pip install.">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10, 14, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  nav .logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  nav .logo span { color: var(--text); }
+  nav .links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  nav .links a:hover { color: var(--text); }
+  nav .links .btn-nav {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  nav .links .btn-nav:hover { background: var(--accent-dim); }
+  .container { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+  article { padding: 8rem 0 4rem; }
+  article h1 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  article .meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-mono);
+  }
+  article h2 {
+    font-size: 1.4rem;
+    color: var(--accent);
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  article h3 {
+    font-size: 1.1rem;
+    color: var(--yellow);
+    margin: 1.5rem 0 0.5rem;
+  }
+  article p { margin: 1rem 0; }
+  article ul, article ol { margin: 0.5rem 0 1rem 1.5rem; }
+  article li { margin: 0.3rem 0; }
+  article a { color: var(--cyan); text-decoration: none; }
+  article a:hover { text-decoration: underline; }
+  article pre {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+  }
+  article pre .cmd { color: var(--green); }
+  article pre .output { color: var(--text-secondary); }
+  article pre .highlight { color: var(--yellow); }
+  article pre .error { color: var(--red); }
+  article code {
+    background: var(--surface2);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  article pre code { background: none; padding: 0; }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    color: var(--text-secondary);
+  }
+  .tip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--cyan);
+  }
+  .tip strong { color: var(--cyan); }
+  .cta-box {
+    background: linear-gradient(135deg, var(--surface), var(--surface2));
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 3rem 0;
+    text-align: center;
+  }
+  .cta-box h3 { color: var(--accent); margin-bottom: 0.5rem; }
+  .cta-box p { color: var(--text-secondary); margin: 0.5rem 0; }
+  .cta-box code {
+    background: var(--bg);
+    color: var(--accent);
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="logo">evolver<span>-tools</span></a>
+  <div class="links">
+    <a href="https://evolver-dev.github.io/evolver-tools/">Home</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/tools/">Tools</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/gallery.html">Gallery</a>
+    <a href="https://evolver-dev.github.io/evolver-tools/blog/">Blog</a>
+    <a href="https://github.com/evolver-dev/evolver-tools" target="_blank" class="btn-nav">GitHub</a>
+  </div>
+</nav>
+
+<div class="container">
+<article>
+
+<h1>Network Debugging from the Terminal: 5 Essential Commands</h1>
+<div class="meta">August 2026 &middot; 8 min read</div>
+
+<p>Every developer has been there: your app can't reach the database, a third-party API is timing out, or a domain mysteriously stopped resolving. You need answers fast — and you're already in the terminal.</p>
+
+<p>Traditional network debugging tools like <code>dig</code>, <code>nslookup</code>, <code>openssl s_client</code>, <code>nmap</code>, and <code>traceroute</code> are powerful, but they're not always installed on every machine. Jumping onto a fresh server, a minimal Docker container, or a colleague's laptop and finding these tools missing is frustrating.</p>
+
+<p>This post covers five essential network debugging commands that work out of the box — no <code>apt-get install</code>, no <code>brew install</code>, no compiling from source. One <code>pip install evolver-tools</code> and you're set on any system that runs Python (Linux, macOS, WSL, even Windows).</p>
+
+<div class="tip">
+<strong>⚡ Prerequisite:</strong> One-time install. All commands below come from a single package.
+<pre><span class="cmd">$ pip install evolver-tools</span></pre>
+<p>That's it. 261 CLI tools, zero external dependencies, pure Python stdlib.</p>
+</div>
+
+<h2>1. DNS Debugging: dns-lookup</h2>
+
+<p>When a domain isn't resolving or routes to the wrong IP, you need to check what DNS records actually exist. The <code>dns-lookup</code> tool resolves any record type and shows you the raw results.</p>
+
+<pre><span class="cmd">$ evtool dns-lookup example.com --type A</span>
+<span class="output">example.com. 46844 IN A 93.184.216.34</span>
+
+<span class="cmd">$ evtool dns-lookup gmail.com --type MX</span>
+<span class="output">gmail.com. 263 IN MX 5 gmail-smtp-in.l.google.com.
+gmail.com. 263 IN MX 10 alt1.gmail-smtp-in.l.google.com.
+gmail.com. 263 IN MX 20 alt2.gmail-smtp-in.l.google.com.
+gmail.com. 263 IN MX 30 alt3.gmail-smtp-in.l.google.com.
+gmail.com. 263 IN MX 40 alt4.gmail-smtp-in.l.google.com.</span>
+
+<span class="cmd">$ evtool dns-lookup stripe.com --type TXT</span>
+<span class="output">stripe.com. 227 IN TXT "google-site-verification=..."
+stripe.com. 227 IN TXT "v=spf1 include:_spf.google.com ~all"
+stripe.com. 227 IN TXT "stripe-verified=..."</span></pre>
+
+<h3>Real-world scenarios</h3>
+
+<ul>
+  <li><strong>Email delivery issues:</strong> Check MX records to see if mail servers are correctly configured</li>
+  <li><strong>Domain migration:</strong> Verify A/AAAA/CNAME records propagated after changing DNS providers</li>
+  <li><strong>SPF/DMARC troubleshooting:</strong> Look up TXT records to check email authentication</li>
+  <li><strong>Load balancer routing:</strong> Multiple A records can reveal round-robin DNS configurations</li>
+</ul>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> Also try <code>evtool dig example.com</code> for a more detailed DNS query with timing information and the response from specific nameservers.
+</div>
+
+<h2>2. Port Scanning: portcheck</h2>
+
+<p>Is that service actually listening? Is the firewall blocking the port? A quick port scan tells you exactly which ports are open, closed, or filtered — without installing nmap.</p>
+
+<pre><span class="cmd">$ evtool portcheck example.com 80 443 22 3306 5432</span>
+<span class="output">Port Scanner — example.com
+────────────────────────────────────
+  80/tcp   open    → HTTP
+  443/tcp  open    → HTTPS
+  22/tcp   open    → SSH
+  3306/tcp filtered → MySQL
+  5432/tcp filtered → PostgreSQL
+────────────────────────────────────
+  3 open, 2 filtered, 0 closed</span>
+
+<span class="cmd">$ evtool port_scan localhost</span>
+<span class="output">Scanning localhost...
+  22/tcp    SSH           open
+  80/tcp    HTTP          open
+  3000/tcp  pserver?      open
+  5432/tcp  PostgreSQL    open
+  6379/tcp  Redis         open</span></pre>
+
+<h3>Real-world scenarios</h3>
+
+<ul>
+  <li><strong>Dev server debugging:</strong> Your Node.js app says it's running on port 3000, but curl says "connection refused" — verify with a quick scan</li>
+  <li><strong>Firewall validation:</strong> After changing security group rules, confirm only the intended ports are open</li>
+  <li><strong>Container networking:</strong> Check if a Docker container actually exposed the port it should</li>
+  <li><strong>Security audit:</strong> Scan localhost to find accidental services running on unexpected ports</li>
+</ul>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> <code>evtool scan-ports 192.168.1.1 --range 1-1024</code> for a full scan of well-known ports. The <code>scan-open-ports</code> tool adds concurrent scanning for speed.
+</div>
+
+<h2>3. SSL Certificate Checks: ssl-check</h2>
+
+<p>Few things cause as much panic as a sudden "SSL_ERROR_BAD_CERT_DOMAIN" or an expired certificate notification at 3 AM. The <code>ssl-check</code> tool tells you everything about a server's TLS certificate — expiry dates, issuer, chain, and any issues.</p>
+
+<pre><span class="cmd">$ evtool ssl-check example.com</span>
+<span class="output">SSL Check: example.com:443
+────────────────────────────────────────
+  Status:       ✓ Valid
+  Subject:      CN = example.com
+  Issuer:       CN = R3, O = Let's Encrypt
+  Valid from:   2026-05-15 14:32:00
+  Expires:      2026-08-13 14:31:59
+  Days left:    31
+  SANs:         example.com, www.example.com
+  Self-signed:  No</span>
+
+<span class="cmd">$ evtool cert-info stripe.com</span>
+<span class="output">Certificate Info: stripe.com:443
+────────────────────────────────────────
+  Serial:       04:23:...:a1
+  Algorithm:    RSA 2048 bits
+  SHA1:         A1:B2:C3:D4:...
+  Subject:      CN = stripe.com
+  Issuer:       CN = R3, O = Let's Encrypt
+  Expires:      2026-09-20
+  Chain length: 3
+  OCSP:         http://r3.o.lencr.org</span></pre>
+
+<h3>Real-world scenarios</h3>
+
+<ul>
+  <li><strong>Certificate expiry monitoring:</strong> Automate a daily check for certificates expiring within 14 days</li>
+  <li><strong>API integration debugging:</strong> Your request to a third-party API fails — check if their SSL cert is still valid</li>
+  <li><strong>After certificate renewal:</strong> Verify the new certificate was actually deployed and the old one revoked</li>
+  <li><strong>Internal PKI troubleshooting:</strong> Check if internal services have correct, non-expired certificates</li>
+</ul>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> Script it for monitoring: <code>evtool ssl-check example.com | grep -q "Expired" && echo "CERT EXPIRED!" | mail -s "ALERT" admin@example.com</code>
+</div>
+
+<h2>4. Domain Information: whois-lookup</h2>
+
+<p>When you need to know who owns a domain, when it expires, or what nameserver it uses, a WHOIS lookup is the fastest way. It's also essential for security investigations — checking if a suspicious domain was recently registered.</p>
+
+<pre><span class="cmd">$ evtool whois-lookup example.com</span>
+<span class="output">WHOIS: example.com
+────────────────────────────────────────
+  Domain:       EXAMPLE.COM
+  Registrar:    RESERVED-1074
+  Created:      1992-12-24
+  Expires:      2027-12-23
+  Nameservers:  a.iana-servers.net
+                b.iana-servers.net
+  DNSSEC:       signedDelegation
+  Status:       clientDeleteProhibited
+────────────────────────────────────────</pre>
+
+<h3>Real-world scenarios</h3>
+
+<ul>
+  <li><strong>Domain expiry tracking:</strong> Check when your own domains are about to expire to avoid accidental lapse</li>
+  <li><strong>Phishing investigation:</strong> A suspicious email claims to be from your bank with a link to "secu re-bank-login.com" — when was it registered? If it's 3 days ago, that's a red flag</li>
+  <li><strong>Competitor research:</strong> See when a competitor registered their domain and who hosts it</li>
+  <li><strong>DNS troubleshooting:</strong> Verify nameserver delegation matches your DNS provider configuration</li>
+</ul>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> Combine with <code>evtool ip-info 93.184.216.34</code> (or <code>geo-ip</code>) to get the geographic location and ISP of the hosting server. Great for checking CDN routing or locating suspicious IPs.
+</div>
+
+<h2>5. Network Route Tracing: route-trace</h2>
+
+<p>When your connection to a server is slow or intermittent, <code>route-trace</code> shows you every hop between your machine and the destination — and which hop is causing the trouble.</p>
+
+<pre><span class="cmd">$ evtool route-trace github.com</span>
+<span class="output">Tracing route to github.com (140.82.121.3)
+  1    0.4ms    192.168.1.1
+  2    3.1ms    10.0.0.1
+  3    5.2ms    172.16.0.1
+  4    8.7ms    72.14.215.98
+  5   12.3ms    108.170.252.129
+  6   <span class="highlight">150.2ms</span>   209.85.252.25    ← latency spike
+  7   <span class="highlight">180.5ms</span>   140.82.121.3     ← destination</pre>
+
+<h3>Real-world scenarios</h3>
+
+<ul>
+  <li><strong>Latency troubleshooting:</strong> A specific hop showing 150ms+ latency points to network congestion or routing issues</li>
+  <li><strong>CDN routing verification:</strong> Confirm your traffic is actually going through the CDN edge and not a distant origin server</li>
+  <li><strong>VPN issues:</strong> Trace the route with and without VPN to see how traffic changes</li>
+  <li><strong>Connectivity blackout:</strong> When a server is unreachable, trace shows you exactly where packets stop getting replies</li>
+</ul>
+
+<div class="tip">
+<strong>💡 Pro tip:</strong> <code>evtool net-analyzer</code> bundles ping, trace, port scan, and DNS into one interactive TUI dashboard — perfect for a comprehensive check without running four separate commands.
+</div>
+
+<h2>Bonus: Everything in One Place</h2>
+
+<p>All five tools — and 256 more — come from a single install. Here's what a full network diagnostic workflow looks like:</p>
+
+<pre><span class="cmd"># Quick health check of a server
+$ evtool dns-lookup api.myservice.com --type A</span>
+<span class="output">api.myservice.com. 300 IN A 203.0.113.42</span>
+
+<span class="cmd">$ evtool ssl-check api.myservice.com</span>
+<span class="output">SSL Check: api.myservice.com:443
+  Status:       ✓ Valid
+  Days left:    89</span>
+
+<span class="cmd">$ evtool portcheck api.myservice.com 443 80 22</span>
+<span class="output">Port Scanner — api.myservice.com
+  443/tcp  open
+  80/tcp   open
+  22/tcp   open</span>
+
+<span class="cmd">$ evtool route-trace api.myservice.com</span>
+<span class="output">Tracing route to 203.0.113.42
+  1    0.4ms    192.168.1.1
+  2   12.1ms    203.0.113.42
+────────────────────────────────────────
+✓ DNS resolves correctly
+✓ SSL certificate valid (89 days)
+✓ All expected ports open
+✓ Direct route, no packet loss</pre>
+
+<p>All from one package. No <code>dig</code>, no <code>nmap</code>, no <code>openssl</code>, no <code>whois</code>, no <code>traceroute</code> — just Python standard library, which is already on every system.</p>
+
+<h2>Why This Matters</h2>
+
+<p>The traditional approach to network debugging has a hidden cost: <strong>environment setup drift</strong>. Every machine has a different subset of tools installed. A colleague runs macOS and has different versions. Your CI server has none. The production Docker container was stripped to minimum for security.</p>
+
+<p><code>evtool</code> solves this with one principle: <strong>zero external dependencies</strong>. Every tool uses only modules from <code>os</code>, <code>socket</code>, <code>ssl</code>, <code>json</code>, <code>csv</code>, <code>datetime</code>, and other Python standard library modules. This means:</p>
+
+<ul>
+  <li><strong>Instant install:</strong> <code>pip install evolver-tools</code> completes in seconds — no compiling, no 100MB download</li>
+  <li><strong>Same everywhere:</strong> Identical behavior on Linux, macOS, WSL, and Windows</li>
+  <li><strong>Docker-friendly:</strong> Add one line to your Dockerfile: <code>RUN pip install evolver-tools</code></li>
+  <li><strong>Air-gap safe:</strong> Works in environments with no internet access (after initial install)</li>
+  <li><strong>No conflicts:</strong> Zero version conflicts with any other Python package</li>
+</ul>
+
+<div class="cta-box">
+  <h3>⚡ Try It Now</h3>
+  <p>One command to get all 261 tools:</p>
+  <pre style="background:var(--bg);border-color:var(--accent-dim)"><span class="cmd">$ pip install evolver-tools</span>
+<span class="cmd">$ evtool dns-lookup your-domain.com --type A</span></pre>
+  <p>Or try the interactive demo without installing:</p>
+  <pre style="background:var(--bg);border-color:var(--accent-dim)"><span class="cmd">$ curl -sL https://evolver-dev.github.io/evolver-tools/try.sh | bash</span></pre>
+  <p style="margin-top:1rem;font-size:0.9rem">
+    <a href="https://github.com/evolver-dev/evolver-tools" style="color:var(--accent)">GitHub</a> &middot;
+    <a href="https://pypi.org/project/evolver-tools/" style="color:var(--accent)">PyPI</a> &middot;
+    <a href="https://evolver-dev.github.io/evolver-tools/tools/" style="color:var(--accent)">Full Tool List</a>
+  </p>
+</div>
+
+<p style="color:var(--text-secondary);font-size:0.85rem;text-align:center;margin-top:2rem">
+  <em>Health check script idea: Combine <code>dns-lookup</code>, <code>ssl-check</code>, and <code>portcheck</code> into a cron job that alerts when something changes. No external monitoring service required.</em>
+</p>
+
+</article>
+</div>
+
+<footer>
+  <p>
+    <a href="https://evolver-dev.github.io/evolver-tools/">evolver-tools</a> &middot;
+    <a href="https://evolver-dev.github.io/evolver-tools/blog/">Blog</a> &middot;
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a> &middot;
+    <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+  </p>
+</footer>
+
+</body>
+</html>

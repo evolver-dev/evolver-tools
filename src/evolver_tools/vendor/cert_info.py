@@ -3,7 +3,7 @@
 import ssl
 import socket
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 TOOL_META = {
     "name": "cert-info",
@@ -46,7 +46,7 @@ def main():
         try:
             not_after = cert.get("notAfter", "")
             expiry = datetime.strptime(not_after, "%b %d %H:%M:%S %Y %Z")
-            now = datetime.utcnow()
+            now = datetime.now(timezone.utc).replace(tzinfo=None)
             remaining = (expiry - now).days
             if remaining < 0:
                 print(f"⚠ EXPIRED {abs(remaining)} days ago!")

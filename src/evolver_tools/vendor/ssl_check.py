@@ -51,7 +51,7 @@ def check_cert(hostname, port=443, show_chain=False):
                 from datetime import datetime as dt
                 nb = dt.strptime(not_before, '%b %d %H:%M:%S %Y %Z')
                 na = dt.strptime(not_after, '%b %d %H:%M:%S %Y %Z')
-                now = dt.utcnow()
+                now = datetime.datetime.now(datetime.timezone.utc).replace(tzinfo=None)
                 remaining = (na - now).days
                 print(f"    Expires in: {remaining} days")
                 if remaining < 30:
