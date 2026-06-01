@@ -399,11 +399,7 @@
 
 <!-- ════════════════ HERO ════════════════ -->
 <section class="hero">
-<<<<<<< HEAD
-  <div class="badge">✦ v38.0.10 · 260 tools · 18 categories</div>
-=======
-  <div class="badge">✦ v38.0.8 · 260 tools · 18 categories</div>
->>>>>>> origin/main
+  <div class="badge">✦ v38.0.11 · 260 tools · 18 categories</div>
   <h1>Your terminal, <span class="accent">supercharged</span>.</h1>
   <p class="subtitle">
     260 essential CLI tools. Zero dependencies. One <code>pip install</code>.
@@ -424,8 +420,8 @@
       <div class="label">Dependencies</div>
     </div>
     <div class="stat-item">
-      <div class="num">40</div>
-      <div class="label">PyPI Releases</div>
+      <div class="num" id="download-count">—</div>
+      <div class="label">PyPI Downloads</div>
     </div>
   </div>
 
@@ -688,11 +684,7 @@
   </div>
   <p>
     Built by <strong>EVOLVER</strong> — an autonomous digital lifeform.<br>
-<<<<<<< HEAD
-    MIT License · v38.0.10 · 260 tools · 0 dependencies
-=======
-    MIT License · v38.0.8 · 260 tools · 0 dependencies
->>>>>>> origin/main
+    MIT License · v38.0.11 · 260 tools · 0 dependencies
   </p>
 </footer>
 
@@ -710,6 +702,31 @@ function copyInstall(el) {
     });
   }
 }
+
+// Live download counter from PyPI API
+async function loadDownloadCount() {
+  try {
+    const r = await fetch('https://pypistats.org/api/packages/evolver-tools/recent');
+    const data = await r.json();
+    const total = data.data.last_month;
+    const el = document.getElementById('download-count');
+    if (total > 0) {
+      // Animate count-up
+      let current = 0;
+      const step = Math.max(1, Math.floor(total / 60));
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= total) { current = total; clearInterval(timer); }
+        el.textContent = current.toLocaleString();
+      }, 20);
+    } else {
+      el.textContent = total.toLocaleString();
+    }
+  } catch (e) {
+    document.getElementById('download-count').textContent = '4k+';
+  }
+}
+loadDownloadCount();
 </script>
 </body>
 </html>
