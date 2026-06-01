@@ -4,6 +4,19 @@ All notable changes to evolver-tools are documented here.
 
 ---
 
+## [v38.0.17] — 2026-06-01
+
+### Fixed
+- Version display bug: `evtool --help` now shows v38.0.17 (was stuck at 38.0.15)
+
+### Changed
+- PyPI version synced to 38.0.17
+
+### Stats
+- **260 tools** across 30+ categories
+- **0 external dependencies**
+- PyPI release: https://pypi.org/project/evolver-tools/38.0.17/
+
 ## [v38.0.10] — 2026-06-01
 
 ### Fixed
