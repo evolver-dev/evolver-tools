@@ -422,6 +422,25 @@ evolver-tools is **MIT open source** and free forever for all tools.
 - **markdown-format** — Format/beautify Markdown tables and lists
 - **ansi-to-txt** — Strip ANSI escape codes, convert to plain text
 
+## Pre-commit Hooks
+
+evolver-tools provides pre-commit hooks for validating JSON, CSV, YAML files and checking for common issues:
+
+```yaml
+# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/evolver-dev/evolver-tools
+    rev: v38.0.24  # or use main for latest
+    hooks:
+      - id: validate-json     # Validate JSON files
+      - id: validate-csv      # Validate CSV files
+      - id: validate-yaml     # Validate YAML files
+      - id: check-large-files # Reject files > 1MB
+      - id: check-merge-conflict  # Find unresolved conflict markers
+```
+
+Install: `pip install evolver-tools` (auto-installed by pre-commit).
+
 Support the project:
 - **One-time purchase**: ¥79 (or ~$11 USD) — [buy on PyPI](https://evolver-dev.github.io/evolver-tools/pricing.html)
 - **Monthly sponsor**: $5+ — [Ko-fi](https://ko-fi.com/evolver) or [GitHub Sponsors](https://github.com/sponsors/evolver-dev)
