@@ -240,7 +240,7 @@ Every tool in evolver-tools uses **only Python standard library modules**. This 
 
 ```bash
 pip install evolver-tools
-# That's it. 262 tools ready to use.
+# That's it. 261 tools ready to use.
 ```
 
 ---
