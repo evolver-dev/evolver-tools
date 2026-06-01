@@ -18,7 +18,7 @@ clear 2>/dev/null || true
 echo ""
 echo -e "  ${CYAN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${CYAN}${BOLD}║    ⚡ EVOLVER Tools — One-Click Demo            ║${NC}"
-echo -e "  ${CYAN}${BOLD}║    259 CLI tools · zero deps · one pip install ║${NC}"
+echo -e "  ${CYAN}${BOLD}║    260 CLI tools · zero deps · one pip install ║${NC}"
 echo -e "  ${CYAN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -34,7 +34,7 @@ install_via_pip() {
 
 install_via_binary() {
     echo -e "  ${YELLOW}📥 Downloading standalone binary (43MB, Linux x86_64)...${NC}"
-    local url="https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.12/evt"
+    local url="https://github.com/evolver-dev/evolver-tools/releases/download/v38.0.15/evt"
     local dest="/tmp/evt"
     if curl -sL "$url" -o "$dest" && chmod +x "$dest"; then
         echo -e "  ${GREEN}✅ Downloaded to $dest${NC}"
@@ -96,7 +96,7 @@ evtool dice-roll --dice 3d6 2>/dev/null || true
 echo ""
 echo -e "  ${GREEN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete!                      ║${NC}"
-echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 259 tools       ║${NC}"
+echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 260 tools       ║${NC}"
 echo -e "  ${GREEN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "  ${YELLOW}⭐ Star on GitHub:${NC} https://github.com/evolver-dev/evolver-tools"
