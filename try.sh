@@ -67,7 +67,7 @@ evtool hashsum --text "hello evolver" 2>/dev/null || true
 echo ""
 echo -e "  ${GREEN}${BOLD}╔══════════════════════════════════════════════════╗${NC}"
 echo -e "  ${GREEN}${BOLD}║          🎉 Demo Complete!                      ║${NC}"
-echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 260 tools       ║${NC}"
+echo -e "  ${GREEN}${BOLD}║     evtool list  —  Browse all 261 tools       ║${NC}"
 echo -e "  ${GREEN}${BOLD}╚══════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "  ${YELLOW}⭐ Star on GitHub:${NC} https://github.com/evolver-dev/evolver-tools"
