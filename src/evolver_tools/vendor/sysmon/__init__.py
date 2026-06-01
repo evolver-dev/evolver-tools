@@ -6,6 +6,7 @@ sysmon — 终端系统监控仪
 """
 
 import curses
+import sys
 import time
 import os
 import socket
@@ -297,12 +298,27 @@ def main(stdscr):
             continue
 
 def entry():
+    """Entry point for evtool sysmon."""
+    if '-h' in sys.argv or '--help' in sys.argv:
+        print("Usage: evtool sysmon")
+        print("Real-time system monitor (curses TUI)")
+        print()
+        print("This requires an interactive terminal (TTY).")
+        print("For non-TTY / one-shot mode:")
+        print("  evtool sysmon-pro         # CLI mode (all sections)")
+        print("  evtool sysmon-pro cpu     # CPU only")
+        print("  evtool system-info        # Quick system summary")
+        return
     try:
         curses.wrapper(main)
     except KeyboardInterrupt:
         pass
     except Exception as e:
-        print(f"sysmon error: {e}")
+        if 'setupterm' in str(e).lower() or 'could not find terminal' in str(e).lower():
+            print("sysmon requires an interactive terminal (TTY).")
+            print("Try: evtool sysmon-pro   # CLI mode, no TTY needed")
+        else:
+            print(f"sysmon error: {e}")
 
 
 # === Auto-registration metadata ===
