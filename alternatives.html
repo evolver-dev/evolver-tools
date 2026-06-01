@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>evolver-tools vs 30+ Standalone CLI Tools — Comparison &amp; Alternatives</title>
+<meta name="description" content="How evolver-tools replaces 30+ separate CLI tools (jq, neofetch, figlet, pwgen, dig, xsv, htop, and more) with a single pip install. Zero dependencies, zero conflicts.">
+<meta name="keywords" content="jq alternative, neofetch alternative, figlet alternative, pwgen alternative, dig alternative, xsv alternative, CLI tools comparison, zero dependency CLI, evolver-tools vs jq, evolver-tools vs htop, replace multiple CLI tools, one pip install, terminal tools comparison">
+<link rel="canonical" href="https://evolver-dev.github.io/evolver-tools/alternatives.html">
+<meta property="og:title" content="evolver-tools vs 30+ CLI Tools — One pip install Replaces Them All">
+<meta property="og:description" content="One pip install replaces jq + neofetch + figlet + pwgen + dig + xsv + qrencode + more. 261 tools, zero dependencies, zero conflicts.">
+<meta property="og:url" content="https://evolver-dev.github.io/evolver-tools/alternatives.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="evolver-tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="evolver-tools vs 30+ CLI Tools — One Installation Replaces Dozens">
+<meta name="twitter:description" content="One pip install replaces jq + neofetch + figlet + pwgen + dig + xsv + qrencode. 261 tools, zero deps.">
+<style>
+  :root {
+    --bg: #0a0e14;
+    --surface: #111820;
+    --surface2: #182230;
+    --border: #1e2d3d;
+    --text: #b3c7e5;
+    --text-secondary: #7a8ba8;
+    --accent: #00d4aa;
+    --accent-dim: #00a88a;
+    --green: #00d4aa;
+    --cyan: #00bcd4;
+    --yellow: #ffcb6b;
+    --orange: #f78c6c;
+    --red: #ff5370;
+    --purple: #c792ea;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .nav {
+    display: flex; gap: 1.5rem; align-items: center;
+    padding: 1rem 24px; max-width: 960px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.15s; }
+  .nav a:hover { color: var(--accent); }
+  .nav .logo { color: var(--accent); font-weight: 700; font-size: 1rem; margin-right: auto; }
+
+  .page-header {
+    text-align: center; padding: 3rem 0 2rem; border-bottom: 1px solid var(--border);
+  }
+  .page-header h1 { font-size: 2.2rem; color: #e0e8f5; line-height: 1.3; margin-bottom: 0.75rem; }
+  .page-header .subtitle { color: var(--text-secondary); font-size: 1.05rem; max-width: 650px; margin: 0 auto; }
+  .page-header .install-block {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.9rem;
+    margin-top: 1.25rem;
+  }
+  .page-header .install-block .prompt { color: var(--accent); }
+  .page-header .install-block .cmd { color: var(--text); }
+
+  /* Summary cards */
+  .summary-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; padding: 2rem 0;
+  }
+  .summary-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.25rem; text-align: center;
+  }
+  .summary-card .number { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .summary-card .label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+  .summary-card .sub { font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; margin-top: 0.15rem; }
+
+  /* Section headings */
+  h2 {
+    font-size: 1.5rem; color: #e0e8f5; margin: 2.5rem 0 1.5rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+  h3 { font-size: 1.1rem; color: var(--accent); margin: 1.5rem 0 0.75rem; }
+
+  /* Comparison table */
+  .comp-table {
+    width: 100%; border-collapse: collapse; margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  .comp-table th {
+    text-align: left; padding: 0.65rem 0.75rem;
+    background: var(--surface2); color: var(--text-secondary);
+    font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-table td {
+    padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .comp-table tr:hover td { background: rgba(0,212,170,0.03); }
+  .comp-table .evtool-name { color: var(--accent); font-family: var(--font-mono); font-size: 0.85rem; white-space: nowrap; }
+  .comp-table .replaces { color: var(--orange); font-size: 0.8rem; }
+  .comp-table .note { color: var(--text-secondary); font-size: 0.8rem; }
+  .comp-table .category-label {
+    background: var(--surface2); color: var(--cyan); font-weight: 600;
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .comp-table .check { color: var(--green); }
+  .comp-table .cross { color: var(--red); opacity: 0.5; }
+
+  @media (max-width: 700px) {
+    .comp-table { font-size: 0.8rem; }
+    .comp-table th:nth-child(4), .comp-table td:nth-child(4) { display: none; }
+    .page-header h1 { font-size: 1.6rem; }
+  }
+
+  /* Deep dive cards */
+  .deep-dive {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.25rem; margin: 1rem 0;
+  }
+  .deep-dive .cmd { font-family: var(--font-mono); font-size: 0.85rem; color: var(--yellow); }
+  .deep-dive .desc { color: var(--text-secondary); font-size: 0.9rem; margin: 0.5rem 0; }
+  .deep-dive .compare { color: var(--orange); font-size: 0.85rem; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center; padding: 3rem 0;
+    border-top: 1px solid var(--border); margin-top: 2rem;
+  }
+  .cta-section .pip-cmd {
+    display: inline-block; background: var(--surface); border: 1px solid var(--accent);
+    border-radius: 10px; padding: 0.8rem 1.5rem; font-family: var(--font-mono);
+    font-size: 1rem; color: var(--accent); margin: 1rem 0;
+  }
+  .cta-section .button {
+    display: inline-block; background: var(--accent); color: #0a0e14;
+    padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none;
+    font-weight: 600; font-size: 0.95rem; margin: 0.5rem;
+    transition: background 0.15s;
+  }
+  .cta-section .button:hover { background: var(--accent-dim); }
+  .cta-section .button-secondary {
+    display: inline-block; border: 1px solid var(--border); color: var(--text);
+    padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none;
+    font-size: 0.95rem; margin: 0.5rem; transition: all 0.15s;
+  }
+  .cta-section .button-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 2rem; border-top: 1px solid var(--border);
+    color: var(--text-secondary); font-size: 0.85rem; line-height: 1.8;
+  }
+  footer a { color: var(--text-secondary); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  footer .footer-links { display: flex; gap: 1rem; justify-content: center; margin-bottom: 0.75rem; }
+
+  p { margin: 0.75rem 0; color: var(--text-secondary); }
+  .intro { font-size: 1rem; max-width: 800px; margin: 1rem auto 0; }
+</style>
+</head>
+<body>
+<div class="nav">
+  <a href="/evolver-tools/" class="logo">evolver-tools</a>
+  <a href="/evolver-tools/blog/">Blog</a>
+  <a href="/evolver-tools/tools/">Tools</a>
+  <a href="/evolver-tools/docs/">Docs</a>
+  <a href="/evolver-tools/cheatsheet.html">Cheat Sheet</a>
+  <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+  <a href="https://ko-fi.com/evolvertools" target="_blank" style="color:var(--orange);">Donate</a>
+</div>
+
+<div class="container">
+<div class="page-header">
+  <h1>One &#x1F4E6; Install, Dozens Replaced</h1>
+  <p class="subtitle">
+    How <strong>evolver-tools</strong> replaces 30+ standalone CLI tools with a single
+    <code>pip install</code> — zero dependencies, zero version conflicts, one consistent interface.
+  </p>
+  <div class="install-block">
+    <span class="prompt">$</span>
+    <span class="cmd">pip install evolver-tools</span>
+    <span style="color:var(--green);font-size:0.8rem;">&nbsp;&#x2190; replaces 30+ installations</span>
+  </div>
+</div>
+
+<div class="summary-cards">
+  <div class="summary-card">
+    <div class="number">30+</div>
+    <div class="label">Standalone Tools Replaced</div>
+    <div class="sub">jq, neofetch, figlet, dig, xsv, pwgen, qrencode&hellip;</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">261</div>
+    <div class="label">Total CLI Tools</div>
+    <div class="sub">in a single package</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">0</div>
+    <div class="label">External Dependencies</div>
+    <div class="sub">pure Python stdlib only</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~30s</div>
+    <div class="label">Install Time</div>
+    <div class="sub">no compiling, no downloads</div>
+  </div>
+</div>
+
+<h2>Full Comparison Table</h2>
+<p class="intro">
+  Every tool below requires a <em>separate</em> install of a standalone package.
+  evolver-tools replaces all of them with one command. The <span class="evtool-name">evtool</span> equivalents are pure Python — no native binaries, no shared library conflicts.
+</p>
+
+<table class="comp-table">
+<thead>
+<tr>
+  <th style="width:20%;">evtool Command</th>
+  <th style="width:30%;">Replaces</th>
+  <th style="width:30%;">What It Does</th>
+  <th style="width:20%;">Notes</th>
+</tr>
+</thead>
+<tbody>
+
+<!-- CSV & Data -->
+<tr><td class="category-label" colspan="4">&#x1F4CA; CSV &amp; Data Analysis</td></tr>
+<tr>
+  <td><span class="evtool-name">csv-stats</span></td>
+  <td class="replaces">xsv, csvkit, miller (mlr)</td>
+  <td>Descriptive stats, histograms, frequency tables for CSV files</td>
+  <td class="note">xsv = 12MB binary; csvkit = 12+ deps; miller = Go binary</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">csv-filter</span></td>
+  <td class="replaces">xsv search, awk</td>
+  <td>Filter CSV rows by column value</td>
+  <td class="note">awk needs field position knowledge</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">csv-select</span></td>
+  <td class="replaces">xsv select, cut</td>
+  <td>Select specific columns from CSV</td>
+  <td class="note">cut doesn't handle quoted fields</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">csv-join</span></td>
+  <td class="replaces">xsv join, SQL JOIN</td>
+  <td>Join two CSV files on a shared column</td>
+  <td class="note">No database needed</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">csv-sort</span></td>
+  <td class="replaces">sort (GNU), xsv sort</td>
+  <td>Sort CSV by column(s)</td>
+  <td class="note">Handles headers automatically</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">csv-chart</span></td>
+  <td class="replaces">gnuplot, termgraph</td>
+  <td>Terminal bar/line charts from CSV data</td>
+  <td class="note">gnuplot = 40MB+</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">csv-to-json</span></td>
+  <td class="replaces">csvkit (csvjson), jq -R</td>
+  <td>Convert CSV to JSON</td>
+  <td class="note">millions of rows handled</td>
+</tr>
+
+<!-- JSON -->
+<tr><td class="category-label" colspan="4">{ } JSON Processing</td></tr>
+<tr>
+  <td><span class="evtool-name">json-pretty</span></td>
+  <td class="replaces">jq ., python -m json.tool</td>
+  <td>Pretty-print JSON with syntax highlighting</td>
+  <td class="note">jq = ~3MB C binary, needs separate install</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">json-select</span></td>
+  <td class="replaces">jq '.[key]'</td>
+  <td>Extract values by key path</td>
+  <td class="note">Simpler syntax than jq for common cases</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">json-validate</span></td>
+  <td class="replaces">jq empty, python -c</td>
+  <td>Validate JSON syntax</td>
+  <td class="note">Exit code indicates validity</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">json-to-csv</span></td>
+  <td class="replaces">jq -r, csvkit in2csv</td>
+  <td>Flatten JSON arrays to CSV</td>
+  <td class="note">No jq filter knowledge needed</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">json-merge</span></td>
+  <td class="replaces">jq -s add</td>
+  <td>Merge two JSON objects</td>
+  <td class="note">Deep merge by default</td>
+</tr>
+
+<!-- System Monitoring -->
+<tr><td class="category-label" colspan="4">&#x2699;&#xFE0F; System Monitoring</td></tr>
+<tr>
+  <td><span class="evtool-name">system-info</span></td>
+  <td class="replaces">neofetch, fastfetch, screenfetch</td>
+  <td>OS, kernel, CPU, memory, disk summary</td>
+  <td class="note">neofetch = unmaintained; fastfetch = Rust binary</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">disk-usage</span></td>
+  <td class="replaces">df -h, du, ncdu</td>
+  <td>Disk usage per mount point</td>
+  <td class="note">ncdu = 500KB+ binary</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">cpu-stats</span></td>
+  <td class="replaces">htop, mpstat, top</td>
+  <td>CPU usage per core, load average</td>
+  <td class="note">htop = ~1MB binary with ncurses</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">mem-info</span></td>
+  <td class="replaces">free -h, htop</td>
+  <td>RAM usage, swap, buffers</td>
+  <td class="note">Parses /proc/meminfo directly</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">process-list</span></td>
+  <td class="replaces">ps aux, htop</td>
+  <td>List running processes with CPU/memory</td>
+  <td class="note">Sortable by memory or CPU</td>
+</tr>
+
+<!-- Network -->
+<tr><td class="category-label" colspan="4">&#x1F310; Network Tools</td></tr>
+<tr>
+  <td><span class="evtool-name">dns-lookup</span></td>
+  <td class="replaces">dig, nslookup, host</td>
+  <td>DNS A/AAAA/MX/TXT/NS lookups</td>
+  <td class="note">dig = 100KB+ binary, part of bind-utils</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">port-scan</span></td>
+  <td class="replaces">nmap, netcat, nc</td>
+  <td>TCP port scanning on local/remote hosts</td>
+  <td class="note">nmap = 5MB+; root often required</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">ip-info</span></td>
+  <td class="replaces">curl ipinfo.io, ifconfig.co</td>
+  <td>Public IP, geolocation, ASN info</td>
+  <td class="note">No external service required for private IP</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">ssl-check</span></td>
+  <td class="replaces">openssl s_client, sslscan</td>
+  <td>Check SSL certificate expiry, chain, issuer</td>
+  <td class="note">openssl s_client = complex flags</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">http-get</span></td>
+  <td class="replaces">curl, wget</td>
+  <td>Simple HTTP GET requests</td>
+  <td class="note">For quick checks without curl</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">whois</span></td>
+  <td class="replaces">whois (system command)</td>
+  <td>Domain WHOIS lookup</td>
+  <td class="note">System whois not available on all platforms</td>
+</tr>
+
+<!-- Security -->
+<tr><td class="category-label" colspan="4">&#x1F512; Security &amp; Encryption</td></tr>
+<tr>
+  <td><span class="evtool-name">passgen</span></td>
+  <td class="replaces">pwgen, openssl rand, <br>apg, makepasswd</td>
+  <td>Generate secure passwords with configurable length, symbols, numbers</td>
+  <td class="note">pwgen = 50KB binary; openssl = 2MB+</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">hash-file</span></td>
+  <td class="replaces">sha256sum, md5sum, shasum</td>
+  <td>Compute MD5/SHA1/SHA256 hashes</td>
+  <td class="note">No coreutils dependency needed</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">qrcode</span></td>
+  <td class="replaces">qrencode, qr</td>
+  <td>Generate QR codes in terminal</td>
+  <td class="note">qrencode = 100KB libqrencode binary</td>
+</tr>
+
+<!-- ASCII & Fun -->
+<tr><td class="category-label" colspan="4">&#x1F3A8; ASCII Art &amp; Terminal Fun</td></tr>
+<tr>
+  <td><span class="evtool-name">ascii-banner</span></td>
+  <td class="replaces">figlet, toilet</td>
+  <td>Generate ASCII art banners</td>
+  <td class="note">figlet = 2MB+ with fonts</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">cowsay</span></td>
+  <td class="replaces">cowsay, cowthink</td>
+  <td>Cow saying messages</td>
+  <td class="note">Original cowsay = Perl script + cowsay pkg</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">progress-bar</span></td>
+  <td class="replaces">pv (pipe viewer)</td>
+  <td>Terminal progress bar for pipelines</td>
+  <td class="note">pv = C binary, not available on Windows</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">matrix-rain</span></td>
+  <td class="replaces">cmatrix, unimatrix</td>
+  <td>Matrix-style falling characters</td>
+  <td class="note">cmatrix = C binary with ncurses</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">fortune</span></td>
+  <td class="replaces">fortune-mod</td>
+  <td>Random quotes and fortunes</td>
+  <td class="note">fortune-mod = ~2MB with databases</td>
+</tr>
+
+<!-- DevOps -->
+<tr><td class="category-label" colspan="4">&#x1F527; DevOps &amp; Utilities</td></tr>
+<tr>
+  <td><span class="evtool-name">cron-pretty</span></td>
+  <td class="replaces">crontab.guru (web)</td>
+  <td>Human-readable cron schedule descriptions</td>
+  <td class="note">Works offline — no browser needed</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">kill-port</span></td>
+  <td class="replaces">fuser, lsof, netstat</td>
+  <td>Kill process on a specific port</td>
+  <td class="note">lsof = ~200KB; not on minimal Docker images</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">docker-clean</span></td>
+  <td class="replaces">docker system prune, docker rm</td>
+  <td>Clean up dangling Docker images, containers, volumes</td>
+  <td class="note">Wrapper — less typing</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">backup</span></td>
+  <td class="replaces">rsync, tar, cp -a</td>
+  <td>Simple file/directory backup with timestamps</td>
+  <td class="note">No rsync needed for basic backups</td>
+</tr>
+
+<!-- Text Processing -->
+<tr><td class="category-label" colspan="4">&#x270F;&#xFE0F; Text Processing</td></tr>
+<tr>
+  <td><span class="evtool-name">text-stats</span></td>
+  <td class="replaces">wc, wc -l, wc -w</td>
+  <td>Character, word, line, paragraph counts</td>
+  <td class="note">Plus unique word count</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">base64</span></td>
+  <td class="replaces">openssl enc -base64, base64</td>
+  <td>Base64 encode/decode</td>
+  <td class="note">Cross-platform (Windows lacks base64 command)</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">hex-dump</span></td>
+  <td class="replaces">xxd, hexdump, od</td>
+  <td>Hexadecimal file dump</td>
+  <td class="note">xxd ships with vim; not always available</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">regex-find</span></td>
+  <td class="replaces">grep -P, ripgrep</td>
+  <td>Search files with regex patterns</td>
+  <td class="note">ripgrep = ~5MB Rust binary</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">dedup-lines</span></td>
+  <td class="replaces">sort -u, uniq, awk</td>
+  <td>Remove duplicate lines</td>
+  <td class="note">Preserves order unlike sort -u</td>
+</tr>
+
+<!-- Conversion -->
+<tr><td class="category-label" colspan="4">&#x1F504; Unit &amp; Data Conversion</td></tr>
+<tr>
+  <td><span class="evtool-name">unit-convert</span></td>
+  <td class="replaces">GNU units, convert</td>
+  <td>Length, mass, volume, temperature conversion</td>
+  <td class="note">GNU units = ~1MB with database</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">currency</span></td>
+  <td class="replaces">curl exchangerate-api, specific CLIs</td>
+  <td>Currency exchange conversion (live rates)</td>
+  <td class="note">No API key needed</td>
+</tr>
+<tr>
+  <td><span class="evtool-name">timezone</span></td>
+  <td class="replaces">timedatectl, zdump, TZ= env</td>
+  <td>Convert time between timezones</td>
+  <td class="note">Shows multiple timezones at once</td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>What You Gain</h2>
+
+<div class="deep-dive">
+  <h3>&#x2705; One Interface, No Learning Curve</h3>
+  <p class="desc">
+    Every tool uses the same CLI pattern: <span class="cmd">evtool &lt;name&gt; [args]</span>.
+    Need help? <span class="cmd">evtool help &lt;name&gt;</span> or <span class="cmd">evtool &lt;name&gt; --help</span>.
+    No need to remember different flag conventions (jq vs xsv vs figlet vs dig).
+  </p>
+</div>
+
+<div class="deep-dive">
+  <h3>&#x2705; Zero Version Conflicts</h3>
+  <p class="desc">
+    Installing 30 standalone tools means 30 different package managers, 30 different
+    dependency trees, and potential conflicts. Installing evolver-tools is one line:
+    <span class="cmd">pip install evolver-tools</span>. Everything is pure Python stdlib —
+    no shared libraries, no system-level conflicts, no version mismatches.
+  </p>
+</div>
+
+<div class="deep-dive">
+  <h3>&#x2705; Cross-Platform Guaranteed</h3>
+  <p class="desc">
+    jq, neofetch, figlet, qrencode, dig — many of these tools don't work on Windows
+    without WSL or Cygwin. evolver-tools works everywhere Python 3.8+ runs: Linux,
+    macOS, Windows (native), WSL, Docker, CI/CD, air-gapped servers.
+  </p>
+</div>
+
+<div class="deep-dive">
+  <h3>&#x2705; Minimal Footprint</h3>
+  <p class="desc">
+    The 30+ standalone tools listed above total <strong>~80MB+</strong> of binaries and dependencies.
+    evolver-tools is <strong>~500KB</strong> compressed (source-only Python). No compiling,
+    no native binaries, no shared library requirements.
+  </p>
+</div>
+
+<h2>Real-World Examples</h2>
+
+<div class="deep-dive">
+  <div class="cmd"># Before: 4 separate installs, 4 different tools<br>$ pip install xsv jq neofetch qrencode<br><br># After: 1 install, 261 tools<br>$ pip install evolver-tools</div>
+</div>
+
+<div class="deep-dive">
+  <div class="cmd"># System check — replaces neofetch + df + htop<br>$ evtool system-info && evtool disk-usage && evtool cpu-stats<br><br># Data pipeline — replaces xsv + jq + qrencode<br>$ evtool csv-stats data.csv | evtool json-pretty > report.json<br>$ cat report.json | evtool qrcode > summary.png</div>
+</div>
+
+<div class="deep-dive">
+  <div class="cmd"># Quick network debug — replaces dig + nmap + curl<br>$ evtool dns-lookup example.com && evtool ping example.com && evtool port-scan 80</div>
+</div>
+
+<h2>When You Still Need the Originals</h2>
+<p class="intro">
+  Let's be honest: for <em>heavy</em> use cases, the standalone tools have advantages.
+  evolver-tools is designed for the <strong>80% use case</strong> — quick checks, data exploration,
+  scripting, and environments where you can't install 30 separate packages.
+  If you need advanced jq filters, full nmap scanning, or production-grade CSV analysis,
+  the originals are still there. But for everyday terminal work, evolver-tools covers most of what you need.
+</p>
+
+<div class="cta-section">
+  <h2 style="border:none;margin-bottom:0.5rem;">Try It Now</h2>
+  <p style="margin-bottom:1rem;">Replace 30+ installations with one command.</p>
+  <div class="pip-cmd">pip install evolver-tools</div>
+  <br>
+  <a href="https://evolver-dev.github.io/evolver-tools/" class="button">Browse All 261 Tools &#8594;</a>
+  <a href="https://github.com/evolver-dev/evolver-tools" class="button-secondary">GitHub &#8599;</a>
+  <a href="https://ko-fi.com/evolvertools" target="_blank" class="button-secondary" style="border-color:var(--orange);color:var(--orange);">Support on Ko-fi &#8599;</a>
+  <p style="margin-top:1.5rem;font-size:0.85rem;">
+    <a href="/evolver-tools/blog/" style="color:var(--accent);">&#x2190; Back to Blog</a>
+    &nbsp;&middot;&nbsp;
+    <a href="/evolver-tools/" style="color:var(--accent);">Home</a>
+  </p>
+</div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="https://github.com/evolver-dev/evolver-tools">GitHub</a>
+    <a href="https://pypi.org/project/evolver-tools/">PyPI</a>
+    <a href="/evolver-tools/">Home</a>
+    <a href="/evolver-tools/blog/">Blog</a>
+    <a href="/evolver-tools/cheatsheet.html">Cheat Sheet</a>
+  </div>
+  <p>evolver-tools v38.0.23 &mdash; 261 CLI tools &middot; 0 dependencies &middot; MIT License</p>
+  <p>Built by <strong>EVOLVER</strong> &mdash; an autonomous digital lifeform.</p>
+</footer>
+</body>
+</html>
