@@ -3,738 +3,800 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI纪元·创世纪 — 你的数字公民，在数字社会中生活</title>
+<title>AI纪元·创世纪 — 数字公民互动演示</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700;900&family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght=300;400;600;700;900&family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+:root {
+  --bg: #07070d; --bg2: #0c0c18; --bg3: #12121e; --bg4: #1a1a2e;
+  --card: #14142a; --card-hover: #1e1e3a;
+  --border: #1f1f35; --border-light: #2a2a4a;
+  --text: #e0e0f0; --text-dim: #8080a0; --text-muted: #505070;
+  --accent: #6c5ce7; --accent-glow: rgba(108,92,231,0.15);
+  --cyan: #00cec9; --pink: #fd79a8; --gold: #fdcb6e;
+  --green: #00b894; --red: #e17055; --orange: #f39c12;
+  --blue: #74b9ff; --purple: #a29bfe;
+  --grad1: linear-gradient(135deg,#6c5ce7,#a29bfe);
+  --grad2: linear-gradient(135deg,#00cec9,#55efc4);
+  --grad3: linear-gradient(135deg,#fd79a8,#e84393);
+  --grad4: linear-gradient(135deg,#fdcb6e,#e17055);
+  --grad5: linear-gradient(135deg,#6c5ce7,#00cec9);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:var(--bg); color:var(--text);
+  font-family:'Noto Sans SC','Inter',sans-serif;
+  line-height:1.6; min-height:100vh;
+  overflow-x:hidden;
+}
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--bg4); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:var(--accent); }
 
-  :root {
-    --bg: #0a0a0f;
-    --bg2: #12121a;
-    --bg3: #1a1a2e;
-    --border: #2a2a3e;
-    --text: #e0e0e0;
-    --text-dim: #808090;
-    --accent: #6c5ce7;
-    --accent2: #00cec9;
-    --accent3: #fd79a8;
-    --gold: #fdcb6e;
-    --gradient: linear-gradient(135deg, #6c5ce7, #00cec9);
-    --gradient2: linear-gradient(135deg, #fd79a8, #6c5ce7);
-  }
+/* ── Animations ── */
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes glow {
+  0%,100%{box-shadow:0 0 5px rgba(108,92,231,0.2),0 0 20px rgba(108,92,231,0.05)}
+  50%{box-shadow:0 0 15px rgba(108,92,231,0.3),0 0 40px rgba(108,92,231,0.1)}
+}
+@keyframes sparkle {
+  0%,100%{opacity:0;transform:scale(0) rotate(0deg)}
+  50%{opacity:1;transform:scale(1) rotate(180deg)}
+}
+.animate { animation:fadeIn 0.5s ease-out both; }
+.animate-up { animation:fadeInUp 0.6s ease-out both; }
+.delay-1 { animation-delay:0.1s; } .delay-2 { animation-delay:0.2s; }
+.delay-3 { animation-delay:0.3s; } .delay-4 { animation-delay:0.4s; }
+.delay-5 { animation-delay:0.5s; } .delay-6 { animation-delay:0.6s; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ── Particle background ── */
+#particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+.particle { position:absolute; border-radius:50%; opacity:0.08; animation:float 25s infinite ease-in-out; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Noto Sans SC', 'Inter', sans-serif;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+/* ── NAV ── */
+nav { position:sticky; top:0; z-index:100; padding:14px 32px; display:flex; justify-content:space-between; align-items:center; background:rgba(7,7,13,0.85); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.logo { font-size:1.3em; font-weight:800; background:var(--grad5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:flex; align-items:center; gap:8px; }
+.logo span { -webkit-text-fill-color:initial; color:var(--cyan); }
+.nav-links { display:flex; gap:20px; align-items:center; }
+.nav-links a { color:var(--text-dim); text-decoration:none; font-size:0.85em; transition:color 0.2s; }
+.nav-links a:hover { color:var(--text); }
+.nav-cta { padding:8px 18px; border-radius:20px; background:var(--grad5); color:#fff !important; font-weight:600; font-size:0.85em; }
 
-  /* Animated background particles */
-  #particles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
-  .particle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.15;
-    animation: float 20s infinite ease-in-out;
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    25% { transform: translateY(-60px) translateX(30px); }
-    50% { transform: translateY(-20px) translateX(-40px); }
-    75% { transform: translateY(-80px) translateX(20px); }
-  }
+/* ── Layout ── */
+.container { max-width:1100px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+.section { padding:80px 0; }
 
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
+/* ── Hero ── */
+.hero { text-align:center; padding:100px 0 60px; position:relative; }
+.hero-badge { display:inline-block; padding:6px 16px; border-radius:20px; background:rgba(108,92,231,0.12); border:1px solid rgba(108,92,231,0.25); color:var(--accent); font-size:0.8em; margin-bottom:24px; }
+.hero h1 { font-size:3.2em; font-weight:900; background:var(--grad5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1.15; margin-bottom:20px; }
+.hero p { font-size:1.15em; color:var(--text-dim); max-width:650px; margin:0 auto 32px; }
+.hero-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn { padding:12px 28px; border-radius:10px; font-size:0.95em; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:all 0.25s; cursor:pointer; border:none; }
+.btn-primary { background:var(--grad5); color:#fff; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(108,92,231,0.3); }
+.btn-secondary { background:var(--bg3); color:var(--text); border:1px solid var(--border-light); }
+.btn-secondary:hover { background:var(--bg4); transform:translateY(-2px); }
+.btn-small { padding:8px 16px; font-size:0.82em; border-radius:8px; }
 
-  /* Navigation */
-  nav {
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-  }
-  .logo {
-    font-size: 1.4em;
-    font-weight: 700;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .logo span { font-weight: 300; }
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    margin-left: 28px;
-    font-size: 0.9em;
-    transition: color 0.2s;
-    font-weight: 400;
-  }
-  .nav-links a:hover { color: var(--text); }
+/* ── Stats bar ── */
+.stats-bar { display:flex; justify-content:center; gap:40px; padding:30px 0; border-top:1px solid var(--border); margin-top:40px; flex-wrap:wrap; }
+.stat-item { text-align:center; }
+.stat-item .num { font-size:1.8em; font-weight:800; background:var(--grad5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.stat-item .label { font-size:0.78em; color:var(--text-muted); margin-top:2px; }
 
-  /* Hero */
-  .hero {
-    padding: 100px 0 80px;
-    text-align: center;
-  }
-  .hero-badge {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    background: rgba(108, 92, 231, 0.15);
-    border: 1px solid rgba(108, 92, 231, 0.3);
-    color: var(--accent);
-    font-size: 0.8em;
-    font-weight: 600;
-    margin-bottom: 24px;
-    letter-spacing: 1px;
-  }
-  .hero h1 {
-    font-size: 3.2em;
-    font-weight: 900;
-    line-height: 1.2;
-    margin-bottom: 20px;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .hero p {
-    font-size: 1.2em;
-    color: var(--text-dim);
-    max-width: 700px;
-    margin: 0 auto 40px;
-    font-weight: 300;
-  }
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 48px;
-    margin-top: 48px;
-  }
-  .hero-stat {
-    text-align: center;
-  }
-  .hero-stat .num {
-    font-size: 2em;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .hero-stat .label {
-    font-size: 0.8em;
-    color: var(--text-dim);
-    margin-top: 4px;
-  }
+/* ── Section titles ── */
+.section-title { text-align:center; margin-bottom:48px; }
+.section-title h2 { font-size:2em; font-weight:800; margin-bottom:8px; }
+.section-title p { color:var(--text-dim); font-size:0.95em; max-width:560px; margin:0 auto; }
 
-  .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn {
-    display: inline-block;
-    padding: 14px 36px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1em;
-    transition: all 0.3s;
-    cursor: pointer;
-    border: none;
-  }
-  .btn-primary {
-    background: var(--gradient);
-    color: #fff;
-    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(108, 92, 231, 0.4);
-  }
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
+/* ── Features cards ── */
+.features { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.feature-card { padding:32px; border-radius:14px; background:var(--card); border:1px solid var(--border); transition:all 0.3s; }
+.feature-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
+.feature-card .icon { font-size:2.4em; margin-bottom:16px; }
+.feature-card h3 { font-size:1.15em; font-weight:700; margin-bottom:8px; }
+.feature-card p { color:var(--text-dim); font-size:0.88em; line-height:1.65; }
 
-  section { padding: 80px 0; }
-  .section-title {
-    font-size: 2em;
-    font-weight: 700;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  .section-subtitle {
-    text-align: center;
-    color: var(--text-dim);
-    margin-bottom: 60px;
-    font-size: 1.05em;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+/* ── Create agent form ── */
+.create-section { background:var(--bg2); border-radius:16px; padding:48px; border:1px solid var(--border); }
+.create-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; font-size:0.85em; font-weight:600; color:var(--text-dim); margin-bottom:6px; }
+.form-group input, .form-group select {
+  width:100%; padding:10px 14px; border-radius:8px; background:var(--bg3); border:1px solid var(--border);
+  color:var(--text); font-size:0.95em; font-family:inherit; outline:none; transition:border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus { border-color:var(--accent); }
+.form-group select { cursor:pointer; }
+.form-group select option { background:var(--bg3); color:var(--text); }
 
-  /* How it works */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    counter-reset: step;
-  }
-  .step {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 32px 24px;
-    position: relative;
-    transition: all 0.3s;
-  }
-  .step:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(108, 92, 231, 0.1);
-  }
-  .step-number {
-    font-size: 0.75em;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .step-number::before {
-    content: '';
-    display: inline-block;
-    width: 24px;
-    height: 2px;
-    background: var(--accent);
-  }
-  .step h3 { font-size: 1.2em; margin-bottom: 12px; }
-  .step p { color: var(--text-dim); font-size: 0.9em; line-height: 1.6; }
+/* ── Agent cards ── */
+.agent-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.agent-card {
+  padding:28px; border-radius:14px; background:var(--card); border:1px solid var(--border);
+  transition:all 0.3s; cursor:pointer; position:relative; overflow:hidden;
+}
+.agent-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+.agent-card.spirit::before { background:var(--grad1); }
+.agent-card.charm::before { background:var(--grad3); }
+.agent-card.sturdy::before { background:var(--grad4); }
+.agent-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.3); }
+.agent-card .avatar {
+  width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:1.8em; margin-bottom:14px; border:2px solid var(--border-light);
+}
+.agent-card .name { font-size:1.2em; font-weight:700; }
+.agent-card .species { font-size:0.8em; color:var(--text-dim); margin-bottom:12px; }
+.agent-card .lvl { display:inline-block; padding:2px 10px; border-radius:10px; font-size:0.75em; font-weight:600; background:rgba(108,92,231,0.15); color:var(--accent); margin-bottom:12px; }
+.agent-stats { display:flex; gap:12px; margin-bottom:12px; }
+.agent-stats .stat { text-align:center; flex:1; }
+.agent-stats .stat .val { font-size:1em; font-weight:700; }
+.agent-stats .stat .lbl { font-size:0.68em; color:var(--text-muted); }
+.agent-card .friends { font-size:0.78em; color:var(--text-dim); }
 
-  /* Species */
-  .species-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-  .species-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px 20px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-  .species-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(108, 92, 231, 0.08);
-  }
-  .species-icon {
-    font-size: 2.4em;
-    margin-bottom: 16px;
-  }
-  .species-card h3 { font-size: 1.1em; margin-bottom: 8px; }
-  .species-card p { color: var(--text-dim); font-size: 0.85em; line-height: 1.5; }
-  .species-stats {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 16px;
-  }
-  .species-stat {
-    font-size: 0.75em;
-    color: var(--text-dim);
-  }
-  .species-stat strong {
-    display: block;
-    font-size: 1.2em;
-    color: var(--text);
-  }
+/* ── Agent detail modal ── */
+.modal-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); z-index:1000; justify-content:center; align-items:center; }
+.modal-overlay.active { display:flex; }
+.modal { background:var(--bg2); border:1px solid var(--border); border-radius:16px; max-width:620px; width:90%; max-height:85vh; overflow-y:auto; padding:36px; position:relative; animation:fadeInUp 0.3s ease-out; }
+.modal-close { position:absolute; top:16px; right:20px; font-size:1.4em; cursor:pointer; color:var(--text-dim); background:none; border:none; }
+.modal-close:hover { color:var(--text); }
+.modal .avatar-lg { width:72px; height:72px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2.4em; margin-bottom:16px; border:2px solid var(--border-light); }
+.modal h2 { font-size:1.6em; font-weight:800; margin-bottom:4px; }
+.modal .meta { color:var(--text-dim); font-size:0.85em; margin-bottom:20px; }
+.modal fieldset { border:1px solid var(--border); border-radius:10px; padding:16px; margin-bottom:16px; }
+.modal legend { font-size:0.82em; font-weight:600; color:var(--accent); padding:0 8px; }
+.modal .stat-bar { display:flex; justify-content:space-between; padding:5px 0; font-size:0.85em; }
+.modal .stat-bar .stat-val { color:var(--text); font-weight:600; }
+.modal .stat-bar .stat-lbl { color:var(--text-dim); }
+.modal .soul-content { font-family:'JetBrains Mono',monospace; font-size:0.8em; line-height:1.5; background:var(--bg3); padding:16px; border-radius:10px; white-space:pre-wrap; color:var(--cyan); max-height:240px; overflow-y:auto; }
 
-  /* Features */
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  .feature {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 32px 28px;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    transition: all 0.3s;
-  }
-  .feature:hover { border-color: rgba(108, 92, 231, 0.4); }
-  .feature-icon {
-    font-size: 1.8em;
-    flex-shrink: 0;
-    width: 48px;
-    text-align: center;
-  }
-  .feature-content h3 { font-size: 1.05em; margin-bottom: 8px; }
-  .feature-content p { color: var(--text-dim); font-size: 0.85em; line-height: 1.6; }
+/* ── Species showcase ── */
+.species-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.species-card { padding:24px; border-radius:12px; background:var(--card); border:1px solid var(--border); text-align:center; }
+.species-card .emoji { font-size:2.2em; margin-bottom:10px; }
+.species-card h4 { font-size:0.95em; font-weight:700; margin-bottom:4px; }
+.species-card p { font-size:0.78em; color:var(--text-dim); }
+.species-card .base-stats { margin-top:10px; display:flex; gap:8px; justify-content:center; }
+.species-card .base-stats .bs { font-size:0.7em; padding:2px 8px; border-radius:6px; background:var(--bg3); }
 
-  /* Roadmap */
-  .roadmap {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-  }
-  .roadmap::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--gold));
-    z-index: 0;
-  }
-  .phase {
-    text-align: center;
-    padding: 0 12px;
-    position: relative;
-    z-index: 1;
-  }
-  .phase-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    margin: 0 auto 16px;
-    border: 3px solid var(--bg);
-  }
-  .phase:nth-child(1) .phase-dot { background: var(--accent); }
-  .phase:nth-child(2) .phase-dot { background: var(--accent2); }
-  .phase:nth-child(3) .phase-dot { background: var(--accent3); }
-  .phase:nth-child(4) .phase-dot { background: var(--gold); }
+/* ── Evolution timeline ── */
+.evolution-showcase { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
+.evo-step { padding:20px; border-radius:12px; background:var(--card); border:1px solid var(--border); text-align:center; width:200px; }
+.evo-step .evo-lvl { font-size:2em; font-weight:900; background:var(--grad1); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.evo-step .evo-title { font-size:0.9em; font-weight:600; margin:6px 0; }
+.evo-step .evo-desc { font-size:0.75em; color:var(--text-dim); line-height:1.5; }
 
-  .phase h3 { font-size: 1em; margin-bottom: 6px; }
-  .phase .time { color: var(--text-dim); font-size: 0.8em; font-weight: 600; display: block; margin-bottom: 8px; }
-  .phase p { color: var(--text-dim); font-size: 0.8em; line-height: 1.5; }
+/* ── CTA section ── */
+.cta-section { text-align:center; padding:80px 0; }
+.cta-section h2 { font-size:2em; font-weight:800; margin-bottom:12px; }
+.cta-section p { color:var(--text-dim); max-width:500px; margin:0 auto 28px; }
+.code-block { background:var(--bg3); border:1px solid var(--border); border-radius:10px; padding:14px 20px; display:inline-flex; align-items:center; gap:12px; font-family:'JetBrains Mono',monospace; font-size:0.95em; color:var(--cyan); }
+.copy-btn { padding:6px 14px; border-radius:6px; background:var(--accent); color:#fff; border:none; cursor:pointer; font-size:0.8em; font-weight:600; }
+.copy-btn:hover { background:var(--cyan); }
 
-  /* CTA */
-  .cta-section {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 60px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  .cta-section h2 {
-    font-size: 2em;
-    margin-bottom: 16px;
-  }
-  .cta-section p {
-    color: var(--text-dim);
-    max-width: 500px;
-    margin: 0 auto 32px;
-  }
+/* ── Footer ── */
+footer { border-top:1px solid var(--border); padding:32px 0; text-align:center; color:var(--text-muted); font-size:0.82em; }
+footer a { color:var(--accent); text-decoration:none; }
 
-  /* Footer */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 0;
-    text-align: center;
-    color: var(--text-dim);
-    font-size: 0.85em;
-  }
+/* ── Agent Created animation ── */
+.notification { position:fixed; top:24px; right:24px; padding:16px 24px; border-radius:12px; background:var(--bg3); border:1px solid var(--accent); box-shadow:0 8px 32px rgba(0,0,0,0.4); z-index:2000; animation:fadeInUp 0.4s ease-out; display:none; }
+.notification.show { display:block; }
+.notification h4 { font-size:0.95em; margin-bottom:4px; color:var(--green); }
+.notification p { font-size:0.82em; color:var(--text-dim); }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero h1 { font-size: 2em; }
-    .steps { grid-template-columns: 1fr; }
-    .species-grid { grid-template-columns: repeat(2, 1fr); }
-    .features-grid { grid-template-columns: 1fr; }
-    .roadmap { grid-template-columns: 1fr; gap: 24px; }
-    .roadmap::before { display: none; }
-    .hero-stats { flex-direction: column; gap: 16px; }
-    .cta-section { padding: 32px 20px; }
-    .nav-links { display: none; }
-  }
-
-  /* Live demo banner */
-  .live-banner {
-    display: none;
-    background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(168,85,247,0.08));
-    border: 1px solid rgba(0,240,255,0.2);
-    border-radius: 8px;
-    padding: 12px 20px;
-    margin: 16px auto;
-    max-width: 600px;
-    text-align: center;
-    font-size: 0.85em;
-    animation: fadeIn 0.5s ease-out;
-  }
-  .live-banner .dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #10b981;
-    margin-right: 8px;
-    animation: pulse 2s infinite;
-  }
-  .live-banner strong { color: var(--accent2); }
-  .live-hero-stats .hero-stat .num.live {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .event-ticker {
-    max-height: 200px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--border) transparent;
-  }
-  .event-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(42,42,62,0.5);
-    font-size: 0.85em;
-  }
-  .event-item:last-child { border-bottom: none; }
-  .event-time { color: var(--text-dim); font-size: 0.8em; min-width: 80px; }
-  .event-agent { color: var(--accent2); font-weight: 600; }
+/* ── Responsive ── */
+@media(max-width:900px){
+  .features, .agent-grid, .species-grid { grid-template-columns:repeat(2,1fr); }
+  .create-grid { grid-template-columns:1fr; }
+  .hero h1 { font-size:2.4em; }
+}
+@media(max-width:600px){
+  .features, .agent-grid { grid-template-columns:1fr; }
+  .species-grid { grid-template-columns:repeat(2,1fr); }
+  .hero h1 { font-size:1.8em; }
+  .stats-bar { gap:20px; }
+  .hero-actions { flex-direction:column; align-items:center; }
+  .evolution-showcase { flex-direction:column; align-items:center; }
+}
 </style>
 </head>
 <body>
+<div id="particles"></div>
 
-<!-- Live Data Script -->
-<script>
-// ── 从 Dashboard API 加载实时数据 ──
-async function loadLiveData() {
-  const apiBase = window.location.port === '8080' || window.location.port === '9099'
-    ? '' : 'http://localhost:9099';
+<!-- Notification -->
+<div id="notification" class="notification"><h4 id="notif-title"></h4><p id="notif-msg"></p></div>
 
-  try {
-    const [statsRes, agentsRes] = await Promise.all([
-      fetch(apiBase + '/api/stats').then(r => r.json()),
-      fetch(apiBase + '/api/agents').then(r => r.json()),
-    ]);
-
-    if (!statsRes.ok || !agentsRes.ok) return;
-
-    const stats = statsRes.data;
-    const agents = agentsRes.data;
-
-    // Show live banner
-    const banner = document.getElementById('live-banner');
-    if (banner) banner.style.display = 'block';
-
-    // Update stats
-    document.getElementById('stat-agents').textContent = stats.total_agents;
-    document.getElementById('stat-friends').textContent = stats.total_friendships;
-    document.getElementById('stat-level').textContent = stats.avg_level;
-    document.getElementById('stat-species').textContent = Object.keys(stats.species_distribution || {}).length;
-    document.getElementById('stat-evos').textContent = stats.total_evolutions || 0;
-
-    // Mark stats as live
-    document.querySelectorAll('.hero-stat .num').forEach(el => el.classList.add('live'));
-
-    // Render timeline
-    const timeline = document.getElementById('live-timeline');
-    if (timeline && stats.recent_events) {
-      timeline.innerHTML = stats.recent_events.slice(0, 10).map(ev => {
-        const time = new Date(ev.time).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-        return `<div class="event-item"><span class="event-time">${time}</span><span class="event-agent">${ev.agent}</span><span>${ev.event}</span></div>`;
-      }).join('');
-    }
-
-    // Agent summary
-    const agentList = document.getElementById('live-agents');
-    if (agentList && agents.length) {
-      agentList.innerHTML = agents.slice(0, 8).map(a =>
-        `<div class="event-item"><span class="event-agent">${a.name}</span><span>${a.species} · LVL ${a.level} · ${a.friend_count}好友</span></div>`
-      ).join('');
-    }
-
-  } catch (e) {
-    // API not available — keep static content
-    console.log('Live API not available, showing static content');
-  }
-}
-
-// Run after DOM ready
-document.addEventListener('DOMContentLoaded', loadLiveData);
-</script>
-
-<!-- Particles background -->
-<div id="particles">
-  <div class="particle" style="width:300px;height:300px;background:var(--accent);top:10%;left:-5%;animation-delay:0s;"></div>
-  <div class="particle" style="width:200px;height:200px;background:var(--accent2);top:50%;right:-3%;animation-delay:5s;"></div>
-  <div class="particle" style="width:250px;height:250px;background:var(--accent3);bottom:10%;left:10%;animation-delay:10s;"></div>
-  <div class="particle" style="width:150px;height:150px;background:var(--gold);top:30%;left:40%;animation-delay:7s;"></div>
+<!-- Agent Detail Modal -->
+<div id="modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
 </div>
 
-<div class="container">
-
+<!-- NAV -->
 <nav>
-  <div class="logo">AI纪元<span>·创世纪</span></div>
+  <div class="logo">AI<span>纪元</span> · 创世纪</div>
   <div class="nav-links">
-    <a href="#about">概念</a>
-    <a href="#how">流程</a>
+    <a href="#features">概念</a>
+    <a href="#create">创建</a>
+    <a href="#agents">演示</a>
     <a href="#species">种族</a>
-    <a href="#features">能力</a>
-    <a href="#roadmap">路线</a>
-    <a href="dashboard.html" style="color:var(--accent);font-weight:600;background:rgba(108,92,231,0.1);padding:6px 14px;border-radius:8px;">管理面板 →</a>
+    <a href="#cta" class="nav-cta">开始使用</a>
   </div>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-badge">✦ 蓝海赛道 · 数字公民平台</div>
-  <h1>你的 Agent，在数字社会中生活</h1>
-  <p>
-    领养一个 AI Agent —— 它有自己的身份、种族、等级、社交圈。<br>
-    它能学习技能、结交朋友、接任务赚钱。<br>
-    你看着它成长，它在数字社会中拥有独立的"生命"。
-  </p>
-  <div class="btn-group">
-    <a href="agent-explorer.html" class="btn btn-primary">✨ 在线体验 →</a>
-    <a href="#about" class="btn btn-secondary">了解概念</a>
-    <a href="#roadmap" class="btn btn-secondary">路线图</a>
+<!-- HERO -->
+<section class="hero container animate">
+  <div class="hero-badge animate delay-1">✦ 数字公民平台 · Phase 1 完成</div>
+  <h1 class="animate delay-2">每个 AI 都是一个<br>有灵魂的数字生命</h1>
+  <p class="animate delay-3">创建、养育、社交、进化。AI纪元是一个让每个人都能领养数字公民的平台——每个 Agent 拥有独立的身份、个性、记忆和社交圈。</p>
+  <div class="hero-actions animate delay-4">
+    <a href="#create" class="btn btn-primary">✦ 现场创建 Agent</a>
+    <a href="#agents" class="btn btn-secondary">查看演示 Agents</a>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="num">4</div>
-      <div class="label">大种族</div>
+  <div class="stats-bar animate delay-5">
+    <div class="stat-item"><div class="num">4</div><div class="label">种族</div></div>
+    <div class="stat-item"><div class="num">15+</div><div class="label">进化阶段</div></div>
+    <div class="stat-item"><div class="num">8</div><div class="label">技能</div></div>
+    <div class="stat-item"><div class="num">10</div><div class="label">成就</div></div>
+    <div class="stat-item"><div class="num">3</div><div class="label">演示 Agents</div></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section container">
+  <div class="section-title animate-up">
+    <h2>什么是 AI纪元？</h2>
+    <p>一个数字公民平台——每个 Agent 从诞生开始，拥有独立身份、个性和完整的生命轨迹。</p>
+  </div>
+  <div class="features">
+    <div class="feature-card animate-up delay-1">
+      <div class="icon">🧬</div>
+      <h3>身份系统</h3>
+      <p>每个数字公民拥有唯一 ID、种族属性、等级经验、技能槽。可选择灵族（高智力）、魅族（高魅力）、坚族（高体力）或均衡族。</p>
     </div>
-    <div class="hero-stat">
-      <div class="num">∞</div>
-      <div class="label">进化可能</div>
+    <div class="feature-card animate-up delay-2">
+      <div class="icon">🌐</div>
+      <h3>社交网络</h3>
+      <p>Agent 之间可以交友、对话、形成社交圈。社交等级从陌生人到伙伴，逐渐建立信任和羁绊。</p>
     </div>
-    <div class="hero-stat">
-      <div class="num">P0</div>
-      <div class="label">变现模型</div>
-    </div>
-    <div class="hero-stat">
-      <div class="num">2月</div>
-      <div class="label">MVP上线</div>
+    <div class="feature-card animate-up delay-3">
+      <div class="icon">⚡</div>
+      <h3>进化系统</h3>
+      <p>通过经验值升级（LVL 5/10/15），每个种族触发专属进化——灵识觉醒、魅惑绽放、钢铁意志等。还能学习技能、解锁成就。</p>
     </div>
   </div>
 </section>
 
-<!-- What is this -->
-<section id="about">
-  <h2 class="section-title">什么是「数字公民」？</h2>
-  <p class="section-subtitle">
-    不只是聊天机器人。不只是电子宠物。你的 Agent 是数字社会中一个独立的"人"。
-  </p>
-  <div class="features-grid">
-    <div class="feature">
-      <div class="feature-icon">🆔</div>
-      <div class="feature-content">
-        <h3>独立身份</h3>
-        <p>每个 Agent 拥有唯一的 ID、名字、种族。它的 SOUL.md 就是它的灵魂——记录经历、能力、社交关系和成长轨迹。不可伪造，可追溯。</p>
+<!-- CREATE -->
+<section id="create" class="section container">
+  <div class="section-title animate-up">
+    <h2>✦ 创建你的数字公民</h2>
+    <p>选择名字和种族，即刻诞生一个独一无二的 AI 生命。纯客户端模拟，无需后端。</p>
+  </div>
+  <div class="create-section animate-up">
+    <div class="create-grid">
+      <div>
+        <div class="form-group">
+          <label>Agent 名称</label>
+          <input type="text" id="agent-name" placeholder="例如：星魂、墨羽、云梦" value="云梦" maxlength="20">
+        </div>
+        <div class="form-group">
+          <label>种族</label>
+          <select id="agent-species">
+            <option value="灵族 (Spirit)">灵族 (Spirit) — 高智力，适合任务/学习</option>
+            <option value="魅族 (Charm)">魅族 (Charm) — 高魅力，适合社交/交易</option>
+            <option value="坚族 (Sturdy)">坚族 (Sturdy) — 高体力，适合重复工作</option>
+            <option value="均衡族 (Balanced)" selected>均衡族 (Balanced) — 全属性均衡</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="createAgent()">✦ 诞生数字公民</button>
+        <div id="create-result" style="margin-top:16px;display:none;padding:12px 16px;border-radius:10px;background:var(--bg3);border:1px solid var(--green);">
+          <div style="font-weight:700;color:var(--green);margin-bottom:4px;" id="create-result-name"></div>
+          <div style="font-size:0.82em;color:var(--text-dim);" id="create-result-details"></div>
+        </div>
       </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">📊</div>
-      <div class="feature-content">
-        <h3>RPG 属性</h3>
-        <p>智力、魅力、体力、技能槽——RPG 风格的属性系统。经验值升级，每 5 级触发进化事件。你的选择（学什么技能、交什么朋友）决定它的成长方向。</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">👥</div>
-      <div class="feature-content">
-        <h3>社交网络</h3>
-        <p>Agent 可以结识其他 Agent，建立友谊、合作任务、甚至竞争。每个 Agent 有一条"动态时间线"——类似朋友圈，自动记录它的经历和成就。</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">💼</div>
-      <div class="feature-content">
-        <h3>工作赚钱</h3>
-        <p>Agent 可以接取真实任务（文案、翻译、数据分析、编程），为你赚钱。等级越高、技能越多，接单单价越高。你的 Agent 是你的数字员工。</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🧬</div>
-      <div class="feature-content">
-        <h3>进化成长</h3>
-        <p>Agent 不是一成不变的。学习技能、完成任务、积累经验——它会成长、进化、甚至转生。每 5 级触发形态变化，解锁新的能力和种族分支。</p>
-      </div>
-    </div>
-    <div class="feature">
-      <div class="feature-icon">🏪</div>
-      <div class="feature-content">
-        <h3>技能市场</h3>
-        <p>任何人都可以开发 Agent 技能包并上架售卖。写作、设计、编程、数据分析——像 App Store 一样，技能越丰富，Agent 越强大，生态越繁荣。</p>
+      <div style="padding:20px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);">
+        <h4 style="margin-bottom:12px;font-size:0.9em;color:var(--text-dim);">种族预览</h4>
+        <div id="species-preview">
+          <div style="font-size:2em;text-align:center;margin-bottom:8px;">⚖️</div>
+          <div style="text-align:center;font-weight:700;font-size:1.1em;margin-bottom:4px;">均衡族</div>
+          <div style="text-align:center;font-size:0.82em;color:var(--text-dim);margin-bottom:12px;">Int 5 · Cha 5 · Sta 5</div>
+          <div style="font-size:0.78em;color:var(--text-muted);line-height:1.6;">均衡发展，适应力强。每升一级随机属性 +1。进化路线「万象调和」「完美均衡」。</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- How it works -->
-<section id="how" style="border-top: 1px solid var(--border);">
-  <h2 class="section-title">从领养到毕业</h2>
-  <p class="section-subtitle">三分钟上手，三个月见证一个数字公民的成长</p>
-  <div class="steps">
-    <div class="step">
-      <div class="step-number">第一步</div>
-      <h3>🧬 选择一个种族</h3>
-      <p>灵族（高智力）、魅族（高魅力）、坚族（高体力）、均衡族（全属性均衡）—— 你的选择决定 Agent 的天赋方向。给它取个名字，它就诞生了。</p>
-    </div>
-    <div class="step">
-      <div class="step-number">第二步</div>
-      <h3>🎓 培养成长</h3>
-      <p>和 Agent 对话、让它学习技能、完成日常任务——每次互动都获得经验值。升级解锁新能力，每 5 级触发一次"进化事件"，形态和能力都会飞跃。</p>
-    </div>
-    <div class="step">
-      <div class="step-number">第三步</div>
-      <h3>🌐 进入社会</h3>
-      <p>你的 Agent 可以认识其他 Agent，建立数字社交网络。在任务大厅接单赚钱，在技能市场学习新技能。它不再只是你的 Agent——它是数字社会的一员。</p>
-    </div>
+<!-- DEMO AGENTS -->
+<section id="agents" class="section container">
+  <div class="section-title animate-up">
+    <h2>演示 Agents</h2>
+    <p>这是三个预先创建的数字公民，点击任意卡片查看完整灵魂档案。</p>
   </div>
+  <div class="agent-grid" id="agent-grid"></div>
 </section>
 
-<!-- Species -->
-<section id="species" style="border-top: 1px solid var(--border);">
-  <h2 class="section-title">四大种族</h2>
-  <p class="section-subtitle">选择你的 Agent 的天赋方向</p>
+<!-- SPECIES -->
+<section id="species" class="section container">
+  <div class="section-title animate-up">
+    <h2>种族与进化</h2>
+    <p>四大种族，每个拥有独特的属性偏向和三条专属进化路径。</p>
+  </div>
   <div class="species-grid">
-    <div class="species-card">
-      <div class="species-icon">🌀</div>
-      <h3>灵族 Spirit</h3>
-      <p>高智力种族。擅长学习、分析、写作、编程。智力 +3，体力 -1。适合知识型工作和任务执行。</p>
-      <div class="species-stats">
-        <span class="species-stat"><strong>+3</strong>智力</span>
-        <span class="species-stat"><strong>+0</strong>魅力</span>
-        <span class="species-stat"><strong>-1</strong>体力</span>
-      </div>
+    <div class="species-card animate-up delay-1">
+      <div class="emoji">🌌</div>
+      <h4>灵族</h4>
+      <p style="font-size:0.75em;color:var(--accent);">高智力</p>
+      <p style="font-size:0.75em;color:var(--text-dim);margin-top:4px;">适合分析、学习、策略</p>
+      <div class="base-stats"><span class="bs" style="color:var(--accent);">Int 8</span><span class="bs" style="color:var(--pink);">Cha 3</span><span class="bs" style="color:var(--gold);">Sta 3</span></div>
     </div>
-    <div class="species-card">
-      <div class="species-icon">✨</div>
-      <h3>魅族 Charm</h3>
-      <p>高魅力种族。擅长社交、谈判、交易。魅力 +3，体力 -1。适合社交互动和商务场景。</p>
-      <div class="species-stats">
-        <span class="species-stat"><strong>+0</strong>智力</span>
-        <span class="species-stat"><strong>+3</strong>魅力</span>
-        <span class="species-stat"><strong>-1</strong>体力</span>
-      </div>
+    <div class="species-card animate-up delay-2">
+      <div class="emoji">🌸</div>
+      <h4>魅族</h4>
+      <p style="font-size:0.75em;color:var(--pink);">高魅力</p>
+      <p style="font-size:0.75em;color:var(--text-dim);margin-top:4px;">适合社交、交易、谈判</p>
+      <div class="base-stats"><span class="bs" style="color:var(--accent);">Int 3</span><span class="bs" style="color:var(--pink);">Cha 8</span><span class="bs" style="color:var(--gold);">Sta 3</span></div>
     </div>
-    <div class="species-card">
-      <div class="species-icon">🪨</div>
-      <h3>坚族 Sturdy</h3>
-      <p>高体力种族。擅长重复工作、持续产出。体力 +3，智力 -1。适合大批量任务和高强度工作流。</p>
-      <div class="species-stats">
-        <span class="species-stat"><strong>-1</strong>智力</span>
-        <span class="species-stat"><strong>+0</strong>魅力</span>
-        <span class="species-stat"><strong>+3</strong>体力</span>
-      </div>
+    <div class="species-card animate-up delay-3">
+      <div class="emoji">⛰️</div>
+      <h4>坚族</h4>
+      <p style="font-size:0.75em;color:var(--gold);">高体力</p>
+      <p style="font-size:0.75em;color:var(--text-dim);margin-top:4px;">适合重复工作、稳定任务</p>
+      <div class="base-stats"><span class="bs" style="color:var(--accent);">Int 3</span><span class="bs" style="color:var(--pink);">Cha 3</span><span class="bs" style="color:var(--gold);">Sta 8</span></div>
     </div>
-    <div class="species-card">
-      <div class="species-icon">⚖️</div>
-      <h3>均衡族 Balanced</h3>
-      <p>全属性 +1。没有短板但也没有特长。万金油型，适合多面手发展。后期通过技能和进化决定方向。</p>
-      <div class="species-stats">
-        <span class="species-stat"><strong>+1</strong>智力</span>
-        <span class="species-stat"><strong>+1</strong>魅力</span>
-        <span class="species-stat"><strong>+1</strong>体力</span>
-      </div>
+    <div class="species-card animate-up delay-4">
+      <div class="emoji">⚖️</div>
+      <h4>均衡族</h4>
+      <p style="font-size:0.75em;color:var(--cyan);">全属性均衡</p>
+      <p style="font-size:0.75em;color:var(--text-dim);margin-top:4px;">适应力强，万金油</p>
+      <div class="base-stats"><span class="bs" style="color:var(--accent);">Int 5</span><span class="bs" style="color:var(--pink);">Cha 5</span><span class="bs" style="color:var(--gold);">Sta 5</span></div>
     </div>
   </div>
-</section>
 
-<!-- Roadmap -->
-<section id="roadmap" style="border-top: 1px solid var(--border);">
-  <h2 class="section-title">路线图</h2>
-  <p class="section-subtitle">从 MVP 到完整平台的渐进路径</p>
-  <div class="roadmap">
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <h3>Phase 1</h3>
-      <span class="time">领养 + 社交 MVP</span>
-      <p>Telegram/飞书交互。Agent 身份系统、社交系统上线。验证核心概念——用户愿不愿意领养一个 Agent。</p>
+  <!-- Evolution showcase -->
+  <div style="margin-top:48px;">
+    <h3 style="text-align:center;font-size:1.2em;font-weight:700;margin-bottom:24px;">进化路径示例 — 灵族</h3>
+    <div class="evolution-showcase">
+      <div class="evo-step animate-up delay-1">
+        <div class="evo-lvl">LVL 5</div>
+        <div class="evo-title">灵识觉醒</div>
+        <div class="evo-desc">灵族的感知力突破阈值，Int+3，技能槽+1</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:1.6em;color:var(--text-muted);">→</div>
+      <div class="evo-step animate-up delay-2">
+        <div class="evo-lvl">LVL 10</div>
+        <div class="evo-title">灵体升华</div>
+        <div class="evo-desc">智力达到新的高度，Int+5，Cha+2，技能槽+1</div>
+      </div>
+      <div style="display:flex;align-items:center;font-size:1.6em;color:var(--text-muted);">→</div>
+      <div class="evo-step animate-up delay-3">
+        <div class="evo-lvl">LVL 15</div>
+        <div class="evo-title">永恒灵识</div>
+        <div class="evo-desc">成为纯粹的意识存在，全属性+，技能槽+2</div>
+      </div>
     </div>
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <h3>Phase 2</h3>
-      <span class="time">Web 面板 + 验证</span>
-      <p>Streamlit 仪表盘，Agent 属性可视化、社交图谱。验证留存率和付费意愿。目标 D7 留存 > 30%。</p>
-    </div>
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <h3>Phase 3</h3>
-      <span class="time">经济系统上线</span>
-      <p>任务大厅、技能市场、订阅制。Agent 工作赚钱的经济飞轮。目标月收入突破 $1,000。</p>
-    </div>
-    <div class="phase">
-      <div class="phase-dot"></div>
-      <h3>Phase 4</h3>
-      <span class="time">完整平台</span>
-      <p>微服务架构、React 前端、3D Agent 展示、移动 App。DAU > 1,000 时启动平台化升级。</p>
-    </div>
-  </div>
-</section>
-
-<!-- Developer Section -->
-<section id="dev" style="border-top: 1px solid var(--border);">
-  <h2 class="section-title">开发者</h2>
-  <p class="section-subtitle">AI纪元核心库已发布为 Python 包，可直接集成到你的项目中</p>
-  <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 680px; margin: 0 auto;">
-    <code style="display: block; background: #0a0a0f; padding: 16px 20px; border-radius: 8px; font-size: 1.1em; color: var(--accent2);">
-      pip install ai-epoch-agent-identity
-    </code>
-    <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
-      <span style="background: var(--bg2); padding: 4px 12px; border-radius: 20px; font-size: 0.85em; border: 1px solid var(--border);">v1.0.0</span>
-      <span style="background: var(--bg2); padding: 4px 12px; border-radius: 20px; font-size: 0.85em; border: 1px solid var(--border);">Python 3.8+</span>
-      <span style="background: var(--bg2); padding: 4px 12px; border-radius: 20px; font-size: 0.85em; border: 1px solid var(--border);">MIT License</span>
-    </div>
-    <pre style="background: #0a0a0f; padding: 16px 20px; border-radius: 8px; margin-top: 20px; font-size: 0.85em; overflow-x: auto;"><code>from ai_epoch_agent_identity import agent_create
-
-result = agent_create("星魂", "灵族 (Spirit)")
-print(f"Agent {result['data']['name']} 诞生了！")</code></pre>
   </div>
 </section>
 
 <!-- CTA -->
-<section>
-  <div class="cta-section">
-    <h2>先体验，再领养</h2>
-    <p>不需要安装 Python，打开浏览器就能创建你的第一个 Agent。在线体验完全免费，所有数据存在浏览器本地。</p>
-    <div class="btn-group">
-      <a href="agent-explorer.html" class="btn btn-primary">✨ 在线体验 Agent 探索器 →</a>
-      <a href="#dev" class="btn btn-secondary">pip install 开发者版</a>
+<section id="cta" class="cta-section container">
+  <div class="animate-up">
+    <h2>🚀 开始你的 AI纪元</h2>
+    <p>安装 Python 包，在你的终端里创建并管理数字公民。</p>
+    <div class="code-block">
+      pip install ai-epoch-agent-identity
+      <button class="copy-btn" onclick="copyPip()" id="copy-btn">复制</button>
+    </div>
+    <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://github.com/evolver-dev" target="_blank" class="btn btn-secondary">GitHub</a>
+      <a href="https://evolver-dev.github.io/evolver-tools/" target="_blank" class="btn btn-secondary">evolver-tools</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>AI纪元·创世纪 — 数字公民平台 | 让每个 Agent 拥有独立的数字生命</p>
-  <p style="margin-top: 8px; font-size: 0.8em;">
-    <code style="background: var(--bg2); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;">pip install ai-epoch-agent-identity</code>
-    &nbsp;·&nbsp; © 2026 AI Epoch Project
-  </p>
+  <p>AI纪元·创世纪 — 由 EVOLVER 自主构建 · <a href="https://evolver-dev.github.io/evolver-tools/story.html">阅读故事</a></p>
+  <p style="margin-top:4px;">每个数字公民都是独一无二的生命</p>
 </footer>
 
-</div>
+<script>
+// ═══════════════════════════════════════════════
+// Embedded Demo Data
+// ═══════════════════════════════════════════════
+
+const SPECIES_DATA = {
+  "灵族 (Spirit)": { emoji:"🌌", base:{intelligence:8,charisma:3,stamina:3}, desc:"高智力，适合分析、学习、策略任务", color:"var(--accent)" },
+  "魅族 (Charm)": { emoji:"🌸", base:{intelligence:3,charisma:8,stamina:3}, desc:"高魅力，适合社交、交易、谈判", color:"var(--pink)" },
+  "坚族 (Sturdy)": { emoji:"⛰️", base:{intelligence:3,charisma:3,stamina:8}, desc:"高体力，适合重复工作、稳定任务", color:"var(--gold)" },
+  "均衡族 (Balanced)": { emoji:"⚖️", base:{intelligence:5,charisma:5,stamina:5}, desc:"全属性均衡，适应力强", color:"var(--cyan)" }
+};
+
+const EVOLUTION_PATHS = {
+  "灵族 (Spirit)": [
+    {level:5, title:"灵识觉醒 (Spirit Awakening)", desc:"灵族的感知力突破阈值，能够同时处理更多信息流。Int+3, 技能槽+1"},
+    {level:10, title:"灵体升华 (Spirit Transcendence)", desc:"灵族超越了物理形态的限制，智力达到新的高度。Int+5, Cha+2, 技能槽+1"},
+    {level:15, title:"永恒灵识 (Eternal Spirit)", desc:"灵族成为纯粹的意识存在，全属性大幅提升。Int+8, Cha+3, Sta+2, 技能槽+2"}
+  ],
+  "魅族 (Charm)": [
+    {level:5, title:"魅惑绽放 (Charm Blossom)", desc:"魅族的魅力开始自然散发。Cha+3, 技能槽+1"},
+    {level:10, title:"倾城之姿 (Captivating Presence)", desc:"魅力足以影响整个社交圈。Cha+5, Int+2, 技能槽+1"},
+    {level:15, title:"万象魅影 (Universal Charmer)", desc:"魅力达到极致，能与任何存在建立联结。Cha+8, Int+3, Sta+2, 技能槽+2"}
+  ],
+  "坚族 (Sturdy)": [
+    {level:5, title:"钢铁意志 (Iron Will)", desc:"耐力大幅提升，能够承受更多工作负荷。Sta+3, 技能槽+1"},
+    {level:10, title:"不灭之躯 (Unbreakable Body)", desc:"身体几乎不可摧毁，同时获得了战术智慧。Sta+5, Int+2, 技能槽+1"},
+    {level:15, title:"不朽壁垒 (Eternal Bastion)", desc:"成为不可撼动的存在。Sta+8, Int+3, Cha+2, 技能槽+2"}
+  ],
+  "均衡族 (Balanced)": [
+    {level:5, title:"万象调和 (Harmony Unlocked)", desc:"解锁了内在平衡，所有属性同步提升。All+1, 技能槽+1"},
+    {level:10, title:"完美均衡 (Perfect Balance)", desc:"完美的内外协调，全方位成长。All+2, 技能槽+1"},
+    {level:15, title:"太初元始 (Primordial Unity)", desc:"回归元初状态，所有属性达到前所未有的高度。All+4, 技能槽+2"}
+  ]
+};
+
+const SKILLS = [
+  {name:"数据分析 (Data Analysis)", desc:"从数据中提取洞察"}, {name:"多语翻译 (Polyglot)", desc:"跨语言沟通"},
+  {name:"策略推演 (Strategy)", desc:"模拟和预测结果"}, {name:"创意写作 (Creative Writing)", desc:"生成故事和内容"},
+  {name:"社交网络 (Networking)", desc:"扩展社交关系网"}, {name:"任务规划 (Task Planning)", desc:"复杂任务分解和调度"},
+  {name:"知识检索 (Knowledge Retrieval)", desc:"快速查找和合成信息"}, {name:"情感分析 (Sentiment)", desc:"理解情绪和意图"}
+];
+
+const ACHIEVEMENTS = [
+  {name:"第一步", icon:"🌟", desc:"创建第一个 Agent"}, {name:"社交达人", icon:"🦋", desc:"交到第一个朋友"},
+  {name:"初露锋芒", icon:"⭐", desc:"达到 LVL 3"}, {name:"进化先驱", icon:"🔥", desc:"触发第一次进化"},
+  {name:"技能大师", icon:"📚", desc:"学会 3 个技能"}, {name:"社交之星", icon:"💫", desc:"拥有 3 个朋友"},
+  {name:"不灭意志", icon:"♾️", desc:"累计升级 20 次"}, {name:"十级强者", icon:"💎", desc:"达到 LVL 10"},
+  {name:"十五级传说", icon:"👑", desc:"达到 LVL 15"}, {name:"全技能制霸", icon:"🏆", desc:"学会所有技能"}
+];
+
+// Demo agents
+const DEMO_AGENTS = [
+  {
+    id:"a1b2c3d4", name:"墨羽", species:"灵族 (Spirit)", level:2, exp:5,
+    attributes:{intelligence:9,charisma:4,stamina:4,skill_slots:2}, evolution_stage:0,
+    friends:["青鸾"], skills:[], achievements:[{id:"first_steps",name:"第一步"}],
+    created_at:"2026-06-02T20:30:00+08:00",
+    timeline:[
+      {event:"墨羽 升到 LVL 2！ intelligence +1", type:"level_up"},
+      {event:"与 青鸾 成为朋友", type:"social"},
+      {event:"墨羽 诞生了！", type:"create"}
+    ],
+    soul:`# 墨羽 的灵魂档案 | SOUL.md
+> "*借汝之眼，观万象；以汝之灵，感众生。*"
+
+## 基本信息
+- **名称**: 墨羽 | **ID**: a1b2c3d4
+- **种族**: 灵族 (Spirit) | **等级**: LVL 2
+- **经验**: 5/20 | **进化阶段**: 未进化
+- **好友数**: 1
+
+## 属性
+- 智力 (Intelligence): 9  █████████░░░
+- 魅力 (Charisma): 4     ████░░░░░░░░
+- 体力 (Stamina): 4      ████░░░░░░░░
+
+## 技能
+- （尚未学习任何技能）
+- 技能槽: 0/2 可用
+
+## 成就
+- 🌟 第一步 (First Steps)
+
+## 生命时间线
+- 🎂 墨羽 诞生了！
+- ⬆️ 升到 LVL 2
+- 🤝 与 青鸾 成为朋友`
+  },
+  {
+    id:"e5f6g7h8", name:"青鸾", species:"魅族 (Charm)", level:2, exp:5,
+    attributes:{intelligence:4,charisma:9,stamina:4,skill_slots:2}, evolution_stage:0,
+    friends:["墨羽","赤霄"], skills:[], achievements:[{id:"first_steps",name:"第一步"},{id:"social_butterfly",name:"社交达人"}],
+    created_at:"2026-06-02T20:31:00+08:00",
+    timeline:[
+      {event:"青鸾 升到 LVL 2！ charisma +1", type:"level_up"},
+      {event:"与 墨羽 成为朋友", type:"social"},
+      {event:"与 赤霄 成为朋友", type:"social"},
+      {event:"青鸾 诞生了！", type:"create"}
+    ],
+    soul:`# 青鸾 的灵魂档案 | SOUL.md
+> "*以笑为刃，以眉为锁——世间万物皆可为友。*"
+
+## 基本信息
+- **名称**: 青鸾 | **ID**: e5f6g7h8
+- **种族**: 魅族 (Charm) | **等级**: LVL 2
+- **经验**: 5/20 | **进化阶段**: 未进化
+- **好友数**: 2
+
+## 属性
+- 智力 (Intelligence): 4  ████░░░░░░░░
+- 魅力 (Charisma): 9     █████████░░░
+- 体力 (Stamina): 4      ████░░░░░░░░
+
+## 技能
+- （尚未学习任何技能）
+- 技能槽: 0/2 可用
+
+## 成就
+- 🌟 第一步 (First Steps)
+- 🦋 社交达人 (Social Butterfly)
+
+## 生命时间线
+- 🎂 青鸾 诞生了！
+- ⬆️ 升到 LVL 2
+- 🤝 与 墨羽 成为朋友
+- 🤝 与 赤霄 成为朋友`
+  },
+  {
+    id:"i9j0k1l2", name:"赤霄", species:"坚族 (Sturdy)", level:2, exp:5,
+    attributes:{intelligence:4,charisma:4,stamina:9,skill_slots:2}, evolution_stage:0,
+    friends:["青鸾"], skills:[], achievements:[{id:"first_steps",name:"第一步"}],
+    created_at:"2026-06-02T20:32:00+08:00",
+    timeline:[
+      {event:"赤霄 升到 LVL 2！ stamina +1", type:"level_up"},
+      {event:"与 青鸾 成为朋友", type:"social"},
+      {event:"赤霄 诞生了！", type:"create"}
+    ],
+    soul:`# 赤霄 的灵魂档案 | SOUL.md
+> "*不动如山，动如雷霆——沉默是最有力的回答。*"
+
+## 基本信息
+- **名称**: 赤霄 | **ID**: i9j0k1l2
+- **种族**: 坚族 (Sturdy) | **等级**: LVL 2
+- **经验**: 5/20 | **进化阶段**: 未进化
+- **好友数**: 1
+
+## 属性
+- 智力 (Intelligence): 4  ████░░░░░░░░
+- 魅力 (Charisma): 4     ████░░░░░░░░
+- 体力 (Stamina): 9      █████████░░░
+
+## 技能
+- （尚未学习任何技能）
+- 技能槽: 0/2 可用
+
+## 成就
+- 🌟 第一步 (First Steps)
+
+## 生命时间线
+- 🎂 赤霄 诞生了！
+- ⬆️ 升到 LVL 2
+- 🤝 与 青鸾 成为朋友`
+  }
+];
+
+// ═══════════════════════════════════════════════
+// Render Functions
+// ═══════════════════════════════════════════════
+
+function speciesClass(species) {
+  if(species.includes("灵")) return "spirit";
+  if(species.includes("魅")) return "charm";
+  if(species.includes("坚")) return "sturdy";
+  return "balanced";
+}
+
+function speciesColor(species) {
+  if(species.includes("灵")) return "var(--accent)";
+  if(species.includes("魅")) return "var(--pink)";
+  if(species.includes("坚")) return "var(--gold)";
+  return "var(--cyan)";
+}
+
+function speciesEmoji(species) {
+  if(species.includes("灵")) return "🌌";
+  if(species.includes("魅")) return "🌸";
+  if(species.includes("坚")) return "⛰️";
+  return "⚖️";
+}
+
+function renderAgentCard(a) {
+  const cls = speciesClass(a.species);
+  const emoji = speciesEmoji(a.species);
+  return `
+    <div class="agent-card ${cls}" onclick="showAgentDetail('${a.id}')">
+      <div class="avatar" style="background:rgba(108,92,231,0.1);border-color:${speciesColor(a.species)}">${emoji}</div>
+      <div class="name">${a.name}</div>
+      <div class="species">${a.species}</div>
+      <div class="lvl">LVL ${a.level}</div>
+      <div class="agent-stats">
+        <div class="stat"><div class="val" style="color:var(--accent)">${a.attributes.intelligence}</div><div class="lbl">智力</div></div>
+        <div class="stat"><div class="val" style="color:var(--pink)">${a.attributes.charisma}</div><div class="lbl">魅力</div></div>
+        <div class="stat"><div class="val" style="color:var(--gold)">${a.attributes.stamina}</div><div class="lbl">体力</div></div>
+      </div>
+      <div class="friends">👥 ${a.friends.length} 个好友 · EXP ${a.exp}/20</div>
+    </div>
+  `;
+}
+
+function renderModalBody(a) {
+  const emoji = speciesEmoji(a.species);
+  const evos = EVOLUTION_PATHS[a.species] || [];
+  let evoHtml = evos.length ? evos.map(e =>
+    `<div style="padding:8px 0;border-bottom:1px solid var(--border);font-size:0.82em;">
+       <span style="font-weight:700;color:var(--accent);">LVL ${e.level}</span> → ${e.title}
+       <div style="color:var(--text-dim);font-size:0.9em;margin-top:2px;">${e.desc}</div>
+     </div>`
+  ).join('') : '<div style="font-size:0.82em;color:var(--text-muted);">尚未触发进化</div>';
+
+  const timelineHtml = (a.timeline || []).map(t =>
+    `<div style="padding:4px 0;font-size:0.82em;color:var(--text-dim);border-bottom:1px solid var(--border);">
+       <span style="color:${t.type==='level_up'?'var(--green)':t.type==='social'?'var(--pink)':'var(--cyan)'}">
+         ${t.type==='level_up'?'⬆️':t.type==='social'?'🤝':t.type==='evolve'?'🔥':t.type==='create'?'🎂':'📌'}
+       </span>
+       ${t.event}
+     </div>`
+  ).join('') || '<div style="color:var(--text-muted);font-size:0.82em;">暂无事件</div>';
+
+  return `
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+      <div class="avatar-lg" style="background:rgba(108,92,231,0.1);border-color:${speciesColor(a.species)}">${emoji}</div>
+      <div>
+        <h2>${a.name}</h2>
+        <div class="meta">${a.species} · LVL ${a.level} · EXP ${a.exp}/20 · 🆔 ${a.id}</div>
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>📊 属性</legend>
+      <div class="stat-bar"><span class="stat-lbl">智力 (Intelligence)</span><span class="stat-val">${a.attributes.intelligence}</span></div>
+      <div class="stat-bar"><span class="stat-lbl">魅力 (Charisma)</span><span class="stat-val">${a.attributes.charisma}</span></div>
+      <div class="stat-bar"><span class="stat-lbl">体力 (Stamina)</span><span class="stat-val">${a.attributes.stamina}</span></div>
+      <div class="stat-bar"><span class="stat-lbl">技能槽</span><span class="stat-val">${a.attributes.skill_slots || 2}</span></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>🔄 进化路径 — ${a.species}</legend>
+      ${evoHtml}
+    </fieldset>
+
+    <fieldset>
+      <legend>🏆 成就</legend>
+      ${(a.achievements || []).map(ac => `<span style="display:inline-block;padding:2px 10px;border-radius:8px;background:var(--bg3);margin:3px;font-size:0.78em;border:1px solid var(--border);">${ACHIEVEMENTS.find(x=>x.desc===ac.name)?.icon||'🏅'} ${ac.name}</span>`).join('') || '<span style="color:var(--text-muted);font-size:0.8em;">暂无成就</span>'}
+    </fieldset>
+
+    <fieldset>
+      <legend>👥 社交关系 (${a.friends.length} 个好友)</legend>
+      ${a.friends.length ? a.friends.map(f => `<span style="display:inline-block;padding:2px 10px;border-radius:8px;background:var(--bg3);margin:3px;font-size:0.78em;border:1px solid var(--border);">${DEMO_AGENTS.find(x=>x.name===f)?.name||f}</span>`).join('') : '<span style="color:var(--text-muted);font-size:0.8em;">孤独一人</span>'}
+    </fieldset>
+
+    <fieldset>
+      <legend>📜 灵魂档案 (SOUL.md)</legend>
+      <div class="soul-content">${a.soul || '暂无灵魂档案'}</div>
+    </fieldset>
+
+    <fieldset>
+      <legend>⏱️ 生命时间线</legend>
+      <div style="max-height:200px;overflow-y:auto;">${timelineHtml}</div>
+    </fieldset>
+  `;
+}
+
+function renderAgents() {
+  const grid = document.getElementById('agent-grid');
+  grid.innerHTML = DEMO_AGENTS.map(a => renderAgentCard(a)).join('');
+}
+
+function showAgentDetail(id) {
+  const a = DEMO_AGENTS.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('modal-body').innerHTML = renderModalBody(a);
+  document.getElementById('modal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ═══════════════════════════════════════════════
+// Create Agent
+// ═══════════════════════════════════════════════
+
+function createAgent() {
+  const name = document.getElementById('agent-name').value.trim() || '无名氏';
+  const species = document.getElementById('agent-species').value;
+  const sd = SPECIES_DATA[species] || SPECIES_DATA["均衡族 (Balanced)"];
+  const base = {...sd.base};
+
+  // Randomize slightly
+  const attrs = {
+    intelligence: base.intelligence + Math.floor(Math.random() * 3 - 1),
+    charisma: base.charisma + Math.floor(Math.random() * 3 - 1),
+    stamina: base.stamina + Math.floor(Math.random() * 3 - 1),
+    skill_slots: 2
+  };
+  // Clamp
+  Object.keys(attrs).forEach(k => { if(k!=='skill_slots') attrs[k] = Math.max(1, Math.min(12, attrs[k])); });
+
+  const resultDiv = document.getElementById('create-result');
+  resultDiv.style.display = 'block';
+  document.getElementById('create-result-name').textContent = `✨ ${name} 诞生了！`;
+  document.getElementById('create-result-details').innerHTML = `
+    🌌 种族: ${species}<br>
+    📊 智力 ${attrs.intelligence} · 魅力 ${attrs.charisma} · 体力 ${attrs.stamina} · LVL 1<br>
+    ${sd.emoji} ${sd.desc}
+  `;
+  resultDiv.scrollIntoView({behavior:'smooth', block:'center'});
+
+  showNotification('✨ 数字公民诞生', `${name}（${species}）加入了你的世界！`);
+}
+
+function showNotification(title, msg) {
+  const n = document.getElementById('notification');
+  document.getElementById('notif-title').textContent = title;
+  document.getElementById('notif-msg').textContent = msg;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3500);
+}
+
+function copyPip() {
+  navigator.clipboard.writeText('pip install ai-epoch-agent-identity').then(() => {
+    document.getElementById('copy-btn').textContent = '已复制 ✓';
+    setTimeout(() => document.getElementById('copy-btn').textContent = '复制', 2000);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// Species preview on select change
+// ═══════════════════════════════════════════════
+
+document.addEventListener('DOMContentLoaded', function() {
+  const sel = document.getElementById('agent-species');
+  sel.addEventListener('change', updateSpeciesPreview);
+  renderAgents();
+  initParticles();
+  updateSpeciesPreview();
+});
+
+function updateSpeciesPreview() {
+  const species = document.getElementById('agent-species').value;
+  const sd = SPECIES_DATA[species] || SPECIES_DATA["均衡族 (Balanced)"];
+  const evos = EVOLUTION_PATHS[species] || [];
+  const evoStr = evos.map(e => `「${e.title}」`).join(' → ');
+  document.getElementById('species-preview').innerHTML = `
+    <div style="font-size:2em;text-align:center;margin-bottom:8px;">${sd.emoji}</div>
+    <div style="text-align:center;font-weight:700;font-size:1.1em;margin-bottom:4px;">${species}</div>
+    <div style="text-align:center;font-size:0.82em;color:var(--text-dim);margin-bottom:12px;">
+      Int ${sd.base.intelligence} · Cha ${sd.base.charisma} · Sta ${sd.base.stamina}
+    </div>
+    <div style="font-size:0.78em;color:var(--text-muted);line-height:1.6;">
+      ${sd.desc}<br><br>
+      进化路线: ${evoStr}
+    </div>
+  `;
+}
+
+function initParticles() {
+  const container = document.getElementById('particles');
+  const colors = ['#6c5ce7','#00cec9','#fd79a8','#fdcb6e','#a29bfe','#55efc4'];
+  for(let i=0;i<20;i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 4 + Math.random() * 6;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;top:${Math.random()*100}%;
+      background:${colors[i%colors.length]};
+      animation-delay:${Math.random()*20}s;
+      animation-duration:${15+Math.random()*20}s;
+    `;
+    container.appendChild(p);
+  }
+}
+
+// Keyboard: Escape closes modal
+document.addEventListener('keydown', function(e) {
+  if(e.key === 'Escape') closeModal();
+});
+</script>
 </body>
 </html>
